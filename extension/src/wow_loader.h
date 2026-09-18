@@ -2,6 +2,8 @@
 
 #include "wow_archive.h"
 
+#include "pipeline/m2_loader.hpp"
+
 #include <godot_cpp/classes/animation_library.hpp>
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/image.hpp>
@@ -11,6 +13,7 @@
 #include <godot_cpp/classes/ref_counted.hpp>
 #include <godot_cpp/classes/shader.hpp>
 #include <godot_cpp/classes/standard_material3d.hpp>
+#include <godot_cpp/classes/texture2d.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/variant/typed_array.hpp>
 
@@ -26,9 +29,8 @@ namespace godot {
 class WowLoader : public RefCounted {
 	GDCLASS(WowLoader, RefCounted)
 
-	struct M2Template {
-		Ref<ArrayMesh> mesh;
-		Ref<AnimationLibrary> animations;
+	struct M2Data {
+		wowee::pipeline::M2Model model;
 		std::vector<int> bone_parents;
 		std::vector<Vector3> bone_rests;
 	};
@@ -40,11 +42,15 @@ class WowLoader : public RefCounted {
 	std::mutex cache_mutex;
 	std::unordered_map<std::string, Ref<ImageTexture>> textures;
 	std::unordered_map<std::string, Ref<StandardMaterial3D>> materials;
-	std::unordered_map<std::string, std::shared_ptr<const M2Template>> m2_templates;
+	std::unordered_map<std::string, std::shared_ptr<const M2Data>> m2_data;
+	std::unordered_map<std::string, Ref<ArrayMesh>> m2_meshes;
+	std::unordered_map<std::string, Ref<AnimationLibrary>> m2_animations;
 	std::unordered_map<uint32_t, String> animation_names;
 
-	std::shared_ptr<const M2Template> get_m2_template(const String &path, const Dictionary &skins);
-	Ref<StandardMaterial3D> get_material(const String &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, float alpha);
+	std::shared_ptr<const M2Data> get_m2_data(const String &path);
+	Ref<ArrayMesh> get_m2_mesh(const String &path, const M2Data &data, const Dictionary &skins, const PackedInt32Array &geosets);
+	Ref<AnimationLibrary> get_m2_animations(const String &path, const M2Data &data);
+	Ref<StandardMaterial3D> get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, float alpha);
 	String animation_name(uint32_t id, uint32_t variation);
 
 protected:
@@ -60,7 +66,7 @@ public:
 
 	Ref<Image> load_image(const String &path);
 	Ref<ImageTexture> load_texture(const String &path);
-	Node3D *load_m2(const String &path, const Dictionary &skins = Dictionary());
+	Node3D *load_m2(const String &path, const Dictionary &skins = Dictionary(), const PackedInt32Array &geosets = PackedInt32Array());
 	Node3D *load_wmo(const String &path, int doodad_set = 0);
 	Node3D *build_static_models(const Array &placements);
 	Dictionary get_m2_info(const String &path);

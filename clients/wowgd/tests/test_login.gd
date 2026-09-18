@@ -15,6 +15,7 @@ const MOVE_FORWARD: int = 0x1
 const MAX_SAVED_ERROR: float = 1.0
 # The Northshire start; runs alternate north and south of it so repeated tests stay put.
 const START_X: float = -8949.95
+const SAY_TEXT: String = "Hello from WoWGD"
 
 var _session: WowSession
 var _failures: PackedStringArray = []
@@ -25,6 +26,9 @@ var _characters_fresh: bool = false
 var _entered: Dictionary = {}
 var _units: int = 0
 var _moves: int = 0
+var _creature: int = 0
+var _names: Dictionary[int, String] = {}
+var _chat: Array[Dictionary] = []
 var _unhandled: Dictionary[String, int] = {}
 
 
@@ -41,6 +45,8 @@ func _run() -> void:
 	_session.object_created.connect(_on_object_created)
 	_session.object_moved.connect(_on_object_moved)
 	_session.packet_received.connect(_on_packet_received)
+	_session.name_received.connect(_on_name_received)
+	_session.chat_received.connect(_on_chat_received)
 	_session.login(HOST, PORT, ACCOUNT, PASSWORD)
 
 	if not _check(await _until(func() -> bool: return not _realms.is_empty()), "realm list"):
@@ -73,6 +79,21 @@ func _run() -> void:
 	print("opcodes left to GDScript: ", _unhandled)
 	var player_health: int = _session.get_field(_session.get_player_guid(), "UNIT_FIELD_HEALTH")
 	_check(player_health > 0, "player health field is readable (%d)" % player_health)
+
+	_session.get_object_name(_creature)
+	var named: bool = await _until(func() -> bool: return _names.has(_creature))
+	print("creature %d is %s" % [_creature, _names.get(_creature, "?")])
+	_check(named and _session.get_object_name(_creature) == _names[_creature], "creature name query")
+	_session.set_selection(_creature)
+	_session.send_chat(WowSession.CHAT_SAY, SAY_TEXT)
+	var heard: bool = await _until(func() -> bool: return _chat.any(
+		func(line: Dictionary) -> bool: return line["text"] == SAY_TEXT
+	))
+	print("chat: ", _chat)
+	_check(heard, "say echoes back")
+	for line: Dictionary in _chat:
+		if line["text"] == SAY_TEXT:
+			_check(line["sender_name"] == character["name"], "say carries the sender name")
 
 	var start: Vector3 = _entered["position"]
 	var facing: float = 0.0 if start.x <= START_X else PI
@@ -146,11 +167,21 @@ func _on_world_entered(map_id: int, position: Vector3, orientation: float) -> vo
 func _on_object_created(guid: int, type_id: int) -> void:
 	if type_id == ObjectType.UNIT:
 		_units += 1
+		if _creature == 0:
+			_creature = guid
 
 
 func _on_object_moved(guid: int, movement: Dictionary) -> void:
 	if guid != _session.get_player_guid():
 		_moves += 1
+
+
+func _on_name_received(guid: int, name: String) -> void:
+	_names[guid] = name
+
+
+func _on_chat_received(line: Dictionary) -> void:
+	_chat.append(line)
 
 
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:

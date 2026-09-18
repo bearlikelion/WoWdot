@@ -20,14 +20,20 @@ var loader: WowLoader:
 		if _loader == null:
 			_open()
 		return _loader
+var characters: CharacterModels:
+	get:
+		if _characters == null:
+			_characters = CharacterModels.new(loader)
+		return _characters
 var creatures: CreatureModels:
 	get:
 		if _creatures == null:
-			_creatures = CreatureModels.new(loader)
+			_creatures = CreatureModels.new(loader, characters)
 		return _creatures
 
 var _archive: WowArchive
 var _loader: WowLoader
+var _characters: CharacterModels
 var _creatures: CreatureModels
 
 

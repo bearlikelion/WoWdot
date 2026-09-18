@@ -1,6 +1,7 @@
 #pragma once
 
 #include <godot_cpp/classes/ref_counted.hpp>
+#include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/variant/packed_byte_array.hpp>
 #include <godot_cpp/variant/packed_int64_array.hpp>
@@ -10,6 +11,7 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace wowee {
@@ -45,6 +47,28 @@ public:
 		STATE_FAILED,
 	};
 
+	// Vanilla numbering, which differs from the later expansions.
+	enum ChatType {
+		CHAT_SAY = 0x00,
+		CHAT_PARTY = 0x01,
+		CHAT_RAID = 0x02,
+		CHAT_GUILD = 0x03,
+		CHAT_OFFICER = 0x04,
+		CHAT_YELL = 0x05,
+		CHAT_WHISPER = 0x06,
+		CHAT_WHISPER_INFORM = 0x07,
+		CHAT_EMOTE = 0x08,
+		CHAT_TEXT_EMOTE = 0x09,
+		CHAT_SYSTEM = 0x0A,
+		CHAT_MONSTER_SAY = 0x0B,
+		CHAT_MONSTER_YELL = 0x0C,
+		CHAT_MONSTER_EMOTE = 0x0D,
+		CHAT_CHANNEL = 0x0E,
+		CHAT_MONSTER_WHISPER = 0x1A,
+		CHAT_RAID_BOSS_WHISPER = 0x59,
+		CHAT_RAID_BOSS_EMOTE = 0x5A,
+	};
+
 private:
 	struct WorldObject {
 		uint8_t type_id = 0;
@@ -75,14 +99,23 @@ private:
 	std::unordered_map<uint64_t, WorldObject> objects;
 	uint32_t ping_sequence = 0;
 	uint64_t last_ping_msec = 0;
+	std::unordered_map<uint64_t, std::string> player_names;
+	std::unordered_map<uint32_t, std::string> creature_names;
+	std::unordered_set<uint64_t> player_queries;
+	std::unordered_map<uint32_t, std::vector<uint64_t>> creature_queries;
+	// Player chat carries only the sender guid, so lines wait here for the name query.
+	std::unordered_map<uint64_t, Array> chat_waiting;
 
 	void set_state(State p_state, const String &p_message = String());
 	void retire_sockets();
+	void release_retired();
 	void begin_auth();
 	void handle_world_packet(wowee::network::Packet &packet);
 	void handle_update(wowee::game::UpdateObjectData &data);
 	void handle_movement_relay(wowee::network::Packet &packet);
 	void handle_compressed_moves(wowee::network::Packet &packet);
+	void handle_chat(wowee::network::Packet &packet);
+	void query_player_name(uint64_t guid);
 	bool inflate(wowee::network::Packet &packet, std::vector<uint8_t> &r_data);
 	const WorldObject *find(int64_t guid) const;
 
@@ -101,6 +134,9 @@ public:
 	void logout();
 	void send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags);
 	void send_packet(const String &opcode, const PackedByteArray &payload);
+	void send_chat(ChatType type, const String &message, const String &target = String());
+	void set_selection(int64_t guid);
+	String get_object_name(int64_t guid);
 	void disconnect();
 	void poll();
 
@@ -119,3 +155,4 @@ public:
 } // namespace godot
 
 VARIANT_ENUM_CAST(WowSession::State);
+VARIANT_ENUM_CAST(WowSession::ChatType);

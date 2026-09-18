@@ -10,17 +10,22 @@ const SKIN_COLUMNS: Dictionary[String, TextureSlot] = {
 }
 
 var _loader: WowLoader
+var _characters: CharacterModels
 var _display_info: WowDBC
+var _display_extra: WowDBC
 var _model_data: WowDBC
 
 
-func _init(loader: WowLoader) -> void:
+func _init(loader: WowLoader, characters: CharacterModels) -> void:
 	_loader = loader
+	_characters = characters
 	_display_info = WowDBC.open(loader.archive, "CreatureDisplayInfo")
+	_display_extra = WowDBC.open(loader.archive, "CreatureDisplayInfoExtra")
 	_model_data = WowDBC.open(loader.archive, "CreatureModelData")
 
 
-func instantiate(display_id: int) -> Node3D:
+# Humanoid NPCs and players look like characters, so any look given here is applied as one.
+func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 	var row: int = _display_info.find(display_id)
 	if row < 0:
 		return null
@@ -28,13 +33,30 @@ func instantiate(display_id: int) -> Node3D:
 	if model_row < 0:
 		return null
 	var model_path: String = _model_data.get_string(model_row, "ModelPath").replace("\\", "/")
+	var extra: int = _display_extra.find(_display_info.get_uint(row, "ExtraDisplayId"))
+	if look.is_empty() and extra >= 0:
+		look = {
+			"race": _display_extra.get_uint(extra, "RaceID"),
+			"gender": _display_extra.get_uint(extra, "SexID"),
+			"skin": _display_extra.get_uint(extra, "SkinID"),
+			"face": _display_extra.get_uint(extra, "FaceID"),
+			"hair_style": _display_extra.get_uint(extra, "HairStyleID"),
+			"hair_color": _display_extra.get_uint(extra, "HairColorID"),
+			"facial_hair": _display_extra.get_uint(extra, "FacialHairID"),
+			"baked": _display_extra.get_string(extra, "BakeName"),
+		}
+	if not look.is_empty():
+		return _scaled(_characters.instantiate(model_path, look), row)
 	# Display skins are bare names that live next to the model.
 	var skins: Dictionary = {}
 	for column: String in SKIN_COLUMNS:
 		var skin: String = _display_info.get_string(row, column)
 		if not skin.is_empty():
 			skins[SKIN_COLUMNS[column]] = model_path.get_base_dir().path_join(skin + ".blp")
-	var model: Node3D = _loader.load_m2(model_path, skins)
+	return _scaled(_loader.load_m2(model_path, skins), row)
+
+
+func _scaled(model: Node3D, row: int) -> Node3D:
 	if model:
 		var scale: float = _display_info.get_float(row, "Scale")
 		model.scale = Vector3.ONE * (scale if scale > 0.0 else 1.0)

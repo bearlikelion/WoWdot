@@ -36,6 +36,18 @@ constexpr uint8_t AUTH_PROTOCOL = 8;
 constexpr uint8_t AUTH_PROTOCOL_LEGACY = 3;
 constexpr uint8_t CHAR_CREATE_SUCCESS = 46;
 constexpr uint64_t PING_INTERVAL_MSEC = 30000;
+constexpr uint32_t LANG_ORCISH = 1;
+constexpr uint32_t LANG_COMMON = 7;
+constexpr uint8_t TYPEID_UNIT = 3;
+constexpr uint8_t TYPEID_PLAYER = 4;
+
+bool is_player_guid(uint64_t guid) {
+	return guid != 0 && (guid >> 48) == 0;
+}
+
+bool is_horde(uint8_t race) {
+	return race == 2 || race == 5 || race == 6 || race == 8;
+}
 
 std::unordered_map<std::string, int> &field_indices() {
 	static std::unordered_map<std::string, int> indices;
@@ -115,11 +127,19 @@ void WowSession::begin_auth() {
 	info.protocolVersion = auth_attempt == 0 ? AUTH_PROTOCOL : AUTH_PROTOCOL_LEGACY;
 	info.legacyVanillaRealmList = true;
 	auth->setClientInfo(info);
-	auth->setOnSuccess([this](const std::vector<uint8_t> &key) {
+	// Callbacks keep their own handler, since a handler replaced mid-callback may still report.
+	auth::AuthHandler *handler = auth.get();
+	auth->setOnSuccess([this, handler](const std::vector<uint8_t> &key) {
+		if (handler != auth.get()) {
+			return;
+		}
 		session_key = key;
-		auth->requestRealmList();
+		handler->requestRealmList();
 	});
-	auth->setOnRealmList([this](const std::vector<auth::Realm> &list) {
+	auth->setOnRealmList([this, handler](const std::vector<auth::Realm> &list) {
+		if (handler != auth.get()) {
+			return;
+		}
 		realms = list;
 		Array out;
 		for (const auth::Realm &realm : realms) {
@@ -135,8 +155,11 @@ void WowSession::begin_auth() {
 		set_state(STATE_REALM_LIST);
 		emit_signal("realms_received", out);
 	});
-	auth->setOnFailure([this](const std::string &reason) {
-		if (auth->lastFailureWasProtocol() && auth_attempt == 0) {
+	auth->setOnFailure([this, handler](const std::string &reason) {
+		if (handler != auth.get()) {
+			return;
+		}
+		if (handler->lastFailureWasProtocol() && auth_attempt == 0) {
 			retry_auth = true;
 			return;
 		}
@@ -159,8 +182,9 @@ void WowSession::select_realm(int index) {
 	realm_id = realms[index].id;
 	retire_sockets();
 	world = std::make_unique<network::WorldSocket>();
-	world->setPacketCallback([this](const network::Packet &packet) {
-		if (!world) {
+	network::WorldSocket *socket = world.get();
+	world->setPacketCallback([this, socket](const network::Packet &packet) {
+		if (socket != world.get()) {
 			return;
 		}
 		network::Packet copy = packet;
@@ -232,17 +256,132 @@ void WowSession::send_packet(const String &opcode, const PackedByteArray &payloa
 	world->send(network::Packet(game::wireOpcode(*op), std::move(data)));
 }
 
+void WowSession::send_chat(ChatType type, const String &message, const String &target) {
+	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
+	const uint8_t race = uint8_t(get_field(int64_t(player_guid), "UNIT_FIELD_BYTES_0") & 0xFF);
+	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_MESSAGECHAT));
+	packet.writeUInt32(type);
+	packet.writeUInt32(is_horde(race) ? LANG_ORCISH : LANG_COMMON);
+	if (type == CHAT_WHISPER || type == CHAT_CHANNEL) {
+		packet.writeString(target.utf8().get_data());
+	}
+	packet.writeString(message.utf8().get_data());
+	world->send(packet);
+}
+
+void WowSession::set_selection(int64_t guid) {
+	ERR_FAIL_COND(!world);
+	world->send(game::SetSelectionPacket::build(uint64_t(guid)));
+}
+
+// Empty until the server answers the query this sends; name_received follows.
+String WowSession::get_object_name(int64_t guid) {
+	const WorldObject *object = find(guid);
+	if (!object || !world) {
+		return String();
+	}
+	if (object->type_id == TYPEID_PLAYER) {
+		auto it = player_names.find(uint64_t(guid));
+		if (it != player_names.end()) {
+			return String::utf8(it->second.c_str());
+		}
+		query_player_name(uint64_t(guid));
+	} else if (object->type_id == TYPEID_UNIT) {
+		const uint32_t entry = uint32_t(get_field(guid, "OBJECT_FIELD_ENTRY"));
+		auto it = creature_names.find(entry);
+		if (it != creature_names.end()) {
+			return String::utf8(it->second.c_str());
+		}
+		std::vector<uint64_t> &waiting = creature_queries[entry];
+		if (waiting.empty()) {
+			world->send(game::CreatureQueryPacket::build(entry, uint64_t(guid)));
+		}
+		if (std::find(waiting.begin(), waiting.end(), uint64_t(guid)) == waiting.end()) {
+			waiting.push_back(uint64_t(guid));
+		}
+	}
+	return String();
+}
+
+void WowSession::query_player_name(uint64_t guid) {
+	if (world && player_queries.insert(guid).second) {
+		world->send(game::NameQueryPacket::build(guid));
+	}
+}
+
+void WowSession::handle_chat(network::Packet &packet) {
+	const uint8_t type = packet.readUInt8();
+	Dictionary line;
+	line["type"] = type;
+	line["language"] = packet.readUInt32();
+	uint64_t sender = 0;
+	std::string name;
+	switch (type) {
+		case CHAT_MONSTER_EMOTE:
+		case CHAT_MONSTER_WHISPER:
+		case CHAT_RAID_BOSS_WHISPER:
+		case CHAT_RAID_BOSS_EMOTE:
+			packet.readUInt32();
+			name = packet.readString();
+			packet.readUInt64();
+			break;
+		case CHAT_SAY:
+		case CHAT_PARTY:
+		case CHAT_YELL:
+			sender = packet.readUInt64();
+			packet.readUInt64();
+			break;
+		case CHAT_MONSTER_SAY:
+		case CHAT_MONSTER_YELL:
+			sender = packet.readUInt64();
+			packet.readUInt32();
+			name = packet.readString();
+			packet.readUInt64();
+			break;
+		case CHAT_CHANNEL:
+			line["channel"] = String::utf8(packet.readString().c_str());
+			packet.readUInt32();
+			sender = packet.readUInt64();
+			break;
+		default:
+			sender = packet.readUInt64();
+			break;
+	}
+	packet.readUInt32();
+	line["text"] = String::utf8(packet.readString().c_str());
+	line["sender_guid"] = int64_t(sender);
+	if (name.empty() && is_player_guid(sender)) {
+		auto it = player_names.find(sender);
+		if (it == player_names.end()) {
+			chat_waiting[sender].push_back(line);
+			query_player_name(sender);
+			return;
+		}
+		name = it->second;
+	}
+	line["sender_name"] = String::utf8(name.c_str());
+	emit_signal("chat_received", line);
+}
+
 void WowSession::retire_sockets() {
 	if (auth) {
-		auth->disconnect();
 		retired_auth = std::move(auth);
 	}
 	if (world) {
-		world->disconnect();
 		retired_world = std::move(world);
 	}
 	if (!polling) {
+		release_retired();
+	}
+}
+
+void WowSession::release_retired() {
+	if (retired_auth) {
+		retired_auth->disconnect();
 		retired_auth.reset();
+	}
+	if (retired_world) {
+		retired_world->disconnect();
 		retired_world.reset();
 	}
 }
@@ -250,6 +389,9 @@ void WowSession::retire_sockets() {
 void WowSession::disconnect() {
 	retire_sockets();
 	objects.clear();
+	player_queries.clear();
+	creature_queries.clear();
+	chat_waiting.clear();
 	player_guid = 0;
 	state = STATE_DISCONNECTED;
 }
@@ -278,8 +420,7 @@ void WowSession::poll() {
 		}
 	}
 	polling = false;
-	retired_auth.reset();
-	retired_world.reset();
+	release_retired();
 }
 
 void WowSession::handle_world_packet(network::Packet &packet) {
@@ -409,10 +550,51 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			return;
 		case LogicalOpcode::SMSG_PONG:
 			return;
+		case LogicalOpcode::SMSG_MESSAGECHAT:
+			handle_chat(packet);
+			return;
+		case LogicalOpcode::SMSG_NAME_QUERY_RESPONSE: {
+			game::NameQueryResponseData data;
+			if (!parsers->parseNameQueryResponse(packet, data) || !data.isValid()) {
+				return;
+			}
+			const String name = String::utf8(data.name.c_str());
+			player_names[data.guid] = data.name;
+			player_queries.erase(data.guid);
+			emit_signal("name_received", int64_t(data.guid), name);
+			auto waiting = chat_waiting.find(data.guid);
+			if (waiting != chat_waiting.end()) {
+				const Array lines = waiting->second;
+				chat_waiting.erase(waiting);
+				for (int i = 0; i < lines.size(); i++) {
+					Dictionary line = lines[i];
+					line["sender_name"] = name;
+					emit_signal("chat_received", line);
+				}
+			}
+			return;
+		}
+		case LogicalOpcode::SMSG_CREATURE_QUERY_RESPONSE: {
+			game::CreatureQueryResponseData data;
+			if (!parsers->parseCreatureQueryResponse(packet, data) || !data.isValid()) {
+				return;
+			}
+			creature_names[data.entry] = data.name;
+			auto waiting = creature_queries.find(data.entry);
+			if (waiting != creature_queries.end()) {
+				const std::vector<uint64_t> guids = std::move(waiting->second);
+				creature_queries.erase(waiting);
+				for (uint64_t guid : guids) {
+					emit_signal("name_received", int64_t(guid), String::utf8(data.name.c_str()));
+				}
+			}
+			return;
+		}
 		case LogicalOpcode::SMSG_LOGOUT_COMPLETE:
 			objects.clear();
 			player_guid = 0;
 			set_state(STATE_CHARACTER_LIST);
+			request_characters();
 			return;
 		default:
 			break;
@@ -579,6 +761,9 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("logout"), &WowSession::logout);
 	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags"), &WowSession::send_movement);
 	ClassDB::bind_method(D_METHOD("send_packet", "opcode", "payload"), &WowSession::send_packet);
+	ClassDB::bind_method(D_METHOD("send_chat", "type", "message", "target"), &WowSession::send_chat, DEFVAL(String()));
+	ClassDB::bind_method(D_METHOD("set_selection", "guid"), &WowSession::set_selection);
+	ClassDB::bind_method(D_METHOD("get_object_name", "guid"), &WowSession::get_object_name);
 	ClassDB::bind_method(D_METHOD("disconnect"), &WowSession::disconnect);
 	ClassDB::bind_method(D_METHOD("poll"), &WowSession::poll);
 	ClassDB::bind_method(D_METHOD("get_state"), &WowSession::get_state);
@@ -601,6 +786,8 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("object_updated", PropertyInfo(Variant::INT, "guid")));
 	ADD_SIGNAL(MethodInfo("object_moved", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::DICTIONARY, "movement")));
 	ADD_SIGNAL(MethodInfo("objects_destroyed", PropertyInfo(Variant::PACKED_INT64_ARRAY, "guids")));
+	ADD_SIGNAL(MethodInfo("chat_received", PropertyInfo(Variant::DICTIONARY, "line")));
+	ADD_SIGNAL(MethodInfo("name_received", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::STRING, "name")));
 	ADD_SIGNAL(MethodInfo("packet_received", PropertyInfo(Variant::STRING, "opcode"), PropertyInfo(Variant::PACKED_BYTE_ARRAY, "payload")));
 
 	BIND_ENUM_CONSTANT(STATE_DISCONNECTED);
@@ -611,6 +798,25 @@ void WowSession::_bind_methods() {
 	BIND_ENUM_CONSTANT(STATE_ENTERING_WORLD);
 	BIND_ENUM_CONSTANT(STATE_IN_WORLD);
 	BIND_ENUM_CONSTANT(STATE_FAILED);
+
+	BIND_ENUM_CONSTANT(CHAT_SAY);
+	BIND_ENUM_CONSTANT(CHAT_PARTY);
+	BIND_ENUM_CONSTANT(CHAT_RAID);
+	BIND_ENUM_CONSTANT(CHAT_GUILD);
+	BIND_ENUM_CONSTANT(CHAT_OFFICER);
+	BIND_ENUM_CONSTANT(CHAT_YELL);
+	BIND_ENUM_CONSTANT(CHAT_WHISPER);
+	BIND_ENUM_CONSTANT(CHAT_WHISPER_INFORM);
+	BIND_ENUM_CONSTANT(CHAT_EMOTE);
+	BIND_ENUM_CONSTANT(CHAT_TEXT_EMOTE);
+	BIND_ENUM_CONSTANT(CHAT_SYSTEM);
+	BIND_ENUM_CONSTANT(CHAT_MONSTER_SAY);
+	BIND_ENUM_CONSTANT(CHAT_MONSTER_YELL);
+	BIND_ENUM_CONSTANT(CHAT_MONSTER_EMOTE);
+	BIND_ENUM_CONSTANT(CHAT_CHANNEL);
+	BIND_ENUM_CONSTANT(CHAT_MONSTER_WHISPER);
+	BIND_ENUM_CONSTANT(CHAT_RAID_BOSS_WHISPER);
+	BIND_ENUM_CONSTANT(CHAT_RAID_BOSS_EMOTE);
 }
 
 } // namespace godot

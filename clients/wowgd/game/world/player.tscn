@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://game/world/player.gd" id="1_player"]
+
+[sub_resource type="CapsuleShape3D" id="Capsule_player"]
+radius = 0.35
+height = 1.9
+
+[node name="Player" type="CharacterBody3D"]
+floor_max_angle = 0.872665
+floor_snap_length = 0.6
+script = ExtResource("1_player")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("Capsule_player")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+spring_length = 7.0
+margin = 0.3
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+far = 2500.0

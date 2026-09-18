@@ -80,6 +80,11 @@ func tile_at(godot_position: Vector3) -> Vector2i:
 	return Vector2i(floori(32.0 - wow.y / TILE_SIZE), floori(32.0 - wow.x / TILE_SIZE))
 
 
+# True once collision under the point exists; maps without terrain tiles are a single WMO.
+func is_ground_ready(godot_position: Vector3) -> bool:
+	return _existing.is_empty() or _tiles.has(tile_at(godot_position))
+
+
 func is_idle() -> bool:
 	return _loading.is_empty()
 

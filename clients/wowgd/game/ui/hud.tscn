@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://game/ui/hud.gd" id="1_hud"]
+[ext_resource type="Theme" path="res://game/ui/theme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://game/ui/unit_frame.tscn" id="3_frame"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_hud")
+
+[node name="Frames" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 472.0
+offset_bottom = 72.0
+mouse_filter = 2
+theme_type_variation = &"FrameRow"
+
+[node name="PlayerFrame" parent="Frames" instance=ExtResource("3_frame")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="TargetFrame" parent="Frames" instance=ExtResource("3_frame")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Chat" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -296.0
+offset_right = 496.0
+offset_bottom = -16.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ChatLog" type="RichTextLabel" parent="Chat"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+scroll_following = true
+
+[node name="ChatInput" type="LineEdit" parent="Chat"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+max_length = 255

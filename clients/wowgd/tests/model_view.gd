@@ -18,9 +18,24 @@ func _ready() -> void:
 	if args.has("wmo"):
 		model = loader.load_wmo(args["wmo"])
 	elif args.has("display"):
-		model = CreatureModels.new(loader).instantiate(int(args["display"]))
+		var look: Dictionary = {}
+		if args.has("look"):
+			var values: PackedFloat64Array = String(args["look"]).split_floats(",")
+			var keys: PackedStringArray = [
+				"race", "gender", "skin", "face", "hair_style", "hair_color", "facial_hair",
+			]
+			for i: int in keys.size():
+				look[keys[i]] = int(values[i])
+		var characters: CharacterModels = CharacterModels.new(loader)
+		model = CreatureModels.new(loader, characters).instantiate(int(args["display"]), look)
 	else:
-		model = loader.load_m2(args.get("m2", "Creature\\Wolf\\Wolf.m2"))
+		var geosets: PackedInt32Array = []
+		for value: float in String(args.get("geosets", "")).split_floats(",", false):
+			geosets.append(int(value))
+		var skins: Dictionary = {}
+		if args.has("skin_png"):
+			skins[1] = ImageTexture.create_from_image(Image.load_from_file(args["skin_png"]))
+		model = loader.load_m2(args.get("m2", "Creature\\Wolf\\Wolf.m2"), skins, geosets)
 	if model == null:
 		printerr("model failed to load")
 		get_tree().quit(1)

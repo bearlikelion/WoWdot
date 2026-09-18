@@ -111,7 +111,7 @@ void WowLoader::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_liquid_materials"), &WowLoader::get_liquid_materials);
 	ClassDB::bind_method(D_METHOD("load_image", "path"), &WowLoader::load_image);
 	ClassDB::bind_method(D_METHOD("load_texture", "path"), &WowLoader::load_texture);
-	ClassDB::bind_method(D_METHOD("load_m2", "path", "skins"), &WowLoader::load_m2, DEFVAL(Dictionary()));
+	ClassDB::bind_method(D_METHOD("load_m2", "path", "skins", "geosets"), &WowLoader::load_m2, DEFVAL(Dictionary()), DEFVAL(PackedInt32Array()));
 	ClassDB::bind_method(D_METHOD("load_wmo", "path", "doodad_set"), &WowLoader::load_wmo, DEFVAL(0));
 	ClassDB::bind_method(D_METHOD("get_m2_info", "path"), &WowLoader::get_m2_info);
 	ClassDB::bind_method(D_METHOD("build_static_models", "placements"), &WowLoader::build_static_models);

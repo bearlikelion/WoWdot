@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://game/world/world.gd" id="1_world"]
+[ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
+[ext_resource type="PackedScene" path="res://game/world/player.tscn" id="3_player"]
+[ext_resource type="Script" path="res://game/world/entities.gd" id="4_entities"]
+[ext_resource type="PackedScene" path="res://game/ui/hud.tscn" id="5_hud"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_mat"]
+sky_top_color = Color(0.3, 0.5, 0.8, 1)
+sky_horizon_color = Color(0.7, 0.8, 0.9, 1)
+
+[sub_resource type="Sky" id="Sky_world"]
+sky_material = SubResource("Sky_mat")
+
+[sub_resource type="Environment" id="Environment_world"]
+background_mode = 2
+sky = SubResource("Sky_world")
+ambient_light_source = 3
+ambient_light_energy = 0.9
+fog_enabled = true
+fog_light_color = Color(0.7, 0.78, 0.88, 1)
+fog_density = 0.0015
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_world")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_world")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, -0.25, 0.433, 0, 0.866, 0.5, -0.5, -0.433, 0.75, 0, 0, 0)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+
+[node name="WowMap" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_map")
+target = NodePath("../Player")
+
+[node name="Entities" type="Node3D" parent="."]
+script = ExtResource("4_entities")
+
+[node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="HudLayer" instance=ExtResource("5_hud")]
+unique_name_in_owner = true
