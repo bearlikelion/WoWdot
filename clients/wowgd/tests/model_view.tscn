@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://tests/model_view.gd" id="1_view"]
+
+[sub_resource type="Environment" id="Environment_view"]
+background_mode = 1
+background_color = Color(0.32, 0.4, 0.5, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.6, 0.65, 1)
+ambient_light_energy = 0.8
+
+[node name="ModelView" type="Node3D"]
+script = ExtResource("1_view")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_view")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, -0.25, 0.433, 0, 0.866, 0.5, -0.5, -0.433, 0.75, 0, 0, 0)
+light_energy = 1.2
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Stage" type="Node3D" parent="."]

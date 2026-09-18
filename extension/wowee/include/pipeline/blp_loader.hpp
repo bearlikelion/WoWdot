@@ -1,0 +1,111 @@
+#pragma once
+
+#include <vector>
+#include <cstdint>
+#include <string>
+
+namespace wowee {
+namespace pipeline {
+
+/**
+ * BLP image format (Blizzard Picture)
+ */
+enum class BLPFormat {
+    UNKNOWN = 0,
+    BLP0 = 1,      // Alpha channel only
+    BLP1 = 2,      // DXT compression or uncompressed
+    BLP2 = 3       // DXT compression with mipmaps
+};
+
+/**
+ * BLP compression type
+ */
+enum class BLPCompression {
+    NONE = 0,
+    PALETTE = 1,     // 256-color palette
+    DXT1 = 2,        // DXT1 compression (no alpha or 1-bit alpha)
+    DXT3 = 3,        // DXT3 compression (4-bit alpha)
+    DXT5 = 4,        // DXT5 compression (interpolated alpha)
+    ARGB8888 = 5     // Uncompressed 32-bit ARGB
+};
+
+/**
+ * Loaded BLP image data
+ */
+struct BLPImage {
+    int width = 0;
+    int height = 0;
+    int channels = 4;
+    int mipLevels = 1;
+    BLPFormat format = BLPFormat::UNKNOWN;
+    BLPCompression compression = BLPCompression::NONE;
+    std::vector<uint8_t> data;      // RGBA8 pixel data (decompressed)
+    std::vector<std::vector<uint8_t>> mipmaps;  // Mipmap levels
+
+    bool isValid() const { return width > 0 && height > 0 && !data.empty(); }
+};
+
+/**
+ * BLP texture loader
+ *
+ * Supports BLP0, BLP1, BLP2 formats
+ * Handles DXT1/3/5 compression and palette formats
+ * Format specification: https://wowdev.wiki/BLP
+ */
+class BLPLoader {
+public:
+    /**
+     * Load BLP image from byte data
+     * @param blpData Raw BLP file data
+     * @return Loaded image (check isValid())
+     */
+    static BLPImage load(const std::vector<uint8_t>& blpData);
+
+    /**
+     * Get format name for debugging
+     */
+    static const char* getFormatName(BLPFormat format);
+    static const char* getCompressionName(BLPCompression compression);
+
+private:
+    // BLP1 file header — all fields after magic are uint32
+    // Used by classic WoW through WotLK for many textures
+    struct BLP1Header {
+        char magic[4];           // 'BLP1'
+        uint32_t compression;    // 0=JPEG, 1=palette (uncompressed/indexed)
+        uint32_t alphaBits;      // 0, 1, 4, or 8
+        uint32_t width;
+        uint32_t height;
+        uint32_t extra;          // Flags/unknown (often 4 or 5)
+        uint32_t hasMips;        // 0 or 1
+        uint32_t mipOffsets[16];
+        uint32_t mipSizes[16];
+        uint32_t palette[256];   // 256-color BGRA palette (for compression=1)
+    };
+
+    // BLP2 file header — compression fields are uint8
+    // Used by WoW from TBC onwards (coexists with BLP1 in WotLK)
+    struct BLP2Header {
+        char magic[4];           // 'BLP2'
+        uint32_t version;        // Always 1
+        uint8_t compression;     // 1=uncompressed/palette, 2=DXTC, 3=A8R8G8B8
+        uint8_t alphaDepth;      // 0, 1, 4, or 8
+        uint8_t alphaEncoding;   // 0=DXT1, 1=DXT3, 7=DXT5
+        uint8_t hasMips;         // Has mipmaps
+        uint32_t width;
+        uint32_t height;
+        uint32_t mipOffsets[16];
+        uint32_t mipSizes[16];
+        uint32_t palette[256];   // 256-color BGRA palette (for compression=1)
+    };
+
+    static BLPImage loadBLP1(const uint8_t* data, size_t size);
+    static BLPImage loadBLP2(const uint8_t* data, size_t size);
+    static void decompressDXT1(const uint8_t* src, uint8_t* dst, int width, int height);
+    static void decompressDXT3(const uint8_t* src, uint8_t* dst, int width, int height);
+    static void decompressDXT5(const uint8_t* src, uint8_t* dst, int width, int height);
+    static void decompressPalette(const uint8_t* src, uint8_t* dst, const uint32_t* palette, int width, int height, uint8_t alphaDepth = 8);
+};
+
+} // namespace pipeline
+} // namespace wowee
