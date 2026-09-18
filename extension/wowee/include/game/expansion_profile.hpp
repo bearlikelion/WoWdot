@@ -1,0 +1,82 @@
+#pragma once
+
+#include <cstdint>
+#include <string>
+#include <vector>
+#include <unordered_map>
+#include <optional>
+
+namespace wowee {
+namespace game {
+
+/**
+ * Identifies a WoW expansion for protocol/asset selection.
+ */
+struct ExpansionProfile {
+    std::string id;            // "classic", "tbc", "wotlk", "cata"
+    std::string protocolBase;  // Profile whose protocol and data files this one reuses
+    std::string name;          // "Wrath of the Lich King"
+    std::string shortName;     // "WotLK"
+    uint8_t majorVersion = 0;
+    uint8_t minorVersion = 0;
+    uint8_t patchVersion = 0;
+    uint16_t build = 0;           // Realm build (sent in LOGON_CHALLENGE)
+    uint16_t worldBuild = 0;      // World build (sent in CMSG_AUTH_SESSION, defaults to build)
+    uint8_t protocolVersion = 0;  // SRP auth protocol version byte
+    // Client header fields used in LOGON_CHALLENGE.
+    // Defaults match a typical Windows x86 client.
+    std::string game = "WoW";
+    std::string platform = "x86";
+    std::string os = "Win";
+    std::string locale = "enUS";
+    uint32_t timezone = 0;
+    std::string dataPath;      // Absolute path to expansion data dir
+    uint32_t maxLevel = 60;
+    std::vector<uint32_t> races;
+    std::vector<uint32_t> classes;
+    // Original games rename the inherited race and class ids and swap in their own player models.
+    std::unordered_map<uint32_t, std::string> raceNames;
+    std::unordered_map<uint32_t, std::string> classNames;
+    std::unordered_map<uint32_t, std::string> raceModels;  // race id to model path, any gender
+    bool openRaceClass = false;                            // every listed race may take every listed class
+
+    std::string versionString() const;  // e.g. "3.3.5a"
+    const std::string& protocolId() const { return protocolBase.empty() ? id : protocolBase; }
+};
+
+/**
+ * Scans Data/expansions/ for available expansion profiles and manages the active selection.
+ */
+class ExpansionRegistry {
+public:
+    /**
+     * Scan dataRoot/expansions/ for expansion.json files.
+     * @param dataRoot Path to Data/ directory (e.g. "./Data")
+     * @return Number of profiles discovered
+     */
+    size_t initialize(const std::string& dataRoot);
+
+    /** All discovered profiles. */
+    const std::vector<ExpansionProfile>& getAllProfiles() const { return profiles_; }
+
+    /** Lookup by id (e.g. "wotlk"). Returns nullptr if not found. */
+    const ExpansionProfile* getProfile(const std::string& id) const;
+
+    /** Set the active expansion. Returns false if id not found. */
+    bool setActive(const std::string& id);
+
+    /** Get the active expansion profile. Never null after successful initialize(). */
+    const ExpansionProfile* getActive() const;
+
+    /** Convenience: active expansion id. Empty if none. */
+    const std::string& getActiveId() const { return activeId_; }
+
+private:
+    std::vector<ExpansionProfile> profiles_;
+    std::string activeId_;
+
+    bool loadProfile(const std::string& jsonPath, const std::string& dirPath);
+};
+
+} // namespace game
+} // namespace wowee

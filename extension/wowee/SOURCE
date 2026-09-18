@@ -1,3 +1,5 @@
 Vendored from mWoWee (MIT, based on WoWee v2.0.28-preview)
 repo: git@git.arneman.home:/mark/WoWee.git
 commit: d0c3f40bfb880a6a1d73f7f1c431b9dec4493629
+WoWGD changes: core/logger.cpp replaced by src/wowee_logger.cpp; include/game/game_utils.hpp rewritten for classic only.
+include/game/opcode_table.hpp: nameToLogical made public.

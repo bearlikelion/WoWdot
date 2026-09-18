@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://game/world/wow_map.gd" id="1_map"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_mat"]
+sky_top_color = Color(0.3, 0.5, 0.8, 1)
+sky_horizon_color = Color(0.7, 0.8, 0.9, 1)
+
+[sub_resource type="Sky" id="Sky_browser"]
+sky_material = SubResource("Sky_mat")
+
+[sub_resource type="Environment" id="Environment_browser"]
+background_mode = 2
+sky = SubResource("Sky_browser")
+ambient_light_source = 3
+ambient_light_energy = 0.9
+fog_enabled = true
+fog_light_color = Color(0.7, 0.78, 0.88, 1)
+fog_density = 0.0015
+
+[node name="MapBrowser" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_browser")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, -0.25, 0.433, 0, 0.866, 0.5, -0.5, -0.433, 0.75, 0, 0, 0)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="WowMap" type="Node3D" parent="."]
+script = ExtResource("1_map")

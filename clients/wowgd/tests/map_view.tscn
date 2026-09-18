@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://tests/map_view.gd" id="1_view"]
+[ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
+
+[sub_resource type="ProceduralSkyMaterial" id="Sky_mat"]
+sky_top_color = Color(0.3, 0.5, 0.8, 1)
+sky_horizon_color = Color(0.7, 0.8, 0.9, 1)
+
+[sub_resource type="Sky" id="Sky_view"]
+sky_material = SubResource("Sky_mat")
+
+[sub_resource type="Environment" id="Environment_view"]
+background_mode = 2
+sky = SubResource("Sky_view")
+ambient_light_source = 3
+ambient_light_energy = 0.9
+fog_enabled = true
+fog_light_color = Color(0.7, 0.78, 0.88, 1)
+fog_density = 0.0015
+
+[node name="MapView" type="Node3D"]
+script = ExtResource("1_view")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_view")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, -0.25, 0.433, 0, 0.866, 0.5, -0.5, -0.433, 0.75, 0, 0, 0)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+far = 2000.0
+
+[node name="WowMap" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_map")
+target = NodePath("../Camera3D")

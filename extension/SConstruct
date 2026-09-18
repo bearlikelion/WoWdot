@@ -9,7 +9,7 @@ env = SConscript("godot-cpp/SConstruct")
 # mWoWee sources are C++20; the later flag overrides godot-cpp's -std=c++17.
 env.Append(CXXFLAGS=["-std=c++20"])
 env.Append(CPPPATH=["src/", "wowee/include/", "thirdparty/StormLib/src/"])
-env.Append(LIBS=["z", "bz2"])
+env.Append(LIBS=["z", "bz2", "crypto"])
 
 sources = Glob("src/*.cpp") + Glob("wowee/src/*/*.cpp")
 

@@ -10,6 +10,8 @@
 #include <godot_cpp/classes/collision_shape3d.hpp>
 #include <godot_cpp/classes/concave_polygon_shape3d.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
+#include <godot_cpp/classes/multi_mesh.hpp>
+#include <godot_cpp/classes/multi_mesh_instance3d.hpp>
 #include <godot_cpp/classes/skeleton3d.hpp>
 #include <godot_cpp/classes/static_body3d.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
@@ -117,6 +119,21 @@ bool sequence_keys(const M2AnimationTrack &track, size_t sequence, const std::ve
 	return r_count > 0;
 }
 
+// Rest opacity of a batch; particle emitter models hide their helper geometry this way.
+float batch_alpha(const M2Model &model, const M2Batch &batch) {
+	float alpha = 1.0f;
+	if (batch.transparencyIndex < model.textureWeightLookup.size()) {
+		const uint16_t weight = model.textureWeightLookup[batch.transparencyIndex];
+		if (weight < model.textureWeights.size()) {
+			alpha *= model.textureWeights[weight];
+		}
+	}
+	if (batch.colorIndex < model.colorAlphas.size()) {
+		alpha *= model.colorAlphas[batch.colorIndex];
+	}
+	return alpha;
+}
+
 Animation::InterpolationType interpolation(const M2AnimationTrack &track) {
 	// ponytail: hermite and bezier keys play back as linear.
 	return track.interpolationType == 0 ? Animation::INTERPOLATION_NEAREST : Animation::INTERPOLATION_LINEAR;
@@ -165,6 +182,7 @@ Ref<Animation> build_animation(const M2Model &model, size_t sequence, const std:
 } // namespace
 
 String WowLoader::animation_name(uint32_t id, uint32_t variation) {
+	std::lock_guard<std::mutex> lock(cache_mutex);
 	if (animation_names.empty()) {
 		const Ref<WowDBC> dbc = WowDBC::open(archive, "AnimationData");
 		for (int row = 0; dbc.is_valid() && row < dbc->row_count(); row++) {
@@ -176,14 +194,19 @@ String WowLoader::animation_name(uint32_t id, uint32_t variation) {
 	return variation > 0 ? name + "_" + String::num_int64(variation) : name;
 }
 
-Ref<StandardMaterial3D> WowLoader::get_material(const String &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo) {
-	const std::string key = std::string(texture.to_lower().utf8().get_data()) + "|" + std::to_string(blend_mode) + "|" + std::to_string(flags) + "|" + std::to_string(vertex_color) + "|" + std::to_string(wmo);
-	auto it = materials.find(key);
-	if (it != materials.end()) {
-		return it->second;
+Ref<StandardMaterial3D> WowLoader::get_material(const String &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, float alpha) {
+	const std::string key = std::string(texture.to_lower().utf8().get_data()) + "|" + std::to_string(blend_mode) + "|" + std::to_string(flags) + "|" + std::to_string(vertex_color) + "|" + std::to_string(wmo) + "|" + std::to_string(int(alpha * 255.0f));
+	{
+		std::lock_guard<std::mutex> lock(cache_mutex);
+		auto it = materials.find(key);
+		if (it != materials.end()) {
+			return it->second;
+		}
 	}
 	Ref<StandardMaterial3D> mat;
 	mat.instantiate();
+	// The 1.12 client lights models with plain diffuse, so specular only adds a sheen to foliage cards.
+	mat->set_specular(0.0);
 	if (!texture.is_empty()) {
 		mat->set_texture(BaseMaterial3D::TEXTURE_ALBEDO, load_texture(texture));
 	}
@@ -220,15 +243,24 @@ Ref<StandardMaterial3D> WowLoader::get_material(const String &texture, uint32_t 
 	if (vertex_color) {
 		mat->set_flag(BaseMaterial3D::FLAG_ALBEDO_FROM_VERTEX_COLOR, true);
 	}
-	materials[key] = mat;
-	return mat;
+	if (alpha < 1.0f) {
+		mat->set_albedo(Color(1.0f, 1.0f, 1.0f, alpha));
+		if (mat->get_transparency() == BaseMaterial3D::TRANSPARENCY_DISABLED && mat->get_blend_mode() == BaseMaterial3D::BLEND_MODE_MIX) {
+			mat->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
+		}
+	}
+	std::lock_guard<std::mutex> lock(cache_mutex);
+	return materials.emplace(key, mat).first->second;
 }
 
-const WowLoader::M2Template *WowLoader::get_m2_template(const String &path, const Dictionary &skins) {
+std::shared_ptr<const WowLoader::M2Template> WowLoader::get_m2_template(const String &path, const Dictionary &skins) {
 	const std::string key = std::string(path.to_lower().utf8().get_data()) + "|" + std::string(String(Variant(skins)).utf8().get_data());
-	auto cached = m2_templates.find(key);
-	if (cached != m2_templates.end()) {
-		return &cached->second;
+	{
+		std::lock_guard<std::mutex> lock(cache_mutex);
+		auto cached = m2_templates.find(key);
+		if (cached != m2_templates.end()) {
+			return cached->second;
+		}
 	}
 	std::vector<uint8_t> data;
 	if (!archive->read_bytes(WowArchive::normalize(path), data)) {
@@ -237,11 +269,16 @@ const WowLoader::M2Template *WowLoader::get_m2_template(const String &path, cons
 	}
 	const M2Model model = M2Loader::load(data);
 	if (!model.isValid()) {
-		UtilityFunctions::push_warning("WowLoader: bad model ", path);
-		return nullptr;
+		// Particle-only emitter models carry no geometry, so only warn about ones that should have some.
+		if (!model.vertices.empty()) {
+			UtilityFunctions::push_warning("WowLoader: bad model ", path);
+		}
+		std::lock_guard<std::mutex> lock(cache_mutex);
+		return m2_templates.emplace(key, nullptr).first->second;
 	}
 
-	M2Template tpl;
+	auto tpl_ptr = std::make_shared<M2Template>();
+	M2Template &tpl = *tpl_ptr;
 	for (size_t b = 0; b < model.bones.size(); b++) {
 		const int parent = model.bones[b].parentBone;
 		const glm::vec3 parent_pivot = parent >= 0 ? model.bones[parent].pivot : glm::vec3(0.0f);
@@ -253,6 +290,10 @@ const WowLoader::M2Template *WowLoader::get_m2_template(const String &path, cons
 	tpl.mesh.instantiate();
 	for (const M2Batch &batch : model.batches) {
 		if (batch.indexStart + batch.indexCount > model.indices.size() || batch.indexCount == 0) {
+			continue;
+		}
+		const float alpha = batch_alpha(model, batch);
+		if (alpha < 0.01f) {
 			continue;
 		}
 		SurfaceBuilder s;
@@ -268,7 +309,7 @@ const WowLoader::M2Template *WowLoader::get_m2_template(const String &path, cons
 		const int surface = tpl.mesh->get_surface_count();
 		tpl.mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, s.arrays());
 		tpl.mesh->surface_set_name(surface, "geoset_" + String::num_int64(batch.submeshId));
-		Ref<StandardMaterial3D> mat = get_material(texture, material.blendMode, material.flags, false, false);
+		Ref<StandardMaterial3D> mat = get_material(texture, material.blendMode, material.flags, false, false, alpha);
 		if (batch.materialLayer > 0) {
 			mat = mat->duplicate();
 			mat->set_render_priority(batch.materialLayer);
@@ -283,13 +324,13 @@ const WowLoader::M2Template *WowLoader::get_m2_template(const String &path, cons
 			tpl.animations->add_animation(name, build_animation(model, i, tpl.bone_rests));
 		}
 	}
-	return &(m2_templates[key] = tpl);
+	std::lock_guard<std::mutex> lock(cache_mutex);
+	return m2_templates.emplace(key, tpl_ptr).first->second;
 }
 
 Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins) {
 	ERR_FAIL_COND_V(archive.is_null(), nullptr);
-	std::lock_guard<std::recursive_mutex> lock(model_mutex);
-	const M2Template *tpl = get_m2_template(path, skins);
+	const std::shared_ptr<const M2Template> tpl = get_m2_template(path, skins);
 	if (!tpl) {
 		return nullptr;
 	}
@@ -328,7 +369,6 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins) {
 
 Dictionary WowLoader::get_m2_info(const String &path) {
 	ERR_FAIL_COND_V(archive.is_null(), Dictionary());
-	std::lock_guard<std::recursive_mutex> lock(model_mutex);
 	std::vector<uint8_t> data;
 	if (!archive->read_bytes(WowArchive::normalize(path), data)) {
 		return Dictionary();
@@ -357,15 +397,52 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 	Dictionary info;
 	info["version"] = model.version;
 	info["bones"] = int64_t(model.bones.size());
+	PackedInt32Array bone_flags;
+	for (const M2Bone &bone : model.bones) {
+		bone_flags.push_back(bone.flags);
+	}
+	info["bone_flags"] = bone_flags;
 	info["textures"] = textures;
 	info["batches"] = batches;
 	info["animations"] = animations;
 	return info;
 }
 
-Node3D *WowLoader::load_wmo(const String &path) {
+// Static props draw in their rest pose as one MultiMesh per model, which skips per-instance skeletons.
+Node3D *WowLoader::build_static_models(const Array &placements) {
+	std::unordered_map<std::string, std::pair<String, std::vector<Transform3D>>> groups;
+	for (int i = 0; i < placements.size(); i++) {
+		const Dictionary placement = placements[i];
+		const String path = placement["path"];
+		auto &group = groups[path.to_lower().utf8().get_data()];
+		group.first = path;
+		group.second.push_back(placement["transform"]);
+	}
+	Node3D *root = memnew(Node3D);
+	root->set_name("Doodads");
+	for (const auto &[key, group] : groups) {
+		const std::shared_ptr<const M2Template> tpl = get_m2_template(group.first, Dictionary());
+		if (!tpl) {
+			continue;
+		}
+		Ref<MultiMesh> multimesh;
+		multimesh.instantiate();
+		multimesh->set_transform_format(MultiMesh::TRANSFORM_3D);
+		multimesh->set_mesh(tpl->mesh);
+		multimesh->set_instance_count(group.second.size());
+		for (size_t i = 0; i < group.second.size(); i++) {
+			multimesh->set_instance_transform(i, group.second[i]);
+		}
+		MultiMeshInstance3D *instance = memnew(MultiMeshInstance3D);
+		instance->set_name(file_stem(group.first));
+		instance->set_multimesh(multimesh);
+		root->add_child(instance);
+	}
+	return root;
+}
+
+Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 	ERR_FAIL_COND_V(archive.is_null(), nullptr);
-	std::lock_guard<std::recursive_mutex> lock(model_mutex);
 	std::vector<uint8_t> data;
 	if (!archive->read_bytes(WowArchive::normalize(path), data)) {
 		UtilityFunctions::push_warning("WowLoader: missing WMO ", path);
@@ -414,6 +491,11 @@ Node3D *WowLoader::load_wmo(const String &path) {
 					s.colors.push_back(Color(v.color.r, v.color.g, v.color.b, 1.0f));
 				}
 			}
+			// WMO triangles wind the opposite way to M2, so flip them for Godot's front faces.
+			int32_t *tri = s.indices.ptrw();
+			for (int64_t t = 0; t + 2 < s.indices.size(); t += 3) {
+				std::swap(tri[t + 1], tri[t + 2]);
+			}
 			String texture;
 			uint32_t blend = 0;
 			uint32_t flags = 0;
@@ -428,7 +510,7 @@ Node3D *WowLoader::load_wmo(const String &path) {
 			}
 			const int surface = mesh->get_surface_count();
 			mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, s.arrays());
-			mesh->surface_set_material(surface, get_material(texture, blend, flags, vertex_colors, true));
+			mesh->surface_set_material(surface, get_material(texture, blend, flags, vertex_colors, true, 1.0f));
 		}
 		MeshInstance3D *instance = memnew(MeshInstance3D);
 		instance->set_name(group.name.empty() ? "Group" + String::num_int64(g) : String(group.name.c_str()));
@@ -440,7 +522,7 @@ Node3D *WowLoader::load_wmo(const String &path) {
 			if (t / 3 < group.triFlags.size() && (group.triFlags[t / 3] & WMO_TRIANGLE_NO_COLLIDE)) {
 				continue;
 			}
-			for (int k = 0; k < 3; k++) {
+			for (int k : { 0, 2, 1 }) {
 				faces.push_back(wow_to_godot(group.vertices[group.indices[t + k]].position));
 			}
 		}
@@ -457,25 +539,31 @@ Node3D *WowLoader::load_wmo(const String &path) {
 		}
 	}
 
-	if (!model.doodadSets.empty()) {
-		Node3D *doodads = memnew(Node3D);
-		doodads->set_name("Doodads");
-		root->add_child(doodads);
-		const WMODoodadSet &set = model.doodadSets[0];
+	// Set 0 holds the doodads every placement shows; a placement may add one more set.
+	std::vector<int> sets = { 0 };
+	if (doodad_set > 0) {
+		sets.push_back(doodad_set);
+	}
+	Array doodads;
+	for (int set_index : sets) {
+		if (size_t(set_index) >= model.doodadSets.size()) {
+			continue;
+		}
+		const WMODoodadSet &set = model.doodadSets[set_index];
 		for (uint32_t d = set.startIndex; d < set.startIndex + set.count && d < model.doodads.size(); d++) {
 			const WMODoodad &doodad = model.doodads[d];
 			auto name = model.doodadNames.find(doodad.nameIndex);
 			if (name == model.doodadNames.end()) {
 				continue;
 			}
-			Node3D *node = load_m2(String(name->second.c_str()));
-			if (!node) {
-				continue;
-			}
-			const Basis basis = Basis(wow_to_godot(doodad.rotation)).scaled(Vector3(1, 1, 1) * doodad.scale);
-			node->set_transform(Transform3D(basis, wow_to_godot(doodad.position)));
-			doodads->add_child(node);
+			Dictionary placement;
+			placement["path"] = String(name->second.c_str());
+			placement["transform"] = Transform3D(Basis(wow_to_godot(doodad.rotation)).scaled(Vector3(1, 1, 1) * doodad.scale), wow_to_godot(doodad.position));
+			doodads.push_back(placement);
 		}
+	}
+	if (!doodads.is_empty()) {
+		root->add_child(build_static_models(doodads));
 	}
 	return root;
 }

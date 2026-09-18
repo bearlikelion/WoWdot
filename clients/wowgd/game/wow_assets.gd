@@ -1,6 +1,15 @@
 @tool
 extends Node
 
+const TERRAIN_SHADER: Shader = preload("res://game/world/terrain.gdshader")
+# Indexed by liquid type: water, ocean, magma, slime.
+const LIQUID_MATERIALS: Array[Material] = [
+	preload("res://game/world/liquid_water.tres"),
+	preload("res://game/world/liquid_ocean.tres"),
+	preload("res://game/world/liquid_magma.tres"),
+	preload("res://game/world/liquid_slime.tres"),
+]
+
 var archive: WowArchive:
 	get:
 		if _archive == null:
@@ -29,3 +38,5 @@ func _open() -> void:
 		push_error("WowAssets: cannot open client data at '%s'" % data_dir)
 	_loader = WowLoader.new()
 	_loader.archive = _archive
+	_loader.terrain_shader = TERRAIN_SHADER
+	_loader.liquid_materials = LIQUID_MATERIALS

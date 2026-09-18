@@ -6,11 +6,15 @@
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/image.hpp>
 #include <godot_cpp/classes/image_texture.hpp>
+#include <godot_cpp/classes/material.hpp>
 #include <godot_cpp/classes/node3d.hpp>
 #include <godot_cpp/classes/ref_counted.hpp>
+#include <godot_cpp/classes/shader.hpp>
 #include <godot_cpp/classes/standard_material3d.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
+#include <godot_cpp/variant/typed_array.hpp>
 
+#include <memory>
 #include <mutex>
 #include <string>
 #include <unordered_map>
@@ -18,7 +22,7 @@
 
 namespace godot {
 
-// Turns archive files into Godot resources and nodes, caching shared resources by path.
+// Turns archive files into Godot resources and nodes; safe to call from worker threads.
 class WowLoader : public RefCounted {
 	GDCLASS(WowLoader, RefCounted)
 
@@ -30,15 +34,17 @@ class WowLoader : public RefCounted {
 	};
 
 	Ref<WowArchive> archive;
+	Ref<Shader> terrain_shader;
+	TypedArray<Material> liquid_materials;
+
+	std::mutex cache_mutex;
 	std::unordered_map<std::string, Ref<ImageTexture>> textures;
 	std::unordered_map<std::string, Ref<StandardMaterial3D>> materials;
-	std::unordered_map<std::string, M2Template> m2_templates;
+	std::unordered_map<std::string, std::shared_ptr<const M2Template>> m2_templates;
 	std::unordered_map<uint32_t, String> animation_names;
-	std::mutex mutex;
-	std::recursive_mutex model_mutex;
 
-	const M2Template *get_m2_template(const String &path, const Dictionary &skins);
-	Ref<StandardMaterial3D> get_material(const String &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo);
+	std::shared_ptr<const M2Template> get_m2_template(const String &path, const Dictionary &skins);
+	Ref<StandardMaterial3D> get_material(const String &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, float alpha);
 	String animation_name(uint32_t id, uint32_t variation);
 
 protected:
@@ -47,12 +53,20 @@ protected:
 public:
 	void set_archive(const Ref<WowArchive> &p_archive) { archive = p_archive; }
 	Ref<WowArchive> get_archive() const { return archive; }
+	void set_terrain_shader(const Ref<Shader> &p_shader) { terrain_shader = p_shader; }
+	Ref<Shader> get_terrain_shader() const { return terrain_shader; }
+	void set_liquid_materials(const TypedArray<Material> &p_materials) { liquid_materials = p_materials; }
+	TypedArray<Material> get_liquid_materials() const { return liquid_materials; }
 
 	Ref<Image> load_image(const String &path);
 	Ref<ImageTexture> load_texture(const String &path);
 	Node3D *load_m2(const String &path, const Dictionary &skins = Dictionary());
-	Node3D *load_wmo(const String &path);
+	Node3D *load_wmo(const String &path, int doodad_set = 0);
+	Node3D *build_static_models(const Array &placements);
 	Dictionary get_m2_info(const String &path);
+
+	Dictionary get_map_info(const String &map_name);
+	Node3D *load_adt(const String &map_name, int tile_x, int tile_y);
 };
 
 } // namespace godot

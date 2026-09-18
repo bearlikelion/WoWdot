@@ -27,7 +27,8 @@ func _ready() -> void:
 		return
 	_stage.add_child(model)
 	_play(model, args.get("anim", ""))
-	_frame(_bounds(model), float(args.get("zoom", "1.0")))
+	var view: PackedFloat64Array = String(args.get("view", "0.7,0.45,-1")).split_floats(",")
+	_frame(_bounds(model), float(args.get("zoom", "1.0")), Vector3(view[0], view[1], view[2]))
 
 	for i: int in SETTLE_FRAMES:
 		await get_tree().process_frame
@@ -66,10 +67,10 @@ func _bounds(root: Node3D) -> AABB:
 	return bounds
 
 
-# Views the model from its front (Godot -Z) quarter, since M2 models face WoW +X.
-func _frame(bounds: AABB, zoom: float) -> void:
+# The default view is the front (Godot -Z) quarter, since M2 models face WoW +X.
+func _frame(bounds: AABB, zoom: float, view: Vector3) -> void:
 	var center: Vector3 = bounds.get_center()
 	var distance: float = max(bounds.size.length(), 1.0) * 0.9 / zoom
-	_camera.position = center + Vector3(0.7, 0.45, -1.0).normalized() * distance
+	_camera.position = center + view.normalized() * distance
 	_camera.far = distance * 10.0
 	_camera.look_at(center)

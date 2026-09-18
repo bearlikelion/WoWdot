@@ -2,6 +2,8 @@
 #include "wow_coords.h"
 #include "wow_dbc.h"
 #include "wow_loader.h"
+#include "wow_session.h"
+#include "wow_streamer.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/class_db.hpp>
@@ -22,6 +24,8 @@ static void initialize_wowgd_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_CLASS(WowArchive);
 	GDREGISTER_CLASS(WowDBC);
 	GDREGISTER_CLASS(WowLoader);
+	GDREGISTER_CLASS(WowStreamer);
+	GDREGISTER_CLASS(WowSession);
 	GDREGISTER_ABSTRACT_CLASS(WowCoords);
 }
 
