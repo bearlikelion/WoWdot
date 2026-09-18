@@ -8,10 +8,13 @@ const TIMEOUT_MSEC: int = 60000
 # The Northshire start; each run heads back toward it so repeated checks stay nearby.
 const HOME: Vector3 = Vector3(-8949.95, -132.49, 83.53)
 const SAY_TEXT: String = "play_check says hello"
+# Take-off speed squared over twice the gravity: 7.958 * 7.958 / (2 * 19.29).
+const JUMP_HEIGHT: float = 1.64
 
 var _failures: PackedStringArray = []
 var _main: Main
 var _characters: Array = []
+var _sent: PackedStringArray = []
 
 
 # Plays the real game flow in a window: login, walk with the input actions, then check the server.
@@ -47,6 +50,7 @@ func _run() -> void:
 	await _check_hud()
 
 	var player: Player = _main.world.player()
+	player.movement_changed.connect(_on_movement_changed)
 	var start: Vector3 = player.global_position
 	var toward_home: Vector3 = HOME - WowCoords.from_godot(start)
 	player.rotation.y = atan2(toward_home.y, toward_home.x) if toward_home.length() > 5.0 else 0.0
@@ -56,8 +60,11 @@ func _run() -> void:
 	await _frames(20)
 	var ran: float = start.distance_to(player.global_position)
 	print("ran %.1f yd to %s" % [ran, WowCoords.from_godot(player.global_position)])
+	print("sent while running: ", _sent)
+	_check(not _sent.has("MSG_MOVE_FALL_LAND"), "running over the ground never counts as a fall")
 	_check(ran > 10.0, "the player moved with the move_forward action")
 	_capture("user://play_after_run.png")
+	await _check_jump(player)
 
 	var expected: Vector3 = WowCoords.from_godot(player.global_position)
 	_characters.clear()
@@ -71,6 +78,26 @@ func _run() -> void:
 			print("server saved %s, client at %s" % [saved["position"], expected])
 			_check(off < MAX_SAVED_ERROR, "server position matches the client (%.2f yd off)" % off)
 	_finish("")
+
+
+func _check_jump(player: Player) -> void:
+	var ground: float = player.global_position.y
+	var peak: float = ground
+	var left_ground: bool = false
+	Input.action_press("jump")
+	await get_tree().physics_frame
+	Input.action_release("jump")
+	var land_by: int = Time.get_ticks_msec() + 3000
+	while Time.get_ticks_msec() < land_by:
+		await get_tree().physics_frame
+		peak = maxf(peak, player.global_position.y)
+		left_ground = left_ground or not player.is_on_floor()
+		if left_ground and player.is_on_floor():
+			break
+	print("jumped %.2f yd" % (peak - ground))
+	_check(absf(peak - ground - JUMP_HEIGHT) < 0.2, "the jump reaches the stock height")
+	_check(left_ground and player.is_on_floor(), "the jump lands")
+	await _frames(10)
 
 
 func _check_hud() -> void:
@@ -93,7 +120,9 @@ func _check_hud() -> void:
 	_check(named > 10, "nameplates show names")
 	_check(hud.get_node("%PlayerFrame").visible, "the player frame shows")
 	if aim != Vector3.INF:
-		await _click(camera.unproject_position(aim))
+		# Emitted directly: a moving desktop cursor would turn injected clicks into drags.
+		_main.world.player().clicked.emit(camera.unproject_position(aim))
+		await _frames(2)
 		print("clicked target: ", WowClient.session.get_object_name(hud.target()))
 	_check(hud.target() != 0, "clicking a creature targets it")
 
@@ -116,15 +145,11 @@ func _check_hud() -> void:
 	_capture("user://play_hud.png")
 
 
-func _click(at: Vector2) -> void:
-	for pressed: bool in [true, false]:
-		var event: InputEventMouseButton = InputEventMouseButton.new()
-		event.button_index = MOUSE_BUTTON_LEFT
-		event.pressed = pressed
-		event.position = at
-		event.global_position = at
-		Input.parse_input_event(event)
-		await _frames(2)
+func _on_movement_changed(
+	opcode: String, _position: Vector3, _orientation: float, _flags: int,
+	_fall_time_msec: int, _jump_velocity: Vector3,
+) -> void:
+	_sent.append(opcode)
 
 
 func _on_characters_received(characters: Array) -> void:

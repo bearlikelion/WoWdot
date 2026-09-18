@@ -132,7 +132,7 @@ public:
 	void create_character(const Dictionary &character);
 	void enter_world(int64_t guid);
 	void logout();
-	void send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags);
+	void send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec = 0, const Vector3 &jump_velocity = Vector3());
 	void send_packet(const String &opcode, const PackedByteArray &payload);
 	void send_chat(ChatType type, const String &message, const String &target = String());
 	void set_selection(int64_t guid);

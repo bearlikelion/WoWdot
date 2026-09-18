@@ -1,7 +1,11 @@
 class_name Player
 extends CharacterBody3D
 
-signal movement_changed(opcode: String, godot_position: Vector3, orientation: float, flags: int)
+# jump_velocity is the take-off velocity, which WoW keeps for the whole jump or fall.
+signal movement_changed(
+	opcode: String, godot_position: Vector3, orientation: float, flags: int,
+	fall_time_msec: int, jump_velocity: Vector3,
+)
 # A left press and release that did not orbit the camera.
 signal clicked(screen_position: Vector2)
 
@@ -13,12 +17,15 @@ enum MoveFlag {
 	STRAFE_RIGHT = 0x8,
 	TURN_LEFT = 0x10,
 	TURN_RIGHT = 0x20,
+	JUMPING = 0x2000,
+	FALLING_FAR = 0x4000,
 }
 
 const RUN_SPEED: float = 7.0
 const BACK_SPEED: float = 4.5
 const TURN_SPEED: float = PI
 const GRAVITY: float = 19.29
+const JUMP_VELOCITY: float = 7.95797334
 const HEARTBEAT_SECONDS: float = 0.5
 const FACING_SECONDS: float = 0.2
 const MOUSE_TURN: float = 0.006
@@ -32,6 +39,7 @@ const CLICK_SLOP: float = 4.0
 const LONGITUDINAL: int = MoveFlag.FORWARD | MoveFlag.BACKWARD
 const STRAFE: int = MoveFlag.STRAFE_LEFT | MoveFlag.STRAFE_RIGHT
 const TURN: int = MoveFlag.TURN_LEFT | MoveFlag.TURN_RIGHT
+const AIRBORNE: int = MoveFlag.JUMPING | MoveFlag.FALLING_FAR
 
 # Physics stays off until the ground under the player has loaded.
 var active: bool = false:
@@ -45,6 +53,9 @@ var _facing_timer: float = 0.0
 var _facing_dirty: bool = false
 var _mouse_turning: bool = false
 var _orbiting: bool = false
+var _fall_time: float = 0.0
+var _fall_start_y: float = 0.0
+var _jump_velocity: Vector3 = Vector3.ZERO
 var _press_position: Vector2 = Vector2.ZERO
 var _drag_distance: float = 0.0
 var _animation: AnimationPlayer
@@ -106,26 +117,12 @@ func _physics_process(delta: float) -> void:
 	elif flags & MoveFlag.TURN_RIGHT:
 		rotation.y -= TURN_SPEED * delta
 
-	var local: Vector3 = Vector3.ZERO
-	if flags & MoveFlag.FORWARD:
-		local.z -= 1.0
-	elif flags & MoveFlag.BACKWARD:
-		local.z += 1.0
-	if flags & MoveFlag.STRAFE_LEFT:
-		local.x -= 1.0
-	elif flags & MoveFlag.STRAFE_RIGHT:
-		local.x += 1.0
-	var speed: float = BACK_SPEED if flags & MoveFlag.BACKWARD else RUN_SPEED
-	var planar: Vector3 = (basis * local).normalized() * speed
-	velocity.x = planar.x
-	velocity.z = planar.z
-	velocity.y = 0.0 if is_on_floor() else velocity.y - GRAVITY * delta
-	move_and_slide()
-
-	_send_changes(_flags, flags)
-	_flags = flags
+	if _flags & AIRBORNE:
+		_fly(flags, delta)
+	else:
+		_walk(flags)
 	_send_periodic(delta)
-	_animate(flags)
+	_animate(_flags)
 
 
 func place(godot_position: Vector3, facing: float) -> void:
@@ -145,9 +142,67 @@ func orientation() -> float:
 	return wrapf(rotation.y, 0.0, TAU)
 
 
+func _walk(flags: int) -> void:
+	var local: Vector3 = Vector3.ZERO
+	if flags & MoveFlag.FORWARD:
+		local.z -= 1.0
+	elif flags & MoveFlag.BACKWARD:
+		local.z += 1.0
+	if flags & MoveFlag.STRAFE_LEFT:
+		local.x -= 1.0
+	elif flags & MoveFlag.STRAFE_RIGHT:
+		local.x += 1.0
+	var speed: float = BACK_SPEED if flags & MoveFlag.BACKWARD else RUN_SPEED
+	var planar: Vector3 = (basis * local).normalized() * speed
+	velocity = Vector3(planar.x, 0.0, planar.z)
+	_send_changes(_flags, flags)
+	_flags = flags
+	if Input.is_action_just_pressed("jump") and not _typing():
+		_take_off(flags, Vector3(planar.x, JUMP_VELOCITY, planar.z))
+		_send("MSG_MOVE_JUMP", _flags)
+	move_and_slide()
+	if not is_on_floor() and not _flags & AIRBORNE:
+		_take_off(flags, velocity)
+
+
+# Airborne movement keeps the take-off velocity; only turning follows the keys until landing.
+func _fly(flags: int, delta: float) -> void:
+	_fall_time += delta
+	velocity.x = _jump_velocity.x
+	velocity.z = _jump_velocity.z
+	velocity.y -= GRAVITY * delta
+	move_and_slide()
+	if is_on_floor() and velocity.y <= 0.0:
+		_flags = flags
+		_send("MSG_MOVE_FALL_LAND", _flags)
+		_fall_time = 0.0
+		return
+	var airborne: int = (_flags & ~TURN) | (flags & TURN)
+	if global_position.y < _fall_start_y:
+		airborne |= MoveFlag.FALLING_FAR
+	if (airborne & TURN) != (_flags & TURN):
+		_send("MSG_MOVE_STOP_TURN" if not airborne & TURN else (
+			"MSG_MOVE_START_TURN_LEFT" if airborne & MoveFlag.TURN_LEFT
+			else "MSG_MOVE_START_TURN_RIGHT"
+		), airborne)
+	_flags = airborne
+
+
+func _take_off(flags: int, take_off_velocity: Vector3) -> void:
+	_flags = flags | MoveFlag.JUMPING
+	_fall_time = 0.0
+	_fall_start_y = global_position.y
+	_jump_velocity = take_off_velocity
+	velocity = take_off_velocity
+
+
+func _typing() -> bool:
+	return get_viewport().gui_get_focus_owner() is LineEdit
+
+
 func _input_flags() -> int:
 	var flags: int = MoveFlag.NONE
-	if get_viewport().gui_get_focus_owner() is LineEdit:
+	if _typing():
 		return flags
 	if Input.is_action_pressed("move_forward"):
 		flags |= MoveFlag.FORWARD
@@ -207,14 +262,19 @@ func _send_periodic(delta: float) -> void:
 
 func _send(opcode: String, flags: int) -> void:
 	_heartbeat = 0.0
-	movement_changed.emit(opcode, global_position, orientation(), flags)
+	var fall_msec: int = roundi(_fall_time * 1000.0)
+	movement_changed.emit(opcode, global_position, orientation(), flags, fall_msec, _jump_velocity)
 
 
 func _animate(flags: int) -> void:
 	if _animation == null:
 		return
 	var wanted: String = "Stand"
-	if flags & MoveFlag.FORWARD:
+	if flags & MoveFlag.FALLING_FAR:
+		wanted = "Fall"
+	elif flags & MoveFlag.JUMPING:
+		wanted = "Jump"
+	elif flags & MoveFlag.FORWARD:
 		wanted = "Run"
 	elif flags & MoveFlag.BACKWARD:
 		wanted = "Walkbackwards"

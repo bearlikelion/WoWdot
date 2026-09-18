@@ -51,9 +51,12 @@ func select(guid: int) -> void:
 
 func _on_player_movement_changed(
 	opcode: String, godot_position: Vector3, orientation: float, flags: int,
+	fall_time_msec: int, jump_velocity: Vector3,
 ) -> void:
-	var wow_position: Vector3 = WowCoords.from_godot(godot_position)
-	WowClient.session.send_movement(opcode, wow_position, orientation, flags)
+	WowClient.session.send_movement(
+		opcode, WowCoords.from_godot(godot_position), orientation, flags,
+		fall_time_msec, WowCoords.from_godot(jump_velocity),
+	)
 
 
 func _on_player_clicked(screen_position: Vector2) -> void:

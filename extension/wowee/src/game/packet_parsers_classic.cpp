@@ -364,8 +364,8 @@ void ClassicPacketParsers::writeMovementPayload(network::Packet& packet, const M
     // Jump data (Classic JUMPING = 0x2000)
     if (wireFlags & ClassicMoveFlags::JUMPING) {
         packet.writeFloat(info.jumpVelocity);
-        packet.writeFloat(info.jumpSinAngle);
         packet.writeFloat(info.jumpCosAngle);
+        packet.writeFloat(info.jumpSinAngle);
         packet.writeFloat(info.jumpXYSpeed);
     }
 }

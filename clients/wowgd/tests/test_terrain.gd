@@ -28,6 +28,7 @@ func _initialize() -> void:
 		_check(terrain.mesh.get_surface_count() == 256, "one surface per chunk")
 		_check(not (tile.get_meta("placements", []) as Array).is_empty(), "tile lists placements")
 		_compare_with_server(tile)
+		_check_doodad_collision(loader, tile)
 		tile.free()
 
 	for failure: String in _failures:
@@ -67,6 +68,27 @@ func _compare_with_server(tile: Node3D) -> void:
 			worst = max(worst, absf(centre - v8[a * 128 + b]))
 	print("largest height difference against the server map: %.4f" % worst)
 	_check(worst < MAX_ERROR, "collision heights match the server map")
+
+
+func _check_doodad_collision(loader: WowLoader, tile: Node3D) -> void:
+	var doodads: Array = []
+	for placement: Dictionary in tile.get_meta("placements", []):
+		if placement["kind"] == "m2":
+			doodads.append(placement)
+	var built: Node3D = loader.build_static_models(doodads)
+	var body: StaticBody3D = built.get_node_or_null("Collision")
+	_check(body != null, "tile doodads build a collision body")
+	if body:
+		var shape: ConcavePolygonShape3D = (body.get_child(0) as CollisionShape3D).shape
+		var faces: PackedVector3Array = shape.get_faces()
+		var bounds: AABB = AABB(faces[0], Vector3.ZERO)
+		for point: Vector3 in faces:
+			bounds = bounds.expand(point)
+		var terrain: MeshInstance3D = tile.get_node("Terrain")
+		var ground: AABB = terrain.get_aabb()
+		print("doodad collision: %d triangles within %s, terrain %s" % [faces.size() / 3, bounds, ground])
+		_check(ground.has_point(bounds.get_center()), "doodad collision sits on the tile")
+	built.free()
 
 
 func _check(condition: bool, what: String) -> void:

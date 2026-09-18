@@ -17,10 +17,12 @@
 #include <godot_cpp/classes/project_settings.hpp>
 #include <godot_cpp/classes/time.hpp>
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/vector2.hpp>
 
 #include <zlib.h>
 
 #include <algorithm>
+#include <cmath>
 #include <cctype>
 #include <cstring>
 #include <random>
@@ -229,7 +231,8 @@ void WowSession::logout() {
 	world->send(network::Packet(game::wireOpcode(game::LogicalOpcode::CMSG_LOGOUT_REQUEST)));
 }
 
-void WowSession::send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags) {
+// jump_velocity is in WoW space; its horizontal part gives the jump direction and speed.
+void WowSession::send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec, const Vector3 &jump_velocity) {
 	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
 	const auto op = game::OpcodeTable::nameToLogical(opcode.utf8().get_data());
 	ERR_FAIL_COND_MSG(!op, "WowSession: unknown opcode " + opcode);
@@ -240,6 +243,12 @@ void WowSession::send_movement(const String &opcode, const Vector3 &position, do
 	info.y = position.y;
 	info.z = position.z;
 	info.orientation = float(orientation);
+	info.fallTime = uint32_t(fall_time_msec);
+	const float xy_speed = Vector2(jump_velocity.x, jump_velocity.y).length();
+	info.jumpVelocity = jump_velocity.z;
+	info.jumpXYSpeed = xy_speed;
+	info.jumpCosAngle = xy_speed > 0.0f ? jump_velocity.x / xy_speed : std::cos(float(orientation));
+	info.jumpSinAngle = xy_speed > 0.0f ? jump_velocity.y / xy_speed : std::sin(float(orientation));
 	world->send(parsers->buildMovementPacket(*op, info, player_guid));
 	auto it = objects.find(player_guid);
 	if (it != objects.end()) {
@@ -759,7 +768,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("create_character", "character"), &WowSession::create_character);
 	ClassDB::bind_method(D_METHOD("enter_world", "guid"), &WowSession::enter_world);
 	ClassDB::bind_method(D_METHOD("logout"), &WowSession::logout);
-	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags"), &WowSession::send_movement);
+	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags", "fall_time_msec", "jump_velocity"), &WowSession::send_movement, DEFVAL(0), DEFVAL(Vector3()));
 	ClassDB::bind_method(D_METHOD("send_packet", "opcode", "payload"), &WowSession::send_packet);
 	ClassDB::bind_method(D_METHOD("send_chat", "type", "message", "target"), &WowSession::send_chat, DEFVAL(String()));
 	ClassDB::bind_method(D_METHOD("set_selection", "guid"), &WowSession::set_selection);

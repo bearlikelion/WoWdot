@@ -456,10 +456,20 @@ Node3D *WowLoader::build_static_models(const Array &placements) {
 	}
 	Node3D *root = memnew(Node3D);
 	root->set_name("Doodads");
+	PackedVector3Array faces;
 	for (const auto &[key, group] : groups) {
 		const std::shared_ptr<const M2Data> data = get_m2_data(group.first);
 		if (!data) {
 			continue;
+		}
+		const M2Model &model = data->model;
+		for (const Transform3D &transform : group.second) {
+			for (size_t t = 0; t + 2 < model.collisionIndices.size(); t += 3) {
+				for (int k : { 0, 2, 1 }) {
+					const uint16_t index = model.collisionIndices[t + k];
+					faces.push_back(index < model.collisionVertices.size() ? transform.xform(wow_to_godot(model.collisionVertices[index])) : transform.origin);
+				}
+			}
 		}
 		Ref<MultiMesh> multimesh;
 		multimesh.instantiate();
@@ -473,6 +483,17 @@ Node3D *WowLoader::build_static_models(const Array &placements) {
 		instance->set_name(file_stem(group.first));
 		instance->set_multimesh(multimesh);
 		root->add_child(instance);
+	}
+	if (!faces.is_empty()) {
+		Ref<ConcavePolygonShape3D> shape;
+		shape.instantiate();
+		shape->set_faces(faces);
+		CollisionShape3D *collision = memnew(CollisionShape3D);
+		collision->set_shape(shape);
+		StaticBody3D *body = memnew(StaticBody3D);
+		body->set_name("Collision");
+		body->add_child(collision);
+		root->add_child(body);
 	}
 	return root;
 }
