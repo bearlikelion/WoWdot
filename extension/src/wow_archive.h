@@ -18,6 +18,7 @@ class WowArchive : public RefCounted {
 	std::vector<void *> archives; // Highest priority first.
 	PackedStringArray archive_names;
 	mutable std::mutex mutex;
+	mutable bool listfiles_loaded = false; // find() is the only reader, so open() skips them.
 
 	void close();
 	bool open_file(const std::string &path, void **r_file) const;

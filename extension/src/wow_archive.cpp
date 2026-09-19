@@ -47,6 +47,7 @@ void WowArchive::close() {
 		SFileCloseArchive(archive);
 	}
 	archives.clear();
+	listfiles_loaded = false;
 	archive_names.clear();
 }
 
@@ -73,7 +74,7 @@ Error WowArchive::open(const String &data_dir) {
 			continue;
 		}
 		HANDLE archive = nullptr;
-		if (!SFileOpenArchive(it->second.c_str(), 0, MPQ_OPEN_READ_ONLY, &archive)) {
+		if (!SFileOpenArchive(it->second.c_str(), 0, MPQ_OPEN_READ_ONLY | MPQ_OPEN_NO_LISTFILE | MPQ_OPEN_NO_ATTRIBUTES, &archive)) {
 			UtilityFunctions::push_error("WowArchive: failed to open ", String(it->second.c_str()));
 			continue;
 		}
@@ -153,6 +154,9 @@ PackedStringArray WowArchive::find(const String &mask) const {
 	std::set<std::string> seen;
 	std::vector<std::string> names;
 	for (void *archive : archives) {
+		if (!listfiles_loaded) {
+			SFileAddListFile(archive, nullptr);
+		}
 		SFILE_FIND_DATA data;
 		HANDLE search = SFileFindFirstFile(archive, pattern.c_str(), &data, nullptr);
 		if (!search) {
@@ -165,6 +169,7 @@ PackedStringArray WowArchive::find(const String &mask) const {
 		} while (SFileFindNextFile(search, &data));
 		SFileFindClose(search);
 	}
+	listfiles_loaded = true;
 	std::sort(names.begin(), names.end(), [](const std::string &a, const std::string &b) { return to_lower(a) < to_lower(b); });
 	PackedStringArray out;
 	for (const std::string &name : names) {

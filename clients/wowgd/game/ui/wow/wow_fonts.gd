@@ -6,10 +6,16 @@ const HUD_THEME: Theme = preload("res://game/ui/hud_theme.tres")
 const DEFAULT_FONT: String = "Fonts\\FRIZQT__.TTF"
 
 static var _fonts: Dictionary[String, FontFile] = {}
+static var _applied: bool = false
 
 
-# The generated theme names each variation's font file; the files stay in the archive.
+# Fonts come from the archive; each theme edit notifies every Control, so edit once, quietly.
 static func apply() -> void:
+	if _applied:
+		return
+	_applied = true
+	for theme: Theme in [THEME, HUD_THEME]:
+		theme.set_block_signals(true)
 	var fonts: Theme = THEME
 	fonts.default_font = font(DEFAULT_FONT)
 	for theme: Theme in [THEME, HUD_THEME]:
@@ -17,6 +23,9 @@ static func apply() -> void:
 		for variation: String in files:
 			theme.set_font("font", variation, font(files[variation]))
 			_add_rich_variation(theme, variation)
+	for theme: Theme in [THEME, HUD_THEME]:
+		theme.set_block_signals(false)
+		theme.emit_changed()
 
 
 static func font(file: String) -> FontFile:
