@@ -4,7 +4,8 @@ extends RefCounted
 enum Section { SKIN, FACE, FACIAL_HAIR, HAIR, UNDERWEAR }
 enum Option { SKIN, FACE, HAIR_STYLE, HAIR_COLOR, FACIAL_HAIR }
 enum EquipSlot { HEAD, SHOULDER, SHIRT, CHEST, WAIST, LEGS, FEET, WRIST, HANDS, TABARD }
-enum TextureSlot { BODY = 1, HAIR = 6 }
+# FUR is the skin's second texture, which tauren wear on their manes, beards and body tufts.
+enum TextureSlot { BODY = 1, HAIR = 6, FUR = 8 }
 
 const SKIN_ATLAS_SIZE: int = 256
 # Where each overlay lands on the 256x256 body skin, matched by a word in its file name.
@@ -77,11 +78,18 @@ func instantiate(model_path: String, look: Dictionary) -> Node3D:
 			skins[TextureSlot.BODY] = skin
 	else:
 		skins[TextureSlot.BODY] = BAKED_TEXTURES + baked
-	var hair: String = _texture(
-		race, gender, Section.HAIR, look.get("hair_style", 0), look.get("hair_color", 0)
-	)
+	var hair_color: int = look.get("hair_color", 0)
+	var hair: String = _texture(race, gender, Section.HAIR, look.get("hair_style", 0), hair_color)
+	# Bald styles have no hair texture, but their facial hair still wears the colour.
+	if hair.is_empty():
+		hair = _texture(race, gender, Section.HAIR, -1, hair_color)
 	if not hair.is_empty():
 		skins[TextureSlot.HAIR] = hair
+	var skin_textures: PackedStringArray = _textures(
+		race, gender, Section.SKIN, -1, look.get("skin", 0)
+	)
+	if skin_textures.size() > 1:
+		skins[TextureSlot.FUR] = skin_textures[1]
 	return _loader.load_m2(model_path, skins, _geosets(race, gender, look))
 
 
@@ -251,7 +259,7 @@ func _texture(race: int, gender: int, section: Section, variation: int, color: i
 	return found[0] if not found.is_empty() else ""
 
 
-# A variation of -1 matches any variation; each matching row may carry up to three textures.
+# A variation of -1 matches any variation that has textures; a row carries up to three.
 func _textures(
 	race: int, gender: int, section: Section, variation: int, color: int,
 ) -> PackedStringArray:
@@ -267,7 +275,8 @@ func _textures(
 			var path: String = _sections.get_string(row, column)
 			if not path.is_empty():
 				found.append(path)
-		break
+		if variation >= 0 or not found.is_empty():
+			break
 	return found
 
 

@@ -98,9 +98,13 @@ static func apply_scene(frame: WowModelFrame, race: int) -> void:
 	frame.set_fog(fog[0], 0.0, fog[1])
 
 
+# Glue scene cameras frame the native model; the display scale (tauren 1.35) is for the world.
 static func character_model(look: Dictionary) -> Node3D:
 	var display: int = display_id(look.get("race", 1), look.get("gender", Gender.MALE))
-	return WowAssets.creatures.instantiate(display, look)
+	var model: Node3D = WowAssets.creatures.instantiate(display, look)
+	if model:
+		model.scale = Vector3.ONE
+	return model
 
 
 static func _race_string(race: int, column: String) -> String:
