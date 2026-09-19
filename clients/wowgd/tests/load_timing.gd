@@ -27,6 +27,7 @@ func _on_world_ready(_world: World) -> void:
 	var quit_at: int = Time.get_ticks_msec() + LINGER_MSEC
 	while Time.get_ticks_msec() < quit_at:
 		await get_tree().process_frame
+	get_viewport().get_texture().get_image().save_png("user://load_timing.png")
 	_mark("quitting")
 	get_tree().quit()
 

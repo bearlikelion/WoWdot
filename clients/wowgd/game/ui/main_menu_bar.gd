@@ -95,6 +95,8 @@ func _ready() -> void:
 	_bottom_right = MultiActionBar.bind(_bottom_right_bar, BOTTOM_RIGHT_FIRST_SLOT, action_used.emit)
 	WowClient.session.action_buttons_changed.connect(_update_bottom_bars)
 	WowClient.session.object_updated.connect(_on_object_updated)
+	# The player's own create block brings the stance, and it can land after the bar is built.
+	WowClient.session.object_created.connect(func(guid: int, _type: int) -> void: _on_object_updated(guid))
 	_assign_slots()
 	_update_xp()
 	_update_bottom_bars()
