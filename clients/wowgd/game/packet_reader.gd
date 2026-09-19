@@ -35,6 +35,11 @@ func u64() -> int:
 	return _data.decode_u64(at) if at >= 0 else 0
 
 
+func text(length: int) -> String:
+	var at: int = _take(length)
+	return _data.slice(at, at + length).get_string_from_utf8() if at >= 0 else ""
+
+
 func packed_guid() -> int:
 	var mask: int = u8()
 	var guid: int = 0

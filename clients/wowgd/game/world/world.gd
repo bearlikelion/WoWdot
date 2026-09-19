@@ -49,6 +49,10 @@ var _weapons: Array = []
 var _sheath_state: ItemModels.SheathState = ItemModels.SheathState.UNARMED
 var _area: int = -1
 var _hovered: int = 0
+var _death: Death
+var _release_offered: bool = false
+var _reclaim_offered: bool = false
+var _ghost: bool = false
 
 @onready var _map: WowMap = $WowMap
 @onready var _player: Player = $Player
@@ -79,6 +83,9 @@ func _ready() -> void:
 	WowClient.session.object_moved.connect(_on_object_moved)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
+	_death = Death.new(WowClient.session)
+	_death.resurrect_offered.connect(_on_resurrect_offered)
+	_death.spirit_healer_offered.connect(_on_spirit_healer_offered)
 
 
 func _process(_delta: float) -> void:
@@ -92,6 +99,7 @@ func _process(_delta: float) -> void:
 	var eye: Vector3 = get_viewport().get_camera_3d().global_position
 	_sky.underwater = eye.y < _map.liquid_height_at(eye)
 	_weather.visible = not _sky.underwater
+	_offer_reclaim()
 	var area: int = _map.area_id_at(_player.global_position)
 	if area != 0 and area != _area:
 		_area = area
@@ -258,6 +266,44 @@ func _on_player_movement_changed(
 	)
 
 
+# Corpses are only offered once each, so a refused popup stays closed until the state changes.
+func _follow_death(dead: bool, ghost: bool) -> void:
+	if not dead and not ghost:
+		_ghost = false
+		_release_offered = false
+		_reclaim_offered = false
+		_death.forget_corpse()
+		return
+	_ghost = ghost
+	if not ghost and not _release_offered:
+		_release_offered = true
+		_hud.ask_release(_death.release)
+
+
+func _offer_reclaim() -> void:
+	if not _ghost or _reclaim_offered:
+		return
+	if _death.corpse_map < 0:
+		return _death.query_corpse()
+	if not _death.may_reclaim():
+		return
+	var corpse: Vector3 = WowCoords.to_godot(_death.corpse_position)
+	if corpse.distance_to(_player.global_position) > Death.RECLAIM_RANGE:
+		return
+	if _death.corpse_guid() == 0:
+		return
+	_reclaim_offered = true
+	_hud.ask_reclaim(_death.reclaim)
+
+
+func _on_resurrect_offered(caster_name: String, _sickness: bool) -> void:
+	_hud.ask_resurrect(caster_name, _death.answer_resurrect)
+
+
+func _on_spirit_healer_offered(healer_guid: int) -> void:
+	_hud.ask_spirit_healer(_death.activate_spirit_healer.bind(healer_guid))
+
+
 func _on_transfer_aborted(reason: int) -> void:
 	_hud.show_error(WowStrings.get_text(TRANSFER_ABORTS.get(reason, ""), "Transfer aborted"))
 
@@ -336,8 +382,10 @@ func _on_object_updated(guid: int) -> void:
 	if guid != session.get_player_guid():
 		return
 	var dead: bool = session.get_field(guid, "UNIT_FIELD_HEALTH") == 0
+	var ghost: bool = (session.get_field(guid, "PLAYER_FLAGS") & PLAYER_FLAG_GHOST) != 0
 	_player.set_dead(dead)
-	_sky.dead = dead or (session.get_field(guid, "PLAYER_FLAGS") & PLAYER_FLAG_GHOST) != 0
+	_sky.dead = dead or ghost
+	_follow_death(dead, ghost)
 	_player.stand_state = session.get_field(guid, "UNIT_FIELD_BYTES_1") & 0xFF
 	var mount: int = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
 	if CharacterModels.visible_items(session, guid) != _worn or mount != _mount_display:

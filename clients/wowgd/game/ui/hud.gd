@@ -202,6 +202,34 @@ func show_area(area_id: int, player_race: int) -> void:
 	_minimap.show_area(area_id, player_race)
 
 
+func ask_release(on_release: Callable) -> void:
+	_popup.ask(
+		WowStrings.get_text("DEATH_RELEASE", "You have died."), on_release,
+		"RELEASE_SPIRIT", "CANCEL",
+	)
+
+
+func ask_reclaim(on_reclaim: Callable) -> void:
+	_popup.ask(
+		WowStrings.get_text("RECOVER_CORPSE", "Do you wish to return to life at your corpse?"),
+		on_reclaim, "OKAY", "CANCEL",
+	)
+
+
+func ask_resurrect(caster: String, on_answer: Callable) -> void:
+	_popup.ask(
+		WowStrings.get_text("RESURRECT_REQUEST", "%s wants to resurrect you.") % caster,
+		on_answer.bind(true), "ACCEPT", "DECLINE", on_answer.bind(false),
+	)
+
+
+func ask_spirit_healer(on_accept: Callable) -> void:
+	_popup.ask(
+		WowStrings.get_text("CONFIRM_XP_LOSS", "Resurrecting here costs experience."),
+		on_accept, "OKAY", "CANCEL",
+	)
+
+
 func show_error(text: String) -> void:
 	_errors.add_message(text, ERROR_COLOR)
 
