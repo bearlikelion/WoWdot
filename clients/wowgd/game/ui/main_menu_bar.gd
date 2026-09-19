@@ -96,7 +96,7 @@ func _ready() -> void:
 	WowClient.session.action_buttons_changed.connect(_update_bottom_bars)
 	WowClient.session.object_updated.connect(_on_object_updated)
 	# The player's own create block brings the stance, and it can land after the bar is built.
-	WowClient.session.object_created.connect(func(guid: int, _type: int) -> void: _on_object_updated(guid))
+	WowClient.session.object_created.connect(_on_object_created)
 	_assign_slots()
 	_update_xp()
 	_update_bottom_bars()
@@ -215,6 +215,10 @@ func _on_micro_button_hovered(button: BaseButton) -> void:
 func _on_micro_button_left(button: BaseButton) -> void:
 	if GameTooltip.current:
 		GameTooltip.current.hide_for(button)
+
+
+func _on_object_created(guid: int, _type_id: int) -> void:
+	_on_object_updated(guid)
 
 
 func _on_object_updated(guid: int) -> void:
