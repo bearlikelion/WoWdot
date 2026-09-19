@@ -65,16 +65,20 @@ std::mutex shared_mutex;
 Ref<WowLoader> shared_loader;
 } // namespace
 
+String WowLoader::client_data_dir() {
+	// An exported build sits in the player's 1.12.1 folder, next to its Data.
+	if (OS::get_singleton()->has_feature("template")) {
+		return OS::get_singleton()->get_executable_path().get_base_dir().path_join("Data");
+	}
+	return ProjectSettings::get_singleton()->get_setting("wowgd/client_data_dir", "");
+}
+
 Ref<WowLoader> WowLoader::get_shared() {
 	const std::lock_guard<std::mutex> lock(shared_mutex);
 	if (shared_loader.is_null()) {
 		Ref<WowArchive> archive;
 		archive.instantiate();
-		String data_dir = ProjectSettings::get_singleton()->get_setting("wowgd/client_data_dir", "");
-		// An exported build sits in the player's 1.12.1 folder, next to its Data.
-		if (OS::get_singleton()->has_feature("template")) {
-			data_dir = OS::get_singleton()->get_executable_path().get_base_dir().path_join("Data");
-		}
+		const String data_dir = client_data_dir();
 		if (archive->open(data_dir) != OK) {
 			UtilityFunctions::push_error("WowLoader: cannot open client data at '", data_dir, "'");
 		}

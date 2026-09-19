@@ -61,6 +61,7 @@ public:
 	// One loader on the project's client data, shared by WowTexture, the editor and the game.
 	static Ref<WowLoader> get_shared();
 	static void release_shared();
+	static String client_data_dir();
 
 	void set_archive(const Ref<WowArchive> &p_archive) { archive = p_archive; }
 	Ref<WowArchive> get_archive() const { return archive; }

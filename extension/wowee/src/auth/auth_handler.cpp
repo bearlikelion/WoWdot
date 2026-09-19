@@ -310,6 +310,7 @@ void AuthHandler::sendLogonProof() {
         if (const char* env = std::getenv("WOWEE_INTEGRITY_DIR")) {
             if (env && *env) candidateDirs.push_back(env);
         }
+        if (!integrityDir.empty()) candidateDirs.push_back(integrityDir);
         // Expansion-isolated extraction layouts. Select narrowly so a Wrath or
         // stock Classic executable can never be used for a Turtle integrity hash.
         if (clientInfo.majorVersion == 1 && clientInfo.minorVersion == 18) {
