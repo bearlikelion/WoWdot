@@ -53,7 +53,7 @@ The work is making the extension and the game code pick the expansion instead of
 
 WoWGD's `game/` folder is about 15,000 lines of GDScript, and roughly 75 to 85 percent of it can be reused once it moves somewhere both clients load.
 
-- **Sharing.** The code lives in `clients/wowgd/game/` today. The profile boundary sketched in [docs/WoWdot.md](../../docs/WoWdot.md) (`GameProfile`, `GameProtocol`) is not implemented; it should be shaped by the real differences found while bringing this client up.
+- **Sharing.** The code lives in `clients/wowgd/game/` today, and there is no profile boundary between vanilla and WotLK yet; it should be shaped by the real differences found while bringing this client up.
 - **Data tables.** `data/wotlk/dbc_layouts.json` lacks tables the game reads (ChrRaces, ChrClasses, SpellCastTimes, SpellDuration, SpellRadius, HelmetGeosetVisData, QuestSort, WorldMapOverlay and others), and `update_fields.json` has 62 entries where WoWGD uses 324.
 - **Removed fields.** `UNIT_FIELD_AURAS`, `UNIT_VIRTUAL_ITEM_*` and the 12-field `PLAYER_VISIBLE_ITEM` stride are gone in WotLK, and quest log slots grow from 3 fields to 5.
 - **Raw packets.** 14 scripts decode payloads in the vanilla layout (loot, merchant, party, taxi, talents, skills, combat events, NPC dialogs and others).

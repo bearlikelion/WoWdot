@@ -21,7 +21,7 @@ extension/       C++ GDExtension: sessions, crypto, MPQ access and WoW file form
 shared/wowdot/   Addon both clients load; the built libraries land in its bin/
 clients/wowgd/   Vanilla client, addons/wowdot links to shared/wowdot
 clients/wotlkgd/ WotLK client, addons/wowdot links to shared/wowdot
-docs/            Plan, provenance and audit
+docs/            Provenance and license audit
 website/         Project site, built with website/build.sh into _site/
 ```
 
