@@ -30,19 +30,22 @@ var creatures: CreatureModels:
 		if _creatures == null:
 			_creatures = CreatureModels.new(loader, characters)
 		return _creatures
+var spells: SpellInfo:
+	get:
+		if _spells == null:
+			_spells = SpellInfo.new(archive)
+		return _spells
 
 var _archive: WowArchive
 var _loader: WowLoader
 var _characters: CharacterModels
 var _creatures: CreatureModels
+var _spells: SpellInfo
 
 
+# One shared loader, so WowTexture resources and the world use the same archive and caches.
 func _open() -> void:
-	_archive = WowArchive.new()
-	var data_dir: String = ProjectSettings.get_setting("wowgd/client_data_dir", "")
-	if _archive.open(data_dir) != OK:
-		push_error("WowAssets: cannot open client data at '%s'" % data_dir)
-	_loader = WowLoader.new()
-	_loader.archive = _archive
+	_loader = WowLoader.get_shared()
+	_archive = _loader.archive
 	_loader.terrain_shader = TERRAIN_SHADER
 	_loader.liquid_materials = LIQUID_MATERIALS

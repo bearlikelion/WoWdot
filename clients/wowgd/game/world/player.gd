@@ -40,6 +40,14 @@ const LONGITUDINAL: int = MoveFlag.FORWARD | MoveFlag.BACKWARD
 const STRAFE: int = MoveFlag.STRAFE_LEFT | MoveFlag.STRAFE_RIGHT
 const TURN: int = MoveFlag.TURN_LEFT | MoveFlag.TURN_RIGHT
 const AIRBORNE: int = MoveFlag.JUMPING | MoveFlag.FALLING_FAR
+# Animations for the UNIT_FIELD_BYTES_1 stand states other than standing and dead.
+const STAND_STATE_ANIMATIONS: Dictionary[int, String] = {
+	1: "SitGround", 2: "SitChairLow", 3: "Sleep", 4: "SitChairLow", 5: "SitChairMed",
+	6: "SitChairHigh", 8: "Kneel",
+}
+
+var in_combat: bool = false
+var stand_state: int = 0
 
 # Physics stays off until the ground under the player has loaded.
 var active: bool = false:
@@ -58,7 +66,8 @@ var _fall_start_y: float = 0.0
 var _jump_velocity: Vector3 = Vector3.ZERO
 var _press_position: Vector2 = Vector2.ZERO
 var _drag_distance: float = 0.0
-var _animation: AnimationPlayer
+var _model: Node3D
+var _auto_run: bool = false
 
 @onready var _model_slot: Node3D = $Model
 @onready var _pivot: Node3D = $CameraPivot
@@ -72,6 +81,12 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _typing():
+		if event.is_action_pressed("auto_run", false, true):
+			get_viewport().set_input_as_handled()
+			_auto_run = not _auto_run
+		elif event.is_action_pressed("move_forward") or event.is_action_pressed("move_back"):
+			_auto_run = false
 	var button: InputEventMouseButton = event as InputEventMouseButton
 	if button:
 		match button.button_index:
@@ -134,7 +149,7 @@ func set_model(model: Node3D) -> void:
 	for child: Node in _model_slot.get_children():
 		child.queue_free()
 	_model_slot.add_child(model)
-	_animation = model.get_node_or_null("AnimationPlayer")
+	_model = model
 
 
 # WoW facing: 0 is north (+X) and it grows toward west (+Y), which matches Godot yaw here.
@@ -203,8 +218,9 @@ func _typing() -> bool:
 func _input_flags() -> int:
 	var flags: int = MoveFlag.NONE
 	if _typing():
-		return flags
-	if Input.is_action_pressed("move_forward"):
+		return MoveFlag.FORWARD if _auto_run else flags
+	# Autorun, and both mouse buttons held, run forward as in the stock client.
+	if Input.is_action_pressed("move_forward") or _auto_run or (_mouse_turning and _orbiting):
 		flags |= MoveFlag.FORWARD
 	elif Input.is_action_pressed("move_back"):
 		flags |= MoveFlag.BACKWARD
@@ -266,8 +282,22 @@ func _send(opcode: String, flags: int) -> void:
 	movement_changed.emit(opcode, global_position, orientation(), flags, fall_msec, _jump_velocity)
 
 
+func play_once(candidates: PackedStringArray) -> void:
+	if _model:
+		UnitAnimations.play_once(_model, candidates)
+
+
+func set_dead(dead: bool) -> void:
+	if _model == null or dead == UnitAnimations.is_dead(_model):
+		return
+	if dead:
+		UnitAnimations.die(_model)
+	else:
+		UnitAnimations.revive(_model)
+
+
 func _animate(flags: int) -> void:
-	if _animation == null:
+	if _model == null:
 		return
 	var wanted: String = "Stand"
 	if flags & MoveFlag.FALLING_FAR:
@@ -282,5 +312,9 @@ func _animate(flags: int) -> void:
 		wanted = "ShuffleLeft"
 	elif flags & MoveFlag.STRAFE_RIGHT:
 		wanted = "ShuffleRight"
-	if _animation.current_animation != wanted and _animation.has_animation(wanted):
-		_animation.play(wanted, 0.15)
+	elif STAND_STATE_ANIMATIONS.has(stand_state):
+		wanted = STAND_STATE_ANIMATIONS[stand_state]
+	elif in_combat:
+		UnitAnimations.set_base(_model, UnitAnimations.READY)
+		return
+	UnitAnimations.set_base(_model, [wanted])

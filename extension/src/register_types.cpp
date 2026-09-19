@@ -4,6 +4,7 @@
 #include "wow_loader.h"
 #include "wow_session.h"
 #include "wow_streamer.h"
+#include "wow_texture.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/class_db.hpp>
@@ -26,10 +27,14 @@ static void initialize_wowgd_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_CLASS(WowLoader);
 	GDREGISTER_CLASS(WowStreamer);
 	GDREGISTER_CLASS(WowSession);
+	GDREGISTER_CLASS(WowTexture);
 	GDREGISTER_ABSTRACT_CLASS(WowCoords);
 }
 
 static void uninitialize_wowgd_module(ModuleInitializationLevel p_level) {
+	if (p_level == MODULE_INITIALIZATION_LEVEL_SCENE) {
+		WowLoader::release_shared();
+	}
 }
 
 extern "C" {

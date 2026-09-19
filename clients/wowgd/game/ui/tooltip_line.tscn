@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[node name="TooltipLine" type="HBoxContainer"]
+mouse_filter = 2
+theme_type_variation = &"TooltipLine"
+
+[node name="Left" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"GameTooltipText"
+
+[node name="Right" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 2

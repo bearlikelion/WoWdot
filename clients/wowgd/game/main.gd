@@ -5,26 +5,34 @@ signal world_ready(world: World)
 
 const WORLD: PackedScene = preload("res://game/world/world.tscn")
 
-## Filled from `-- --account=... --password=... --character=...` for scripted logins.
+## Filled from `-- --realmlist= --account= --password= --character=` for scripted logins.
+@export var auto_realmlist: String = ""
 @export var auto_account: String = ""
 @export var auto_password: String = ""
 @export var auto_character: String = ""
 
 var world: World
 
-@onready var _login: LoginScreen = %LoginScreen
-@onready var _characters: CharacterSelect = %CharacterSelect
+@onready var _glue: Glue = %Glue
 
 
 func _ready() -> void:
 	_read_command_line()
-	_login.realm_joined.connect(_on_realm_joined)
-	_characters.character_chosen.connect(_on_character_chosen)
 	WowClient.session.world_entered.connect(_on_world_entered)
+	WowClient.session.state_changed.connect(_on_state_changed)
 	if not auto_account.is_empty():
-		_characters.preferred_name = auto_character
-		_login.fill_credentials(auto_account, auto_password)
-		_login.log_in()
+		_glue.auto_login(auto_realmlist, auto_account, auto_password, auto_character)
+
+
+# The loading screen stays up until the tiles around the player have streamed in.
+func _process(_delta: float) -> void:
+	if world == null or not _glue.visible:
+		return
+	var progress: float = world.load_progress()
+	_glue.set_loading_progress(progress)
+	if world.player().active and progress >= 1.0:
+		_glue.hide()
+		world_ready.emit(world)
 
 
 func _read_command_line() -> void:
@@ -33,6 +41,8 @@ func _read_command_line() -> void:
 		if parts.size() < 2:
 			continue
 		match parts[0]:
+			"realmlist":
+				auto_realmlist = parts[1]
 			"account":
 				auto_account = parts[1]
 			"password":
@@ -41,26 +51,18 @@ func _read_command_line() -> void:
 				auto_character = parts[1]
 
 
-func _on_realm_joined() -> void:
-	_login.hide()
-	_characters.show()
-	if world:
+func _on_state_changed(state: WowSession.State, _message: String) -> void:
+	var left_world: bool = state in [
+		WowSession.STATE_CHARACTER_LIST, WowSession.STATE_FAILED, WowSession.STATE_DISCONNECTED,
+	]
+	if world and left_world:
 		world.queue_free()
 		world = null
-
-
-func _on_character_chosen(guid: int) -> void:
-	WowClient.session.enter_world(guid)
+		_glue.show()
 
 
 func _on_world_entered(map_id: int, position: Vector3, orientation: float) -> void:
-	_characters.hide()
 	if world == null:
 		world = WORLD.instantiate()
 		add_child(world)
-		world.player_ready.connect(_on_player_ready)
 	world.enter(map_id, position, orientation)
-
-
-func _on_player_ready() -> void:
-	world_ready.emit(world)

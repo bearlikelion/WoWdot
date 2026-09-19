@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://game/ui/loading_screen.gd" id="1_loading"]
+
+[sub_resource type="WowTexture" id="WowTexture_background"]
+file = "Interface\\Glues\\LoadingBar\\Loading-BarBackground.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_fill"]
+file = "Interface\\Glues\\LoadingBar\\Loading-BarFill.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_glow"]
+file = "Interface\\Glues\\LoadingBar\\Loading-BarGlow.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_glass"]
+file = "Interface\\Glues\\LoadingBar\\Loading-BarGlass.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_border"]
+file = "Interface\\Glues\\LoadingBar\\Loading-BarBorder.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
+blend_mode = 1
+
+[node name="LoadingScreen" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_loading")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Frame" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+ratio = 1.3333
+
+[node name="LoadingScreenImage" type="TextureRect" parent="Frame"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="LoadingBar" type="Control" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -99.0
+offset_right = 256.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="LoadingBar"]
+offset_left = 33.0
+offset_top = 19.0
+offset_right = 479.0
+offset_bottom = 45.0
+mouse_filter = 2
+texture = SubResource("WowTexture_background")
+expand_mode = 1
+
+[node name="LoadingBarFill" type="TextureRect" parent="LoadingBar"]
+unique_name_in_owner = true
+offset_left = 33.0
+offset_top = 19.0
+offset_right = 479.0
+offset_bottom = 45.0
+mouse_filter = 2
+texture = SubResource("WowTexture_fill")
+expand_mode = 1
+
+[node name="GlowClip" type="Control" parent="LoadingBar"]
+clip_contents = true
+offset_left = 33.0
+offset_top = -32.0
+offset_right = 479.0
+offset_bottom = 96.0
+mouse_filter = 2
+
+[node name="LoadingBarGlow" type="TextureRect" parent="LoadingBar/GlowClip"]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_add")
+offset_right = 512.0
+offset_bottom = 128.0
+mouse_filter = 2
+texture = SubResource("WowTexture_glow")
+expand_mode = 1
+
+[node name="Glass" type="TextureRect" parent="LoadingBar"]
+offset_right = 512.0
+offset_bottom = 64.0
+mouse_filter = 2
+texture = SubResource("WowTexture_glass")
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="LoadingBar"]
+offset_right = 512.0
+offset_bottom = 64.0
+mouse_filter = 2
+texture = SubResource("WowTexture_border")
+expand_mode = 1

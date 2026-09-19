@@ -37,11 +37,13 @@ constexpr uint16_t CLIENT_BUILD = 5875;
 constexpr uint8_t AUTH_PROTOCOL = 8;
 constexpr uint8_t AUTH_PROTOCOL_LEGACY = 3;
 constexpr uint8_t CHAR_CREATE_SUCCESS = 46;
+constexpr uint8_t CHAR_DELETE_SUCCESS = 57;
 constexpr uint64_t PING_INTERVAL_MSEC = 30000;
 constexpr uint32_t LANG_ORCISH = 1;
 constexpr uint32_t LANG_COMMON = 7;
 constexpr uint8_t TYPEID_UNIT = 3;
 constexpr uint8_t TYPEID_PLAYER = 4;
+constexpr uint8_t MONSTER_MOVE_FACING_ANGLE = 4;
 
 bool is_player_guid(uint64_t guid) {
 	return guid != 0 && (guid >> 48) == 0;
@@ -72,7 +74,7 @@ void load_protocol_tables() {
 	const Dictionary names = JSON::parse_string(FileAccess::get_file_as_string("res://data/classic/update_fields.json"));
 	const Array keys = names.keys();
 	for (int i = 0; i < keys.size(); i++) {
-		field_indices()[String(keys[i]).utf8().get_data()] = int(names[keys[i]]);
+		field_indices()[String(keys[i]).utf8().get_data()] = static_cast<int>(names[keys[i]]);
 	}
 	loaded = true;
 }
@@ -112,7 +114,7 @@ void WowSession::login(const String &host, int port, const String &p_username, c
 	username = p_username.to_upper().utf8().get_data();
 	password = p_password.utf8().get_data();
 	auth_host = host.utf8().get_data();
-	auth_port = uint16_t(port);
+	auth_port = static_cast<uint16_t>(port);
 	auth_attempt = 0;
 	begin_auth();
 }
@@ -152,6 +154,7 @@ void WowSession::begin_auth() {
 			r["characters"] = realm.characters;
 			r["population"] = realm.population;
 			r["flags"] = realm.flags;
+			r["icon"] = realm.icon;
 			out.push_back(r);
 		}
 		set_state(STATE_REALM_LIST);
@@ -175,12 +178,19 @@ void WowSession::begin_auth() {
 	auth->authenticate(username, password);
 }
 
+// The logon server drops the connection after the realm list, so a fresh list needs a new login.
+void WowSession::request_realms() {
+	ERR_FAIL_COND(username.empty());
+	auth_attempt = 0;
+	begin_auth();
+}
+
 void WowSession::select_realm(int index) {
-	ERR_FAIL_INDEX(index, int(realms.size()));
+	ERR_FAIL_INDEX(index, static_cast<int>(realms.size()));
 	const std::string address = realms[index].address;
 	const size_t colon = address.rfind(':');
 	const std::string host = address.substr(0, colon);
-	const uint16_t port = colon == std::string::npos ? 8085 : uint16_t(std::stoi(address.substr(colon + 1)));
+	const uint16_t port = colon == std::string::npos ? 8085 : static_cast<uint16_t>(std::stoi(address.substr(colon + 1)));
 	realm_id = realms[index].id;
 	retire_sockets();
 	world = std::make_unique<network::WorldSocket>();
@@ -207,20 +217,27 @@ void WowSession::create_character(const Dictionary &character) {
 	ERR_FAIL_COND(!world);
 	game::CharCreateData data;
 	data.name = String(character.get("name", "")).utf8().get_data();
-	data.race = game::Race(int(character.get("race", 1)));
-	data.characterClass = game::Class(int(character.get("class", 1)));
-	data.gender = game::Gender(int(character.get("gender", 0)));
-	data.skin = int(character.get("skin", 0));
-	data.face = int(character.get("face", 0));
-	data.hairStyle = int(character.get("hair_style", 0));
-	data.hairColor = int(character.get("hair_color", 0));
-	data.facialHair = int(character.get("facial_hair", 0));
+	data.race = static_cast<game::Race>(static_cast<int>(character.get("race", 1)));
+	data.characterClass = static_cast<game::Class>(static_cast<int>(character.get("class", 1)));
+	data.gender = static_cast<game::Gender>(static_cast<int>(character.get("gender", 0)));
+	data.skin = static_cast<int>(character.get("skin", 0));
+	data.face = static_cast<int>(character.get("face", 0));
+	data.hairStyle = static_cast<int>(character.get("hair_style", 0));
+	data.hairColor = static_cast<int>(character.get("hair_color", 0));
+	data.facialHair = static_cast<int>(character.get("facial_hair", 0));
 	world->send(game::CharCreatePacket::build(data));
+}
+
+void WowSession::delete_character(int64_t guid) {
+	ERR_FAIL_COND(!world);
+	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_CHAR_DELETE));
+	packet.writeUInt64(static_cast<uint64_t>(guid));
+	world->send(packet);
 }
 
 void WowSession::enter_world(int64_t guid) {
 	ERR_FAIL_COND(!world);
-	player_guid = uint64_t(guid);
+	player_guid = static_cast<uint64_t>(guid);
 	objects.clear();
 	world->send(game::PlayerLoginPacket::build(player_guid));
 	set_state(STATE_ENTERING_WORLD);
@@ -237,23 +254,23 @@ void WowSession::send_movement(const String &opcode, const Vector3 &position, do
 	const auto op = game::OpcodeTable::nameToLogical(opcode.utf8().get_data());
 	ERR_FAIL_COND_MSG(!op, "WowSession: unknown opcode " + opcode);
 	game::MovementInfo info;
-	info.flags = uint32_t(flags);
-	info.time = uint32_t(Time::get_singleton()->get_ticks_msec());
+	info.flags = static_cast<uint32_t>(flags);
+	info.time = static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec());
 	info.x = position.x;
 	info.y = position.y;
 	info.z = position.z;
-	info.orientation = float(orientation);
-	info.fallTime = uint32_t(fall_time_msec);
+	info.orientation = static_cast<float>(orientation);
+	info.fallTime = static_cast<uint32_t>(fall_time_msec);
 	const float xy_speed = Vector2(jump_velocity.x, jump_velocity.y).length();
 	info.jumpVelocity = jump_velocity.z;
 	info.jumpXYSpeed = xy_speed;
-	info.jumpCosAngle = xy_speed > 0.0f ? jump_velocity.x / xy_speed : std::cos(float(orientation));
-	info.jumpSinAngle = xy_speed > 0.0f ? jump_velocity.y / xy_speed : std::sin(float(orientation));
+	info.jumpCosAngle = xy_speed > 0.0f ? jump_velocity.x / xy_speed : std::cos(static_cast<float>(orientation));
+	info.jumpSinAngle = xy_speed > 0.0f ? jump_velocity.y / xy_speed : std::sin(static_cast<float>(orientation));
 	world->send(parsers->buildMovementPacket(*op, info, player_guid));
 	auto it = objects.find(player_guid);
 	if (it != objects.end()) {
 		it->second.position = position;
-		it->second.orientation = float(orientation);
+		it->second.orientation = static_cast<float>(orientation);
 	}
 }
 
@@ -265,9 +282,200 @@ void WowSession::send_packet(const String &opcode, const PackedByteArray &payloa
 	world->send(network::Packet(game::wireOpcode(*op), std::move(data)));
 }
 
+void WowSession::cast_spell(int spell_id, int64_t target_guid) {
+	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
+	world->send(parsers->buildCastSpell(static_cast<uint32_t>(spell_id), static_cast<uint64_t>(target_guid), 0));
+}
+
+void WowSession::cancel_cast(int spell_id) {
+	ERR_FAIL_COND(!world);
+	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_CANCEL_CAST));
+	packet.writeUInt32(static_cast<uint32_t>(spell_id));
+	world->send(packet);
+}
+
+void WowSession::attack(int64_t target_guid) {
+	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
+	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_ATTACKSWING));
+	packet.writeUInt64(static_cast<uint64_t>(target_guid));
+	world->send(packet);
+}
+
+void WowSession::stop_attack() {
+	ERR_FAIL_COND(!world);
+	world->send(network::Packet(game::wireOpcode(game::LogicalOpcode::CMSG_ATTACKSTOP)));
+}
+
+void WowSession::cancel_aura(int spell_id) {
+	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
+	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_CANCEL_AURA));
+	packet.writeUInt32(static_cast<uint32_t>(spell_id));
+	world->send(packet);
+}
+
+void WowSession::set_action_button(int slot, int packed) {
+	ERR_FAIL_COND(!world || slot < 0 || slot >= action_buttons.size());
+	action_buttons.set(slot, packed);
+	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_SET_ACTION_BUTTON));
+	packet.writeUInt8(static_cast<uint8_t>(slot));
+	packet.writeUInt32(static_cast<uint32_t>(packed));
+	world->send(packet);
+	emit_signal("action_buttons_changed");
+}
+
+// Spell, cooldown and melee packets in their vanilla layouts; true when the opcode was one of them.
+bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
+	using game::LogicalOpcode;
+	switch (static_cast<LogicalOpcode>(op)) {
+		case LogicalOpcode::SMSG_INITIAL_SPELLS: {
+			game::InitialSpellsData data;
+			if (parsers->parseInitialSpells(packet, data)) {
+				known_spells.clear();
+				for (uint32_t spell : data.spellIds) {
+					known_spells.push_back(static_cast<int32_t>(spell));
+				}
+				emit_signal("spells_changed");
+			}
+			return true;
+		}
+		case LogicalOpcode::SMSG_LEARNED_SPELL: {
+			known_spells.push_back(packet.readUInt16());
+			emit_signal("spells_changed");
+			return true;
+		}
+		case LogicalOpcode::SMSG_REMOVED_SPELL: {
+			if (const int64_t at = known_spells.find(packet.readUInt16()); at >= 0) {
+				known_spells.remove_at(at);
+			}
+			emit_signal("spells_changed");
+			return true;
+		}
+		case LogicalOpcode::SMSG_SUPERCEDED_SPELL: {
+			const int32_t old_spell = packet.readUInt16();
+			const int32_t new_spell = packet.readUInt16();
+			if (const int64_t at = known_spells.find(old_spell); at >= 0) {
+				known_spells.set(at, new_spell);
+			} else {
+				known_spells.push_back(new_spell);
+			}
+			for (int64_t i = 0; i < action_buttons.size(); i++) {
+				if (action_buttons[i] == old_spell) {
+					action_buttons.set(i, new_spell);
+				}
+			}
+			emit_signal("spells_changed");
+			emit_signal("action_buttons_changed");
+			return true;
+		}
+		case LogicalOpcode::SMSG_ACTION_BUTTONS: {
+			action_buttons.resize(0);
+			while (packet.hasRemaining(4)) {
+				action_buttons.push_back(static_cast<int32_t>(packet.readUInt32()));
+			}
+			emit_signal("action_buttons_changed");
+			return true;
+		}
+		case LogicalOpcode::SMSG_SPELL_START: {
+			game::SpellStartData data;
+			if (parsers->parseSpellStart(packet, data)) {
+				emit_signal("spell_cast_started", static_cast<int64_t>(data.casterUnit ? data.casterUnit : data.casterGuid), static_cast<int>(data.spellId), static_cast<int>(data.castTime));
+			}
+			return true;
+		}
+		case LogicalOpcode::SMSG_SPELL_GO: {
+			game::SpellGoData data;
+			if (parsers->parseSpellGo(packet, data)) {
+				emit_signal("spell_cast_finished", static_cast<int64_t>(data.casterUnit ? data.casterUnit : data.casterGuid), static_cast<int>(data.spellId));
+			}
+			return true;
+		}
+		case LogicalOpcode::SMSG_CAST_FAILED: {
+			const int spell = static_cast<int>(packet.readUInt32());
+			const uint8_t status = packet.readUInt8();
+			if (status != 0) {
+				emit_signal("spell_cast_failed", static_cast<int64_t>(player_guid), spell, packet.hasRemaining(1) ? static_cast<int>(packet.readUInt8()) : 0);
+			}
+			return true;
+		}
+		case LogicalOpcode::SMSG_SPELL_FAILED_OTHER: {
+			// Reason -1 marks an interrupt; 0 is a real SpellCastResult (SPELL_FAILED_AFFECTING_COMBAT).
+			const int64_t caster = static_cast<int64_t>(packet.readUInt64());
+			emit_signal("spell_cast_failed", caster, static_cast<int>(packet.readUInt32()), -1);
+			return true;
+		}
+		case LogicalOpcode::SMSG_ATTACKSWING_NOTINRANGE:
+			emit_signal("attack_swing_error", ATTACK_ERROR_NOT_IN_RANGE);
+			return true;
+		case LogicalOpcode::SMSG_ATTACKSWING_BADFACING:
+			emit_signal("attack_swing_error", ATTACK_ERROR_BAD_FACING);
+			return true;
+		case LogicalOpcode::SMSG_ATTACKSWING_NOTSTANDING:
+			emit_signal("attack_swing_error", ATTACK_ERROR_NOT_STANDING);
+			return true;
+		case LogicalOpcode::SMSG_ATTACKSWING_DEADTARGET:
+			emit_signal("attack_swing_error", ATTACK_ERROR_DEAD_TARGET);
+			return true;
+		case LogicalOpcode::SMSG_ATTACKSWING_CANT_ATTACK:
+			emit_signal("attack_swing_error", ATTACK_ERROR_CANT_ATTACK);
+			return true;
+		case LogicalOpcode::SMSG_SPELL_DELAYED: {
+			const int64_t caster = static_cast<int64_t>(packet.readUInt64());
+			emit_signal("spell_cast_delayed", caster, static_cast<int>(packet.readUInt32()));
+			return true;
+		}
+		case LogicalOpcode::MSG_CHANNEL_START: {
+			const int spell = static_cast<int>(packet.readUInt32());
+			emit_signal("spell_channel_started", spell, static_cast<int>(packet.readUInt32()));
+			return true;
+		}
+		case LogicalOpcode::MSG_CHANNEL_UPDATE: {
+			emit_signal("spell_channel_updated", static_cast<int>(packet.readUInt32()));
+			return true;
+		}
+		case LogicalOpcode::SMSG_SPELL_COOLDOWN: {
+			packet.readUInt64();
+			while (packet.hasRemaining(8)) {
+				const int spell = static_cast<int>(packet.readUInt32());
+				emit_signal("spell_cooldown", spell, static_cast<int>(packet.readUInt32()));
+			}
+			return true;
+		}
+		case LogicalOpcode::SMSG_COOLDOWN_EVENT:
+		case LogicalOpcode::SMSG_CLEAR_COOLDOWN: {
+			emit_signal("spell_cooldown", static_cast<int>(packet.readUInt32()), 0);
+			return true;
+		}
+		case LogicalOpcode::SMSG_UPDATE_AURA_DURATION: {
+			const int slot = packet.readUInt8();
+			emit_signal("aura_duration", slot, static_cast<int64_t>(packet.readUInt32()));
+			return true;
+		}
+		case LogicalOpcode::SMSG_ATTACKERSTATEUPDATE: {
+			game::AttackerStateUpdateData data;
+			if (parsers->parseAttackerStateUpdate(packet, data)) {
+				emit_signal("melee_swing", static_cast<int64_t>(data.attackerGuid), static_cast<int64_t>(data.targetGuid),
+						data.totalDamage, static_cast<int64_t>(data.hitInfo), static_cast<int64_t>(data.victimState));
+			}
+			return true;
+		}
+		case LogicalOpcode::SMSG_ATTACKSTART: {
+			const int64_t attacker = static_cast<int64_t>(packet.readUInt64());
+			emit_signal("attack_started", attacker, static_cast<int64_t>(packet.readUInt64()));
+			return true;
+		}
+		case LogicalOpcode::SMSG_ATTACKSTOP: {
+			const int64_t attacker = static_cast<int64_t>(packet.readPackedGuid());
+			emit_signal("attack_stopped", attacker, static_cast<int64_t>(packet.readPackedGuid()));
+			return true;
+		}
+		default:
+			return false;
+	}
+}
+
 void WowSession::send_chat(ChatType type, const String &message, const String &target) {
 	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
-	const uint8_t race = uint8_t(get_field(int64_t(player_guid), "UNIT_FIELD_BYTES_0") & 0xFF);
+	const uint8_t race = static_cast<uint8_t>(get_field(int64_t(player_guid), "UNIT_FIELD_BYTES_0") & 0xFF);
 	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_MESSAGECHAT));
 	packet.writeUInt32(type);
 	packet.writeUInt32(is_horde(race) ? LANG_ORCISH : LANG_COMMON);
@@ -280,7 +488,7 @@ void WowSession::send_chat(ChatType type, const String &message, const String &t
 
 void WowSession::set_selection(int64_t guid) {
 	ERR_FAIL_COND(!world);
-	world->send(game::SetSelectionPacket::build(uint64_t(guid)));
+	world->send(game::SetSelectionPacket::build(static_cast<uint64_t>(guid)));
 }
 
 // Empty until the server answers the query this sends; name_received follows.
@@ -290,26 +498,50 @@ String WowSession::get_object_name(int64_t guid) {
 		return String();
 	}
 	if (object->type_id == TYPEID_PLAYER) {
-		auto it = player_names.find(uint64_t(guid));
-		if (it != player_names.end()) {
+		if (const auto it = player_names.find(static_cast<uint64_t>(guid)); it != player_names.end()) {
 			return String::utf8(it->second.c_str());
 		}
-		query_player_name(uint64_t(guid));
+		query_player_name(static_cast<uint64_t>(guid));
 	} else if (object->type_id == TYPEID_UNIT) {
-		const uint32_t entry = uint32_t(get_field(guid, "OBJECT_FIELD_ENTRY"));
-		auto it = creature_names.find(entry);
-		if (it != creature_names.end()) {
-			return String::utf8(it->second.c_str());
+		const uint32_t entry = static_cast<uint32_t>(get_field(guid, "OBJECT_FIELD_ENTRY"));
+		if (const auto it = creature_info.find(entry); it != creature_info.end()) {
+			return it->second["name"];
 		}
 		std::vector<uint64_t> &waiting = creature_queries[entry];
 		if (waiting.empty()) {
-			world->send(game::CreatureQueryPacket::build(entry, uint64_t(guid)));
+			world->send(game::CreatureQueryPacket::build(entry, static_cast<uint64_t>(guid)));
 		}
-		if (std::find(waiting.begin(), waiting.end(), uint64_t(guid)) == waiting.end()) {
-			waiting.push_back(uint64_t(guid));
+		if (std::find(waiting.begin(), waiting.end(), static_cast<uint64_t>(guid)) == waiting.end()) {
+			waiting.push_back(static_cast<uint64_t>(guid));
 		}
 	}
 	return String();
+}
+
+// The creature query answer for a unit (name, subname, rank, type, family), or empty until it arrives.
+Dictionary WowSession::get_creature_info(int64_t guid) {
+	const WorldObject *object = find(guid);
+	if (!object || object->type_id != TYPEID_UNIT) {
+		return Dictionary();
+	}
+	const uint32_t entry = static_cast<uint32_t>(get_field(guid, "OBJECT_FIELD_ENTRY"));
+	if (const auto it = creature_info.find(entry); it != creature_info.end()) {
+		return it->second;
+	}
+	get_object_name(guid);
+	return Dictionary();
+}
+
+// Empty until the server answers the query this sends; item_info_received follows.
+Dictionary WowSession::get_item_info(int entry) {
+	const uint32_t key = static_cast<uint32_t>(entry);
+	if (const auto it = item_info.find(key); it != item_info.end()) {
+		return it->second;
+	}
+	if (world && entry > 0 && item_queries.insert(key).second) {
+		world->send(parsers->buildItemQuery(key, 0));
+	}
+	return Dictionary();
 }
 
 void WowSession::query_player_name(uint64_t guid) {
@@ -358,9 +590,9 @@ void WowSession::handle_chat(network::Packet &packet) {
 	}
 	packet.readUInt32();
 	line["text"] = String::utf8(packet.readString().c_str());
-	line["sender_guid"] = int64_t(sender);
+	line["sender_guid"] = static_cast<int64_t>(sender);
 	if (name.empty() && is_player_guid(sender)) {
-		auto it = player_names.find(sender);
+		const auto it = player_names.find(sender);
 		if (it == player_names.end()) {
 			chat_waiting[sender].push_back(line);
 			query_player_name(sender);
@@ -400,6 +632,7 @@ void WowSession::disconnect() {
 	objects.clear();
 	player_queries.clear();
 	creature_queries.clear();
+	item_queries.clear();
 	chat_waiting.clear();
 	player_guid = 0;
 	state = STATE_DISCONNECTED;
@@ -470,11 +703,11 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			Array out;
 			for (const game::Character &c : response.characters) {
 				Dictionary d;
-				d["guid"] = int64_t(c.guid);
+				d["guid"] = static_cast<int64_t>(c.guid);
 				d["name"] = String::utf8(c.name.c_str());
-				d["race"] = int(c.race);
-				d["class"] = int(c.characterClass);
-				d["gender"] = int(c.gender);
+				d["race"] = static_cast<int>(c.race);
+				d["class"] = static_cast<int>(c.characterClass);
+				d["gender"] = static_cast<int>(c.gender);
 				d["level"] = c.level;
 				d["skin"] = c.appearanceBytes & 0xFF;
 				d["face"] = (c.appearanceBytes >> 8) & 0xFF;
@@ -484,6 +717,14 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				d["zone"] = c.zoneId;
 				d["map"] = c.mapId;
 				d["position"] = wow_vector(c.x, c.y, c.z);
+				d["flags"] = c.flags;
+				d["guild"] = c.guildId;
+				// Display ids by inventory slot, head (0) through tabard (18) and the first bag.
+				PackedInt32Array equipment;
+				for (const game::EquipmentItem &item : c.equipment) {
+					equipment.push_back(static_cast<int32_t>(item.displayModel));
+				}
+				d["equipment"] = equipment;
 				out.push_back(d);
 			}
 			emit_signal("characters_received", out);
@@ -492,6 +733,18 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		case LogicalOpcode::SMSG_CHAR_CREATE: {
 			const uint8_t code = packet.getSize() > 0 ? packet.readUInt8() : 0;
 			emit_signal("character_created", code == CHAR_CREATE_SUCCESS, code);
+			return;
+		}
+		case LogicalOpcode::SMSG_CHAR_DELETE: {
+			const uint8_t code = packet.getSize() > 0 ? packet.readUInt8() : 0;
+			emit_signal("character_deleted", code == CHAR_DELETE_SUCCESS, code);
+			return;
+		}
+		case LogicalOpcode::SMSG_CHARACTER_LOGIN_FAILED: {
+			const uint8_t code = packet.getSize() > 0 ? packet.readUInt8() : 0;
+			player_guid = 0;
+			set_state(STATE_CHARACTER_LIST);
+			emit_signal("character_login_failed", code);
 			return;
 		}
 		case LogicalOpcode::SMSG_LOGIN_VERIFY_WORLD: {
@@ -532,7 +785,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			const uint64_t guid = packet.readUInt64();
 			objects.erase(guid);
 			PackedInt64Array guids;
-			guids.push_back(int64_t(guid));
+			guids.push_back(static_cast<int64_t>(guid));
 			emit_signal("objects_destroyed", guids);
 			return;
 		}
@@ -547,11 +800,16 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				move["destination"] = wow_vector(data.destX, data.destY, data.destZ);
 				move["duration_msec"] = data.duration;
 			}
-			auto it = objects.find(data.guid);
-			if (it != objects.end()) {
-				it->second.position = data.hasDest ? wow_vector(data.destX, data.destY, data.destZ) : wow_vector(data.x, data.y, data.z);
+			if (data.moveType == MONSTER_MOVE_FACING_ANGLE) {
+				move["orientation"] = data.facingAngle;
 			}
-			emit_signal("object_moved", int64_t(data.guid), move);
+			if (auto it = objects.find(data.guid); it != objects.end()) {
+				it->second.position = data.hasDest ? wow_vector(data.destX, data.destY, data.destZ) : wow_vector(data.x, data.y, data.z);
+				if (data.moveType == MONSTER_MOVE_FACING_ANGLE) {
+					it->second.orientation = data.facingAngle;
+				}
+			}
+			emit_signal("object_moved", static_cast<int64_t>(data.guid), move);
 			return;
 		}
 		case LogicalOpcode::SMSG_COMPRESSED_MOVES:
@@ -570,9 +828,8 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			const String name = String::utf8(data.name.c_str());
 			player_names[data.guid] = data.name;
 			player_queries.erase(data.guid);
-			emit_signal("name_received", int64_t(data.guid), name);
-			auto waiting = chat_waiting.find(data.guid);
-			if (waiting != chat_waiting.end()) {
+			emit_signal("name_received", static_cast<int64_t>(data.guid), name);
+			if (const auto waiting = chat_waiting.find(data.guid); waiting != chat_waiting.end()) {
 				const Array lines = waiting->second;
 				chat_waiting.erase(waiting);
 				for (int i = 0; i < lines.size(); i++) {
@@ -583,18 +840,56 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			}
 			return;
 		}
+		case LogicalOpcode::SMSG_ITEM_QUERY_SINGLE_RESPONSE: {
+			game::ItemQueryResponseData data;
+			if (!parsers->parseItemQueryResponse(packet, data) || data.entry == 0) {
+				return;
+			}
+			Dictionary info;
+			info["entry"] = static_cast<int64_t>(data.entry);
+			info["name"] = String::utf8(data.name.c_str());
+			info["class"] = static_cast<int64_t>(data.itemClass);
+			info["subclass"] = static_cast<int64_t>(data.subClass);
+			info["display_id"] = static_cast<int64_t>(data.displayInfoId);
+			info["quality"] = static_cast<int64_t>(data.quality);
+			info["inventory_type"] = static_cast<int64_t>(data.inventoryType);
+			info["max_stack"] = data.maxStack;
+			info["container_slots"] = static_cast<int64_t>(data.containerSlots);
+			info["damage_min"] = data.damageMin;
+			info["damage_max"] = data.damageMax;
+			info["delay_msec"] = static_cast<int64_t>(data.delayMs);
+			info["armor"] = data.armor;
+			info["stamina"] = data.stamina;
+			info["strength"] = data.strength;
+			info["agility"] = data.agility;
+			info["intellect"] = data.intellect;
+			info["spirit"] = data.spirit;
+			info["sell_price"] = static_cast<int64_t>(data.sellPrice);
+			info["item_level"] = static_cast<int64_t>(data.itemLevel);
+			info["required_level"] = static_cast<int64_t>(data.requiredLevel);
+			item_info[data.entry] = info;
+			item_queries.erase(data.entry);
+			emit_signal("item_info_received", static_cast<int64_t>(data.entry));
+			return;
+		}
 		case LogicalOpcode::SMSG_CREATURE_QUERY_RESPONSE: {
 			game::CreatureQueryResponseData data;
 			if (!parsers->parseCreatureQueryResponse(packet, data) || !data.isValid()) {
 				return;
 			}
-			creature_names[data.entry] = data.name;
-			auto waiting = creature_queries.find(data.entry);
-			if (waiting != creature_queries.end()) {
+			Dictionary info;
+			info["entry"] = static_cast<int64_t>(data.entry);
+			info["name"] = String::utf8(data.name.c_str());
+			info["subname"] = String::utf8(data.subName.c_str());
+			info["rank"] = static_cast<int64_t>(data.rank);
+			info["type"] = static_cast<int64_t>(data.creatureType);
+			info["family"] = static_cast<int64_t>(data.family);
+			creature_info[data.entry] = info;
+			if (auto waiting = creature_queries.find(data.entry); waiting != creature_queries.end()) {
 				const std::vector<uint64_t> guids = std::move(waiting->second);
 				creature_queries.erase(waiting);
 				for (uint64_t guid : guids) {
-					emit_signal("name_received", int64_t(guid), String::utf8(data.name.c_str()));
+					emit_signal("name_received", static_cast<int64_t>(guid), String::utf8(data.name.c_str()));
 				}
 			}
 			return;
@@ -606,6 +901,9 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			request_characters();
 			return;
 		default:
+			if (handle_combat_packet(static_cast<uint16_t>(*op), packet)) {
+				return;
+			}
 			break;
 	}
 	const char *name = game::OpcodeTable::logicalToName(*op);
@@ -623,7 +921,7 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 	PackedInt64Array destroyed;
 	for (uint64_t guid : data.outOfRangeGuids) {
 		objects.erase(guid);
-		destroyed.push_back(int64_t(guid));
+		destroyed.push_back(static_cast<int64_t>(guid));
 	}
 	for (game::UpdateBlock &block : data.blocks) {
 		const bool created = block.updateType == game::UpdateType::CREATE_OBJECT || block.updateType == game::UpdateType::CREATE_OBJECT2;
@@ -635,7 +933,7 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 		}
 		WorldObject &object = objects[block.guid];
 		if (created) {
-			object.type_id = uint8_t(block.objectType);
+			object.type_id = static_cast<uint8_t>(block.objectType);
 		}
 		for (const auto &[index, value] : block.fields) {
 			object.fields[index] = value;
@@ -645,14 +943,14 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 			object.orientation = block.orientation;
 		}
 		if (created) {
-			emit_signal("object_created", int64_t(block.guid), object.type_id);
+			emit_signal("object_created", static_cast<int64_t>(block.guid), object.type_id);
 		} else if (block.updateType == game::UpdateType::MOVEMENT) {
 			Dictionary move;
 			move["position"] = object.position;
 			move["orientation"] = object.orientation;
-			emit_signal("object_moved", int64_t(block.guid), move);
+			emit_signal("object_moved", static_cast<int64_t>(block.guid), move);
 		} else {
-			emit_signal("object_updated", int64_t(block.guid));
+			emit_signal("object_updated", static_cast<int64_t>(block.guid));
 		}
 	}
 	if (!destroyed.is_empty()) {
@@ -679,7 +977,7 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 	move["orientation"] = orientation;
 	move["flags"] = flags;
 	move["opcode"] = String(game::OpcodeTable::logicalToName(*logical(packet)));
-	emit_signal("object_moved", int64_t(guid), move);
+	emit_signal("object_moved", static_cast<int64_t>(guid), move);
 }
 
 // SMSG_COMPRESSED_MOVES inflates to a run of [u8 size][u16 opcode][payload] monster move packets.
@@ -691,7 +989,7 @@ void WowSession::handle_compressed_moves(network::Packet &packet) {
 	size_t offset = 0;
 	while (offset + 3 <= raw.size()) {
 		const uint8_t size = raw[offset];
-		const uint16_t opcode = uint16_t(raw[offset + 1] | (raw[offset + 2] << 8));
+		const uint16_t opcode = static_cast<uint16_t>(raw[offset + 1] | (raw[offset + 2] << 8));
 		if (size < 2 || offset + 1 + size > raw.size()) {
 			break;
 		}
@@ -712,14 +1010,14 @@ bool WowSession::inflate(network::Packet &packet, std::vector<uint8_t> &r_data) 
 }
 
 const WowSession::WorldObject *WowSession::find(int64_t guid) const {
-	auto it = objects.find(uint64_t(guid));
+	auto it = objects.find(static_cast<uint64_t>(guid));
 	return it == objects.end() ? nullptr : &it->second;
 }
 
 PackedInt64Array WowSession::get_object_guids() const {
 	PackedInt64Array guids;
 	for (const auto &[guid, object] : objects) {
-		guids.push_back(int64_t(guid));
+		guids.push_back(static_cast<int64_t>(guid));
 	}
 	return guids;
 }
@@ -746,16 +1044,16 @@ int WowSession::field_index(const String &name) const {
 
 int64_t WowSession::get_field(int64_t guid, const Variant &field) const {
 	const WorldObject *object = find(guid);
-	const int index = field.get_type() == Variant::INT ? int(field) : field_index(field);
+	const int index = field.get_type() == Variant::INT ? static_cast<int>(field) : field_index(field);
 	if (!object || index < 0) {
 		return 0;
 	}
-	auto it = object->fields.find(uint16_t(index));
+	auto it = object->fields.find(static_cast<uint16_t>(index));
 	return it == object->fields.end() ? 0 : it->second;
 }
 
 double WowSession::get_field_float(int64_t guid, const Variant &field) const {
-	const uint32_t bits = uint32_t(get_field(guid, field));
+	const uint32_t bits = static_cast<uint32_t>(get_field(guid, field));
 	float value = 0.0f;
 	std::memcpy(&value, &bits, sizeof(value));
 	return value;
@@ -763,16 +1061,28 @@ double WowSession::get_field_float(int64_t guid, const Variant &field) const {
 
 void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("login", "host", "port", "username", "password"), &WowSession::login);
+	ClassDB::bind_method(D_METHOD("request_realms"), &WowSession::request_realms);
 	ClassDB::bind_method(D_METHOD("select_realm", "index"), &WowSession::select_realm);
 	ClassDB::bind_method(D_METHOD("request_characters"), &WowSession::request_characters);
 	ClassDB::bind_method(D_METHOD("create_character", "character"), &WowSession::create_character);
+	ClassDB::bind_method(D_METHOD("delete_character", "guid"), &WowSession::delete_character);
 	ClassDB::bind_method(D_METHOD("enter_world", "guid"), &WowSession::enter_world);
 	ClassDB::bind_method(D_METHOD("logout"), &WowSession::logout);
 	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags", "fall_time_msec", "jump_velocity"), &WowSession::send_movement, DEFVAL(0), DEFVAL(Vector3()));
 	ClassDB::bind_method(D_METHOD("send_packet", "opcode", "payload"), &WowSession::send_packet);
 	ClassDB::bind_method(D_METHOD("send_chat", "type", "message", "target"), &WowSession::send_chat, DEFVAL(String()));
 	ClassDB::bind_method(D_METHOD("set_selection", "guid"), &WowSession::set_selection);
+	ClassDB::bind_method(D_METHOD("cast_spell", "spell_id", "target_guid"), &WowSession::cast_spell, DEFVAL(0));
+	ClassDB::bind_method(D_METHOD("cancel_cast", "spell_id"), &WowSession::cancel_cast);
+	ClassDB::bind_method(D_METHOD("attack", "target_guid"), &WowSession::attack);
+	ClassDB::bind_method(D_METHOD("stop_attack"), &WowSession::stop_attack);
+	ClassDB::bind_method(D_METHOD("cancel_aura", "spell_id"), &WowSession::cancel_aura);
+	ClassDB::bind_method(D_METHOD("get_known_spells"), &WowSession::get_known_spells);
+	ClassDB::bind_method(D_METHOD("get_action_buttons"), &WowSession::get_action_buttons);
+	ClassDB::bind_method(D_METHOD("set_action_button", "slot", "packed"), &WowSession::set_action_button);
 	ClassDB::bind_method(D_METHOD("get_object_name", "guid"), &WowSession::get_object_name);
+	ClassDB::bind_method(D_METHOD("get_item_info", "entry"), &WowSession::get_item_info);
+	ClassDB::bind_method(D_METHOD("get_creature_info", "guid"), &WowSession::get_creature_info);
 	ClassDB::bind_method(D_METHOD("disconnect"), &WowSession::disconnect);
 	ClassDB::bind_method(D_METHOD("poll"), &WowSession::poll);
 	ClassDB::bind_method(D_METHOD("get_state"), &WowSession::get_state);
@@ -790,12 +1100,29 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("realms_received", PropertyInfo(Variant::ARRAY, "realms")));
 	ADD_SIGNAL(MethodInfo("characters_received", PropertyInfo(Variant::ARRAY, "characters")));
 	ADD_SIGNAL(MethodInfo("character_created", PropertyInfo(Variant::BOOL, "success"), PropertyInfo(Variant::INT, "code")));
+	ADD_SIGNAL(MethodInfo("character_deleted", PropertyInfo(Variant::BOOL, "success"), PropertyInfo(Variant::INT, "code")));
+	ADD_SIGNAL(MethodInfo("character_login_failed", PropertyInfo(Variant::INT, "code")));
 	ADD_SIGNAL(MethodInfo("world_entered", PropertyInfo(Variant::INT, "map_id"), PropertyInfo(Variant::VECTOR3, "position"), PropertyInfo(Variant::FLOAT, "orientation")));
 	ADD_SIGNAL(MethodInfo("object_created", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::INT, "type_id")));
 	ADD_SIGNAL(MethodInfo("object_updated", PropertyInfo(Variant::INT, "guid")));
 	ADD_SIGNAL(MethodInfo("object_moved", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::DICTIONARY, "movement")));
 	ADD_SIGNAL(MethodInfo("objects_destroyed", PropertyInfo(Variant::PACKED_INT64_ARRAY, "guids")));
 	ADD_SIGNAL(MethodInfo("chat_received", PropertyInfo(Variant::DICTIONARY, "line")));
+	ADD_SIGNAL(MethodInfo("spells_changed"));
+	ADD_SIGNAL(MethodInfo("action_buttons_changed"));
+	ADD_SIGNAL(MethodInfo("spell_cast_started", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cast_time_msec")));
+	ADD_SIGNAL(MethodInfo("spell_cast_finished", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id")));
+	ADD_SIGNAL(MethodInfo("spell_cast_failed", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "reason")));
+	ADD_SIGNAL(MethodInfo("spell_cast_delayed", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "delay_msec")));
+	ADD_SIGNAL(MethodInfo("spell_channel_started", PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "duration_msec")));
+	ADD_SIGNAL(MethodInfo("spell_channel_updated", PropertyInfo(Variant::INT, "remaining_msec")));
+	ADD_SIGNAL(MethodInfo("spell_cooldown", PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cooldown_msec")));
+	ADD_SIGNAL(MethodInfo("aura_duration", PropertyInfo(Variant::INT, "slot"), PropertyInfo(Variant::INT, "duration_msec")));
+	ADD_SIGNAL(MethodInfo("attack_swing_error", PropertyInfo(Variant::INT, "error")));
+	ADD_SIGNAL(MethodInfo("melee_swing", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim"), PropertyInfo(Variant::INT, "damage"), PropertyInfo(Variant::INT, "hit_info"), PropertyInfo(Variant::INT, "victim_state")));
+	ADD_SIGNAL(MethodInfo("attack_started", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim")));
+	ADD_SIGNAL(MethodInfo("attack_stopped", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim")));
+	ADD_SIGNAL(MethodInfo("item_info_received", PropertyInfo(Variant::INT, "entry")));
 	ADD_SIGNAL(MethodInfo("name_received", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::STRING, "name")));
 	ADD_SIGNAL(MethodInfo("packet_received", PropertyInfo(Variant::STRING, "opcode"), PropertyInfo(Variant::PACKED_BYTE_ARRAY, "payload")));
 
@@ -807,6 +1134,12 @@ void WowSession::_bind_methods() {
 	BIND_ENUM_CONSTANT(STATE_ENTERING_WORLD);
 	BIND_ENUM_CONSTANT(STATE_IN_WORLD);
 	BIND_ENUM_CONSTANT(STATE_FAILED);
+
+	BIND_ENUM_CONSTANT(ATTACK_ERROR_NOT_IN_RANGE);
+	BIND_ENUM_CONSTANT(ATTACK_ERROR_BAD_FACING);
+	BIND_ENUM_CONSTANT(ATTACK_ERROR_NOT_STANDING);
+	BIND_ENUM_CONSTANT(ATTACK_ERROR_DEAD_TARGET);
+	BIND_ENUM_CONSTANT(ATTACK_ERROR_CANT_ATTACK);
 
 	BIND_ENUM_CONSTANT(CHAT_SAY);
 	BIND_ENUM_CONSTANT(CHAT_PARTY);

@@ -14,7 +14,9 @@
 #include <godot_cpp/core/math.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
+#include <cmath>
 #include <cstring>
+#include <unordered_map>
 
 using namespace wowee;
 
@@ -28,6 +30,9 @@ constexpr int GRID = 64;
 constexpr float CHUNK_SIZE = core::coords::TILE_SIZE / 16.0f;
 constexpr float UNIT_SIZE = CHUNK_SIZE / 8.0f;
 constexpr int HEIGHT_GRID = 257;
+// A tile is 128 outer vertex steps wide; exact here, since TILE_SIZE is rounded to float.
+constexpr double VERTEX_STEP = 1600.0 / 3.0 / 128.0;
+constexpr int VERTEX_GRID = 129;
 constexpr float HEIGHT_STEP = core::coords::TILE_SIZE / (HEIGHT_GRID - 1);
 
 String map_dir(const String &map_name) {
@@ -163,18 +168,38 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 	Ref<ArrayMesh> terrain_mesh;
 	terrain_mesh.instantiate();
 
+	// Neighbouring chunks each store the edge they share, so the first one to reach an edge vertex sets its height.
+	std::unordered_map<int, float> edge_heights;
 	for (int c = 0; c < 256; c++) {
 		const pipeline::ChunkMesh &chunk = mesh.chunks[c];
 		if (!chunk.isValid()) {
 			continue;
 		}
+		const pipeline::MapChunk &source = terrain.chunks[c];
+		const int chunk_x = c % 16;
+		const int chunk_y = c / 16;
 		PackedVector3Array vertices;
 		PackedVector3Array normals;
 		PackedVector2Array uvs;
 		PackedVector2Array alpha_uvs;
 		for (size_t i = 0; i < chunk.vertices.size(); i++) {
 			const pipeline::TerrainVertex &v = chunk.vertices[i];
-			vertices.push_back(wow_to_godot(glm::vec3(v.position[0], v.position[1], v.position[2])));
+			// Vertices go on the tile's grid in double precision so chunks and tiles meet without cracks.
+			const int row = static_cast<int>(i) / 17;
+			const int column = static_cast<int>(i) % 17;
+			const bool inner = column > 8;
+			const double grid_x = chunk_x * 8 + (inner ? column - 8.5 : column);
+			const double grid_y = chunk_y * 8 + (inner ? row + 0.5 : row);
+			const float height = source.heightMap.heights[i];
+			float z = static_cast<float>(static_cast<double>(source.position[2]) + (std::isfinite(height) ? height : 0.0));
+			if (!inner) {
+				z = edge_heights.try_emplace((chunk_y * 8 + row) * VERTEX_GRID + chunk_x * 8 + column, z).first->second;
+			}
+			const glm::vec3 position(
+					static_cast<float>(VERTEX_STEP * ((32 - tile_y) * 128 - grid_y)),
+					static_cast<float>(VERTEX_STEP * ((32 - tile_x) * 128 - grid_x)),
+					z);
+			vertices.push_back(wow_to_godot(position));
 			normals.push_back(wow_to_godot(glm::vec3(v.normal[0], v.normal[1], v.normal[2])).normalized());
 			uvs.push_back(vertex_offset(i));
 			alpha_uvs.push_back(Vector2(v.layerUV[0], v.layerUV[1]));
@@ -198,7 +223,7 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 			Ref<ShaderMaterial> material;
 			material.instantiate();
 			material->set_shader(terrain_shader);
-			material->set_shader_parameter("layer_count", int64_t(chunk.layers.size()));
+			material->set_shader_parameter("layer_count", static_cast<int64_t>(chunk.layers.size()));
 			for (size_t layer = 0; layer < chunk.layers.size() && layer < 4; layer++) {
 				const uint32_t texture_id = chunk.layers[layer].textureId;
 				if (texture_id < mesh.textures.size()) {
@@ -221,7 +246,7 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 		const float base_y = (32.0f - tile_x) * core::coords::TILE_SIZE - (c % 16) * CHUNK_SIZE;
 		for (const pipeline::ADTTerrain::WaterLayer &layer : terrain.waterData[c].layers) {
 			const int stride = layer.width + 1;
-			if (layer.heights.size() < size_t(stride * (layer.height + 1)) || layer.liquidType > 3) {
+			if (layer.heights.size() < static_cast<size_t>(stride * (layer.height + 1)) || layer.liquidType > 3) {
 				continue;
 			}
 			auto corner = [&](int col, int row) {
@@ -231,7 +256,7 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 			};
 			for (int row = 0; row < layer.height; row++) {
 				for (int col = 0; col < layer.width; col++) {
-					if (row < int(layer.mask.size()) && !(layer.mask[row] & (1 << col))) {
+					if (row < static_cast<int>(layer.mask.size()) && !(layer.mask[row] & (1 << col))) {
 						continue;
 					}
 					const Vector3 a = corner(col, row), b = corner(col + 1, row), d = corner(col, row + 1), e = corner(col + 1, row + 1);
@@ -304,6 +329,15 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 		placements.push_back(d);
 	}
 	root->set_meta("placements", placements);
+	// Area ids by chunk, indexed like ADTTerrain::getChunk (y * 16 + x), for zone text and the map.
+	PackedInt32Array area_ids;
+	area_ids.resize(static_cast<int64_t>(terrain.chunks.size()));
+	for (const pipeline::MapChunk &chunk : terrain.chunks) {
+		if (chunk.indexX < 16 && chunk.indexY < 16) {
+			area_ids.set(static_cast<int64_t>(chunk.indexY * 16 + chunk.indexX), static_cast<int32_t>(chunk.areaId));
+		}
+	}
+	root->set_meta("area_ids", area_ids);
 	return root;
 }
 

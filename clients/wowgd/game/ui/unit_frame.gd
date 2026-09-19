@@ -1,48 +1,131 @@
 class_name UnitFrame
-extends PanelContainer
+extends WowButton
+
+signal unit_selected(guid: int)
+
+enum PowerType { MANA, RAGE, FOCUS, ENERGY, HAPPINESS }
+
+const PORTRAIT: PackedScene = preload("res://game/ui/unit_portrait.tscn")
+const PORTRAIT_MASK: Shader = preload("res://game/ui/portrait.gdshader")
+# ManaBarColor from UnitFrame.lua.
+const POWER_COLORS: Dictionary[PowerType, Color] = {
+	PowerType.MANA: Color(0.0, 0.0, 1.0),
+	PowerType.RAGE: Color(1.0, 0.0, 0.0),
+	PowerType.FOCUS: Color(1.0, 0.5, 0.25),
+	PowerType.ENERGY: Color(1.0, 1.0, 0.0),
+	PowerType.HAPPINESS: Color(0.0, 1.0, 1.0),
+}
+const HEALTH_COLOR: Color = Color(0.0, 1.0, 0.0)
+# Rage is stored at ten times the value the bar shows.
+const RAGE_SCALE: int = 10
 
 var guid: int = 0
 
-@onready var _name: Label = %Name
-@onready var _level: Label = %Level
-@onready var _health: ProgressBar = %Health
-@onready var _health_text: Label = %HealthText
+var _display: int = 0
+# Set by each frame's _ready from its own scene's nodes before calling super().
+var _name_label: Label
+var _level_label: Label
+var _health_bar: TextureProgressBar
+var _power_bar: TextureProgressBar
+var _health_text: Label
+var _power_text: Label
+var _portrait_rect: TextureRect
+var _portrait: UnitPortrait
 
 
 func _ready() -> void:
+	super()
+	pressed.connect(func() -> void: unit_selected.emit(guid))
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)
 	session.name_received.connect(_on_name_received)
 	session.objects_destroyed.connect(_on_objects_destroyed)
+	_portrait = PORTRAIT.instantiate()
+	add_child(_portrait)
+	if _portrait_rect:
+		var mask: ShaderMaterial = ShaderMaterial.new()
+		mask.shader = PORTRAIT_MASK
+		_portrait_rect.material = mask
+		_portrait_rect.texture = _portrait.get_texture()
+	for bar: TextureProgressBar in [_health_bar, _power_bar]:
+		bar.mouse_filter = Control.MOUSE_FILTER_PASS
+		bar.mouse_entered.connect(_show_bar_text.bind(true))
+		bar.mouse_exited.connect(_show_bar_text.bind(false))
+	_show_bar_text(false)
+	show_unit(guid)
 
 
 # A guid of 0, or one the session no longer knows, hides the frame.
 func show_unit(unit: int) -> void:
 	guid = unit
-	visible = guid != 0 and WowClient.session.has_object(guid)
-	if visible:
-		_name.text = WowClient.session.get_object_name(guid)
-		_refresh()
+	_display = 0
+	refresh()
 
 
-func _refresh() -> void:
+func refresh() -> void:
 	var session: WowSession = WowClient.session
+	visible = guid != 0 and session.has_object(guid)
+	if not visible:
+		return
+	_name_label.text = session.get_object_name(guid)
+	_level_label.text = str(session.get_field(guid, "UNIT_FIELD_LEVEL"))
 	var health: int = session.get_field(guid, "UNIT_FIELD_HEALTH")
 	var max_health: int = maxi(session.get_field(guid, "UNIT_FIELD_MAXHEALTH"), 1)
-	_level.text = str(session.get_field(guid, "UNIT_FIELD_LEVEL"))
-	_health.max_value = max_health
-	_health.value = health
-	_health_text.text = "%d / %d" % [health, max_health]
+	_health_bar.max_value = max_health
+	_health_bar.value = health
+	_health_bar.tint_progress = HEALTH_COLOR
+	if _health_text:
+		_health_text.text = "%d / %d" % [health, max_health]
+	var bytes_0: int = session.get_field(guid, "UNIT_FIELD_BYTES_0")
+	var power_type: PowerType = ((bytes_0 >> 24) & 0xFF) as PowerType
+	var first_power: int = session.field_index("UNIT_FIELD_POWER1")
+	var first_max: int = session.field_index("UNIT_FIELD_MAXPOWER1")
+	var scale: int = RAGE_SCALE if power_type == PowerType.RAGE else 1
+	var power: int = floori(session.get_field(guid, first_power + power_type) / float(scale))
+	var max_power: int = floori(session.get_field(guid, first_max + power_type) / float(scale))
+	_power_bar.max_value = maxi(max_power, 1)
+	_power_bar.value = power
+	_power_bar.tint_progress = POWER_COLORS.get(power_type, POWER_COLORS[PowerType.MANA])
+	if _power_text:
+		_power_text.text = "%d / %d" % [power, max_power]
+	var display: int = session.get_field(guid, "UNIT_FIELD_DISPLAYID")
+	if display != _display:
+		_display = display
+		_portrait.show_unit(guid)
+	_update_unit()
+
+
+# Frame-specific state such as status icons, called at the end of every refresh.
+func _update_unit() -> void:
+	pass
+
+
+func _show_bar_text(shown: bool) -> void:
+	for text: Label in [_health_text, _power_text]:
+		if text:
+			text.visible = shown
+
+
+func _on_mouse_entered() -> void:
+	if guid != 0 and GameTooltip.current:
+		GameTooltip.current.set_unit(self, guid)
+
+
+func _on_mouse_exited() -> void:
+	if GameTooltip.current:
+		GameTooltip.current.hide_for(self)
 
 
 func _on_object_updated(unit: int) -> void:
-	if visible and unit == guid:
-		_refresh()
+	if unit == guid:
+		refresh()
 
 
 func _on_name_received(unit: int, unit_name: String) -> void:
 	if unit == guid:
-		_name.text = unit_name
+		_name_label.text = unit_name
 
 
 func _on_objects_destroyed(guids: PackedInt64Array) -> void:

@@ -3,6 +3,7 @@
 #include "pipeline/blp_loader.hpp"
 
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/classes/project_settings.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 #include <algorithm>
@@ -40,7 +41,7 @@ bool decode_blp_mips(std::vector<uint8_t> data, int width, int height, PackedByt
 		std::memcpy(&data[BLP2_MIP_OFFSETS], &offsets[level], 4);
 		std::memcpy(&data[BLP2_MIP_SIZES], &sizes[level], 4);
 		const wowee::pipeline::BLPImage mip = wowee::pipeline::BLPLoader::load(data);
-		if (!mip.isValid() || uint32_t(mip.width) != w || uint32_t(mip.height) != h) {
+		if (!mip.isValid() || static_cast<uint32_t>(mip.width) != w || static_cast<uint32_t>(mip.height) != h) {
 			return false;
 		}
 		const int64_t start = r_pixels.size();
@@ -56,6 +57,32 @@ bool decode_blp_mips(std::vector<uint8_t> data, int width, int height, PackedByt
 }
 
 } // namespace
+
+namespace {
+std::mutex shared_mutex;
+// Reset by release_shared() at module teardown, before static destruction could outlive the engine.
+Ref<WowLoader> shared_loader;
+} // namespace
+
+Ref<WowLoader> WowLoader::get_shared() {
+	const std::lock_guard<std::mutex> lock(shared_mutex);
+	if (shared_loader.is_null()) {
+		Ref<WowArchive> archive;
+		archive.instantiate();
+		const String data_dir = ProjectSettings::get_singleton()->get_setting("wowgd/client_data_dir", "");
+		if (archive->open(data_dir) != OK) {
+			UtilityFunctions::push_error("WowLoader: cannot open client data at '", data_dir, "'");
+		}
+		shared_loader.instantiate();
+		shared_loader->set_archive(archive);
+	}
+	return shared_loader;
+}
+
+void WowLoader::release_shared() {
+	const std::lock_guard<std::mutex> lock(shared_mutex);
+	shared_loader.unref();
+}
 
 Ref<Image> WowLoader::load_image(const String &path) {
 	ERR_FAIL_COND_V(archive.is_null(), Ref<Image>());
@@ -103,6 +130,7 @@ Ref<ImageTexture> WowLoader::load_texture(const String &path) {
 }
 
 void WowLoader::_bind_methods() {
+	ClassDB::bind_static_method("WowLoader", D_METHOD("get_shared"), &WowLoader::get_shared);
 	ClassDB::bind_method(D_METHOD("set_archive", "archive"), &WowLoader::set_archive);
 	ClassDB::bind_method(D_METHOD("get_archive"), &WowLoader::get_archive);
 	ClassDB::bind_method(D_METHOD("set_terrain_shader", "shader"), &WowLoader::set_terrain_shader);

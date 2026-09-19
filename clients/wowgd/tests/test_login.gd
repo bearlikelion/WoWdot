@@ -16,6 +16,9 @@ const MAX_SAVED_ERROR: float = 1.0
 # The Northshire start; runs alternate north and south of it so repeated tests stay put.
 const START_X: float = -8949.95
 const SAY_TEXT: String = "Hello from WoWGD"
+const SPELL_ATTACK: int = 6603
+const SPELL_BATTLE_STANCE: int = 2457
+const ACTION_BUTTON_COUNT: int = 120
 
 var _session: WowSession
 var _failures: PackedStringArray = []
@@ -29,6 +32,7 @@ var _moves: int = 0
 var _creature: int = 0
 var _names: Dictionary[int, String] = {}
 var _chat: Array[Dictionary] = []
+var _casts: Array[int] = []
 var _unhandled: Dictionary[String, int] = {}
 
 
@@ -47,6 +51,8 @@ func _run() -> void:
 	_session.packet_received.connect(_on_packet_received)
 	_session.name_received.connect(_on_name_received)
 	_session.chat_received.connect(_on_chat_received)
+	_session.spell_cast_finished.connect(_on_spell_cast_finished)
+	_session.spell_cast_failed.connect(_on_spell_cast_failed)
 	_session.login(HOST, PORT, ACCOUNT, PASSWORD)
 
 	if not _check(await _until(func() -> bool: return not _realms.is_empty()), "realm list"):
@@ -79,6 +85,15 @@ func _run() -> void:
 	print("opcodes left to GDScript: ", _unhandled)
 	var player_health: int = _session.get_field(_session.get_player_guid(), "UNIT_FIELD_HEALTH")
 	_check(player_health > 0, "player health field is readable (%d)" % player_health)
+
+	var spells: PackedInt32Array = _session.get_known_spells()
+	var buttons: PackedInt32Array = _session.get_action_buttons()
+	print("known spells: %d, action buttons: %d" % [spells.size(), buttons.size()])
+	_check(spells.has(SPELL_ATTACK), "initial spells include Attack")
+	_check(buttons.size() == ACTION_BUTTON_COUNT, "all action buttons arrive")
+	_session.cast_spell(SPELL_BATTLE_STANCE)
+	var cast: bool = await _until(func() -> bool: return _casts.has(SPELL_BATTLE_STANCE))
+	_check(cast, "casting Battle Stance gets an answer")
 
 	_session.get_object_name(_creature)
 	var named: bool = await _until(func() -> bool: return _names.has(_creature))
@@ -178,6 +193,18 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 
 func _on_name_received(guid: int, name: String) -> void:
 	_names[guid] = name
+
+
+func _on_spell_cast_finished(caster: int, spell_id: int) -> void:
+	if caster == _session.get_player_guid():
+		print("cast went: ", spell_id)
+		_casts.append(spell_id)
+
+
+func _on_spell_cast_failed(caster: int, spell_id: int, reason: int) -> void:
+	if caster == _session.get_player_guid():
+		print("cast failed: %d reason %d" % [spell_id, reason])
+		_casts.append(spell_id)
 
 
 func _on_chat_received(line: Dictionary) -> void:

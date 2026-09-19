@@ -1,15 +1,13 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://game/main.gd" id="1_main"]
-[ext_resource type="PackedScene" path="res://game/ui/login_screen.tscn" id="2_login"]
-[ext_resource type="PackedScene" path="res://game/ui/character_select.tscn" id="3_select"]
+[ext_resource type="PackedScene" path="res://game/ui/glue.tscn" id="2_glue"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
 
-[node name="LoginScreen" parent="." instance=ExtResource("2_login")]
-unique_name_in_owner = true
+[node name="GlueLayer" type="CanvasLayer" parent="."]
+layer = 10
 
-[node name="CharacterSelect" parent="." instance=ExtResource("3_select")]
+[node name="Glue" parent="GlueLayer" instance=ExtResource("2_glue")]
 unique_name_in_owner = true
-visible = false

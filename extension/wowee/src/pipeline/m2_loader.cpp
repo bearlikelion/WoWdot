@@ -1212,6 +1212,27 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
                 }
             }
             model.colorAlphas.push_back(alpha);
+
+            // The color track sits before the alpha track in the same M2Color entry.
+            glm::vec3 rgb(1.0f);
+            M2AnimationTrack colorTrack;
+            const uint32_t colorTrackOfs = header.ofsColors + ci * colorSize;
+            if (wotlk) {
+                if (colorTrackOfs + sizeof(M2TrackDisk) <= m2Data.size()) {
+                    M2TrackDisk td = readValue<M2TrackDisk>(m2Data, colorTrackOfs);
+                    parseAnimTrack(m2Data, td, colorTrack, TrackType::VEC3, seqFlags);
+                }
+            } else if (colorTrackOfs + sizeof(M2TrackDiskVanilla) <= m2Data.size()) {
+                M2TrackDiskVanilla td = readValue<M2TrackDiskVanilla>(m2Data, colorTrackOfs);
+                parseAnimTrackVanilla(m2Data, td, colorTrack, TrackType::VEC3);
+            }
+            for (const auto& seq : colorTrack.sequences) {
+                if (!seq.vec3Values.empty()) {
+                    rgb = seq.vec3Values[0];
+                    break;
+                }
+            }
+            model.colorRGBs.push_back(rgb);
         }
     }
 

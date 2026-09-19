@@ -24,6 +24,12 @@ func _init(loader: WowLoader, characters: CharacterModels) -> void:
 	_model_data = WowDBC.open(loader.archive, "CreatureModelData")
 
 
+func model_path(display_id: int) -> String:
+	var row: int = _display_info.find(display_id)
+	var model_row: int = _model_data.find(_display_info.get_uint(row, "ModelID")) if row >= 0 else -1
+	return _model_data.get_string(model_row, "ModelPath").replace("\\", "/") if model_row >= 0 else ""
+
+
 # Humanoid NPCs and players look like characters, so any look given here is applied as one.
 func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 	var row: int = _display_info.find(display_id)
@@ -44,6 +50,7 @@ func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 			"hair_color": _display_extra.get_uint(extra, "HairColorID"),
 			"facial_hair": _display_extra.get_uint(extra, "FacialHairID"),
 			"baked": _display_extra.get_string(extra, "BakeName"),
+			"equipment": _equipment(extra),
 		}
 	if not look.is_empty():
 		return _scaled(_characters.instantiate(model_path, look), row)
@@ -54,6 +61,13 @@ func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 		if not skin.is_empty():
 			skins[SKIN_COLUMNS[column]] = model_path.get_base_dir().path_join(skin + ".blp")
 	return _scaled(_loader.load_m2(model_path, skins), row)
+
+
+func _equipment(extra: int) -> PackedInt32Array:
+	var displays: PackedInt32Array = []
+	for slot: int in CharacterModels.EquipSlot.size():
+		displays.append(_display_extra.get_uint(extra, "EquipDisplay%d" % slot))
+	return displays
 
 
 func _scaled(model: Node3D, row: int) -> Node3D:

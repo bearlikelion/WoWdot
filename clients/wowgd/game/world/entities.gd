@@ -8,11 +8,18 @@ const NAMEPLATE: PackedScene = preload("res://game/world/nameplate.tscn")
 const RUN_SPEED_THRESHOLD: float = 4.0
 const FORWARD_FLAG: int = 0x1
 const NAMEPLATE_GAP: float = 0.3
+# SMSG_ATTACKERSTATEUPDATE victim state for a blow that landed.
+const VICTIM_STATE_HIT: int = 1
 
 var _nodes: Dictionary[int, Node3D] = {}
 # Model-space bounds of units and players, used for picking.
 var _bounds: Dictionary[int, AABB] = {}
 var _nameplates: Dictionary[int, Label3D] = {}
+# Units auto-attacking, by the guid they attack; like the stock client they turn to face it.
+var _victims: Dictionary[int, int] = {}
+# Players' visible item entries, and those whose gear still waits on item queries.
+var _worn: Dictionary[int, PackedInt32Array] = {}
+var _dressing: Dictionary[int, bool] = {}
 var _paths: Dictionary[int, Path] = {}
 var _game_object_displays: WowDBC
 
@@ -24,6 +31,11 @@ func _ready() -> void:
 	session.object_moved.connect(_on_object_moved)
 	session.objects_destroyed.connect(_on_objects_destroyed)
 	session.name_received.connect(_on_name_received)
+	session.object_updated.connect(_on_object_updated)
+	session.melee_swing.connect(_on_melee_swing)
+	session.item_info_received.connect(_on_item_info_received)
+	session.attack_started.connect(_on_attack_changed.bind(true))
+	session.attack_stopped.connect(_on_attack_changed.bind(false))
 	# Objects that arrived before the world scene existed.
 	for guid: int in session.get_object_guids():
 		_on_object_created(guid, session.get_object_type(guid))
@@ -41,7 +53,12 @@ func _process(delta: float) -> void:
 		node.global_position = path.from.lerp(path.to, weight)
 		if weight >= 1.0:
 			_paths.erase(guid)
-			_play(node, "Stand")
+			if not is_nan(path.facing):
+				node.rotation.y = path.facing
+			_play_idle(guid, node)
+	for guid: int in _victims:
+		if not _paths.has(guid) and _nodes.has(guid):
+			_face(_nodes[guid], _victims[guid])
 
 
 func _on_object_created(guid: int, type_id: int) -> void:
@@ -54,7 +71,11 @@ func _on_object_created(guid: int, type_id: int) -> void:
 		ObjectType.UNIT:
 			node = WowAssets.creatures.instantiate(display)
 		ObjectType.PLAYER:
-			node = WowAssets.creatures.instantiate(display, CharacterModels.player_look(session, guid))
+			var look: Dictionary = CharacterModels.player_look(session, guid)
+			_worn[guid] = CharacterModels.visible_items(session, guid)
+			if look["pending"]:
+				_dressing[guid] = true
+			node = WowAssets.creatures.instantiate(display, look)
 		ObjectType.GAMEOBJECT:
 			node = _game_object(guid)
 	if node == null:
@@ -65,6 +86,7 @@ func _on_object_created(guid: int, type_id: int) -> void:
 	if type_id != ObjectType.GAMEOBJECT:
 		node.rotation.y = session.get_object_orientation(guid)
 		_add_nameplate(guid, node)
+		_on_object_updated(guid)
 
 
 func _on_object_moved(guid: int, movement: Dictionary) -> void:
@@ -76,21 +98,45 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 		var duration: float = maxf(int(movement["duration_msec"]) / 1000.0, 0.001)
 		var distance: float = node.global_position.distance_to(to)
 		if distance < 0.01:
+			if movement.has("orientation"):
+				node.rotation.y = movement["orientation"]
 			return
 		var path: Path = Path.new()
 		path.from = node.global_position
 		path.to = to
 		path.duration = duration
+		path.facing = movement.get("orientation", NAN)
 		_paths[guid] = path
-		var heading: Vector3 = WowCoords.from_godot(to) - WowCoords.from_godot(path.from)
-		node.rotation.y = atan2(heading.y, heading.x)
-		_play(node, "Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk")
+		node.rotation.y = _heading(path.from, to)
+		UnitAnimations.set_base(node, ["Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk"])
 		return
 	_paths.erase(guid)
 	node.global_position = WowCoords.to_godot(movement["position"])
 	if movement.has("orientation"):
 		node.rotation.y = movement["orientation"]
-	_play(node, "Run" if int(movement.get("flags", 0)) & FORWARD_FLAG else "Stand")
+	if int(movement.get("flags", 0)) & FORWARD_FLAG:
+		UnitAnimations.set_base(node, ["Run"])
+	else:
+		_play_idle(guid, node)
+
+
+func unit_node(guid: int) -> Node3D:
+	return _nodes.get(guid)
+
+
+# Units and players within range of the point that the camera can see, nearest first.
+func visible_units(from: Vector3, max_distance: float, camera: Camera3D) -> Array[int]:
+	var found: Array[int] = []
+	var distances: Dictionary[int, float] = {}
+	for guid: int in _bounds:
+		var node: Node3D = _nodes[guid]
+		var distance: float = from.distance_to(node.global_position)
+		if distance <= max_distance \
+		and camera.is_position_in_frustum(node.global_transform * _bounds[guid].get_center()):
+			found.append(guid)
+			distances[guid] = distance
+	found.sort_custom(func(a: int, b: int) -> bool: return distances[a] < distances[b])
+	return found
 
 
 # The nearest unit or player whose bounds the ray crosses, or 0.
@@ -116,6 +162,9 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_paths.erase(guid)
 		_bounds.erase(guid)
 		_nameplates.erase(guid)
+		_victims.erase(guid)
+		_worn.erase(guid)
+		_dressing.erase(guid)
 		if _nodes.has(guid):
 			_nodes[guid].queue_free()
 			_nodes.erase(guid)
@@ -134,6 +183,73 @@ func _add_nameplate(guid: int, node: Node3D) -> void:
 	plate.text = WowClient.session.get_object_name(guid)
 	node.add_child(plate)
 	_nameplates[guid] = plate
+
+
+func _on_object_updated(guid: int) -> void:
+	var node: Node3D = _nodes.get(guid)
+	if node == null or not _bounds.has(guid):
+		return
+	if _worn.has(guid) and _worn[guid] != CharacterModels.visible_items(WowClient.session, guid):
+		_respawn(guid)
+		return
+	var alive: bool = WowClient.session.get_field(guid, "UNIT_FIELD_HEALTH") > 0
+	if not alive:
+		UnitAnimations.die(node)
+	elif UnitAnimations.is_dead(node):
+		UnitAnimations.revive(node)
+
+
+func _on_melee_swing(
+	attacker: int, victim: int, damage: int, _hit_info: int, victim_state: int,
+) -> void:
+	if _nodes.has(attacker):
+		UnitAnimations.play_once(_nodes[attacker], UnitAnimations.ATTACK)
+	if _nodes.has(victim) and damage > 0 and victim_state == VICTIM_STATE_HIT:
+		UnitAnimations.play_once(_nodes[victim], UnitAnimations.WOUND)
+
+
+func _on_attack_changed(attacker: int, victim: int, attacking: bool) -> void:
+	if not _nodes.has(attacker):
+		return
+	if attacking:
+		_victims[attacker] = victim
+	else:
+		_victims.erase(attacker)
+	if not _paths.has(attacker):
+		_play_idle(attacker, _nodes[attacker])
+		if attacking:
+			_face(_nodes[attacker], victim)
+
+
+func _on_item_info_received(_entry: int) -> void:
+	for guid: int in _dressing.keys():
+		if not CharacterModels.player_look(WowClient.session, guid)["pending"]:
+			_dressing.erase(guid)
+			_respawn(guid)
+
+
+func _respawn(guid: int) -> void:
+	var session: WowSession = WowClient.session
+	_on_objects_destroyed(PackedInt64Array([guid]))
+	_on_object_created(guid, session.get_object_type(guid))
+
+
+func _play_idle(guid: int, node: Node3D) -> void:
+	UnitAnimations.set_base(node, UnitAnimations.READY if _victims.has(guid) else ["Stand"])
+
+
+func _face(node: Node3D, target: int) -> void:
+	var at: Vector3 = WowCoords.to_godot(WowClient.session.get_object_position(target))
+	if _nodes.has(target):
+		at = _nodes[target].global_position
+	if Vector2(at.x - node.global_position.x, at.z - node.global_position.z).length() > 0.01:
+		node.rotation.y = _heading(node.global_position, at)
+
+
+# The WoW orientation, which is also rotation.y, of the ground direction between two points.
+func _heading(from: Vector3, to: Vector3) -> float:
+	var heading: Vector3 = WowCoords.from_godot(to) - WowCoords.from_godot(from)
+	return atan2(heading.y, heading.x)
 
 
 func _game_object(guid: int) -> Node3D:
@@ -162,14 +278,9 @@ func _game_object(guid: int) -> Node3D:
 	return node
 
 
-func _play(node: Node3D, animation: String) -> void:
-	var player: AnimationPlayer = node.get_node_or_null("AnimationPlayer")
-	if player and player.current_animation != animation and player.has_animation(animation):
-		player.play(animation, 0.2)
-
-
 class Path:
 	var from: Vector3
 	var to: Vector3
 	var duration: float
 	var elapsed: float = 0.0
+	var facing: float = NAN

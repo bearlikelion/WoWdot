@@ -1,0 +1,2630 @@
+[gd_scene format=3 uid="uid://bnfpuen12o1q6"]
+
+[ext_resource type="Script" uid="uid://b77ioq7lg8mr7" path="res://game/ui/main_menu_bar.gd" id="1"]
+[ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/action_button_template.tscn" id="3"]
+[ext_resource type="Script" uid="uid://cf2uxwerdf4cv" path="res://game/ui/wow/wow_cooldown.gd" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\MainMenuBar\\UI-MainMenuBar-Dwarf.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 203, 256, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 139, 256, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 75, 256, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 11, 256, 10)
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\MainMenuBar\\UI-MainMenuBar-MaxLevel.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
+atlas = SubResource("WowTexture_7")
+region = Rect2(0, 0, 256, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_7")
+region = Rect2(0, 8, 256, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_7")
+region = Rect2(0, 16, 256, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_7")
+region = Rect2(0, 24, 256, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 213, 256, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 149, 256, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 85, 256, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 21, 256, 43)
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\MainMenuBar\\UI-MainMenuBar-EndCap-Dwarf.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-MicroButtonCharacter-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-MicroButtonCharacter-Down.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_21"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\UI-MicroButton-Hilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-MicroButton-Spellbook-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\Buttons\\UI-MicroButton-Spellbook-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-MicroButton-Spellbook-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\Buttons\\UI-MicroButton-Talents-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-MicroButton-Talents-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\Buttons\\UI-MicroButton-Talents-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-MicroButton-Quest-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\Buttons\\UI-MicroButton-Quest-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\UI-MicroButton-Quest-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-MicroButton-Socials-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\Buttons\\UI-MicroButton-Socials-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-MicroButton-Socials-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\Buttons\\UI-MicroButton-World-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-MicroButton-World-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\Buttons\\UI-MicroButton-World-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_40"]
+file = "Interface\\Buttons\\UI-MicroButton-Help-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-MicroButton-Help-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\Buttons\\UI-MicroButton-Help-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_47"]
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_48"]
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_50"]
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_51"]
+file = "Interface\\Buttons\\Button-Backpack-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_52"]
+file = "Interface\\Buttons\\UI-Quickslot2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_53"]
+file = "Interface\\Buttons\\UI-Quickslot-Depress.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_54"]
+file = "Interface\\Buttons\\CheckButtonHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_55"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_57"]
+file = "Interface\\Buttons\\UI-Button-KeyRing.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58"]
+atlas = SubResource("WowTexture_57")
+region = Rect2(0, 0, 18, 39)
+
+[sub_resource type="WowTexture" id="WowTexture_59"]
+file = "Interface\\Buttons\\UI-Button-KeyRing-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60"]
+atlas = SubResource("WowTexture_59")
+region = Rect2(0, 0, 18, 39)
+
+[sub_resource type="WowTexture" id="WowTexture_61"]
+file = "Interface\\Buttons\\UI-Button-KeyRing-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62"]
+atlas = SubResource("WowTexture_61")
+region = Rect2(0, 0, 18, 39)
+
+[sub_resource type="WowTexture" id="WowTexture_63"]
+file = "Interface\\MainMenuBar\\UI-MainMenuBar-PerformanceBar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_64"]
+file = "Interface\\MainMenuBar\\UI-ExhaustionTickNormal.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_65"]
+file = "Interface\\MainMenuBar\\UI-ExhaustionTickHighlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_66"]
+file = "Interface\\PaperDollInfoFrame\\UI-ReputationWatchBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67"]
+atlas = SubResource("WowTexture_66")
+region = Rect2(0, 0, 256, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68"]
+atlas = SubResource("WowTexture_66")
+region = Rect2(0, 11, 256, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_69"]
+atlas = SubResource("WowTexture_66")
+region = Rect2(0, 22, 256, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70"]
+atlas = SubResource("WowTexture_66")
+region = Rect2(0, 33, 256, 11)
+
+[sub_resource type="WowTexture" id="WowTexture_71"]
+file = "Interface\\PetActionBar\\UI-PetBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72"]
+atlas = SubResource("WowTexture_71")
+region = Rect2(0, 2, 256, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73"]
+atlas = SubResource("WowTexture_71")
+region = Rect2(0, 48, 184, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(4, 213, 252, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 149, 253, 43)
+
+[sub_resource type="WowTexture" id="WowTexture_76"]
+file = "Interface\\ShapeshiftBar\\ShapeshiftBarEnds.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77"]
+atlas = SubResource("WowTexture_76")
+region = Rect2(0, 0, 29, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_78"]
+file = "Interface\\ShapeshiftBar\\ShapeshiftBarMiddle.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_79"]
+atlas = SubResource("WowTexture_76")
+region = Rect2(29, 0, 27, 32)
+
+[node name="MainMenuBar" type="Control" unique_id=2045441802]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -53.0
+offset_right = 512.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1")
+
+[node name="MainMenuExpBar" type="TextureProgressBar" parent="." unique_id=219959886]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 13.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_1")
+tint_progress = Color(0.58, 0, 0.55, 1)
+
+[node name="Texture" type="ColorRect" parent="MainMenuExpBar" unique_id=873532066]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 13.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="ExhaustionLevelFillBar" type="ColorRect" parent="MainMenuExpBar" unique_id=1426376951]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 0
+offset_bottom = 13.0
+mouse_filter = 2
+
+[node name="MainMenuXPBarTexture0" type="TextureRect" parent="MainMenuExpBar" unique_id=188002068]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="MainMenuXPBarTexture1" type="TextureRect" parent="MainMenuExpBar" unique_id=1987884492]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 256.0
+offset_right = 512.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="MainMenuXPBarTexture2" type="TextureRect" parent="MainMenuExpBar" unique_id=1285563433]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 512.0
+offset_right = 768.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="MainMenuXPBarTexture3" type="TextureRect" parent="MainMenuExpBar" unique_id=1528863449]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 768.0
+offset_right = 1024.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="MainMenuBarOverlayFrame" type="Control" parent="MainMenuExpBar" unique_id=1908867306]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 53.0
+mouse_filter = 2
+
+[node name="MainMenuBarExpText" type="Label" parent="MainMenuExpBar/MainMenuBarOverlayFrame" unique_id=1818887226]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 512.0
+offset_top = 5.5
+offset_right = 512.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TextStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuBarMaxLevelBar" type="Control" parent="." unique_id=1556590267]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_top = 11.0
+offset_right = 1024.0
+offset_bottom = 18.0
+
+[node name="MainMenuMaxLevelBar0" type="TextureRect" parent="MainMenuBarMaxLevelBar" unique_id=919492959]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -7.0
+offset_right = 256.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+
+[node name="MainMenuMaxLevelBar1" type="TextureRect" parent="MainMenuBarMaxLevelBar" unique_id=1840335904]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 256.0
+offset_top = -7.0
+offset_right = 512.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="MainMenuMaxLevelBar2" type="TextureRect" parent="MainMenuBarMaxLevelBar" unique_id=1518432191]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 512.0
+offset_top = -7.0
+offset_right = 768.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="MainMenuMaxLevelBar3" type="TextureRect" parent="MainMenuBarMaxLevelBar" unique_id=754867796]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 768.0
+offset_top = -7.0
+offset_right = 1024.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="MainMenuBarArtFrame" type="Control" parent="." unique_id=1774235966]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 53.0
+mouse_filter = 2
+
+[node name="MainMenuBarTexture0" type="TextureRect" parent="MainMenuBarArtFrame" unique_id=526994064]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 10.0
+offset_right = 256.0
+offset_bottom = 53.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="MainMenuBarTexture1" type="TextureRect" parent="MainMenuBarArtFrame" unique_id=1428158409]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 256.0
+offset_top = 10.0
+offset_right = 512.0
+offset_bottom = 53.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="MainMenuBarTexture2" type="TextureRect" parent="MainMenuBarArtFrame" unique_id=768263298]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 512.0
+offset_top = 10.0
+offset_right = 768.0
+offset_bottom = 53.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="MainMenuBarTexture3" type="TextureRect" parent="MainMenuBarArtFrame" unique_id=857780836]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 768.0
+offset_top = 10.0
+offset_right = 1024.0
+offset_bottom = 53.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="MainMenuBarLeftEndCap" type="TextureRect" parent="MainMenuBarArtFrame" unique_id=80114104]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -96.0
+offset_top = -75.0
+offset_right = 32.0
+offset_bottom = 53.0
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="MainMenuBarRightEndCap" type="TextureRect" parent="MainMenuBarArtFrame" unique_id=2010069750]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 992.0
+offset_top = -75.0
+offset_right = 1120.0
+offset_bottom = 53.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+flip_h = true
+
+[node name="MainMenuBarPageNumber" type="Label" parent="MainMenuBarArtFrame" unique_id=430326470]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 542.0
+offset_top = 31.5
+offset_right = 542.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterMicroButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=797612839]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 552.0
+offset_top = -7.0
+offset_right = 581.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterMicroButton" unique_id=1301163183]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterMicroButton" unique_id=85627643]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="MicroButtonPortrait" type="TextureRect" parent="MainMenuBarArtFrame/CharacterMicroButton" unique_id=1488507610]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.5
+offset_top = 28.0
+offset_right = 23.5
+offset_bottom = 53.0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterMicroButton" unique_id=1362932858]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="SpellbookMicroButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=525501517]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 578.0
+offset_top = -7.0
+offset_right = 607.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/SpellbookMicroButton" unique_id=437329770]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/SpellbookMicroButton" unique_id=1187016505]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/SpellbookMicroButton" unique_id=425963857]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/SpellbookMicroButton" unique_id=38002133]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="TalentMicroButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=812608237]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 604.0
+offset_top = -7.0
+offset_right = 633.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/TalentMicroButton" unique_id=993213731]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_25")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/TalentMicroButton" unique_id=687595102]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_26")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/TalentMicroButton" unique_id=439094559]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/TalentMicroButton" unique_id=31854535]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="QuestLogMicroButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=1770471593]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 630.0
+offset_top = -7.0
+offset_right = 659.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/QuestLogMicroButton" unique_id=546257538]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/QuestLogMicroButton" unique_id=1902490052]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/QuestLogMicroButton" unique_id=1161998104]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_30")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/QuestLogMicroButton" unique_id=417806943]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="SocialsMicroButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=704614131]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 656.0
+offset_top = -7.0
+offset_right = 685.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/SocialsMicroButton" unique_id=2094473501]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_31")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/SocialsMicroButton" unique_id=1544230361]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/SocialsMicroButton" unique_id=141249997]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/SocialsMicroButton" unique_id=1467658309]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="WorldMapMicroButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=580047254]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 682.0
+offset_top = -7.0
+offset_right = 711.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/WorldMapMicroButton" unique_id=1445120326]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/WorldMapMicroButton" unique_id=1719672726]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/WorldMapMicroButton" unique_id=757167955]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/WorldMapMicroButton" unique_id=620894698]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="MainMenuMicroButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=1764297701]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 708.0
+offset_top = -7.0
+offset_right = 737.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuMicroButton" unique_id=752754618]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuMicroButton" unique_id=1177652559]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuMicroButton" unique_id=38374588]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_39")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuMicroButton" unique_id=2117034763]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="HelpMicroButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=214710534]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 734.0
+offset_top = -7.0
+offset_right = 763.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/HelpMicroButton" unique_id=778747545]
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_40")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/HelpMicroButton" unique_id=990669025]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_41")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/HelpMicroButton" unique_id=649420165]
+visible = false
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_42")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/HelpMicroButton" unique_id=1032044355]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 29.0
+offset_bottom = 58.0
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="ActionButton1" parent="MainMenuBarArtFrame" unique_id=689778499 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 8.0
+offset_top = 13.0
+offset_right = 44.0
+offset_bottom = 49.0
+
+[node name="ActionButton2" parent="MainMenuBarArtFrame" unique_id=792926306 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 50.0
+offset_top = 13.0
+offset_right = 86.0
+offset_bottom = 49.0
+
+[node name="ActionButton3" parent="MainMenuBarArtFrame" unique_id=258553657 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 92.0
+offset_top = 13.0
+offset_right = 128.0
+offset_bottom = 49.0
+
+[node name="ActionButton4" parent="MainMenuBarArtFrame" unique_id=171175021 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 134.0
+offset_top = 13.0
+offset_right = 170.0
+offset_bottom = 49.0
+
+[node name="ActionButton5" parent="MainMenuBarArtFrame" unique_id=232619333 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 176.0
+offset_top = 13.0
+offset_right = 212.0
+offset_bottom = 49.0
+
+[node name="ActionButton6" parent="MainMenuBarArtFrame" unique_id=644194525 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 218.0
+offset_top = 13.0
+offset_right = 254.0
+offset_bottom = 49.0
+
+[node name="ActionButton7" parent="MainMenuBarArtFrame" unique_id=519232222 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 260.0
+offset_top = 13.0
+offset_right = 296.0
+offset_bottom = 49.0
+
+[node name="ActionButton8" parent="MainMenuBarArtFrame" unique_id=351010343 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 302.0
+offset_top = 13.0
+offset_right = 338.0
+offset_bottom = 49.0
+
+[node name="ActionButton9" parent="MainMenuBarArtFrame" unique_id=1907468372 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 344.0
+offset_top = 13.0
+offset_right = 380.0
+offset_bottom = 49.0
+
+[node name="ActionButton10" parent="MainMenuBarArtFrame" unique_id=1130736413 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 386.0
+offset_top = 13.0
+offset_right = 422.0
+offset_bottom = 49.0
+
+[node name="ActionButton11" parent="MainMenuBarArtFrame" unique_id=1452378155 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 428.0
+offset_top = 13.0
+offset_right = 464.0
+offset_bottom = 49.0
+
+[node name="ActionButton12" parent="MainMenuBarArtFrame" unique_id=760744527 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 470.0
+offset_top = 13.0
+offset_right = 506.0
+offset_bottom = 49.0
+
+[node name="ActionBarUpButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=561699426]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 506.0
+offset_top = 6.0
+offset_right = 538.0
+offset_bottom = 38.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarUpButton" unique_id=1577992405]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_43")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarUpButton" unique_id=2109256938]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_44")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarUpButton" unique_id=131854029]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarUpButton" unique_id=480059536]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="ActionBarDownButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=2144686905]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 506.0
+offset_top = 26.0
+offset_right = 538.0
+offset_bottom = 58.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarDownButton" unique_id=556276104]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_47")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarDownButton" unique_id=1664745293]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_48")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarDownButton" unique_id=309676978]
+visible = false
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_49")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarDownButton" unique_id=714254375]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="MainMenuBarBackpackButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=287090569]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 981.0
+offset_top = 14.0
+offset_right = 1018.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="MainMenuBarBackpackButtonIconTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton" unique_id=928450797]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+
+[node name="MainMenuBarBackpackButtonCount" type="Label" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton" unique_id=1219667396]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 35.0
+offset_right = 32.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MainMenuBarBackpackButtonStock" type="Label" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton" unique_id=1081810950]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_top = 2.0
+offset_bottom = 2.0
+theme_type_variation = &"NumberFontNormalYellow"
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton" unique_id=1468524275]
+layout_mode = 0
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_52")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton" unique_id=1119001559]
+visible = false
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_53")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton" unique_id=105721910]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton" unique_id=213590832]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_55")
+expand_mode = 1
+
+[node name="MainMenuBarBackpackButtonItemAnim" type="Control" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton" unique_id=459317673]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 37.0
+offset_right = 27.0
+offset_bottom = 37.0
+mouse_filter = 2
+
+[node name="CharacterBag0Slot" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=1598513729]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 939.0
+offset_top = 14.0
+offset_right = 976.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="CharacterBag0SlotIconTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=271388085]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_56")
+expand_mode = 1
+
+[node name="CharacterBag0SlotCount" type="Label" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=480283865]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 35.0
+offset_right = 32.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CharacterBag0SlotStock" type="Label" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=763614016]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_top = 2.0
+offset_bottom = 2.0
+theme_type_variation = &"NumberFontNormalYellow"
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=886522533]
+layout_mode = 0
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_52")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=799615396]
+visible = false
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_53")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=458260139]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=1918386008]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_55")
+expand_mode = 1
+
+[node name="CharacterBag0SlotCooldown" type="Control" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=235777147]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+anchors_preset = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+script = ExtResource("4")
+
+[node name="CharacterBag0SlotItemAnim" type="Control" parent="MainMenuBarArtFrame/CharacterBag0Slot" unique_id=1307497305]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 37.0
+offset_right = 27.0
+offset_bottom = 37.0
+mouse_filter = 2
+
+[node name="CharacterBag1Slot" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=1152522671]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 897.0
+offset_top = 14.0
+offset_right = 934.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="CharacterBag1SlotIconTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=56104764]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_56")
+expand_mode = 1
+
+[node name="CharacterBag1SlotCount" type="Label" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=18766402]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 35.0
+offset_right = 32.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CharacterBag1SlotStock" type="Label" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=725598640]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_top = 2.0
+offset_bottom = 2.0
+theme_type_variation = &"NumberFontNormalYellow"
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=683359207]
+layout_mode = 0
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_52")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=166935454]
+visible = false
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_53")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=414786156]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=1617605259]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_55")
+expand_mode = 1
+
+[node name="CharacterBag1SlotCooldown" type="Control" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=2125398706]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+anchors_preset = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+script = ExtResource("4")
+
+[node name="CharacterBag1SlotItemAnim" type="Control" parent="MainMenuBarArtFrame/CharacterBag1Slot" unique_id=1945016930]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 37.0
+offset_right = 27.0
+offset_bottom = 37.0
+mouse_filter = 2
+
+[node name="CharacterBag2Slot" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=1692380608]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 855.0
+offset_top = 14.0
+offset_right = 892.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="CharacterBag2SlotIconTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=1762314960]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_56")
+expand_mode = 1
+
+[node name="CharacterBag2SlotCount" type="Label" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=1151957284]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 35.0
+offset_right = 32.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CharacterBag2SlotStock" type="Label" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=586703500]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_top = 2.0
+offset_bottom = 2.0
+theme_type_variation = &"NumberFontNormalYellow"
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=1576732140]
+layout_mode = 0
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_52")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=536899488]
+visible = false
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_53")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=1182353822]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=557731131]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_55")
+expand_mode = 1
+
+[node name="CharacterBag2SlotCooldown" type="Control" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=525490234]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+anchors_preset = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+script = ExtResource("4")
+
+[node name="CharacterBag2SlotItemAnim" type="Control" parent="MainMenuBarArtFrame/CharacterBag2Slot" unique_id=1940846952]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 37.0
+offset_right = 27.0
+offset_bottom = 37.0
+mouse_filter = 2
+
+[node name="CharacterBag3Slot" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=1064930565]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 813.0
+offset_top = 14.0
+offset_right = 850.0
+offset_bottom = 51.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="CharacterBag3SlotIconTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=1845168789]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_56")
+expand_mode = 1
+
+[node name="CharacterBag3SlotCount" type="Label" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=1586590662]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 35.0
+offset_right = 32.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CharacterBag3SlotStock" type="Label" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=2002787222]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_top = 2.0
+offset_bottom = 2.0
+theme_type_variation = &"NumberFontNormalYellow"
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=740356145]
+layout_mode = 0
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_52")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=1647834773]
+visible = false
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_53")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=1791496264]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=1649179884]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = SubResource("WowTexture_55")
+expand_mode = 1
+
+[node name="CharacterBag3SlotCooldown" type="Control" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=1968535067]
+unique_name_in_owner = true
+visible = false
+clip_contents = true
+anchors_preset = 0
+offset_right = 37.0
+offset_bottom = 37.0
+mouse_filter = 2
+script = ExtResource("4")
+
+[node name="CharacterBag3SlotItemAnim" type="Control" parent="MainMenuBarArtFrame/CharacterBag3Slot" unique_id=1399631731]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 37.0
+offset_right = 27.0
+offset_bottom = 37.0
+mouse_filter = 2
+
+[node name="KeyRingButton" type="TextureButton" parent="MainMenuBarArtFrame" unique_id=1882338461]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 790.0
+offset_top = 13.0
+offset_right = 808.0
+offset_bottom = 52.0
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/KeyRingButton" unique_id=938632593]
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 39.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_58")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/KeyRingButton" unique_id=855649989]
+visible = false
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 39.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_60")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/KeyRingButton" unique_id=1207469178]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 39.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_62")
+expand_mode = 1
+
+[node name="KeyRingButtonItemAnim" type="Control" parent="MainMenuBarArtFrame/KeyRingButton" unique_id=392383910]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 18.0
+offset_top = 39.0
+offset_right = 18.0
+offset_bottom = 39.0
+mouse_filter = 2
+
+[node name="MainMenuBarPerformanceBarFrame" type="Control" parent="." unique_id=1355231992]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 781.0
+offset_top = -1.0
+offset_right = 797.0
+offset_bottom = 63.0
+mouse_filter = 2
+
+[node name="MainMenuBarPerformanceBar" type="TextureRect" parent="MainMenuBarPerformanceBarFrame" unique_id=1608985349]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -4.0
+offset_right = 16.0
+offset_bottom = 66.0
+mouse_filter = 2
+texture = SubResource("WowTexture_63")
+expand_mode = 1
+
+[node name="MainMenuBarPerformanceBarFrameButton" type="TextureButton" parent="MainMenuBarPerformanceBarFrame" unique_id=763778261]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="ExhaustionTick" type="TextureButton" parent="." unique_id=1828842786]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 496.0
+offset_top = -9.5
+offset_right = 528.0
+offset_bottom = 22.5
+ignore_texture_size = true
+script = ExtResource("2")
+
+[node name="NormalTexture" type="TextureRect" parent="ExhaustionTick" unique_id=1622493407]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_64")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ExhaustionTick" unique_id=11039242]
+visible = false
+material = SubResource("CanvasItemMaterial_21")
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_65")
+expand_mode = 1
+
+[node name="ReputationWatchBar" type="Control" parent="." unique_id=732049799]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 1024.0
+offset_bottom = 3.0
+
+[node name="ReputationWatchStatusBar" type="TextureProgressBar" parent="ReputationWatchBar" unique_id=1172415576]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 8.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_1")
+tint_progress = Color(0.58, 0, 0.55, 1)
+
+[node name="ReputationWatchStatusBarBackground" type="ColorRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=1119390242]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 8.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="ReputationWatchBarTexture0" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=1556825043]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -2.0
+offset_right = 256.0
+offset_bottom = 9.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_67")
+expand_mode = 1
+
+[node name="ReputationWatchBarTexture1" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=150523691]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 256.0
+offset_top = -2.0
+offset_right = 512.0
+offset_bottom = 9.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_68")
+expand_mode = 1
+
+[node name="ReputationWatchBarTexture2" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=1043753335]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 512.0
+offset_top = -2.0
+offset_right = 768.0
+offset_bottom = 9.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_69")
+expand_mode = 1
+
+[node name="ReputationWatchBarTexture3" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=255552365]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 768.0
+offset_top = -2.0
+offset_right = 1024.0
+offset_bottom = 9.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_70")
+expand_mode = 1
+
+[node name="ReputationXPBarTexture0" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=2126827788]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="ReputationXPBarTexture1" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=1835587968]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 256.0
+offset_right = 512.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="ReputationXPBarTexture2" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=1558165030]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 512.0
+offset_right = 768.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="ReputationXPBarTexture3" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar" unique_id=368277757]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 768.0
+offset_right = 1024.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="ReputationWatchBarOverlayFrame" type="Control" parent="ReputationWatchBar" unique_id=817905008]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 1024.0
+offset_bottom = 11.0
+mouse_filter = 2
+
+[node name="ReputationWatchStatusBarText" type="Label" parent="ReputationWatchBar/ReputationWatchBarOverlayFrame" unique_id=1938984799]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 512.0
+offset_top = 2.5
+offset_right = 512.0
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetActionBarFrame" type="Control" parent="." unique_id=833137222]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 40.0
+offset_top = -59.0
+offset_right = 549.0
+offset_bottom = -16.0
+
+[node name="SlidingActionBarTexture0" type="TextureRect" parent="PetActionBarFrame" unique_id=1812347728]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 44.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_72")
+expand_mode = 1
+
+[node name="SlidingActionBarTexture1" type="TextureRect" parent="PetActionBarFrame" unique_id=1875665722]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 256.0
+offset_right = 440.0
+offset_bottom = 44.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_73")
+expand_mode = 1
+
+[node name="PetActionButton1" parent="PetActionBarFrame" unique_id=504795217 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 36.0
+offset_top = 11.0
+offset_right = 66.0
+offset_bottom = 41.0
+
+[node name="PetActionButton2" parent="PetActionBarFrame" unique_id=744065132 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 74.0
+offset_top = 11.0
+offset_right = 104.0
+offset_bottom = 41.0
+
+[node name="PetActionButton3" parent="PetActionBarFrame" unique_id=496564855 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 112.0
+offset_top = 11.0
+offset_right = 142.0
+offset_bottom = 41.0
+
+[node name="PetActionButton4" parent="PetActionBarFrame" unique_id=962402351 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 150.0
+offset_top = 11.0
+offset_right = 180.0
+offset_bottom = 41.0
+
+[node name="PetActionButton5" parent="PetActionBarFrame" unique_id=2125285696 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 188.0
+offset_top = 11.0
+offset_right = 218.0
+offset_bottom = 41.0
+
+[node name="PetActionButton6" parent="PetActionBarFrame" unique_id=1373670910 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 226.0
+offset_top = 11.0
+offset_right = 256.0
+offset_bottom = 41.0
+
+[node name="PetActionButton7" parent="PetActionBarFrame" unique_id=267001093 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 263.0
+offset_top = 11.0
+offset_right = 293.0
+offset_bottom = 41.0
+
+[node name="PetActionButton8" parent="PetActionBarFrame" unique_id=1381866816 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 301.0
+offset_top = 11.0
+offset_right = 331.0
+offset_bottom = 41.0
+
+[node name="PetActionButton9" parent="PetActionBarFrame" unique_id=2011861051 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 339.0
+offset_top = 11.0
+offset_right = 369.0
+offset_bottom = 41.0
+
+[node name="PetActionButton10" parent="PetActionBarFrame" unique_id=1228180150 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 377.0
+offset_top = 11.0
+offset_right = 407.0
+offset_bottom = 41.0
+
+[node name="BonusActionBarFrame" type="Control" parent="." unique_id=2005986896]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 53.0
+offset_right = 545.0
+offset_bottom = 96.0
+
+[node name="BonusActionBarTexture0" type="TextureRect" parent="BonusActionBarFrame" unique_id=680403519]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 252.0
+offset_bottom = 43.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_74")
+expand_mode = 1
+
+[node name="BonusActionBarTexture1" type="TextureRect" parent="BonusActionBarFrame" unique_id=984954791]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 252.0
+offset_right = 505.0
+offset_bottom = 43.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_75")
+expand_mode = 1
+
+[node name="BonusActionButton1" parent="BonusActionBarFrame" unique_id=432351595 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 41.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton2" parent="BonusActionBarFrame" unique_id=751379434 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 83.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton3" parent="BonusActionBarFrame" unique_id=1340107507 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 89.0
+offset_top = 3.0
+offset_right = 125.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton4" parent="BonusActionBarFrame" unique_id=1470340097 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 131.0
+offset_top = 3.0
+offset_right = 167.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton5" parent="BonusActionBarFrame" unique_id=1122307593 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 173.0
+offset_top = 3.0
+offset_right = 209.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton6" parent="BonusActionBarFrame" unique_id=530066655 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 215.0
+offset_top = 3.0
+offset_right = 251.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton7" parent="BonusActionBarFrame" unique_id=626094282 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 257.0
+offset_top = 3.0
+offset_right = 293.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton8" parent="BonusActionBarFrame" unique_id=200772845 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 299.0
+offset_top = 3.0
+offset_right = 335.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton9" parent="BonusActionBarFrame" unique_id=85655448 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 341.0
+offset_top = 3.0
+offset_right = 377.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton10" parent="BonusActionBarFrame" unique_id=275986504 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 383.0
+offset_top = 3.0
+offset_right = 419.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton11" parent="BonusActionBarFrame" unique_id=258851641 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 425.0
+offset_top = 3.0
+offset_right = 461.0
+offset_bottom = 39.0
+
+[node name="BonusActionButton12" parent="BonusActionBarFrame" unique_id=1292736623 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 467.0
+offset_top = 3.0
+offset_right = 503.0
+offset_bottom = 39.0
+
+[node name="ShapeshiftBarFrame" type="Control" parent="." unique_id=899827801]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 30.0
+offset_top = -32.0
+offset_right = 59.0
+
+[node name="ShapeshiftBarLeft" type="TextureRect" parent="ShapeshiftBarFrame" unique_id=1360619276]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -18.0
+offset_right = 45.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="ShapeshiftBarMiddle" type="TextureRect" parent="ShapeshiftBarFrame" unique_id=755892889]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 45.0
+offset_top = -18.0
+offset_right = 83.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="ShapeshiftBarRight" type="TextureRect" parent="ShapeshiftBarFrame" unique_id=1195163530]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 83.0
+offset_top = -18.0
+offset_right = 125.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_79")
+expand_mode = 1
+
+[node name="ShapeshiftButton1" parent="ShapeshiftBarFrame" unique_id=1362977349 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 11.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton2" parent="ShapeshiftBarFrame" unique_id=2059115536 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 48.0
+offset_top = -1.0
+offset_right = 78.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton3" parent="ShapeshiftBarFrame" unique_id=1387982438 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 85.0
+offset_top = -1.0
+offset_right = 115.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton4" parent="ShapeshiftBarFrame" unique_id=859884793 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 122.0
+offset_top = -1.0
+offset_right = 152.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton5" parent="ShapeshiftBarFrame" unique_id=119791826 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 159.0
+offset_top = -1.0
+offset_right = 189.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton6" parent="ShapeshiftBarFrame" unique_id=177386625 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 196.0
+offset_top = -1.0
+offset_right = 226.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton7" parent="ShapeshiftBarFrame" unique_id=752612380 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 233.0
+offset_top = -1.0
+offset_right = 263.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton8" parent="ShapeshiftBarFrame" unique_id=144447022 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 270.0
+offset_top = -1.0
+offset_right = 300.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton9" parent="ShapeshiftBarFrame" unique_id=640707791 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 307.0
+offset_top = -1.0
+offset_right = 337.0
+offset_bottom = 29.0
+
+[node name="ShapeshiftButton10" parent="ShapeshiftBarFrame" unique_id=414674121 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 344.0
+offset_top = -1.0
+offset_right = 374.0
+offset_bottom = 29.0
+
+[node name="MultiBarBottomLeft" type="Control" parent="." unique_id=1314841738]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 8.0
+offset_top = -42.0
+offset_right = 508.0
+offset_bottom = -4.0
+mouse_filter = 2
+
+[node name="MultiBarBottomLeftButton1" parent="MultiBarBottomLeft" unique_id=887718551 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 2.0
+offset_right = 36.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton2" parent="MultiBarBottomLeft" unique_id=1477962640 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 42.0
+offset_top = 2.0
+offset_right = 78.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton3" parent="MultiBarBottomLeft" unique_id=1163911968 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 84.0
+offset_top = 2.0
+offset_right = 120.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton4" parent="MultiBarBottomLeft" unique_id=510362555 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 126.0
+offset_top = 2.0
+offset_right = 162.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton5" parent="MultiBarBottomLeft" unique_id=1998564615 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 168.0
+offset_top = 2.0
+offset_right = 204.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton6" parent="MultiBarBottomLeft" unique_id=1020734291 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 210.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton7" parent="MultiBarBottomLeft" unique_id=21679918 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 252.0
+offset_top = 2.0
+offset_right = 288.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton8" parent="MultiBarBottomLeft" unique_id=1967726032 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 294.0
+offset_top = 2.0
+offset_right = 330.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton9" parent="MultiBarBottomLeft" unique_id=2024417069 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 336.0
+offset_top = 2.0
+offset_right = 372.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton10" parent="MultiBarBottomLeft" unique_id=1472114292 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 378.0
+offset_top = 2.0
+offset_right = 414.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton11" parent="MultiBarBottomLeft" unique_id=1281660478 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 420.0
+offset_top = 2.0
+offset_right = 456.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomLeftButton12" parent="MultiBarBottomLeft" unique_id=1329033627 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 462.0
+offset_top = 2.0
+offset_right = 498.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRight" type="Control" parent="." unique_id=47866104]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_left = 518.0
+offset_top = -42.0
+offset_right = 1018.0
+offset_bottom = -4.0
+mouse_filter = 2
+
+[node name="MultiBarBottomRightButton1" parent="MultiBarBottomRight" unique_id=1996826938 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 2.0
+offset_right = 36.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton2" parent="MultiBarBottomRight" unique_id=1733760202 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 42.0
+offset_top = 2.0
+offset_right = 78.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton3" parent="MultiBarBottomRight" unique_id=1884409501 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 84.0
+offset_top = 2.0
+offset_right = 120.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton4" parent="MultiBarBottomRight" unique_id=1680819492 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 126.0
+offset_top = 2.0
+offset_right = 162.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton5" parent="MultiBarBottomRight" unique_id=600115434 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 168.0
+offset_top = 2.0
+offset_right = 204.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton6" parent="MultiBarBottomRight" unique_id=1462820467 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 210.0
+offset_top = 2.0
+offset_right = 246.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton7" parent="MultiBarBottomRight" unique_id=2086623472 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 252.0
+offset_top = 2.0
+offset_right = 288.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton8" parent="MultiBarBottomRight" unique_id=1244799989 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 294.0
+offset_top = 2.0
+offset_right = 330.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton9" parent="MultiBarBottomRight" unique_id=2124271966 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 336.0
+offset_top = 2.0
+offset_right = 372.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton10" parent="MultiBarBottomRight" unique_id=1457974150 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 378.0
+offset_top = 2.0
+offset_right = 414.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton11" parent="MultiBarBottomRight" unique_id=479540426 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 420.0
+offset_top = 2.0
+offset_right = 456.0
+offset_bottom = 38.0
+
+[node name="MultiBarBottomRightButton12" parent="MultiBarBottomRight" unique_id=832062447 instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 462.0
+offset_top = 2.0
+offset_right = 498.0
+offset_bottom = 38.0

@@ -1,54 +1,60 @@
 class_name LoginScreen
 extends Control
 
-signal realm_joined
+signal login_requested(realmlist: String, account: String, password: String, remember: bool)
+signal quit_requested
 
-const AUTH_PORT: int = 3724
-const STATUS_TEXT: Dictionary[WowSession.State, String] = {
-	WowSession.STATE_AUTHENTICATING: "Logging in...",
-	WowSession.STATE_REALM_LIST: "Joining realm...",
-	WowSession.STATE_CONNECTING_WORLD: "Connecting to the realm...",
-}
+# GetBuildInfo: version type, version, build, build type and build date.
+const BUILD_INFO: Array[String] = ["Version", "1.12.1", "5875", "WoWGD", ""]
+# DEFAULT_TOOLTIP_COLOR from AccountLogin.lua: border, then background.
+const EDIT_BORDER: Color = Color(0.8, 0.8, 0.8)
+const EDIT_BACKGROUND: Color = Color(0.09, 0.09, 0.09)
 
-@onready var _host: LineEdit = %Host
-@onready var _account: LineEdit = %Account
-@onready var _password: LineEdit = %Password
-@onready var _login_button: Button = %LoginButton
-@onready var _status: Label = %Status
+@onready var _realmlist: LineEdit = %AccountLoginRealmlistEdit
+@onready var _account: LineEdit = %AccountLoginAccountEdit
+@onready var _password: LineEdit = %AccountLoginPasswordEdit
+@onready var _remember: WowButton = %AccountLoginSaveAccountName
 
 
 func _ready() -> void:
-	_login_button.pressed.connect(log_in)
-	_password.text_submitted.connect(_on_password_submitted)
-	WowClient.session.state_changed.connect(_on_state_changed)
-	WowClient.session.realms_received.connect(_on_realms_received)
+	%AccountLoginVersion.text = (WowStrings.get_text("VERSION_TEMPLATE") % BUILD_INFO).strip_edges()
+	for unused: CanvasItem in [%AccountLoginCommunityButton, %AccountLoginManageAccountButton]:
+		unused.hide()
+	var edits: Array[LineEdit] = [_realmlist, _account, _password]
+	for i: int in edits.size():
+		var backdrop: WowBackdrop = edits[i].get_node("Backdrop")
+		backdrop.border_color = EDIT_BORDER
+		backdrop.background_color = EDIT_BACKGROUND
+		edits[i].text_submitted.connect(func(_text: String) -> void: log_in())
+		edits[i].focus_next = edits[i].get_path_to(edits[(i + 1) % edits.size()])
+	%AccountLoginLoginButton.pressed.connect(log_in)
+	%AccountLoginExitButton.pressed.connect(quit_requested.emit)
+	_remember.pressed.connect(func() -> void: _remember.checked = not _remember.checked)
+	visibility_changed.connect(_on_visibility_changed)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if visible and event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
+		quit_requested.emit()
+
+
+func fill(realmlist: String, account: String, password: String = "") -> void:
+	_realmlist.text = realmlist
+	_account.text = account
+	_password.text = password
+	_remember.checked = not account.is_empty()
 
 
 func log_in() -> void:
-	_login_button.disabled = true
-	WowClient.session.login(_host.text, AUTH_PORT, _account.text, _password.text)
+	login_requested.emit(
+		_realmlist.text.strip_edges(), _account.text, _password.text, _remember.checked
+	)
+	_password.text = ""
 
 
-func fill_credentials(account: String, password: String) -> void:
-	_account.text = account
-	_password.text = password
-
-
-func _on_password_submitted(_text: String) -> void:
-	log_in()
-
-
-func _on_state_changed(state: WowSession.State, message: String) -> void:
-	if state == WowSession.STATE_FAILED:
-		_status.text = message
-		_login_button.disabled = false
-	elif state == WowSession.STATE_CHARACTER_LIST:
-		_status.text = ""
-		realm_joined.emit()
-	else:
-		_status.text = STATUS_TEXT.get(state, "")
-
-
-# ponytail: joins the first realm; add a realm picker once a second realm exists.
-func _on_realms_received(_realms: Array) -> void:
-	WowClient.session.select_realm(0)
+func _on_visibility_changed() -> void:
+	if not is_visible_in_tree():
+		return
+	var edit: LineEdit = _account if _account.text.is_empty() else _password
+	edit.grab_focus.call_deferred()

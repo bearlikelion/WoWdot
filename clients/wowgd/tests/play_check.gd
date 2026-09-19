@@ -53,7 +53,7 @@ func _run() -> void:
 	player.movement_changed.connect(_on_movement_changed)
 	var start: Vector3 = player.global_position
 	var toward_home: Vector3 = HOME - WowCoords.from_godot(start)
-	player.rotation.y = atan2(toward_home.y, toward_home.x) if toward_home.length() > 5.0 else 0.0
+	player.rotation.y = _clear_heading(player, atan2(toward_home.y, toward_home.x))
 	Input.action_press("move_forward")
 	await tree.create_timer(RUN_SECONDS).timeout
 	Input.action_release("move_forward")
@@ -62,7 +62,8 @@ func _run() -> void:
 	print("ran %.1f yd to %s" % [ran, WowCoords.from_godot(player.global_position)])
 	print("sent while running: ", _sent)
 	_check(not _sent.has("MSG_MOVE_FALL_LAND"), "running over the ground never counts as a fall")
-	_check(ran > 10.0, "the player moved with the move_forward action")
+	# Doodads collide now, so a tree in the way can cut the run short.
+	_check(ran > 4.0, "the player moved with the move_forward action")
 	_capture("user://play_after_run.png")
 	await _check_jump(player)
 
@@ -78,6 +79,18 @@ func _run() -> void:
 			print("server saved %s, client at %s" % [saved["position"], expected])
 			_check(off < MAX_SAVED_ERROR, "server position matches the client (%.2f yd off)" % off)
 	_finish("")
+
+
+# The heading nearest the wanted one whose first few yards are free of doodads and walls.
+func _clear_heading(player: Player, wanted: float) -> float:
+	const PROBE_YARDS: float = 4.0
+	const CLIMB: float = 1.0
+	for step: int in 8:
+		var heading: float = wanted + PI / 4.0 * ((step + 1) >> 1) * (1 if step % 2 == 0 else -1)
+		var forward: Vector3 = Basis(Vector3.UP, heading) * Vector3.FORWARD
+		if not player.test_move(player.global_transform, forward * PROBE_YARDS + Vector3.UP * CLIMB):
+			return heading
+	return wanted
 
 
 func _check_jump(player: Player) -> void:
@@ -102,6 +115,9 @@ func _check_jump(player: Player) -> void:
 
 func _check_hud() -> void:
 	var hud: Hud = _main.world.hud()
+	var loaded: bool = hud != null and hud.get_node_or_null("%MainMenuBar") is MainMenuBar
+	if not _check(loaded, "the HUD loads"):
+		return
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	var player: Vector3 = _main.world.player().global_position
 	var named: int = 0
@@ -131,18 +147,162 @@ func _check_hud() -> void:
 	chat.pressed = true
 	Input.parse_input_event(chat)
 	await _frames(2)
-	var chat_input: LineEdit = hud.get_node("%ChatInput")
+	var chat_frame: ChatFrame = hud.get_node("%ChatFrame1")
+	var chat_input: LineEdit = chat_frame.get_node("%ChatFrameEditBox")
 	_check(chat_input.has_focus(), "the chat action opens the chat box")
+	for character: String in "/y typing":
+		var key: InputEventKey = InputEventKey.new()
+		key.unicode = character.unicode_at(0)
+		key.keycode = OS.find_keycode_from_string(character) if character != " " else KEY_SPACE
+		key.pressed = true
+		Input.parse_input_event(key)
+		await get_tree().process_frame
+	await _frames(3)
+	_capture("user://play_chat_edit.png")
+	var header: Label = chat_frame.get_node("%ChatFrameEditBoxHeader")
+	_check(header.text.begins_with("Yell"), "/y switches the header")
 	chat_input.text = "/s " + SAY_TEXT
 	chat_input.text_submitted.emit(chat_input.text)
-	var chat_log: RichTextLabel = hud.get_node("%ChatLog")
-	var said: String = "Tessaline says: " + SAY_TEXT
+	var said: String = "[Tessaline] says: " + SAY_TEXT
 	var heard_at: int = Time.get_ticks_msec() + TIMEOUT_MSEC
-	while not chat_log.get_parsed_text().contains(said) and Time.get_ticks_msec() < heard_at:
+	while not chat_frame.all_text().contains(said) and Time.get_ticks_msec() < heard_at:
 		await get_tree().process_frame
-	_check(chat_log.get_parsed_text().contains(said), "a say typed in the chat box comes back")
+	_check(chat_frame.all_text().contains(said), "a say typed in the chat box comes back")
+	await _check_casting_bar(hud)
+	await _check_buffs(hud)
+	await _check_errors(hud)
+	await _check_multi_bars(hud)
+	await _check_tooltips(hud)
 	await _frames(5)
 	_capture("user://play_hud.png")
+
+
+# A warrior has no cast-time spells, so the bar is driven through the session's own signals.
+func _check_casting_bar(hud: Hud) -> void:
+	const FIREBALL: int = 133
+	var session: WowSession = WowClient.session
+	var bar: CastingBar = hud.get_node("%CastingBarFrame")
+	session.spell_cast_started.emit(session.get_player_guid(), FIREBALL, 1500)
+	await get_tree().create_timer(0.75).timeout
+	var label: Label = bar.get_node("%CastingBarText")
+	print("casting bar at %.2f showing '%s'" % [bar.value, label.text])
+	_check(bar.visible and label.text == "Fireball", "the casting bar shows the spell")
+	_check(bar.value > 0.3 and bar.value < 0.7, "the casting bar fills with the cast time")
+	_capture("user://play_casting.png")
+	session.spell_cast_finished.emit(session.get_player_guid(), FIREBALL)
+	await get_tree().create_timer(1.5).timeout
+	_check(not bar.visible, "the casting bar fades after the cast")
+
+
+# Hovering an action button and the target frame fills the tooltip the way the stock UI would.
+func _check_tooltips(hud: Hud) -> void:
+	var tooltip: GameTooltip = hud.get_node("%GameTooltip")
+	var bar: MainMenuBar = hud.get_node("%MainMenuBar")
+	var button: ActionButton = null
+	for i: int in range(1, 13):
+		var candidate: ActionButton = bar.get_node("%%ActionButton%d" % i)
+		if candidate.spell() == 0:
+			continue
+		if button == null or not SpellText.describe(candidate.spell()).is_empty():
+			button = candidate
+	if button:
+		button.mouse_entered.emit()
+		await _frames(3)
+		var first: String = _tooltip_text(tooltip)
+		print("action tooltip: ", first.replace("\n", " | "))
+		var spell_name: String = WowAssets.spells.spell_name(button.spell())
+		_check(tooltip.visible and first.begins_with(spell_name), "an action button shows its tooltip")
+		_capture("user://play_tooltip_spell.png")
+		button.mouse_exited.emit()
+		await _frames(2)
+		_check(not tooltip.visible, "leaving the button hides the tooltip")
+	var target: TargetFrame = hud.get_node("%TargetFrame")
+	if target.visible:
+		target.mouse_entered.emit()
+		await _frames(3)
+		print("unit tooltip: ", _tooltip_text(tooltip).replace("\n", " | "))
+		_check(_tooltip_text(tooltip).contains("Level"), "the target frame shows a unit tooltip")
+		_capture("user://play_tooltip_unit.png")
+		target.mouse_exited.emit()
+	var buff: WowButton = hud.get_node("%BuffFrame").get_node("%BuffButton0")
+	if buff.visible:
+		buff.mouse_entered.emit()
+		await _frames(3)
+		print("buff tooltip: ", _tooltip_text(tooltip).replace("\n", " | "))
+		_capture("user://play_tooltip_buff.png")
+		buff.mouse_exited.emit()
+
+
+func _tooltip_text(tooltip: GameTooltip) -> String:
+	var lines: PackedStringArray = []
+	for label: Node in tooltip.find_children("*", "Label", true, false):
+		if (label as Label).visible and not (label as Label).text.is_empty():
+			lines.append((label as Label).text)
+	return "\n".join(lines)
+
+
+# A filled bottom-left slot shows that bar and lifts the casting bar; the slot is emptied after.
+func _check_multi_bars(hud: Hud) -> void:
+	const SLOT: int = 60
+	const HEROIC_STRIKE: int = 78
+	# Rage is stored times ten; with 15 rage the strike queues for the next swing instead of failing.
+	const HEROIC_STRIKE_RAGE: int = 150
+	var session: WowSession = WowClient.session
+	if session.get_field(session.get_player_guid(), "UNIT_FIELD_POWER2") >= HEROIC_STRIKE_RAGE:
+		print("skipping the error check: the player has rage left from an earlier fight")
+		return
+	var bar: Control = hud.get_node("%MainMenuBar").get_node("%MultiBarBottomLeft")
+	var casting_bar: Control = hud.get_node("%CastingBarFrame")
+	var resting_top: float = casting_bar.offset_top
+	session.set_action_button(SLOT, HEROIC_STRIKE)
+	await _frames(3)
+	_check(bar.visible, "an action in slot 60 shows the bottom-left bar")
+	_check(casting_bar.offset_top < resting_top, "the casting bar moves up over the bottom bars")
+	_capture("user://play_multibars.png")
+	session.set_action_button(SLOT, 0)
+	await _frames(3)
+	_check(not bar.visible, "emptying the bar hides it again")
+
+
+# Heroic Strike on a distant unit fails; the server's reason shows in the stock wording.
+func _check_errors(hud: Hud) -> void:
+	const HEROIC_STRIKE: int = 78
+	var session: WowSession = WowClient.session
+	var errors: WowMessageFrame = hud.get_node("%UIErrorsFrame")
+	var far: int = 0
+	var player: Vector3 = session.get_object_position(session.get_player_guid())
+	for guid: int in session.get_object_guids():
+		if session.get_object_type(guid) == Entities.ObjectType.UNIT \
+		and session.get_object_position(guid).distance_to(player) > 10.0:
+			far = guid
+			break
+	if far == 0:
+		print("skipping the error check: no unit out of melee range")
+		return
+	session.set_selection(far)
+	session.cast_spell(HEROIC_STRIKE, far)
+	var shown_by: int = Time.get_ticks_msec() + 5000
+	while errors.get_child_count() == 0 and Time.get_ticks_msec() < shown_by:
+		await get_tree().process_frame
+	var text: String = (errors.get_child(0) as Label).text if errors.get_child_count() > 0 else ""
+	print("error frame shows: '%s'" % text)
+	_check(not text.is_empty(), "a failed cast shows its reason in the error frame")
+	_capture("user://play_errors.png")
+
+
+# The wowgd account is a GM, so .aura puts Mark of the Wild on the player without a trainer.
+func _check_buffs(hud: Hud) -> void:
+	const MARK_OF_THE_WILD: int = 1126
+	var session: WowSession = WowClient.session
+	session.set_selection(session.get_player_guid())
+	session.send_chat(WowSession.CHAT_SAY, ".aura %d" % MARK_OF_THE_WILD)
+	var button: Control = hud.get_node("%BuffFrame").get_node("%BuffButton0")
+	var shown_by: int = Time.get_ticks_msec() + 5000
+	while not button.visible and Time.get_ticks_msec() < shown_by:
+		await get_tree().process_frame
+	await _frames(5)
+	_capture("user://play_buffs.png")
+	_check(button.visible, "a buff the player casts shows in the buff frame")
 
 
 func _on_movement_changed(
@@ -166,9 +326,10 @@ func _capture(path: String) -> void:
 	print("wrote ", ProjectSettings.globalize_path(path))
 
 
-func _check(condition: bool, what: String) -> void:
+func _check(condition: bool, what: String) -> bool:
 	if not condition:
 		_failures.append(what)
+	return condition
 
 
 func _finish(fatal: String) -> void:

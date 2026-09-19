@@ -84,7 +84,7 @@ Array WowStreamer::poll() {
 	}
 	Array out;
 	for (const Dictionary &result : done) {
-		if (uint64_t(int64_t(result["generation"])) == current) {
+		if (static_cast<uint64_t>(int64_t(result["generation"])) == current) {
 			out.push_back(result);
 		} else {
 			free_result(result);

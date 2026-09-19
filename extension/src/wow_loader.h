@@ -50,13 +50,17 @@ class WowLoader : public RefCounted {
 	std::shared_ptr<const M2Data> get_m2_data(const String &path);
 	Ref<ArrayMesh> get_m2_mesh(const String &path, const M2Data &data, const Dictionary &skins, const PackedInt32Array &geosets);
 	Ref<AnimationLibrary> get_m2_animations(const String &path, const M2Data &data);
-	Ref<StandardMaterial3D> get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, float alpha);
+	Ref<StandardMaterial3D> get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint);
 	String animation_name(uint32_t id, uint32_t variation);
 
 protected:
 	static void _bind_methods();
 
 public:
+	// One loader on the project's client data, shared by WowTexture, the editor and the game.
+	static Ref<WowLoader> get_shared();
+	static void release_shared();
+
 	void set_archive(const Ref<WowArchive> &p_archive) { archive = p_archive; }
 	Ref<WowArchive> get_archive() const { return archive; }
 	void set_terrain_shader(const Ref<Shader> &p_shader) { terrain_shader = p_shader; }

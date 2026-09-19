@@ -249,6 +249,9 @@ struct M2Model {
     // Value 0=transparent, 1=opaque. Independent from textureWeights.
     std::vector<float> colorAlphas;
 
+    // At-rest RGB of the same color slots (M2Color.color), which tints the batch's texture.
+    std::vector<glm::vec3> colorRGBs;
+
     // Full per-sequence alpha keyframes for the same color slots. Evaluated at
     // render time to hide batches whose alpha animates to 0 in the current
     // animation (e.g. the lumberjack carry model's alternate wood bundle).

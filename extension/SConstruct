@@ -8,10 +8,20 @@ env = SConscript("godot-cpp/SConstruct")
 
 # mWoWee sources are C++20; the later flag overrides godot-cpp's -std=c++17.
 env.Append(CXXFLAGS=["-std=c++20"])
+
+# `scons sanitize=yes` instruments the library; run Godot with LD_PRELOAD="$(gcc -print-file-name=libasan.so)".
+if ARGUMENTS.get("sanitize") == "yes":
+	sanitizers = ["-fsanitize=address,undefined", "-fno-omit-frame-pointer"]
+	env.Append(CCFLAGS=sanitizers, LINKFLAGS=sanitizers)
 env.Append(CPPPATH=["src/", "wowee/include/", "thirdparty/StormLib/src/"])
 env.Append(LIBS=["z", "bz2", "crypto"])
 
-sources = Glob("src/*.cpp") + Glob("wowee/src/*/*.cpp")
+# Our own sources build with full warnings; vendored mWoWee and StormLib keep their upstream flags.
+strict_env = env.Clone()
+strict_env.Append(CXXFLAGS=["-Wall", "-Wextra", "-Wpedantic", "-Wshadow"])
+for header_dir in ["godot-cpp/include", "godot-cpp/gen/include", "godot-cpp/gdextension", "wowee/include", "thirdparty/StormLib/src"]:
+	strict_env.Append(CXXFLAGS=["-isystem", Dir(header_dir).abspath])
+sources = [strict_env.SharedObject(f) for f in Glob("src/*.cpp")] + Glob("wowee/src/*/*.cpp")
 
 # StormLib is compiled in because Arch's libstorm.a holds LTO bytecode only; its file lists come from its CMakeLists.
 import re

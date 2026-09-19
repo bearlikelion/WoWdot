@@ -1,0 +1,506 @@
+[gd_resource type="Theme" format=3 uid="uid://03nk5nhbqtxc"]
+
+[resource]
+ChatFontNormal/base_type = &"Label"
+ChatFontNormal/colors/font_color = Color(1, 1, 1, 1)
+ChatFontNormal/colors/font_shadow_color = Color(0, 0, 0, 1)
+ChatFontNormal/constants/shadow_offset_x = 1
+ChatFontNormal/constants/shadow_offset_y = 1
+ChatFontNormal/font_sizes/font_size = 14
+CombatLogFont/base_type = &"Label"
+CombatLogFont/colors/font_color = Color(1, 1, 1, 1)
+CombatLogFont/colors/font_shadow_color = Color(0, 0, 0, 1)
+CombatLogFont/constants/shadow_offset_x = 1
+CombatLogFont/constants/shadow_offset_y = 1
+CombatLogFont/font_sizes/font_size = 12
+CombatTextFont/base_type = &"Label"
+CombatTextFont/colors/font_color = Color(1, 0.82, 0, 1)
+CombatTextFont/colors/font_shadow_color = Color(0, 0, 0, 1)
+CombatTextFont/constants/shadow_offset_x = 1
+CombatTextFont/constants/shadow_offset_y = 1
+CombatTextFont/font_sizes/font_size = 25
+DialogButtonHighlightText/base_type = &"Label"
+DialogButtonHighlightText/colors/font_color = Color(1, 1, 1, 1)
+DialogButtonHighlightText/font_sizes/font_size = 16
+DialogButtonNormalText/base_type = &"Label"
+DialogButtonNormalText/colors/font_color = Color(1, 0.82, 0, 1)
+DialogButtonNormalText/font_sizes/font_size = 16
+ErrorFont/base_type = &"Label"
+ErrorFont/colors/font_color = Color(1, 0.82, 0, 1)
+ErrorFont/colors/font_shadow_color = Color(0, 0, 0, 1)
+ErrorFont/constants/shadow_offset_x = 1
+ErrorFont/constants/shadow_offset_y = 1
+ErrorFont/font_sizes/font_size = 16
+GameFontBlack/base_type = &"Label"
+GameFontBlack/colors/font_color = Color(0, 0, 0, 1)
+GameFontBlack/font_sizes/font_size = 12
+GameFontDarkGraySmall/base_type = &"Label"
+GameFontDarkGraySmall/colors/font_color = Color(0.35, 0.35, 0.35, 1)
+GameFontDarkGraySmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontDarkGraySmall/constants/shadow_offset_x = 1
+GameFontDarkGraySmall/constants/shadow_offset_y = 1
+GameFontDarkGraySmall/font_sizes/font_size = 10
+GameFontDisable/base_type = &"Label"
+GameFontDisable/colors/font_color = Color(0.5, 0.5, 0.5, 1)
+GameFontDisable/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontDisable/constants/shadow_offset_x = 1
+GameFontDisable/constants/shadow_offset_y = 1
+GameFontDisable/font_sizes/font_size = 12
+GameFontDisableLarge/base_type = &"Label"
+GameFontDisableLarge/colors/font_color = Color(0.5, 0.5, 0.5, 1)
+GameFontDisableLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontDisableLarge/constants/shadow_offset_x = 1
+GameFontDisableLarge/constants/shadow_offset_y = 1
+GameFontDisableLarge/font_sizes/font_size = 16
+GameFontDisableSmall/base_type = &"Label"
+GameFontDisableSmall/colors/font_color = Color(0.5, 0.5, 0.5, 1)
+GameFontDisableSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontDisableSmall/constants/shadow_offset_x = 1
+GameFontDisableSmall/constants/shadow_offset_y = 1
+GameFontDisableSmall/font_sizes/font_size = 10
+GameFontGreen/base_type = &"Label"
+GameFontGreen/colors/font_color = Color(0.1, 1, 0.1, 1)
+GameFontGreen/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontGreen/constants/shadow_offset_x = 1
+GameFontGreen/constants/shadow_offset_y = 1
+GameFontGreen/font_sizes/font_size = 12
+GameFontGreenLarge/base_type = &"Label"
+GameFontGreenLarge/colors/font_color = Color(0.1, 1, 0.1, 1)
+GameFontGreenLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontGreenLarge/constants/shadow_offset_x = 1
+GameFontGreenLarge/constants/shadow_offset_y = 1
+GameFontGreenLarge/font_sizes/font_size = 16
+GameFontGreenSmall/base_type = &"Label"
+GameFontGreenSmall/colors/font_color = Color(0.1, 1, 0.1, 1)
+GameFontGreenSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontGreenSmall/constants/shadow_offset_x = 1
+GameFontGreenSmall/constants/shadow_offset_y = 1
+GameFontGreenSmall/font_sizes/font_size = 10
+GameFontHighlight/base_type = &"Label"
+GameFontHighlight/colors/font_color = Color(1, 1, 1, 1)
+GameFontHighlight/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontHighlight/constants/shadow_offset_x = 1
+GameFontHighlight/constants/shadow_offset_y = 1
+GameFontHighlight/font_sizes/font_size = 12
+GameFontHighlightLarge/base_type = &"Label"
+GameFontHighlightLarge/colors/font_color = Color(1, 1, 1, 1)
+GameFontHighlightLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontHighlightLarge/constants/shadow_offset_x = 1
+GameFontHighlightLarge/constants/shadow_offset_y = 1
+GameFontHighlightLarge/font_sizes/font_size = 16
+GameFontHighlightSmall/base_type = &"Label"
+GameFontHighlightSmall/colors/font_color = Color(1, 1, 1, 1)
+GameFontHighlightSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontHighlightSmall/constants/shadow_offset_x = 1
+GameFontHighlightSmall/constants/shadow_offset_y = 1
+GameFontHighlightSmall/font_sizes/font_size = 10
+GameFontHighlightSmallOutline/base_type = &"Label"
+GameFontHighlightSmallOutline/colors/font_color = Color(1, 1, 1, 1)
+GameFontHighlightSmallOutline/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontHighlightSmallOutline/constants/shadow_offset_x = 1
+GameFontHighlightSmallOutline/constants/shadow_offset_y = 1
+GameFontHighlightSmallOutline/font_sizes/font_size = 10
+GameFontNormal/base_type = &"Label"
+GameFontNormal/colors/font_color = Color(1, 0.82, 0, 1)
+GameFontNormal/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontNormal/constants/shadow_offset_x = 1
+GameFontNormal/constants/shadow_offset_y = 1
+GameFontNormal/font_sizes/font_size = 12
+GameFontNormalHuge/base_type = &"Label"
+GameFontNormalHuge/colors/font_color = Color(1, 0.82, 0, 1)
+GameFontNormalHuge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontNormalHuge/constants/shadow_offset_x = 1
+GameFontNormalHuge/constants/shadow_offset_y = 1
+GameFontNormalHuge/font_sizes/font_size = 20
+GameFontNormalLarge/base_type = &"Label"
+GameFontNormalLarge/colors/font_color = Color(1, 0.82, 0, 1)
+GameFontNormalLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontNormalLarge/constants/shadow_offset_x = 1
+GameFontNormalLarge/constants/shadow_offset_y = 1
+GameFontNormalLarge/font_sizes/font_size = 16
+GameFontNormalSmall/base_type = &"Label"
+GameFontNormalSmall/colors/font_color = Color(1, 0.82, 0, 1)
+GameFontNormalSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontNormalSmall/constants/shadow_offset_x = 1
+GameFontNormalSmall/constants/shadow_offset_y = 1
+GameFontNormalSmall/font_sizes/font_size = 10
+GameFontRed/base_type = &"Label"
+GameFontRed/colors/font_color = Color(1, 0.1, 0.1, 1)
+GameFontRed/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontRed/constants/shadow_offset_x = 1
+GameFontRed/constants/shadow_offset_y = 1
+GameFontRed/font_sizes/font_size = 12
+GameFontRedLarge/base_type = &"Label"
+GameFontRedLarge/colors/font_color = Color(1, 0.1, 0.1, 1)
+GameFontRedLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontRedLarge/constants/shadow_offset_x = 1
+GameFontRedLarge/constants/shadow_offset_y = 1
+GameFontRedLarge/font_sizes/font_size = 16
+GameFontRedSmall/base_type = &"Label"
+GameFontRedSmall/colors/font_color = Color(1, 0.1, 0.1, 1)
+GameFontRedSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GameFontRedSmall/constants/shadow_offset_x = 1
+GameFontRedSmall/constants/shadow_offset_y = 1
+GameFontRedSmall/font_sizes/font_size = 10
+GameFontWhite/base_type = &"Label"
+GameFontWhite/colors/font_color = Color(1, 1, 1, 1)
+GameFontWhite/font_sizes/font_size = 12
+GameTooltipHeaderText/base_type = &"Label"
+GameTooltipHeaderText/colors/font_color = Color(1, 1, 1, 1)
+GameTooltipHeaderText/font_sizes/font_size = 14
+GameTooltipText/base_type = &"Label"
+GameTooltipText/colors/font_color = Color(1, 1, 1, 1)
+GameTooltipText/font_sizes/font_size = 12
+GameTooltipTextSmall/base_type = &"Label"
+GameTooltipTextSmall/colors/font_color = Color(1, 1, 1, 1)
+GameTooltipTextSmall/font_sizes/font_size = 10
+GlueEditBoxFont/base_type = &"Label"
+GlueEditBoxFont/colors/font_color = Color(1, 1, 1, 1)
+GlueEditBoxFont/font_sizes/font_size = 18
+GlueFontBlack/base_type = &"Label"
+GlueFontBlack/colors/font_color = Color(0, 0, 0, 1)
+GlueFontBlack/font_sizes/font_size = 12
+GlueFontCharacterCreate/base_type = &"Label"
+GlueFontCharacterCreate/colors/font_color = Color(1, 1, 1, 1)
+GlueFontCharacterCreate/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontCharacterCreate/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontCharacterCreate/constants/outline_size = 2
+GlueFontCharacterCreate/constants/shadow_offset_x = 1
+GlueFontCharacterCreate/constants/shadow_offset_y = 1
+GlueFontCharacterCreate/font_sizes/font_size = 12
+GlueFontDisable/base_type = &"Label"
+GlueFontDisable/colors/font_color = Color(0.5, 0.5, 0.5, 1)
+GlueFontDisable/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontDisable/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontDisable/constants/outline_size = 2
+GlueFontDisable/constants/shadow_offset_x = 1
+GlueFontDisable/constants/shadow_offset_y = 1
+GlueFontDisable/font_sizes/font_size = 15
+GlueFontDisableHuge/base_type = &"Label"
+GlueFontDisableHuge/colors/font_color = Color(0.5, 0.5, 0.5, 1)
+GlueFontDisableHuge/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontDisableHuge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontDisableHuge/constants/outline_size = 2
+GlueFontDisableHuge/constants/shadow_offset_x = 2
+GlueFontDisableHuge/constants/shadow_offset_y = 2
+GlueFontDisableHuge/font_sizes/font_size = 22
+GlueFontDisableLarge/base_type = &"Label"
+GlueFontDisableLarge/colors/font_color = Color(0.5, 0.5, 0.5, 1)
+GlueFontDisableLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontDisableLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontDisableLarge/constants/outline_size = 2
+GlueFontDisableLarge/constants/shadow_offset_x = 2
+GlueFontDisableLarge/constants/shadow_offset_y = 2
+GlueFontDisableLarge/font_sizes/font_size = 18
+GlueFontDisableSmall/base_type = &"Label"
+GlueFontDisableSmall/colors/font_color = Color(0.5, 0.5, 0.5, 1)
+GlueFontDisableSmall/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontDisableSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontDisableSmall/constants/outline_size = 2
+GlueFontDisableSmall/constants/shadow_offset_x = 1
+GlueFontDisableSmall/constants/shadow_offset_y = 1
+GlueFontDisableSmall/font_sizes/font_size = 12
+GlueFontGreen/base_type = &"Label"
+GlueFontGreen/colors/font_color = Color(0.1, 1, 0.1, 1)
+GlueFontGreen/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontGreen/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontGreen/constants/outline_size = 2
+GlueFontGreen/constants/shadow_offset_x = 1
+GlueFontGreen/constants/shadow_offset_y = 1
+GlueFontGreen/font_sizes/font_size = 15
+GlueFontGreenLarge/base_type = &"Label"
+GlueFontGreenLarge/colors/font_color = Color(0.1, 1, 0.1, 1)
+GlueFontGreenLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontGreenLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontGreenLarge/constants/outline_size = 2
+GlueFontGreenLarge/constants/shadow_offset_x = 2
+GlueFontGreenLarge/constants/shadow_offset_y = 2
+GlueFontGreenLarge/font_sizes/font_size = 18
+GlueFontGreenSmall/base_type = &"Label"
+GlueFontGreenSmall/colors/font_color = Color(0.1, 1, 0.1, 1)
+GlueFontGreenSmall/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontGreenSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontGreenSmall/constants/outline_size = 2
+GlueFontGreenSmall/constants/shadow_offset_x = 1
+GlueFontGreenSmall/constants/shadow_offset_y = 1
+GlueFontGreenSmall/font_sizes/font_size = 12
+GlueFontHighlight/base_type = &"Label"
+GlueFontHighlight/colors/font_color = Color(1, 1, 1, 1)
+GlueFontHighlight/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontHighlight/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontHighlight/constants/outline_size = 2
+GlueFontHighlight/constants/shadow_offset_x = 1
+GlueFontHighlight/constants/shadow_offset_y = 1
+GlueFontHighlight/font_sizes/font_size = 15
+GlueFontHighlightHuge/base_type = &"Label"
+GlueFontHighlightHuge/colors/font_color = Color(1, 1, 1, 1)
+GlueFontHighlightHuge/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontHighlightHuge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontHighlightHuge/constants/outline_size = 2
+GlueFontHighlightHuge/constants/shadow_offset_x = 2
+GlueFontHighlightHuge/constants/shadow_offset_y = 2
+GlueFontHighlightHuge/font_sizes/font_size = 22
+GlueFontHighlightLarge/base_type = &"Label"
+GlueFontHighlightLarge/colors/font_color = Color(1, 1, 1, 1)
+GlueFontHighlightLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontHighlightLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontHighlightLarge/constants/outline_size = 2
+GlueFontHighlightLarge/constants/shadow_offset_x = 2
+GlueFontHighlightLarge/constants/shadow_offset_y = 2
+GlueFontHighlightLarge/font_sizes/font_size = 18
+GlueFontHighlightSmall/base_type = &"Label"
+GlueFontHighlightSmall/colors/font_color = Color(1, 1, 1, 1)
+GlueFontHighlightSmall/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontHighlightSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontHighlightSmall/constants/outline_size = 2
+GlueFontHighlightSmall/constants/shadow_offset_x = 1
+GlueFontHighlightSmall/constants/shadow_offset_y = 1
+GlueFontHighlightSmall/font_sizes/font_size = 12
+GlueFontLightYellowSmall/base_type = &"Label"
+GlueFontLightYellowSmall/colors/font_color = Color(1, 0.96, 0.62, 1)
+GlueFontLightYellowSmall/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontLightYellowSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontLightYellowSmall/constants/outline_size = 2
+GlueFontLightYellowSmall/constants/shadow_offset_x = 1
+GlueFontLightYellowSmall/constants/shadow_offset_y = 1
+GlueFontLightYellowSmall/font_sizes/font_size = 12
+GlueFontNormal/base_type = &"Label"
+GlueFontNormal/colors/font_color = Color(1, 0.78, 0, 1)
+GlueFontNormal/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontNormal/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontNormal/constants/outline_size = 2
+GlueFontNormal/constants/shadow_offset_x = 1
+GlueFontNormal/constants/shadow_offset_y = 1
+GlueFontNormal/font_sizes/font_size = 15
+GlueFontNormalHuge/base_type = &"Label"
+GlueFontNormalHuge/colors/font_color = Color(1, 0.78, 0, 1)
+GlueFontNormalHuge/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontNormalHuge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontNormalHuge/constants/outline_size = 2
+GlueFontNormalHuge/constants/shadow_offset_x = 2
+GlueFontNormalHuge/constants/shadow_offset_y = 2
+GlueFontNormalHuge/font_sizes/font_size = 22
+GlueFontNormalLarge/base_type = &"Label"
+GlueFontNormalLarge/colors/font_color = Color(1, 0.78, 0, 1)
+GlueFontNormalLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontNormalLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontNormalLarge/constants/outline_size = 2
+GlueFontNormalLarge/constants/shadow_offset_x = 2
+GlueFontNormalLarge/constants/shadow_offset_y = 2
+GlueFontNormalLarge/font_sizes/font_size = 18
+GlueFontNormalSmall/base_type = &"Label"
+GlueFontNormalSmall/colors/font_color = Color(1, 0.78, 0, 1)
+GlueFontNormalSmall/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontNormalSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontNormalSmall/constants/outline_size = 2
+GlueFontNormalSmall/constants/shadow_offset_x = 1
+GlueFontNormalSmall/constants/shadow_offset_y = 1
+GlueFontNormalSmall/font_sizes/font_size = 12
+GlueFontRed/base_type = &"Label"
+GlueFontRed/colors/font_color = Color(1, 0.1, 0.1, 1)
+GlueFontRed/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontRed/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontRed/constants/outline_size = 2
+GlueFontRed/constants/shadow_offset_x = 1
+GlueFontRed/constants/shadow_offset_y = 1
+GlueFontRed/font_sizes/font_size = 15
+GlueFontRedLarge/base_type = &"Label"
+GlueFontRedLarge/colors/font_color = Color(1, 0.1, 0.1, 1)
+GlueFontRedLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontRedLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontRedLarge/constants/outline_size = 2
+GlueFontRedLarge/constants/shadow_offset_x = 2
+GlueFontRedLarge/constants/shadow_offset_y = 2
+GlueFontRedLarge/font_sizes/font_size = 18
+GlueFontRedSmall/base_type = &"Label"
+GlueFontRedSmall/colors/font_color = Color(1, 0.1, 0.1, 1)
+GlueFontRedSmall/colors/font_outline_color = Color(0, 0, 0, 1)
+GlueFontRedSmall/colors/font_shadow_color = Color(0, 0, 0, 1)
+GlueFontRedSmall/constants/outline_size = 2
+GlueFontRedSmall/constants/shadow_offset_x = 1
+GlueFontRedSmall/constants/shadow_offset_y = 1
+GlueFontRedSmall/font_sizes/font_size = 12
+GlueFontWhite/base_type = &"Label"
+GlueFontWhite/colors/font_color = Color(1, 1, 1, 1)
+GlueFontWhite/font_sizes/font_size = 12
+InvoiceTextFontNormal/base_type = &"Label"
+InvoiceTextFontNormal/colors/font_color = Color(0.18, 0.12, 0.06, 1)
+InvoiceTextFontNormal/font_sizes/font_size = 12
+InvoiceTextFontSmall/base_type = &"Label"
+InvoiceTextFontSmall/colors/font_color = Color(0.18, 0.12, 0.06, 1)
+InvoiceTextFontSmall/font_sizes/font_size = 10
+ItemTextFontNormal/base_type = &"Label"
+ItemTextFontNormal/colors/font_color = Color(0.18, 0.12, 0.06, 1)
+ItemTextFontNormal/font_sizes/font_size = 15
+MailTextFontNormal/base_type = &"Label"
+MailTextFontNormal/colors/font_color = Color(0.18, 0.12, 0.06, 1)
+MailTextFontNormal/font_sizes/font_size = 15
+MasterFont/base_type = &"Label"
+MasterFont/colors/font_shadow_color = Color(0, 0, 0, 1)
+MasterFont/constants/shadow_offset_x = 1
+MasterFont/constants/shadow_offset_y = 1
+NumberFontNormal/base_type = &"Label"
+NumberFontNormal/colors/font_color = Color(1, 1, 1, 1)
+NumberFontNormal/colors/font_outline_color = Color(0, 0, 0, 1)
+NumberFontNormal/constants/outline_size = 2
+NumberFontNormal/font_sizes/font_size = 14
+NumberFontNormalHuge/base_type = &"Label"
+NumberFontNormalHuge/colors/font_color = Color(1, 1, 1, 1)
+NumberFontNormalHuge/colors/font_outline_color = Color(0, 0, 0, 1)
+NumberFontNormalHuge/constants/outline_size = 2
+NumberFontNormalHuge/font_sizes/font_size = 30
+NumberFontNormalLarge/base_type = &"Label"
+NumberFontNormalLarge/colors/font_color = Color(1, 1, 1, 1)
+NumberFontNormalLarge/colors/font_outline_color = Color(0, 0, 0, 1)
+NumberFontNormalLarge/constants/outline_size = 2
+NumberFontNormalLarge/font_sizes/font_size = 16
+NumberFontNormalSmall/base_type = &"Label"
+NumberFontNormalSmall/colors/font_color = Color(1, 1, 1, 1)
+NumberFontNormalSmall/colors/font_outline_color = Color(0, 0, 0, 1)
+NumberFontNormalSmall/constants/outline_size = 2
+NumberFontNormalSmall/font_sizes/font_size = 12
+NumberFontNormalSmallGray/base_type = &"Label"
+NumberFontNormalSmallGray/colors/font_color = Color(0.6, 0.6, 0.6, 1)
+NumberFontNormalSmallGray/colors/font_outline_color = Color(0, 0, 0, 1)
+NumberFontNormalSmallGray/constants/outline_size = 2
+NumberFontNormalSmallGray/font_sizes/font_size = 12
+NumberFontNormalYellow/base_type = &"Label"
+NumberFontNormalYellow/colors/font_color = Color(1, 0.82, 0, 1)
+NumberFontNormalYellow/colors/font_outline_color = Color(0, 0, 0, 1)
+NumberFontNormalYellow/constants/outline_size = 2
+NumberFontNormalYellow/font_sizes/font_size = 14
+QuestFont/base_type = &"Label"
+QuestFont/colors/font_color = Color(0, 0, 0, 1)
+QuestFont/font_sizes/font_size = 13
+QuestFontHighlight/base_type = &"Label"
+QuestFontHighlight/colors/font_color = Color(0, 0, 0, 1)
+QuestFontHighlight/font_sizes/font_size = 14
+QuestFontNormalSmall/base_type = &"Label"
+QuestFontNormalSmall/colors/font_color = Color(0.3, 0.18, 0, 1)
+QuestFontNormalSmall/font_sizes/font_size = 12
+QuestTitleFont/base_type = &"Label"
+QuestTitleFont/colors/font_color = Color(0, 0, 0, 1)
+QuestTitleFont/colors/font_shadow_color = Color(0.49, 0.35, 0.05, 1)
+QuestTitleFont/constants/shadow_offset_x = 1
+QuestTitleFont/constants/shadow_offset_y = 1
+QuestTitleFont/font_sizes/font_size = 18
+SubSpellFont/base_type = &"Label"
+SubSpellFont/colors/font_color = Color(0.35, 0.2, 0, 1)
+SubSpellFont/font_sizes/font_size = 10
+SubZoneTextFont/base_type = &"Label"
+SubZoneTextFont/colors/font_outline_color = Color(0, 0, 0, 1)
+SubZoneTextFont/constants/outline_size = 2
+SubZoneTextFont/font_sizes/font_size = 26
+TOSFont/base_type = &"Label"
+TOSFont/colors/font_color = Color(1, 1, 1, 1)
+TOSFont/colors/font_outline_color = Color(0, 0, 0, 1)
+TOSFont/constants/outline_size = 2
+TOSFont/font_sizes/font_size = 12
+TextStatusBarText/base_type = &"Label"
+TextStatusBarText/colors/font_color = Color(1, 1, 1, 1)
+TextStatusBarText/colors/font_outline_color = Color(0, 0, 0, 1)
+TextStatusBarText/constants/outline_size = 2
+TextStatusBarText/font_sizes/font_size = 14
+TextStatusBarTextSmall/base_type = &"Label"
+TextStatusBarTextSmall/colors/font_color = Color(1, 1, 1, 1)
+TextStatusBarTextSmall/colors/font_outline_color = Color(0, 0, 0, 1)
+TextStatusBarTextSmall/constants/outline_size = 2
+TextStatusBarTextSmall/font_sizes/font_size = 12
+WorldMapTextFont/base_type = &"Label"
+WorldMapTextFont/colors/font_color = Color(1, 0.9294, 0.7607, 1)
+WorldMapTextFont/colors/font_outline_color = Color(0, 0, 0, 1)
+WorldMapTextFont/colors/font_shadow_color = Color(0, 0, 0, 1)
+WorldMapTextFont/constants/outline_size = 2
+WorldMapTextFont/constants/shadow_offset_x = 1
+WorldMapTextFont/constants/shadow_offset_y = 1
+WorldMapTextFont/font_sizes/font_size = 102
+WowSystemFont/base_type = &"Label"
+WowSystemFont/colors/font_color = Color(1, 1, 0, 1)
+WowSystemFont/colors/font_shadow_color = Color(0, 0, 0, 1)
+WowSystemFont/constants/shadow_offset_x = 1
+WowSystemFont/constants/shadow_offset_y = 1
+WowSystemFont/font_sizes/font_size = 15
+ZoneTextFont/base_type = &"Label"
+ZoneTextFont/colors/font_color = Color(1, 0.9294, 0.7607, 1)
+ZoneTextFont/colors/font_outline_color = Color(0, 0, 0, 1)
+ZoneTextFont/colors/font_shadow_color = Color(0, 0, 0, 1)
+ZoneTextFont/constants/outline_size = 2
+ZoneTextFont/constants/shadow_offset_x = 1
+ZoneTextFont/constants/shadow_offset_y = 1
+ZoneTextFont/font_sizes/font_size = 102
+metadata/wow_fonts = {
+"ChatFontNormal": "Fonts\\ARIALN.TTF",
+"CombatLogFont": "Fonts\\FRIZQT__.TTF",
+"CombatTextFont": "Fonts\\FRIZQT__.TTF",
+"DialogButtonHighlightText": "Fonts\\FRIZQT__.TTF",
+"DialogButtonNormalText": "Fonts\\FRIZQT__.TTF",
+"ErrorFont": "Fonts\\FRIZQT__.TTF",
+"GameFontBlack": "Fonts\\FRIZQT__.TTF",
+"GameFontDarkGraySmall": "Fonts\\FRIZQT__.TTF",
+"GameFontDisable": "Fonts\\FRIZQT__.TTF",
+"GameFontDisableLarge": "Fonts\\FRIZQT__.TTF",
+"GameFontDisableSmall": "Fonts\\FRIZQT__.TTF",
+"GameFontGreen": "Fonts\\FRIZQT__.TTF",
+"GameFontGreenLarge": "Fonts\\FRIZQT__.TTF",
+"GameFontGreenSmall": "Fonts\\FRIZQT__.TTF",
+"GameFontHighlight": "Fonts\\FRIZQT__.TTF",
+"GameFontHighlightLarge": "Fonts\\FRIZQT__.TTF",
+"GameFontHighlightSmall": "Fonts\\FRIZQT__.TTF",
+"GameFontHighlightSmallOutline": "Fonts\\FRIZQT__.TTF",
+"GameFontNormal": "Fonts\\FRIZQT__.TTF",
+"GameFontNormalHuge": "Fonts\\FRIZQT__.TTF",
+"GameFontNormalLarge": "Fonts\\FRIZQT__.TTF",
+"GameFontNormalSmall": "Fonts\\FRIZQT__.TTF",
+"GameFontRed": "Fonts\\FRIZQT__.TTF",
+"GameFontRedLarge": "Fonts\\FRIZQT__.TTF",
+"GameFontRedSmall": "Fonts\\FRIZQT__.TTF",
+"GameFontWhite": "Fonts\\FRIZQT__.TTF",
+"GameTooltipHeaderText": "Fonts\\FRIZQT__.TTF",
+"GameTooltipText": "Fonts\\FRIZQT__.TTF",
+"GameTooltipTextSmall": "Fonts\\FRIZQT__.TTF",
+"GlueEditBoxFont": "Fonts\\ARIALN.TTF",
+"GlueFontBlack": "Fonts\\FRIZQT__.TTF",
+"GlueFontCharacterCreate": "Fonts\\FRIZQT__.TTF",
+"GlueFontDisable": "Fonts\\FRIZQT__.TTF",
+"GlueFontDisableHuge": "Fonts\\FRIZQT__.TTF",
+"GlueFontDisableLarge": "Fonts\\FRIZQT__.TTF",
+"GlueFontDisableSmall": "Fonts\\FRIZQT__.TTF",
+"GlueFontGreen": "Fonts\\FRIZQT__.TTF",
+"GlueFontGreenLarge": "Fonts\\FRIZQT__.TTF",
+"GlueFontGreenSmall": "Fonts\\FRIZQT__.TTF",
+"GlueFontHighlight": "Fonts\\FRIZQT__.TTF",
+"GlueFontHighlightHuge": "Fonts\\FRIZQT__.TTF",
+"GlueFontHighlightLarge": "Fonts\\FRIZQT__.TTF",
+"GlueFontHighlightSmall": "Fonts\\FRIZQT__.TTF",
+"GlueFontLightYellowSmall": "Fonts\\FRIZQT__.TTF",
+"GlueFontNormal": "Fonts\\FRIZQT__.TTF",
+"GlueFontNormalHuge": "Fonts\\FRIZQT__.TTF",
+"GlueFontNormalLarge": "Fonts\\FRIZQT__.TTF",
+"GlueFontNormalSmall": "Fonts\\FRIZQT__.TTF",
+"GlueFontRed": "Fonts\\FRIZQT__.TTF",
+"GlueFontRedLarge": "Fonts\\FRIZQT__.TTF",
+"GlueFontRedSmall": "Fonts\\FRIZQT__.TTF",
+"GlueFontWhite": "Fonts\\FRIZQT__.TTF",
+"InvoiceTextFontNormal": "Fonts\\FRIZQT__.TTF",
+"InvoiceTextFontSmall": "Fonts\\FRIZQT__.TTF",
+"ItemTextFontNormal": "Fonts\\MORPHEUS.TTF",
+"MailTextFontNormal": "Fonts\\MORPHEUS.TTF",
+"NumberFontNormal": "Fonts\\ARIALN.TTF",
+"NumberFontNormalHuge": "Fonts\\skurri.ttf",
+"NumberFontNormalLarge": "Fonts\\ARIALN.TTF",
+"NumberFontNormalSmall": "Fonts\\ARIALN.TTF",
+"NumberFontNormalSmallGray": "Fonts\\ARIALN.TTF",
+"NumberFontNormalYellow": "Fonts\\ARIALN.TTF",
+"QuestFont": "Fonts\\FRIZQT__.TTF",
+"QuestFontHighlight": "Fonts\\FRIZQT__.TTF",
+"QuestFontNormalSmall": "Fonts\\FRIZQT__.TTF",
+"QuestTitleFont": "Fonts\\MORPHEUS.ttf",
+"SubSpellFont": "Fonts\\FRIZQT__.TTF",
+"SubZoneTextFont": "Fonts\\FRIZQT__.TTF",
+"TOSFont": "Fonts\\FRIZQT__.TTF",
+"TextStatusBarText": "Fonts\\ARIALN.TTF",
+"TextStatusBarTextSmall": "Fonts\\ARIALN.TTF",
+"WorldMapTextFont": "Fonts\\FRIZQT__.TTF",
+"WowSystemFont": "Fonts\\FRIZQT__.TTF",
+"ZoneTextFont": "Fonts\\FRIZQT__.TTF"
+}

@@ -1,12 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ch0k6s8un6ufx"]
 
-[node name="Nameplate" type="Label3D"]
+[node name="Nameplate" type="Label3D" unique_id=1841747809]
 visibility_range_end = 40.0
-pixel_size = 0.001
+pixel_size = 0.0075
 billboard = 1
 double_sided = false
-fixed_size = true
 modulate = Color(1, 0.9, 0.55, 1)
 outline_modulate = Color(0.16, 0.16, 0.18, 1)
-font_size = 32
 outline_size = 8

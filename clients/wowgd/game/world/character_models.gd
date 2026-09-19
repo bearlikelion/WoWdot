@@ -2,6 +2,8 @@ class_name CharacterModels
 extends RefCounted
 
 enum Section { SKIN, FACE, FACIAL_HAIR, HAIR, UNDERWEAR }
+enum Option { SKIN, FACE, HAIR_STYLE, HAIR_COLOR, FACIAL_HAIR }
+enum EquipSlot { HEAD, SHOULDER, SHIRT, CHEST, WAIST, LEGS, FEET, WRIST, HANDS, TABARD }
 enum TextureSlot { BODY = 1, HAIR = 6 }
 
 const SKIN_ATLAS_SIZE: int = 256
@@ -15,11 +17,41 @@ const SKIN_REGIONS: Dictionary[String, Vector2i] = {
 # Bare hands, feet and legs, ears, and 1501 (no cloak), which also carries the neck and upper chest.
 const BARE_GEOSETS: Array[int] = [0, 401, 501, 702, 1301, 1501]
 const BAKED_TEXTURES: String = "Textures\\BakedNpcTextures\\"
+# Body geoset group an item's first GeosetGroup picks from, per equipment slot.
+const SLOT_GEOSET_GROUPS: Dictionary[EquipSlot, int] = {
+	EquipSlot.HANDS: 400, EquipSlot.FEET: 500, EquipSlot.CHEST: 800, EquipSlot.WRIST: 800,
+	EquipSlot.LEGS: 1300, EquipSlot.TABARD: 1200,
+}
+# Inventory slots (PLAYER_VISIBLE_ITEM order) that dress the body.
+const INVENTORY_SLOTS: Dictionary[int, EquipSlot] = {
+	0: EquipSlot.HEAD, 2: EquipSlot.SHOULDER, 3: EquipSlot.SHIRT, 4: EquipSlot.CHEST,
+	5: EquipSlot.WAIST, 6: EquipSlot.LEGS, 7: EquipSlot.FEET, 8: EquipSlot.WRIST,
+	9: EquipSlot.HANDS, 18: EquipSlot.TABARD,
+}
+const VISIBLE_ITEM_STRIDE: int = 12
+# Later slots paint over earlier ones on the body skin.
+const ITEM_DRAW_ORDER: Array[EquipSlot] = [
+	EquipSlot.SHIRT, EquipSlot.LEGS, EquipSlot.FEET, EquipSlot.CHEST, EquipSlot.WAIST,
+	EquipSlot.WRIST, EquipSlot.HANDS, EquipSlot.TABARD,
+]
+# ItemDisplayInfo texture column, its TextureComponents folder and its rectangle on the skin.
+const ITEM_REGIONS: Dictionary[String, Array] = {
+	"TextureArmUpper": ["ArmUpperTexture", Rect2i(0, 0, 128, 64)],
+	"TextureArmLower": ["ArmLowerTexture", Rect2i(0, 64, 128, 64)],
+	"TextureHand": ["HandTexture", Rect2i(0, 128, 128, 32)],
+	"TextureTorsoUpper": ["TorsoUpperTexture", Rect2i(128, 0, 128, 64)],
+	"TextureTorsoLower": ["TorsoLowerTexture", Rect2i(128, 64, 128, 32)],
+	"TextureLegUpper": ["LegUpperTexture", Rect2i(128, 96, 128, 64)],
+	"TextureLegLower": ["LegLowerTexture", Rect2i(128, 160, 128, 64)],
+	"TextureFoot": ["FootTexture", Rect2i(128, 224, 128, 32)],
+}
+const TEXTURE_COMPONENTS: String = "Item\\TextureComponents\\"
 
 var _loader: WowLoader
 var _sections: WowDBC
 var _hair_geosets: WowDBC
 var _facial_hair: WowDBC
+var _item_displays: WowDBC
 var _section_rows: Dictionary[int, Array] = {}
 var _skins: Dictionary[String, ImageTexture] = {}
 
@@ -29,6 +61,7 @@ func _init(loader: WowLoader) -> void:
 	_sections = WowDBC.open(loader.archive, "CharSections")
 	_hair_geosets = WowDBC.open(loader.archive, "CharHairGeosets")
 	_facial_hair = WowDBC.open(loader.archive, "CharacterFacialHairStyles")
+	_item_displays = WowDBC.open(loader.archive, "ItemDisplayInfo")
 
 
 # The look is race, gender, skin, face, hair_style, hair_color and facial_hair; "baked" names an
@@ -52,10 +85,21 @@ func instantiate(model_path: String, look: Dictionary) -> Node3D:
 	return _loader.load_m2(model_path, skins, _geosets(race, gender, look))
 
 
+# "pending" is true while item queries for the gear are still out; ask again on item_info_received.
 static func player_look(session: WowSession, guid: int) -> Dictionary:
 	var bytes_0: int = session.get_field(guid, "UNIT_FIELD_BYTES_0")
 	var player_bytes: int = session.get_field(guid, "PLAYER_BYTES")
 	var player_bytes_2: int = session.get_field(guid, "PLAYER_BYTES_2")
+	var equipment: PackedInt32Array = []
+	equipment.resize(EquipSlot.size())
+	var pending: bool = false
+	var items: PackedInt32Array = visible_items(session, guid)
+	for inventory_slot: int in INVENTORY_SLOTS:
+		if items[inventory_slot] == 0:
+			continue
+		var info: Dictionary = session.get_item_info(items[inventory_slot])
+		pending = pending or info.is_empty()
+		equipment[INVENTORY_SLOTS[inventory_slot]] = info.get("display_id", 0)
 	return {
 		"race": bytes_0 & 0xFF,
 		"gender": (bytes_0 >> 16) & 0xFF,
@@ -64,15 +108,73 @@ static func player_look(session: WowSession, guid: int) -> Dictionary:
 		"hair_style": (player_bytes >> 16) & 0xFF,
 		"hair_color": (player_bytes >> 24) & 0xFF,
 		"facial_hair": player_bytes_2 & 0xFF,
+		"equipment": equipment,
+		"pending": pending,
 	}
+
+
+# How many of an option character creation cycles through, given the look's other choices.
+func option_count(look: Dictionary, option: Option) -> int:
+	var race: int = look.get("race", 1)
+	var gender: int = look.get("gender", 0)
+	var found: Dictionary[int, bool] = {}
+	if option == Option.FACIAL_HAIR:
+		for row: int in _facial_hair.row_count():
+			if _facial_hair.get_uint(row, "RaceID") == race \
+			and _facial_hair.get_uint(row, "SexID") == gender:
+				found[_facial_hair.get_uint(row, "Variation")] = true
+		return found.size()
+	for row: int in _rows(race, gender):
+		# Flagged rows are NPC-only looks.
+		if _sections.get_uint(row, "Flags") != 0:
+			continue
+		var section: int = _sections.get_uint(row, "BaseSection")
+		var variation: int = _sections.get_uint(row, "VariationIndex")
+		var color: int = _sections.get_uint(row, "ColorIndex")
+		match option:
+			Option.SKIN:
+				if section == Section.SKIN:
+					found[color] = true
+			Option.FACE:
+				if section == Section.FACE and color == look.get("skin", 0):
+					found[variation] = true
+			Option.HAIR_STYLE:
+				if section == Section.HAIR:
+					found[variation] = true
+			Option.HAIR_COLOR:
+				if section == Section.HAIR and variation == look.get("hair_style", 0):
+					found[color] = true
+	return found.size()
+
+
+# The look of a character from SMSG_CHAR_ENUM, whose gear arrives as display ids.
+static func listed_look(character: Dictionary) -> Dictionary:
+	var displays: PackedInt32Array = character.get("equipment", PackedInt32Array())
+	var equipment: PackedInt32Array = []
+	equipment.resize(EquipSlot.size())
+	for inventory_slot: int in INVENTORY_SLOTS:
+		if inventory_slot < displays.size():
+			equipment[INVENTORY_SLOTS[inventory_slot]] = displays[inventory_slot]
+	var look: Dictionary = character.duplicate()
+	look["equipment"] = equipment
+	return look
+
+
+# Item entries per inventory slot, from the PLAYER_VISIBLE_ITEM_n_0 fields.
+static func visible_items(session: WowSession, guid: int) -> PackedInt32Array:
+	var first: int = session.field_index("PLAYER_VISIBLE_ITEM_1_0")
+	var items: PackedInt32Array = []
+	for slot: int in 19:
+		items.append(session.get_field(guid, first + slot * VISIBLE_ITEM_STRIDE))
+	return items
 
 
 func _skin(race: int, gender: int, look: Dictionary) -> ImageTexture:
 	var skin: int = look.get("skin", 0)
 	var hair_color: int = look.get("hair_color", 0)
-	var key: String = "%d_%d_%d_%d_%d_%d_%d" % [
+	var key: String = "%d_%d_%d_%d_%d_%d_%d_%s" % [
 		race, gender, skin, look.get("face", 0), look.get("hair_style", 0), hair_color,
-		look.get("facial_hair", 0),
+		look.get("facial_hair", 0), look.get("equipment", PackedInt32Array()),
 	]
 	if _skins.has(key):
 		return _skins[key]
@@ -101,9 +203,39 @@ func _skin(race: int, gender: int, look: Dictionary) -> ImageTexture:
 		overlay = overlay.duplicate()
 		overlay.clear_mipmaps()
 		base.blend_rect(overlay, Rect2i(Vector2i.ZERO, overlay.get_size()), region * scale)
+	_paint_equipment(base, gender, look.get("equipment", PackedInt32Array()), scale)
 	base.generate_mipmaps()
 	_skins[key] = ImageTexture.create_from_image(base)
 	return _skins[key]
+
+
+func _paint_equipment(skin: Image, gender: int, equipment: PackedInt32Array, scale: int) -> void:
+	for slot: EquipSlot in ITEM_DRAW_ORDER:
+		var row: int = _item_displays.find(equipment[slot]) if slot < equipment.size() else -1
+		if row < 0:
+			continue
+		for column: String in ITEM_REGIONS:
+			var texture_name: String = _item_displays.get_string(row, column)
+			if texture_name.is_empty():
+				continue
+			var region: Rect2i = ITEM_REGIONS[column][1]
+			var image: Image = _item_texture(ITEM_REGIONS[column][0], texture_name, gender)
+			if image == null:
+				continue
+			image = image.duplicate()
+			image.clear_mipmaps()
+			if image.get_size() != region.size * scale:
+				image.resize(region.size.x * scale, region.size.y * scale)
+			skin.blend_rect(image, Rect2i(Vector2i.ZERO, image.get_size()), region.position * scale)
+
+
+# Component textures come per gender (_M, _F) or shared (_U).
+func _item_texture(folder: String, texture_name: String, gender: int) -> Image:
+	var base: String = TEXTURE_COMPONENTS + folder + "\\" + texture_name
+	for suffix: String in ["_F" if gender == 1 else "_M", "_U"]:
+		if _loader.archive.has(base + suffix + ".blp"):
+			return _loader.load_image(base + suffix + ".blp")
+	return null
 
 
 func _region(path: String) -> Vector2i:
@@ -172,4 +304,24 @@ func _geosets(race: int, gender: int, look: Dictionary) -> PackedInt32Array:
 			)
 			break
 	geosets.append_array([100 + facial.x, 200 + facial.y, 300 + facial.z])
+	var equipment: PackedInt32Array = look.get("equipment", PackedInt32Array())
+	for slot: EquipSlot in SLOT_GEOSET_GROUPS:
+		if slot < equipment.size() and equipment[slot] != 0:
+			_equip_geoset(geosets, SLOT_GEOSET_GROUPS[slot], equipment[slot], slot)
 	return geosets
+
+
+# Swaps the group's current geoset for the item's; a tabard always shows its flap.
+func _equip_geoset(geosets: PackedInt32Array, group: int, display_id: int, slot: EquipSlot) -> void:
+	var row: int = _item_displays.find(display_id)
+	if row < 0:
+		return
+	var variant: int = _item_displays.get_uint(row, "GeosetGroup1")
+	if slot == EquipSlot.TABARD:
+		variant = maxi(variant, 1)
+	if variant == 0:
+		return
+	for i: int in range(geosets.size() - 1, -1, -1):
+		if geosets[i] / 100 == group / 100:
+			geosets.remove_at(i)
+	geosets.append(group + 1 + variant)

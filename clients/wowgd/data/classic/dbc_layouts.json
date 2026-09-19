@@ -1,9 +1,13 @@
 {
   "AreaTable": {
-    "ExploreFlag": 3,
     "ID": 0,
     "MapID": 1,
-    "ParentAreaNum": 2
+    "ParentAreaNum": 2,
+    "ExploreFlag": 3,
+    "Flags": 4,
+    "ExplorationLevel": 10,
+    "Name": 11,
+    "FactionGroup": 20
   },
   "CharHairGeosets": {
     "GeosetID": 4,
@@ -30,6 +34,22 @@
     "SexID": 1,
     "Variation": 2
   },
+  "ChrClasses": {
+    "ID": 0,
+    "Name": 5,
+    "Filename": 14
+  },
+  "ChrRaces": {
+    "ID": 0,
+    "Name": 17,
+    "MaleDisplayId": 4,
+    "FemaleDisplayId": 5,
+    "BaseLanguage": 8,
+    "ClientFileString": 15,
+    "FacialHairCustomizationMale": 26,
+    "FacialHairCustomizationFemale": 27,
+    "HairCustomization": 28
+  },
   "CreatureDisplayInfo": {
     "ExtraDisplayId": 3,
     "ID": 0,
@@ -40,10 +60,17 @@
     "Skin3": 8
   },
   "CreatureDisplayInfoExtra": {
-    "BakeName": 20,
+    "ID": 0,
+    "RaceID": 1,
+    "SexID": 2,
+    "SkinID": 3,
+    "FaceID": 4,
+    "HairStyleID": 5,
+    "HairColorID": 6,
+    "FacialHairID": 7,
+    "BakeName": 18,
     "EquipDisplay0": 8,
     "EquipDisplay1": 9,
-    "EquipDisplay10": 18,
     "EquipDisplay2": 10,
     "EquipDisplay3": 11,
     "EquipDisplay4": 12,
@@ -51,19 +78,15 @@
     "EquipDisplay6": 14,
     "EquipDisplay7": 15,
     "EquipDisplay8": 16,
-    "EquipDisplay9": 17,
-    "FaceID": 4,
-    "FacialHairID": 7,
-    "HairColorID": 6,
-    "HairStyleID": 5,
-    "ID": 0,
-    "RaceID": 1,
-    "SexID": 2,
-    "SkinID": 3
+    "EquipDisplay9": 17
   },
   "CreatureModelData": {
     "ID": 0,
     "ModelPath": 2
+  },
+  "CreatureType": {
+    "ID": 0,
+    "Name": 1
   },
   "Emotes": {
     "AnimID": 2,
@@ -104,7 +127,12 @@
     "Faction": 1,
     "FactionGroup": 3,
     "FriendGroup": 4,
-    "ID": 0
+    "ID": 0,
+    "Friend0": 10,
+    "Friend1": 11,
+    "Friend2": 12,
+    "Friend3": 13,
+    "Flags": 2
   },
   "GameObjectDisplayInfo": {
     "ID": 0,
@@ -155,9 +183,16 @@
   "LightParams": {
     "LightParamsID": 0
   },
+  "LoadingScreens": {
+    "ID": 0,
+    "Name": 1,
+    "FileName": 2
+  },
   "Map": {
     "ID": 0,
-    "InternalName": 1
+    "InternalName": 1,
+    "MapName": 4,
+    "LoadingScreenID": 38
   },
   "SkillLine": {
     "Category": 1,
@@ -169,28 +204,63 @@
     "SpellID": 2
   },
   "Spell": {
-    "Attributes": 5,
-    "AttributesEx": 6,
-    "CastingTimeIndex": 15,
-    "DispelType": 4,
-    "DurationIndex": 40,
-    "Effect0": 71,
-    "Effect1": 72,
-    "Effect2": 73,
-    "EffectBasePoints0": 80,
-    "EffectBasePoints1": 81,
-    "EffectBasePoints2": 82,
     "ID": 0,
-    "IconID": 117,
-    "ManaCost": 29,
-    "Name": 120,
-    "PowerType": 28,
-    "RangeIndex": 33,
-    "Rank": 129,
     "SchoolEnum": 1,
-    "SpellVisualID": 115,
+    "Category": 2,
+    "DispelType": 4,
+    "Mechanic": 5,
+    "Attributes": 6,
+    "AttributesEx": 7,
     "Targets": 13,
-    "Tooltip": 147
+    "CastingTimeIndex": 18,
+    "RecoveryTime": 19,
+    "CategoryRecoveryTime": 20,
+    "ProcChance": 25,
+    "ProcCharges": 26,
+    "DurationIndex": 30,
+    "PowerType": 31,
+    "ManaCost": 32,
+    "RangeIndex": 36,
+    "Effect0": 61,
+    "Effect1": 62,
+    "Effect2": 63,
+    "EffectDieSides0": 64,
+    "EffectDieSides1": 65,
+    "EffectDieSides2": 66,
+    "EffectBaseDice0": 67,
+    "EffectBaseDice1": 68,
+    "EffectBaseDice2": 69,
+    "EffectBasePoints0": 76,
+    "EffectBasePoints1": 77,
+    "EffectBasePoints2": 78,
+    "EffectRadiusIndex0": 88,
+    "EffectRadiusIndex1": 89,
+    "EffectRadiusIndex2": 90,
+    "EffectAura0": 91,
+    "EffectAura1": 92,
+    "EffectAura2": 93,
+    "EffectAmplitude0": 94,
+    "EffectAmplitude1": 95,
+    "EffectAmplitude2": 96,
+    "EffectChainTarget0": 100,
+    "EffectChainTarget1": 101,
+    "EffectChainTarget2": 102,
+    "SpellVisualID": 115,
+    "IconID": 117,
+    "Name": 120,
+    "Rank": 129,
+    "Description": 138,
+    "Tooltip": 147,
+    "StartRecoveryCategory": 157,
+    "StartRecoveryTime": 158
+  },
+  "SpellCastTimes": {
+    "ID": 0,
+    "Base": 1
+  },
+  "SpellDuration": {
+    "ID": 0,
+    "Base": 1
   },
   "SpellIcon": {
     "ID": 0,
@@ -200,9 +270,16 @@
     "ID": 0,
     "Name": 10
   },
+  "SpellRadius": {
+    "ID": 0,
+    "Radius": 1
+  },
   "SpellRange": {
+    "ID": 0,
+    "MinRange": 1,
     "MaxRange": 2,
-    "MinRange": 1
+    "Flags": 3,
+    "Name": 4
   },
   "SpellVisual": {
     "CastKit": 2,

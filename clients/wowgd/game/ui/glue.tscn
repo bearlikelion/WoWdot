@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://game/ui/glue.gd" id="1_glue"]
+[ext_resource type="Theme" path="res://game/ui/wow/fonts.tres" id="2_fonts"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/account_login.tscn" id="3_login"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/character_select.tscn" id="4_select"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/character_create.tscn" id="5_create"]
+[ext_resource type="PackedScene" path="res://game/ui/loading_screen.tscn" id="6_loading"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/realm_list.tscn" id="7_realms"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/glue_dialog.tscn" id="8_dialog"]
+
+[node name="Glue" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_fonts")
+script = ExtResource("1_glue")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GlueParent" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="AccountLogin" parent="GlueParent" instance=ExtResource("3_login")]
+unique_name_in_owner = true
+
+[node name="CharacterSelect" parent="GlueParent" instance=ExtResource("4_select")]
+unique_name_in_owner = true
+
+[node name="CharacterCreate" parent="GlueParent" instance=ExtResource("5_create")]
+unique_name_in_owner = true
+
+[node name="LoadingScreen" parent="GlueParent" instance=ExtResource("6_loading")]
+unique_name_in_owner = true
+visible = false
+
+[node name="RealmList" parent="GlueParent" instance=ExtResource("7_realms")]
+unique_name_in_owner = true
+
+[node name="GlueDialog" parent="GlueParent" instance=ExtResource("8_dialog")]
+unique_name_in_owner = true

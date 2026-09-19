@@ -119,8 +119,8 @@ bool sequence_keys(const M2AnimationTrack &track, size_t sequence, const std::ve
 	return r_count > 0;
 }
 
-// Rest opacity of a batch; particle emitter models hide their helper geometry this way.
-float batch_alpha(const M2Model &model, const M2Batch &batch) {
+// Rest colour and opacity of a batch; particle emitter models hide their helper geometry with the alpha.
+Color batch_tint(const M2Model &model, const M2Batch &batch) {
 	float alpha = 1.0f;
 	if (batch.transparencyIndex < model.textureWeightLookup.size()) {
 		const uint16_t weight = model.textureWeightLookup[batch.transparencyIndex];
@@ -128,10 +128,14 @@ float batch_alpha(const M2Model &model, const M2Batch &batch) {
 			alpha *= model.textureWeights[weight];
 		}
 	}
+	glm::vec3 rgb(1.0f);
 	if (batch.colorIndex < model.colorAlphas.size()) {
 		alpha *= model.colorAlphas[batch.colorIndex];
 	}
-	return alpha;
+	if (batch.colorIndex < model.colorRGBs.size()) {
+		rgb = model.colorRGBs[batch.colorIndex];
+	}
+	return Color(rgb.r, rgb.g, rgb.b, alpha);
 }
 
 Animation::InterpolationType interpolation(const M2AnimationTrack &track) {
@@ -195,10 +199,10 @@ String WowLoader::animation_name(uint32_t id, uint32_t variation) {
 }
 
 // The texture is an archive path or a ready Texture2D, such as a composited character skin.
-Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, float alpha) {
+Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint) {
 	const Ref<Texture2D> ready = texture;
 	const String texture_key = ready.is_valid() ? "#" + String::num_int64(ready->get_instance_id()) : String(texture).to_lower();
-	const std::string key = std::string(texture_key.utf8().get_data()) + "|" + std::to_string(blend_mode) + "|" + std::to_string(flags) + "|" + std::to_string(vertex_color) + "|" + std::to_string(wmo) + "|" + std::to_string(int(alpha * 255.0f));
+	const std::string key = std::string(texture_key.utf8().get_data()) + "|" + std::to_string(blend_mode) + "|" + std::to_string(flags) + "|" + std::to_string(vertex_color) + "|" + std::to_string(wmo) + "|" + std::to_string(tint.to_rgba32());
 	{
 		std::lock_guard<std::mutex> lock(cache_mutex);
 		auto it = materials.find(key);
@@ -248,8 +252,10 @@ Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t
 	if (vertex_color) {
 		mat->set_flag(BaseMaterial3D::FLAG_ALBEDO_FROM_VERTEX_COLOR, true);
 	}
-	if (alpha < 1.0f) {
-		mat->set_albedo(Color(1.0f, 1.0f, 1.0f, alpha));
+	if (tint != Color(1.0f, 1.0f, 1.0f, 1.0f)) {
+		mat->set_albedo(tint);
+	}
+	if (tint.a < 1.0f) {
 		if (mat->get_transparency() == BaseMaterial3D::TRANSPARENCY_DISABLED && mat->get_blend_mode() == BaseMaterial3D::BLEND_MODE_MIX) {
 			mat->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
 		}
@@ -312,8 +318,8 @@ Ref<ArrayMesh> WowLoader::get_m2_mesh(const String &path, const M2Data &data, co
 		if (!geosets.is_empty() && !geosets.has(batch.submeshId)) {
 			continue;
 		}
-		const float alpha = batch_alpha(model, batch);
-		if (alpha < 0.01f) {
+		const Color tint = batch_tint(model, batch);
+		if (tint.a < 0.01f) {
 			continue;
 		}
 		SurfaceBuilder s;
@@ -325,13 +331,13 @@ Ref<ArrayMesh> WowLoader::get_m2_mesh(const String &path, const M2Data &data, co
 		Variant texture = String();
 		if (batch.textureIndex < model.textureLookup.size() && model.textureLookup[batch.textureIndex] < model.textures.size()) {
 			const M2Texture &tex = model.textures[model.textureLookup[batch.textureIndex]];
-			texture = tex.type == 0 ? Variant(String(tex.filename.c_str())) : skins.get(int64_t(tex.type), String());
+			texture = tex.type == 0 ? Variant(String(tex.filename.c_str())) : skins.get(static_cast<int64_t>(tex.type), String());
 		}
 		const M2Material material = batch.materialIndex < model.materials.size() ? model.materials[batch.materialIndex] : M2Material{ 0, 0 };
 		const int surface = mesh->get_surface_count();
 		mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, s.arrays());
 		mesh->surface_set_name(surface, "geoset_" + String::num_int64(batch.submeshId));
-		Ref<StandardMaterial3D> mat = get_material(texture, material.blendMode, material.flags, false, false, alpha);
+		Ref<StandardMaterial3D> mat = get_material(texture, material.blendMode, material.flags, false, false, tint);
 		if (batch.materialLayer > 0) {
 			mat = mat->duplicate();
 			mat->set_render_priority(batch.materialLayer);
@@ -410,20 +416,20 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 		return Dictionary();
 	}
 	const M2Model &model = data->model;
-	Array textures;
+	Array texture_list;
 	for (const M2Texture &tex : model.textures) {
 		Dictionary t;
 		t["type"] = tex.type;
 		t["file"] = String(tex.filename.c_str());
-		textures.push_back(t);
+		texture_list.push_back(t);
 	}
 	Array batches;
 	for (const M2Batch &batch : model.batches) {
 		Dictionary b;
 		b["geoset"] = batch.submeshId;
 		b["texture_count"] = batch.textureCount;
-		b["texture"] = batch.textureIndex < model.textureLookup.size() ? int64_t(model.textureLookup[batch.textureIndex]) : int64_t(-1);
-		b["blend"] = batch.materialIndex < model.materials.size() ? int64_t(model.materials[batch.materialIndex].blendMode) : int64_t(-1);
+		b["texture"] = batch.textureIndex < model.textureLookup.size() ? static_cast<int64_t>(model.textureLookup[batch.textureIndex]) : static_cast<int64_t>(-1);
+		b["blend"] = batch.materialIndex < model.materials.size() ? static_cast<int64_t>(model.materials[batch.materialIndex].blendMode) : static_cast<int64_t>(-1);
 		batches.push_back(b);
 	}
 	PackedStringArray animations;
@@ -432,15 +438,33 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 	}
 	Dictionary info;
 	info["version"] = model.version;
-	info["bones"] = int64_t(model.bones.size());
+	info["bones"] = static_cast<int64_t>(model.bones.size());
 	PackedInt32Array bone_flags;
 	for (const M2Bone &bone : model.bones) {
 		bone_flags.push_back(bone.flags);
 	}
 	info["bone_flags"] = bone_flags;
-	info["textures"] = textures;
+	info["textures"] = texture_list;
 	info["batches"] = batches;
 	info["animations"] = animations;
+	Array cameras;
+	for (const M2Camera &camera : model.cameras) {
+		Dictionary c;
+		c["position"] = wow_to_godot(camera.positionBase);
+		c["target"] = wow_to_godot(camera.targetBase);
+		c["fov"] = camera.fov;
+		cameras.push_back(c);
+	}
+	info["cameras"] = cameras;
+	Array attachments;
+	for (const M2Attachment &attachment : model.attachments) {
+		Dictionary a;
+		a["id"] = attachment.id;
+		a["bone"] = attachment.bone;
+		a["position"] = wow_to_godot(attachment.position);
+		attachments.push_back(a);
+	}
+	info["attachments"] = attachments;
 	return info;
 }
 
@@ -567,7 +591,7 @@ Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 			}
 			const int surface = mesh->get_surface_count();
 			mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, s.arrays());
-			mesh->surface_set_material(surface, get_material(texture, blend, flags, vertex_colors, true, 1.0f));
+			mesh->surface_set_material(surface, get_material(texture, blend, flags, vertex_colors, true, Color(1.0f, 1.0f, 1.0f, 1.0f)));
 		}
 		MeshInstance3D *instance = memnew(MeshInstance3D);
 		instance->set_name(group.name.empty() ? "Group" + String::num_int64(g) : String(group.name.c_str()));
@@ -603,7 +627,7 @@ Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 	}
 	Array doodads;
 	for (int set_index : sets) {
-		if (size_t(set_index) >= model.doodadSets.size()) {
+		if (static_cast<size_t>(set_index) >= model.doodadSets.size()) {
 			continue;
 		}
 		const WMODoodadSet &set = model.doodadSets[set_index];

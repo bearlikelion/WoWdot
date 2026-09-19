@@ -1,6 +1,11 @@
 extends Node
 
 var session: WowSession = WowSession.new()
+var cooldowns: Cooldowns = Cooldowns.new(session, WowAssets.spells)
+
+
+func _ready() -> void:
+	KeyBindings.apply()
 
 
 func _process(_delta: float) -> void:

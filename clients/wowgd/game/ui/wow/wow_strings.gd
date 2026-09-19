@@ -1,0 +1,43 @@
+class_name WowStrings
+extends RefCounted
+
+# Game strings first; the login screens' own strings fill in the keys they lack.
+const STRING_FILES: PackedStringArray = [
+	"Interface\\FrameXML\\GlobalStrings.lua",
+	"Interface\\GlueXML\\GlueStrings.lua",
+]
+
+static var _strings: Dictionary[String, String] = {}
+
+
+# The stock interface's text, read from the archive's string files the first time it is asked.
+static func get_text(key: String, fallback: String = "") -> String:
+	if _strings.is_empty():
+		_load()
+	return _strings.get(key, fallback if not fallback.is_empty() else key)
+
+
+# Drops the |cAARRGGBB and |r colour escapes for text shown in a plain label.
+static func strip_colors(text: String) -> String:
+	return RegEx.create_from_string("\\|c[0-9a-fA-F]{8}|\\|r").sub(text, "", true)
+
+
+static func _load() -> void:
+	var line: RegEx = RegEx.create_from_string('(?m)^(\\w+)\\s*=\\s*"((?:[^"\\\\]|\\\\.)*)";')
+	for file: String in STRING_FILES:
+		var source: String = WowLoader.get_shared().archive.read(file).get_string_from_utf8()
+		for found: RegExMatch in line.search_all(source):
+			if not _strings.has(found.get_string(1)):
+				_strings[found.get_string(1)] = _unescape(found.get_string(2))
+
+
+# Lua escapes the strings use: \" and \n, and decimal bytes such as \32 for a trailing space.
+static func _unescape(text: String) -> String:
+	var decimal: RegEx = RegEx.create_from_string("\\\\(\\d{1,3})")
+	var out: String = ""
+	var at: int = 0
+	for found: RegExMatch in decimal.search_all(text):
+		out += text.substr(at, found.get_start() - at) + char(found.get_string(1).to_int())
+		at = found.get_end()
+	out += text.substr(at)
+	return out.replace('\\"', '"').replace("\\n", "\n")

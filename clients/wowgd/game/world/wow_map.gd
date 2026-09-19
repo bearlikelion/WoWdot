@@ -80,9 +80,34 @@ func tile_at(godot_position: Vector3) -> Vector2i:
 	return Vector2i(floori(32.0 - wow.y / TILE_SIZE), floori(32.0 - wow.x / TILE_SIZE))
 
 
+# The AreaTable id of the terrain chunk under the position, or 0 while its tile is not loaded.
+func area_id_at(godot_position: Vector3) -> int:
+	var tile: Vector2i = tile_at(godot_position)
+	if not _tiles.has(tile):
+		return 0
+	var wow: Vector3 = WowCoords.from_godot(godot_position)
+	var chunk_x: int = clampi(floori((32.0 - wow.y / TILE_SIZE - tile.x) * 16.0), 0, 15)
+	var chunk_y: int = clampi(floori((32.0 - wow.x / TILE_SIZE - tile.y) * 16.0), 0, 15)
+	var area_ids: PackedInt32Array = _tiles[tile].get_meta("area_ids", PackedInt32Array())
+	return area_ids[chunk_y * 16 + chunk_x] if area_ids.size() == 256 else 0
+
+
 # True once collision under the point exists; maps without terrain tiles are a single WMO.
 func is_ground_ready(godot_position: Vector3) -> bool:
 	return _existing.is_empty() or _tiles.has(tile_at(godot_position))
+
+
+# The share of the map's tiles around the point that have loaded, 1.0 when there are none to load.
+func load_progress(godot_position: Vector3) -> float:
+	var center: Vector2i = tile_at(godot_position)
+	var wanted: int = 0
+	var loaded: int = 0
+	for y: int in range(center.y - radius, center.y + radius + 1):
+		for x: int in range(center.x - radius, center.x + radius + 1):
+			if _existing.has(Vector2i(x, y)):
+				wanted += 1
+				loaded += int(_tiles.has(Vector2i(x, y)))
+	return float(loaded) / wanted if wanted > 0 else 1.0
 
 
 func is_idle() -> bool:

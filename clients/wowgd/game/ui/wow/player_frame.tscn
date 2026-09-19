@@ -1,0 +1,922 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/player_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\TargetingFrame\\UI-TargetingFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(24, 0, 232, 100)
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\CharacterFrame\\UI-Player-Status.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_3")
+region = Rect2(0, 0, 191, 68)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\TargetingFrame\\UI-TargetingFrame-AttackBackground.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\GroupFrame\\UI-Group-LeaderIcon.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\GroupFrame\\UI-Group-MasterLooter.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\CharacterFrame\\UI-StateIcon.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(0, 0, 32, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\CharacterFrame\\UI-Player-PlayTimeTired.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\CharacterFrame\\UI-CharacterFrame-GroupIndicator.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(68, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(24, 0, 44, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\TargetingFrame\\UI-SmallTargetingFrame.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\TargetingFrame\\UI-Player-AttackStatus.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(180, 0, 76, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-Debuff-Overlays.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(38, 0, 35, 33)
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\PetPaperDollFrame\\UI-PetHappiness.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_33")
+region = Rect2(0, 0, 24, 23)
+
+[node name="PlayerFrame" type="TextureButton"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = -19
+offset_top = 4
+offset_right = 213
+offset_bottom = 104
+grow_horizontal = 1
+grow_vertical = 1
+ignore_texture_size = true
+
+[node name="PlayerFrameBackground" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = 106
+offset_top = 22
+offset_right = 225
+offset_bottom = 63
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="PlayerPortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = 12
+offset_right = 106
+offset_bottom = 76
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Frame" type="Control" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 232
+offset_bottom = 100
+mouse_filter = 2
+
+[node name="Frame" type="Control" parent="Frame"]
+offset_left = 0
+offset_top = 0
+offset_right = 232
+offset_bottom = 100
+mouse_filter = 2
+
+[node name="PlayerFrameTexture" type="TextureRect" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 232
+offset_bottom = 100
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+flip_h = true
+
+[node name="PlayerName" type="Label" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 116
+offset_top = 26
+offset_right = 216
+offset_bottom = 36
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerLevelText" type="Label" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 53
+offset_top = 66
+offset_right = 53
+offset_bottom = 66
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerFrameHealthBarText" type="Label" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 166
+offset_top = 46
+offset_right = 166
+offset_bottom = 46
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"TextStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerFrameManaBarText" type="Label" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 166
+offset_top = 58
+offset_right = 166
+offset_bottom = 58
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"TextStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerStatusTexture" type="TextureRect" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 8
+offset_right = 225
+offset_bottom = 74
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="PlayerAttackBackground" type="TextureRect" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 37
+offset_top = 50
+offset_right = 69
+offset_bottom = 82
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="PlayerPVPIcon" type="TextureRect" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 20
+offset_right = 82
+offset_bottom = 84
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PlayerHitIndicator" type="Label" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 42
+offset_right = 73
+offset_bottom = 42
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalHuge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerLeaderIcon" type="TextureRect" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 10
+offset_right = 60
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="PlayerMasterIcon" type="TextureRect" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 80
+offset_top = 10
+offset_right = 96
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="PlayerRestIcon" type="TextureRect" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 37
+offset_top = 49
+offset_right = 68
+offset_bottom = 82
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="PlayerAttackIcon" type="TextureRect" parent="Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 38
+offset_top = 48
+offset_right = 70
+offset_bottom = 80
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="PlayerPVPIconHitArea" type="Control" parent="Frame"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 20
+offset_right = 57
+offset_bottom = 57
+visible = false
+mouse_filter = 0
+
+[node name="PlayerStatusGlow" type="Control" parent="Frame"]
+unique_name_in_owner = true
+offset_left = 37
+offset_top = 49
+offset_right = 69
+offset_bottom = 81
+visible = false
+mouse_filter = 2
+
+[node name="PlayerRestGlow" type="TextureRect" parent="Frame/PlayerStatusGlow"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="PlayerAttackGlow" type="TextureRect" parent="Frame/PlayerStatusGlow"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = -1
+offset_right = 33
+offset_bottom = 31
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+self_modulate = Color(1, 0, 0, 1)
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="PlayerPlayTime" type="Control" parent="Frame"]
+unique_name_in_owner = true
+offset_left = 228
+offset_top = 17
+offset_right = 260
+offset_bottom = 49
+visible = false
+mouse_filter = 0
+
+[node name="PlayerPlayTimeIcon" type="TextureRect" parent="Frame/PlayerPlayTime"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="PlayerFrameHealthBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 106
+offset_top = 41
+offset_right = 225
+offset_bottom = 53
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_15")
+nine_patch_stretch = true
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="PlayerFrameManaBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 106
+offset_top = 52
+offset_right = 225
+offset_bottom = 64
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_15")
+nine_patch_stretch = true
+tint_progress = Color(0, 0, 1, 1)
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="PlayerFrameDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 101
+offset_top = 50
+offset_right = 111
+offset_bottom = 60
+visible = false
+mouse_filter = 2
+
+[node name="PlayerFrameDropDownLeft" type="TextureRect" parent="PlayerFrameDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="PlayerFrameDropDownMiddle" type="TextureRect" parent="PlayerFrameDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PlayerFrameDropDownRight" type="TextureRect" parent="PlayerFrameDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="PlayerFrameDropDownText" type="Label" parent="PlayerFrameDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PlayerFrameDropDownButton" type="TextureButton" parent="PlayerFrameDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PlayerFrameDropDown/PlayerFrameDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PlayerFrameDropDown/PlayerFrameDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PlayerFrameDropDown/PlayerFrameDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PlayerFrameDropDown/PlayerFrameDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="PlayerFrameGroupIndicator" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 97
+offset_top = 4
+offset_right = 107
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+
+[node name="PlayerFrameGroupIndicatorLeft" type="TextureRect" parent="PlayerFrameGroupIndicator"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="PlayerFrameGroupIndicatorRight" type="TextureRect" parent="PlayerFrameGroupIndicator"]
+unique_name_in_owner = true
+offset_left = -14
+offset_top = 0
+offset_right = 10
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="PlayerFrameGroupIndicatorMiddle" type="TextureRect" parent="PlayerFrameGroupIndicator"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 0
+offset_right = -14
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="PlayerFrameGroupIndicatorText" type="Label" parent="PlayerFrameGroupIndicator"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 10
+offset_right = 20
+offset_bottom = 10
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetFrame" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 80
+offset_top = 60
+offset_right = 208
+offset_bottom = 113
+ignore_texture_size = true
+
+[node name="PetPortrait" type="TextureRect" parent="PetFrame"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 44
+offset_bottom = 43
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PetFrameDropDown" type="Control" parent="PetFrame"]
+unique_name_in_owner = true
+offset_left = 39
+offset_top = 20
+offset_right = 49
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+
+[node name="PetFrameDropDownLeft" type="TextureRect" parent="PetFrame/PetFrameDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="PetFrameDropDownMiddle" type="TextureRect" parent="PetFrame/PetFrameDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PetFrameDropDownRight" type="TextureRect" parent="PetFrame/PetFrameDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="PetFrameDropDownText" type="Label" parent="PetFrame/PetFrameDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PetFrameDropDownButton" type="TextureButton" parent="PetFrame/PetFrameDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PetFrame/PetFrameDropDown/PetFrameDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetFrame/PetFrameDropDown/PetFrameDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PetFrame/PetFrameDropDown/PetFrameDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PetFrame/PetFrameDropDown/PetFrameDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="Frame" type="Control" parent="PetFrame"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 53
+mouse_filter = 2
+
+[node name="Frame" type="Control" parent="PetFrame/Frame"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 53
+mouse_filter = 2
+
+[node name="PetFrameTexture" type="TextureRect" parent="PetFrame/Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 128
+offset_bottom = 66
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="PetName" type="Label" parent="PetFrame/Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 20
+offset_right = 50
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetHitIndicator" type="Label" parent="PetFrame/Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 27
+offset_right = 28
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalHuge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetFrameHealthBarText" type="Label" parent="PetFrame/Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 82
+offset_top = 27
+offset_right = 82
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"TextStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetFrameManaBarText" type="Label" parent="PetFrame/Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 82
+offset_top = 38
+offset_right = 82
+offset_bottom = 38
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"TextStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetAttackModeTexture" type="TextureRect" parent="PetFrame/Frame/Frame"]
+unique_name_in_owner = true
+offset_left = 6
+offset_top = 9
+offset_right = 82
+offset_bottom = 73
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="PetFrameHealthBar" type="TextureProgressBar" parent="PetFrame"]
+unique_name_in_owner = true
+offset_left = 47
+offset_top = 22
+offset_right = 117
+offset_bottom = 30
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_15")
+nine_patch_stretch = true
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="PetFrameManaBar" type="TextureProgressBar" parent="PetFrame"]
+unique_name_in_owner = true
+offset_left = 47
+offset_top = 29
+offset_right = 117
+offset_bottom = 37
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_15")
+nine_patch_stretch = true
+tint_progress = Color(0, 0, 1, 1)
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="PetFrameDebuff1" type="TextureButton" parent="PetFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 48
+offset_top = 42
+offset_right = 63
+offset_bottom = 57
+visible = false
+ignore_texture_size = true
+
+[node name="PetFrameDebuff1Icon" type="TextureRect" parent="PetFrame/PetFrameDebuff1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PetFrameDebuff1Border" type="TextureRect" parent="PetFrame/PetFrameDebuff1"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = -1
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PetFrameDebuff2" type="TextureButton" parent="PetFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 65
+offset_top = 42
+offset_right = 80
+offset_bottom = 57
+visible = false
+ignore_texture_size = true
+
+[node name="PetFrameDebuff2Icon" type="TextureRect" parent="PetFrame/PetFrameDebuff2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PetFrameDebuff2Border" type="TextureRect" parent="PetFrame/PetFrameDebuff2"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = -1
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PetFrameDebuff3" type="TextureButton" parent="PetFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 82
+offset_top = 42
+offset_right = 97
+offset_bottom = 57
+visible = false
+ignore_texture_size = true
+
+[node name="PetFrameDebuff3Icon" type="TextureRect" parent="PetFrame/PetFrameDebuff3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PetFrameDebuff3Border" type="TextureRect" parent="PetFrame/PetFrameDebuff3"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = -1
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PetFrameDebuff4" type="TextureButton" parent="PetFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 99
+offset_top = 42
+offset_right = 114
+offset_bottom = 57
+visible = false
+ignore_texture_size = true
+
+[node name="PetFrameDebuff4Icon" type="TextureRect" parent="PetFrame/PetFrameDebuff4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PetFrameDebuff4Border" type="TextureRect" parent="PetFrame/PetFrameDebuff4"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = -1
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PetFrameHappiness" type="Control" parent="PetFrame"]
+unique_name_in_owner = true
+offset_left = 121
+offset_top = 19
+offset_right = 145
+offset_bottom = 42
+mouse_filter = 0
+
+[node name="PetFrameHappinessTexture" type="TextureRect" parent="PetFrame/PetFrameHappiness"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 23
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1

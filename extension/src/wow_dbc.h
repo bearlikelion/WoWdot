@@ -26,7 +26,7 @@ public:
 
 	int row_count() const { return dbc.getRecordCount(); }
 	int field_count() const { return dbc.getFieldCount(); }
-	int find(int64_t id) const { return dbc.findRecordById(uint32_t(id)); }
+	int find(int64_t id) const { return dbc.findRecordById(static_cast<uint32_t>(id)); }
 	int64_t get_uint(int row, const Variant &col) const;
 	int64_t get_int(int row, const Variant &col) const;
 	double get_float(int row, const Variant &col) const;

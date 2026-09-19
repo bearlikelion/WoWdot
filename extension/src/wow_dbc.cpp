@@ -30,7 +30,7 @@ int WowDBC::column(const Variant &col) const {
 		return col;
 	}
 	const Variant index = columns.get(col, -1);
-	ERR_FAIL_COND_V_MSG(int(index) < 0, 0, "WowDBC: unknown column " + String(col));
+	ERR_FAIL_COND_V_MSG(static_cast<int>(index) < 0, 0, "WowDBC: unknown column " + String(col));
 	return index;
 }
 

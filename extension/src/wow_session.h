@@ -4,6 +4,7 @@
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/variant/packed_byte_array.hpp>
+#include <godot_cpp/variant/packed_int32_array.hpp>
 #include <godot_cpp/variant/packed_int64_array.hpp>
 #include <godot_cpp/variant/vector3.hpp>
 
@@ -45,6 +46,15 @@ public:
 		STATE_ENTERING_WORLD,
 		STATE_IN_WORLD,
 		STATE_FAILED,
+	};
+
+	// The five SMSG_ATTACKSWING_* refusals.
+	enum AttackError {
+		ATTACK_ERROR_NOT_IN_RANGE,
+		ATTACK_ERROR_BAD_FACING,
+		ATTACK_ERROR_NOT_STANDING,
+		ATTACK_ERROR_DEAD_TARGET,
+		ATTACK_ERROR_CANT_ATTACK,
 	};
 
 	// Vanilla numbering, which differs from the later expansions.
@@ -100,11 +110,16 @@ private:
 	uint32_t ping_sequence = 0;
 	uint64_t last_ping_msec = 0;
 	std::unordered_map<uint64_t, std::string> player_names;
-	std::unordered_map<uint32_t, std::string> creature_names;
+	std::unordered_map<uint32_t, Dictionary> creature_info;
 	std::unordered_set<uint64_t> player_queries;
 	std::unordered_map<uint32_t, std::vector<uint64_t>> creature_queries;
 	// Player chat carries only the sender guid, so lines wait here for the name query.
 	std::unordered_map<uint64_t, Array> chat_waiting;
+	std::unordered_map<uint32_t, Dictionary> item_info;
+	std::unordered_set<uint32_t> item_queries;
+	PackedInt32Array known_spells;
+	// SMSG_ACTION_BUTTONS order: action id in the low 24 bits, the type in the high byte.
+	PackedInt32Array action_buttons;
 
 	void set_state(State p_state, const String &p_message = String());
 	void retire_sockets();
@@ -115,6 +130,7 @@ private:
 	void handle_movement_relay(wowee::network::Packet &packet);
 	void handle_compressed_moves(wowee::network::Packet &packet);
 	void handle_chat(wowee::network::Packet &packet);
+	bool handle_combat_packet(uint16_t op, wowee::network::Packet &packet);
 	void query_player_name(uint64_t guid);
 	bool inflate(wowee::network::Packet &packet, std::vector<uint8_t> &r_data);
 	const WorldObject *find(int64_t guid) const;
@@ -127,21 +143,33 @@ public:
 	~WowSession() override;
 
 	void login(const String &host, int port, const String &p_username, const String &p_password);
+	void request_realms();
 	void select_realm(int index);
 	void request_characters();
 	void create_character(const Dictionary &character);
+	void delete_character(int64_t guid);
 	void enter_world(int64_t guid);
 	void logout();
 	void send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec = 0, const Vector3 &jump_velocity = Vector3());
 	void send_packet(const String &opcode, const PackedByteArray &payload);
 	void send_chat(ChatType type, const String &message, const String &target = String());
+	void cast_spell(int spell_id, int64_t target_guid = 0);
+	void cancel_cast(int spell_id);
+	void attack(int64_t target_guid);
+	void stop_attack();
+	void cancel_aura(int spell_id);
+	PackedInt32Array get_known_spells() const { return known_spells; }
+	PackedInt32Array get_action_buttons() const { return action_buttons; }
+	void set_action_button(int slot, int packed);
 	void set_selection(int64_t guid);
 	String get_object_name(int64_t guid);
+	Dictionary get_item_info(int entry);
+	Dictionary get_creature_info(int64_t guid);
 	void disconnect();
 	void poll();
 
 	State get_state() const { return state; }
-	int64_t get_player_guid() const { return int64_t(player_guid); }
+	int64_t get_player_guid() const { return static_cast<int64_t>(player_guid); }
 	PackedInt64Array get_object_guids() const;
 	bool has_object(int64_t guid) const { return find(guid) != nullptr; }
 	int get_object_type(int64_t guid) const;
@@ -156,3 +184,4 @@ public:
 
 VARIANT_ENUM_CAST(WowSession::State);
 VARIANT_ENUM_CAST(WowSession::ChatType);
+VARIANT_ENUM_CAST(WowSession::AttackError);
