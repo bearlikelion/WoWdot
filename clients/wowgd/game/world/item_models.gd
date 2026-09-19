@@ -58,6 +58,8 @@ func _mount(
 		return
 	var skins: Dictionary = {}
 	var texture: String = _displays.get_string(row, side + "ModelTexture")
+	if texture.is_empty():
+		texture = _displays.get_string(row, "LeftModelTexture")
 	if not texture.is_empty():
 		skins[ITEM_SKIN] = COMPONENTS + folder + texture + ".blp"
 	var item: Node3D = _loader.load_m2(_path(row, side, folder, suffix), skins)
@@ -80,6 +82,10 @@ func _exists(row: int, side: String, folder: String, suffix: String = "") -> boo
 # ItemDisplayInfo names the .mdx the model shipped as; the archive holds it as .m2.
 func _path(row: int, side: String, folder: String, suffix: String) -> String:
 	var file: String = _displays.get_string(row, side + "Model")
+	# Most shoulders list only the left pad; the right one is its RShoulder twin.
+	var left: String = _displays.get_string(row, "LeftModel")
+	if file.is_empty() and side == "Right" and left.to_lower().begins_with("lshoulder"):
+		file = "R" + left.substr(1)
 	if file.is_empty():
 		return ""
 	return COMPONENTS + folder + file.get_basename() + suffix + ".m2"

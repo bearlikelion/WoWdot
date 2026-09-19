@@ -181,7 +181,9 @@
     "TextureLegLower": 20,
     "TextureLegUpper": 19,
     "TextureTorsoLower": 18,
-    "TextureTorsoUpper": 17
+    "TextureTorsoUpper": 17,
+    "HelmetGeosetVis0": 12,
+    "HelmetGeosetVis1": 13
   },
   "Light": {
     "ID": 0,
@@ -454,5 +456,13 @@
     "TextureHeight": 10,
     "OffsetX": 11,
     "OffsetY": 12
+  },
+  "HelmetGeosetVisData": {
+    "ID": 0,
+    "Hair": 1,
+    "Facial1": 2,
+    "Facial2": 3,
+    "Facial3": 4,
+    "Ears": 5
   }
 }

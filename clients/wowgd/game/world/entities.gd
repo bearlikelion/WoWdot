@@ -78,6 +78,8 @@ func _on_object_created(guid: int, type_id: int) -> void:
 	match type_id:
 		ObjectType.UNIT:
 			node = WowAssets.creatures.instantiate(display)
+			if node:
+				_arm(guid, node, display)
 		ObjectType.PLAYER:
 			var look: Dictionary = CharacterModels.player_look(session, guid)
 			_worn[guid] = CharacterModels.visible_items(session, guid)
@@ -169,6 +171,16 @@ func pick(from: Vector3, direction: Vector3) -> int:
 			nearest = from.distance_to(hit)
 			picked = guid
 	return picked
+
+
+# NPCs carry their weapons as the item displays in UNIT_VIRTUAL_ITEM_SLOT_DISPLAY.
+func _arm(guid: int, node: Node3D, display: int) -> void:
+	var session: WowSession = WowClient.session
+	var first: int = session.field_index("UNIT_VIRTUAL_ITEM_SLOT_DISPLAY")
+	var model_path: String = WowAssets.creatures.model_path(display)
+	var items: ItemModels = WowAssets.characters.item_models
+	items.attach(node, model_path, ItemModels.Slot.MAIN_HAND, session.get_field(guid, first))
+	items.attach(node, model_path, ItemModels.Slot.OFF_HAND, session.get_field(guid, first + 1))
 
 
 func _on_name_received(guid: int, _unit_name: String) -> void:

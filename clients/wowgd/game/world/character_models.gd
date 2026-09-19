@@ -5,7 +5,7 @@ enum Section { SKIN, FACE, FACIAL_HAIR, HAIR, UNDERWEAR }
 enum Option { SKIN, FACE, HAIR_STYLE, HAIR_COLOR, FACIAL_HAIR }
 enum EquipSlot { HEAD, SHOULDER, SHIRT, CHEST, WAIST, LEGS, FEET, WRIST, HANDS, TABARD }
 # FUR is the skin's second texture, which tauren wear on their manes, beards and body tufts.
-enum TextureSlot { BODY = 1, HAIR = 6, FUR = 8 }
+enum TextureSlot { BODY = 1, CAPE = 2, HAIR = 6, FUR = 8 }
 
 const SKIN_ATLAS_SIZE: int = 256
 # Where each overlay lands on the 256x256 body skin, matched by a word in its file name.
@@ -32,6 +32,10 @@ const INVENTORY_SLOTS: Dictionary[int, EquipSlot] = {
 	9: EquipSlot.HANDS, 18: EquipSlot.TABARD,
 }
 const VISIBLE_ITEM_STRIDE: int = 12
+# PLAYER_VISIBLE_ITEM slots of the main and off hand, and of the cloak.
+const WEAPON_SLOTS: Array[int] = [15, 16]
+const BACK_SLOT: int = 14
+const CAPES: String = "Item\\ObjectComponents\\Cape\\"
 # Later slots paint over earlier ones on the body skin.
 const ITEM_DRAW_ORDER: Array[EquipSlot] = [
 	EquipSlot.SHIRT, EquipSlot.LEGS, EquipSlot.FEET, EquipSlot.CHEST, EquipSlot.WAIST,
@@ -49,12 +53,19 @@ const ITEM_REGIONS: Dictionary[String, Array] = {
 	"TextureFoot": ["FootTexture", Rect2i(128, 224, 128, 32)],
 }
 const TEXTURE_COMPONENTS: String = "Item\\TextureComponents\\"
+# HelmetGeosetVisData columns, each a mask of the races whose geoset group the helmet hides.
+const HELMET_HIDES: Dictionary[String, int] = {
+	"Hair": 0, "Facial1": 100, "Facial2": 200, "Facial3": 300, "Ears": 700,
+}
+
+var item_models: ItemModels
 
 var _loader: WowLoader
 var _sections: WowDBC
 var _hair_geosets: WowDBC
 var _facial_hair: WowDBC
 var _item_displays: WowDBC
+var _helmet_vis: WowDBC
 var _section_rows: Dictionary[int, Array] = {}
 var _skins: Dictionary[String, ImageTexture] = {}
 
@@ -65,6 +76,8 @@ func _init(loader: WowLoader) -> void:
 	_hair_geosets = WowDBC.open(loader.archive, "CharHairGeosets")
 	_facial_hair = WowDBC.open(loader.archive, "CharacterFacialHairStyles")
 	_item_displays = WowDBC.open(loader.archive, "ItemDisplayInfo")
+	_helmet_vis = WowDBC.open(loader.archive, "HelmetGeosetVisData")
+	item_models = ItemModels.new(loader)
 
 
 # The look is race, gender, skin, face, hair_style, hair_color and facial_hair; "baked" names an
@@ -92,7 +105,14 @@ func instantiate(model_path: String, look: Dictionary) -> Node3D:
 	)
 	if skin_textures.size() > 1:
 		skins[TextureSlot.FUR] = skin_textures[1]
-	return _loader.load_m2(model_path, skins, _geosets(race, gender, look))
+	var cape: int = _item_displays.find(look.get("cape", 0)) if look.get("cape", 0) != 0 else -1
+	if cape >= 0:
+		var cape_texture: String = _item_displays.get_string(cape, "LeftModelTexture")
+		skins[TextureSlot.CAPE] = CAPES + cape_texture + ".blp"
+	var model: Node3D = _loader.load_m2(model_path, skins, _geosets(race, gender, look))
+	if model:
+		_attach_items(model, model_path, look)
+	return model
 
 
 # "pending" is true while item queries for the gear are still out; ask again on item_info_received.
@@ -110,6 +130,15 @@ static func player_look(session: WowSession, guid: int) -> Dictionary:
 		var info: Dictionary = session.get_item_info(items[inventory_slot])
 		pending = pending or info.is_empty()
 		equipment[INVENTORY_SLOTS[inventory_slot]] = info.get("display_id", 0)
+	var weapons: PackedInt32Array = []
+	for inventory_slot: int in WEAPON_SLOTS:
+		var entry: int = items[inventory_slot]
+		var info: Dictionary = session.get_item_info(entry) if entry != 0 else {}
+		pending = pending or (entry != 0 and info.is_empty())
+		weapons.append(info.get("display_id", 0))
+	var cloak: int = items[BACK_SLOT]
+	var cloak_info: Dictionary = session.get_item_info(cloak) if cloak != 0 else {}
+	pending = pending or (cloak != 0 and cloak_info.is_empty())
 	return {
 		"race": bytes_0 & 0xFF,
 		"gender": (bytes_0 >> 16) & 0xFF,
@@ -119,6 +148,8 @@ static func player_look(session: WowSession, guid: int) -> Dictionary:
 		"hair_color": (player_bytes >> 24) & 0xFF,
 		"facial_hair": player_bytes_2 & 0xFF,
 		"equipment": equipment,
+		"weapons": weapons,
+		"cape": cloak_info.get("display_id", 0),
 		"pending": pending,
 	}
 
@@ -165,8 +196,13 @@ static func listed_look(character: Dictionary) -> Dictionary:
 	for inventory_slot: int in INVENTORY_SLOTS:
 		if inventory_slot < displays.size():
 			equipment[INVENTORY_SLOTS[inventory_slot]] = displays[inventory_slot]
+	var weapons: PackedInt32Array = []
+	for inventory_slot: int in WEAPON_SLOTS:
+		weapons.append(displays[inventory_slot] if inventory_slot < displays.size() else 0)
 	var look: Dictionary = character.duplicate()
 	look["equipment"] = equipment
+	look["weapons"] = weapons
+	look["cape"] = displays[BACK_SLOT] if BACK_SLOT < displays.size() else 0
 	return look
 
 
@@ -219,6 +255,22 @@ func _skin(race: int, gender: int, look: Dictionary) -> ImageTexture:
 	base.generate_mipmaps()
 	_skins[key] = ImageTexture.create_from_image(base)
 	return _skins[key]
+
+
+# Helmet, shoulders and weapons are models of their own, hung on the body's attachment points.
+func _attach_items(model: Node3D, model_path: String, look: Dictionary) -> void:
+	var race: int = look.get("race", 1)
+	var gender: int = look.get("gender", 0)
+	var equipment: PackedInt32Array = look.get("equipment", PackedInt32Array())
+	if equipment.size() > EquipSlot.SHOULDER:
+		var helmet: int = equipment[EquipSlot.HEAD]
+		item_models.attach(model, model_path, ItemModels.Slot.HEAD, helmet, race, gender)
+		var shoulders: int = equipment[EquipSlot.SHOULDER]
+		item_models.attach(model, model_path, ItemModels.Slot.SHOULDERS, shoulders)
+	var weapons: PackedInt32Array = look.get("weapons", PackedInt32Array())
+	if weapons.size() == WEAPON_SLOTS.size():
+		item_models.attach(model, model_path, ItemModels.Slot.MAIN_HAND, weapons[0])
+		item_models.attach(model, model_path, ItemModels.Slot.OFF_HAND, weapons[1])
 
 
 func _paint_equipment(skin: Image, gender: int, equipment: PackedInt32Array, scale: int) -> void:
@@ -321,18 +373,42 @@ func _geosets(race: int, gender: int, look: Dictionary) -> PackedInt32Array:
 	var equipment: PackedInt32Array = look.get("equipment", PackedInt32Array())
 	for slot: EquipSlot in SLOT_GEOSET_GROUPS:
 		if slot < equipment.size() and equipment[slot] != 0:
-			_equip_geoset(geosets, SLOT_GEOSET_GROUPS[slot], equipment[slot], slot)
+			var least: int = 1 if slot == EquipSlot.TABARD else 0
+			_equip_geoset(geosets, SLOT_GEOSET_GROUPS[slot], equipment[slot], least)
+	if look.get("cape", 0) != 0:
+		_equip_geoset(geosets, 1500, look["cape"], 1)
+	_hide_under_helmet(geosets, race, gender, equipment)
 	return geosets
 
 
-# Swaps the group's current geoset for the item's; a tabard always shows its flap.
-func _equip_geoset(geosets: PackedInt32Array, group: int, display_id: int, slot: EquipSlot) -> void:
+# A helmet swaps the groups it covers for their bare geoset: bald, beardless, earless.
+func _hide_under_helmet(
+	geosets: PackedInt32Array, race: int, gender: int, equipment: PackedInt32Array,
+) -> void:
+	if equipment.size() <= EquipSlot.HEAD or equipment[EquipSlot.HEAD] == 0:
+		return
+	var item: int = _item_displays.find(equipment[EquipSlot.HEAD])
+	var vis_column: String = "HelmetGeosetVis%d" % gender
+	var vis_id: int = _item_displays.get_uint(item, vis_column) if item >= 0 else 0
+	var vis: int = _helmet_vis.find(vis_id) if vis_id > 0 else -1
+	if vis < 0:
+		return
+	for column: String in HELMET_HIDES:
+		if (_helmet_vis.get_uint(vis, column) & (1 << race)) == 0:
+			continue
+		var group: int = HELMET_HIDES[column]
+		for i: int in range(geosets.size() - 1, -1, -1):
+			if geosets[i] != 0 and geosets[i] / 100 == group / 100:
+				geosets.remove_at(i)
+		geosets.append(group + 1)
+
+
+# Swaps the group's current geoset for the item's; tabards and cloaks show even at variant 0.
+func _equip_geoset(geosets: PackedInt32Array, group: int, display_id: int, least: int = 0) -> void:
 	var row: int = _item_displays.find(display_id)
 	if row < 0:
 		return
-	var variant: int = _item_displays.get_uint(row, "GeosetGroup1")
-	if slot == EquipSlot.TABARD:
-		variant = maxi(variant, 1)
+	var variant: int = maxi(_item_displays.get_uint(row, "GeosetGroup1"), least)
 	if variant == 0:
 		return
 	for i: int in range(geosets.size() - 1, -1, -1):
