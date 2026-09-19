@@ -1209,6 +1209,41 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			emit_signal("character_login_failed", code);
 			return;
 		}
+		case LogicalOpcode::SMSG_TRANSFER_PENDING: {
+			emit_signal("transfer_pending", static_cast<int>(packet.readUInt32()));
+			return;
+		}
+		case LogicalOpcode::SMSG_TRANSFER_ABORTED: {
+			emit_signal("transfer_aborted", packet.getSize() > 0 ? packet.readUInt8() : 0);
+			return;
+		}
+		// A far teleport: the old map's objects go away and the server waits for the worldport ack.
+		case LogicalOpcode::SMSG_NEW_WORLD: {
+			const uint32_t map_id = packet.readUInt32();
+			const float x = packet.readFloat();
+			const float y = packet.readFloat();
+			const float z = packet.readFloat();
+			const float orientation = packet.readFloat();
+			PackedInt64Array destroyed;
+			for (auto it = objects.begin(); it != objects.end();) {
+				if (it->first == player_guid) {
+					it->second.position = wow_vector(x, y, z);
+					it->second.orientation = orientation;
+					++it;
+					continue;
+				}
+				destroyed.push_back(static_cast<int64_t>(it->first));
+				it = objects.erase(it);
+			}
+			if (!destroyed.is_empty()) {
+				emit_signal("objects_destroyed", destroyed);
+			}
+			player_path = Dictionary();
+			// ponytail: the ack goes out at once, where the stock client waits for its map to load.
+			world->send(network::Packet(game::wireOpcode(LogicalOpcode::MSG_MOVE_WORLDPORT_ACK)));
+			emit_signal("world_entered", map_id, wow_vector(x, y, z), orientation);
+			return;
+		}
 		case LogicalOpcode::SMSG_LOGIN_VERIFY_WORLD: {
 			game::LoginVerifyWorldData data;
 			if (!game::LoginVerifyWorldParser::parse(packet, data) || !data.isValid()) {
@@ -1738,6 +1773,8 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("object_updated", PropertyInfo(Variant::INT, "guid")));
 	ADD_SIGNAL(MethodInfo("object_moved", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::DICTIONARY, "movement")));
 	ADD_SIGNAL(MethodInfo("objects_destroyed", PropertyInfo(Variant::PACKED_INT64_ARRAY, "guids")));
+	ADD_SIGNAL(MethodInfo("transfer_pending", PropertyInfo(Variant::INT, "map_id")));
+	ADD_SIGNAL(MethodInfo("transfer_aborted", PropertyInfo(Variant::INT, "reason")));
 	ADD_SIGNAL(MethodInfo("chat_received", PropertyInfo(Variant::DICTIONARY, "line")));
 	ADD_SIGNAL(MethodInfo("spells_changed"));
 	ADD_SIGNAL(MethodInfo("action_buttons_changed"));

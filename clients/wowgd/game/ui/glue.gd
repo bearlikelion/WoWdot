@@ -114,6 +114,13 @@ func use_realmlist(realmlist: String) -> void:
 	_login.fill(realmlist, _settings.get_value(SETTINGS_SECTION, "account", ""))
 
 
+# Shown again over the world while the player zones to another map.
+func show_loading(map_id: int) -> void:
+	_loading.open(map_id)
+	_show_screen(Screen.LOADING)
+	show()
+
+
 func set_loading_progress(fraction: float) -> void:
 	_loading.set_progress(fraction)
 

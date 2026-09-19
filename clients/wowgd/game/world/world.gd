@@ -29,6 +29,10 @@ const FLAG_CHANGES: Dictionary[String, Player.MoveFlag] = {
 	"SMSG_MOVE_SET_HOVER": Player.MoveFlag.HOVER,
 	"SMSG_MOVE_UNSET_HOVER": Player.MoveFlag.HOVER,
 }
+const TRANSFER_ABORTS: Dictionary[int, String] = {
+	1: "TRANSFER_ABORT_MAX_PLAYERS", 2: "TRANSFER_ABORT_NOT_FOUND",
+	3: "TRANSFER_ABORT_TOO_MANY_INSTANCES", 5: "TRANSFER_ABORT_ZONE_IN_COMBAT",
+}
 const FLAGS_APPLIED: PackedStringArray = [
 	"SMSG_FORCE_MOVE_ROOT", "SMSG_MOVE_WATER_WALK", "SMSG_MOVE_FEATHER_FALL", "SMSG_MOVE_SET_HOVER",
 ]
@@ -74,6 +78,7 @@ func _ready() -> void:
 	WowClient.session.player_teleported.connect(_on_player_teleported)
 	WowClient.session.object_moved.connect(_on_object_moved)
 	WowClient.session.packet_received.connect(_on_packet_received)
+	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
 
 
 func _process(_delta: float) -> void:
@@ -213,6 +218,11 @@ func enter(map_id: int, wow_position: Vector3, orientation: float) -> void:
 		_on_object_created(guid, WowClient.session.get_object_type(guid))
 
 
+# Physics stops until the new map's ground is under the player again.
+func begin_transfer() -> void:
+	_player.active = false
+
+
 func load_progress() -> float:
 	return _map.load_progress(_player.global_position)
 
@@ -246,6 +256,10 @@ func _on_player_movement_changed(
 		fall_time_msec, WowCoords.from_godot(jump_velocity), _player.pitch(),
 		ack_counter, ack_tail,
 	)
+
+
+func _on_transfer_aborted(reason: int) -> void:
+	_hud.show_error(WowStrings.get_text(TRANSFER_ABORTS.get(reason, ""), "Transfer aborted"))
 
 
 # Server changes to the player's own movement, which the client applies and acknowledges.

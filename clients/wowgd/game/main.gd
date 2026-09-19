@@ -21,6 +21,7 @@ func _ready() -> void:
 	_read_command_line()
 	WowClient.session.world_entered.connect(_on_world_entered)
 	WowClient.session.state_changed.connect(_on_state_changed)
+	WowClient.session.transfer_pending.connect(_on_transfer_pending)
 	if not auto_realmlist.is_empty():
 		_glue.use_realmlist(auto_realmlist)
 	if not auto_account.is_empty():
@@ -69,6 +70,13 @@ func _on_state_changed(state: WowSession.State, _message: String) -> void:
 		world.queue_free()
 		world = null
 		_glue.show()
+
+
+func _on_transfer_pending(map_id: int) -> void:
+	if world == null:
+		return
+	world.begin_transfer()
+	_glue.show_loading(map_id)
 
 
 func _on_world_entered(map_id: int, position: Vector3, orientation: float) -> void:
