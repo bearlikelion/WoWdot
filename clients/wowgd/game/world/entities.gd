@@ -94,6 +94,7 @@ func _on_object_created(guid: int, type_id: int) -> void:
 	if type_id != ObjectType.GAMEOBJECT:
 		node.rotation.y = session.get_object_orientation(guid)
 		_add_nameplate(guid, node)
+		UnitVoice.attach(node, guid, display)
 		_on_object_updated(guid)
 		if type_id == ObjectType.UNIT and NpcDialog.is_quest_giver(guid):
 			_quest_givers[guid] = true

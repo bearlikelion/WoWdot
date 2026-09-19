@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
 		var session: WowSession = WowClient.session
 		var race: int = session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_0") & 0xFF
 		_hud.show_area(area, race)
-		WowAssets.audio.play_zone_music(area)
+		WowAssets.audio.play_zone(area)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -279,6 +279,7 @@ func _dress_player() -> void:
 		model = mount
 	if model:
 		_player.set_model(model)
+		UnitVoice.attach(model, guid, display, _mount_display)
 
 
 # A mounted rider sits on the mount's first attachment, the saddle, playing Mount.
@@ -330,6 +331,7 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 		LootFrame.loot(guid)
 		return
 	if NpcDialog.interact(guid):
+		UnitVoice.speak(guid, UnitVoice.Speech.GREETING)
 		return
 	var player: int = session.get_player_guid()
 	var hostile: bool = UnitReaction.between(session, player, guid) == UnitReaction.Reaction.HOSTILE

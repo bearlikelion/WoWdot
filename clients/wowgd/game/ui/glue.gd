@@ -114,6 +114,7 @@ func _show_screen(screen: Screen) -> void:
 	if screen == Screen.LOADING:
 		WowAssets.audio.stop_music()
 	else:
+		WowAssets.audio.stop_ambience()
 		WowAssets.audio.play_music(MUSIC)
 
 

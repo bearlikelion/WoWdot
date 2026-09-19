@@ -21,6 +21,7 @@ static func set_base(model: Node3D, candidates: PackedStringArray) -> void:
 	if clip.is_empty():
 		return
 	model.set_meta(BASE_META, clip)
+	UnitVoice.set_gait(model, clip)
 	if Time.get_ticks_msec() >= int(model.get_meta(BUSY_META, 0)) and player.current_animation != clip:
 		player.play(clip, BLEND)
 
@@ -48,6 +49,7 @@ static func die(model: Node3D) -> void:
 		return
 	var clip: String = _first(player, DEATH)
 	model.set_meta(DEAD_META, true)
+	UnitVoice.set_gait(model, "")
 	if clip.is_empty():
 		return
 	player.play(clip, BLEND)

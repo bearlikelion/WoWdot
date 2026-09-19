@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/character_frame.tscn" id="2_character"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/taxi_frame.tscn" id="13_taxi"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/loot_frame.tscn" id="14_loot"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/world_map_frame.tscn" id="14_map"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/sound_options_frame.tscn" id="15_sound"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -87,6 +88,10 @@ unique_name_in_owner = true
 visible = false
 
 [node name="GameMenuFrame" parent="." instance=ExtResource("3_menu")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SoundOptionsFrame" parent="." instance=ExtResource("15_sound")]
 unique_name_in_owner = true
 visible = false
 

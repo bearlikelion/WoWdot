@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://game/world/unit_voice.gd" id="1"]
+
+[sub_resource type="AudioStreamPolyphonic" id="1"]
+polyphony = 8
+
+[node name="UnitVoice" type="AudioStreamPlayer3D"]
+stream = SubResource("1")
+unit_size = 8.0
+max_distance = 45.0
+bus = &"Effects"
+script = ExtResource("1")
+
+[node name="Steps" type="Timer" parent="."]
+unique_name_in_owner = true

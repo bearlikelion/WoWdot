@@ -10,10 +10,16 @@ script = ExtResource("1")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+bus = &"Music"
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Ambience"
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("1")
+bus = &"Effects"
 
 [node name="Silence" type="Timer" parent="."]
 unique_name_in_owner = true
