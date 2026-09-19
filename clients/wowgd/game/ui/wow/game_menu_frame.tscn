@@ -1,0 +1,583 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_12"]
+blend_mode = 1
+
+[node name="GameMenuFrame" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -123
+offset_right = 97.5
+offset_bottom = 123
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="Backdrop" type="Control" parent="."]
+script = ExtResource("1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="GameMenuFrameHeader" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = -30.5
+offset_top = -12
+offset_right = 225.5
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="."]
+offset_left = 97.5
+offset_top = 2
+offset_right = 97.5
+offset_bottom = 14
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameMenuButtonOptions" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 25.5
+offset_top = 26.5
+offset_right = 169.5
+offset_bottom = 47.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GameMenuButtonOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GameMenuButtonOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GameMenuButtonOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GameMenuButtonOptionsText" type="Label" parent="GameMenuButtonOptions"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Video Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GameMenuButtonOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="GameMenuButtonSoundOptions" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 25.5
+offset_top = 48.5
+offset_right = 169.5
+offset_bottom = 69.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GameMenuButtonSoundOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GameMenuButtonSoundOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GameMenuButtonSoundOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GameMenuButtonSoundOptionsText" type="Label" parent="GameMenuButtonSoundOptions"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Sound Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GameMenuButtonSoundOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="GameMenuButtonUIOptions" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 25.5
+offset_top = 70.5
+offset_right = 169.5
+offset_bottom = 91.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GameMenuButtonUIOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GameMenuButtonUIOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GameMenuButtonUIOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GameMenuButtonUIOptionsText" type="Label" parent="GameMenuButtonUIOptions"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Interface Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GameMenuButtonUIOptions"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="GameMenuButtonKeybindings" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 25.5
+offset_top = 92.5
+offset_right = 169.5
+offset_bottom = 113.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GameMenuButtonKeybindings"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GameMenuButtonKeybindings"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GameMenuButtonKeybindings"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GameMenuButtonKeybindingsText" type="Label" parent="GameMenuButtonKeybindings"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Key Bindings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GameMenuButtonKeybindings"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="GameMenuButtonMacros" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 25.5
+offset_top = 114.5
+offset_right = 169.5
+offset_bottom = 135.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GameMenuButtonMacros"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GameMenuButtonMacros"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GameMenuButtonMacros"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GameMenuButtonMacrosText" type="Label" parent="GameMenuButtonMacros"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Macros"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GameMenuButtonMacros"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="GameMenuButtonLogout" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 25.5
+offset_top = 136.5
+offset_right = 169.5
+offset_bottom = 157.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GameMenuButtonLogout"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GameMenuButtonLogout"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GameMenuButtonLogout"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GameMenuButtonLogoutText" type="Label" parent="GameMenuButtonLogout"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Logout"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GameMenuButtonLogout"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="GameMenuButtonQuit" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 25.5
+offset_top = 158.5
+offset_right = 169.5
+offset_bottom = 179.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GameMenuButtonQuit"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GameMenuButtonQuit"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GameMenuButtonQuit"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GameMenuButtonQuitText" type="Label" parent="GameMenuButtonQuit"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Exit Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GameMenuButtonQuit"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="GameMenuButtonContinue" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 25.5
+offset_top = 195.5
+offset_right = 169.5
+offset_bottom = 216.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GameMenuButtonContinue"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GameMenuButtonContinue"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GameMenuButtonContinue"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GameMenuButtonContinueText" type="Label" parent="GameMenuButtonContinue"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Return to Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GameMenuButtonContinue"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")

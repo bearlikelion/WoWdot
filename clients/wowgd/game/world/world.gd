@@ -12,7 +12,7 @@ const STAND_STATE_SIT: int = 1
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
 
 var _auto_attacking: bool = false
-# The hostile target before the current one, for TargetLastEnemy.
+# The enemy targeted before the current target, for TargetLastEnemy.
 var _last_hostile: int = 0
 var _worn: PackedInt32Array = []
 var _dressing: bool = false
@@ -183,7 +183,7 @@ func select(guid: int) -> void:
 	var session: WowSession = WowClient.session
 	if previous != 0 and previous != guid and session.has_object(previous) \
 	and UnitReaction.between(session, session.get_player_guid(), previous) \
-	== UnitReaction.Reaction.HOSTILE:
+	!= UnitReaction.Reaction.FRIENDLY:
 		_last_hostile = previous
 	WowClient.session.set_selection(guid)
 	_hud.show_target(guid)

@@ -1,0 +1,233 @@
+class_name PanelManager
+extends Control
+
+signal bag_opened(bag: int, is_open: bool)
+
+enum Area { LEFT, CENTER, FULL }
+
+# UIParent's left and center panel spots.
+const LEFT_POSITION: Vector2 = Vector2(0.0, 104.0)
+const CENTER_POSITION: Vector2 = Vector2(384.0, 104.0)
+# UIPanelWindows: where each panel opens and how readily it moves aside for another.
+const PANELS: Dictionary[StringName, Array] = {
+	&"CharacterFrame": [Area.LEFT, 2],
+	&"GameMenuFrame": [Area.CENTER, 0],
+}
+# updateContainerFrameAnchors: bags stack up from the bottom right, starting a new column when full.
+const BAG_OFFSET_Y: float = 70.0
+const BAG_SPACING: float = 3.0
+const BAG_WIDTH: float = 192.0
+
+var _left: Control
+var _center: Control
+var _full: Control
+# Open container frames in the order they opened, which is the order they stack.
+var _bag_stack: Array[ContainerFrame] = []
+
+@onready var _containers: Array[ContainerFrame] = [
+	%ContainerFrame1, %ContainerFrame2, %ContainerFrame3, %ContainerFrame4, %ContainerFrame5,
+]
+
+
+func _ready() -> void:
+	resized.connect(_place_bags)
+	for panel: StringName in PANELS:
+		var frame: Control = get_node("%" + panel)
+		frame.close_requested.connect(hide_panel.bind(frame))
+	for container: ContainerFrame in _containers:
+		container.closed.connect(_on_bag_closed.bind(container))
+
+
+func toggle_panel(frame: Control) -> void:
+	if frame.visible:
+		hide_panel(frame)
+	else:
+		show_panel(frame)
+
+
+# ShowUIPanel: centre panels replace everything, left panels share the two spots by push priority.
+func show_panel(frame: Control) -> void:
+	if frame.visible:
+		return
+	var info: Array = PANELS[frame.name]
+	var area: Area = info[0]
+	if _full and area != Area.FULL:
+		return
+	if _center and _area(_center) == Area.CENTER and area != Area.CENTER:
+		return
+	match area:
+		Area.FULL:
+			close_all_windows()
+			_full = frame
+			frame.show()
+			return
+		Area.CENTER:
+			close_windows()
+			close_all_bags()
+			_set_center(frame, false)
+			return
+	if _left == null:
+		_set_left(frame)
+	elif _center == null:
+		if _pushable(_left) == 0 and info[1] == 0:
+			_set_left(frame)
+		elif _pushable(_left) > info[1]:
+			_move_left_to_center()
+			_set_left(frame)
+		else:
+			_set_center(frame, true)
+	elif info[1] > _pushable(_center):
+		_move_center_to_left()
+		_set_center(frame, true)
+	else:
+		_set_left(frame)
+
+
+# HideUIPanel: a left panel closing lets a pushed-aside left panel return to the left spot.
+func hide_panel(frame: Control) -> void:
+	if not frame.visible:
+		return
+	if frame == _full:
+		_full = null
+	elif frame == _center:
+		_center = null
+	elif frame == _left:
+		if _center and _area(_center) == Area.LEFT:
+			frame.hide()
+			_left = null
+			_move_center_to_left()
+			return
+		_left = null
+	frame.hide()
+
+
+# CloseWindows: true when there was a panel to close.
+func close_windows() -> bool:
+	var found: bool = _left != null or _center != null or _full != null
+	for frame: Control in [_left, _center, _full]:
+		if frame:
+			hide_panel(frame)
+	return found
+
+
+func close_all_windows() -> bool:
+	var bags_open: bool = not _bag_stack.is_empty()
+	close_all_bags()
+	return close_windows() or bags_open
+
+
+func toggle_bag(bag: int) -> void:
+	var open: ContainerFrame = _open_frame(bag)
+	if open:
+		open.close()
+	elif Inventory.container_size(bag) > 0:
+		_open_bag(bag)
+
+
+# ToggleBackpack: with the backpack open it closes every bag, as the stock key does.
+func toggle_backpack() -> void:
+	if _open_frame(Inventory.BACKPACK):
+		close_all_bags()
+	else:
+		toggle_bag(Inventory.BACKPACK)
+
+
+# OpenAllBags: opens the backpack and every bag, or closes them all when they are all open.
+func open_all_bags() -> void:
+	var total: int = 1
+	for bag: int in range(1, Inventory.BAG_COUNT + 1):
+		total += int(Inventory.container_size(bag) > 0)
+	var open_count: int = _bag_stack.size()
+	close_all_bags()
+	if open_count >= total:
+		return
+	for bag: int in range(Inventory.BAG_COUNT + 1):
+		if Inventory.container_size(bag) > 0:
+			_open_bag(bag)
+
+
+func close_all_bags() -> void:
+	for container: ContainerFrame in _bag_stack.duplicate():
+		container.close()
+
+
+func refresh_bags() -> void:
+	for container: ContainerFrame in _bag_stack:
+		container.refresh()
+
+
+func _open_bag(bag: int) -> void:
+	for container: ContainerFrame in _containers:
+		if not container.visible:
+			container.open(bag)
+			_bag_stack.append(container)
+			_place_bags()
+			bag_opened.emit(bag, true)
+			return
+
+
+func _open_frame(bag: int) -> ContainerFrame:
+	for container: ContainerFrame in _bag_stack:
+		if container.bag == bag:
+			return container
+	return null
+
+
+func _place_bags() -> void:
+	var column: int = 0
+	var bottom: float = size.y - BAG_OFFSET_Y
+	for container: ContainerFrame in _bag_stack:
+		if bottom - container.size.y < 0.0 and bottom < size.y - BAG_OFFSET_Y:
+			column += 1
+			bottom = size.y - BAG_OFFSET_Y
+		container.position = Vector2(
+			size.x - BAG_WIDTH * (column + 1), bottom - container.size.y
+		)
+		bottom -= container.size.y + BAG_SPACING
+
+
+func _on_bag_closed(bag: int, container: ContainerFrame) -> void:
+	_bag_stack.erase(container)
+	_place_bags()
+	bag_opened.emit(bag, false)
+
+
+func _area(frame: Control) -> Area:
+	return PANELS[frame.name][0]
+
+
+func _pushable(frame: Control) -> int:
+	return PANELS[frame.name][1]
+
+
+func _set_left(frame: Control) -> void:
+	if _left:
+		_left.hide()
+	_left = frame
+	frame.position = LEFT_POSITION
+	frame.show()
+
+
+func _set_center(frame: Control, place: bool) -> void:
+	if _center:
+		_center.hide()
+	_center = frame
+	if place:
+		frame.position = CENTER_POSITION
+	frame.show()
+
+
+func _move_left_to_center() -> void:
+	if _center:
+		_center.hide()
+	_center = _left
+	_left = null
+	_center.position = CENTER_POSITION
+
+
+func _move_center_to_left() -> void:
+	if _left:
+		_left.hide()
+	_left = _center
+	_center = null
+	_left.position = LEFT_POSITION

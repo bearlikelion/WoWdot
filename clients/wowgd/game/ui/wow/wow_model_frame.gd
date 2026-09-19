@@ -4,6 +4,9 @@ extends TextureRect
 
 # The glue scenes mark where the character stands with attachment 0.
 const STAND_ATTACHMENT: int = 0
+# PlayerModel frames without a scene show the whole character, a little clear of the edges.
+const CHARACTER_FOV: float = 30.0
+const CHARACTER_MARGIN: float = 1.15
 
 @export var model_file: String = "":
 	set(value):
@@ -64,6 +67,26 @@ func show_character(model: Node3D) -> void:
 	if model:
 		_slot.add_child(model)
 		_turn_character()
+
+
+# A PlayerModel with no scene: the character alone, whole and facing the camera, over the frame art.
+func frame_character(model: Node3D) -> void:
+	_viewport.transparent_bg = true
+	_environment.background_mode = Environment.BG_CLEAR_COLOR
+	_stand = Vector3.ZERO
+	show_character(model)
+	if model == null:
+		return
+	var bounds: AABB = AABB()
+	for mesh: MeshInstance3D in model.find_children("*", "MeshInstance3D", true, false):
+		var box: AABB = model.transform * mesh.get_aabb()
+		bounds = bounds.merge(box) if bounds.has_volume() else box
+	var center: Vector3 = bounds.get_center()
+	var distance: float = bounds.size.y / 2.0 / tan(deg_to_rad(CHARACTER_FOV) / 2.0) * CHARACTER_MARGIN
+	_diagonal_fov = 0.0
+	_camera.fov = CHARACTER_FOV
+	_camera.look_at_from_position(center + Vector3(0.0, 0.0, distance), center)
+	_turn_character()
 
 
 func _load_scene() -> void:

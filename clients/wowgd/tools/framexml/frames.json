@@ -145,6 +145,28 @@
 			"frame": "GlueDialog",
 			"out": "game/ui/wow/glue_dialog.tscn",
 			"script": "res://game/ui/glue_dialog.gd"
+		},
+		{
+			"frame": "ItemButtonTemplate",
+			"template": true,
+			"out": "game/ui/wow/item_button.tscn",
+			"script": "res://game/ui/item_button.gd"
+		},
+		{
+			"frame": "ContainerFrameTemplate",
+			"template": true,
+			"out": "game/ui/wow/container_frame.tscn",
+			"script": "res://game/ui/container_frame.gd"
+		},
+		{
+			"frame": "GameMenuFrame",
+			"out": "game/ui/wow/game_menu_frame.tscn",
+			"script": "res://game/ui/game_menu.gd"
+		},
+		{
+			"frame": "CharacterFrame",
+			"out": "game/ui/wow/character_frame.tscn",
+			"script": "res://game/ui/character_frame.gd"
 		}
 	],
 	"graft": {

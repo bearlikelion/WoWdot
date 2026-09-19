@@ -28,6 +28,13 @@ func _run() -> void:
 	var hud: Hud = _main.world.hud()
 	var session: WowSession = WowClient.session
 	var me: int = session.get_player_guid()
+	var entities: Entities = _main.world.get_node("Entities")
+	var camera: Camera3D = get_viewport().get_camera_3d()
+	var nearby: Array[int] = entities.visible_units(_main.world.player().global_position, 40.0, camera)
+	var enemies: int = 0
+	for guid: int in nearby:
+		if UnitReaction.between(session, me, guid) != UnitReaction.Reaction.FRIENDLY:
+			enemies += 1
 	await _press(KEY_TAB)
 	var first: int = hud.target()
 	_check(first != 0 and first != me, "Tab targets a unit")
@@ -37,8 +44,8 @@ func _run() -> void:
 	)
 	await _press(KEY_TAB)
 	var second: int = hud.target()
-	print("tab: %d then %d" % [first, second])
-	_check(second != first, "a second Tab moves to the next enemy")
+	print("%d enemies on screen, Tab picked %d then %d" % [enemies, first, second])
+	_check((second != first) == (enemies > 1), "a second Tab moves on only when there is another enemy")
 	await _press(KEY_TAB, true)
 	_check(hud.target() == first, "Shift+Tab goes back")
 	await _press(KEY_F1)

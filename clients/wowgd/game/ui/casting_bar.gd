@@ -13,6 +13,9 @@ const HOLD_SECONDS: float = 1.0
 const FAILED_TEXT: String = "Failed"
 const INTERRUPTED_TEXT: String = "Interrupted"
 
+# The player's spell being cast or channelled, or 0.
+var spell_id: int = 0
+
 var _mode: Mode = Mode.IDLE
 var _start: float = 0.0
 var _end: float = 0.0
@@ -59,12 +62,13 @@ func _process(delta: float) -> void:
 					hide()
 
 
-func _begin(mode: Mode, spell_id: int, duration_msec: int) -> void:
+func _begin(mode: Mode, spell: int, duration_msec: int) -> void:
+	spell_id = spell
 	_mode = mode
 	_start = _now()
 	_end = _start + duration_msec / 1000.0
 	tint_progress = CASTING_COLOR
-	_text.text = WowAssets.spells.spell_name(spell_id)
+	_text.text = WowAssets.spells.spell_name(spell)
 	_spark.show()
 	_flash.hide()
 	modulate.a = 1.0
@@ -73,6 +77,7 @@ func _begin(mode: Mode, spell_id: int, duration_msec: int) -> void:
 
 # Success flashes before fading; failure holds its red bar for a moment.
 func _finish(color: Color, label: String, flash: bool) -> void:
+	spell_id = 0
 	_mode = Mode.FINISHING
 	value = 1.0
 	tint_progress = color
