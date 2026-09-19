@@ -1,6 +1,8 @@
 class_name WowScrollFrame
 extends Control
 
+signal scrolled(value: float)
+
 const WHEEL_STEP: float = 20.0
 
 var _clip: Control
@@ -47,12 +49,19 @@ func _gui_input(event: InputEvent) -> void:
 
 
 # Text grows its labels a frame after it is set, so the range is measured deferred.
-func refresh() -> void:
-	_measure.call_deferred()
+func refresh(keep_scroll: bool = false) -> void:
+	_measure.call_deferred(keep_scroll)
 
 
 func scroll() -> float:
 	return _content_top - _content.position.y if _content else 0.0
+
+
+# FauxScrollFrame_Update: when the owner draws the rows itself, the range comes from the owner.
+func set_range(max_scroll: float) -> void:
+	if _bar:
+		_bar.max_value = max_scroll
+		scroll_to(scroll())
 
 
 func scroll_to(value: float) -> void:
@@ -65,9 +74,10 @@ func scroll_to(value: float) -> void:
 	if _up:
 		_up.disabled = value <= 0.0
 		_down.disabled = value >= _bar.max_value
+	scrolled.emit(value)
 
 
-func _measure() -> void:
+func _measure(keep_scroll: bool) -> void:
 	if _content == null or _bar == null:
 		return
 	var bottom: float = _content.size.y
@@ -76,4 +86,4 @@ func _measure() -> void:
 		if control and control.visible:
 			bottom = maxf(bottom, control.position.y + control.size.y)
 	_bar.max_value = maxf(bottom + _content_top - _clip.size.y, 0.0)
-	scroll_to(0.0)
+	scroll_to(scroll() if keep_scroll else 0.0)

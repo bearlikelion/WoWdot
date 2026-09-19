@@ -54,6 +54,26 @@ static func wire_address(bag: int, slot: int) -> Vector2i:
 	return Vector2i(Slot.BAG_1 + bag - 1, slot)
 
 
+# The first bag and slot holding an item, or -1, -1 when none does.
+static func find_item(item_entry: int) -> Vector2i:
+	for bag: int in BAG_COUNT + 1:
+		for slot: int in container_size(bag):
+			if entry(container_item(bag, slot)) == item_entry:
+				return Vector2i(bag, slot)
+	return -Vector2i.ONE
+
+
+# How many of an item the backpack and bags hold, as GetItemCount counts them.
+static func item_count(item_entry: int) -> int:
+	var total: int = 0
+	for bag: int in BAG_COUNT + 1:
+		for slot: int in container_size(bag):
+			var item: int = container_item(bag, slot)
+			if item and entry(item) == item_entry:
+				total += stack_count(item)
+	return total
+
+
 static func entry(item: int) -> int:
 	return WowClient.session.get_field(item, "OBJECT_FIELD_ENTRY") if item else 0
 

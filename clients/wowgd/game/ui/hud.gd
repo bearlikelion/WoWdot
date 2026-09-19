@@ -42,6 +42,9 @@ var _casting_bar_top: float = 0.0
 @onready var _character: CharacterFrame = _panels.get_node("%CharacterFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
 @onready var _spell_book: SpellBook = _panels.get_node("%SpellBookFrame")
+@onready var _talents: TalentFrame = _panels.get_node("%TalentFrame")
+@onready var _quest_log: QuestLogFrame = _panels.get_node("%QuestLogFrame")
+@onready var _popup: StaticPopup = _panels.get_node("%StaticPopup1")
 
 
 func _ready() -> void:
@@ -53,10 +56,11 @@ func _ready() -> void:
 	_main_menu_bar.bag_toggled.connect(_panels.toggle_bag)
 	_panels.bag_opened.connect(_main_menu_bar.set_bag_open)
 	for container: ContainerFrame in _panels.find_children("*", "ContainerFrame", false, false):
-		container.item_used.connect(_use_container_item)
+		container.item_used.connect(use_container_item)
 		container.item_hovered.connect(_on_container_item_hovered)
 		container.item_left.connect(_hide_tooltip)
 	_spell_book.spell_used.connect(spell_used.emit)
+	_quest_log.abandon_requested.connect(_on_abandon_requested)
 	_character.item_hovered.connect(_on_equipped_item_hovered)
 	_character.item_left.connect(_hide_tooltip)
 	_side_bars.action_used.connect(action_used.emit)
@@ -85,6 +89,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_toggle_character(CharacterFrame.Tab.REPUTATION)
 	elif _exact(event, "toggle_spellbook"):
 		_panels.toggle_panel(_spell_book)
+	elif _exact(event, "toggle_talents"):
+		_panels.toggle_panel(_talents)
+	elif _exact(event, "toggle_quest_log"):
+		_panels.toggle_panel(_quest_log)
 	elif _exact(event, "toggle_bags"):
 		_panels.open_all_bags()
 	elif _exact(event, "toggle_backpack"):
@@ -137,7 +145,9 @@ func _exact(event: InputEvent, action: String) -> bool:
 
 # ToggleGameMenu: each Escape does the first of these that applies.
 func _escape() -> void:
-	if _game_menu.visible:
+	if _popup.cancel():
+		pass
+	elif _game_menu.visible:
 		_panels.hide_panel(_game_menu)
 	elif _casting_bar.spell_id != 0:
 		WowClient.session.cancel_cast(_casting_bar.spell_id)
@@ -147,6 +157,10 @@ func _escape() -> void:
 		unit_selected.emit(0)
 	else:
 		_panels.show_panel(_game_menu)
+
+
+func _on_abandon_requested(slot: int, title: String) -> void:
+	_popup.ask(WowStrings.get_text("ABANDON_QUEST_CONFIRM") % title, _quest_log.abandon.bind(slot))
 
 
 # ToggleCharacter: the key for the tab already showing closes the frame.
@@ -164,6 +178,10 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 			_toggle_character(CharacterFrame.Tab.CHARACTER)
 		MainMenuBar.GamePanel.SPELLBOOK:
 			_panels.toggle_panel(_spell_book)
+		MainMenuBar.GamePanel.TALENTS:
+			_panels.toggle_panel(_talents)
+		MainMenuBar.GamePanel.QUEST_LOG:
+			_panels.toggle_panel(_quest_log)
 		MainMenuBar.GamePanel.BAGS:
 			_panels.toggle_backpack()
 		MainMenuBar.GamePanel.GAME_MENU:
@@ -175,7 +193,7 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 
 
 # UseContainerItem: gear equips, everything else is used.
-func _use_container_item(bag: int, slot: int) -> void:
+func use_container_item(bag: int, slot: int) -> void:
 	var item_entry: int = Inventory.entry(Inventory.container_item(bag, slot))
 	if item_entry == 0:
 		return

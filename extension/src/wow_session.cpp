@@ -18,6 +18,7 @@
 #include <godot_cpp/classes/time.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/vector2.hpp>
+#include <godot_cpp/variant/vector2i.hpp>
 
 #include <zlib.h>
 
@@ -544,6 +545,107 @@ Dictionary WowSession::get_item_info(int entry) {
 	return Dictionary();
 }
 
+// By entry rather than by unit, for names a unit is not around to ask about; creature_info_received follows.
+Dictionary WowSession::get_creature_template(int entry) {
+	const uint32_t key = static_cast<uint32_t>(entry);
+	if (const auto it = creature_info.find(key); it != creature_info.end()) {
+		return it->second;
+	}
+	if (world && entry > 0 && creature_entry_queries.insert(key).second) {
+		world->send(game::CreatureQueryPacket::build(key, 0));
+	}
+	return Dictionary();
+}
+
+// Empty until the server answers the query this sends; game_object_info_received follows.
+Dictionary WowSession::get_game_object_info(int entry) {
+	const uint32_t key = static_cast<uint32_t>(entry);
+	if (const auto it = game_object_info.find(key); it != game_object_info.end()) {
+		return it->second;
+	}
+	if (world && entry > 0 && game_object_queries.insert(key).second) {
+		world->send(game::GameObjectQueryPacket::build(key, 0));
+	}
+	return Dictionary();
+}
+
+// Empty until the server answers the query this sends; quest_info_received follows.
+Dictionary WowSession::get_quest_info(int quest_id) {
+	const uint32_t key = static_cast<uint32_t>(quest_id);
+	if (const auto it = quest_info.find(key); it != quest_info.end()) {
+		return it->second;
+	}
+	if (world && quest_id > 0 && quest_queries.insert(key).second) {
+		network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_QUEST_QUERY));
+		packet.writeUInt32(key);
+		world->send(packet);
+	}
+	return Dictionary();
+}
+
+// The 1.12 SMSG_QUEST_QUERY_RESPONSE: fixed fields, reward pairs, the four texts, then the objectives.
+void WowSession::handle_quest_query(network::Packet &packet) {
+	constexpr int REWARD_ITEMS = 4;
+	constexpr int REWARD_CHOICES = 6;
+	constexpr int OBJECTIVES = 4;
+	const uint32_t id = packet.readUInt32();
+	Dictionary quest;
+	quest["id"] = static_cast<int64_t>(id);
+	quest["method"] = static_cast<int64_t>(packet.readUInt32());
+	quest["level"] = static_cast<int64_t>(packet.readUInt32());
+	quest["zone_or_sort"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
+	quest["type"] = static_cast<int64_t>(packet.readUInt32());
+	for (int i = 0; i < 4; ++i) {
+		packet.readUInt32(); // Reputation objective and opposite faction requirements.
+	}
+	quest["next_quest"] = static_cast<int64_t>(packet.readUInt32());
+	quest["money"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
+	quest["max_level_money"] = static_cast<int64_t>(packet.readUInt32());
+	quest["reward_spell"] = static_cast<int64_t>(packet.readUInt32());
+	quest["source_item"] = static_cast<int64_t>(packet.readUInt32());
+	quest["flags"] = static_cast<int64_t>(packet.readUInt32());
+	const auto read_pairs = [&packet](int count) {
+		Array pairs;
+		for (int i = 0; i < count; ++i) {
+			const int64_t item = packet.readUInt32();
+			const int64_t amount = packet.readUInt32();
+			if (item != 0) {
+				pairs.push_back(Vector2i(static_cast<int32_t>(item), static_cast<int32_t>(amount)));
+			}
+		}
+		return pairs;
+	};
+	quest["rewards"] = read_pairs(REWARD_ITEMS);
+	quest["choices"] = read_pairs(REWARD_CHOICES);
+	quest["point_map"] = static_cast<int64_t>(packet.readUInt32());
+	const float point_x = packet.readFloat();
+	const float point_y = packet.readFloat();
+	quest["point"] = Vector2(point_x, point_y);
+	packet.readUInt32(); // Point option.
+	quest["title"] = String::utf8(packet.readString().c_str());
+	quest["objectives"] = String::utf8(packet.readString().c_str());
+	quest["details"] = String::utf8(packet.readString().c_str());
+	quest["end_text"] = String::utf8(packet.readString().c_str());
+	Array objectives;
+	for (int i = 0; i < OBJECTIVES; ++i) {
+		Dictionary objective;
+		// Game objects come as their entry with the sign bit set.
+		objective["target"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
+		objective["target_count"] = static_cast<int64_t>(packet.readUInt32());
+		objective["item"] = static_cast<int64_t>(packet.readUInt32());
+		objective["item_count"] = static_cast<int64_t>(packet.readUInt32());
+		objectives.push_back(objective);
+	}
+	for (int i = 0; i < OBJECTIVES; ++i) {
+		Dictionary objective = objectives[i];
+		objective["text"] = String::utf8(packet.readString().c_str());
+	}
+	quest["objective_list"] = objectives;
+	quest_info[id] = quest;
+	quest_queries.erase(id);
+	emit_signal("quest_info_received", static_cast<int64_t>(id));
+}
+
 void WowSession::query_player_name(uint64_t guid) {
 	if (world && player_queries.insert(guid).second) {
 		world->send(game::NameQueryPacket::build(guid));
@@ -633,6 +735,9 @@ void WowSession::disconnect() {
 	player_queries.clear();
 	creature_queries.clear();
 	item_queries.clear();
+	creature_entry_queries.clear();
+	game_object_queries.clear();
+	quest_queries.clear();
 	chat_waiting.clear();
 	player_guid = 0;
 	state = STATE_DISCONNECTED;
@@ -885,6 +990,9 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			info["type"] = static_cast<int64_t>(data.creatureType);
 			info["family"] = static_cast<int64_t>(data.family);
 			creature_info[data.entry] = info;
+			if (creature_entry_queries.erase(data.entry) > 0) {
+				emit_signal("creature_info_received", static_cast<int64_t>(data.entry));
+			}
 			if (auto waiting = creature_queries.find(data.entry); waiting != creature_queries.end()) {
 				const std::vector<uint64_t> guids = std::move(waiting->second);
 				creature_queries.erase(waiting);
@@ -894,6 +1002,23 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			}
 			return;
 		}
+		case LogicalOpcode::SMSG_GAMEOBJECT_QUERY_RESPONSE: {
+			game::GameObjectQueryResponseData data;
+			if (!parsers->parseGameObjectQueryResponse(packet, data) || !data.isValid()) {
+				return;
+			}
+			Dictionary info;
+			info["entry"] = static_cast<int64_t>(data.entry);
+			info["name"] = String::utf8(data.name.c_str());
+			info["type"] = static_cast<int64_t>(data.type);
+			game_object_info[data.entry] = info;
+			game_object_queries.erase(data.entry);
+			emit_signal("game_object_info_received", static_cast<int64_t>(data.entry));
+			return;
+		}
+		case LogicalOpcode::SMSG_QUEST_QUERY_RESPONSE:
+			handle_quest_query(packet);
+			return;
 		case LogicalOpcode::SMSG_LOGOUT_COMPLETE:
 			objects.clear();
 			player_guid = 0;
@@ -1083,6 +1208,9 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_object_name", "guid"), &WowSession::get_object_name);
 	ClassDB::bind_method(D_METHOD("get_item_info", "entry"), &WowSession::get_item_info);
 	ClassDB::bind_method(D_METHOD("get_creature_info", "guid"), &WowSession::get_creature_info);
+	ClassDB::bind_method(D_METHOD("get_creature_template", "entry"), &WowSession::get_creature_template);
+	ClassDB::bind_method(D_METHOD("get_game_object_info", "entry"), &WowSession::get_game_object_info);
+	ClassDB::bind_method(D_METHOD("get_quest_info", "quest_id"), &WowSession::get_quest_info);
 	ClassDB::bind_method(D_METHOD("disconnect"), &WowSession::disconnect);
 	ClassDB::bind_method(D_METHOD("poll"), &WowSession::poll);
 	ClassDB::bind_method(D_METHOD("get_state"), &WowSession::get_state);
@@ -1123,6 +1251,9 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("attack_started", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim")));
 	ADD_SIGNAL(MethodInfo("attack_stopped", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim")));
 	ADD_SIGNAL(MethodInfo("item_info_received", PropertyInfo(Variant::INT, "entry")));
+	ADD_SIGNAL(MethodInfo("creature_info_received", PropertyInfo(Variant::INT, "entry")));
+	ADD_SIGNAL(MethodInfo("game_object_info_received", PropertyInfo(Variant::INT, "entry")));
+	ADD_SIGNAL(MethodInfo("quest_info_received", PropertyInfo(Variant::INT, "quest_id")));
 	ADD_SIGNAL(MethodInfo("name_received", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::STRING, "name")));
 	ADD_SIGNAL(MethodInfo("packet_received", PropertyInfo(Variant::STRING, "opcode"), PropertyInfo(Variant::PACKED_BYTE_ARRAY, "payload")));
 

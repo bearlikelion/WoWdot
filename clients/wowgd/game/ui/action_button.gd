@@ -8,6 +8,8 @@ enum ActionType { SPELL = 0x00, MACRO = 0x40, ITEM = 0x80 }
 
 const ACTION_MASK: int = 0xFFFFFF
 const SPELL_ATTACK: int = 6603
+# ActionButton_UpdateUsable's tint for an item action with none left in the bags.
+const UNUSABLE_TINT: Color = Color(0.4, 0.4, 0.4)
 
 var slot: int = -1:
 	set(value):
@@ -23,6 +25,7 @@ var _casting_spell: int = 0
 var _attacking: bool = false
 
 @onready var _icon: TextureRect = %Icon
+@onready var _count: Label = %Count
 @onready var _hotkey: Label = %HotKey
 @onready var _normal: TextureRect = %NormalTexture
 @onready var _cooldown: WowCooldown = %Cooldown
@@ -40,6 +43,8 @@ func _ready() -> void:
 	session.spell_cast_failed.connect(_on_spell_cast_failed)
 	session.attack_started.connect(_on_attack_changed.bind(true))
 	session.attack_stopped.connect(_on_attack_changed.bind(false))
+	session.item_info_received.connect(_on_inventory_changed)
+	session.object_updated.connect(_on_inventory_changed)
 	WowClient.cooldowns.changed.connect(_update_cooldown)
 	_hotkey.text = hotkey
 	refresh()
@@ -51,7 +56,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	if Engine.is_editor_hint() or carried == 0:
 		return null
 	var preview: TextureRect = TextureRect.new()
-	preview.texture = WowAssets.spells.icon(carried)
+	preview.texture = _action_icon(carried)
 	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	preview.size = size
 	set_drag_preview(preview)
@@ -80,10 +85,33 @@ func refresh() -> void:
 	_icon.visible = packed != 0
 	# Empty slots let the bar art show through, as ActionButton_Update does with its grid hidden.
 	_normal.self_modulate.a = 1.0 if packed != 0 else 0.0
+	var item_entry: int = _item()
+	_icon.self_modulate = Color.WHITE
+	_count.text = ""
 	if spell() != 0:
-		_icon.texture = WowAssets.spells.icon(spell())
+		_icon.texture = _action_icon(spell())
+	elif item_entry != 0:
+		var count: int = Inventory.item_count(item_entry)
+		_icon.texture = Inventory.icon(item_entry)
+		_icon.self_modulate = Color.WHITE if count > 0 else UNUSABLE_TINT
+		_count.text = str(count) if count != 1 else ""
 	_update_checked()
 	_update_cooldown()
+
+
+# GetActionTexture: Attack wears the main hand weapon's icon, and its own only when unarmed.
+func _action_icon(spell_id: int) -> Texture2D:
+	if spell_id == SPELL_ATTACK:
+		var weapon: int = Inventory.entry(Inventory.equipped(Inventory.Slot.MAIN_HAND))
+		var weapon_icon: Texture2D = Inventory.icon(weapon) if weapon else null
+		if weapon_icon:
+			return weapon_icon
+	return WowAssets.spells.icon(spell_id)
+
+
+func _item() -> int:
+	var packed: int = _packed()
+	return packed & ACTION_MASK if packed != 0 and _type(packed) == ActionType.ITEM else 0
 
 
 func _packed() -> int:
@@ -111,8 +139,12 @@ func _update_checked() -> void:
 
 
 func _on_mouse_entered() -> void:
-	if spell() != 0 and GameTooltip.current:
+	if GameTooltip.current == null:
+		return
+	if spell() != 0:
 		GameTooltip.current.set_spell(self, spell())
+	elif _item() != 0:
+		GameTooltip.current.set_item(self, _item(), 0, GameTooltip.TooltipAnchor.DEFAULT)
 
 
 func _on_mouse_exited() -> void:
@@ -140,3 +172,9 @@ func _on_attack_changed(attacker: int, _victim: int, attacking: bool) -> void:
 	if attacker == WowClient.session.get_player_guid():
 		_attacking = attacking
 		_update_checked()
+
+
+# Item queries, weapon swaps and stack changes redraw Attack and item actions.
+func _on_inventory_changed(_id: int) -> void:
+	if spell() == SPELL_ATTACK or _item() != 0:
+		refresh()

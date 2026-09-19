@@ -12,6 +12,8 @@ const CENTER_POSITION: Vector2 = Vector2(384.0, 104.0)
 const PANELS: Dictionary[StringName, Array] = {
 	&"CharacterFrame": [Area.LEFT, 2],
 	&"SpellBookFrame": [Area.LEFT, 0],
+	&"TalentFrame": [Area.LEFT, 6],
+	&"QuestLogFrame": [Area.LEFT, 0],
 	&"GameMenuFrame": [Area.CENTER, 0],
 }
 # updateContainerFrameAnchors: bags stack up from the bottom right, starting a new column when full.
@@ -37,6 +39,15 @@ func _ready() -> void:
 		frame.close_requested.connect(hide_panel.bind(frame))
 	for container: ContainerFrame in _containers:
 		container.closed.connect(_on_bag_closed.bind(container))
+
+
+# PanelTemplates_SelectTab and PanelTemplates_DeselectTab.
+static func select_tab(tab: Control, selected: bool) -> void:
+	for piece: String in ["Left", "Middle", "Right"]:
+		(tab.get_node(tab.name + piece) as CanvasItem).visible = not selected
+		(tab.get_node(tab.name + piece + "Disabled") as CanvasItem).visible = selected
+	var label: Label = tab.get_node(tab.name + "Text")
+	label.theme_type_variation = &"GameFontHighlightSmall" if selected else &"GameFontNormalSmall"
 
 
 func toggle_panel(frame: Control) -> void:

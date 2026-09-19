@@ -205,10 +205,14 @@ func _on_action_used(slot: int) -> void:
 	if slot < 0 or slot >= buttons.size() or buttons[slot] == 0:
 		return
 	var packed: int = buttons[slot]
-	# ponytail: only spell actions so far; items and macros come with the bags and the macro frame.
-	if (packed >> 24) & 0xFF != ActionButton.ActionType.SPELL:
-		return
-	_use_spell(packed & ActionButton.ACTION_MASK)
+	# ponytail: macro actions do nothing until the macro frame exists.
+	match (packed >> 24) & 0xFF:
+		ActionButton.ActionType.SPELL:
+			_use_spell(packed & ActionButton.ACTION_MASK)
+		ActionButton.ActionType.ITEM:
+			var found: Vector2i = Inventory.find_item(packed & ActionButton.ACTION_MASK)
+			if found.x >= 0:
+				_hud.use_container_item(found.x, found.y)
 
 
 # Attack toggles auto-attack on the target; every other spell is cast at it.

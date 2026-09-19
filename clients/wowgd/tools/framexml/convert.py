@@ -317,6 +317,10 @@ class Converter:
             normal = widget.special.get("NormalFont")
             if normal is not None and normal.get("justifyH") and not text.attrs.get("justifyH"):
                 text.attrs["justifyH"] = normal.get("justifyH")
+        elif "NormalFont" in widget.special:
+            # SetText gives a button without a ButtonText a centred one on demand.
+            text = add(ET.Element("ButtonText"), "OVERLAY", "FontString", None, "Text")
+            text.font = text.font or self._button_font(widget)
         order = {level: i for i, level in enumerate(LAYERS)}
         widget.children.sort(key=lambda w: order.get(w.layer, 2))
         for c in widget.frames:

@@ -122,15 +122,7 @@ func show_tab(tab: Tab) -> void:
 		var selected: bool = other == tab
 		var frame: CanvasItem = get_node("%" + TAB_FRAMES[other])
 		frame.visible = selected
-		var prefix: String = "%%CharacterFrameTab%d" % other
-		for piece: String in ["Left", "Middle", "Right"]:
-			var normal: CanvasItem = get_node(prefix + piece)
-			var chosen: CanvasItem = get_node(prefix + piece + "Disabled")
-			normal.visible = not selected
-			chosen.visible = selected
-		var label: Label = get_node(prefix + "Text")
-		label.theme_type_variation = \
-		&"GameFontHighlightSmall" if selected else &"GameFontNormalSmall"
+		PanelManager.select_tab(get_node("%%CharacterFrameTab%d" % other), selected)
 	refresh()
 
 

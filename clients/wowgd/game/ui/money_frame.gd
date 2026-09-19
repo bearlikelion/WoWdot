@@ -3,8 +3,7 @@ extends Control
 
 const COPPER_PER_SILVER: int = 100
 const COPPER_PER_GOLD: int = 10000
-# MoneyFrame_Update: each coin is its text plus the 13 unit icon, 4 apart, laid out from the right.
-const ICON_WIDTH: float = 13.0
+# MoneyFrame_Update: each coin is its text plus its icon, 4 apart, laid out from the right.
 const SPACING: float = 4.0
 
 @onready var _coins: Array[Control] = [%CopperButton, %SilverButton, %GoldButton]
@@ -25,9 +24,10 @@ func set_money(copper: int) -> void:
 		coin.visible = i == 0 or amounts.slice(i).any(func(amount: int) -> bool: return amount > 0)
 		if not coin.visible:
 			continue
-		var width: float = label.get_minimum_size().x + ICON_WIDTH
+		var icon_width: float = (coin.get_node("NormalTexture") as Control).size.x
+		var width: float = label.get_minimum_size().x + icon_width
 		coin.size.x = width
 		coin.position.x = right - width
 		label.position.x = 0.0
-		label.size.x = width - ICON_WIDTH
+		label.size.x = width - icon_width
 		right = coin.position.x - SPACING

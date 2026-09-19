@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/character_frame.tscn" id="2_character"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/game_menu_frame.tscn" id="3_menu"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/container_frame.tscn" id="4_bag"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/spell_book_frame.tscn" id="5_spells"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/talent_frame.tscn" id="6_talents"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/quest_log_frame.tscn" id="7_quests"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/static_popup.tscn" id="8_popup"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -21,6 +24,14 @@ unique_name_in_owner = true
 visible = false
 
 [node name="SpellBookFrame" parent="." instance=ExtResource("5_spells")]
+unique_name_in_owner = true
+visible = false
+
+[node name="TalentFrame" parent="." instance=ExtResource("6_talents")]
+unique_name_in_owner = true
+visible = false
+
+[node name="QuestLogFrame" parent="." instance=ExtResource("7_quests")]
 unique_name_in_owner = true
 visible = false
 
@@ -45,5 +56,9 @@ unique_name_in_owner = true
 visible = false
 
 [node name="GameMenuFrame" parent="." instance=ExtResource("3_menu")]
+unique_name_in_owner = true
+visible = false
+
+[node name="StaticPopup1" parent="." instance=ExtResource("8_popup")]
 unique_name_in_owner = true
 visible = false

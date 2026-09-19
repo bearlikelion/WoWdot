@@ -1,0 +1,396 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/static_popup.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/small_money_frame.tscn" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\DialogFrame\\DialogAlertIcon.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-DialogBox-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 128, 20)
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-DialogBox-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 128, 20)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-DialogBox-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 128, 20)
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-DialogBox-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(0, 0, 128, 20)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16"]
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\ChatFrame\\UI-ChatInputBorder-Left.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(0, 0, 75, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\ChatFrame\\UI-ChatInputBorder-Right.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_19")
+region = Rect2(181, 0, 75, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(75, 0, 181, 32)
+
+[node name="StaticPopup1" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -160
+offset_top = 128
+offset_right = 160
+offset_bottom = 200
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="Backdrop" type="Control" parent="."]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="StaticPopup1Text" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145
+offset_top = 16
+offset_right = 145
+offset_bottom = 28
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticPopup1AlertIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 12
+offset_top = -32
+offset_right = 76
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="StaticPopup1CloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -35
+offset_top = 3
+offset_right = -3
+offset_bottom = 35
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="StaticPopup1CloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="StaticPopup1CloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="StaticPopup1CloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_7")
+
+[node name="StaticPopup1Button1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="StaticPopup1Button1"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="StaticPopup1Button1"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="StaticPopup1Button1"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="StaticPopup1Button1Text" type="Label" parent="StaticPopup1Button1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="StaticPopup1Button1"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_7")
+
+[node name="StaticPopup1Button2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="StaticPopup1Button2"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="StaticPopup1Button2"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="StaticPopup1Button2"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="StaticPopup1Button2Text" type="Label" parent="StaticPopup1Button2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="StaticPopup1Button2"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_7")
+
+[node name="StaticPopup1EditBox" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -65
+offset_top = -77
+offset_right = 65
+offset_bottom = -45
+visible = false
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_16")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_16")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_16")
+
+[node name="Texture" type="TextureRect" parent="StaticPopup1EditBox"]
+offset_left = -10
+offset_top = 0
+offset_right = 65
+offset_bottom = 32
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="StaticPopup1EditBox"]
+offset_left = 65
+offset_top = 0
+offset_right = 140
+offset_bottom = 32
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="StaticPopup1WideEditBox" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175
+offset_top = -32
+offset_right = 175
+offset_bottom = 32
+visible = false
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_16")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_16")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_16")
+
+[node name="StaticPopup1WideEditBoxLeft" type="TextureRect" parent="StaticPopup1WideEditBox"]
+unique_name_in_owner = true
+offset_left = -10
+offset_top = 16
+offset_right = 246
+offset_bottom = 48
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="StaticPopup1WideEditBoxRight" type="TextureRect" parent="StaticPopup1WideEditBox"]
+unique_name_in_owner = true
+offset_left = 285
+offset_top = 16
+offset_right = 360
+offset_bottom = 48
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="StaticPopup1WideEditBox"]
+offset_left = 246
+offset_top = 16
+offset_right = 285
+offset_bottom = 48
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_21")
+expand_mode = 1
+
+[node name="StaticPopup1MoneyFrame" parent="." instance=ExtResource("4")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64
+offset_top = 33
+offset_right = 64
+offset_bottom = 46
+visible = false

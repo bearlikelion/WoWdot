@@ -3,6 +3,8 @@ extends Node
 
 const MAIN: PackedScene = preload("res://game/main.tscn")
 const TIMEOUT_MSEC: int = 60000
+# Coldridge Valley's Dwarven Outfitters (an item objective) and A New Threat (two kill objectives).
+const STARTER_QUESTS: Array[int] = [179, 170]
 
 var _failures: PackedStringArray = []
 var _main: Main
@@ -73,6 +75,23 @@ func _run() -> void:
 	_check(character.visible and skills, "K shows skills")
 	await _press(KEY_K)
 	_check(not character.visible, "K again closes the frame")
+	await _press(KEY_N)
+	var talents: TalentFrame = panels.get_node("%TalentFrame")
+	_check(talents.visible, "N opens the talents")
+	var tab_name: Label = talents.get_node("%TalentFrameTab1Text")
+	var first_talent: ItemButton = talents.get_node("%TalentFrameTalent1")
+	print("talents: first tab '%s', spent '%s'" % [
+		tab_name.text, (talents.get_node("%TalentFrameSpentPoints") as Label).text,
+	])
+	_check(not tab_name.text.is_empty() and first_talent.visible, "the talent tree fills in")
+	await _frames(20)
+	_capture("user://panels_talents.png")
+	(talents.get_node("%TalentFrameTab2") as BaseButton).pressed.emit()
+	await _frames(20)
+	_capture("user://panels_talents_2.png")
+	await _press(KEY_N)
+	_check(not talents.visible, "N again closes the talents")
+	await _check_quest_log(hud, panels)
 	await _press(KEY_F1)
 	await _press(KEY_ESCAPE)
 	var still_open: bool = open_bags.any(func(node: Node) -> bool: return (node as Control).visible)
@@ -87,6 +106,55 @@ func _run() -> void:
 	await _press(KEY_ESCAPE)
 	_check(not game_menu.visible, "Escape closes the game menu")
 	_finish("")
+
+
+# GM-added starter quests fill the log with L, then Abandon and the popup take them out again.
+func _check_quest_log(hud: Hud, panels: PanelManager) -> void:
+	var session: WowSession = WowClient.session
+	var before: int = QuestLog.slots().size()
+	for quest: int in STARTER_QUESTS:
+		session.send_chat(WowSession.CHAT_SAY, ".quest add %d" % quest)
+	var give_up: int = Time.get_ticks_msec() + 5000
+	while QuestLog.slots().size() < before + STARTER_QUESTS.size():
+		if Time.get_ticks_msec() > give_up:
+			_check(false, "the GM command added the starter quests")
+			return
+		await get_tree().process_frame
+	await _press(KEY_L)
+	var quest_log: QuestLogFrame = panels.get_node("%QuestLogFrame")
+	_check(quest_log.visible, "L opens the quest log")
+	await _frames(60)
+	var header: Label = quest_log.get_node("%QuestLogTitle1NormalText")
+	var quest_title: Label = quest_log.get_node("%QuestLogQuestTitle")
+	var objective: Label = quest_log.get_node("%QuestLogObjective1")
+	print("quest log: header '%s', selected '%s', objective '%s', count '%s'" % [
+		header.text, quest_title.text, objective.text,
+		(quest_log.get_node("%QuestLogQuestCount") as Label).text,
+	])
+	var listed: bool = not header.text.is_empty() and quest_title.text != "Quest title"
+	_check(listed, "the quest log lists and selects quests")
+	_capture("user://panels_quest_log.png")
+	var details: WowScrollFrame = quest_log.get_node("%QuestLogDetailScrollFrame")
+	details.scroll_to(INF)
+	await _frames(5)
+	_capture("user://panels_quest_rewards.png")
+	(quest_log.get_node("%QuestLogTitle3") as BaseButton).pressed.emit()
+	await _frames(30)
+	print("second quest: '%s', objective '%s'" % [quest_title.text, objective.text])
+	_capture("user://panels_quest_log_2.png")
+	var popup: StaticPopup = panels.get_node("%StaticPopup1")
+	for i: int in STARTER_QUESTS.size():
+		(quest_log.get_node("%QuestLogFrameAbandonButton") as BaseButton).pressed.emit()
+		await _frames(10)
+		_check(popup.visible, "Abandon asks first")
+		if i == 0:
+			print("popup: '%s'" % (popup.get_node("%StaticPopup1Text") as Label).text)
+			_capture("user://panels_abandon.png")
+		(popup.get_node("%StaticPopup1Button1") as BaseButton).pressed.emit()
+		await _frames(60)
+	_check(QuestLog.slots().size() == before, "Yes abandons the quests")
+	await _press(KEY_L)
+	_check(not quest_log.visible, "L again closes the quest log")
 
 
 # A spell dragged from the book onto an empty action button lands, and dragging it off clears it.

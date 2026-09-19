@@ -117,6 +117,11 @@ private:
 	std::unordered_map<uint64_t, Array> chat_waiting;
 	std::unordered_map<uint32_t, Dictionary> item_info;
 	std::unordered_set<uint32_t> item_queries;
+	std::unordered_set<uint32_t> creature_entry_queries;
+	std::unordered_map<uint32_t, Dictionary> game_object_info;
+	std::unordered_set<uint32_t> game_object_queries;
+	std::unordered_map<uint32_t, Dictionary> quest_info;
+	std::unordered_set<uint32_t> quest_queries;
 	PackedInt32Array known_spells;
 	// SMSG_ACTION_BUTTONS order: action id in the low 24 bits, the type in the high byte.
 	PackedInt32Array action_buttons;
@@ -130,6 +135,7 @@ private:
 	void handle_movement_relay(wowee::network::Packet &packet);
 	void handle_compressed_moves(wowee::network::Packet &packet);
 	void handle_chat(wowee::network::Packet &packet);
+	void handle_quest_query(wowee::network::Packet &packet);
 	bool handle_combat_packet(uint16_t op, wowee::network::Packet &packet);
 	void query_player_name(uint64_t guid);
 	bool inflate(wowee::network::Packet &packet, std::vector<uint8_t> &r_data);
@@ -165,6 +171,9 @@ public:
 	String get_object_name(int64_t guid);
 	Dictionary get_item_info(int entry);
 	Dictionary get_creature_info(int64_t guid);
+	Dictionary get_creature_template(int entry);
+	Dictionary get_game_object_info(int entry);
+	Dictionary get_quest_info(int quest_id);
 	void disconnect();
 	void poll();
 

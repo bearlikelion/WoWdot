@@ -1,0 +1,138 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/money_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\MoneyFrame\\UI-MoneyIcons.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0, 0, 16, 16)
+
+[node name="MoneyFrameTemplate" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = -0
+offset_right = 192
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="CopperButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 0.5
+anchor_right = 1
+anchor_bottom = 0.5
+offset_left = -60
+offset_top = -9.5
+offset_right = -13
+offset_bottom = 9.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CopperButton"]
+offset_left = 28
+offset_top = 0
+offset_right = 47
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="Text" type="Label" parent="CopperButton"]
+offset_left = 28
+offset_top = 1.5
+offset_right = 28
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SilverButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 0.5
+anchor_right = 1
+anchor_bottom = 0.5
+offset_left = -111
+offset_top = -9.5
+offset_right = -64
+offset_bottom = 9.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="SilverButton"]
+offset_left = 28
+offset_top = 0
+offset_right = 47
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="Text" type="Label" parent="SilverButton"]
+offset_left = 28
+offset_top = 1.5
+offset_right = 28
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GoldButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 0.5
+anchor_right = 1
+anchor_bottom = 0.5
+offset_left = -162
+offset_top = -9.5
+offset_right = -115
+offset_bottom = 9.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GoldButton"]
+offset_left = 28
+offset_top = 0
+offset_right = 47
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="Text" type="Label" parent="GoldButton"]
+offset_left = 28
+offset_top = 1.5
+offset_right = 28
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 2
+vertical_alignment = 1
