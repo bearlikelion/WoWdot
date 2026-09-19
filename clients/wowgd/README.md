@@ -82,3 +82,8 @@ In the order they are planned:
 | M7 polish | Key binding UI, interface options, starting outfit on the create preview, race and class tooltips, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
+
+## References
+
+[wowdev.wiki](https://wowdev.wiki/Main_Page) documents the client's file formats and much of the protocol, mostly for 3.3.5a, so check each page's version notes before applying it to 1.12.1.
+For packet layouts the vMaNGOS source is the authority, since it is what the server sends.

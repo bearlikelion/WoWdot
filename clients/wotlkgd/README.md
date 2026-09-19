@@ -62,3 +62,8 @@ WoWGD's `game/` folder is about 15,000 lines of GDScript, and roughly 75 to 85 p
 2. Large packets, update fields and movement: enter the world and move.
 3. M2 v264 skins and MH2O water: render the world and characters.
 4. Move the shared game code out of `clients/wowgd`, then port the UI.
+
+## References
+
+[wowdev.wiki](https://wowdev.wiki/Main_Page) documents the client's file formats and much of the protocol, and most of it is written against 3.3.5a (12340): M2 with `.skin` and `.anim`, ADT/v18 with MH2O, WMO and the WotLK DBC tables.
+For packet layouts the AzerothCore source is the authority, since it is what the server sends.
