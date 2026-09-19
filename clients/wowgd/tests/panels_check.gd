@@ -128,6 +128,22 @@ func _run() -> void:
 	_capture("user://panels_menu.png")
 	await _press(KEY_ESCAPE)
 	_check(not game_menu.visible, "Escape closes the game menu")
+	await _press(KEY_M)
+	var world_map: WorldMapFrame = panels.get_node("%WorldMapFrame")
+	_check(world_map.visible, "M opens the world map")
+	await _frames(40)
+	var zone_markers: int = (world_map.get("_markers") as Array).size()
+	print("world map: area %d, %d markers" % [world_map.get("_shown"), zone_markers])
+	_check(zone_markers > 0, "the zone map shows points of interest")
+	_capture("user://panels_world_map.png")
+	(world_map.get_node("%WorldMapZoomOutButton") as BaseButton).pressed.emit()
+	await _frames(40)
+	print("continent: area %d, %d markers" % [
+		world_map.get("_shown"), (world_map.get("_markers") as Array).size(),
+	])
+	_capture("user://panels_continent.png")
+	await _press(KEY_M)
+	_check(not world_map.visible, "M again closes the world map")
 	_finish("")
 
 

@@ -187,6 +187,7 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_dressing.erase(guid)
 		_quest_givers.erase(guid)
 		_markers.erase(guid)
+		NpcDialog.statuses.erase(guid)
 		if _nodes.has(guid):
 			_nodes[guid].queue_free()
 			_nodes.erase(guid)
@@ -237,6 +238,7 @@ func _refresh_quest_givers() -> void:
 
 
 func _on_quest_giver_status(guid: int, status: int) -> void:
+	NpcDialog.statuses[guid] = status as NpcDialog.Status
 	var node: Node3D = _nodes.get(guid)
 	if node == null or not _bounds.has(guid):
 		return

@@ -396,8 +396,8 @@
     "Z": 4,
     "Name": 5,
     "Flags": 13,
-    "MountAlliance": 14,
-    "MountHorde": 15
+    "MountAlliance": 15,
+    "MountHorde": 14
   },
   "TaxiPath": {
     "Cost": 3,
@@ -438,5 +438,20 @@
     "TaxiMinY": 10,
     "TaxiMaxX": 11,
     "TaxiMaxY": 12
+  },
+  "WorldMapOverlay": {
+    "ID": 0,
+    "MapAreaID": 1,
+    "AreaID0": 2,
+    "AreaID1": 3,
+    "AreaID2": 4,
+    "AreaID3": 5,
+    "MapPointX": 6,
+    "MapPointY": 7,
+    "TextureName": 8,
+    "TextureWidth": 9,
+    "TextureHeight": 10,
+    "OffsetX": 11,
+    "OffsetY": 12
   }
 }

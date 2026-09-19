@@ -16,6 +16,19 @@ const MARKERS: Dictionary[Status, String] = {
 }
 
 
+# Each quest giver's last SMSG_QUESTGIVER_STATUS, for the markers and the world map.
+static var statuses: Dictionary[int, Status] = {}
+
+
+# Quest givers in view with a quest to hand out or take back.
+static func quest_givers_offering() -> Array[int]:
+	var guids: Array[int] = []
+	for guid: int in statuses:
+		if statuses[guid] in [Status.AVAILABLE, Status.REWARD_REP, Status.REWARD_OLD, Status.REWARD2]:
+			guids.append(guid)
+	return guids
+
+
 # The npc guid, then each value as 32 bits, which is how every gossip and quest giver request reads.
 static func send(opcode: String, guid: int, values: Array[int] = []) -> void:
 	var payload: PackedByteArray = PackedByteArray()

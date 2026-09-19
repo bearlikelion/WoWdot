@@ -42,6 +42,13 @@ static func all_on_map(map_id: int) -> Array[int]:
 	return ids
 
 
+# Flight points have a mount per faction; the other faction's have none.
+static func serves(node: int, alliance: bool) -> bool:
+	_open()
+	var row: int = _nodes.find(node)
+	return row >= 0 and _nodes.get_uint(row, "MountAlliance" if alliance else "MountHorde") != 0
+
+
 static func node_name(node: int) -> String:
 	_open()
 	var row: int = _nodes.find(node)

@@ -1,0 +1,2697 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/world_map_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="3"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/small_money_frame.tscn" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\WorldMap\\UI-WorldMap-Top1.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\WorldMap\\UI-WorldMap-Top2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\WorldMap\\UI-WorldMap-Top3.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\WorldMap\\UI-WorldMap-Top4.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\WorldMap\\UI-WorldMap-Middle1.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\WorldMap\\UI-WorldMap-Middle2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\WorldMap\\UI-WorldMap-Middle3.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\WorldMap\\UI-WorldMap-Middle4.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\WorldMap\\UI-WorldMap-Bottom1.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\WorldMap\\UI-WorldMap-Bottom2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\WorldMap\\UI-WorldMap-Bottom3.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\WorldMap\\UI-WorldMap-Bottom4.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_21"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_22")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\WorldMap\\WorldMap-MagnifyingGlass.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\Minimap\\POIIcons.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35"]
+atlas = SubResource("WowTexture_34")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\Tooltips\\UI-Tooltip-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Tooltips\\UI-Tooltip-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\TargetingFrame\\UI-TargetingFrame-BarFill.blp"
+
+[node name="WorldMapFrame" type="Control"]
+script = ExtResource("1")
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+
+[node name="BlackoutWorld" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -768
+offset_right = 1024
+offset_bottom = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = -384
+offset_right = -256
+offset_bottom = -128
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256
+offset_top = -384
+offset_right = 0
+offset_bottom = -128
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0
+offset_top = -384
+offset_right = 256
+offset_bottom = -128
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 256
+offset_top = -384
+offset_right = 512
+offset_bottom = -128
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="Texture5" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = -128
+offset_right = -256
+offset_bottom = 128
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="Texture6" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256
+offset_top = -128
+offset_right = 0
+offset_bottom = 128
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="Texture7" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0
+offset_top = -128
+offset_right = 256
+offset_bottom = 128
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="Texture8" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 256
+offset_top = -128
+offset_right = 512
+offset_bottom = 128
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="Texture9" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = 128
+offset_right = -256
+offset_bottom = 384
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="Texture10" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256
+offset_top = 128
+offset_right = 0
+offset_bottom = 384
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="Texture11" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0
+offset_top = 128
+offset_right = 256
+offset_bottom = 384
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="Texture12" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 256
+offset_top = 128
+offset_right = 512
+offset_bottom = 384
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0
+offset_top = -378
+offset_right = 0
+offset_bottom = -366
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "World Map"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapPositioningGuide" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = -384
+offset_right = 512
+offset_bottom = 384
+mouse_filter = 2
+
+[node name="WorldMapContinentDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100
+offset_top = -349
+offset_right = -60
+offset_bottom = -317
+mouse_filter = 2
+
+[node name="WorldMapContinentDropDownLeft" type="TextureRect" parent="WorldMapContinentDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="WorldMapContinentDropDownMiddle" type="TextureRect" parent="WorldMapContinentDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="WorldMapContinentDropDownRight" type="TextureRect" parent="WorldMapContinentDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="WorldMapContinentDropDownText" type="Label" parent="WorldMapContinentDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="FontString" type="Label" parent="WorldMapContinentDropDown"]
+offset_left = 20
+offset_top = -10
+offset_right = 20
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Continent"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapContinentDropDownButton" type="TextureButton" parent="WorldMapContinentDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapContinentDropDown/WorldMapContinentDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapContinentDropDown/WorldMapContinentDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapContinentDropDown/WorldMapContinentDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapContinentDropDown/WorldMapContinentDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_21")
+
+[node name="WorldMapZoneDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93
+offset_top = -349
+offset_right = -53
+offset_bottom = -317
+mouse_filter = 2
+
+[node name="WorldMapZoneDropDownLeft" type="TextureRect" parent="WorldMapZoneDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="WorldMapZoneDropDownMiddle" type="TextureRect" parent="WorldMapZoneDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="WorldMapZoneDropDownRight" type="TextureRect" parent="WorldMapZoneDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="WorldMapZoneDropDownText" type="Label" parent="WorldMapZoneDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="FontString" type="Label" parent="WorldMapZoneDropDown"]
+offset_left = 20
+offset_top = -10
+offset_right = 20
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Zone"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapZoneDropDownButton" type="TextureButton" parent="WorldMapZoneDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapZoneDropDown/WorldMapZoneDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapZoneDropDown/WorldMapZoneDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapZoneDropDown/WorldMapZoneDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapZoneDropDown/WorldMapZoneDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_21")
+
+[node name="WorldMapZoomOutButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63
+offset_top = -347
+offset_right = 47
+offset_bottom = -325
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapZoomOutButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapZoomOutButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapZoomOutButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="WorldMapZoomOutButtonText" type="Label" parent="WorldMapZoomOutButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Zoom Out"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapZoomOutButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_21")
+
+[node name="WorldMapMagnifyingGlassButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -468
+offset_top = -298
+offset_right = -289
+offset_bottom = -258
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="WorldMapMagnifyingGlassButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_30")
+expand_mode = 1
+
+[node name="WorldMapMagnifyingGlassButtonText" type="Label" parent="WorldMapMagnifyingGlassButton"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 5
+offset_right = 32
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Right Click On Map To Zoom Out"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 484
+offset_top = -388
+offset_right = 516
+offset_bottom = -356
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_31")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_21")
+
+[node name="WorldMapDetailFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -502
+offset_top = -315
+offset_right = 500
+offset_bottom = 353
+mouse_filter = 2
+
+[node name="WorldMapDetailTile1" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile2" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 256
+offset_top = 0
+offset_right = 512
+offset_bottom = 256
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile3" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = 0
+offset_right = 768
+offset_bottom = 256
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile4" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 768
+offset_top = 0
+offset_right = 1024
+offset_bottom = 256
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile5" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 256
+offset_right = 256
+offset_bottom = 512
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile6" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 256
+offset_top = 256
+offset_right = 512
+offset_bottom = 512
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile7" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = 256
+offset_right = 768
+offset_bottom = 512
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile8" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 768
+offset_top = 256
+offset_right = 1024
+offset_bottom = 512
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile9" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 512
+offset_right = 256
+offset_bottom = 768
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile10" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 256
+offset_top = 512
+offset_right = 512
+offset_bottom = 768
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile11" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = 512
+offset_right = 768
+offset_bottom = 768
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapDetailTile12" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 768
+offset_top = 512
+offset_right = 1024
+offset_bottom = 768
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapHighlight" type="TextureRect" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 128
+visible = false
+mouse_filter = 2
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_21")
+
+[node name="WorldMapButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -502
+offset_top = -315
+offset_right = 500
+offset_bottom = 353
+ignore_texture_size = true
+
+[node name="WorldMapPlayer" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+mouse_filter = 2
+
+[node name="WorldMapParty1" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapParty1Icon" type="TextureRect" parent="WorldMapButton/WorldMapParty1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapParty2" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapParty2Icon" type="TextureRect" parent="WorldMapButton/WorldMapParty2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapParty3" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapParty3Icon" type="TextureRect" parent="WorldMapButton/WorldMapParty3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapParty4" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapParty4Icon" type="TextureRect" parent="WorldMapButton/WorldMapParty4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid1" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid1Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid2" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid2Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid3" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid3Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid4" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid4Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid5" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid5Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid6" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid6Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid7" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid7Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid8" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid8Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid9" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid9Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid10" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid10Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid11" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid11Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid12" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid12Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid13" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid13Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid14" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid14Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid15" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid15Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid16" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid16Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid17" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid17Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid18" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid18Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid18"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid19" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid19Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid19"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid20" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid20Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid20"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid21" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid21Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid21"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid22" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid22Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid22"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid23" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid23Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid23"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid24" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid24Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid24"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid25" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid25Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid25"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid26" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid26Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid26"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid27" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid27Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid27"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid28" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid28Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid28"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid29" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid29Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid29"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid30" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid30Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid30"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid31" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid31Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid31"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid32" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid32Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid32"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid33" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid33Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid33"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid34" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid34Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid34"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid35" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid35Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid35"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid36" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid36Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid36"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid37" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid37Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid37"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid38" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid38Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid38"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid39" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid39Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid39"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapRaid40" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapRaid40Icon" type="TextureRect" parent="WorldMapButton/WorldMapRaid40"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFlag1" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 489
+offset_top = 322
+offset_right = 513
+offset_bottom = 346
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapFlag1Texture" type="TextureRect" parent="WorldMapButton/WorldMapFlag1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFlag2" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 489
+offset_top = 322
+offset_right = 513
+offset_bottom = 346
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapFlag2Texture" type="TextureRect" parent="WorldMapButton/WorldMapFlag2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCorpse" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="WorldMapButton/WorldMapCorpse"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_35")
+expand_mode = 1
+
+[node name="WorldMapPing" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 477
+offset_top = 290
+offset_right = 527
+offset_bottom = 340
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapFrameAreaFrame" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 301
+offset_top = 10
+offset_right = 701
+offset_bottom = 138
+mouse_filter = 2
+
+[node name="WorldMapFrameAreaLabel" type="Label" parent="WorldMapButton/WorldMapFrameAreaFrame"]
+unique_name_in_owner = true
+offset_left = 220
+offset_top = 20
+offset_right = 220
+offset_bottom = 122
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"WorldMapTextFont"
+text = "BLAH!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapFrameAreaDescription" type="Label" parent="WorldMapButton/WorldMapFrameAreaFrame"]
+unique_name_in_owner = true
+offset_left = 220
+offset_top = 122
+offset_right = 220
+offset_bottom = 148
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"SubZoneTextFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltip" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="WorldMapTooltip"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_36")
+edge = SubResource("WowTexture_37")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="WorldMapTooltipTextLeft1" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 10
+offset_right = 10
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipHeaderText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight1" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 10
+offset_right = 50
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipHeaderText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft2" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 26
+offset_right = 10
+offset_bottom = 38
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight2" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 26
+offset_right = 50
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft3" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 40
+offset_right = 10
+offset_bottom = 52
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight3" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 40
+offset_right = 50
+offset_bottom = 52
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft4" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 54
+offset_right = 10
+offset_bottom = 66
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight4" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 54
+offset_right = 50
+offset_bottom = 66
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft5" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 68
+offset_right = 10
+offset_bottom = 80
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight5" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 68
+offset_right = 50
+offset_bottom = 80
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft6" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 82
+offset_right = 10
+offset_bottom = 94
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight6" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 82
+offset_right = 50
+offset_bottom = 94
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft7" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 96
+offset_right = 10
+offset_bottom = 108
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight7" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 96
+offset_right = 50
+offset_bottom = 108
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft8" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 110
+offset_right = 10
+offset_bottom = 122
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight8" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 110
+offset_right = 50
+offset_bottom = 122
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft9" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 124
+offset_right = 10
+offset_bottom = 136
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight9" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 124
+offset_right = 50
+offset_bottom = 136
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft10" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 138
+offset_right = 10
+offset_bottom = 150
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight10" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 138
+offset_right = 50
+offset_bottom = 150
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft11" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 152
+offset_right = 10
+offset_bottom = 164
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight11" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 152
+offset_right = 50
+offset_bottom = 164
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft12" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 166
+offset_right = 10
+offset_bottom = 178
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight12" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 166
+offset_right = 50
+offset_bottom = 178
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft13" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 180
+offset_right = 10
+offset_bottom = 192
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight13" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 180
+offset_right = 50
+offset_bottom = 192
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft14" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 194
+offset_right = 10
+offset_bottom = 206
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight14" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 194
+offset_right = 50
+offset_bottom = 206
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft15" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 208
+offset_right = 10
+offset_bottom = 220
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight15" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 208
+offset_right = 50
+offset_bottom = 220
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft16" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 222
+offset_right = 10
+offset_bottom = 234
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight16" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 222
+offset_right = 50
+offset_bottom = 234
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft17" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 236
+offset_right = 10
+offset_bottom = 248
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight17" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 236
+offset_right = 50
+offset_bottom = 248
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft18" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 250
+offset_right = 10
+offset_bottom = 262
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight18" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 250
+offset_right = 50
+offset_bottom = 262
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft19" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 264
+offset_right = 10
+offset_bottom = 276
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight19" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 264
+offset_right = 50
+offset_bottom = 276
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft20" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 278
+offset_right = 10
+offset_bottom = 290
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight20" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 278
+offset_right = 50
+offset_bottom = 290
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft21" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 292
+offset_right = 10
+offset_bottom = 304
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight21" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 292
+offset_right = 50
+offset_bottom = 304
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft22" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 306
+offset_right = 10
+offset_bottom = 318
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight22" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 306
+offset_right = 50
+offset_bottom = 318
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft23" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 320
+offset_right = 10
+offset_bottom = 332
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight23" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 320
+offset_right = 50
+offset_bottom = 332
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft24" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 334
+offset_right = 10
+offset_bottom = 346
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight24" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 334
+offset_right = 50
+offset_bottom = 346
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft25" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 348
+offset_right = 10
+offset_bottom = 360
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight25" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 334
+offset_right = 50
+offset_bottom = 346
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft26" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 362
+offset_right = 10
+offset_bottom = 374
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight26" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 348
+offset_right = 50
+offset_bottom = 360
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft27" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 376
+offset_right = 10
+offset_bottom = 388
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight27" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 362
+offset_right = 50
+offset_bottom = 374
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft28" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 390
+offset_right = 10
+offset_bottom = 402
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight28" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 376
+offset_right = 50
+offset_bottom = 388
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft29" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 404
+offset_right = 10
+offset_bottom = 416
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight29" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 390
+offset_right = 50
+offset_bottom = 402
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextLeft30" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 418
+offset_right = 10
+offset_bottom = 430
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTextRight30" type="Label" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 404
+offset_right = 50
+offset_bottom = 416
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapTooltipTexture1" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipTexture2" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipTexture3" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipStatusBar" type="TextureProgressBar" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 2
+offset_top = 1
+offset_right = -2
+offset_bottom = 9
+visible = false
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_38")
+nine_patch_stretch = true
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="WorldMapTooltipMoneyFrame" parent="WorldMapTooltip" instance=ExtResource("4")]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 10.5
+offset_right = 138
+offset_bottom = 23.5
+visible = false

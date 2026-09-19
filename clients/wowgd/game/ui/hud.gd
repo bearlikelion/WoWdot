@@ -26,6 +26,7 @@ const OUT_OF_POWER: Array[String] = [
 	"ERR_OUT_OF_MANA", "ERR_OUT_OF_RAGE", "ERR_OUT_OF_FOCUS", "ERR_OUT_OF_ENERGY",
 ]
 
+var _area: int = 0
 var _spell_failures: Dictionary = {}
 var _casting_bar_top: float = 0.0
 
@@ -50,6 +51,7 @@ var _casting_bar_top: float = 0.0
 @onready var _merchant: MerchantFrame = _panels.get_node("%MerchantFrame")
 @onready var _trainer: ClassTrainerFrame = _panels.get_node("%ClassTrainerFrame")
 @onready var _taxi: TaxiFrame = _panels.get_node("%TaxiFrame")
+@onready var _world_map: WorldMapFrame = _panels.get_node("%WorldMapFrame")
 @onready var _quest_frame: QuestFrame = _panels.get_node("%QuestFrame")
 
 
@@ -118,6 +120,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_panels.toggle_panel(_talents)
 	elif _exact(event, "toggle_quest_log"):
 		_panels.toggle_panel(_quest_log)
+	elif _exact(event, "toggle_world_map"):
+		_panels.toggle_panel(_world_map)
 	elif _exact(event, "toggle_bags"):
 		_panels.open_all_bags()
 	elif _exact(event, "toggle_backpack"):
@@ -150,9 +154,11 @@ func add_chat_line(text: String, color: Color = Color.WHITE) -> void:
 
 func show_location(map_dir: String, wow_position: Vector3, facing: float) -> void:
 	_minimap.show_location(map_dir, wow_position, facing)
+	_world_map.set_player(map_dir, wow_position, facing, _area)
 
 
 func show_area(area_id: int, player_race: int) -> void:
+	_area = area_id
 	_minimap.show_area(area_id, player_race)
 
 
@@ -222,6 +228,8 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 			_panels.toggle_panel(_talents)
 		MainMenuBar.GamePanel.QUEST_LOG:
 			_panels.toggle_panel(_quest_log)
+		MainMenuBar.GamePanel.WORLD_MAP:
+			_panels.toggle_panel(_world_map)
 		MainMenuBar.GamePanel.BAGS:
 			_panels.toggle_backpack()
 		MainMenuBar.GamePanel.GAME_MENU:

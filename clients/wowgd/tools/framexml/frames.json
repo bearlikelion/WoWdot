@@ -242,6 +242,11 @@
 			"frame": "TaxiFrame",
 			"out": "game/ui/wow/taxi_frame.tscn",
 			"script": "res://game/ui/taxi_frame.gd"
+		},
+		{
+			"frame": "WorldMapFrame",
+			"out": "game/ui/wow/world_map_frame.tscn",
+			"script": "res://game/ui/world_map_frame.gd"
 		}
 	],
 	"graft": {
