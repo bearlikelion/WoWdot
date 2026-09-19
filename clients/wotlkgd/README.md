@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="wotlkgd_icon.png" alt="WotLKGD logo" width="200">
+</p>
+
 # WotLKGD
 
 A Godot 4.7 client for World of Warcraft 3.3.5a (build 12340) that will play on [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk).

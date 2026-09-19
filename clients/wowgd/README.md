@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="wowgd_icon.png" alt="WoWGD logo" width="200">
+</p>
+
 # WoWGD
 
 A Godot 4.7 client for World of Warcraft 1.12.1 (build 5875) that plays on [vMaNGOS](https://github.com/vmangos/core).
