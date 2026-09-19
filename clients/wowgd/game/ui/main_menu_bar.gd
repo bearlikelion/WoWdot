@@ -125,6 +125,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 
 
+# The page the buttons actually show, which a form's bonus bar can override.
+func shown_page() -> int:
+	return _shown_page
+
+
 func _assign_slots() -> void:
 	if _buttons.is_empty():
 		return

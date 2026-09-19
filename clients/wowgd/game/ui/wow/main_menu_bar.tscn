@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://game/ui/wow/wow_button.gd" id="2"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/action_button_template.tscn" id="3"]
 [ext_resource type="Script" uid="uid://cf2uxwerdf4cv" path="res://game/ui/wow/wow_cooldown.gd" id="4"]
+[ext_resource type="Script" path="res://game/ui/stance_bar.gd" id="5"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
@@ -2164,6 +2165,7 @@ offset_bottom = 39.0
 [node name="ShapeshiftBarFrame" type="Control" parent="." unique_id=899827801]
 unique_name_in_owner = true
 visible = false
+script = ExtResource("5")
 anchors_preset = 0
 offset_left = 30.0
 offset_top = -32.0

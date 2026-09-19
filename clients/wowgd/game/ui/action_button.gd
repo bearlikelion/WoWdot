@@ -15,6 +15,15 @@ var slot: int = -1:
 	set(value):
 		slot = value
 		refresh()
+# Set by the stance bar, whose buttons show a spell instead of an action slot.
+var stance_spell: int = 0:
+	set(value):
+		stance_spell = value
+		refresh()
+var stance_active: bool = false:
+	set(value):
+		stance_active = value
+		_update_checked()
 var hotkey: String = "":
 	set(value):
 		hotkey = value
@@ -117,6 +126,8 @@ func _item() -> int:
 
 
 func _packed() -> int:
+	if stance_spell != 0:
+		return stance_spell
 	var buttons: PackedInt32Array = WowClient.session.get_action_buttons()
 	return buttons[slot] if slot >= 0 and slot < buttons.size() else 0
 
@@ -137,7 +148,8 @@ func _update_cooldown() -> void:
 
 func _update_checked() -> void:
 	var current: int = spell()
-	checked = current != 0 and (current == _casting_spell or (current == SPELL_ATTACK and _attacking))
+	checked = stance_active \
+	or (current != 0 and (current == _casting_spell or (current == SPELL_ATTACK and _attacking)))
 
 
 func _on_mouse_entered() -> void:
