@@ -50,7 +50,7 @@ anchor_bottom = 1.0
 [node name="LoadingScreen" parent="GlueParent" unique_id=1134490964 instance=ExtResource("6_loading")]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 0
+layout_mode = 1
 
 [node name="RealmList" parent="GlueParent" unique_id=284529479 instance=ExtResource("7_realms")]
 unique_name_in_owner = true

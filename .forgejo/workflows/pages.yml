@@ -1,0 +1,49 @@
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  pages:
+    runs-on: docker
+    container:
+      image: archlinux:latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Install build dependencies
+        run: pacman -Syu --noconfirm --needed base-devel git nodejs scons unzip
+
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # GDDocs needs the extension loaded, or every script using WowSession fails to parse.
+      - name: Build the extension
+        run: cd extension && scons -j8 target=template_debug
+
+      - name: Download Godot
+        run: |
+          curl -fsSLo godot.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip
+          unzip -q godot.zip
+          echo "GODOT=$PWD/Godot_v4.7.2-stable_linux.x86_64" >> "$GITHUB_ENV"
+
+      - name: Build the site
+        run: website/build.sh
+
+      # Forgejo has no built-in Pages; a pages branch is what Codeberg's pages server and its self-hosted builds serve.
+      - name: Publish to the pages branch
+        env:
+          TOKEN: ${{ github.token }}
+          SERVER: ${{ github.server_url }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          cd _site
+          git init -q -b pages
+          git add -A
+          git -c user.name="Forgejo Actions" -c user.email="actions@noreply.localhost" commit -q -m "Site for $SHA"
+          git push -f "https://oauth2:${TOKEN}@${SERVER#https://}/${REPO}.git" pages

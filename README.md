@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="wowdot_logo.png" alt="WoWdot logo" width="200">
+</p>
+
 # WoWdot
 
 Open-source Godot clients for classic World of Warcraft servers.
@@ -18,7 +22,11 @@ shared/wowdot/   Addon both clients load; the built libraries land in its bin/
 clients/wowgd/   Vanilla client, addons/wowdot links to shared/wowdot
 clients/wotlkgd/ WotLK client, addons/wowdot links to shared/wowdot
 docs/            Plan, provenance and audit
+website/         Project site, built with website/build.sh into _site/
 ```
+
+The site includes a GDDocs API reference for each client.
+GitHub Pages deploys it from `.github/workflows/pages.yml`, and Forgejo pushes it to a `pages` branch from `.forgejo/workflows/pages.yml`.
 
 ## Building
 

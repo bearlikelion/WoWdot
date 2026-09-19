@@ -15,6 +15,8 @@ Keep these notices with every source and binary distribution.
 | GLM | `extension/thirdparty/glm/` (submodule) | MIT |
 | nlohmann/json | `extension/thirdparty/json/` (submodule) | MIT |
 | Godot Engine | exported builds | MIT, plus the engine's own third-party notices |
+| GDDocs, with its bundled copy of marked | `clients/wowgd/addons/gddocs/` (documentation tool, left out of exports) | MIT |
+| Godot logo, adapted for the WoWdot logo | `wowdot_logo.png`, `website/` | CC BY 4.0, by Andrea Calabró |
 
 The WoWee license file also contains an "Original Music Assets License" that reserves all rights to WoWee's music.
 No WoWee music or audio is included in WoWdot.

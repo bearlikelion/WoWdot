@@ -29,7 +29,11 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/wowgd_editor/plugin.cfg")
+enabled=PackedStringArray("res://addons/gddocs/plugin.cfg", "res://addons/wowgd_editor/plugin.cfg")
+
+[gddocs]
+
+exclude=PackedStringArray("res://addons/", "res://tests/", "res://tools/")
 
 [input]
 

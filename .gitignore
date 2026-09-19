@@ -13,3 +13,7 @@ bin/
 .sconsign.dblite
 __pycache__/
 /export/
+
+# GDDocs output; the site build regenerates it
+clients/*/docs/api/
+/_site/
