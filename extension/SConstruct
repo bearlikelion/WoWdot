@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Builds the wowgd GDExtension: scons -j 8 target=template_debug
+# Builds the wowdot GDExtension: scons -j 8 target=template_debug
 
 # godot-cpp reads custom.py relative to its own directory unless the path is exported.
 customs = [File("custom.py").abspath]
@@ -13,19 +13,24 @@ env.Append(CXXFLAGS=["-std=c++20"])
 if ARGUMENTS.get("sanitize") == "yes":
 	sanitizers = ["-fsanitize=address,undefined", "-fno-omit-frame-pointer"]
 	env.Append(CCFLAGS=sanitizers, LINKFLAGS=sanitizers)
-env.Append(CPPPATH=["src/", "wowee/include/", "thirdparty/StormLib/src/"])
+thirdparty = [
+	"thirdparty/StormLib/src/",
+	"thirdparty/StormLib/src/libtommath/",
+	"thirdparty/StormLib/src/libtomcrypt/src/headers/",
+	"thirdparty/glm/",
+	"thirdparty/json/single_include/",
+	"thirdparty/zlib/",
+	"thirdparty/bzip2/",
+]
+env.Append(CPPPATH=["src/", "wowee/include/"] + thirdparty)
 windows = env["platform"] == "windows"
 if windows:
-	# mingw has zlib only: libcrypto is cross-built into ../../deps/mingw, bzip2 comes from StormLib.
-	env.Append(CPPPATH=["../../deps/mingw/include"], LIBPATH=["../../deps/mingw/lib64"])
-	env.Append(LIBS=["crypto", "z", "ws2_32", "crypt32", "wininet"])
-else:
-	env.Append(LIBS=["z", "bz2", "crypto"])
+	env.Append(LIBS=["ws2_32", "wininet"])
 
 # Our own sources build with full warnings; vendored mWoWee and StormLib keep their upstream flags.
 strict_env = env.Clone()
 strict_env.Append(CXXFLAGS=["-Wall", "-Wextra", "-Wpedantic", "-Wshadow"])
-for header_dir in ["godot-cpp/include", "godot-cpp/gen/include", "godot-cpp/gdextension", "wowee/include", "thirdparty/StormLib/src"]:
+for header_dir in ["godot-cpp/include", "godot-cpp/gen/include", "godot-cpp/gdextension", "wowee/include"] + thirdparty:
 	strict_env.Append(CXXFLAGS=["-isystem", Dir(header_dir).abspath])
 sources = [strict_env.SharedObject(f) for f in Glob("src/*.cpp")] + Glob("wowee/src/*/*.cpp")
 
@@ -35,15 +40,20 @@ import re
 storm_dir = "thirdparty/StormLib/"
 storm_cmake = open(storm_dir + "CMakeLists.txt").read()
 storm_sources = []
-for name in ["SRC_FILES", "TOMCRYPT_FILES", "TOMMATH_FILES"] + (["BZIP2_FILES"] if windows else []):
+for name in ["SRC_FILES", "TOMCRYPT_FILES", "TOMMATH_FILES"]:
 	block = re.search(r"set\(" + name + r"\s+(.*?)\)", storm_cmake, re.S).group(1)
 	storm_sources += [storm_dir + f for f in block.split() if f.endswith((".c", ".cpp"))]
+# zlib and bzip2 come from their own submodules; StormLib's bundled copies are 1.2.5 and 1.0.5.
+zlib_names = ["adler32", "compress", "crc32", "deflate", "infback", "inffast", "inflate", "inftrees", "trees", "uncompr", "zutil"]
+bzip2_names = ["blocksort", "bzlib", "compress", "crctable", "decompress", "huffman", "randtable"]
+storm_sources += ["thirdparty/zlib/{}.c".format(n) for n in zlib_names]
+storm_sources += ["thirdparty/bzip2/{}.c".format(n) for n in bzip2_names]
 storm_env = env.Clone()
-storm_env.Append(CPPDEFINES=["_7ZIP_ST", "BZ_STRICT_ANSI", "__SYS_ZLIB"] + ([] if windows else ["__SYS_BZLIB"]))
+storm_env.Append(CPPDEFINES=["_7ZIP_ST", "BZ_STRICT_ANSI", "__SYS_ZLIB", "__SYS_BZLIB"])
 sources += [storm_env.SharedObject(f) for f in storm_sources]
 
 library = env.SharedLibrary(
-	"../bin/libwowgd{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
+	"../shared/wowdot/bin/libwowdot{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
 	source=sources,
 )
 

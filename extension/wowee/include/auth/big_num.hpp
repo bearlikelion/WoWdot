@@ -3,12 +3,12 @@
 #include <vector>
 #include <cstdint>
 #include <string>
-#include <openssl/bn.h>
+#include <tommath.h>
 
 namespace wowee {
 namespace auth {
 
-// Wrapper around OpenSSL BIGNUM for big integer arithmetic
+// Wrapper around libtommath mp_int for big integer arithmetic
 class BigNum {
 public:
     BigNum();
@@ -43,12 +43,9 @@ public:
     std::string toHex() const;
     std::string toDecimal() const;
 
-    // Direct access (for advanced operations)
-    BIGNUM* getBN() { return bn; }
-    const BIGNUM* getBN() const { return bn; }
-
 private:
-    BIGNUM* bn;
+    // libtommath takes non-const pointers even for inputs.
+    mutable mp_int bn;
 };
 
 } // namespace auth

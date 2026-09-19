@@ -38,7 +38,7 @@ static void uninitialize_wowgd_module(ModuleInitializationLevel p_level) {
 }
 
 extern "C" {
-GDExtensionBool GDE_EXPORT wowgd_library_init(
+GDExtensionBool GDE_EXPORT wowdot_library_init(
 		GDExtensionInterfaceGetProcAddress p_get_proc_address,
 		GDExtensionClassLibraryPtr p_library,
 		GDExtensionInitialization *r_initialization) {

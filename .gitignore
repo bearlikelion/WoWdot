@@ -1,9 +1,15 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
 
 # Build output
 bin/
 *.os
 *.o
 .sconsign.dblite
+__pycache__/
+/export/

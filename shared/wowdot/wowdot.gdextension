@@ -1,0 +1,10 @@
+[configuration]
+entry_symbol = "wowdot_library_init"
+compatibility_minimum = "4.7"
+reloadable = true
+
+[libraries]
+linux.debug.x86_64 = "res://addons/wowdot/bin/libwowdot.linux.template_debug.x86_64.so"
+linux.release.x86_64 = "res://addons/wowdot/bin/libwowdot.linux.template_release.x86_64.so"
+windows.debug.x86_64 = "res://addons/wowdot/bin/libwowdot.windows.template_debug.x86_64.dll"
+windows.release.x86_64 = "res://addons/wowdot/bin/libwowdot.windows.template_release.x86_64.dll"

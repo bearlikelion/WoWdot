@@ -5,3 +5,19 @@
 	path = extension/thirdparty/StormLib
 	url = https://github.com/ladislav-zezula/StormLib
 	ignore = dirty
+[submodule "extension/thirdparty/zlib"]
+	path = extension/thirdparty/zlib
+	url = https://github.com/madler/zlib
+	ignore = dirty
+[submodule "extension/thirdparty/bzip2"]
+	path = extension/thirdparty/bzip2
+	url = https://sourceware.org/git/bzip2.git
+	ignore = dirty
+[submodule "extension/thirdparty/glm"]
+	path = extension/thirdparty/glm
+	url = https://github.com/g-truc/glm
+	shallow = true
+[submodule "extension/thirdparty/json"]
+	path = extension/thirdparty/json
+	url = https://github.com/nlohmann/json
+	shallow = true
