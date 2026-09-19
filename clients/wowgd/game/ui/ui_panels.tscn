@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/character_frame.tscn" id="2_character"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/static_popup.tscn" id="8_popup"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/gossip_frame.tscn" id="9_gossip"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/quest_frame.tscn" id="10_quest"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/merchant_frame.tscn" id="11_merchant"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/class_trainer_frame.tscn" id="12_trainer"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/taxi_frame.tscn" id="13_taxi"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -42,6 +45,18 @@ unique_name_in_owner = true
 visible = false
 
 [node name="QuestFrame" parent="." instance=ExtResource("10_quest")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MerchantFrame" parent="." instance=ExtResource("11_merchant")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ClassTrainerFrame" parent="." instance=ExtResource("12_trainer")]
+unique_name_in_owner = true
+visible = false
+
+[node name="TaxiFrame" parent="." instance=ExtResource("13_taxi")]
 unique_name_in_owner = true
 visible = false
 

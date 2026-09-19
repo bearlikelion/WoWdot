@@ -127,6 +127,9 @@ private:
 	PackedInt32Array known_spells;
 	// Reputation list order: SMSG_INITIALIZE_FACTIONS flags and standings on top of Faction.dbc's base.
 	PackedByteArray faction_flags;
+	// The spline the server is moving the player along, as on a flight, and when it came in.
+	Dictionary player_path;
+	uint64_t player_path_msec = 0;
 	PackedInt32Array faction_standings;
 	// SMSG_ACTION_BUTTONS order: action id in the low 24 bits, the type in the high byte.
 	PackedInt32Array action_buttons;
@@ -183,6 +186,7 @@ public:
 	Dictionary get_game_object_info(int entry);
 	Dictionary get_quest_info(int quest_id);
 	Array get_npc_text(int text_id, int64_t guid);
+	Dictionary get_player_path() const;
 	void disconnect();
 	void poll();
 

@@ -4,7 +4,6 @@ extends RefCounted
 # SMSG_QUESTGIVER_STATUS values.
 enum Status { NONE, UNAVAILABLE, CHAT, INCOMPLETE, REWARD_REP, AVAILABLE, REWARD_OLD, REWARD2 }
 
-const NPC_FLAG_GOSSIP: int = 0x01
 const NPC_FLAG_QUESTGIVER: int = 0x02
 # The talk-to-me models that float over quest givers.
 const MARKERS: Dictionary[Status, String] = {
@@ -31,10 +30,10 @@ static func is_quest_giver(guid: int) -> bool:
 	return WowClient.session.get_field(guid, "UNIT_NPC_FLAGS") & NPC_FLAG_QUESTGIVER != 0
 
 
-# Right-clicking a unit opens its gossip when it has one, otherwise its quests; false for neither.
+# Right-clicking: any service, vendors and trainers too, starts with gossip; plain quest givers not.
 static func interact(guid: int) -> bool:
 	var flags: int = WowClient.session.get_field(guid, "UNIT_NPC_FLAGS")
-	if flags & NPC_FLAG_GOSSIP:
+	if flags & ~NPC_FLAG_QUESTGIVER:
 		send("CMSG_GOSSIP_HELLO", guid)
 	elif flags & NPC_FLAG_QUESTGIVER:
 		send("CMSG_QUESTGIVER_HELLO", guid)

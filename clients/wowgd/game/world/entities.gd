@@ -8,8 +8,9 @@ const NAMEPLATE: PackedScene = preload("res://game/world/nameplate.tscn")
 const RUN_SPEED_THRESHOLD: float = 4.0
 const FORWARD_FLAG: int = 0x1
 const NAMEPLATE_GAP: float = 0.3
-# The quest marker floats this far over the head, clear of the name.
-const MARKER_GAP: float = 0.9
+# The quest marker floats this far over the top line of the nameplate.
+const MARKER_GAP: float = 0.3
+const NAMEPLATE_LINE_HEIGHT: float = 0.3
 # SMSG_ATTACKERSTATEUPDATE victim state for a blow that landed.
 const VICTIM_STATE_HIT: int = 1
 
@@ -162,9 +163,18 @@ func pick(from: Vector3, direction: Vector3) -> int:
 	return picked
 
 
-func _on_name_received(guid: int, unit_name: String) -> void:
+func _on_name_received(guid: int, _unit_name: String) -> void:
 	if _nameplates.has(guid):
-		_nameplates[guid].text = unit_name
+		_nameplates[guid].text = _plate_text(guid)
+		_place_marker(guid)
+
+
+# The name, and under it the creature's title such as <Paladin Trainer>.
+func _plate_text(guid: int) -> String:
+	var session: WowSession = WowClient.session
+	var title: String = session.get_creature_info(guid).get("subname", "")
+	var unit_name: String = session.get_object_name(guid)
+	return unit_name + ("\n<%s>" % title if not title.is_empty() else "")
 
 
 func _on_objects_destroyed(guids: PackedInt64Array) -> void:
@@ -192,7 +202,7 @@ func _add_nameplate(guid: int, node: Node3D) -> void:
 	var plate: Label3D = NAMEPLATE.instantiate()
 	plate.position.y = bounds.end.y + NAMEPLATE_GAP / node.scale.y
 	plate.scale = Vector3.ONE / node.scale
-	plate.text = WowClient.session.get_object_name(guid)
+	plate.text = _plate_text(guid)
 	node.add_child(plate)
 	_nameplates[guid] = plate
 
@@ -240,10 +250,19 @@ func _on_quest_giver_status(guid: int, status: int) -> void:
 	if marker == null:
 		return
 	node.add_child(marker)
-	marker.position.y = _bounds[guid].end.y + MARKER_GAP / node.scale.y
 	marker.scale = Vector3.ONE / node.scale
 	UnitAnimations.set_base(marker, ["Stand"])
 	_markers[guid] = marker
+	_place_marker(guid)
+
+
+# Above the nameplate's top line, however many lines it has.
+func _place_marker(guid: int) -> void:
+	if not _markers.has(guid) or not _nodes.has(guid):
+		return
+	var lines: int = _nameplates[guid].text.count("\n") + 1 if _nameplates.has(guid) else 0
+	var above: float = NAMEPLATE_GAP + lines * NAMEPLATE_LINE_HEIGHT + MARKER_GAP
+	_markers[guid].position.y = _bounds[guid].end.y + above / _nodes[guid].scale.y
 
 
 func _on_melee_swing(

@@ -57,6 +57,11 @@ var active: bool = false:
 		set_physics_process(value)
 
 var _flags: int = MoveFlag.NONE
+# A server spline the player rides, as on a flight: points, distances along them, and timing.
+var _path: PackedVector3Array = []
+var _path_distances: PackedFloat32Array = []
+var _path_elapsed: float = 0.0
+var _path_duration: float = 0.0
 var _heartbeat: float = 0.0
 var _facing_timer: float = 0.0
 var _facing_dirty: bool = false
@@ -131,6 +136,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not _path.is_empty():
+		_ride(delta)
+		return
 	var flags: int = _input_flags()
 	if flags & MoveFlag.TURN_LEFT:
 		rotation.y += TURN_SPEED * delta
@@ -143,6 +151,21 @@ func _physics_process(delta: float) -> void:
 		_walk(flags)
 	_send_periodic(delta)
 	_animate(_flags)
+
+
+# A server path as on a flight, with no control until it ends; a resumed one starts partway along.
+func follow_path(
+	points: PackedVector3Array, duration_msec: int, elapsed_msec: int, from_start: bool,
+) -> void:
+	_path = PackedVector3Array() if from_start else PackedVector3Array([global_position])
+	_path.append_array(points)
+	_path_distances = PackedFloat32Array([0.0])
+	for i: int in range(1, _path.size()):
+		_path_distances.append(_path_distances[i - 1] + _path[i - 1].distance_to(_path[i]))
+	_path_elapsed = elapsed_msec / 1000.0
+	_path_duration = maxf(duration_msec / 1000.0, 0.001)
+	_flags = MoveFlag.NONE
+	velocity = Vector3.ZERO
 
 
 func place(godot_position: Vector3, facing: float) -> void:
@@ -299,6 +322,23 @@ func set_dead(dead: bool) -> void:
 		UnitAnimations.die(_model)
 	else:
 		UnitAnimations.revive(_model)
+
+
+func _ride(delta: float) -> void:
+	_path_elapsed += delta
+	var total: float = _path_distances[_path_distances.size() - 1]
+	var travelled: float = total * clampf(_path_elapsed / _path_duration, 0.0, 1.0)
+	var index: int = clampi(_path_distances.bsearch(travelled), 1, _path.size() - 1)
+	var span: float = maxf(_path_distances[index] - _path_distances[index - 1], 0.001)
+	var weight: float = (travelled - _path_distances[index - 1]) / span
+	global_position = _path[index - 1].lerp(_path[index], clampf(weight, 0.0, 1.0))
+	var heading: Vector3 = _path[index] - _path[index - 1]
+	if Vector2(heading.x, heading.z).length() > 0.01:
+		rotation.y = atan2(-heading.x, -heading.z)
+	if _model:
+		UnitAnimations.set_base(_model, ["Fly", "Run"])
+	if _path_elapsed >= _path_duration:
+		_path.clear()
 
 
 func _animate(flags: int) -> void:

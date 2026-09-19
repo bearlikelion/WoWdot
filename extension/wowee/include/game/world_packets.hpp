@@ -497,6 +497,14 @@ struct UpdateBlock {
     // Used to initialise swim/walk/fly state on entity spawn (cold-join).
     uint32_t moveFlags = 0;
 
+    // Spline the unit is following when the block was sent (vanilla MOVEFLAG_SPLINE_ENABLED)
+    struct SplinePoint { float x, y, z; };
+    bool hasSpline = false;
+    uint32_t splineFlags = 0;
+    uint32_t splineTimePassed = 0;
+    uint32_t splineDuration = 0;
+    std::vector<SplinePoint> splinePoints;
+
     // Transport data from LIVING movement block (MOVEMENTFLAG_ONTRANSPORT)
     bool onTransport = false;
     uint64_t transportGuid = 0;

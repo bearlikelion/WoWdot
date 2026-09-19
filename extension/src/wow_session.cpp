@@ -646,6 +646,21 @@ void WowSession::handle_quest_query(network::Packet &packet) {
 	emit_signal("quest_info_received", static_cast<int64_t>(id));
 }
 
+// The path the server is flying the player along, with its elapsed time brought up to now, or empty.
+Dictionary WowSession::get_player_path() const {
+	if (player_path.is_empty()) {
+		return Dictionary();
+	}
+	Dictionary path = player_path.duplicate();
+	const int64_t elapsed = static_cast<int64_t>(player_path["elapsed_msec"])
+		+ static_cast<int64_t>(Time::get_singleton()->get_ticks_msec() - player_path_msec);
+	if (elapsed >= static_cast<int64_t>(player_path["duration_msec"])) {
+		return Dictionary();
+	}
+	path["elapsed_msec"] = elapsed;
+	return path;
+}
+
 // NPC text options as [probability, male text, female text]; empty until the server answers.
 Array WowSession::get_npc_text(int text_id, int64_t guid) {
 	const uint32_t key = static_cast<uint32_t>(text_id);
@@ -835,6 +850,116 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 			emit_signal("quest_kill_added", quest_id, entry, count, required);
 			return true;
 		}
+		case LogicalOpcode::SMSG_LIST_INVENTORY: {
+			constexpr uint32_t UNLIMITED = 0xFFFFFFFF;
+			Dictionary inventory;
+			inventory["guid"] = static_cast<int64_t>(packet.readUInt64());
+			Array items;
+			const uint8_t count = packet.readUInt8();
+			for (uint8_t i = 0; i < count && packet.hasRemaining(28); ++i) {
+				Dictionary item;
+				item["slot"] = static_cast<int64_t>(packet.readUInt32());
+				item["entry"] = static_cast<int64_t>(packet.readUInt32());
+				item["display"] = static_cast<int64_t>(packet.readUInt32());
+				const uint32_t stock = packet.readUInt32();
+				item["stock"] = stock == UNLIMITED ? static_cast<int64_t>(-1) : static_cast<int64_t>(stock);
+				item["price"] = static_cast<int64_t>(packet.readUInt32());
+				item["durability"] = static_cast<int64_t>(packet.readUInt32());
+				item["count"] = static_cast<int64_t>(packet.readUInt32());
+				items.push_back(item);
+			}
+			inventory["items"] = items;
+			emit_signal("merchant_inventory_received", inventory);
+			return true;
+		}
+		case LogicalOpcode::SMSG_BUY_ITEM: {
+			constexpr uint32_t UNLIMITED = 0xFFFFFFFF;
+			packet.readUInt64();
+			const int64_t slot = packet.readUInt32();
+			const uint32_t stock = packet.readUInt32();
+			emit_signal("merchant_stock_changed", slot, stock == UNLIMITED ? static_cast<int64_t>(-1) : static_cast<int64_t>(stock));
+			return true;
+		}
+		case LogicalOpcode::SMSG_BUY_FAILED: {
+			packet.readUInt64();
+			packet.readUInt32();
+			emit_signal("merchant_buy_failed", static_cast<int64_t>(packet.readUInt8()));
+			return true;
+		}
+		case LogicalOpcode::SMSG_SELL_ITEM: {
+			packet.readUInt64();
+			packet.readUInt64();
+			emit_signal("merchant_sell_failed", static_cast<int64_t>(packet.readUInt8()));
+			return true;
+		}
+		case LogicalOpcode::SMSG_TRAINER_LIST: {
+			Dictionary trainer;
+			trainer["guid"] = static_cast<int64_t>(packet.readUInt64());
+			trainer["type"] = static_cast<int64_t>(packet.readUInt32());
+			Array spells;
+			const uint32_t count = packet.readUInt32();
+			for (uint32_t i = 0; i < count && packet.hasRemaining(38); ++i) {
+				Dictionary spell;
+				spell["id"] = static_cast<int64_t>(packet.readUInt32());
+				spell["state"] = static_cast<int64_t>(packet.readUInt8());
+				spell["cost"] = static_cast<int64_t>(packet.readUInt32());
+				const uint32_t can_learn_profession = packet.readUInt32();
+				// Learnable only when both profession words agree.
+				spell["profession_ok"] = can_learn_profession == packet.readUInt32();
+				spell["level"] = static_cast<int64_t>(packet.readUInt8());
+				spell["skill"] = static_cast<int64_t>(packet.readUInt32());
+				spell["skill_value"] = static_cast<int64_t>(packet.readUInt32());
+				PackedInt32Array prereqs;
+				for (int p = 0; p < 2; ++p) {
+					if (const uint32_t prereq = packet.readUInt32(); prereq != 0) {
+						prereqs.push_back(static_cast<int32_t>(prereq));
+					}
+				}
+				spell["prereqs"] = prereqs;
+				packet.readUInt32();
+				spells.push_back(spell);
+			}
+			trainer["spells"] = spells;
+			trainer["greeting"] = read_string(packet);
+			emit_signal("trainer_list_received", trainer);
+			return true;
+		}
+		case LogicalOpcode::SMSG_TRAINER_BUY_SUCCEEDED: {
+			packet.readUInt64();
+			emit_signal("trainer_spell_bought", static_cast<int64_t>(packet.readUInt32()));
+			return true;
+		}
+		case LogicalOpcode::SMSG_TRAINER_BUY_FAILED: {
+			packet.readUInt64();
+			const int64_t spell = packet.readUInt32();
+			emit_signal("trainer_buy_failed", spell, static_cast<int64_t>(packet.readUInt32()));
+			return true;
+		}
+		case LogicalOpcode::SMSG_SHOWTAXINODES: {
+			constexpr int MASK_WORDS = 8;
+			Dictionary taxi;
+			packet.readUInt32();
+			taxi["guid"] = static_cast<int64_t>(packet.readUInt64());
+			taxi["current"] = static_cast<int64_t>(packet.readUInt32());
+			PackedInt64Array mask;
+			for (int i = 0; i < MASK_WORDS && packet.hasRemaining(4); ++i) {
+				mask.push_back(packet.readUInt32());
+			}
+			taxi["mask"] = mask;
+			emit_signal("taxi_nodes_received", taxi);
+			return true;
+		}
+		case LogicalOpcode::SMSG_TAXINODE_STATUS: {
+			const int64_t guid = static_cast<int64_t>(packet.readUInt64());
+			emit_signal("taxi_node_status_received", guid, packet.readUInt8() != 0);
+			return true;
+		}
+		case LogicalOpcode::SMSG_NEW_TAXI_PATH:
+			emit_signal("taxi_path_discovered");
+			return true;
+		case LogicalOpcode::SMSG_ACTIVATETAXIREPLY:
+			emit_signal("taxi_reply_received", static_cast<int64_t>(packet.readUInt32()));
+			return true;
 		case LogicalOpcode::SMSG_QUESTUPDATE_COMPLETE:
 			emit_signal("quest_objectives_completed", static_cast<int64_t>(packet.readUInt32()));
 			return true;
@@ -938,6 +1063,7 @@ void WowSession::disconnect() {
 	npc_text_queries.clear();
 	chat_waiting.clear();
 	player_guid = 0;
+	player_path = Dictionary();
 	state = STATE_DISCONNECTED;
 }
 
@@ -1046,6 +1172,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		case LogicalOpcode::SMSG_CHARACTER_LOGIN_FAILED: {
 			const uint8_t code = packet.getSize() > 0 ? packet.readUInt8() : 0;
 			player_guid = 0;
+			player_path = Dictionary();
 			set_state(STATE_CHARACTER_LIST);
 			emit_signal("character_login_failed", code);
 			return;
@@ -1105,6 +1232,21 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			}
 			if (data.moveType == MONSTER_MOVE_FACING_ANGLE) {
 				move["orientation"] = data.facingAngle;
+			}
+			constexpr uint32_t SPLINE_FLYING = 0x200;
+			if (data.splineFlags & SPLINE_FLYING) {
+				PackedVector3Array points;
+				for (const auto &point : data.waypoints) {
+					points.push_back(wow_vector(point.x, point.y, point.z));
+				}
+				points.push_back(wow_vector(data.destX, data.destY, data.destZ));
+				move["points"] = points;
+				if (data.guid == player_guid) {
+					player_path = move.duplicate();
+					player_path["elapsed_msec"] = static_cast<int64_t>(0);
+					player_path["from_start"] = false;
+					player_path_msec = Time::get_singleton()->get_ticks_msec();
+				}
 			}
 			if (auto it = objects.find(data.guid); it != objects.end()) {
 				it->second.position = data.hasDest ? wow_vector(data.destX, data.destY, data.destZ) : wow_vector(data.x, data.y, data.z);
@@ -1277,6 +1419,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		case LogicalOpcode::SMSG_LOGOUT_COMPLETE:
 			objects.clear();
 			player_guid = 0;
+			player_path = Dictionary();
 			set_state(STATE_CHARACTER_LIST);
 			request_characters();
 			return;
@@ -1322,6 +1465,19 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 		if (block.hasMovement) {
 			object.position = wow_vector(block.x, block.y, block.z);
 			object.orientation = block.orientation;
+		}
+		// Logging in mid-flight: the create block carries the whole path and how far along it is.
+		if (block.hasSpline && block.guid == player_guid && block.splineDuration > 0) {
+			PackedVector3Array points;
+			for (const auto &point : block.splinePoints) {
+				points.push_back(wow_vector(point.x, point.y, point.z));
+			}
+			player_path = Dictionary();
+			player_path["points"] = points;
+			player_path["duration_msec"] = static_cast<int64_t>(block.splineDuration);
+			player_path["elapsed_msec"] = static_cast<int64_t>(block.splineTimePassed);
+			player_path["from_start"] = true;
+			player_path_msec = Time::get_singleton()->get_ticks_msec();
 		}
 		if (created) {
 			emit_signal("object_created", static_cast<int64_t>(block.guid), object.type_id);
@@ -1470,6 +1626,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_game_object_info", "entry"), &WowSession::get_game_object_info);
 	ClassDB::bind_method(D_METHOD("get_quest_info", "quest_id"), &WowSession::get_quest_info);
 	ClassDB::bind_method(D_METHOD("get_npc_text", "text_id", "guid"), &WowSession::get_npc_text);
+	ClassDB::bind_method(D_METHOD("get_player_path"), &WowSession::get_player_path);
 	ClassDB::bind_method(D_METHOD("disconnect"), &WowSession::disconnect);
 	ClassDB::bind_method(D_METHOD("poll"), &WowSession::poll);
 	ClassDB::bind_method(D_METHOD("get_state"), &WowSession::get_state);
@@ -1526,6 +1683,17 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("quest_completed", PropertyInfo(Variant::INT, "quest_id"), PropertyInfo(Variant::INT, "xp"), PropertyInfo(Variant::INT, "money")));
 	ADD_SIGNAL(MethodInfo("quest_kill_added", PropertyInfo(Variant::INT, "quest_id"), PropertyInfo(Variant::INT, "entry"), PropertyInfo(Variant::INT, "count"), PropertyInfo(Variant::INT, "required")));
 	ADD_SIGNAL(MethodInfo("quest_objectives_completed", PropertyInfo(Variant::INT, "quest_id")));
+	ADD_SIGNAL(MethodInfo("merchant_inventory_received", PropertyInfo(Variant::DICTIONARY, "inventory")));
+	ADD_SIGNAL(MethodInfo("merchant_stock_changed", PropertyInfo(Variant::INT, "slot"), PropertyInfo(Variant::INT, "stock")));
+	ADD_SIGNAL(MethodInfo("merchant_buy_failed", PropertyInfo(Variant::INT, "reason")));
+	ADD_SIGNAL(MethodInfo("merchant_sell_failed", PropertyInfo(Variant::INT, "reason")));
+	ADD_SIGNAL(MethodInfo("trainer_list_received", PropertyInfo(Variant::DICTIONARY, "trainer")));
+	ADD_SIGNAL(MethodInfo("trainer_spell_bought", PropertyInfo(Variant::INT, "spell_id")));
+	ADD_SIGNAL(MethodInfo("trainer_buy_failed", PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "reason")));
+	ADD_SIGNAL(MethodInfo("taxi_nodes_received", PropertyInfo(Variant::DICTIONARY, "taxi")));
+	ADD_SIGNAL(MethodInfo("taxi_node_status_received", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::BOOL, "known")));
+	ADD_SIGNAL(MethodInfo("taxi_path_discovered"));
+	ADD_SIGNAL(MethodInfo("taxi_reply_received", PropertyInfo(Variant::INT, "code")));
 	ADD_SIGNAL(MethodInfo("name_received", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::STRING, "name")));
 	ADD_SIGNAL(MethodInfo("packet_received", PropertyInfo(Variant::STRING, "opcode"), PropertyInfo(Variant::PACKED_BYTE_ARRAY, "payload")));
 

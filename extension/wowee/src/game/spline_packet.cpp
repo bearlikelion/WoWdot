@@ -143,7 +143,25 @@ bool parseMonsterMoveSplineBodyVanilla(
     if (pointCount == 0) return true;
     if (pointCount > 1000) return false;
 
-    // Always compressed in Vanilla: dest (12 bytes) + packed deltas (4 bytes each)
+    // Flying (0x200) splines are Catmull-Rom: every point after the start, uncompressed.
+    constexpr uint32_t VANILLA_FLYING = 0x00000200;
+    if (splineFlags & VANILLA_FLYING) {
+        if (!packet.hasRemaining(static_cast<size_t>(pointCount) * 12ull)) return false;
+        for (uint32_t i = 0; i < pointCount; ++i) {
+            const float x = packet.readFloat();
+            const float y = packet.readFloat();
+            const float z = packet.readFloat();
+            if (i + 1 < pointCount) {
+                out.waypoints.emplace_back(x, y, z);
+            } else {
+                out.destination = glm::vec3(x, y, z);
+                out.hasDest = true;
+            }
+        }
+        return true;
+    }
+
+    // Compressed otherwise: dest (12 bytes) + packed deltas (4 bytes each)
     size_t requiredBytes = 12;
     if (pointCount > 1) requiredBytes += static_cast<size_t>(pointCount - 1) * 4ull;
     if (!packet.hasRemaining(requiredBytes)) return false;
@@ -199,7 +217,8 @@ bool parseClassicMoveUpdateSpline(
     out.splineId = packet.readUInt32();
 
     uint32_t pointCount = packet.readUInt32();
-    if (pointCount > 256) return false;
+    // A flight's remaining path easily runs past 256 points.
+    if (pointCount > 4096) return false;
 
     // All points uncompressed (12 bytes each) + endPoint (12 bytes)
     // Classic: NO splineMode byte

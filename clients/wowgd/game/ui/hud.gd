@@ -47,6 +47,9 @@ var _casting_bar_top: float = 0.0
 @onready var _popup: StaticPopup = _panels.get_node("%StaticPopup1")
 @onready var _gossip: GossipFrame = _panels.get_node("%GossipFrame")
 @onready var _quest_watch: QuestWatchFrame = %QuestWatchFrame
+@onready var _merchant: MerchantFrame = _panels.get_node("%MerchantFrame")
+@onready var _trainer: ClassTrainerFrame = _panels.get_node("%ClassTrainerFrame")
+@onready var _taxi: TaxiFrame = _panels.get_node("%TaxiFrame")
 @onready var _quest_frame: QuestFrame = _panels.get_node("%QuestFrame")
 
 
@@ -71,6 +74,16 @@ func _ready() -> void:
 	_quest_log.watch_toggled.connect(_quest_watch.toggle)
 	_quest_watch.watches_changed.connect(_quest_log.set_watched)
 	_quest_watch.error_raised.connect(show_error)
+	_merchant.open_requested.connect(_panels.show_panel.bind(_merchant))
+	_merchant.backpack_requested.connect(_panels.set_backpack_open)
+	_merchant.error_raised.connect(show_error)
+	_trainer.open_requested.connect(_panels.show_panel.bind(_trainer))
+	_taxi.open_requested.connect(_panels.show_panel.bind(_taxi))
+	_taxi.error_raised.connect(show_error)
+	WowClient.session.taxi_path_discovered.connect(
+		func() -> void: show_notice(WowStrings.get_text("ERR_NEWTAXIPATH"))
+	)
+	TaxiNodes.load_known()
 	WowClient.session.quest_kill_added.connect(_on_quest_kill_added)
 	WowClient.session.quest_completed.connect(_on_quest_completed)
 	_character.item_hovered.connect(_on_equipped_item_hovered)
@@ -221,8 +234,12 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 
 # UseContainerItem: gear equips, everything else is used.
 func use_container_item(bag: int, slot: int) -> void:
-	var item_entry: int = Inventory.entry(Inventory.container_item(bag, slot))
+	var item: int = Inventory.container_item(bag, slot)
+	var item_entry: int = Inventory.entry(item)
 	if item_entry == 0:
+		return
+	if _merchant.vendor() != 0:
+		_merchant.sell(item)
 		return
 	var address: Vector2i = Inventory.wire_address(bag, slot)
 	var session: WowSession = WowClient.session

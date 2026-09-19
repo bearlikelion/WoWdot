@@ -259,6 +259,14 @@ bool ClassicPacketParsers::parseMovementBlock(network::Packet& packet, UpdateBlo
         if (moveFlags & ClassicMoveFlags::SPLINE_ENABLED) {
             SplineBlockData splineData;
             if (!parseClassicMoveUpdateSpline(packet, splineData)) return false;
+            block.hasSpline = true;
+            block.splineFlags = splineData.splineFlags;
+            block.splineTimePassed = splineData.timePassed;
+            block.splineDuration = splineData.duration;
+            for (const auto &point : splineData.waypoints) {
+                block.splinePoints.push_back({point.x, point.y, point.z});
+            }
+            block.splinePoints.push_back({splineData.endPoint.x, splineData.endPoint.y, splineData.endPoint.z});
         }
     }
     else if (updateFlags & UPDATEFLAG_HAS_POSITION) {

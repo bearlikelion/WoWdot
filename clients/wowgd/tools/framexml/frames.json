@@ -221,6 +221,27 @@
 			"frame": "QuestWatchFrame",
 			"out": "game/ui/wow/quest_watch_frame.tscn",
 			"script": "res://game/ui/quest_watch_frame.gd"
+		},
+		{
+			"frame": "MerchantFrame",
+			"out": "game/ui/wow/merchant_frame.tscn",
+			"script": "res://game/ui/merchant_frame.gd"
+		},
+		{
+			"frame": "ClassTrainerFrame",
+			"out": "game/ui/wow/class_trainer_frame.tscn",
+			"script": "res://game/ui/class_trainer_frame.gd"
+		},
+		{
+			"frame": "TaxiButtonTemplate",
+			"template": true,
+			"out": "game/ui/wow/taxi_button.tscn",
+			"script": "res://game/ui/wow/wow_button.gd"
+		},
+		{
+			"frame": "TaxiFrame",
+			"out": "game/ui/wow/taxi_frame.tscn",
+			"script": "res://game/ui/taxi_frame.gd"
 		}
 	],
 	"graft": {

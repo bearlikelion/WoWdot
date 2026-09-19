@@ -1,4 +1,19 @@
 {
+  "AreaPOI": {
+    "ID": 0,
+    "Importance": 1,
+    "Icon": 2,
+    "FactionID": 3,
+    "X": 4,
+    "Y": 5,
+    "Z": 6,
+    "MapID": 7,
+    "Flags": 8,
+    "AreaID": 9,
+    "Name": 10,
+    "Description": 19,
+    "WorldStateID": 28
+  },
   "AreaTable": {
     "ID": 0,
     "MapID": 1,
@@ -286,7 +301,10 @@
     "Description": 138,
     "Tooltip": 147,
     "StartRecoveryCategory": 157,
-    "StartRecoveryTime": 158
+    "StartRecoveryTime": 158,
+    "EffectTriggerSpell0": 109,
+    "EffectTriggerSpell1": 110,
+    "EffectTriggerSpell2": 111
   },
   "SpellCastTimes": {
     "ID": 0,
@@ -373,10 +391,13 @@
   "TaxiNodes": {
     "ID": 0,
     "MapID": 1,
-    "Name": 5,
     "X": 2,
     "Y": 3,
-    "Z": 4
+    "Z": 4,
+    "Name": 5,
+    "Flags": 13,
+    "MountAlliance": 14,
+    "MountHorde": 15
   },
   "TaxiPath": {
     "Cost": 3,
@@ -394,15 +415,28 @@
     "Z": 6
   },
   "WorldMapArea": {
+    "ID": 0,
+    "MapID": 1,
     "AreaID": 2,
     "AreaName": 3,
-    "DisplayMapID": 8,
-    "ID": 0,
-    "LocBottom": 7,
     "LocLeft": 4,
     "LocRight": 5,
     "LocTop": 6,
+    "LocBottom": 7
+  },
+  "WorldMapContinent": {
+    "ID": 0,
     "MapID": 1,
-    "ParentWorldMapID": 10
+    "LeftBoundary": 2,
+    "RightBoundary": 3,
+    "TopBoundary": 4,
+    "BottomBoundary": 5,
+    "OffsetX": 6,
+    "OffsetY": 7,
+    "Scale": 8,
+    "TaxiMinX": 9,
+    "TaxiMinY": 10,
+    "TaxiMaxX": 11,
+    "TaxiMaxY": 12
   }
 }

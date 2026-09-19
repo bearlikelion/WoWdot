@@ -16,6 +16,9 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"QuestLogFrame": [Area.LEFT, 0],
 	&"GossipFrame": [Area.LEFT, 0],
 	&"QuestFrame": [Area.LEFT, 0],
+	&"MerchantFrame": [Area.LEFT, 0],
+	&"ClassTrainerFrame": [Area.LEFT, 0],
+	&"TaxiFrame": [Area.LEFT, 0],
 	&"GameMenuFrame": [Area.CENTER, 0],
 }
 # updateContainerFrameAnchors: bags stack up from the bottom right, starting a new column when full.
@@ -147,6 +150,15 @@ func toggle_backpack() -> void:
 
 
 # OpenAllBags: opens the backpack and every bag, or closes them all when they are all open.
+# OpenBackpack and CloseBackpack, as merchants use them.
+func set_backpack_open(is_open: bool) -> void:
+	var frame: ContainerFrame = _open_frame(Inventory.BACKPACK)
+	if is_open and frame == null:
+		_open_bag(Inventory.BACKPACK)
+	elif not is_open and frame:
+		frame.close()
+
+
 func open_all_bags() -> void:
 	var total: int = 1
 	for bag: int in range(1, Inventory.BAG_COUNT + 1):

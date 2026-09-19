@@ -16,6 +16,7 @@ var _auto_attacking: bool = false
 var _last_hostile: int = 0
 var _worn: PackedInt32Array = []
 var _dressing: bool = false
+var _mount_display: int = 0
 var _area: int = -1
 var _hovered: int = 0
 
@@ -39,6 +40,7 @@ func _ready() -> void:
 	WowClient.session.item_info_received.connect(_on_item_info_received)
 	WowClient.session.object_created.connect(_on_object_created)
 	WowClient.session.player_teleported.connect(_on_player_teleported)
+	WowClient.session.object_moved.connect(_on_object_moved)
 
 
 func _process(_delta: float) -> void:
@@ -250,7 +252,8 @@ func _on_object_updated(guid: int) -> void:
 		return
 	_player.set_dead(session.get_field(guid, "UNIT_FIELD_HEALTH") == 0)
 	_player.stand_state = session.get_field(guid, "UNIT_FIELD_BYTES_1") & 0xFF
-	if CharacterModels.visible_items(session, guid) != _worn:
+	var mount: int = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
+	if CharacterModels.visible_items(session, guid) != _worn or mount != _mount_display:
 		_dress_player()
 
 
@@ -267,8 +270,27 @@ func _dress_player() -> void:
 	_dressing = look["pending"]
 	var display: int = session.get_field(guid, "UNIT_FIELD_DISPLAYID")
 	var model: Node3D = WowAssets.creatures.instantiate(display, look)
+	_mount_display = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
+	var mount: Node3D = WowAssets.creatures.instantiate(_mount_display) if _mount_display else null
+	if model and mount:
+		_seat(mount, model)
+		model = mount
 	if model:
 		_player.set_model(model)
+
+
+# A mounted rider sits on the mount's first attachment, the saddle, playing Mount.
+func _seat(mount: Node3D, rider: Node3D) -> void:
+	var path: String = WowAssets.creatures.model_path(_mount_display)
+	var seat: Vector3 = Vector3.ZERO
+	for attachment: Dictionary in WowAssets.loader.get_m2_info(path).get("attachments", []):
+		if attachment["id"] == 0:
+			seat = attachment["position"]
+	mount.add_child(rider)
+	rider.position = seat
+	rider.scale = rider.scale / mount.scale
+	# The animation only takes once the mount, and so the rider, is in the tree.
+	UnitAnimations.set_base.call_deferred(rider, PackedStringArray(["Mount"]))
 
 
 # Units under the cursor get the default-anchored unit tooltip, like the stock mouseover.
@@ -310,6 +332,22 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 		session.attack(guid)
 
 
+func _on_object_moved(guid: int, movement: Dictionary) -> void:
+	if guid == WowClient.session.get_player_guid() and movement.has("points"):
+		_follow_server_path()
+
+
+# Flights, including one the server resumes because the character logged out on it.
+func _follow_server_path() -> void:
+	var path: Dictionary = WowClient.session.get_player_path()
+	if path.is_empty():
+		return
+	var points: PackedVector3Array = []
+	for point: Vector3 in path["points"]:
+		points.append(WowCoords.to_godot(point))
+	_player.follow_path(points, path["duration_msec"], path["elapsed_msec"], path["from_start"])
+
+
 func _on_player_teleported(wow_position: Vector3, orientation: float) -> void:
 	_player.place(WowCoords.to_godot(wow_position), orientation)
 
@@ -319,3 +357,4 @@ func _on_object_created(guid: int, _type_id: int) -> void:
 		return
 	_hud.show_player(guid)
 	_dress_player()
+	_follow_server_path()

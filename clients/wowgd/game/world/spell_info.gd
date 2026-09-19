@@ -13,6 +13,8 @@ var _icon_textures: Dictionary[String, WowTexture] = {}
 var _skill_lines: WowDBC
 # Each spell's class skill line, such as Arms, from SkillLineAbility.
 var _class_lines: Dictionary[int, int] = {}
+# Each spell's skill line of any kind, professions included.
+var _all_lines: Dictionary[int, int] = {}
 
 
 func _init(archive: WowArchive) -> void:
@@ -126,8 +128,29 @@ func _load_skill_lines() -> void:
 	for row: int in abilities.row_count():
 		var line: int = abilities.get_uint(row, "SkillLineID")
 		var line_row: int = _skill_lines.find(line)
+		var spell: int = abilities.get_uint(row, "SpellID")
+		_all_lines[spell] = line
 		if line_row >= 0 and _skill_lines.get_uint(line_row, "Category") == SKILL_CATEGORY_CLASS:
-			_class_lines[abilities.get_uint(row, "SpellID")] = line
+			_class_lines[spell] = line
+
+
+# The spell a trainer's teaching spell gives, which is what the trainer lists.
+func taught_spell(spell_id: int) -> int:
+	var taught: int = _uint(spell_id, "EffectTriggerSpell0")
+	return taught if taught else spell_id
+
+
+func skill_line(spell_id: int) -> int:
+	if _skill_lines == null:
+		_load_skill_lines()
+	return _all_lines.get(spell_id, 0)
+
+
+func skill_line_name(line: int) -> String:
+	if _skill_lines == null:
+		_load_skill_lines()
+	var row: int = _skill_lines.find(line)
+	return _skill_lines.get_string(row, "Name") if row >= 0 else ""
 
 
 func _line_name(line: int) -> String:
