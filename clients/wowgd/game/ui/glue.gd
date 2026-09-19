@@ -7,6 +7,7 @@ const SETTINGS_PATH: String = "user://settings.cfg"
 const SETTINGS_SECTION: String = "login"
 const DEFAULT_REALMLIST: String = "192.168.1.251"
 const AUTH_PORT: int = 3724
+const MUSIC: String = "Sound\\Music\\GlueScreenMusic\\wow_main_theme.mp3"
 const UI_HEIGHT: float = 768.0
 # GlueParent_OnLoad pillarboxes screens wider than 16:9.
 const MAX_ASPECT: float = 16.0 / 9.0
@@ -110,6 +111,10 @@ func _show_screen(screen: Screen) -> void:
 	_select.visible = screen == Screen.CHARACTER_SELECT
 	_create.visible = screen == Screen.CHARACTER_CREATE
 	_loading.visible = screen == Screen.LOADING
+	if screen == Screen.LOADING:
+		WowAssets.audio.stop_music()
+	else:
+		WowAssets.audio.play_music(MUSIC)
 
 
 func _status(key: String) -> void:

@@ -56,6 +56,7 @@ func _process(_delta: float) -> void:
 		var session: WowSession = WowClient.session
 		var race: int = session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_0") & 0xFF
 		_hud.show_area(area, race)
+		WowAssets.audio.play_zone_music(area)
 
 
 func _unhandled_input(event: InputEvent) -> void:
