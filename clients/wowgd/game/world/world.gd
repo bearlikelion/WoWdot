@@ -9,6 +9,7 @@ const UNIT_FLAG_NON_ATTACKABLE: int = 0x2
 const UNIT_FLAG_NOT_SELECTABLE: int = 0x2000000
 const STAND_STATE_STAND: int = 0
 const STAND_STATE_SIT: int = 1
+const UNIT_DYNFLAG_LOOTABLE: int = 0x1
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
 
 var _auto_attacking: bool = false
@@ -324,12 +325,21 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 		return
 	select(guid)
 	var session: WowSession = WowClient.session
+	if _is_lootable(guid):
+		LootFrame.loot(guid)
+		return
 	if NpcDialog.interact(guid):
 		return
 	var player: int = session.get_player_guid()
 	var hostile: bool = UnitReaction.between(session, player, guid) == UnitReaction.Reaction.HOSTILE
 	if hostile and not _auto_attacking:
 		session.attack(guid)
+
+
+func _is_lootable(guid: int) -> bool:
+	var session: WowSession = WowClient.session
+	return session.get_field(guid, "UNIT_FIELD_HEALTH") == 0 \
+	and session.get_field(guid, "UNIT_DYNAMIC_FLAGS") & UNIT_DYNFLAG_LOOTABLE != 0
 
 
 func _on_object_moved(guid: int, movement: Dictionary) -> void:

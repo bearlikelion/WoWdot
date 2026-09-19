@@ -51,6 +51,7 @@ var _casting_bar_top: float = 0.0
 @onready var _merchant: MerchantFrame = _panels.get_node("%MerchantFrame")
 @onready var _trainer: ClassTrainerFrame = _panels.get_node("%ClassTrainerFrame")
 @onready var _taxi: TaxiFrame = _panels.get_node("%TaxiFrame")
+@onready var _loot: LootFrame = _panels.get_node("%LootFrame")
 @onready var _world_map: WorldMapFrame = _panels.get_node("%WorldMapFrame")
 @onready var _quest_frame: QuestFrame = _panels.get_node("%QuestFrame")
 
@@ -82,6 +83,9 @@ func _ready() -> void:
 	_trainer.open_requested.connect(_panels.show_panel.bind(_trainer))
 	_taxi.open_requested.connect(_panels.show_panel.bind(_taxi))
 	_taxi.error_raised.connect(show_error)
+	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
+	_loot.error_raised.connect(show_error)
+	_loot.message_added.connect(add_chat_line)
 	WowClient.session.taxi_path_discovered.connect(
 		func() -> void: show_notice(WowStrings.get_text("ERR_NEWTAXIPATH"))
 	)

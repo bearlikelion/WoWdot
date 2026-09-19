@@ -228,6 +228,17 @@
 			"script": "res://game/ui/merchant_frame.gd"
 		},
 		{
+			"frame": "LootButtonTemplate",
+			"template": true,
+			"out": "game/ui/wow/loot_button.tscn",
+			"script": "res://game/ui/item_button.gd"
+		},
+		{
+			"frame": "LootFrame",
+			"out": "game/ui/wow/loot_frame.tscn",
+			"script": "res://game/ui/loot_frame.gd"
+		},
+		{
 			"frame": "ClassTrainerFrame",
 			"out": "game/ui/wow/class_trainer_frame.tscn",
 			"script": "res://game/ui/class_trainer_frame.gd"

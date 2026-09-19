@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/merchant_frame.tscn" id="11_merchant"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/class_trainer_frame.tscn" id="12_trainer"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/taxi_frame.tscn" id="13_taxi"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/loot_frame.tscn" id="14_loot"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/world_map_frame.tscn" id="14_map"]
 
 [node name="UIPanels" type="Control"]
@@ -58,6 +59,10 @@ unique_name_in_owner = true
 visible = false
 
 [node name="TaxiFrame" parent="." instance=ExtResource("13_taxi")]
+unique_name_in_owner = true
+visible = false
+
+[node name="LootFrame" parent="." instance=ExtResource("14_loot")]
 unique_name_in_owner = true
 visible = false
 

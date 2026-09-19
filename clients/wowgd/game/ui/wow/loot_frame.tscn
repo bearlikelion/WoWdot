@@ -1,0 +1,307 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/loot_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/loot_button.tscn" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\TargetingFrame\\TargetDead.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\LootFrame\\UI-LootPanel.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[node name="LootFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 256
+offset_bottom = 360
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="LootFramePortraitOverlay" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 8
+offset_right = 68
+offset_bottom = 66
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12
+offset_top = -108
+offset_right = -12
+offset_bottom = -96
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Items"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LootFramePrev" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 57
+offset_top = -39
+offset_right = 57
+offset_bottom = -27
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Prev"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LootFrameNext" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 142
+offset_top = -39
+offset_right = 142
+offset_bottom = -27
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Next"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LootCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -97
+offset_top = 10
+offset_right = -65
+offset_bottom = 42
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LootCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LootCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LootCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="LootButton1" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 80
+offset_right = 61
+offset_bottom = 117
+
+[node name="LootButton2" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 121
+offset_right = 61
+offset_bottom = 158
+
+[node name="LootButton3" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 162
+offset_right = 61
+offset_bottom = 199
+
+[node name="LootButton4" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 203
+offset_right = 61
+offset_bottom = 240
+
+[node name="LootFrameUpButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 25
+offset_top = -48
+offset_right = 57
+offset_bottom = -16
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LootFrameUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LootFrameUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="LootFrameUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LootFrameUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="LootFrameDownButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 143
+offset_top = -48
+offset_right = 175
+offset_bottom = -16
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LootFrameDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LootFrameDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="LootFrameDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LootFrameDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
