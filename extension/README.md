@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="wowdot_extension_logo.png" alt="wowdot extension logo" width="200">
+</p>
+
 # wowdot extension
 
 The C++ GDExtension behind the WoWdot clients.
