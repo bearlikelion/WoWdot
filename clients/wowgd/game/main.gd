@@ -5,7 +5,7 @@ signal world_ready(world: World)
 
 const WORLD: PackedScene = preload("res://game/world/world.tscn")
 
-## Filled from `-- --realmlist= --account= --password= --character=`; no character enters the first.
+## From `--realm`, `--account`, `--password` and `--character`; no character enters the first.
 @export var auto_realmlist: String = ""
 @export var auto_account: String = ""
 @export var auto_password: String = ""
@@ -17,9 +17,12 @@ var world: World
 
 
 func _ready() -> void:
+	WowAssets.video.apply()
 	_read_command_line()
 	WowClient.session.world_entered.connect(_on_world_entered)
 	WowClient.session.state_changed.connect(_on_state_changed)
+	if not auto_realmlist.is_empty():
+		_glue.use_realmlist(auto_realmlist)
 	if not auto_account.is_empty():
 		_glue.auto_login(auto_realmlist, auto_account, auto_password, auto_character)
 
@@ -35,20 +38,27 @@ func _process(_delta: float) -> void:
 		world_ready.emit(world)
 
 
+# Options work before or after `--`, as `--realm=127.0.0.1` or `--realm 127.0.0.1`.
 func _read_command_line() -> void:
-	for arg: String in OS.get_cmdline_user_args():
-		var parts: PackedStringArray = arg.trim_prefix("--").split("=", true, 1)
-		if parts.size() < 2:
+	var args: PackedStringArray = OS.get_cmdline_args() + OS.get_cmdline_user_args()
+	for i: int in args.size():
+		if not args[i].begins_with("--"):
+			continue
+		var parts: PackedStringArray = args[i].trim_prefix("--").split("=", true, 1)
+		var value: String = parts[1] if parts.size() > 1 else ""
+		if parts.size() == 1 and i + 1 < args.size() and not args[i + 1].begins_with("--"):
+			value = args[i + 1]
+		if value.is_empty():
 			continue
 		match parts[0]:
-			"realmlist":
-				auto_realmlist = parts[1]
+			"realm", "realmlist":
+				auto_realmlist = value
 			"account":
-				auto_account = parts[1]
+				auto_account = value
 			"password":
-				auto_password = parts[1]
+				auto_password = value
 			"character":
-				auto_character = parts[1]
+				auto_character = value
 
 
 func _on_state_changed(state: WowSession.State, _message: String) -> void:

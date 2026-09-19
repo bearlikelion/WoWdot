@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/world/selection_circle.gd" id="1_circle"]
+
+[sub_resource type="WowTexture" id="WowTexture_ring"]
+file = "Textures\\UnitSelectTexture.blp"
+
+[node name="SelectionCircle" type="Decal"]
+visible = false
+size = Vector3(2, 1.5, 2)
+texture_albedo = SubResource("WowTexture_ring")
+upper_fade = 0.3
+lower_fade = 0.3
+cull_mask = 1
+script = ExtResource("1_circle")

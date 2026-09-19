@@ -3,6 +3,8 @@ extends Control
 
 signal login_requested(realmlist: String, account: String, password: String, remember: bool)
 signal quit_requested
+signal sound_options_requested
+signal video_options_requested
 
 # GetBuildInfo: version type, version, build, build type and build date.
 const BUILD_INFO: Array[String] = ["Version", "1.12.1", "5875", "WoWGD", ""]
@@ -29,6 +31,8 @@ func _ready() -> void:
 		edits[i].focus_next = edits[i].get_path_to(edits[(i + 1) % edits.size()])
 	%AccountLoginLoginButton.pressed.connect(log_in)
 	%AccountLoginExitButton.pressed.connect(quit_requested.emit)
+	%AccountLoginSoundOptionsButton.pressed.connect(sound_options_requested.emit)
+	%AccountLoginVideoOptionsButton.pressed.connect(video_options_requested.emit)
 	_remember.pressed.connect(func() -> void: _remember.checked = not _remember.checked)
 	visibility_changed.connect(_on_visibility_changed)
 
@@ -37,6 +41,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
 		quit_requested.emit()
+
+
+# Under an options panel the controls hide, and Enter or Escape cannot log in or quit behind it.
+func set_covered(covered: bool) -> void:
+	%AccountLoginUI.visible = not covered
+	set_process_unhandled_input(not covered)
 
 
 func fill(realmlist: String, account: String, password: String = "") -> void:

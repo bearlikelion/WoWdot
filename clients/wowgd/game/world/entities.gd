@@ -6,7 +6,6 @@ enum ObjectType { UNIT = 3, PLAYER = 4, GAMEOBJECT = 5 }
 const NAMEPLATE: PackedScene = preload("res://game/world/nameplate.tscn")
 # Server paths faster than this (yards per second) play the run animation.
 const RUN_SPEED_THRESHOLD: float = 4.0
-const FORWARD_FLAG: int = 0x1
 const NAMEPLATE_GAP: float = 0.3
 # The quest marker floats this far over the top line of the nameplate.
 const MARKER_GAP: float = 0.3
@@ -27,6 +26,8 @@ var _dressing: Dictionary[int, bool] = {}
 var _weapons: Dictionary[int, Array] = {}
 var _sheath_states: Dictionary[int, ItemModels.SheathState] = {}
 var _paths: Dictionary[int, Path] = {}
+# Other players, carried forward between their relayed movement packets.
+var _motions: Dictionary[int, RemoteMotion] = {}
 var _game_object_displays: WowDBC
 var _quest_givers: Dictionary[int, bool] = {}
 var _markers: Dictionary[int, Node3D] = {}
@@ -67,8 +68,14 @@ func _process(delta: float) -> void:
 			if not is_nan(path.facing):
 				node.rotation.y = path.facing
 			_play_idle(guid, node)
+	var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	for guid: int in _motions:
+		var node: Node3D = _nodes.get(guid)
+		if node:
+			node.global_position = _motions[guid].advance(delta, space)
+			node.rotation.y = _motions[guid].orientation
 	for guid: int in _victims:
-		if not _paths.has(guid) and _nodes.has(guid):
+		if not _paths.has(guid) and not _motions.has(guid) and _nodes.has(guid):
 			_face(_nodes[guid], _victims[guid])
 
 
@@ -131,13 +138,22 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 		UnitAnimations.set_base(node, ["Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk"])
 		return
 	_paths.erase(guid)
+	if movement.has("flags"):
+		var motion: RemoteMotion = _motions.get(guid)
+		if motion == null:
+			motion = RemoteMotion.new()
+			_motions[guid] = motion
+		motion.update(movement, node.global_position)
+		var clips: PackedStringArray = UnitAnimations.movement_clips(motion.flags)
+		if clips.is_empty():
+			_play_idle(guid, node)
+		else:
+			UnitAnimations.set_base(node, clips)
+		return
 	node.global_position = WowCoords.to_godot(movement["position"])
 	if movement.has("orientation"):
 		node.rotation.y = movement["orientation"]
-	if int(movement.get("flags", 0)) & FORWARD_FLAG:
-		UnitAnimations.set_base(node, ["Run"])
-	else:
-		_play_idle(guid, node)
+	_play_idle(guid, node)
 
 
 func unit_node(guid: int) -> Node3D:
@@ -149,6 +165,14 @@ func head_position(guid: int) -> Vector3:
 	if not _nodes.has(guid) or not _bounds.has(guid):
 		return Vector3.ZERO
 	return _nodes[guid].global_transform * Vector3(0.0, _bounds[guid].end.y, 0.0)
+
+
+# Half the unit's footprint across, scaled as drawn, or 0 for a unit that is not shown.
+func unit_radius(guid: int) -> float:
+	if not _nodes.has(guid) or not _bounds.has(guid):
+		return 0.0
+	var box: AABB = _bounds[guid]
+	return maxf(box.size.x, box.size.z) * 0.5 * _nodes[guid].scale.x
 
 
 # Units and players within range of the point that the camera can see, nearest first.
@@ -206,6 +230,7 @@ func _plate_text(guid: int) -> String:
 func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 	for guid: int in guids:
 		_paths.erase(guid)
+		_motions.erase(guid)
 		_bounds.erase(guid)
 		_nameplates.erase(guid)
 		_victims.erase(guid)
@@ -327,14 +352,20 @@ func _on_item_info_received(_entry: int) -> void:
 			_respawn(guid)
 
 
+# Re-dressing keeps a running player's motion, so the new model keeps moving.
 func _respawn(guid: int) -> void:
 	var session: WowSession = WowClient.session
+	var motion: RemoteMotion = _motions.get(guid)
 	_on_objects_destroyed(PackedInt64Array([guid]))
 	_on_object_created(guid, session.get_object_type(guid))
+	if motion and _nodes.has(guid):
+		_motions[guid] = motion
 
 
 func _play_idle(guid: int, node: Node3D) -> void:
-	UnitAnimations.set_base(node, UnitAnimations.READY if _victims.has(guid) else PackedStringArray(["Stand"]))
+	var idle: PackedStringArray = UnitAnimations.READY if _victims.has(guid) \
+	else PackedStringArray(["Stand"])
+	UnitAnimations.set_base(node, idle)
 
 
 func _face(node: Node3D, target: int) -> void:

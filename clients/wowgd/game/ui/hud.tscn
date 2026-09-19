@@ -69,12 +69,13 @@ offset_top = 0.0
 offset_right = 512.0
 offset_bottom = 100.0
 
-[node name="PartyFrame" parent="UIParent" instance=ExtResource("17_party")]
+[node name="PartyFrame" parent="UIParent" unique_id=391331168 instance=ExtResource("17_party")]
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="UnitMenu" type="PopupMenu" parent="UIParent"]
+[node name="UnitMenu" type="PopupMenu" parent="UIParent" unique_id=722192805]
 unique_name_in_owner = true
+oversampling_override = 1.0
 
 [node name="CastingBarFrame" parent="UIParent" unique_id=180262721 instance=ExtResource("8_cast")]
 unique_name_in_owner = true
@@ -134,16 +135,19 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 192.0
 
-[node name="QuestWatchFrame" parent="UIParent" instance=ExtResource("16_watch")]
+[node name="QuestWatchFrame" parent="UIParent" unique_id=1274227025 instance=ExtResource("16_watch")]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.0
 offset_left = -280.0
-offset_top = 192.0
+offset_top = 194.0
 offset_right = 0.0
-offset_bottom = 212.0
+offset_bottom = 214.0
+grow_vertical = 1
 
 [node name="ChatFrame1" parent="UIParent" unique_id=1531132507 instance=ExtResource("14_chat")]
 unique_name_in_owner = true
@@ -161,7 +165,8 @@ display_duration = 120.0
 [node name="ChatFrame2" parent="UIParent" unique_id=792504449 instance=ExtResource("18_combat_log")]
 unique_name_in_owner = true
 visible = true
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 2
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
@@ -170,17 +175,13 @@ offset_left = 32.0
 offset_top = -215.0
 offset_right = 462.0
 offset_bottom = -95.0
+grow_vertical = 1
 display_duration = 120.0
 
 [node name="CombatText" parent="UIParent" unique_id=1900976483 instance=ExtResource("19_combat_text")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="UIPanels" parent="UIParent" instance=ExtResource("15_panels")]
+[node name="UIPanels" parent="UIParent" unique_id=1619233165 instance=ExtResource("15_panels")]
 unique_name_in_owner = true
 layout_mode = 1
 

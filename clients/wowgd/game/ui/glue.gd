@@ -44,6 +44,8 @@ var _choosing_realm: bool = false
 var _characters: Array = []
 # Scripted logins enter this character, or the first one when the name is empty.
 var _auto_entering: bool = false
+# A realmlist given at launch serves this run without replacing the saved one.
+var _launch_realmlist: String = ""
 var _auto_character: String = ""
 # The character just created, selected once the new list arrives.
 var _created_name: String = ""
@@ -55,6 +57,7 @@ var _created_name: String = ""
 @onready var _loading: LoadingScreen = %LoadingScreen
 @onready var _realm_list: RealmList = %RealmList
 @onready var _dialog: GlueDialog = %GlueDialog
+@onready var _options: Array[Control] = [%SoundOptionsFrame, %VideoOptionsFrame]
 
 
 func _ready() -> void:
@@ -66,6 +69,10 @@ func _ready() -> void:
 	_login.fill(_saved_realmlist(), _settings.get_value(SETTINGS_SECTION, "account", ""))
 	_login.login_requested.connect(_on_login_requested)
 	_login.quit_requested.connect(get_tree().quit)
+	_login.sound_options_requested.connect(_show_options.bind(%SoundOptionsFrame))
+	_login.video_options_requested.connect(_show_options.bind(%VideoOptionsFrame))
+	for options: Control in _options:
+		options.close_requested.connect(_hide_options.bind(options))
 	_realm_list.realm_chosen.connect(_join_realm)
 	_realm_list.cancelled.connect(_on_realm_list_cancelled)
 	_select.character_chosen.connect(_on_character_chosen)
@@ -86,11 +93,25 @@ func _ready() -> void:
 	_show_screen(Screen.LOGIN)
 
 
+# Escape closes an open options panel before it can reach the login screen's Quit.
+func _unhandled_input(event: InputEvent) -> void:
+	for options: Control in _options:
+		if options.visible and event.is_action_pressed("ui_cancel"):
+			get_viewport().set_input_as_handled()
+			_hide_options(options)
+			return
+
+
 func auto_login(realmlist: String, account: String, password: String, character: String) -> void:
 	_auto_entering = true
 	_auto_character = character
 	_login.fill(realmlist if not realmlist.is_empty() else _saved_realmlist(), account, password)
 	_login.log_in()
+
+
+func use_realmlist(realmlist: String) -> void:
+	_launch_realmlist = realmlist
+	_login.fill(realmlist, _settings.get_value(SETTINGS_SECTION, "account", ""))
 
 
 func set_loading_progress(fraction: float) -> void:
@@ -116,6 +137,17 @@ func _show_screen(screen: Screen) -> void:
 	else:
 		WowAssets.audio.stop_ambience()
 		WowAssets.audio.play_music(MUSIC)
+
+
+func _show_options(options: Control) -> void:
+	get_viewport().gui_release_focus()
+	_login.set_covered(true)
+	options.show()
+
+
+func _hide_options(options: Control) -> void:
+	options.hide()
+	_login.set_covered(false)
 
 
 func _status(key: String) -> void:
@@ -170,7 +202,8 @@ func _on_login_requested(
 	if password.is_empty():
 		_message(WowStrings.get_text("LOGIN_ENTER_PASSWORD"))
 		return
-	_settings.set_value(SETTINGS_SECTION, "realmlist", realmlist)
+	if realmlist != _launch_realmlist:
+		_settings.set_value(SETTINGS_SECTION, "realmlist", realmlist)
 	_settings.set_value(SETTINGS_SECTION, "account", account if remember else "")
 	_settings.save(SETTINGS_PATH)
 	var host: String = realmlist

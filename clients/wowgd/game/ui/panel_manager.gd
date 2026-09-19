@@ -23,6 +23,7 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"WorldMapFrame": [Area.FULL, 0],
 	&"GameMenuFrame": [Area.CENTER, 0],
 	&"SoundOptionsFrame": [Area.CENTER, 0],
+	&"VideoOptionsFrame": [Area.CENTER, 0],
 }
 # updateContainerFrameAnchors: bags stack up from the bottom right, starting a new column when full.
 const BAG_OFFSET_Y: float = 70.0
@@ -47,6 +48,8 @@ func _ready() -> void:
 		frame.close_requested.connect(hide_panel.bind(frame))
 	%GameMenuFrame.sound_options_requested.connect(show_panel.bind(%SoundOptionsFrame))
 	%SoundOptionsFrame.close_requested.connect(show_panel.bind(%GameMenuFrame))
+	%GameMenuFrame.video_options_requested.connect(show_panel.bind(%VideoOptionsFrame))
+	%VideoOptionsFrame.close_requested.connect(show_panel.bind(%GameMenuFrame))
 	for container: ContainerFrame in _containers:
 		container.closed.connect(_on_bag_closed.bind(container))
 

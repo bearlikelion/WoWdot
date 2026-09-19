@@ -18,8 +18,11 @@ enum MoveFlag {
 	STRAFE_RIGHT = 0x8,
 	TURN_LEFT = 0x10,
 	TURN_RIGHT = 0x20,
+	WALK_MODE = 0x100,
+	ROOT = 0x1000,
 	JUMPING = 0x2000,
 	FALLING_FAR = 0x4000,
+	SWIMMING = 0x200000,
 }
 
 const RUN_SPEED: float = 7.0
@@ -344,22 +347,12 @@ func _ride(delta: float) -> void:
 func _animate(flags: int) -> void:
 	if _model == null:
 		return
-	var wanted: String = "Stand"
-	if flags & MoveFlag.FALLING_FAR:
-		wanted = "Fall"
-	elif flags & MoveFlag.JUMPING:
-		wanted = "Jump"
-	elif flags & MoveFlag.FORWARD:
-		wanted = "Run"
-	elif flags & MoveFlag.BACKWARD:
-		wanted = "Walkbackwards"
-	elif flags & MoveFlag.STRAFE_LEFT:
-		wanted = "ShuffleLeft"
-	elif flags & MoveFlag.STRAFE_RIGHT:
-		wanted = "ShuffleRight"
+	var moving: PackedStringArray = UnitAnimations.movement_clips(flags)
+	if not moving.is_empty():
+		UnitAnimations.set_base(_model, moving)
 	elif STAND_STATE_ANIMATIONS.has(stand_state):
-		wanted = STAND_STATE_ANIMATIONS[stand_state]
+		UnitAnimations.set_base(_model, [STAND_STATE_ANIMATIONS[stand_state]])
 	elif in_combat:
 		UnitAnimations.set_base(_model, UnitAnimations.READY)
-		return
-	UnitAnimations.set_base(_model, [wanted])
+	else:
+		UnitAnimations.set_base(_model, ["Stand"])

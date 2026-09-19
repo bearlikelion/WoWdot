@@ -145,6 +145,7 @@ func _mount(
 	var item: Node3D = _loader.load_m2(_path(row, side, folder, suffix), skins)
 	if item == null:
 		return null
+	CreatureModels.mark_unit(item)
 	var bone: int = point["bone"]
 	var holder: BoneAttachment3D = BoneAttachment3D.new()
 	holder.bone_name = skeleton.get_bone_name(bone)

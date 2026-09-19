@@ -42,6 +42,11 @@ var audio: WowAudio:
 			_audio = AUDIO.instantiate()
 			add_child(_audio)
 		return _audio
+var video: VideoSettings:
+	get:
+		if _video == null:
+			_video = VideoSettings.new()
+		return _video
 
 var _archive: WowArchive
 var _loader: WowLoader
@@ -49,6 +54,7 @@ var _characters: CharacterModels
 var _creatures: CreatureModels
 var _spells: SpellInfo
 var _audio: WowAudio
+var _video: VideoSettings
 
 
 # One shared loader, so WowTexture resources and the world use the same archive and caches.

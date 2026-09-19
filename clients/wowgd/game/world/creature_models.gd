@@ -3,6 +3,8 @@ extends RefCounted
 
 enum TextureSlot { MONSTER_SKIN_1 = 11, MONSTER_SKIN_2 = 12, MONSTER_SKIN_3 = 13 }
 
+# Unit models draw on their own layer, so the selection circle paints only the ground under them.
+const UNIT_LAYER: int = 2
 const SKIN_COLUMNS: Dictionary[String, TextureSlot] = {
 	"Skin1": TextureSlot.MONSTER_SKIN_1,
 	"Skin2": TextureSlot.MONSTER_SKIN_2,
@@ -63,6 +65,11 @@ func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 	return _scaled(_loader.load_m2(path, skins), row)
 
 
+static func mark_unit(model: Node3D) -> void:
+	for mesh: Node in model.find_children("*", "GeometryInstance3D", true, false):
+		(mesh as GeometryInstance3D).layers = UNIT_LAYER
+
+
 func _equipment(extra: int) -> PackedInt32Array:
 	var displays: PackedInt32Array = []
 	for slot: int in CharacterModels.EquipSlot.size():
@@ -74,4 +81,5 @@ func _scaled(model: Node3D, row: int) -> Node3D:
 	if model:
 		var scale: float = _display_info.get_float(row, "Scale")
 		model.scale = Vector3.ONE * (scale if scale > 0.0 else 1.0)
+		mark_unit(model)
 	return model

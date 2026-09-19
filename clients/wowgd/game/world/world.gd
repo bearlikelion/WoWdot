@@ -29,12 +29,16 @@ var _hovered: int = 0
 @onready var _map: WowMap = $WowMap
 @onready var _player: Player = $Player
 @onready var _entities: Entities = $Entities
+@onready var _selection: SelectionCircle = $SelectionCircle
+@onready var _sun: DirectionalLight3D = $Sun
 @onready var _hud: Hud = %Hud
 @onready var _sky: WorldSky = $WorldSky
 @onready var _weather: WorldWeather = $WorldWeather
 
 
 func _ready() -> void:
+	WowAssets.video.changed.connect(_apply_video)
+	_apply_video()
 	_player.movement_changed.connect(_on_player_movement_changed)
 	_player.clicked.connect(_on_player_clicked)
 	_player.interacted.connect(_on_player_interacted)
@@ -208,6 +212,7 @@ func select(guid: int) -> void:
 		_last_hostile = previous
 	WowClient.session.set_selection(guid)
 	_hud.show_target(guid)
+	_selection.target = guid
 
 
 func _on_player_movement_changed(
@@ -310,6 +315,10 @@ func _dress_player() -> void:
 	if model:
 		_player.set_model(model)
 		UnitVoice.attach(model, guid, display, _mount_display)
+
+
+func _apply_video() -> void:
+	_sun.shadow_enabled = WowAssets.video.shadows
 
 
 # CMSG_SETSHEATHED; the server's UNIT_FIELD_BYTES_2 update moves the weapons.

@@ -656,3 +656,139 @@ horizontal_alignment = 1
 vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AccountLoginSoundOptionsButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -103
+offset_right = -5
+offset_bottom = -65
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginSoundOptionsButtonText" type="Label" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 10
+offset_right = 75
+offset_bottom = 22
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Sound Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="AccountLoginVideoOptionsButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -139
+offset_right = -5
+offset_bottom = -101
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginVideoOptionsButtonText" type="Label" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 10
+offset_right = 75
+offset_bottom = 22
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Video Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")

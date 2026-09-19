@@ -68,6 +68,26 @@ static func is_dead(model: Node3D) -> bool:
 	return model.get_meta(DEAD_META, false)
 
 
+# The clips a unit moving with these MSG_MOVE flags plays; empty while it stands still.
+static func movement_clips(flags: int) -> PackedStringArray:
+	var travelling: bool = flags & (Player.LONGITUDINAL | Player.STRAFE) != 0
+	if flags & Player.MoveFlag.FALLING_FAR:
+		return ["Fall"]
+	if flags & Player.MoveFlag.JUMPING:
+		return ["Jump"]
+	if flags & Player.MoveFlag.SWIMMING:
+		return ["Swim"] if travelling else ["SwimIdle"]
+	if flags & Player.MoveFlag.FORWARD:
+		return ["Walk"] if flags & Player.MoveFlag.WALK_MODE else ["Run"]
+	if flags & Player.MoveFlag.BACKWARD:
+		return ["Walkbackwards"]
+	if flags & Player.MoveFlag.STRAFE_LEFT:
+		return ["ShuffleLeft"]
+	if flags & Player.MoveFlag.STRAFE_RIGHT:
+		return ["ShuffleRight"]
+	return []
+
+
 # Timers carry the instance id because the model may be freed (respawned) before they fire.
 static func _return_to_base(model_id: int, clip: String) -> void:
 	var model: Node3D = instance_from_id(model_id) as Node3D

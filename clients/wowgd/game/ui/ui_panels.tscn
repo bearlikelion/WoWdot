@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/character_frame.tscn" id="2_character"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/loot_frame.tscn" id="14_loot"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/world_map_frame.tscn" id="14_map"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/sound_options_frame.tscn" id="15_sound"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/video_options_frame.tscn" id="16_video"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -89,16 +90,25 @@ visible = false
 
 [node name="GameMenuFrame" parent="." instance=ExtResource("3_menu")]
 unique_name_in_owner = true
+layout_mode = 1
 visible = false
 
 [node name="SoundOptionsFrame" parent="." instance=ExtResource("15_sound")]
 unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="VideoOptionsFrame" parent="." instance=ExtResource("16_video")]
+unique_name_in_owner = true
+layout_mode = 1
 visible = false
 
 [node name="WorldMapFrame" parent="." instance=ExtResource("14_map")]
 unique_name_in_owner = true
+layout_mode = 1
 visible = false
 
 [node name="StaticPopup1" parent="." instance=ExtResource("8_popup")]
 unique_name_in_owner = true
+layout_mode = 1
 visible = false

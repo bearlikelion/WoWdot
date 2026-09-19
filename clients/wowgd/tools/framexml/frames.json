@@ -187,6 +187,11 @@
 			"script": "res://game/ui/sound_options_frame.gd"
 		},
 		{
+			"frame": "VideoOptionsFrame",
+			"out": "game/ui/wow/video_options_frame.tscn",
+			"script": "res://game/ui/video_options_frame.gd"
+		},
+		{
 			"frame": "CharacterFrame",
 			"out": "game/ui/wow/character_frame.tscn",
 			"script": "res://game/ui/character_frame.gd"

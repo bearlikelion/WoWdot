@@ -277,7 +277,8 @@ void WowSession::send_movement(const String &opcode, const Vector3 &position, do
 	info.orientation = static_cast<float>(orientation);
 	info.fallTime = static_cast<uint32_t>(fall_time_msec);
 	const float xy_speed = Vector2(jump_velocity.x, jump_velocity.y).length();
-	info.jumpVelocity = jump_velocity.z;
+	// The stock client sends upward speed negated, which vMaNGOS's knockback check also expects.
+	info.jumpVelocity = -jump_velocity.z;
 	info.jumpXYSpeed = xy_speed;
 	info.jumpCosAngle = xy_speed > 0.0f ? jump_velocity.x / xy_speed : std::cos(static_cast<float>(orientation));
 	info.jumpSinAngle = xy_speed > 0.0f ? jump_velocity.y / xy_speed : std::sin(static_cast<float>(orientation));
@@ -1481,6 +1482,9 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 		if (block.hasMovement) {
 			object.position = wow_vector(block.x, block.y, block.z);
 			object.orientation = block.orientation;
+			if (block.runSpeed > 0.0f) {
+				object.speeds = { block.walkSpeed, block.runSpeed, block.runBackSpeed, block.swimSpeed, block.swimBackSpeed, block.turnRate };
+			}
 		}
 		// Logging in mid-flight: the create block carries the whole path and how far along it is.
 		if (block.hasSpline && block.guid == player_guid && block.splineDuration > 0) {
@@ -1511,8 +1515,20 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 	}
 }
 
-// Vanilla relays carry a packed GUID, then flags, time, position and facing with no second flags field.
+// Vanilla relays carry a packed GUID, then MovementInfo with no second flags field; speed changes append the speed.
 void WowSession::handle_movement_relay(network::Packet &packet) {
+	constexpr uint32_t MOVEFLAG_JUMPING = 0x2000;
+	constexpr uint32_t MOVEFLAG_SWIMMING = 0x200000;
+	constexpr uint32_t MOVEFLAG_ONTRANSPORT = 0x2000000;
+	constexpr uint32_t MOVEFLAG_SPLINE_ELEVATION = 0x4000000;
+	constexpr std::array<const char *, 6> SPEED_OPCODES = {
+		"MSG_MOVE_SET_WALK_SPEED", "MSG_MOVE_SET_RUN_SPEED", "MSG_MOVE_SET_RUN_BACK_SPEED",
+		"MSG_MOVE_SET_SWIM_SPEED", "MSG_MOVE_SET_SWIM_BACK_SPEED", "MSG_MOVE_SET_TURN_RATE",
+	};
+	constexpr std::array<const char *, 6> SPEED_KEYS = {
+		"walk_speed", "run_speed", "run_back_speed", "swim_speed", "swim_back_speed", "turn_rate",
+	};
+	const char *name = game::OpcodeTable::logicalToName(*logical(packet));
 	const uint64_t guid = packet.readPackedGuid();
 	const uint32_t flags = packet.readUInt32();
 	packet.readUInt32();
@@ -1520,16 +1536,48 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 	const float y = packet.readFloat();
 	const float z = packet.readFloat();
 	const float orientation = packet.readFloat();
-	auto it = objects.find(guid);
-	if (it != objects.end()) {
-		it->second.position = wow_vector(x, y, z);
-		it->second.orientation = orientation;
+	if (flags & MOVEFLAG_ONTRANSPORT) {
+		packet.readUInt64();
+		for (int i = 0; i < 4; i++) {
+			packet.readFloat();
+		}
+	}
+	if (flags & MOVEFLAG_SWIMMING) {
+		packet.readFloat();
+	}
+	const uint32_t fall_time = packet.hasRemaining(4) ? packet.readUInt32() : 0;
+	Vector3 jump_velocity;
+	if ((flags & MOVEFLAG_JUMPING) && packet.hasRemaining(16)) {
+		const float z_speed = packet.readFloat();
+		const float cos_angle = packet.readFloat();
+		const float sin_angle = packet.readFloat();
+		const float xy_speed = packet.readFloat();
+		jump_velocity = Vector3(cos_angle * xy_speed, sin_angle * xy_speed, -z_speed);
+	}
+	if ((flags & MOVEFLAG_SPLINE_ELEVATION) && packet.hasRemaining(4)) {
+		packet.readFloat();
 	}
 	Dictionary move;
 	move["position"] = wow_vector(x, y, z);
 	move["orientation"] = orientation;
 	move["flags"] = flags;
-	move["opcode"] = String(game::OpcodeTable::logicalToName(*logical(packet)));
+	move["opcode"] = String(name);
+	move["fall_time_msec"] = fall_time;
+	move["jump_velocity"] = jump_velocity;
+	auto it = objects.find(guid);
+	if (it != objects.end()) {
+		WorldObject &object = it->second;
+		object.position = wow_vector(x, y, z);
+		object.orientation = orientation;
+		for (size_t i = 0; i < SPEED_OPCODES.size(); i++) {
+			if (std::strcmp(name, SPEED_OPCODES[i]) == 0 && packet.hasRemaining(4)) {
+				object.speeds[i] = packet.readFloat();
+			}
+		}
+		for (size_t i = 0; i < SPEED_KEYS.size(); i++) {
+			move[SPEED_KEYS[i]] = object.speeds[i];
+		}
+	}
 	emit_signal("object_moved", static_cast<int64_t>(guid), move);
 }
 

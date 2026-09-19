@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://game/world/world.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://game/world/sky.gdshader" id="7_sky_shader"]
 [ext_resource type="PackedScene" path="res://game/world/world_weather.tscn" id="8_weather"]
 [ext_resource type="Script" path="res://game/world/floating_combat_text.gd" id="9_floating_text"]
+[ext_resource type="PackedScene" path="res://game/world/selection_circle.tscn" id="10_selection"]
 
 [sub_resource type="FastNoiseLite" id="Noise_clouds"]
 frequency = 0.008
@@ -83,6 +84,9 @@ script = ExtResource("4_entities")
 
 [node name="FloatingCombatText" type="Node3D" parent="." node_paths=PackedStringArray("entities")]
 script = ExtResource("9_floating_text")
+entities = NodePath("../Entities")
+
+[node name="SelectionCircle" parent="." node_paths=PackedStringArray("entities") instance=ExtResource("10_selection")]
 entities = NodePath("../Entities")
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
