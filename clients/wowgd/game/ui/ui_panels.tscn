@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/character_frame.tscn" id="2_character"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/talent_frame.tscn" id="6_talents"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/quest_log_frame.tscn" id="7_quests"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/static_popup.tscn" id="8_popup"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/gossip_frame.tscn" id="9_gossip"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/quest_frame.tscn" id="10_quest"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -32,6 +34,14 @@ unique_name_in_owner = true
 visible = false
 
 [node name="QuestLogFrame" parent="." instance=ExtResource("7_quests")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GossipFrame" parent="." instance=ExtResource("9_gossip")]
+unique_name_in_owner = true
+visible = false
+
+[node name="QuestFrame" parent="." instance=ExtResource("10_quest")]
 unique_name_in_owner = true
 visible = false
 

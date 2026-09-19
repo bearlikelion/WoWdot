@@ -206,6 +206,16 @@
 			"frame": "StaticPopup1",
 			"out": "game/ui/wow/static_popup.tscn",
 			"script": "res://game/ui/static_popup.gd"
+		},
+		{
+			"frame": "GossipFrame",
+			"out": "game/ui/wow/gossip_frame.tscn",
+			"script": "res://game/ui/gossip_frame.gd"
+		},
+		{
+			"frame": "QuestFrame",
+			"out": "game/ui/wow/quest_frame.tscn",
+			"script": "res://game/ui/quest_frame.gd"
 		}
 	],
 	"graft": {

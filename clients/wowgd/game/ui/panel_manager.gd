@@ -14,6 +14,8 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"SpellBookFrame": [Area.LEFT, 0],
 	&"TalentFrame": [Area.LEFT, 6],
 	&"QuestLogFrame": [Area.LEFT, 0],
+	&"GossipFrame": [Area.LEFT, 0],
+	&"QuestFrame": [Area.LEFT, 0],
 	&"GameMenuFrame": [Area.CENTER, 0],
 }
 # updateContainerFrameAnchors: bags stack up from the bottom right, starting a new column when full.

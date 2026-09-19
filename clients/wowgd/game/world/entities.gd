@@ -8,6 +8,8 @@ const NAMEPLATE: PackedScene = preload("res://game/world/nameplate.tscn")
 const RUN_SPEED_THRESHOLD: float = 4.0
 const FORWARD_FLAG: int = 0x1
 const NAMEPLATE_GAP: float = 0.3
+# The quest marker floats this far over the head, clear of the name.
+const MARKER_GAP: float = 0.9
 # SMSG_ATTACKERSTATEUPDATE victim state for a blow that landed.
 const VICTIM_STATE_HIT: int = 1
 
@@ -22,6 +24,10 @@ var _worn: Dictionary[int, PackedInt32Array] = {}
 var _dressing: Dictionary[int, bool] = {}
 var _paths: Dictionary[int, Path] = {}
 var _game_object_displays: WowDBC
+var _quest_givers: Dictionary[int, bool] = {}
+var _markers: Dictionary[int, Node3D] = {}
+# What quest givers offer depends on the quest log and level, so either changing asks again.
+var _quest_state: Array = []
 
 
 func _ready() -> void:
@@ -36,6 +42,7 @@ func _ready() -> void:
 	session.item_info_received.connect(_on_item_info_received)
 	session.attack_started.connect(_on_attack_changed.bind(true))
 	session.attack_stopped.connect(_on_attack_changed.bind(false))
+	session.quest_giver_status_received.connect(_on_quest_giver_status)
 	# Objects that arrived before the world scene existed.
 	for guid: int in session.get_object_guids():
 		_on_object_created(guid, session.get_object_type(guid))
@@ -87,6 +94,9 @@ func _on_object_created(guid: int, type_id: int) -> void:
 		node.rotation.y = session.get_object_orientation(guid)
 		_add_nameplate(guid, node)
 		_on_object_updated(guid)
+		if type_id == ObjectType.UNIT and NpcDialog.is_quest_giver(guid):
+			_quest_givers[guid] = true
+			NpcDialog.send("CMSG_QUESTGIVER_STATUS_QUERY", guid)
 
 
 func _on_object_moved(guid: int, movement: Dictionary) -> void:
@@ -165,6 +175,8 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_victims.erase(guid)
 		_worn.erase(guid)
 		_dressing.erase(guid)
+		_quest_givers.erase(guid)
+		_markers.erase(guid)
 		if _nodes.has(guid):
 			_nodes[guid].queue_free()
 			_nodes.erase(guid)
@@ -186,6 +198,8 @@ func _add_nameplate(guid: int, node: Node3D) -> void:
 
 
 func _on_object_updated(guid: int) -> void:
+	if guid == WowClient.session.get_player_guid():
+		_refresh_quest_givers()
 	var node: Node3D = _nodes.get(guid)
 	if node == null or not _bounds.has(guid):
 		return
@@ -197,6 +211,39 @@ func _on_object_updated(guid: int) -> void:
 		UnitAnimations.die(node)
 	elif UnitAnimations.is_dead(node):
 		UnitAnimations.revive(node)
+
+
+func _refresh_quest_givers() -> void:
+	var session: WowSession = WowClient.session
+	var state: Array = [session.get_field(session.get_player_guid(), "UNIT_FIELD_LEVEL")]
+	for slot: int in QuestLog.slots():
+		state.append(QuestLog.quest_id(slot))
+		state.append(QuestLog.state(slot))
+	if state == _quest_state:
+		return
+	_quest_state = state
+	for guid: int in _quest_givers:
+		NpcDialog.send("CMSG_QUESTGIVER_STATUS_QUERY", guid)
+
+
+func _on_quest_giver_status(guid: int, status: int) -> void:
+	var node: Node3D = _nodes.get(guid)
+	if node == null or not _bounds.has(guid):
+		return
+	if _markers.has(guid):
+		_markers[guid].queue_free()
+		_markers.erase(guid)
+	var path: String = NpcDialog.MARKERS.get(status, "")
+	if path.is_empty():
+		return
+	var marker: Node3D = WowAssets.loader.load_m2(path)
+	if marker == null:
+		return
+	node.add_child(marker)
+	marker.position.y = _bounds[guid].end.y + MARKER_GAP / node.scale.y
+	marker.scale = Vector3.ONE / node.scale
+	UnitAnimations.set_base(marker, ["Stand"])
+	_markers[guid] = marker
 
 
 func _on_melee_swing(

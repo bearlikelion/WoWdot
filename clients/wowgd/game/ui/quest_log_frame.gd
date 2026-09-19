@@ -7,7 +7,6 @@ signal abandon_requested(slot: int, title: String)
 const QUESTS_DISPLAYED: int = 6
 const QUESTLOG_QUEST_HEIGHT: float = 16.0
 const MAX_OBJECTIVES: int = 10
-const MAX_NUM_ITEMS: int = 10
 const MAX_QUESTLOG_QUESTS: int = 20
 const PLUS_BUTTON: String = "Interface\\Buttons\\UI-PlusButton-Up.blp"
 const MINUS_BUTTON: String = "Interface\\Buttons\\UI-MinusButton-Up.blp"
@@ -59,10 +58,8 @@ func _ready() -> void:
 		(get_node("%" + label_name) as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	for i: int in MAX_OBJECTIVES:
 		_objective(i).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	for i: int in MAX_NUM_ITEMS:
+	for i: int in QuestRewards.MAX_NUM_ITEMS:
 		var item: BaseButton = _item(i)
-		(get_node("%%QuestLogItem%dName" % (i + 1)) as Label).autowrap_mode = \
-		TextServer.AUTOWRAP_WORD_SMART
 		item.mouse_entered.connect(_on_item_entered.bind(i))
 		item.mouse_exited.connect(_hide_tooltip.bind(item))
 	_list_scroll.scrolled.connect(_on_list_scrolled)
@@ -250,7 +247,7 @@ func _update_details(keep_scroll: bool) -> void:
 	title_label.text = title
 	var objectives_text: Label = %QuestLogObjectivesText
 	objectives_text.text = QuestLog.format_text(info["objectives"])
-	_below(objectives_text, title_label, 5.0)
+	QuestRewards.below(objectives_text, title_label, 5.0)
 	var last: Control = objectives_text
 	var timer: Label = %QuestLogTimerText
 	var seconds_left: int = QuestLog.time_left(_selected_slot) - int(Time.get_unix_time_from_system())
@@ -259,7 +256,7 @@ func _update_details(keep_scroll: bool) -> void:
 		timer.text = "%s %d:%02d" % [
 			WowStrings.get_text("TIME_REMAINING"), maxi(seconds_left, 0) / 60, maxi(seconds_left, 0) % 60,
 		]
-		_below(timer, last, 10.0)
+		QuestRewards.below(timer, last, 10.0)
 		last = timer
 	var lines: Array[Array] = QuestLog.objectives(_selected_slot, info)
 	for i: int in MAX_OBJECTIVES:
@@ -272,7 +269,7 @@ func _update_details(keep_scroll: bool) -> void:
 		if finished:
 			objective.text += " (%s)" % WowStrings.get_text("COMPLETE")
 		objective.add_theme_color_override("font_color", OBJECTIVE_DONE if finished else OBJECTIVE_OPEN)
-		_below(objective, last, 10.0 if i == 0 else 2.0)
+		QuestRewards.below(objective, last, 10.0 if i == 0 else 2.0)
 		last = objective
 	var money: int = info["money"]
 	var money_text: Label = %QuestLogRequiredMoneyText
@@ -284,108 +281,17 @@ func _update_details(keep_scroll: bool) -> void:
 		money_text.add_theme_color_override("font_color", OBJECTIVE_OPEN if short else OBJECTIVE_DONE)
 		money_frame.modulate = NOT_ENOUGH_MONEY if short else Color.WHITE
 		money_frame.set_money(-money)
-		_below(money_text, last, 4.0 if not lines.is_empty() else 10.0)
-		_beside(money_frame, money_text, 10.0)
+		QuestRewards.below(money_text, last, 4.0 if not lines.is_empty() else 10.0)
+		QuestRewards.beside(money_frame, money_text, 10.0)
 		last = money_text
 	var description_title: Label = %QuestLogDescriptionTitle
-	_below(description_title, last, 10.0)
+	QuestRewards.below(description_title, last, 10.0)
 	var description: Label = %QuestLogQuestDescription
 	description.text = QuestLog.format_text(info["details"])
-	_below(description, description_title, 5.0)
-	_update_rewards(info, description)
+	QuestRewards.below(description, description_title, 5.0)
+	_reward_items = QuestRewards.update(self, "QuestLog", info, description)
 	_detail_scroll.show()
 	_detail_scroll.refresh(keep_scroll)
-
-
-func _update_rewards(info: Dictionary, description: Label) -> void:
-	var choices: Array = info["choices"]
-	var rewards: Array = info["rewards"]
-	var spell: int = info["reward_spell"]
-	var money: int = maxi(info["money"], 0)
-	var reward_title: Label = %QuestLogRewardTitleText
-	var choose_text: Label = %QuestLogItemChooseText
-	var receive_text: Label = %QuestLogItemReceiveText
-	var spell_text: Label = %QuestLogSpellLearnText
-	var money_frame: MoneyFrame = %QuestLogMoneyFrame
-	reward_title.visible = choices.size() + rewards.size() + money > 0 or spell != 0
-	_below(reward_title, description, 15.0)
-	money_frame.visible = money > 0
-	_reward_items.clear()
-	var index: int = 0
-	choose_text.visible = not choices.is_empty()
-	if choose_text.visible:
-		_below(choose_text, reward_title, 5.0)
-		index = _place_items(choices, index, choose_text)
-	spell_text.visible = spell != 0
-	if spell_text.visible:
-		spell_text.text = WowStrings.get_text("REWARD_SPELL")
-		_below(spell_text, _item(index - 1) if index > 0 else reward_title, 5.0)
-		var button: BaseButton = _item(index)
-		_set_reward(index, WowAssets.spells.icon(spell), WowAssets.spells.spell_name(spell), 0)
-		_reward_items.append(-spell)
-		_below(button, spell_text, 5.0, -3.0)
-		index += 1
-	receive_text.visible = not rewards.is_empty() or money > 0
-	if receive_text.visible:
-		var anchor: Control = reward_title
-		receive_text.text = WowStrings.get_text("REWARD_ITEMS_ONLY")
-		if spell != 0:
-			anchor = _item(index - 1)
-		elif not choices.is_empty():
-			anchor = _item(choices.size() - 1 - (1 if choices.size() % 2 == 0 else 0))
-		if anchor != reward_title:
-			receive_text.text = WowStrings.get_text("REWARD_ITEMS")
-		_below(receive_text, anchor, 5.0, 3.0 if anchor != reward_title else 0.0)
-		index = _place_items(rewards, index, receive_text)
-		if money > 0:
-			money_frame.set_money(money)
-			_beside(money_frame, receive_text, 15.0)
-	for i: int in range(index, MAX_NUM_ITEMS):
-		_item(i).hide()
-
-
-# Two to a row, the first under its heading.
-func _place_items(items: Array, start: int, heading: Label) -> int:
-	for i: int in items.size():
-		var reward: Vector2i = items[i]
-		var index: int = start + i
-		var info: Dictionary = WowClient.session.get_item_info(reward.x)
-		_set_reward(index, Inventory.icon(reward.x), info.get("name", ""), reward.y)
-		_reward_items.append(reward.x)
-		var button: BaseButton = _item(index)
-		if i == 0:
-			_below(button, heading, 5.0, -3.0)
-		elif i % 2 == 0:
-			_below(button, _item(index - 2), 2.0)
-		else:
-			var left: Control = _item(index - 1)
-			button.position = left.position + Vector2(left.size.x + 1.0, 0.0)
-	return start + items.size()
-
-
-func _set_reward(index: int, icon: Texture2D, item_name: String, count: int) -> void:
-	var prefix: String = "%%QuestLogItem%d" % (index + 1)
-	(get_node(prefix + "IconTexture") as TextureRect).texture = icon
-	(get_node(prefix + "Name") as Label).text = item_name
-	var count_label: Label = get_node(prefix + "Count")
-	count_label.text = str(count)
-	count_label.visible = count > 1
-	_item(index).show()
-
-
-func _below(node: Control, above: Control, gap: float, indent: float = 0.0) -> void:
-	node.position = Vector2(above.position.x + indent, above.position.y + _height(above) + gap)
-
-
-func _beside(node: Control, left: Control, gap: float) -> void:
-	var width: float = left.get_minimum_size().x if left is Label else left.size.x
-	node.position = Vector2(
-		left.position.x + width + gap, left.position.y + (_height(left) - node.size.y) / 2.0,
-	)
-
-
-func _height(node: Control) -> float:
-	return maxf(node.size.y, node.get_minimum_size().y)
 
 
 func _list_rect() -> Rect2:

@@ -646,6 +646,203 @@ void WowSession::handle_quest_query(network::Packet &packet) {
 	emit_signal("quest_info_received", static_cast<int64_t>(id));
 }
 
+// NPC text options as [probability, male text, female text]; empty until the server answers.
+Array WowSession::get_npc_text(int text_id, int64_t guid) {
+	const uint32_t key = static_cast<uint32_t>(text_id);
+	if (const auto it = npc_texts.find(key); it != npc_texts.end()) {
+		return it->second;
+	}
+	if (world && npc_text_queries.insert(key).second) {
+		network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_NPC_TEXT_QUERY));
+		packet.writeUInt32(key);
+		packet.writeUInt64(static_cast<uint64_t>(guid));
+		world->send(packet);
+	}
+	return Array();
+}
+
+namespace {
+
+// Quest dialog item lists: a count, then item, count and display id for each.
+Array read_quest_items(network::Packet &packet) {
+	Array items;
+	const uint32_t count = packet.readUInt32();
+	for (uint32_t i = 0; i < count && packet.hasRemaining(12); ++i) {
+		const int32_t item = static_cast<int32_t>(packet.readUInt32());
+		const int32_t amount = static_cast<int32_t>(packet.readUInt32());
+		packet.readUInt32();
+		items.push_back(Vector2i(item, amount));
+	}
+	return items;
+}
+
+String read_string(network::Packet &packet) {
+	return String::utf8(packet.readString().c_str());
+}
+
+} // namespace
+
+// Gossip, NPC text and the quest giver dialogs, each passed on as a Dictionary.
+bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
+	using game::LogicalOpcode;
+	switch (static_cast<LogicalOpcode>(op)) {
+		case LogicalOpcode::SMSG_QUESTGIVER_STATUS: {
+			const int64_t guid = static_cast<int64_t>(packet.readUInt64());
+			emit_signal("quest_giver_status_received", guid, static_cast<int64_t>(packet.readUInt32()));
+			return true;
+		}
+		case LogicalOpcode::SMSG_GOSSIP_MESSAGE: {
+			Dictionary gossip;
+			gossip["guid"] = static_cast<int64_t>(packet.readUInt64());
+			gossip["text_id"] = static_cast<int64_t>(packet.readUInt32());
+			Array options;
+			const uint32_t option_count = packet.readUInt32();
+			for (uint32_t i = 0; i < option_count && packet.hasRemaining(6); ++i) {
+				Dictionary option;
+				option["index"] = static_cast<int64_t>(packet.readUInt32());
+				option["icon"] = static_cast<int64_t>(packet.readUInt8());
+				option["coded"] = packet.readUInt8() != 0;
+				option["text"] = read_string(packet);
+				options.push_back(option);
+			}
+			gossip["options"] = options;
+			Array quests;
+			const uint32_t quest_count = packet.readUInt32();
+			for (uint32_t i = 0; i < quest_count && packet.hasRemaining(12); ++i) {
+				Dictionary quest;
+				quest["id"] = static_cast<int64_t>(packet.readUInt32());
+				quest["icon"] = static_cast<int64_t>(packet.readUInt32());
+				quest["level"] = static_cast<int64_t>(packet.readUInt32());
+				quest["title"] = read_string(packet);
+				quests.push_back(quest);
+			}
+			gossip["quests"] = quests;
+			emit_signal("gossip_received", gossip);
+			return true;
+		}
+		case LogicalOpcode::SMSG_GOSSIP_COMPLETE:
+			emit_signal("gossip_closed");
+			return true;
+		case LogicalOpcode::SMSG_NPC_TEXT_UPDATE: {
+			constexpr int OPTIONS = 8;
+			constexpr int EMOTES = 3;
+			const uint32_t text_id = packet.readUInt32();
+			Array options;
+			for (int i = 0; i < OPTIONS && packet.hasRemaining(4); ++i) {
+				const float probability = packet.readFloat();
+				const String male = read_string(packet);
+				const String female = read_string(packet);
+				packet.readUInt32(); // Language.
+				for (int e = 0; e < EMOTES * 2; ++e) {
+					packet.readUInt32();
+				}
+				Array option;
+				option.push_back(probability);
+				option.push_back(male);
+				option.push_back(female);
+				options.push_back(option);
+			}
+			npc_texts[text_id] = options;
+			npc_text_queries.erase(text_id);
+			emit_signal("npc_text_received", static_cast<int64_t>(text_id));
+			return true;
+		}
+		case LogicalOpcode::SMSG_QUESTGIVER_QUEST_LIST: {
+			Dictionary greeting;
+			greeting["guid"] = static_cast<int64_t>(packet.readUInt64());
+			greeting["text"] = read_string(packet);
+			packet.readUInt32(); // Emote delay.
+			packet.readUInt32(); // Emote.
+			Array quests;
+			const uint8_t count = packet.readUInt8();
+			for (uint8_t i = 0; i < count && packet.hasRemaining(12); ++i) {
+				Dictionary quest;
+				quest["id"] = static_cast<int64_t>(packet.readUInt32());
+				quest["icon"] = static_cast<int64_t>(packet.readUInt32());
+				quest["level"] = static_cast<int64_t>(packet.readUInt32());
+				quest["title"] = read_string(packet);
+				quests.push_back(quest);
+			}
+			greeting["quests"] = quests;
+			emit_signal("quest_greeting_received", greeting);
+			return true;
+		}
+		case LogicalOpcode::SMSG_QUESTGIVER_QUEST_DETAILS: {
+			Dictionary details;
+			details["guid"] = static_cast<int64_t>(packet.readUInt64());
+			details["quest_id"] = static_cast<int64_t>(packet.readUInt32());
+			details["title"] = read_string(packet);
+			details["text"] = read_string(packet);
+			details["objectives"] = read_string(packet);
+			details["auto_accept"] = packet.readUInt32() != 0;
+			details["choices"] = read_quest_items(packet);
+			details["rewards"] = read_quest_items(packet);
+			details["money"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
+			details["reward_spell"] = static_cast<int64_t>(packet.readUInt32());
+			emit_signal("quest_details_received", details);
+			return true;
+		}
+		case LogicalOpcode::SMSG_QUESTGIVER_REQUEST_ITEMS: {
+			constexpr uint32_t COMPLETABLE = 0x03;
+			Dictionary progress;
+			progress["guid"] = static_cast<int64_t>(packet.readUInt64());
+			progress["quest_id"] = static_cast<int64_t>(packet.readUInt32());
+			progress["title"] = read_string(packet);
+			progress["text"] = read_string(packet);
+			packet.readUInt32(); // Emote delay.
+			packet.readUInt32(); // Emote.
+			progress["close_on_cancel"] = packet.readUInt32() != 0;
+			progress["money"] = static_cast<int64_t>(packet.readUInt32());
+			progress["items"] = read_quest_items(packet);
+			packet.readUInt32();
+			// The second of four flag words reads 3 once every objective is done.
+			progress["completable"] = packet.readUInt32() == COMPLETABLE;
+			emit_signal("quest_progress_received", progress);
+			return true;
+		}
+		case LogicalOpcode::SMSG_QUESTGIVER_OFFER_REWARD: {
+			Dictionary reward;
+			reward["guid"] = static_cast<int64_t>(packet.readUInt64());
+			reward["quest_id"] = static_cast<int64_t>(packet.readUInt32());
+			reward["title"] = read_string(packet);
+			reward["text"] = read_string(packet);
+			reward["auto_finish"] = packet.readUInt32() != 0;
+			const uint32_t emotes = packet.readUInt32();
+			for (uint32_t i = 0; i < emotes * 2 && packet.hasRemaining(4); ++i) {
+				packet.readUInt32();
+			}
+			reward["choices"] = read_quest_items(packet);
+			reward["rewards"] = read_quest_items(packet);
+			reward["money"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
+			reward["flags"] = static_cast<int64_t>(packet.readUInt32());
+			reward["reward_spell"] = static_cast<int64_t>(packet.readUInt32());
+			emit_signal("quest_reward_received", reward);
+			return true;
+		}
+		case LogicalOpcode::SMSG_QUESTGIVER_QUEST_COMPLETE: {
+			const int64_t quest_id = packet.readUInt32();
+			packet.readUInt32();
+			const int64_t xp = packet.readUInt32();
+			const int64_t money = packet.readUInt32();
+			emit_signal("quest_completed", quest_id, xp, money);
+			return true;
+		}
+		case LogicalOpcode::SMSG_QUESTUPDATE_ADD_KILL: {
+			const int64_t quest_id = packet.readUInt32();
+			const int64_t entry = packet.readUInt32();
+			const int64_t count = packet.readUInt32();
+			const int64_t required = packet.readUInt32();
+			emit_signal("quest_kill_added", quest_id, entry, count, required);
+			return true;
+		}
+		case LogicalOpcode::SMSG_QUESTUPDATE_COMPLETE:
+			emit_signal("quest_objectives_completed", static_cast<int64_t>(packet.readUInt32()));
+			return true;
+		default:
+			return false;
+	}
+}
+
 void WowSession::query_player_name(uint64_t guid) {
 	if (world && player_queries.insert(guid).second) {
 		world->send(game::NameQueryPacket::build(guid));
@@ -738,6 +935,7 @@ void WowSession::disconnect() {
 	creature_entry_queries.clear();
 	game_object_queries.clear();
 	quest_queries.clear();
+	npc_text_queries.clear();
 	chat_waiting.clear();
 	player_guid = 0;
 	state = STATE_DISCONNECTED;
@@ -1051,6 +1249,31 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		case LogicalOpcode::SMSG_QUEST_QUERY_RESPONSE:
 			handle_quest_query(packet);
 			return;
+		case LogicalOpcode::MSG_MOVE_TELEPORT_ACK: {
+			// A near teleport: the server holds the player until the counter comes back with the time.
+			const uint64_t guid = packet.readPackedGuid();
+			const uint32_t counter = packet.readUInt32();
+			packet.readUInt32(); // Movement flags.
+			packet.readUInt32(); // Server time.
+			const float x = packet.readFloat();
+			const float y = packet.readFloat();
+			const float z = packet.readFloat();
+			const float orientation = packet.readFloat();
+			if (guid != player_guid) {
+				return;
+			}
+			if (auto it = objects.find(guid); it != objects.end()) {
+				it->second.position = wow_vector(x, y, z);
+				it->second.orientation = orientation;
+			}
+			network::Packet ack(game::wireOpcode(LogicalOpcode::MSG_MOVE_TELEPORT_ACK));
+			ack.writeUInt64(guid);
+			ack.writeUInt32(counter);
+			ack.writeUInt32(static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec()));
+			world->send(ack);
+			emit_signal("player_teleported", wow_vector(x, y, z), orientation);
+			return;
+		}
 		case LogicalOpcode::SMSG_LOGOUT_COMPLETE:
 			objects.clear();
 			player_guid = 0;
@@ -1058,7 +1281,8 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			request_characters();
 			return;
 		default:
-			if (handle_combat_packet(static_cast<uint16_t>(*op), packet)) {
+			if (handle_combat_packet(static_cast<uint16_t>(*op), packet)
+				|| handle_npc_packet(static_cast<uint16_t>(*op), packet)) {
 				return;
 			}
 			break;
@@ -1245,6 +1469,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_creature_template", "entry"), &WowSession::get_creature_template);
 	ClassDB::bind_method(D_METHOD("get_game_object_info", "entry"), &WowSession::get_game_object_info);
 	ClassDB::bind_method(D_METHOD("get_quest_info", "quest_id"), &WowSession::get_quest_info);
+	ClassDB::bind_method(D_METHOD("get_npc_text", "text_id", "guid"), &WowSession::get_npc_text);
 	ClassDB::bind_method(D_METHOD("disconnect"), &WowSession::disconnect);
 	ClassDB::bind_method(D_METHOD("poll"), &WowSession::poll);
 	ClassDB::bind_method(D_METHOD("get_state"), &WowSession::get_state);
@@ -1273,6 +1498,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("spells_changed"));
 	ADD_SIGNAL(MethodInfo("action_buttons_changed"));
 	ADD_SIGNAL(MethodInfo("factions_changed"));
+	ADD_SIGNAL(MethodInfo("player_teleported", PropertyInfo(Variant::VECTOR3, "position"), PropertyInfo(Variant::FLOAT, "orientation")));
 	ADD_SIGNAL(MethodInfo("spell_cast_started", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cast_time_msec")));
 	ADD_SIGNAL(MethodInfo("spell_cast_finished", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id")));
 	ADD_SIGNAL(MethodInfo("spell_cast_failed", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "reason")));
@@ -1289,6 +1515,17 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("creature_info_received", PropertyInfo(Variant::INT, "entry")));
 	ADD_SIGNAL(MethodInfo("game_object_info_received", PropertyInfo(Variant::INT, "entry")));
 	ADD_SIGNAL(MethodInfo("quest_info_received", PropertyInfo(Variant::INT, "quest_id")));
+	ADD_SIGNAL(MethodInfo("quest_giver_status_received", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::INT, "status")));
+	ADD_SIGNAL(MethodInfo("gossip_received", PropertyInfo(Variant::DICTIONARY, "gossip")));
+	ADD_SIGNAL(MethodInfo("gossip_closed"));
+	ADD_SIGNAL(MethodInfo("npc_text_received", PropertyInfo(Variant::INT, "text_id")));
+	ADD_SIGNAL(MethodInfo("quest_greeting_received", PropertyInfo(Variant::DICTIONARY, "greeting")));
+	ADD_SIGNAL(MethodInfo("quest_details_received", PropertyInfo(Variant::DICTIONARY, "details")));
+	ADD_SIGNAL(MethodInfo("quest_progress_received", PropertyInfo(Variant::DICTIONARY, "progress")));
+	ADD_SIGNAL(MethodInfo("quest_reward_received", PropertyInfo(Variant::DICTIONARY, "reward")));
+	ADD_SIGNAL(MethodInfo("quest_completed", PropertyInfo(Variant::INT, "quest_id"), PropertyInfo(Variant::INT, "xp"), PropertyInfo(Variant::INT, "money")));
+	ADD_SIGNAL(MethodInfo("quest_kill_added", PropertyInfo(Variant::INT, "quest_id"), PropertyInfo(Variant::INT, "entry"), PropertyInfo(Variant::INT, "count"), PropertyInfo(Variant::INT, "required")));
+	ADD_SIGNAL(MethodInfo("quest_objectives_completed", PropertyInfo(Variant::INT, "quest_id")));
 	ADD_SIGNAL(MethodInfo("name_received", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::STRING, "name")));
 	ADD_SIGNAL(MethodInfo("packet_received", PropertyInfo(Variant::STRING, "opcode"), PropertyInfo(Variant::PACKED_BYTE_ARRAY, "payload")));
 

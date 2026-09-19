@@ -28,6 +28,7 @@ var _hovered: int = 0
 func _ready() -> void:
 	_player.movement_changed.connect(_on_player_movement_changed)
 	_player.clicked.connect(_on_player_clicked)
+	_player.interacted.connect(_on_player_interacted)
 	_hud.action_used.connect(_on_action_used)
 	_hud.spell_used.connect(_use_spell)
 	_hud.unit_selected.connect(select)
@@ -37,6 +38,7 @@ func _ready() -> void:
 	WowClient.session.object_updated.connect(_on_object_updated)
 	WowClient.session.item_info_received.connect(_on_item_info_received)
 	WowClient.session.object_created.connect(_on_object_created)
+	WowClient.session.player_teleported.connect(_on_player_teleported)
 
 
 func _process(_delta: float) -> void:
@@ -289,6 +291,27 @@ func _on_player_clicked(screen_position: Vector2) -> void:
 	var guid: int = _entities.pick(from, camera.project_ray_normal(screen_position))
 	if guid != 0:
 		select(guid)
+
+
+# Right-clicking a unit targets it, then talks to it or, when it is an enemy, attacks it.
+func _on_player_interacted(screen_position: Vector2) -> void:
+	var camera: Camera3D = get_viewport().get_camera_3d()
+	var from: Vector3 = camera.project_ray_origin(screen_position)
+	var guid: int = _entities.pick(from, camera.project_ray_normal(screen_position))
+	if guid == 0:
+		return
+	select(guid)
+	var session: WowSession = WowClient.session
+	if NpcDialog.interact(guid):
+		return
+	var player: int = session.get_player_guid()
+	var hostile: bool = UnitReaction.between(session, player, guid) == UnitReaction.Reaction.HOSTILE
+	if hostile and not _auto_attacking:
+		session.attack(guid)
+
+
+func _on_player_teleported(wow_position: Vector3, orientation: float) -> void:
+	_player.place(WowCoords.to_godot(wow_position), orientation)
 
 
 func _on_object_created(guid: int, _type_id: int) -> void:

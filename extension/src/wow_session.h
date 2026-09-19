@@ -122,6 +122,8 @@ private:
 	std::unordered_set<uint32_t> game_object_queries;
 	std::unordered_map<uint32_t, Dictionary> quest_info;
 	std::unordered_set<uint32_t> quest_queries;
+	std::unordered_map<uint32_t, Array> npc_texts;
+	std::unordered_set<uint32_t> npc_text_queries;
 	PackedInt32Array known_spells;
 	// Reputation list order: SMSG_INITIALIZE_FACTIONS flags and standings on top of Faction.dbc's base.
 	PackedByteArray faction_flags;
@@ -139,6 +141,7 @@ private:
 	void handle_compressed_moves(wowee::network::Packet &packet);
 	void handle_chat(wowee::network::Packet &packet);
 	void handle_quest_query(wowee::network::Packet &packet);
+	bool handle_npc_packet(uint16_t op, wowee::network::Packet &packet);
 	bool handle_combat_packet(uint16_t op, wowee::network::Packet &packet);
 	void query_player_name(uint64_t guid);
 	bool inflate(wowee::network::Packet &packet, std::vector<uint8_t> &r_data);
@@ -179,6 +182,7 @@ public:
 	Dictionary get_creature_template(int entry);
 	Dictionary get_game_object_info(int entry);
 	Dictionary get_quest_info(int quest_id);
+	Array get_npc_text(int text_id, int64_t guid);
 	void disconnect();
 	void poll();
 

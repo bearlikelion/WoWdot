@@ -45,6 +45,8 @@ var _casting_bar_top: float = 0.0
 @onready var _talents: TalentFrame = _panels.get_node("%TalentFrame")
 @onready var _quest_log: QuestLogFrame = _panels.get_node("%QuestLogFrame")
 @onready var _popup: StaticPopup = _panels.get_node("%StaticPopup1")
+@onready var _gossip: GossipFrame = _panels.get_node("%GossipFrame")
+@onready var _quest_frame: QuestFrame = _panels.get_node("%QuestFrame")
 
 
 func _ready() -> void:
@@ -62,6 +64,11 @@ func _ready() -> void:
 	_spell_book.spell_used.connect(spell_used.emit)
 	_quest_log.abandon_requested.connect(_on_abandon_requested)
 	_character.unlearn_requested.connect(_on_unlearn_requested)
+	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
+	_quest_frame.open_requested.connect(_panels.show_panel.bind(_quest_frame))
+	_quest_frame.error_raised.connect(show_error)
+	WowClient.session.quest_kill_added.connect(_on_quest_kill_added)
+	WowClient.session.quest_completed.connect(_on_quest_completed)
 	_character.item_hovered.connect(_on_equipped_item_hovered)
 	_character.item_left.connect(_hide_tooltip)
 	_side_bars.action_used.connect(action_used.emit)
@@ -162,6 +169,16 @@ func _escape() -> void:
 
 func _on_abandon_requested(slot: int, title: String) -> void:
 	_popup.ask(WowStrings.get_text("ABANDON_QUEST_CONFIRM") % title, _quest_log.abandon.bind(slot))
+
+
+func _on_quest_kill_added(_quest: int, entry: int, count: int, required: int) -> void:
+	var creature: String = WowClient.session.get_creature_template(entry).get("name", "")
+	show_notice(WowStrings.get_text("ERR_QUEST_ADD_KILL_SII") % [creature, count, required])
+
+
+func _on_quest_completed(quest: int, _xp: int, _money: int) -> void:
+	var title: String = WowClient.session.get_quest_info(quest).get("title", "")
+	show_notice(WowStrings.get_text("ERR_QUEST_COMPLETE_S") % title)
 
 
 func _on_unlearn_requested(skill_id: int, skill_name: String) -> void:

@@ -8,6 +8,7 @@ signal movement_changed(
 )
 # A left press and release that did not orbit the camera.
 signal clicked(screen_position: Vector2)
+signal interacted(screen_position: Vector2)
 
 enum MoveFlag {
 	NONE = 0,
@@ -65,6 +66,7 @@ var _fall_time: float = 0.0
 var _fall_start_y: float = 0.0
 var _jump_velocity: Vector3 = Vector3.ZERO
 var _press_position: Vector2 = Vector2.ZERO
+var _right_press_position: Vector2 = Vector2.ZERO
 var _drag_distance: float = 0.0
 var _model: Node3D
 var _auto_run: bool = false
@@ -93,9 +95,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			MOUSE_BUTTON_RIGHT:
 				_mouse_turning = button.pressed
 				if button.pressed:
+					_right_press_position = button.position
 					_drag_distance = 0.0
 					rotation.y += _pivot.rotation.y
 					_pivot.rotation.y = 0.0
+				elif _drag_distance < CLICK_SLOP:
+					interacted.emit(_right_press_position)
 			MOUSE_BUTTON_LEFT:
 				_orbiting = button.pressed
 				if button.pressed:
