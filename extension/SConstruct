@@ -26,13 +26,18 @@ env.Append(CPPPATH=["src/", "wowee/include/"] + thirdparty)
 windows = env["platform"] == "windows"
 if windows:
 	env.Append(LIBS=["ws2_32", "wininet"])
+# Windows sources read tommath.h through this header so LibTomMath uses its 28-bit digits.
+tommath_flags = ["-include", File("thirdparty/tommath_llp64.h").abspath] if windows else []
 
 # Our own sources build with full warnings; vendored mWoWee and StormLib keep their upstream flags.
 strict_env = env.Clone()
-strict_env.Append(CXXFLAGS=["-Wall", "-Wextra", "-Wpedantic", "-Wshadow"])
+strict_env.Append(CXXFLAGS=["-Wall", "-Wextra", "-Wpedantic", "-Wshadow"], CCFLAGS=tommath_flags)
 for header_dir in ["godot-cpp/include", "godot-cpp/gen/include", "godot-cpp/gdextension", "wowee/include"] + thirdparty:
 	strict_env.Append(CXXFLAGS=["-isystem", Dir(header_dir).abspath])
-sources = [strict_env.SharedObject(f) for f in Glob("src/*.cpp")] + Glob("wowee/src/*/*.cpp")
+wowee_env = env.Clone()
+wowee_env.Append(CCFLAGS=tommath_flags)
+sources = [strict_env.SharedObject(f) for f in Glob("src/*.cpp")]
+sources += [wowee_env.SharedObject(f) for f in Glob("wowee/src/*/*.cpp")]
 
 # StormLib is compiled in because Arch's libstorm.a holds LTO bytecode only; its file lists come from its CMakeLists.
 import re
@@ -50,7 +55,11 @@ storm_sources += ["thirdparty/zlib/{}.c".format(n) for n in zlib_names]
 storm_sources += ["thirdparty/bzip2/{}.c".format(n) for n in bzip2_names]
 storm_env = env.Clone()
 storm_env.Append(CPPDEFINES=["_7ZIP_ST", "BZ_STRICT_ANSI", "__SYS_ZLIB", "__SYS_BZLIB"])
-sources += [storm_env.SharedObject(f) for f in storm_sources]
+tommath_env = storm_env.Clone()
+tommath_env.Append(CCFLAGS=tommath_flags)
+for f in storm_sources:
+	uses_tommath = "/libtommath/" in f or f.endswith("/ltm_desc.c")
+	sources.append((tommath_env if uses_tommath else storm_env).SharedObject(f))
 
 library = env.SharedLibrary(
 	"../shared/wowdot/bin/libwowdot{}{}".format(env["suffix"], env["SHLIBSUFFIX"]),
