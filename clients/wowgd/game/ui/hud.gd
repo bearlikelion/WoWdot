@@ -46,6 +46,7 @@ var _casting_bar_top: float = 0.0
 @onready var _quest_log: QuestLogFrame = _panels.get_node("%QuestLogFrame")
 @onready var _popup: StaticPopup = _panels.get_node("%StaticPopup1")
 @onready var _gossip: GossipFrame = _panels.get_node("%GossipFrame")
+@onready var _quest_watch: QuestWatchFrame = %QuestWatchFrame
 @onready var _quest_frame: QuestFrame = _panels.get_node("%QuestFrame")
 
 
@@ -67,6 +68,9 @@ func _ready() -> void:
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
 	_quest_frame.open_requested.connect(_panels.show_panel.bind(_quest_frame))
 	_quest_frame.error_raised.connect(show_error)
+	_quest_log.watch_toggled.connect(_quest_watch.toggle)
+	_quest_watch.watches_changed.connect(_quest_log.set_watched)
+	_quest_watch.error_raised.connect(show_error)
 	WowClient.session.quest_kill_added.connect(_on_quest_kill_added)
 	WowClient.session.quest_completed.connect(_on_quest_completed)
 	_character.item_hovered.connect(_on_equipped_item_hovered)

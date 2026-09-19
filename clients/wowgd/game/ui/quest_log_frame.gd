@@ -3,6 +3,7 @@ extends Control
 
 signal close_requested
 signal abandon_requested(slot: int, title: String)
+signal watch_toggled(quest_id: int)
 
 const QUESTS_DISPLAYED: int = 6
 const QUESTLOG_QUEST_HEIGHT: float = 16.0
@@ -22,6 +23,9 @@ const OBJECTIVE_DONE: Color = Color(0.2, 0.2, 0.2)
 const OBJECTIVE_OPEN: Color = Color(0.0, 0.0, 0.0)
 const NOT_ENOUGH_MONEY: Color = Color(1.0, 0.1, 0.1)
 const TRACKING_OFF: Color = Color(1.0, 0.0, 0.0)
+const TRACKING_ON: Color = Color(0.0, 1.0, 0.0)
+# QuestLogTitleButton's check sits this far past the end of the title.
+const CHECK_GAP: float = 24.0
 const WHEEL_BUTTONS: Array[MouseButton] = [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]
 
 # GetQuestLogTitle rows: zone headers, each followed by its quests unless collapsed.
@@ -32,6 +36,7 @@ var _offset: int = 0
 var _quest_types: WowDBC
 var _textures: Dictionary[String, WowTexture] = {}
 var _reward_items: Array[int] = []
+var _watched: Array[int] = []
 
 @onready var _list_scroll: WowScrollFrame = %QuestLogListScrollFrame
 @onready var _detail_scroll: WowScrollFrame = %QuestLogDetailScrollFrame
@@ -50,7 +55,7 @@ func _ready() -> void:
 	%QuestLogFrameCloseButton.pressed.connect(close_requested.emit)
 	%QuestFrameExitButton.pressed.connect(close_requested.emit)
 	%QuestLogFrameAbandonButton.pressed.connect(_on_abandon_pressed)
-	# Sharing waits on parties and tracking on the quest watch frame.
+	# Sharing waits on parties.
 	%QuestFramePushQuestButton.disabled = true
 	%QuestLogTrackTracking.self_modulate = TRACKING_OFF
 	%QuestLogSpacerFrame.hide()
@@ -98,6 +103,14 @@ func refresh(keep_scroll: bool = false) -> void:
 				break
 	_update_list()
 	_update_details(keep_scroll)
+
+
+# The quest watch frame's list, for the checks and the track light.
+func set_watched(quest_ids: Array[int]) -> void:
+	_watched = quest_ids
+	%QuestLogTrackTracking.self_modulate = TRACKING_OFF if _watched.is_empty() else TRACKING_ON
+	if is_visible_in_tree():
+		_update_list()
 
 
 func abandon(slot: int) -> void:
@@ -171,7 +184,8 @@ func _show_entry(button: WowButton, entry: Dictionary) -> void:
 	var tag: Label = get_node(prefix + "Tag")
 	var normal: TextureRect = button.get_node("NormalTexture")
 	var highlight: TextureRect = button.get_node("HighlightTexture")
-	(get_node(prefix + "Check") as CanvasItem).hide()
+	var check: Control = get_node(prefix + "Check")
+	check.visible = not entry["header"] and QuestLog.quest_id(entry["slot"]) in _watched
 	(get_node(prefix + "GroupMates") as Label).text = ""
 	var color: Color = HEADER
 	if entry["header"]:
@@ -189,6 +203,7 @@ func _show_entry(button: WowButton, entry: Dictionary) -> void:
 	for label: Label in [text, tag]:
 		label.theme_type_variation = &"GameFontHighlight"
 		label.self_modulate = color
+	check.position.x = text.get_minimum_size().x + CHECK_GAP
 	var selected: bool = not entry["header"] and entry["slot"] == _selected_slot
 	button.highlight_locked = selected
 	if selected:
@@ -321,6 +336,8 @@ func _on_title_pressed(index: int) -> void:
 			_collapsed[entry["title"]] = true
 		refresh(true)
 		return
+	if Input.is_key_pressed(KEY_SHIFT):
+		watch_toggled.emit(QuestLog.quest_id(entry["slot"]))
 	_selected_slot = entry["slot"]
 	_update_list()
 	_update_details(false)

@@ -216,6 +216,11 @@
 			"frame": "QuestFrame",
 			"out": "game/ui/wow/quest_frame.tscn",
 			"script": "res://game/ui/quest_frame.gd"
+		},
+		{
+			"frame": "QuestWatchFrame",
+			"out": "game/ui/wow/quest_watch_frame.tscn",
+			"script": "res://game/ui/quest_watch_frame.gd"
 		}
 	],
 	"graft": {

@@ -165,6 +165,24 @@ func _check_quest_log(hud: Hud, panels: PanelManager) -> void:
 	await _frames(30)
 	print("second quest: '%s', objective '%s'" % [quest_title.text, objective.text])
 	_capture("user://panels_quest_log_2.png")
+	var watch: QuestWatchFrame = hud.get_node("%QuestWatchFrame")
+	for pressed: bool in [true, false]:
+		var shift: InputEventKey = InputEventKey.new()
+		shift.keycode = KEY_SHIFT
+		shift.physical_keycode = KEY_SHIFT
+		shift.pressed = pressed
+		Input.parse_input_event(shift)
+		await _frames(2)
+		if pressed:
+			(quest_log.get_node("%QuestLogTitle2") as BaseButton).pressed.emit()
+	await _frames(20)
+	var watch_title: Label = watch.get_node("%QuestWatchLine1")
+	var watch_line: Label = watch.get_node("%QuestWatchLine2")
+	print("tracker: '%s' '%s'" % [watch_title.text, watch_line.text])
+	_check(watch.visible and not watch_title.text.is_empty(), "shift-click tracks a quest")
+	var check: CanvasItem = quest_log.get_node("%QuestLogTitle2Check")
+	_check(check.visible, "tracked quests show a check")
+	_capture("user://panels_tracker.png")
 	var popup: StaticPopup = panels.get_node("%StaticPopup1")
 	for i: int in STARTER_QUESTS.size():
 		(quest_log.get_node("%QuestLogFrameAbandonButton") as BaseButton).pressed.emit()
