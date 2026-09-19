@@ -68,7 +68,7 @@ var _chat_hover_time: float = 0.0
 func _ready() -> void:
 	WowFonts.apply()
 	resized.connect(_fit_ui_parent)
-	_fit_ui_parent()
+	_fit_ui_parent.call_deferred()
 	_main_menu_bar.action_used.connect(action_used.emit)
 	_main_menu_bar.panel_toggled.connect(_on_panel_toggled)
 	_main_menu_bar.bag_toggled.connect(_panels.toggle_bag)
