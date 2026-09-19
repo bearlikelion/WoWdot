@@ -83,6 +83,7 @@ func _process(_delta: float) -> void:
 	var wow_position: Vector3 = WowCoords.from_godot(_player.global_position)
 	_hud.show_location(_map.map_name, wow_position, _player.orientation())
 	_sky.wow_position = wow_position
+	_player.set_water_surface(_map.liquid_height_at(_player.global_position))
 	var eye: Vector3 = get_viewport().get_camera_3d().global_position
 	_sky.underwater = eye.y < _map.liquid_height_at(eye)
 	_weather.visible = not _sky.underwater
@@ -242,7 +243,8 @@ func _on_player_movement_changed(
 ) -> void:
 	WowClient.session.send_movement(
 		opcode, WowCoords.from_godot(godot_position), orientation, flags,
-		fall_time_msec, WowCoords.from_godot(jump_velocity), 0.0, ack_counter, ack_tail,
+		fall_time_msec, WowCoords.from_godot(jump_velocity), _player.pitch(),
+		ack_counter, ack_tail,
 	)
 
 

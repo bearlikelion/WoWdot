@@ -48,6 +48,12 @@ const HEARTBEAT_SECONDS: float = 0.5
 const FACING_SECONDS: float = 0.2
 const MOUSE_TURN: float = 0.006
 const START_PITCH: float = -0.3
+# Water this deep over the feet starts a swim, and a little less ends it.
+const SWIM_ENTER: float = 1.5
+const SWIM_EXIT: float = 1.3
+# How far the shoulders stay under while swimming at the surface.
+const SWIM_SURFACE: float = 1.4
+const FLOAT_SPEED: float = 1.0
 const MIN_PITCH: float = -1.3
 const MAX_PITCH: float = 0.6
 const MIN_ZOOM: float = 1.5
@@ -96,6 +102,8 @@ var _right_press_position: Vector2 = Vector2.ZERO
 var _drag_distance: float = 0.0
 var _model: Node3D
 var _auto_run: bool = false
+# The liquid surface over the player, set by the world each frame, NAN where there is none.
+var _water_surface: float = NAN
 
 @onready var _model_slot: Node3D = $Model
 @onready var _pivot: Node3D = $CameraPivot
@@ -169,6 +177,8 @@ func _physics_process(delta: float) -> void:
 	if flags & MoveFlag.ROOT:
 		_send_changes(_flags, flags)
 		_flags = flags
+	elif _swimming():
+		_swim(flags, delta)
 	elif _flags & AIRBORNE:
 		_fly(flags, delta)
 	else:
@@ -190,6 +200,15 @@ func follow_path(
 	_path_duration = maxf(duration_msec / 1000.0, 0.001)
 	_flags = MoveFlag.NONE
 	velocity = Vector3.ZERO
+
+
+func set_water_surface(surface: float) -> void:
+	_water_surface = surface
+
+
+# WoW sends the camera's pitch while swimming, positive looking up.
+func pitch() -> float:
+	return _pivot.rotation.x
 
 
 func place(godot_position: Vector3, facing: float) -> void:
@@ -246,6 +265,9 @@ func orientation() -> float:
 
 
 func _walk(flags: int) -> void:
+	if _flags & MoveFlag.SWIMMING:
+		_flags &= ~MoveFlag.SWIMMING
+		_send("MSG_MOVE_STOP_SWIM", _flags)
 	var local: Vector3 = Vector3.ZERO
 	if flags & MoveFlag.FORWARD:
 		local.z -= 1.0
@@ -268,6 +290,44 @@ func _walk(flags: int) -> void:
 		_take_off(flags, velocity)
 
 
+func _swimming() -> bool:
+	if is_nan(_water_surface):
+		return false
+	var depth: float = _water_surface - global_position.y
+	return depth > (SWIM_EXIT if _flags & MoveFlag.SWIMMING else SWIM_ENTER)
+
+
+# Swimming follows the camera's pitch, and floats up to the surface when nothing is held.
+func _swim(flags: int, delta: float) -> void:
+	flags |= MoveFlag.SWIMMING
+	var local: Vector3 = Vector3.ZERO
+	if flags & MoveFlag.STRAFE_LEFT:
+		local.x -= 1.0
+	elif flags & MoveFlag.STRAFE_RIGHT:
+		local.x += 1.0
+	var direction: Vector3 = basis * local
+	var forward: Vector3 = -basis.z * cos(pitch()) + Vector3.UP * sin(pitch())
+	if flags & MoveFlag.FORWARD:
+		direction += forward
+	elif flags & MoveFlag.BACKWARD:
+		direction -= forward
+	var kind: SpeedKind = SpeedKind.SWIM_BACK if flags & MoveFlag.BACKWARD else SpeedKind.SWIM
+	velocity = direction.normalized() * _speeds[kind]
+	if not flags & LONGITUDINAL:
+		velocity.y = FLOAT_SPEED
+	if not _flags & MoveFlag.SWIMMING:
+		_flags = flags
+		_send("MSG_MOVE_START_SWIM", flags)
+	_send_changes(_flags, flags)
+	_flags = flags
+	move_and_slide()
+	var ceiling: float = _water_surface - SWIM_SURFACE
+	if global_position.y > ceiling:
+		global_position.y = ceiling
+	_fall_time = 0.0
+	_jump_velocity = Vector3.ZERO
+
+
 # Airborne movement keeps the take-off velocity; only turning follows the keys until landing.
 func _fly(flags: int, delta: float) -> void:
 	_fall_time += delta
@@ -275,6 +335,8 @@ func _fly(flags: int, delta: float) -> void:
 	velocity.z = _jump_velocity.z
 	velocity.y -= GRAVITY * delta
 	move_and_slide()
+	if _swimming():
+		return
 	if is_on_floor() and velocity.y <= 0.0:
 		_flags = flags
 		_send("MSG_MOVE_FALL_LAND", _flags)
