@@ -3,6 +3,19 @@ extends Node3D
 
 const SETTLE_FRAMES: int = 30
 const LOAD_TIMEOUT_MS: int = 120000
+const VISIBLE: Viewport.RenderInfoType = Viewport.RENDER_INFO_TYPE_VISIBLE
+const SHADOW: Viewport.RenderInfoType = Viewport.RENDER_INFO_TYPE_SHADOW
+# Per pass render info, as (Viewport.RenderInfoType, Viewport.RenderInfo).
+const RENDER_INFO: Dictionary[String, Vector2i] = {
+	"draw calls": Vector2i(VISIBLE, Viewport.RENDER_INFO_DRAW_CALLS_IN_FRAME),
+	"objects": Vector2i(VISIBLE, Viewport.RENDER_INFO_OBJECTS_IN_FRAME),
+	"primitives": Vector2i(VISIBLE, Viewport.RENDER_INFO_PRIMITIVES_IN_FRAME),
+	"shadow calls": Vector2i(SHADOW, Viewport.RENDER_INFO_DRAW_CALLS_IN_FRAME),
+	"shadow prims": Vector2i(SHADOW, Viewport.RENDER_INFO_PRIMITIVES_IN_FRAME),
+}
+const STATS: PackedStringArray = [
+	"frame ms", "gpu ms", "draw calls", "objects", "primitives", "shadow calls", "shadow prims",
+]
 
 @onready var _map: WowMap = $WowMap
 @onready var _camera: Camera3D = $Camera3D
@@ -34,28 +47,41 @@ func _wait_for_tiles() -> void:
 		await get_tree().process_frame
 
 
-# Reports main-thread frame times while tiles stream in the background.
+# Reports frame and GPU times and what the renderer drew while tiles stream in the background.
 func _fly(destination: Vector3, seconds: float) -> void:
 	var start: Vector3 = _camera.position
 	var end: Vector3 = WowCoords.to_godot(destination)
-	var frame_ms: PackedFloat32Array = []
+	var viewport: RID = get_viewport().get_viewport_rid()
+	RenderingServer.viewport_set_measure_render_time(viewport, true)
+	var samples: Dictionary[String, PackedFloat32Array] = {}
+	for key: String in STATS:
+		samples[key] = PackedFloat32Array()
 	var elapsed: float = 0.0
 	var last: int = Time.get_ticks_usec()
 	while elapsed < seconds:
 		await get_tree().process_frame
 		var now: int = Time.get_ticks_usec()
-		frame_ms.append((now - last) / 1000.0)
+		samples["frame ms"].append((now - last) / 1000.0)
 		last = now
+		samples["gpu ms"].append(RenderingServer.viewport_get_measured_render_time_gpu(viewport))
+		for key: String in RENDER_INFO:
+			var info: Vector2i = RENDER_INFO[key]
+			var pass_type: Viewport.RenderInfoType = info.x as Viewport.RenderInfoType
+			var what: Viewport.RenderInfo = info.y as Viewport.RenderInfo
+			samples[key].append(get_viewport().get_render_info(pass_type, what))
 		elapsed += get_process_delta_time()
 		_camera.position = start.lerp(end, clampf(elapsed / seconds, 0.0, 1.0))
 	await _wait_for_tiles()
-	frame_ms.sort()
-	print("fly: %d frames, median %.1f ms, p99 %.1f ms, worst %.1f ms" % [
-		frame_ms.size(),
-		frame_ms[floori(frame_ms.size() / 2.0)],
-		frame_ms[int(frame_ms.size() * 0.99)],
-		frame_ms[frame_ms.size() - 1],
-	])
+	print("fly: %d frames" % samples["frame ms"].size())
+	for key: String in STATS:
+		var values: PackedFloat32Array = samples[key]
+		values.sort()
+		print("  %-16s median %9.1f  p99 %9.1f  worst %9.1f" % [
+			key,
+			values[floori(values.size() / 2.0)],
+			values[int(values.size() * 0.99)],
+			values[values.size() - 1],
+		])
 
 
 func _parse_args() -> Dictionary:

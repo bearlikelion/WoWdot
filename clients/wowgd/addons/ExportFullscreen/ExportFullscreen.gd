@@ -38,6 +38,10 @@ class ExportFullscreenExporter extends EditorExportPlugin:
 	# Autoload settings (key -> original value) stripped for the export.
 	var _stripped_autoloads: Dictionary = {}
 
+	func _get_name() -> String:
+		return "ExportFullscreen"
+
+
 	func _export_begin(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> void:
 		# Safety check: if we have a stored value, something went wrong in previous export
 		if _original_mode != -1:
