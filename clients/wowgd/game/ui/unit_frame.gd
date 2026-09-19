@@ -2,6 +2,7 @@ class_name UnitFrame
 extends WowButton
 
 signal unit_selected(guid: int)
+signal unit_menu_requested(guid: int)
 
 enum PowerType { MANA, RAGE, FOCUS, ENERGY, HAPPINESS }
 
@@ -57,6 +58,13 @@ func _ready() -> void:
 	show_unit(guid)
 
 
+func _gui_input(event: InputEvent) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click and click.pressed and click.button_index == MOUSE_BUTTON_RIGHT:
+		accept_event()
+		unit_menu_requested.emit(guid)
+
+
 # A guid of 0, or one the session no longer knows, hides the frame.
 func show_unit(unit: int) -> void:
 	guid = unit
@@ -70,7 +78,8 @@ func refresh() -> void:
 	if not visible:
 		return
 	_name_label.text = session.get_object_name(guid)
-	_level_label.text = str(session.get_field(guid, "UNIT_FIELD_LEVEL"))
+	if _level_label:
+		_level_label.text = str(session.get_field(guid, "UNIT_FIELD_LEVEL"))
 	var health: int = session.get_field(guid, "UNIT_FIELD_HEALTH")
 	var max_health: int = maxi(session.get_field(guid, "UNIT_FIELD_MAXHEALTH"), 1)
 	_health_bar.max_value = max_health

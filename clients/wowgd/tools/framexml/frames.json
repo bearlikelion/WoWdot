@@ -228,6 +228,12 @@
 			"script": "res://game/ui/merchant_frame.gd"
 		},
 		{
+			"frame": "PartyMemberFrameTemplate",
+			"template": true,
+			"out": "game/ui/wow/party_member_frame.tscn",
+			"script": "res://game/ui/party_member_frame.gd"
+		},
+		{
 			"frame": "LootButtonTemplate",
 			"template": true,
 			"out": "game/ui/wow/loot_button.tscn",

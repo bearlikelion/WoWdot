@@ -217,6 +217,22 @@ func _take_command(text: String) -> String:
 	return rest
 
 
+# SlashCmdList INVITE, UNINVITE and LEAVE.
+func _run_party_command(message: String) -> bool:
+	var words: PackedStringArray = message.split(" ", false, 1)
+	var command: String = words[0].to_lower()
+	var player_name: String = words[1].strip_edges() if words.size() > 1 else ""
+	if command in ["/invite", "/inv"] and not player_name.is_empty():
+		PartyFrame.invite(player_name)
+	elif command in ["/uninvite", "/u", "/un", "/kick"] and not player_name.is_empty():
+		PartyFrame.uninvite(player_name)
+	elif command == "/leave":
+		PartyFrame.leave()
+	else:
+		return false
+	return true
+
+
 func _on_text_submitted(text: String) -> void:
 	var message: String = _take_command(text.strip_edges()).strip_edges()
 	var chat_type: WowSession.ChatType = _chat_type
@@ -227,6 +243,8 @@ func _on_text_submitted(text: String) -> void:
 	_history.append(text.strip_edges())
 	if _history.size() > HISTORY_LINES:
 		_history.remove_at(0)
+	if _run_party_command(message):
+		return
 	if message.begins_with("/"):
 		add_message(WowStrings.get_text("HELP_TEXT_SIMPLE"), COLORS[WowSession.CHAT_SYSTEM])
 		return

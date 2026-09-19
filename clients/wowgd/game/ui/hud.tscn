@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/chat_frame.tscn" id="14_chat"]
 [ext_resource type="PackedScene" path="res://game/ui/ui_panels.tscn" id="15_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/quest_watch_frame.tscn" id="16_watch"]
+[ext_resource type="PackedScene" path="res://game/ui/party_frame.tscn" id="17_party"]
 
 [node name="Hud" type="Control" unique_id=2063934219]
 layout_mode = 3
@@ -65,6 +66,13 @@ offset_left = 280.0
 offset_top = 0.0
 offset_right = 512.0
 offset_bottom = 100.0
+
+[node name="PartyFrame" parent="UIParent" instance=ExtResource("17_party")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="UnitMenu" type="PopupMenu" parent="UIParent"]
+unique_name_in_owner = true
 
 [node name="CastingBarFrame" parent="UIParent" unique_id=180262721 instance=ExtResource("8_cast")]
 unique_name_in_owner = true

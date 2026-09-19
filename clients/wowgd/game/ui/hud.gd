@@ -6,6 +6,8 @@ signal spell_used(spell_id: int)
 signal unit_selected(guid: int)
 
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
+enum UnitMenuItem { INVITE, UNINVITE, LEAVE }
+
 const UI_HEIGHT: float = 768.0
 const ERROR_COLOR: Color = Color(1.0, 0.1, 0.1)
 const NOTICE_COLOR: Color = Color(1.0, 0.82, 0.0)
@@ -27,6 +29,7 @@ const OUT_OF_POWER: Array[String] = [
 ]
 
 var _area: int = 0
+var _menu_name: String = ""
 var _spell_failures: Dictionary = {}
 var _casting_bar_top: float = 0.0
 
@@ -34,6 +37,8 @@ var _casting_bar_top: float = 0.0
 @onready var _main_menu_bar: MainMenuBar = %MainMenuBar
 @onready var _player_frame: PlayerFrame = %PlayerFrame
 @onready var _target_frame: TargetFrame = %TargetFrame
+@onready var _party: PartyFrame = %PartyFrame
+@onready var _unit_menu: PopupMenu = %UnitMenu
 @onready var _errors: WowMessageFrame = %UIErrorsFrame
 @onready var _casting_bar: CastingBar = %CastingBarFrame
 @onready var _side_bars: SideActionBars = %MultiBarRight
@@ -85,7 +90,7 @@ func _ready() -> void:
 	_taxi.error_raised.connect(show_error)
 	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
 	_loot.error_raised.connect(show_error)
-	_loot.message_added.connect(add_chat_line)
+	_loot.message_added.connect(add_system_line)
 	WowClient.session.taxi_path_discovered.connect(
 		func() -> void: show_notice(WowStrings.get_text("ERR_NEWTAXIPATH"))
 	)
@@ -99,6 +104,14 @@ func _ready() -> void:
 	_main_menu_bar.bottom_bars_toggled.connect(_on_bottom_bars_toggled)
 	_on_bottom_bars_toggled(_main_menu_bar.get_node("%MultiBarBottomLeft").visible)
 	_player_frame.unit_selected.connect(unit_selected.emit)
+	_party.unit_selected.connect(unit_selected.emit)
+	_party.invited.connect(_on_party_invited)
+	_party.message_added.connect(add_system_line)
+	_party.error_raised.connect(show_error)
+	_player_frame.unit_menu_requested.connect(_show_unit_menu)
+	_target_frame.unit_menu_requested.connect(_show_unit_menu)
+	_party.unit_menu_requested.connect(_show_unit_menu)
+	_unit_menu.id_pressed.connect(_on_unit_menu_pressed)
 	WowClient.session.spell_cast_failed.connect(_on_spell_cast_failed)
 	WowClient.session.attack_swing_error.connect(_on_attack_swing_error)
 	WowClient.session.object_updated.connect(_on_object_updated)
@@ -154,6 +167,10 @@ func target() -> int:
 
 func add_chat_line(text: String, color: Color = Color.WHITE) -> void:
 	_chat.add_message(text, color)
+
+
+func add_system_line(text: String) -> void:
+	_chat.add_message(text, ChatFrame.COLORS[WowSession.CHAT_SYSTEM])
 
 
 func show_location(map_dir: String, wow_position: Vector3, facing: float) -> void:
@@ -320,3 +337,42 @@ func _on_attack_swing_error(error: WowSession.AttackError) -> void:
 	show_error(WowStrings.get_text(SWING_ERRORS[error]))
 
 
+func _on_party_invited(inviter: String) -> void:
+	_popup.ask(
+		WowStrings.get_text("INVITATION") % inviter, PartyFrame.accept, "ACCEPT", "DECLINE",
+		PartyFrame.decline,
+	)
+
+
+# ponytail: a plain PopupMenu stands in for UnitPopup; port UIDropDownMenu when more entries come.
+func _show_unit_menu(guid: int) -> void:
+	var session: WowSession = WowClient.session
+	_unit_menu.clear()
+	_menu_name = session.get_object_name(guid)
+	for member: Dictionary in PartyFrame.members:
+		if member["guid"] == guid:
+			_menu_name = member["name"]
+	var may_change: bool = not PartyFrame.in_party() or PartyFrame.is_leader()
+	if guid == session.get_player_guid():
+		if PartyFrame.in_party():
+			_unit_menu.add_item(WowStrings.get_text("PARTY_LEAVE"), UnitMenuItem.LEAVE)
+	elif PartyFrame.has_member(_menu_name):
+		if may_change:
+			_unit_menu.add_item(WowStrings.get_text("PARTY_UNINVITE"), UnitMenuItem.UNINVITE)
+	elif session.get_object_type(guid) == Entities.ObjectType.PLAYER and may_change:
+		_unit_menu.add_item(WowStrings.get_text("PARTY_INVITE"), UnitMenuItem.INVITE)
+	if _unit_menu.item_count == 0:
+		return
+	_unit_menu.position = Vector2i(get_viewport().get_mouse_position())
+	_unit_menu.reset_size()
+	_unit_menu.popup()
+
+
+func _on_unit_menu_pressed(id: int) -> void:
+	match id as UnitMenuItem:
+		UnitMenuItem.INVITE:
+			PartyFrame.invite(_menu_name)
+		UnitMenuItem.UNINVITE:
+			PartyFrame.uninvite(_menu_name)
+		UnitMenuItem.LEAVE:
+			PartyFrame.leave()

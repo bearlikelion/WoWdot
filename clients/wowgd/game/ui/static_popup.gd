@@ -9,6 +9,7 @@ const BUTTON_OFFSET: Vector2 = Vector2(-6.0, 8.0)
 const BORDER_PADDING: float = 16.0
 
 var _on_accept: Callable
+var _on_cancel: Callable
 
 @onready var _text: Label = %StaticPopup1Text
 @onready var _accept: BaseButton = %StaticPopup1Button1
@@ -29,8 +30,10 @@ func _ready() -> void:
 # StaticPopup_Show for a two button question, sized to its text as StaticPopup_Resize does.
 func ask(
 	text: String, on_accept: Callable, accept_key: String = "YES", cancel_key: String = "NO",
+	on_cancel: Callable = Callable(),
 ) -> void:
 	_on_accept = on_accept
+	_on_cancel = on_cancel
 	_text.text = text
 	_set_button(_accept, WowStrings.get_text(accept_key))
 	_set_button(_cancel, WowStrings.get_text(cancel_key))
@@ -49,6 +52,8 @@ func cancel() -> bool:
 	if not visible:
 		return false
 	hide()
+	if _on_cancel.is_valid():
+		_on_cancel.call()
 	return true
 
 
