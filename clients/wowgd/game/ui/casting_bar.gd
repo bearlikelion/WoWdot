@@ -98,9 +98,9 @@ func _is_player(caster: int) -> bool:
 	return caster == WowClient.session.get_player_guid()
 
 
-func _on_cast_started(caster: int, spell_id: int, cast_time_msec: int) -> void:
+func _on_cast_started(caster: int, spell: int, cast_time_msec: int) -> void:
 	if _is_player(caster) and cast_time_msec > 0:
-		_begin(Mode.CASTING, spell_id, cast_time_msec)
+		_begin(Mode.CASTING, spell, cast_time_msec)
 
 
 func _on_cast_finished(caster: int, _spell_id: int) -> void:
@@ -119,8 +119,8 @@ func _on_cast_delayed(caster: int, delay_msec: int) -> void:
 		_end += delay_msec / 1000.0
 
 
-func _on_channel_started(spell_id: int, duration_msec: int) -> void:
-	_begin(Mode.CHANNELING, spell_id, duration_msec)
+func _on_channel_started(spell: int, duration_msec: int) -> void:
+	_begin(Mode.CHANNELING, spell, duration_msec)
 
 
 func _on_channel_updated(remaining_msec: int) -> void:

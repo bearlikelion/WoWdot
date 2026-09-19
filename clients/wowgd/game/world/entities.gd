@@ -23,6 +23,9 @@ var _victims: Dictionary[int, int] = {}
 # Players' visible item entries, and those whose gear still waits on item queries.
 var _worn: Dictionary[int, PackedInt32Array] = {}
 var _dressing: Dictionary[int, bool] = {}
+# Weapons each unit carries and the sheath state they were last hung for.
+var _weapons: Dictionary[int, Array] = {}
+var _sheath_states: Dictionary[int, ItemModels.SheathState] = {}
 var _paths: Dictionary[int, Path] = {}
 var _game_object_displays: WowDBC
 var _quest_givers: Dictionary[int, bool] = {}
@@ -78,11 +81,12 @@ func _on_object_created(guid: int, type_id: int) -> void:
 	match type_id:
 		ObjectType.UNIT:
 			node = WowAssets.creatures.instantiate(display)
-			if node:
-				_arm(guid, node, display)
+			_weapons[guid] = ItemModels.unit_weapons(session, guid)
 		ObjectType.PLAYER:
 			var look: Dictionary = CharacterModels.player_look(session, guid)
 			_worn[guid] = CharacterModels.visible_items(session, guid)
+			_weapons[guid] = look["weapons"]
+			_sheath_states[guid] = look["sheath_state"]
 			if look["pending"]:
 				_dressing[guid] = true
 			node = WowAssets.creatures.instantiate(display, look)
@@ -93,6 +97,8 @@ func _on_object_created(guid: int, type_id: int) -> void:
 	add_child(node)
 	node.global_position = WowCoords.to_godot(session.get_object_position(guid))
 	_nodes[guid] = node
+	if type_id == ObjectType.UNIT:
+		_arm(guid)
 	if type_id != ObjectType.GAMEOBJECT:
 		node.rotation.y = session.get_object_orientation(guid)
 		_add_nameplate(guid, node)
@@ -173,14 +179,14 @@ func pick(from: Vector3, direction: Vector3) -> int:
 	return picked
 
 
-# NPCs carry their weapons as the item displays in UNIT_VIRTUAL_ITEM_SLOT_DISPLAY.
-func _arm(guid: int, node: Node3D, display: int) -> void:
+func _arm(guid: int) -> void:
 	var session: WowSession = WowClient.session
-	var first: int = session.field_index("UNIT_VIRTUAL_ITEM_SLOT_DISPLAY")
-	var model_path: String = WowAssets.creatures.model_path(display)
-	var items: ItemModels = WowAssets.characters.item_models
-	items.attach(node, model_path, ItemModels.Slot.MAIN_HAND, session.get_field(guid, first))
-	items.attach(node, model_path, ItemModels.Slot.OFF_HAND, session.get_field(guid, first + 1))
+	var state: ItemModels.SheathState = ItemModels.sheath_state(session, guid)
+	_sheath_states[guid] = state
+	var model_path: String = WowAssets.creatures.model_path(
+		session.get_field(guid, "UNIT_FIELD_DISPLAYID")
+	)
+	WowAssets.characters.item_models.arm(_nodes[guid], model_path, _weapons[guid], state)
 
 
 func _on_name_received(guid: int, _unit_name: String) -> void:
@@ -205,6 +211,8 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_victims.erase(guid)
 		_worn.erase(guid)
 		_dressing.erase(guid)
+		_weapons.erase(guid)
+		_sheath_states.erase(guid)
 		_quest_givers.erase(guid)
 		_markers.erase(guid)
 		NpcDialog.statuses.erase(guid)
@@ -214,10 +222,10 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 
 
 func _add_nameplate(guid: int, node: Node3D) -> void:
-	var to_local: Transform3D = node.global_transform.affine_inverse()
+	var node_space: Transform3D = node.global_transform.affine_inverse()
 	var bounds: AABB = AABB()
 	for mesh: MeshInstance3D in node.find_children("*", "MeshInstance3D", true, false):
-		var box: AABB = to_local * mesh.global_transform * mesh.get_aabb()
+		var box: AABB = node_space * mesh.global_transform * mesh.get_aabb()
 		bounds = bounds.merge(box) if bounds.has_volume() else box
 	_bounds[guid] = bounds
 	var plate: Label3D = NAMEPLATE.instantiate()
@@ -237,6 +245,9 @@ func _on_object_updated(guid: int) -> void:
 	if _worn.has(guid) and _worn[guid] != CharacterModels.visible_items(WowClient.session, guid):
 		_respawn(guid)
 		return
+	if _sheath_states.has(guid) \
+	and _sheath_states[guid] != ItemModels.sheath_state(WowClient.session, guid):
+		_arm(guid)
 	var alive: bool = WowClient.session.get_field(guid, "UNIT_FIELD_HEALTH") > 0
 	if not alive:
 		UnitAnimations.die(node)
@@ -323,7 +334,7 @@ func _respawn(guid: int) -> void:
 
 
 func _play_idle(guid: int, node: Node3D) -> void:
-	UnitAnimations.set_base(node, UnitAnimations.READY if _victims.has(guid) else ["Stand"])
+	UnitAnimations.set_base(node, UnitAnimations.READY if _victims.has(guid) else PackedStringArray(["Stand"]))
 
 
 func _face(node: Node3D, target: int) -> void:

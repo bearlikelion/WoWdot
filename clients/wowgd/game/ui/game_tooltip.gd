@@ -69,23 +69,23 @@ func _exit_tree() -> void:
 
 # Starts a new tooltip for owner; hide_for() later only hides it if the same owner still has it.
 func begin(
-	owner: Object, anchor: TooltipAnchor = TooltipAnchor.DEFAULT, anchor_to: Control = null,
+	tooltip_owner: Object, anchor: TooltipAnchor = TooltipAnchor.DEFAULT, anchor_to: Control = null,
 ) -> void:
 	for line: Node in _lines.get_children():
 		_lines.remove_child(line)
 		line.queue_free()
-	_owner = owner
+	_owner = tooltip_owner
 	_anchor = anchor
 	_anchor_to = anchor_to
 
 
-func add_line(text: String, color: Color = HIGHLIGHT, wrap: bool = false) -> void:
-	add_double_line(text, "", color, HIGHLIGHT, wrap)
+func add_line(text: String, color: Color = HIGHLIGHT, word_wrap: bool = false) -> void:
+	add_double_line(text, "", color, HIGHLIGHT, word_wrap)
 
 
 func add_double_line(
 	left: String, right: String, left_color: Color = HIGHLIGHT, right_color: Color = HIGHLIGHT,
-	wrap: bool = false,
+	word_wrap: bool = false,
 ) -> void:
 	var line: HBoxContainer = LINE.instantiate()
 	_lines.add_child(line)
@@ -99,7 +99,7 @@ func add_double_line(
 	right_label.text = right
 	right_label.self_modulate = right_color
 	right_label.visible = not right.is_empty()
-	if wrap:
+	if word_wrap:
 		var font: Font = left_label.get_theme_font("font")
 		var font_size: int = left_label.get_theme_font_size("font_size")
 		if font.get_string_size(left, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > WRAP_WIDTH:
@@ -113,16 +113,16 @@ func present() -> void:
 	_fit.call_deferred()
 
 
-func hide_for(owner: Object) -> void:
-	if _owner == owner:
+func hide_for(tooltip_owner: Object) -> void:
+	if _owner == tooltip_owner:
 		_owner = null
 		hide()
 
 
 func set_spell(
-	owner: Object, spell_id: int, anchor: TooltipAnchor = TooltipAnchor.DEFAULT,
+	tooltip_owner: Object, spell_id: int, anchor: TooltipAnchor = TooltipAnchor.DEFAULT,
 ) -> void:
-	begin(owner, anchor, owner as Control)
+	begin(tooltip_owner, anchor, tooltip_owner as Control)
 	var spells: SpellInfo = WowAssets.spells
 	add_double_line(spells.spell_name(spell_id), spells.rank(spell_id), HIGHLIGHT, GRAY)
 	_add_pair(SpellText.cost(spell_id), SpellText.range_text(spell_id))
@@ -133,8 +133,8 @@ func set_spell(
 	present()
 
 
-func set_aura(owner: Control, spell_id: int, anchor: TooltipAnchor) -> void:
-	begin(owner, anchor, owner)
+func set_aura(tooltip_owner: Control, spell_id: int, anchor: TooltipAnchor) -> void:
+	begin(tooltip_owner, anchor, tooltip_owner)
 	add_line(WowAssets.spells.spell_name(spell_id))
 	var tooltip: String = SpellText.describe(spell_id, "Tooltip")
 	if not tooltip.is_empty():
@@ -144,13 +144,13 @@ func set_aura(owner: Control, spell_id: int, anchor: TooltipAnchor) -> void:
 
 # SetBagItem and SetInventoryItem: false while the item query has not answered yet.
 func set_item(
-	owner: Control, item_entry: int, item: int = 0, anchor: TooltipAnchor = TooltipAnchor.RIGHT,
+	tooltip_owner: Control, item_entry: int, item: int = 0, anchor: TooltipAnchor = TooltipAnchor.RIGHT,
 ) -> bool:
 	var info: Dictionary = WowClient.session.get_item_info(item_entry)
 	if info.is_empty():
-		hide_for(owner)
+		hide_for(tooltip_owner)
 		return false
-	begin(owner, anchor, owner)
+	begin(tooltip_owner, anchor, tooltip_owner)
 	add_line(info["name"], QUALITY_COLORS[clampi(info["quality"], 0, QUALITY_COLORS.size() - 1)])
 	if item and Inventory.is_soulbound(item):
 		add_line(WowStrings.get_text("ITEM_SOULBOUND"))
@@ -191,8 +191,8 @@ func set_item(
 	return true
 
 
-func set_text(owner: Object, title: String, text: String = "", right: String = "") -> void:
-	begin(owner)
+func set_text(tooltip_owner: Object, title: String, text: String = "", right: String = "") -> void:
+	begin(tooltip_owner)
 	add_double_line(title, right, HIGHLIGHT, NORMAL)
 	if not text.is_empty():
 		add_line(text, NORMAL, true)
@@ -200,12 +200,12 @@ func set_text(owner: Object, title: String, text: String = "", right: String = "
 
 
 # The name in its reaction colour, a title, the level line, and Corpse for the dead.
-func set_unit(owner: Object, guid: int) -> void:
+func set_unit(tooltip_owner: Object, guid: int) -> void:
 	var session: WowSession = WowClient.session
 	if not session.has_object(guid):
-		hide_for(owner)
+		hide_for(tooltip_owner)
 		return
-	begin(owner)
+	begin(tooltip_owner)
 	var player: int = session.get_player_guid()
 	var reaction: UnitReaction.Reaction = UnitReaction.between(session, player, guid)
 	var is_player: bool = session.get_object_type(guid) == Entities.ObjectType.PLAYER

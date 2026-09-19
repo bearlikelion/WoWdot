@@ -180,8 +180,8 @@ func _clear_lines() -> void:
 func _money_text(copper: int) -> String:
 	var parts: PackedStringArray = []
 	if copper >= 10000:
-		parts.append("%dg" % (copper / 10000))
+		parts.append("%dg" % floori(copper / 10000.0))
 	if copper >= 100:
-		parts.append("%ds" % (copper % 10000 / 100))
+		parts.append("%ds" % floori((copper % 10000) / 100.0))
 	parts.append("%dc" % (copper % 100))
 	return " ".join(parts)

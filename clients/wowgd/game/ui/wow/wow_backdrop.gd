@@ -51,9 +51,9 @@ func _draw_background() -> void:
 	if not tile or tile_size <= 0.0:
 		draw_texture_rect(background, area, false, background_color)
 		return
-	var scale: float = tile_size / background.get_width()
-	draw_set_transform(area.position, 0.0, Vector2(scale, scale))
-	draw_texture_rect(background, Rect2(Vector2.ZERO, area.size / scale), true, background_color)
+	var tile_scale: float = tile_size / background.get_width()
+	draw_set_transform(area.position, 0.0, Vector2(tile_scale, tile_scale))
+	draw_texture_rect(background, Rect2(Vector2.ZERO, area.size / tile_scale), true, background_color)
 	draw_set_transform(Vector2.ZERO)
 
 

@@ -1,3 +1,4 @@
+@tool
 class_name ItemButton
 extends WowButton
 
@@ -8,6 +9,8 @@ signal right_clicked
 
 
 func _gui_input(event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
 	var click: InputEventMouseButton = event as InputEventMouseButton
 	if click and click.pressed and click.button_index == MOUSE_BUTTON_RIGHT:
 		accept_event()

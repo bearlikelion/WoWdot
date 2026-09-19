@@ -1,3 +1,4 @@
+@tool
 class_name PartyMemberFrame
 extends UnitFrame
 
@@ -13,6 +14,9 @@ var online: bool = true
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		super()
+		return
 	_name_label = _member_label
 	_health_bar = $HealthBar
 	_power_bar = %ManaBar

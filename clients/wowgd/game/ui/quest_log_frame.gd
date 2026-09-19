@@ -243,9 +243,9 @@ func _gray_level(player_level: int) -> int:
 	if player_level <= 5:
 		return 0
 	if player_level < 40:
-		return player_level - 5 - player_level / 10
+		return player_level - 5 - floori(player_level / 10.0)
 	if player_level < 60:
-		return player_level - 1 - player_level / 5
+		return player_level - 1 - floori(player_level / 5.0)
 	return player_level - 9
 
 
@@ -269,7 +269,7 @@ func _update_details(keep_scroll: bool) -> void:
 	timer.visible = QuestLog.time_left(_selected_slot) > 0
 	if timer.visible:
 		timer.text = "%s %d:%02d" % [
-			WowStrings.get_text("TIME_REMAINING"), maxi(seconds_left, 0) / 60, maxi(seconds_left, 0) % 60,
+			WowStrings.get_text("TIME_REMAINING"), floori(maxi(seconds_left, 0) / 60.0), maxi(seconds_left, 0) % 60,
 		]
 		QuestRewards.below(timer, last, 10.0)
 		last = timer
@@ -380,9 +380,9 @@ func _on_item_entered(index: int) -> void:
 		GameTooltip.current.set_item(_item(index), reward)
 
 
-func _hide_tooltip(owner: Control) -> void:
+func _hide_tooltip(tooltip_owner: Control) -> void:
 	if GameTooltip.current:
-		GameTooltip.current.hide_for(owner)
+		GameTooltip.current.hide_for(tooltip_owner)
 
 
 func _on_object_updated(guid: int) -> void:

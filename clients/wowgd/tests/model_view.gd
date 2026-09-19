@@ -66,9 +66,9 @@ func _play(model: Node3D, anim: String) -> void:
 	if player == null:
 		return
 	print("animations: ", player.get_animation_list().size())
-	var name: String = anim if player.has_animation(anim) else "Stand"
-	if player.has_animation(name):
-		player.play(name)
+	var clip: String = anim if player.has_animation(anim) else "Stand"
+	if player.has_animation(clip):
+		player.play(clip)
 
 
 func _bounds(root: Node3D) -> AABB:

@@ -186,7 +186,7 @@ func _on_object_created(guid: int, type_id: int) -> void:
 			_creature = guid
 
 
-func _on_object_moved(guid: int, movement: Dictionary) -> void:
+func _on_object_moved(guid: int, _movement: Dictionary) -> void:
 	if guid != _session.get_player_guid():
 		_moves += 1
 
@@ -211,7 +211,7 @@ func _on_chat_received(line: Dictionary) -> void:
 	_chat.append(line)
 
 
-func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
 	_unhandled[opcode] = _unhandled.get(opcode, 0) + 1
 
 

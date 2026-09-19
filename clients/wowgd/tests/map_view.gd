@@ -52,7 +52,7 @@ func _fly(destination: Vector3, seconds: float) -> void:
 	frame_ms.sort()
 	print("fly: %d frames, median %.1f ms, p99 %.1f ms, worst %.1f ms" % [
 		frame_ms.size(),
-		frame_ms[frame_ms.size() / 2],
+		frame_ms[floori(frame_ms.size() / 2.0)],
 		frame_ms[int(frame_ms.size() * 0.99)],
 		frame_ms[frame_ms.size() - 1],
 	])

@@ -32,8 +32,8 @@ const INVENTORY_SLOTS: Dictionary[int, EquipSlot] = {
 	9: EquipSlot.HANDS, 18: EquipSlot.TABARD,
 }
 const VISIBLE_ITEM_STRIDE: int = 12
-# PLAYER_VISIBLE_ITEM slots of the main and off hand, and of the cloak.
-const WEAPON_SLOTS: Array[int] = [15, 16]
+# PLAYER_VISIBLE_ITEM slots of the main hand, off hand and ranged weapon, and of the cloak.
+const WEAPON_SLOTS: Array[int] = [15, 16, 17]
 const BACK_SLOT: int = 14
 const CAPES: String = "Item\\ObjectComponents\\Cape\\"
 # Later slots paint over earlier ones on the body skin.
@@ -130,12 +130,14 @@ static func player_look(session: WowSession, guid: int) -> Dictionary:
 		var info: Dictionary = session.get_item_info(items[inventory_slot])
 		pending = pending or info.is_empty()
 		equipment[INVENTORY_SLOTS[inventory_slot]] = info.get("display_id", 0)
-	var weapons: PackedInt32Array = []
+	var weapons: Array[ItemModels.Weapon] = []
 	for inventory_slot: int in WEAPON_SLOTS:
 		var entry: int = items[inventory_slot]
 		var info: Dictionary = session.get_item_info(entry) if entry != 0 else {}
 		pending = pending or (entry != 0 and info.is_empty())
-		weapons.append(info.get("display_id", 0))
+		weapons.append(ItemModels.Weapon.new(
+			info.get("display_id", 0), info.get("sheath", 0), info.get("subclass", 0)
+		))
 	var cloak: int = items[BACK_SLOT]
 	var cloak_info: Dictionary = session.get_item_info(cloak) if cloak != 0 else {}
 	pending = pending or (cloak != 0 and cloak_info.is_empty())
@@ -149,6 +151,7 @@ static func player_look(session: WowSession, guid: int) -> Dictionary:
 		"facial_hair": player_bytes_2 & 0xFF,
 		"equipment": equipment,
 		"weapons": weapons,
+		"sheath_state": ItemModels.sheath_state(session, guid),
 		"cape": cloak_info.get("display_id", 0),
 		"pending": pending,
 	}
@@ -196,9 +199,10 @@ static func listed_look(character: Dictionary) -> Dictionary:
 	for inventory_slot: int in INVENTORY_SLOTS:
 		if inventory_slot < displays.size():
 			equipment[INVENTORY_SLOTS[inventory_slot]] = displays[inventory_slot]
-	var weapons: PackedInt32Array = []
+	var weapons: Array[ItemModels.Weapon] = []
 	for inventory_slot: int in WEAPON_SLOTS:
-		weapons.append(displays[inventory_slot] if inventory_slot < displays.size() else 0)
+		var display: int = displays[inventory_slot] if inventory_slot < displays.size() else 0
+		weapons.append(ItemModels.Weapon.new(display))
 	var look: Dictionary = character.duplicate()
 	look["equipment"] = equipment
 	look["weapons"] = weapons
@@ -242,7 +246,7 @@ func _skin(race: int, gender: int, look: Dictionary) -> ImageTexture:
 		_textures(race, gender, Section.HAIR, look.get("hair_style", 0), hair_color, SCALP_COLUMNS)
 	)
 	overlays.append_array(_textures(race, gender, Section.UNDERWEAR, -1, skin))
-	var scale: int = maxi(base.get_width() / SKIN_ATLAS_SIZE, 1)
+	var scale: int = maxi(floori(base.get_width() / float(SKIN_ATLAS_SIZE)), 1)
 	for path: String in overlays:
 		var region: Vector2i = _region(path)
 		var overlay: Image = _loader.load_image(path) if region != -Vector2i.ONE else null
@@ -267,10 +271,8 @@ func _attach_items(model: Node3D, model_path: String, look: Dictionary) -> void:
 		item_models.attach(model, model_path, ItemModels.Slot.HEAD, helmet, race, gender)
 		var shoulders: int = equipment[EquipSlot.SHOULDER]
 		item_models.attach(model, model_path, ItemModels.Slot.SHOULDERS, shoulders)
-	var weapons: PackedInt32Array = look.get("weapons", PackedInt32Array())
-	if weapons.size() == WEAPON_SLOTS.size():
-		item_models.attach(model, model_path, ItemModels.Slot.MAIN_HAND, weapons[0])
-		item_models.attach(model, model_path, ItemModels.Slot.OFF_HAND, weapons[1])
+	var state: ItemModels.SheathState = look.get("sheath_state", ItemModels.SheathState.MELEE)
+	item_models.arm(model, model_path, look.get("weapons", []), state)
 
 
 func _paint_equipment(skin: Image, gender: int, equipment: PackedInt32Array, scale: int) -> void:
@@ -398,7 +400,7 @@ func _hide_under_helmet(
 			continue
 		var group: int = HELMET_HIDES[column]
 		for i: int in range(geosets.size() - 1, -1, -1):
-			if geosets[i] != 0 and geosets[i] / 100 == group / 100:
+			if geosets[i] != 0 and _geoset_group(geosets[i]) == _geoset_group(group):
 				geosets.remove_at(i)
 		geosets.append(group + 1)
 
@@ -412,6 +414,11 @@ func _equip_geoset(geosets: PackedInt32Array, group: int, display_id: int, least
 	if variant == 0:
 		return
 	for i: int in range(geosets.size() - 1, -1, -1):
-		if geosets[i] / 100 == group / 100:
+		if _geoset_group(geosets[i]) == _geoset_group(group):
 			geosets.remove_at(i)
 	geosets.append(group + 1 + variant)
+
+
+# Geoset ids are the group times 100 plus the variant.
+static func _geoset_group(geoset: int) -> int:
+	return floori(geoset / 100.0)

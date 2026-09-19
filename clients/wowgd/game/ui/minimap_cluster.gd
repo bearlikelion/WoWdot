@@ -41,10 +41,10 @@ func show_location(map_dir: String, wow_position: Vector3, facing: float) -> voi
 
 func show_area(area_id: int, player_race: int) -> void:
 	_zone_text.text = AreaInfo.area_name(area_id)
-	var owner: AreaInfo.FactionGroup = AreaInfo.faction_group(area_id)
-	if owner == AreaInfo.FactionGroup.NONE:
+	var faction: AreaInfo.FactionGroup = AreaInfo.faction_group(area_id)
+	if faction == AreaInfo.FactionGroup.NONE:
 		_zone_text.self_modulate = CONTESTED
-	elif owner == AreaInfo.player_group(player_race):
+	elif faction == AreaInfo.player_group(player_race):
 		_zone_text.self_modulate = FRIENDLY
 	else:
 		_zone_text.self_modulate = HOSTILE

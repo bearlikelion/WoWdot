@@ -1839,6 +1839,13 @@ bool ClassicPacketParsers::parseItemQueryResponse(network::Packet& packet, ItemQ
         data.startQuestId = packet.readUInt32(); // StartQuest
     }
 
+    // LockID, Material, Sheath
+    if (packet.hasRemaining(12)) {
+        packet.readUInt32(); // LockID
+        packet.readUInt32(); // Material
+        data.sheath = packet.readUInt32();
+    }
+
     data.valid = !data.name.empty();
     LOG_DEBUG("[Classic] Item query response: ", data.name, " (quality=", data.quality,
              " invType=", data.inventoryType, " stack=", data.maxStack, ")");

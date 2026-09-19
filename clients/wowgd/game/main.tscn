@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://bo77y5vv62tb8"]
 
-[ext_resource type="Script" path="res://game/main.gd" id="1_main"]
-[ext_resource type="PackedScene" path="res://game/ui/glue.tscn" id="2_glue"]
+[ext_resource type="Script" uid="uid://blpp0gsiy1g7u" path="res://game/main.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://cq22pawhr28if" path="res://game/ui/glue.tscn" id="2_glue"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=880244167]
 script = ExtResource("1_main")
+auto_realmlist = null
+auto_account = null
+auto_password = null
+auto_character = null
 
-[node name="GlueLayer" type="CanvasLayer" parent="."]
+[node name="GlueLayer" type="CanvasLayer" parent="." unique_id=1500190760]
 layer = 10
 
-[node name="Glue" parent="GlueLayer" instance=ExtResource("2_glue")]
+[node name="Glue" parent="GlueLayer" unique_id=1510802416 instance=ExtResource("2_glue")]
 unique_name_in_owner = true

@@ -299,7 +299,7 @@ func _is_explored(overlay_row: int) -> bool:
 		if area_row < 0:
 			continue
 		var bit: int = _area_table.get_uint(area_row, "ExploreFlag")
-		if bit / 32 < EXPLORED_WORDS and session.get_field(guid, first + bit / 32) & (1 << (bit % 32)):
+		if bit >> 5 < EXPLORED_WORDS and session.get_field(guid, first + (bit >> 5)) & (1 << (bit & 31)):
 			return true
 	return false
 

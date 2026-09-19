@@ -319,9 +319,9 @@ func _on_quest_completed(_quest: int, _xp: int, _money: int) -> void:
 	close_requested.emit()
 
 
-func _hide_tooltip(owner: Control) -> void:
+func _hide_tooltip(tooltip_owner: Control) -> void:
 	if GameTooltip.current:
-		GameTooltip.current.hide_for(owner)
+		GameTooltip.current.hide_for(tooltip_owner)
 
 
 # Item names and icons fill in as their queries answer.

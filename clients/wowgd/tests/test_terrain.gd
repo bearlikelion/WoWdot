@@ -86,7 +86,7 @@ func _check_doodad_collision(loader: WowLoader, tile: Node3D) -> void:
 			bounds = bounds.expand(point)
 		var terrain: MeshInstance3D = tile.get_node("Terrain")
 		var ground: AABB = terrain.get_aabb()
-		print("doodad collision: %d triangles within %s, terrain %s" % [faces.size() / 3, bounds, ground])
+		print("doodad collision: %d triangles within %s, terrain %s" % [floori(faces.size() / 3.0), bounds, ground])
 		_check(ground.has_point(bounds.get_center()), "doodad collision sits on the tile")
 	built.free()
 

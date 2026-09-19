@@ -76,7 +76,7 @@ func open(bag_id: int) -> void:
 		var button: ItemButton = _buttons[j]
 		button.visible = j < _size
 		var column: int = j % COLUMNS
-		var row: int = j / COLUMNS
+		var row: int = floori(j / float(COLUMNS))
 		button.position = Vector2(
 			WIDTH - FIRST_BUTTON_INSET - BUTTON_SIZE - column * (BUTTON_SIZE + BUTTON_GAP.x),
 			height - bottom_inset - BUTTON_SIZE - row * (BUTTON_SIZE + BUTTON_GAP.y),

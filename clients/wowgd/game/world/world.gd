@@ -19,6 +19,10 @@ var _last_hostile: int = 0
 var _worn: PackedInt32Array = []
 var _dressing: bool = false
 var _mount_display: int = 0
+# The player's own model, under the mount while riding, and the weapons it carries.
+var _rider: Node3D
+var _weapons: Array = []
+var _sheath_state: ItemModels.SheathState = ItemModels.SheathState.UNARMED
 var _area: int = -1
 var _hovered: int = 0
 
@@ -110,6 +114,9 @@ func _binding_pressed(event: InputEvent) -> bool:
 		payload.resize(4)
 		payload.encode_u32(0, STAND_STATE_STAND if sitting else STAND_STATE_SIT)
 		session.send_packet("CMSG_STANDSTATECHANGE", payload)
+	elif _exact(event, "toggle_sheath"):
+		var drawn: bool = _sheath_state != ItemModels.SheathState.UNARMED
+		_sheathe(ItemModels.SheathState.UNARMED if drawn else ItemModels.SheathState.MELEE)
 	elif _exact(event, "toggle_ui"):
 		_hud.visible = not _hud.visible
 	elif _exact(event, "screenshot"):
@@ -233,6 +240,8 @@ func _on_action_used(slot: int) -> void:
 func _use_spell(spell: int) -> void:
 	var session: WowSession = WowClient.session
 	if spell != ActionButton.SPELL_ATTACK:
+		if WowAssets.spells.uses_ranged_slot(spell):
+			_sheathe(ItemModels.SheathState.RANGED)
 		session.cast_spell(spell, _hud.target())
 	elif _auto_attacking:
 		session.stop_attack()
@@ -244,6 +253,8 @@ func _on_attack_changed(attacker: int, _victim: int, attacking: bool) -> void:
 	if attacker == WowClient.session.get_player_guid():
 		_auto_attacking = attacking
 		_player.in_combat = attacking
+		if attacking:
+			_sheathe(ItemModels.SheathState.MELEE)
 
 
 func _on_melee_swing(
@@ -267,6 +278,12 @@ func _on_object_updated(guid: int) -> void:
 	var mount: int = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
 	if CharacterModels.visible_items(session, guid) != _worn or mount != _mount_display:
 		_dress_player()
+	elif _rider and ItemModels.sheath_state(session, guid) != _sheath_state:
+		_sheath_state = ItemModels.sheath_state(session, guid)
+		var model_path: String = WowAssets.creatures.model_path(
+			session.get_field(guid, "UNIT_FIELD_DISPLAYID")
+		)
+		WowAssets.characters.item_models.arm(_rider, model_path, _weapons, _sheath_state)
 
 
 func _on_item_info_received(_entry: int) -> void:
@@ -280,8 +297,11 @@ func _dress_player() -> void:
 	var look: Dictionary = CharacterModels.player_look(session, guid)
 	_worn = CharacterModels.visible_items(session, guid)
 	_dressing = look["pending"]
+	_weapons = look["weapons"]
+	_sheath_state = look["sheath_state"]
 	var display: int = session.get_field(guid, "UNIT_FIELD_DISPLAYID")
 	var model: Node3D = WowAssets.creatures.instantiate(display, look)
+	_rider = model
 	_mount_display = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
 	var mount: Node3D = WowAssets.creatures.instantiate(_mount_display) if _mount_display else null
 	if model and mount:
@@ -290,6 +310,16 @@ func _dress_player() -> void:
 	if model:
 		_player.set_model(model)
 		UnitVoice.attach(model, guid, display, _mount_display)
+
+
+# CMSG_SETSHEATHED; the server's UNIT_FIELD_BYTES_2 update moves the weapons.
+func _sheathe(state: ItemModels.SheathState) -> void:
+	if state == _sheath_state:
+		return
+	var payload: PackedByteArray = []
+	payload.resize(4)
+	payload.encode_u32(0, state)
+	WowClient.session.send_packet("CMSG_SETSHEATHED", payload)
 
 
 # A mounted rider sits on the mount's first attachment, the saddle, playing Mount.
@@ -343,8 +373,8 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 	if NpcDialog.interact(guid):
 		UnitVoice.speak(guid, UnitVoice.Speech.GREETING)
 		return
-	var player: int = session.get_player_guid()
-	var hostile: bool = UnitReaction.between(session, player, guid) == UnitReaction.Reaction.HOSTILE
+	var me: int = session.get_player_guid()
+	var hostile: bool = UnitReaction.between(session, me, guid) == UnitReaction.Reaction.HOSTILE
 	if hostile and not _auto_attacking:
 		session.attack(guid)
 

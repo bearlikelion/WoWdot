@@ -276,9 +276,9 @@ func _on_buyback_entered(button: ItemButton, index: int) -> void:
 		GameTooltip.current.set_item(button, Inventory.entry(buyback[slot]), buyback[slot])
 
 
-func _hide_tooltip(owner: Control) -> void:
+func _hide_tooltip(tooltip_owner: Control) -> void:
 	if GameTooltip.current:
-		GameTooltip.current.hide_for(owner)
+		GameTooltip.current.hide_for(tooltip_owner)
 
 
 func _on_inventory_received(inventory: Dictionary) -> void:

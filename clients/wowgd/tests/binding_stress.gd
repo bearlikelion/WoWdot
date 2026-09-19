@@ -12,7 +12,7 @@ func _ready() -> void:
 		return
 	var loader: WowLoader = WowAssets.loader
 	var tasks: PackedInt64Array = []
-	for round: int in ROUNDS:
+	for _round: int in ROUNDS:
 		for y: int in range(CENTER.y - 1, CENTER.y + 2):
 			for x: int in range(CENTER.x - 1, CENTER.x + 2):
 				tasks.append(WorkerThreadPool.add_task(loader.load_adt.bind("Azeroth", x, y)))

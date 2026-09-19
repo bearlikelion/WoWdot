@@ -1,3 +1,4 @@
+@tool
 class_name DockedChatFrame
 extends WowScrollingMessageFrame
 
@@ -25,6 +26,8 @@ var _fade: Tween
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	for unused: String in UNUSED:
 		var node: CanvasItem = get_node_or_null("%" + name + unused)
 		if node:

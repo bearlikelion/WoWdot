@@ -10,6 +10,7 @@ const DEFAULTS: Dictionary[String, String] = {
 	"assist_target": "F",
 	"attack_target": "T",
 	"toggle_reputation": "U",
+	"toggle_sheath": "Z",
 	"toggle_backpack": "F12",
 	"toggle_bag_1": "F11",
 	"toggle_bag_2": "F10",

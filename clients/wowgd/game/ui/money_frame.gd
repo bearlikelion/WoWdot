@@ -12,8 +12,8 @@ const SPACING: float = 4.0
 func set_money(copper: int) -> void:
 	var amounts: Array[int] = [
 		copper % COPPER_PER_SILVER,
-		(copper % COPPER_PER_GOLD) / COPPER_PER_SILVER,
-		copper / COPPER_PER_GOLD,
+		floori((copper % COPPER_PER_GOLD) / float(COPPER_PER_SILVER)),
+		floori(copper / float(COPPER_PER_GOLD)),
 	]
 	var right: float = _coins[0].position.x + _coins[0].size.x
 	for i: int in _coins.size():

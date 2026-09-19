@@ -1678,6 +1678,7 @@ struct ItemQueryResponseData {
     struct ExtraStat { uint32_t statType = 0; int32_t statValue = 0; };
     std::vector<ExtraStat> extraStats;
     uint32_t startQuestId = 0;  // Non-zero: item begins a quest
+    uint32_t sheath = 0;        // SheathTypes: where the unit carries the weapon when sheathed
     // Gem socket slots (WotLK/TBC): 0=no socket; color mask: 1=Meta,2=Red,4=Yellow,8=Blue
     std::array<uint32_t, 3> socketColor{};
     uint32_t socketBonus = 0;   // enchantmentId of socket bonus; 0=none

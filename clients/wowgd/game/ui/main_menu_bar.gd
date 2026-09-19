@@ -201,8 +201,8 @@ func _set_portrait_pushed(pushed: bool) -> void:
 	if _portrait.atlas == null:
 		return
 	var uv: Rect2 = PORTRAIT_PUSHED if pushed else PORTRAIT_NORMAL
-	var size: Vector2 = _portrait.atlas.get_size()
-	_portrait.region = Rect2(uv.position * size, uv.size * size)
+	var atlas_size: Vector2 = _portrait.atlas.get_size()
+	_portrait.region = Rect2(uv.position * atlas_size, uv.size * atlas_size)
 	_portrait_rect.modulate.a = 0.5 if pushed else 1.0
 
 

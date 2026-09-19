@@ -145,6 +145,6 @@ func _on_tab_entered(tab: WowButton, index: int) -> void:
 		GameTooltip.current.present()
 
 
-func _hide_tooltip(owner: Control) -> void:
+func _hide_tooltip(tooltip_owner: Control) -> void:
 	if GameTooltip.current:
-		GameTooltip.current.hide_for(owner)
+		GameTooltip.current.hide_for(tooltip_owner)

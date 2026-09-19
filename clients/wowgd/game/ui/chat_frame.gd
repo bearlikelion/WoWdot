@@ -1,3 +1,4 @@
+@tool
 class_name ChatFrame
 extends DockedChatFrame
 
@@ -74,6 +75,8 @@ var _insets: StyleBoxEmpty = StyleBoxEmpty.new()
 
 func _ready() -> void:
 	super()
+	if Engine.is_editor_hint():
+		return
 	%ChatFrame1TabText.text = WowStrings.get_text("GENERAL")
 	%ChatFrameEditBoxLanguage.hide()
 	_edit_box.theme_type_variation = &"ChatEditBox"
@@ -88,6 +91,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
 	if _edit_box.visible or not event.is_pressed() or event.is_echo():
 		return
 	var key: InputEventKey = event as InputEventKey
@@ -103,6 +108,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
 	var button: InputEventMouseButton = event as InputEventMouseButton
 	if button and button.pressed:
 		if button.button_index == MOUSE_BUTTON_WHEEL_UP:

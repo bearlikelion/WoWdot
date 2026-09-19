@@ -14,8 +14,8 @@ static var _edges: Dictionary[int, Dictionary] = {}
 
 
 static func is_known(node: int) -> bool:
-	var word: int = (node - 1) / 32
-	return word < known_mask.size() and known_mask[word] & (1 << ((node - 1) % 32)) != 0
+	var word: int = (node - 1) >> 5
+	return word < known_mask.size() and known_mask[word] & (1 << ((node - 1) & 31)) != 0
 
 
 # Saves the mask a flight master sent, so the world map knows the flight points next session.

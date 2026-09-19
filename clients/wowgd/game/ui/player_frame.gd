@@ -1,3 +1,4 @@
+@tool
 class_name PlayerFrame
 extends UnitFrame
 
@@ -18,6 +19,9 @@ var _feedback: CombatFeedback
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		super()
+		return
 	_name_label = %PlayerName
 	_level_label = %PlayerLevelText
 	_health_bar = %PlayerFrameHealthBar
@@ -26,11 +30,11 @@ func _ready() -> void:
 	_power_text = %PlayerFrameManaBarText
 	_portrait_rect = %PlayerPortrait
 	# Pets, groups and the play-time warning have their own phases; the frame starts without them.
-	for hidden: CanvasItem in [
+	for part: CanvasItem in [
 		%PetFrame, %PlayerFrameGroupIndicator, %PlayerLeaderIcon, %PlayerMasterIcon,
 		%PlayerFrameDropDown, %PlayerPlayTime, %PlayerPVPIcon,
 	]:
-		hidden.hide()
+		part.hide()
 	super()
 	_feedback = CombatFeedback.new(%PlayerHitIndicator)
 	WowClient.combat.logged.connect(_on_combat_logged)

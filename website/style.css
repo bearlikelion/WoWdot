@@ -84,11 +84,13 @@ h2 {
   font-size: 1.3rem;
 }
 
+.table-scroll {
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  display: block;
-  overflow-x: auto;
 }
 
 th, td {

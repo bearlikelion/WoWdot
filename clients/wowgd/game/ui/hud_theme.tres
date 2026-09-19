@@ -1,4 +1,4 @@
-[gd_resource type="Theme" format=3]
+[gd_resource type="Theme" format=3 uid="uid://bi8p7cvlfjun2"]
 
 [resource]
 ChatEditBox/base_type = &"LineEdit"
@@ -14,4 +14,7 @@ TooltipLine/base_type = &"HBoxContainer"
 TooltipLine/constants/separation = 40
 TooltipLines/base_type = &"VBoxContainer"
 TooltipLines/constants/separation = 2
-metadata/wow_fonts = {"ChatEditBox": "Fonts\\ARIALN.TTF", "CombatText": "Fonts\\FRIZQT__.TTF"}
+metadata/wow_fonts = {
+"ChatEditBox": "Fonts\\ARIALN.TTF",
+"CombatText": "Fonts\\FRIZQT__.TTF"
+}

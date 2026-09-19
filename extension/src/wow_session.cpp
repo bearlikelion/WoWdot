@@ -1327,6 +1327,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			info["sell_price"] = static_cast<int64_t>(data.sellPrice);
 			info["item_level"] = static_cast<int64_t>(data.itemLevel);
 			info["required_level"] = static_cast<int64_t>(data.requiredLevel);
+			info["sheath"] = static_cast<int64_t>(data.sheath);
 			item_info[data.entry] = info;
 			item_queries.erase(data.entry);
 			emit_signal("item_info_received", static_cast<int64_t>(data.entry));

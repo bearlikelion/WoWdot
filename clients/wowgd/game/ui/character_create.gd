@@ -266,8 +266,8 @@ func _set_tex_coords(rect: TextureRect, region: Rect2) -> void:
 		atlas = AtlasTexture.new()
 		atlas.atlas = rect.texture
 		rect.texture = atlas
-	var size: Vector2 = atlas.atlas.get_size()
-	atlas.region = Rect2(region.position * size, region.size * size)
+	var atlas_size: Vector2 = atlas.atlas.get_size()
+	atlas.region = Rect2(region.position * atlas_size, region.size * atlas_size)
 
 
 func _on_drag(event: InputEvent) -> void:

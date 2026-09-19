@@ -1,3 +1,4 @@
+@tool
 class_name TargetFrame
 extends UnitFrame
 
@@ -36,6 +37,9 @@ var _aura_spells: Dictionary[Control, int] = {}
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		super()
+		return
 	_name_label = %TargetName
 	_level_label = %TargetLevelText
 	_health_bar = %TargetFrameHealthBar
@@ -44,11 +48,11 @@ func _ready() -> void:
 	# The level text is tinted like SetVertexColor, so it starts from the white font.
 	_level_label.theme_type_variation = &"GameFontHighlightSmall"
 	# Target of target, raid marks and the right-click menu come later.
-	for hidden: CanvasItem in [
+	for part: CanvasItem in [
 		%TargetofTargetFrame, %TargetLeaderIcon, %TargetRaidTargetIcon, %TargetPVPIcon,
 		%TargetFrameDropDown,
 	]:
-		hidden.hide()
+		part.hide()
 	for i: int in range(1, TARGET_BUFFS + 1):
 		_buffs.append(get_node("%%TargetFrameBuff%d" % i))
 		_buff_icons.append(get_node("%%TargetFrameBuff%dIcon" % i))

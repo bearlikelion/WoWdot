@@ -38,7 +38,7 @@ func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 	var model_row: int = _model_data.find(_display_info.get_uint(row, "ModelID"))
 	if model_row < 0:
 		return null
-	var model_path: String = _model_data.get_string(model_row, "ModelPath").replace("\\", "/")
+	var path: String = _model_data.get_string(model_row, "ModelPath").replace("\\", "/")
 	var extra: int = _display_extra.find(_display_info.get_uint(row, "ExtraDisplayId"))
 	if look.is_empty() and extra >= 0:
 		look = {
@@ -53,14 +53,14 @@ func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 			"equipment": _equipment(extra),
 		}
 	if not look.is_empty():
-		return _scaled(_characters.instantiate(model_path, look), row)
+		return _scaled(_characters.instantiate(path, look), row)
 	# Display skins are bare names that live next to the model.
 	var skins: Dictionary = {}
 	for column: String in SKIN_COLUMNS:
 		var skin: String = _display_info.get_string(row, column)
 		if not skin.is_empty():
-			skins[SKIN_COLUMNS[column]] = model_path.get_base_dir().path_join(skin + ".blp")
-	return _scaled(_loader.load_m2(model_path, skins), row)
+			skins[SKIN_COLUMNS[column]] = path.get_base_dir().path_join(skin + ".blp")
+	return _scaled(_loader.load_m2(path, skins), row)
 
 
 func _equipment(extra: int) -> PackedInt32Array:

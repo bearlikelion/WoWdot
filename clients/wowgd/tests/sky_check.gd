@@ -86,7 +86,7 @@ func _check_conditions(world: World) -> void:
 		if liquid == null:
 			continue
 		var faces: PackedVector3Array = liquid.mesh.get_faces()
-		var mid: int = (faces.size() / 6) * 3
+		var mid: int = floori(faces.size() / 6.0) * 3
 		var centre: Vector3 = (faces[mid] + faces[mid + 1] + faces[mid + 2]) / 3.0
 		var surface: Vector3 = liquid.global_transform * centre
 		var height: float = map.liquid_height_at(surface)

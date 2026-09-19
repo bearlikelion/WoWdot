@@ -50,11 +50,11 @@ func _ready() -> void:
 	%SkillFrameCancelButton.pressed.connect(close_requested.emit)
 	%SkillDetailStatusBarUnlearnButton.pressed.connect(_on_unlearn_pressed)
 	(%SkillDetailDescriptionText as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	for hidden: CanvasItem in [
+	for part: CanvasItem in [
 		%SkillDetailStatusBarLeftArrow, %SkillDetailStatusBarRightArrow,
 		%SkillDetailStatusBarLearnSkillButton, %SkillDetailCostText,
 	]:
-		hidden.hide()
+		part.hide()
 	_list_scroll.scrolled.connect(_on_list_scrolled)
 	WowClient.session.object_updated.connect(_on_object_updated)
 	visibility_changed.connect(refresh)

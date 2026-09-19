@@ -495,9 +495,9 @@ func _on_talent_entered(index: int) -> void:
 	tooltip.present()
 
 
-func _hide_tooltip(owner: Control) -> void:
+func _hide_tooltip(tooltip_owner: Control) -> void:
 	if GameTooltip.current:
-		GameTooltip.current.hide_for(owner)
+		GameTooltip.current.hide_for(tooltip_owner)
 
 
 func _on_object_updated(guid: int) -> void:

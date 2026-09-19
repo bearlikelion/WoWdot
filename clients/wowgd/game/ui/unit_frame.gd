@@ -1,3 +1,4 @@
+@tool
 class_name UnitFrame
 extends WowButton
 
@@ -36,6 +37,8 @@ var _portrait: UnitPortrait
 
 func _ready() -> void:
 	super()
+	if Engine.is_editor_hint():
+		return
 	pressed.connect(func() -> void: unit_selected.emit(guid))
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
@@ -59,6 +62,8 @@ func _ready() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
 	var click: InputEventMouseButton = event as InputEventMouseButton
 	if click and click.pressed and click.button_index == MOUSE_BUTTON_RIGHT:
 		accept_event()
@@ -95,9 +100,9 @@ func refresh() -> void:
 	var power_type: PowerType = ((bytes_0 >> 24) & 0xFF) as PowerType
 	var first_power: int = session.field_index("UNIT_FIELD_POWER1")
 	var first_max: int = session.field_index("UNIT_FIELD_MAXPOWER1")
-	var scale: int = RAGE_SCALE if power_type == PowerType.RAGE else 1
-	var power: int = floori(session.get_field(guid, first_power + power_type) / float(scale))
-	var max_power: int = floori(session.get_field(guid, first_max + power_type) / float(scale))
+	var power_scale: int = RAGE_SCALE if power_type == PowerType.RAGE else 1
+	var power: int = floori(session.get_field(guid, first_power + power_type) / float(power_scale))
+	var max_power: int = floori(session.get_field(guid, first_max + power_type) / float(power_scale))
 	_power_bar.max_value = maxi(max_power, 1)
 	_power_bar.value = power
 	_power_bar.tint_progress = POWER_COLORS.get(power_type, POWER_COLORS[PowerType.MANA])

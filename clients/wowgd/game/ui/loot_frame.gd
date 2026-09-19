@@ -138,7 +138,7 @@ func _after_removal() -> void:
 	if _slots.is_empty():
 		close_requested.emit()
 		return
-	_page = mini(_page, (_slots.size() - 1) / _per_page())
+	_page = mini(_page, floori((_slots.size() - 1) / float(_per_page())))
 	_refresh()
 
 
@@ -147,7 +147,7 @@ func _per_page() -> int:
 
 
 func _turn_page(by: int) -> void:
-	_page = clampi(_page + by, 0, (_slots.size() - 1) / _per_page())
+	_page = clampi(_page + by, 0, floori((_slots.size() - 1) / float(_per_page())))
 	_refresh()
 
 
@@ -194,7 +194,7 @@ func _coin_icon() -> WowTexture:
 
 func _money_text(copper: int) -> String:
 	var parts: PackedStringArray = []
-	var amounts: Array[int] = [copper % 100, copper / 100 % 100, copper / 10000]
+	var amounts: Array[int] = [copper % 100, floori(copper / 100.0) % 100, floori(copper / 10000.0)]
 	for tier: int in [2, 1, 0]:
 		if amounts[tier] > 0:
 			parts.append("%d %s" % [amounts[tier], WowStrings.get_text(COIN_NAMES[tier])])
