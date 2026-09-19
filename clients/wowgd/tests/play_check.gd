@@ -309,7 +309,7 @@ func _check_buffs(hud: Hud) -> void:
 
 func _on_movement_changed(
 	opcode: String, _position: Vector3, _orientation: float, _flags: int,
-	_fall_time_msec: int, _jump_velocity: Vector3,
+	_fall_time_msec: int, _jump_velocity: Vector3, _ack_counter: int, _ack_tail: PackedByteArray,
 ) -> void:
 	_sent.append(opcode)
 

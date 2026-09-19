@@ -12,6 +12,26 @@ const STAND_STATE_STAND: int = 0
 const STAND_STATE_SIT: int = 1
 const UNIT_DYNFLAG_LOOTABLE: int = 0x1
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
+const SPEED_CHANGES: Dictionary[String, Player.SpeedKind] = {
+	"SMSG_FORCE_WALK_SPEED_CHANGE": Player.SpeedKind.WALK,
+	"SMSG_FORCE_RUN_SPEED_CHANGE": Player.SpeedKind.RUN,
+	"SMSG_FORCE_RUN_BACK_SPEED_CHANGE": Player.SpeedKind.RUN_BACK,
+	"SMSG_FORCE_SWIM_SPEED_CHANGE": Player.SpeedKind.SWIM,
+	"SMSG_FORCE_SWIM_BACK_SPEED_CHANGE": Player.SpeedKind.SWIM_BACK,
+}
+const FLAG_CHANGES: Dictionary[String, Player.MoveFlag] = {
+	"SMSG_FORCE_MOVE_ROOT": Player.MoveFlag.ROOT,
+	"SMSG_FORCE_MOVE_UNROOT": Player.MoveFlag.ROOT,
+	"SMSG_MOVE_WATER_WALK": Player.MoveFlag.WATERWALKING,
+	"SMSG_MOVE_LAND_WALK": Player.MoveFlag.WATERWALKING,
+	"SMSG_MOVE_FEATHER_FALL": Player.MoveFlag.SAFE_FALL,
+	"SMSG_MOVE_NORMAL_FALL": Player.MoveFlag.SAFE_FALL,
+	"SMSG_MOVE_SET_HOVER": Player.MoveFlag.HOVER,
+	"SMSG_MOVE_UNSET_HOVER": Player.MoveFlag.HOVER,
+}
+const FLAGS_APPLIED: PackedStringArray = [
+	"SMSG_FORCE_MOVE_ROOT", "SMSG_MOVE_WATER_WALK", "SMSG_MOVE_FEATHER_FALL", "SMSG_MOVE_SET_HOVER",
+]
 
 var _auto_attacking: bool = false
 # The enemy targeted before the current target, for TargetLastEnemy.
@@ -53,6 +73,7 @@ func _ready() -> void:
 	WowClient.session.object_created.connect(_on_object_created)
 	WowClient.session.player_teleported.connect(_on_player_teleported)
 	WowClient.session.object_moved.connect(_on_object_moved)
+	WowClient.session.packet_received.connect(_on_packet_received)
 
 
 func _process(_delta: float) -> void:
@@ -217,12 +238,34 @@ func select(guid: int) -> void:
 
 func _on_player_movement_changed(
 	opcode: String, godot_position: Vector3, orientation: float, flags: int,
-	fall_time_msec: int, jump_velocity: Vector3,
+	fall_time_msec: int, jump_velocity: Vector3, ack_counter: int, ack_tail: PackedByteArray,
 ) -> void:
 	WowClient.session.send_movement(
 		opcode, WowCoords.from_godot(godot_position), orientation, flags,
-		fall_time_msec, WowCoords.from_godot(jump_velocity),
+		fall_time_msec, WowCoords.from_godot(jump_velocity), 0.0, ack_counter, ack_tail,
 	)
+
+
+# Server changes to the player's own movement, which the client applies and acknowledges.
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	var knock_back: bool = opcode == "SMSG_MOVE_KNOCK_BACK"
+	if not (knock_back or SPEED_CHANGES.has(opcode) or FLAG_CHANGES.has(opcode)):
+		return
+	var reader: PacketReader = PacketReader.new(payload)
+	if reader.packed_guid() != WowClient.session.get_player_guid():
+		return
+	var counter: int = reader.u32()
+	if SPEED_CHANGES.has(opcode):
+		_player.force_speed(SPEED_CHANGES[opcode], reader.f32(), counter)
+	elif FLAG_CHANGES.has(opcode):
+		_player.force_flag(FLAG_CHANGES[opcode], opcode in FLAGS_APPLIED, counter)
+	else:
+		var cos_angle: float = reader.f32()
+		var sin_angle: float = reader.f32()
+		var xy_speed: float = reader.f32()
+		var z_speed: float = reader.f32()
+		var wow_velocity: Vector3 = Vector3(cos_angle * xy_speed, sin_angle * xy_speed, z_speed)
+		_player.knock_back(WowCoords.to_godot(wow_velocity), counter)
 
 
 func _on_action_used(slot: int) -> void:
@@ -418,5 +461,6 @@ func _on_object_created(guid: int, _type_id: int) -> void:
 	if guid != WowClient.session.get_player_guid():
 		return
 	_hud.show_player(guid)
+	_player.set_speeds(WowClient.session.get_object_speeds(guid))
 	_dress_player()
 	_follow_server_path()

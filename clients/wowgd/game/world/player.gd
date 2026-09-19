@@ -2,9 +2,10 @@ class_name Player
 extends CharacterBody3D
 
 # jump_velocity is the take-off velocity, which WoW keeps for the whole jump or fall.
+# An ack_counter of 0 or more answers a server movement change, with ack_tail appended.
 signal movement_changed(
 	opcode: String, godot_position: Vector3, orientation: float, flags: int,
-	fall_time_msec: int, jump_velocity: Vector3,
+	fall_time_msec: int, jump_velocity: Vector3, ack_counter: int, ack_tail: PackedByteArray,
 )
 # A left press and release that did not orbit the camera.
 signal clicked(screen_position: Vector2)
@@ -23,11 +24,24 @@ enum MoveFlag {
 	JUMPING = 0x2000,
 	FALLING_FAR = 0x4000,
 	SWIMMING = 0x200000,
+	WATERWALKING = 0x10000000,
+	SAFE_FALL = 0x20000000,
+	HOVER = 0x40000000,
 }
+# The order of WowSession.get_object_speeds.
+enum SpeedKind { WALK, RUN, RUN_BACK, SWIM, SWIM_BACK, TURN_RATE }
 
-const RUN_SPEED: float = 7.0
-const BACK_SPEED: float = 4.5
-const TURN_SPEED: float = PI
+const DEFAULT_SPEEDS: PackedFloat32Array = [2.5, 7.0, 4.5, 4.722222, 2.5, 3.141594]
+const SPEED_ACKS: PackedStringArray = [
+	"CMSG_FORCE_WALK_SPEED_CHANGE_ACK", "CMSG_FORCE_RUN_SPEED_CHANGE_ACK",
+	"CMSG_FORCE_RUN_BACK_SPEED_CHANGE_ACK", "CMSG_FORCE_SWIM_SPEED_CHANGE_ACK",
+	"CMSG_FORCE_SWIM_BACK_SPEED_CHANGE_ACK",
+]
+const FLAG_ACKS: Dictionary[MoveFlag, String] = {
+	MoveFlag.WATERWALKING: "CMSG_MOVE_WATER_WALK_ACK",
+	MoveFlag.SAFE_FALL: "CMSG_MOVE_FEATHER_FALL_ACK",
+	MoveFlag.HOVER: "CMSG_MOVE_HOVER_ACK",
+}
 const GRAVITY: float = 19.29
 const JUMP_VELOCITY: float = 7.95797334
 const HEARTBEAT_SECONDS: float = 0.5
@@ -44,6 +58,8 @@ const LONGITUDINAL: int = MoveFlag.FORWARD | MoveFlag.BACKWARD
 const STRAFE: int = MoveFlag.STRAFE_LEFT | MoveFlag.STRAFE_RIGHT
 const TURN: int = MoveFlag.TURN_LEFT | MoveFlag.TURN_RIGHT
 const AIRBORNE: int = MoveFlag.JUMPING | MoveFlag.FALLING_FAR
+# States the server switches on and off, which say nothing about motion.
+const PERSISTENT: int = MoveFlag.ROOT | MoveFlag.WATERWALKING | MoveFlag.SAFE_FALL | MoveFlag.HOVER
 # Animations for the UNIT_FIELD_BYTES_1 stand states other than standing and dead.
 const STAND_STATE_ANIMATIONS: Dictionary[int, String] = {
 	1: "SitGround", 2: "SitChairLow", 3: "Sleep", 4: "SitChairLow", 5: "SitChairMed",
@@ -60,6 +76,8 @@ var active: bool = false:
 		set_physics_process(value)
 
 var _flags: int = MoveFlag.NONE
+var _persistent: int = MoveFlag.NONE
+var _speeds: PackedFloat32Array = DEFAULT_SPEEDS
 # A server spline the player rides, as on a flight: points, distances along them, and timing.
 var _path: PackedVector3Array = []
 var _path_distances: PackedFloat32Array = []
@@ -144,11 +162,14 @@ func _physics_process(delta: float) -> void:
 		return
 	var flags: int = _input_flags()
 	if flags & MoveFlag.TURN_LEFT:
-		rotation.y += TURN_SPEED * delta
+		rotation.y += _speeds[SpeedKind.TURN_RATE] * delta
 	elif flags & MoveFlag.TURN_RIGHT:
-		rotation.y -= TURN_SPEED * delta
+		rotation.y -= _speeds[SpeedKind.TURN_RATE] * delta
 
-	if _flags & AIRBORNE:
+	if flags & MoveFlag.ROOT:
+		_send_changes(_flags, flags)
+		_flags = flags
+	elif _flags & AIRBORNE:
 		_fly(flags, delta)
 	else:
 		_walk(flags)
@@ -176,6 +197,42 @@ func place(godot_position: Vector3, facing: float) -> void:
 	rotation.y = facing
 
 
+func set_speeds(speeds: PackedFloat32Array) -> void:
+	if speeds.size() == DEFAULT_SPEEDS.size():
+		_speeds = speeds
+
+
+func force_speed(kind: SpeedKind, speed: float, counter: int) -> void:
+	_speeds[kind] = speed
+	var tail: PackedByteArray = []
+	tail.resize(4)
+	tail.encode_float(0, speed)
+	_send(SPEED_ACKS[kind], _flags, counter, tail)
+
+
+# A 1.12 client rooted mid-jump hangs in the air until the root ends.
+func force_flag(flag: MoveFlag, apply: bool, counter: int) -> void:
+	_persistent = (_persistent & ~flag) | (flag if apply else MoveFlag.NONE)
+	if flag == MoveFlag.ROOT:
+		_flags = ((_flags & TURN) if apply else (_flags & ~flag)) | _persistent
+		velocity = Vector3.ZERO
+		_fall_time = 0.0
+		var ack: String = "CMSG_FORCE_MOVE_ROOT_ACK" if apply else "CMSG_FORCE_MOVE_UNROOT_ACK"
+		_send(ack, _flags, counter)
+		return
+	_flags = (_flags & ~flag) | (flag if apply else MoveFlag.NONE)
+	var tail: PackedByteArray = []
+	tail.resize(4)
+	tail.encode_u32(0, 1 if apply else 0)
+	# ponytail: feather fall and hover are acked (no fall damage) but not simulated.
+	_send(FLAG_ACKS[flag], _flags, counter, tail)
+
+
+func knock_back(take_off_velocity: Vector3, counter: int) -> void:
+	_take_off(_flags & ~(LONGITUDINAL | STRAFE), take_off_velocity)
+	_send("CMSG_MOVE_KNOCK_BACK_ACK", _flags, counter)
+
+
 func set_model(model: Node3D) -> void:
 	for child: Node in _model_slot.get_children():
 		child.queue_free()
@@ -198,7 +255,7 @@ func _walk(flags: int) -> void:
 		local.x -= 1.0
 	elif flags & MoveFlag.STRAFE_RIGHT:
 		local.x += 1.0
-	var speed: float = BACK_SPEED if flags & MoveFlag.BACKWARD else RUN_SPEED
+	var speed: float = _speeds[SpeedKind.RUN_BACK if flags & MoveFlag.BACKWARD else SpeedKind.RUN]
 	var planar: Vector3 = (basis * local).normalized() * speed
 	velocity = Vector3(planar.x, 0.0, planar.z)
 	_send_changes(_flags, flags)
@@ -247,6 +304,13 @@ func _typing() -> bool:
 
 
 func _input_flags() -> int:
+	var flags: int = _key_flags()
+	if _persistent & MoveFlag.ROOT:
+		flags &= TURN
+	return flags | _persistent
+
+
+func _key_flags() -> int:
 	var flags: int = MoveFlag.NONE
 	if _typing():
 		return MoveFlag.FORWARD if _auto_run else flags
@@ -298,7 +362,7 @@ func _send_changes(old: int, new: int) -> void:
 
 func _send_periodic(delta: float) -> void:
 	_heartbeat += delta
-	if _flags != MoveFlag.NONE and _heartbeat >= HEARTBEAT_SECONDS:
+	if _flags & ~PERSISTENT and _heartbeat >= HEARTBEAT_SECONDS:
 		_send("MSG_MOVE_HEARTBEAT", _flags)
 	_facing_timer += delta
 	if _facing_dirty and _facing_timer >= FACING_SECONDS:
@@ -307,10 +371,15 @@ func _send_periodic(delta: float) -> void:
 		_send("MSG_MOVE_SET_FACING", _flags)
 
 
-func _send(opcode: String, flags: int) -> void:
+func _send(
+	opcode: String, flags: int, ack_counter: int = -1, ack_tail: PackedByteArray = [],
+) -> void:
 	_heartbeat = 0.0
 	var fall_msec: int = roundi(_fall_time * 1000.0)
-	movement_changed.emit(opcode, global_position, orientation(), flags, fall_msec, _jump_velocity)
+	movement_changed.emit(
+		opcode, global_position, orientation(), flags, fall_msec, _jump_velocity,
+		ack_counter, ack_tail,
+	)
 
 
 func play_once(candidates: PackedStringArray) -> void:

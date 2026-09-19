@@ -46,6 +46,10 @@ constexpr uint32_t LANG_COMMON = 7;
 constexpr uint8_t TYPEID_UNIT = 3;
 constexpr uint8_t TYPEID_PLAYER = 4;
 constexpr uint8_t MONSTER_MOVE_FACING_ANGLE = 4;
+constexpr uint32_t MOVEFLAG_JUMPING = 0x2000;
+constexpr uint32_t MOVEFLAG_SWIMMING = 0x200000;
+constexpr uint32_t MOVEFLAG_ONTRANSPORT = 0x2000000;
+constexpr uint32_t MOVEFLAG_SPLINE_ELEVATION = 0x4000000;
 
 bool is_player_guid(uint64_t guid) {
 	return guid != 0 && (guid >> 48) == 0;
@@ -101,6 +105,28 @@ std::optional<game::LogicalOpcode> logical(network::Packet &packet) {
 
 Vector3 wow_vector(float x, float y, float z) {
 	return Vector3(x, y, z);
+}
+
+// Vanilla MovementInfo; the game code already uses vanilla flag bits, which the vendored writer would remap.
+void write_movement_info(network::Packet &packet, uint32_t flags, const Vector3 &position, float orientation, float pitch, uint32_t fall_time, const Vector3 &jump_velocity) {
+	packet.writeUInt32(flags);
+	packet.writeUInt32(static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec()));
+	packet.writeFloat(position.x);
+	packet.writeFloat(position.y);
+	packet.writeFloat(position.z);
+	packet.writeFloat(orientation);
+	if (flags & MOVEFLAG_SWIMMING) {
+		packet.writeFloat(pitch);
+	}
+	packet.writeUInt32(fall_time);
+	if (flags & MOVEFLAG_JUMPING) {
+		const float xy_speed = Vector2(jump_velocity.x, jump_velocity.y).length();
+		// The stock client sends upward speed negated, which vMaNGOS's knockback check also expects.
+		packet.writeFloat(-jump_velocity.z);
+		packet.writeFloat(xy_speed > 0.0f ? jump_velocity.x / xy_speed : std::cos(orientation));
+		packet.writeFloat(xy_speed > 0.0f ? jump_velocity.y / xy_speed : std::sin(orientation));
+		packet.writeFloat(xy_speed);
+	}
 }
 
 } // namespace
@@ -261,27 +287,20 @@ void WowSession::logout() {
 }
 
 // jump_velocity is in WoW space; its horizontal part gives the jump direction and speed.
-void WowSession::send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec, const Vector3 &jump_velocity) {
+// An ack_counter of 0 or more answers a server movement change: guid and counter first, ack_tail last.
+void WowSession::send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec, const Vector3 &jump_velocity, double pitch, int64_t ack_counter, const PackedByteArray &ack_tail) {
 	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
 	const auto op = game::OpcodeTable::nameToLogical(opcode.utf8().get_data());
 	ERR_FAIL_COND_MSG(!op, "WowSession: unknown opcode " + opcode);
-	game::MovementInfo info;
-	info.flags = static_cast<uint32_t>(flags);
-	info.time = static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec());
-	info.x = position.x;
-	info.y = position.y;
-	info.z = position.z;
-	info.orientation = static_cast<float>(orientation);
-	info.fallTime = static_cast<uint32_t>(fall_time_msec);
-	const float xy_speed = Vector2(jump_velocity.x, jump_velocity.y).length();
-	// The stock client sends upward speed negated, which vMaNGOS's knockback check also expects.
-	info.jumpVelocity = -jump_velocity.z;
-	info.jumpXYSpeed = xy_speed;
-	info.jumpCosAngle = xy_speed > 0.0f ? jump_velocity.x / xy_speed : std::cos(static_cast<float>(orientation));
-	info.jumpSinAngle = xy_speed > 0.0f ? jump_velocity.y / xy_speed : std::sin(static_cast<float>(orientation));
-	world->send(parsers->buildMovementPacket(*op, info, player_guid));
-	auto it = objects.find(player_guid);
-	if (it != objects.end()) {
+	network::Packet packet(game::wireOpcode(*op));
+	if (ack_counter >= 0) {
+		packet.writeUInt64(player_guid);
+		packet.writeUInt32(static_cast<uint32_t>(ack_counter));
+	}
+	write_movement_info(packet, static_cast<uint32_t>(flags), position, static_cast<float>(orientation), static_cast<float>(pitch), static_cast<uint32_t>(fall_time_msec), jump_velocity);
+	packet.writeBytes(ack_tail.ptr(), static_cast<size_t>(ack_tail.size()));
+	world->send(packet);
+	if (auto it = objects.find(player_guid); it != objects.end()) {
 		it->second.position = position;
 		it->second.orientation = static_cast<float>(orientation);
 	}
@@ -1514,10 +1533,6 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 
 // Vanilla relays carry a packed GUID, then MovementInfo with no second flags field; speed changes append the speed.
 void WowSession::handle_movement_relay(network::Packet &packet) {
-	constexpr uint32_t MOVEFLAG_JUMPING = 0x2000;
-	constexpr uint32_t MOVEFLAG_SWIMMING = 0x200000;
-	constexpr uint32_t MOVEFLAG_ONTRANSPORT = 0x2000000;
-	constexpr uint32_t MOVEFLAG_SPLINE_ELEVATION = 0x4000000;
 	constexpr std::array<const char *, 6> SPEED_OPCODES = {
 		"MSG_MOVE_SET_WALK_SPEED", "MSG_MOVE_SET_RUN_SPEED", "MSG_MOVE_SET_RUN_BACK_SPEED",
 		"MSG_MOVE_SET_SWIM_SPEED", "MSG_MOVE_SET_SWIM_BACK_SPEED", "MSG_MOVE_SET_TURN_RATE",
@@ -1635,6 +1650,16 @@ double WowSession::get_object_orientation(int64_t guid) const {
 	return object ? object->orientation : 0.0;
 }
 
+PackedFloat32Array WowSession::get_object_speeds(int64_t guid) const {
+	PackedFloat32Array speeds;
+	if (const WorldObject *object = find(guid)) {
+		for (const float speed : object->speeds) {
+			speeds.push_back(speed);
+		}
+	}
+	return speeds;
+}
+
 int WowSession::field_index(const String &name) const {
 	auto it = field_indices().find(name.utf8().get_data());
 	return it == field_indices().end() ? -1 : it->second;
@@ -1666,7 +1691,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("delete_character", "guid"), &WowSession::delete_character);
 	ClassDB::bind_method(D_METHOD("enter_world", "guid"), &WowSession::enter_world);
 	ClassDB::bind_method(D_METHOD("logout"), &WowSession::logout);
-	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags", "fall_time_msec", "jump_velocity"), &WowSession::send_movement, DEFVAL(0), DEFVAL(Vector3()));
+	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags", "fall_time_msec", "jump_velocity", "pitch", "ack_counter", "ack_tail"), &WowSession::send_movement, DEFVAL(0), DEFVAL(Vector3()), DEFVAL(0.0), DEFVAL(-1), DEFVAL(PackedByteArray()));
 	ClassDB::bind_method(D_METHOD("send_packet", "opcode", "payload"), &WowSession::send_packet);
 	ClassDB::bind_method(D_METHOD("send_chat", "type", "message", "target"), &WowSession::send_chat, DEFVAL(String()));
 	ClassDB::bind_method(D_METHOD("set_selection", "guid"), &WowSession::set_selection);
@@ -1697,6 +1722,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_object_type", "guid"), &WowSession::get_object_type);
 	ClassDB::bind_method(D_METHOD("get_object_position", "guid"), &WowSession::get_object_position);
 	ClassDB::bind_method(D_METHOD("get_object_orientation", "guid"), &WowSession::get_object_orientation);
+	ClassDB::bind_method(D_METHOD("get_object_speeds", "guid"), &WowSession::get_object_speeds);
 	ClassDB::bind_method(D_METHOD("get_field", "guid", "field"), &WowSession::get_field);
 	ClassDB::bind_method(D_METHOD("get_field_float", "guid", "field"), &WowSession::get_field_float);
 	ClassDB::bind_method(D_METHOD("field_index", "name"), &WowSession::field_index);

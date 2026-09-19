@@ -49,7 +49,8 @@ func _run() -> void:
 	player.global_position = wolf_node.global_position - to_wolf.normalized() * MELEE_GAP
 	player.rotation.y = atan2(-to_wolf.x, -to_wolf.z)
 	player.movement_changed.emit(
-		"MSG_MOVE_HEARTBEAT", player.global_position, player.orientation(), 0, 0, Vector3.ZERO
+		"MSG_MOVE_HEARTBEAT", player.global_position, player.orientation(), 0, 0, Vector3.ZERO,
+		-1, PackedByteArray(),
 	)
 	await _frames(10)
 	_main.world.select(wolf)
