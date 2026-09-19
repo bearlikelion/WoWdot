@@ -7,6 +7,7 @@ signal player_ready
 const TAB_RANGE: float = 40.0
 const UNIT_FLAG_NON_ATTACKABLE: int = 0x2
 const UNIT_FLAG_NOT_SELECTABLE: int = 0x2000000
+const PLAYER_FLAG_GHOST: int = 0x10
 const STAND_STATE_STAND: int = 0
 const STAND_STATE_SIT: int = 1
 const UNIT_DYNFLAG_LOOTABLE: int = 0x1
@@ -25,6 +26,8 @@ var _hovered: int = 0
 @onready var _player: Player = $Player
 @onready var _entities: Entities = $Entities
 @onready var _hud: Hud = %Hud
+@onready var _sky: WorldSky = $WorldSky
+@onready var _weather: WorldWeather = $WorldWeather
 
 
 func _ready() -> void:
@@ -50,6 +53,10 @@ func _process(_delta: float) -> void:
 		player_ready.emit()
 	var wow_position: Vector3 = WowCoords.from_godot(_player.global_position)
 	_hud.show_location(_map.map_name, wow_position, _player.orientation())
+	_sky.wow_position = wow_position
+	var eye: Vector3 = get_viewport().get_camera_3d().global_position
+	_sky.underwater = eye.y < _map.liquid_height_at(eye)
+	_weather.visible = not _sky.underwater
 	var area: int = _map.area_id_at(_player.global_position)
 	if area != 0 and area != _area:
 		_area = area
@@ -166,6 +173,7 @@ func _save_screenshot() -> void:
 func enter(map_id: int, wow_position: Vector3, orientation: float) -> void:
 	_player.active = false
 	_map.map_name = WowClient.map_name(map_id)
+	_sky.map_id = map_id
 	_player.place(WowCoords.to_godot(wow_position), orientation)
 	var guid: int = WowClient.session.get_player_guid()
 	if WowClient.session.has_object(guid):
@@ -252,7 +260,9 @@ func _on_object_updated(guid: int) -> void:
 	var session: WowSession = WowClient.session
 	if guid != session.get_player_guid():
 		return
-	_player.set_dead(session.get_field(guid, "UNIT_FIELD_HEALTH") == 0)
+	var dead: bool = session.get_field(guid, "UNIT_FIELD_HEALTH") == 0
+	_player.set_dead(dead)
+	_sky.dead = dead or (session.get_field(guid, "PLAYER_FLAGS") & PLAYER_FLAG_GHOST) != 0
 	_player.stand_state = session.get_field(guid, "UNIT_FIELD_BYTES_1") & 0xFF
 	var mount: int = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
 	if CharacterModels.visible_items(session, guid) != _worn or mount != _mount_display:

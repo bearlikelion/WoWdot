@@ -17,8 +17,6 @@ const BUS_NAMES: Dictionary[Bus, StringName] = {
 	Bus.AMBIENCE: &"Ambience",
 	Bus.EFFECTS: &"Effects",
 }
-const DAY_START_HOUR: int = 6
-const NIGHT_START_HOUR: int = 18
 const FADE_SECONDS: float = 2.0
 const SILENT_DB: float = -60.0
 const SHOWN_META: StringName = &"audio_shown"
@@ -38,6 +36,7 @@ var _fade: Tween
 
 @onready var _music: AudioStreamPlayer = %Music
 @onready var _ambient: AudioStreamPlayer = %Ambience
+@onready var _weather: AudioStreamPlayer = %Weather
 @onready var _effects: AudioStreamPlayer = %Effects
 @onready var _silence: Timer = %Silence
 
@@ -58,6 +57,7 @@ func _ready() -> void:
 		_apply(bus)
 	_music.finished.connect(_on_music_finished)
 	_ambient.finished.connect(_ambient.play)
+	_weather.finished.connect(_weather.play)
 	_silence.timeout.connect(_play_zone_track)
 	get_tree().node_added.connect(_on_node_added)
 
@@ -81,6 +81,16 @@ func stop_ambience() -> void:
 	_ambient.stop()
 
 
+# A SoundEntries loop such as the one SMSG_WEATHER names; 0 stops it.
+func play_weather(sound_id: int) -> void:
+	_weather.stream = entry_stream(sound_id)
+	_weather.volume_linear = entry_volume(sound_id)
+	if _weather.stream:
+		_weather.play()
+	else:
+		_weather.stop()
+
+
 # Subzones usually have no music or ambience of their own, so the owning zone's plays.
 func play_zone(area_id: int) -> void:
 	var music_id: int = _area_value(area_id, AreaColumn.ZONE_MUSIC)
@@ -92,7 +102,9 @@ func play_zone(area_id: int) -> void:
 	if ambience_id == _ambience_id:
 		return
 	_ambience_id = ambience_id
-	var column: AmbienceColumn = AmbienceColumn.NIGHT if _is_night() else AmbienceColumn.DAY
+	var column: AmbienceColumn = AmbienceColumn.DAY
+	if WowClient.clock.is_night():
+		column = AmbienceColumn.NIGHT
 	var sound_id: int = _ambience.get_uint(_ambience.find(ambience_id), column)
 	_ambient.stream = entry_stream(sound_id)
 	_ambient.volume_linear = entry_volume(sound_id)
@@ -164,15 +176,11 @@ func _area_value(area_id: int, column: AreaColumn) -> int:
 	return found
 
 
-# ponytail: day and night follow the local clock, switch to SMSG_LOGIN_SETTIMESPEED game time.
-func _is_night() -> bool:
-	var hour: int = Time.get_time_dict_from_system()["hour"]
-	return hour < DAY_START_HOUR or hour >= NIGHT_START_HOUR
-
-
 func _play_zone_track() -> void:
 	var row: int = _zone_music.find(_zone_music_id)
-	var column: ZoneMusicColumn = ZoneMusicColumn.NIGHT if _is_night() else ZoneMusicColumn.DAY
+	var column: ZoneMusicColumn = ZoneMusicColumn.DAY
+	if WowClient.clock.is_night():
+		column = ZoneMusicColumn.NIGHT
 	var sound_id: int = _zone_music.get_uint(row, column) if row >= 0 else 0
 	_start_music(_random_file(_sounds.find(sound_id)), entry_volume(sound_id))
 
@@ -232,7 +240,7 @@ func _on_music_finished() -> void:
 		return
 	var row: int = _zone_music.find(_zone_music_id)
 	var column: ZoneMusicColumn = ZoneMusicColumn.SILENCE_MIN_DAY
-	if _is_night():
+	if WowClient.clock.is_night():
 		column = ZoneMusicColumn.SILENCE_MIN_NIGHT
 	_silence.start(maxf(_zone_music.get_uint(row, column) / 1000.0, 1.0))
 

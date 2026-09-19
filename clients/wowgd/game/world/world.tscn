@@ -1,14 +1,33 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://game/world/world.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
 [ext_resource type="PackedScene" path="res://game/world/player.tscn" id="3_player"]
 [ext_resource type="Script" path="res://game/world/entities.gd" id="4_entities"]
 [ext_resource type="PackedScene" path="res://game/ui/hud.tscn" id="5_hud"]
+[ext_resource type="Script" path="res://game/world/world_sky.gd" id="6_sky"]
+[ext_resource type="Shader" path="res://game/world/sky.gdshader" id="7_sky_shader"]
+[ext_resource type="PackedScene" path="res://game/world/world_weather.tscn" id="8_weather"]
 
-[sub_resource type="ProceduralSkyMaterial" id="Sky_mat"]
-sky_top_color = Color(0.3, 0.5, 0.8, 1)
-sky_horizon_color = Color(0.7, 0.8, 0.9, 1)
+[sub_resource type="FastNoiseLite" id="Noise_clouds"]
+frequency = 0.008
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture_clouds"]
+width = 512
+height = 512
+seamless = true
+noise = SubResource("Noise_clouds")
+
+[sub_resource type="ShaderMaterial" id="Sky_mat"]
+shader = ExtResource("7_sky_shader")
+shader_parameter/sky_top = Color(0.3, 0.5, 0.8, 1)
+shader_parameter/sky_middle = Color(0.4, 0.6, 0.85, 1)
+shader_parameter/sky_lower = Color(0.5, 0.7, 0.9, 1)
+shader_parameter/sky_above_horizon = Color(0.6, 0.75, 0.9, 1)
+shader_parameter/sky_horizon = Color(0.7, 0.8, 0.9, 1)
+shader_parameter/fog_color = Color(0.7, 0.78, 0.88, 1)
+shader_parameter/cloud_noise = SubResource("NoiseTexture_clouds")
 
 [sub_resource type="Sky" id="Sky_world"]
 sky_material = SubResource("Sky_mat")
@@ -16,11 +35,16 @@ sky_material = SubResource("Sky_mat")
 [sub_resource type="Environment" id="Environment_world"]
 background_mode = 2
 sky = SubResource("Sky_world")
-ambient_light_source = 3
-ambient_light_energy = 0.9
+ambient_light_source = 2
+reflected_light_source = 1
+ambient_light_color = Color(0.4, 0.5, 0.6, 1)
 fog_enabled = true
+fog_mode = 1
+fog_sky_affect = 0.0
 fog_light_color = Color(0.7, 0.78, 0.88, 1)
-fog_density = 0.0015
+fog_density = 1.0
+fog_depth_begin = 125.0
+fog_depth_end = 500.0
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_world")
@@ -30,8 +54,22 @@ environment = SubResource("Environment_world")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866, -0.25, 0.433, 0, 0.866, 0.5, -0.5, -0.433, 0.75, 0, 0, 0)
-light_energy = 1.1
 shadow_enabled = true
+
+[node name="WorldSky" type="Node" parent="." node_paths=PackedStringArray("sun", "environment")]
+script = ExtResource("6_sky")
+sun = NodePath("../Sun")
+environment = NodePath("../WorldEnvironment")
+
+[node name="Dome" type="Node3D" parent="WorldSky"]
+unique_name_in_owner = true
+
+[node name="Refresh" type="Timer" parent="WorldSky"]
+unique_name_in_owner = true
+wait_time = 0.25
+autostart = true
+
+[node name="WorldWeather" parent="." instance=ExtResource("8_weather")]
 
 [node name="Player" parent="." instance=ExtResource("3_player")]
 

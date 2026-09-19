@@ -16,6 +16,10 @@ bus = &"Music"
 unique_name_in_owner = true
 bus = &"Ambience"
 
+[node name="Weather" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Ambience"
+
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("1")

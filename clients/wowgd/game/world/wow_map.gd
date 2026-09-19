@@ -7,6 +7,7 @@ signal tile_loaded(tile: Vector2i)
 const TILE_SIZE: float = 1600.0 / 3.0
 const FOCUS_MARKER_SIZE: float = 60.0
 const FOCUS_ARRIVAL_FRAMES: int = 120
+const LIQUID_HEIGHTS_META: StringName = &"liquid_heights"
 
 @export var map_name: String = "Azeroth":
 	set(value):
@@ -85,11 +86,20 @@ func area_id_at(godot_position: Vector3) -> int:
 	var tile: Vector2i = tile_at(godot_position)
 	if not _tiles.has(tile):
 		return 0
-	var wow: Vector3 = WowCoords.from_godot(godot_position)
-	var chunk_x: int = clampi(floori((32.0 - wow.y / TILE_SIZE - tile.x) * 16.0), 0, 15)
-	var chunk_y: int = clampi(floori((32.0 - wow.x / TILE_SIZE - tile.y) * 16.0), 0, 15)
 	var area_ids: PackedInt32Array = _tiles[tile].get_meta("area_ids", PackedInt32Array())
-	return area_ids[chunk_y * 16 + chunk_x] if area_ids.size() == 256 else 0
+	return area_ids[_chunk_index(godot_position, tile)] if area_ids.size() == 256 else 0
+
+
+# The liquid surface over the position's terrain chunk, or NAN where there is none.
+func liquid_height_at(godot_position: Vector3) -> float:
+	var tile: Vector2i = tile_at(godot_position)
+	if not _tiles.has(tile):
+		return NAN
+	var node: Node3D = _tiles[tile]
+	if not node.has_meta(LIQUID_HEIGHTS_META):
+		node.set_meta(LIQUID_HEIGHTS_META, _liquid_heights(node, tile))
+	var heights: PackedFloat32Array = node.get_meta(LIQUID_HEIGHTS_META)
+	return heights[_chunk_index(godot_position, tile)]
 
 
 # True once collision under the point exists; maps without terrain tiles are a single WMO.
@@ -116,6 +126,28 @@ func is_idle() -> bool:
 
 func loaded_tiles() -> Array[Vector2i]:
 	return _tiles.keys()
+
+
+func _chunk_index(godot_position: Vector3, tile: Vector2i) -> int:
+	var wow: Vector3 = WowCoords.from_godot(godot_position)
+	var chunk_x: int = clampi(floori((32.0 - wow.y / TILE_SIZE - tile.x) * 16.0), 0, 15)
+	var chunk_y: int = clampi(floori((32.0 - wow.x / TILE_SIZE - tile.y) * 16.0), 0, 15)
+	return chunk_y * 16 + chunk_x
+
+
+# ponytail: one height per chunk from the tile's liquid mesh, WMO liquids are not covered.
+func _liquid_heights(node: Node3D, tile: Vector2i) -> PackedFloat32Array:
+	var heights: PackedFloat32Array = []
+	heights.resize(256)
+	heights.fill(NAN)
+	var liquid: MeshInstance3D = node.get_node_or_null("Liquid")
+	if liquid == null:
+		return heights
+	for vertex: Vector3 in liquid.mesh.get_faces():
+		var at: Vector3 = liquid.global_transform * vertex
+		var chunk: int = _chunk_index(at, tile)
+		heights[chunk] = at.y if is_nan(heights[chunk]) else maxf(heights[chunk], at.y)
+	return heights
 
 
 func _focus() -> Node3D:

@@ -2,6 +2,8 @@ extends Node
 
 var session: WowSession = WowSession.new()
 var cooldowns: Cooldowns = Cooldowns.new(session, WowAssets.spells)
+var clock: GameClock = GameClock.new(session)
+var weather: WeatherState = WeatherState.new(session)
 
 
 func _ready() -> void:
