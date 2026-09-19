@@ -18,6 +18,9 @@
 
 #include <algorithm>
 #include <cstdio>
+#include <optional>
+#include <utility>
+#include <vector>
 
 using namespace wowee::pipeline;
 
@@ -108,15 +111,34 @@ void add_m2_vertex(SurfaceBuilder &s, const M2Model &model, uint32_t index, bool
 	}
 }
 
+// With no sequence, returns the global-sequence keys, repeated on each track's own period up to length.
 template <typename T>
-bool sequence_keys(const M2AnimationTrack &track, size_t sequence, const std::vector<T> M2AnimationTrack::SequenceKeys::*values, size_t &r_count) {
-	// ponytail: global-sequence tracks (looping independently of the animation) are skipped.
-	if (track.globalSequence >= 0 || sequence >= track.sequences.size()) {
-		return false;
+std::vector<std::pair<uint32_t, T>> track_keys(const M2Model &model, const M2AnimationTrack &track, std::optional<size_t> sequence, uint32_t length, const std::vector<T> M2AnimationTrack::SequenceKeys::*values) {
+	std::vector<std::pair<uint32_t, T>> result;
+	const bool global = track.globalSequence >= 0;
+	const size_t slot = sequence.value_or(0);
+	if (global == sequence.has_value() || slot >= track.sequences.size()) {
+		return result;
 	}
-	const M2AnimationTrack::SequenceKeys &keys = track.sequences[sequence];
-	r_count = std::min(keys.timestamps.size(), (keys.*values).size());
-	return r_count > 0;
+	const M2AnimationTrack::SequenceKeys &keys = track.sequences[slot];
+	const size_t count = std::min(keys.timestamps.size(), (keys.*values).size());
+	uint32_t period = 0;
+	if (global && static_cast<size_t>(track.globalSequence) < model.globalSequenceDurations.size()) {
+		period = model.globalSequenceDurations[static_cast<size_t>(track.globalSequence)];
+	}
+	for (uint32_t offset = 0; count > 0 && offset < length; offset += period) {
+		for (size_t k = 0; k < count; k++) {
+			const uint32_t msec = offset + keys.timestamps[k];
+			if (global && msec > length) {
+				break;
+			}
+			result.emplace_back(msec, (keys.*values)[k]);
+		}
+		if (period == 0) {
+			break;
+		}
+	}
+	return result;
 }
 
 // Rest colour and opacity of a batch; particle emitter models hide their helper geometry with the alpha.
@@ -143,40 +165,36 @@ Animation::InterpolationType interpolation(const M2AnimationTrack &track) {
 	return track.interpolationType == 0 ? Animation::INTERPOLATION_NEAREST : Animation::INTERPOLATION_LINEAR;
 }
 
-Ref<Animation> build_animation(const M2Model &model, size_t sequence, const std::vector<Vector3> &rests) {
+Ref<Animation> build_animation(const M2Model &model, std::optional<size_t> sequence, uint32_t length, const std::vector<Vector3> &rests) {
 	Ref<Animation> anim;
 	anim.instantiate();
-	anim->set_length(std::max<uint32_t>(model.sequences[sequence].duration, 1) / 1000.0);
+	anim->set_length(length / 1000.0);
 	anim->set_loop_mode(Animation::LOOP_LINEAR);
 	for (size_t b = 0; b < model.bones.size(); b++) {
 		const M2Bone &bone = model.bones[b];
 		const NodePath path("Skeleton:bone_" + String::num_int64(b));
-		size_t count = 0;
-		if (sequence_keys(bone.translation, sequence, &M2AnimationTrack::SequenceKeys::vec3Values, count)) {
-			const auto &keys = bone.translation.sequences[sequence];
+		if (const auto keys = track_keys(model, bone.translation, sequence, length, &M2AnimationTrack::SequenceKeys::vec3Values); !keys.empty()) {
 			const int t = anim->add_track(Animation::TYPE_POSITION_3D);
 			anim->track_set_path(t, path);
 			anim->track_set_interpolation_type(t, interpolation(bone.translation));
-			for (size_t k = 0; k < count; k++) {
-				anim->position_track_insert_key(t, keys.timestamps[k] / 1000.0, rests[b] + wow_to_godot(keys.vec3Values[k]));
+			for (const auto &[msec, value] : keys) {
+				anim->position_track_insert_key(t, msec / 1000.0, rests[b] + wow_to_godot(value));
 			}
 		}
-		if (sequence_keys(bone.rotation, sequence, &M2AnimationTrack::SequenceKeys::quatValues, count)) {
-			const auto &keys = bone.rotation.sequences[sequence];
+		if (const auto keys = track_keys(model, bone.rotation, sequence, length, &M2AnimationTrack::SequenceKeys::quatValues); !keys.empty()) {
 			const int t = anim->add_track(Animation::TYPE_ROTATION_3D);
 			anim->track_set_path(t, path);
 			anim->track_set_interpolation_type(t, interpolation(bone.rotation));
-			for (size_t k = 0; k < count; k++) {
-				anim->rotation_track_insert_key(t, keys.timestamps[k] / 1000.0, wow_to_godot(keys.quatValues[k]).normalized());
+			for (const auto &[msec, value] : keys) {
+				anim->rotation_track_insert_key(t, msec / 1000.0, wow_to_godot(value).normalized());
 			}
 		}
-		if (sequence_keys(bone.scale, sequence, &M2AnimationTrack::SequenceKeys::vec3Values, count)) {
-			const auto &keys = bone.scale.sequences[sequence];
+		if (const auto keys = track_keys(model, bone.scale, sequence, length, &M2AnimationTrack::SequenceKeys::vec3Values); !keys.empty()) {
 			const int t = anim->add_track(Animation::TYPE_SCALE_3D);
 			anim->track_set_path(t, path);
 			anim->track_set_interpolation_type(t, interpolation(bone.scale));
-			for (size_t k = 0; k < count; k++) {
-				anim->scale_track_insert_key(t, keys.timestamps[k] / 1000.0, wow_scale_to_godot(keys.vec3Values[k]));
+			for (const auto &[msec, value] : keys) {
+				anim->scale_track_insert_key(t, msec / 1000.0, wow_scale_to_godot(value));
 			}
 		}
 	}
@@ -362,7 +380,31 @@ Ref<AnimationLibrary> WowLoader::get_m2_animations(const String &path, const M2D
 	for (size_t i = 0; i < data.model.sequences.size(); i++) {
 		const String name = animation_name(data.model.sequences[i].id, data.model.sequences[i].variationIndex);
 		if (!animations->has_animation(name)) {
-			animations->add_animation(name, build_animation(data.model, i, data.bone_rests));
+			const uint32_t length = std::max<uint32_t>(data.model.sequences[i].duration, 1);
+			animations->add_animation(name, build_animation(data.model, i, length, data.bone_rests));
+		}
+	}
+	std::lock_guard<std::mutex> lock(cache_mutex);
+	return m2_animations.emplace(key, animations).first->second;
+}
+
+// Kept out of the main library, or the main player's deterministic blend would reset these bones.
+Ref<AnimationLibrary> WowLoader::get_m2_global_animations(const String &path, const M2Data &data) {
+	const std::string key = std::string(path.to_lower().replace("/", "\\").utf8().get_data()) + "|global";
+	{
+		std::lock_guard<std::mutex> lock(cache_mutex);
+		auto cached = m2_animations.find(key);
+		if (cached != m2_animations.end()) {
+			return cached->second;
+		}
+	}
+	Ref<AnimationLibrary> animations;
+	animations.instantiate();
+	const std::vector<uint32_t> &durations = data.model.globalSequenceDurations;
+	if (const auto longest = std::max_element(durations.begin(), durations.end()); longest != durations.end() && *longest > 0) {
+		const Ref<Animation> anim = build_animation(data.model, std::nullopt, *longest, data.bone_rests);
+		if (anim->get_track_count() > 0) {
+			animations->add_animation("Global", anim);
 		}
 	}
 	std::lock_guard<std::mutex> lock(cache_mutex);
@@ -403,6 +445,13 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 	player->set_name("AnimationPlayer");
 	player->add_animation_library("", animations);
 	root->add_child(player);
+	if (const Ref<AnimationLibrary> global = get_m2_global_animations(path, *data); global->has_animation("Global")) {
+		AnimationPlayer *clock = memnew(AnimationPlayer);
+		clock->set_name("GlobalSequences");
+		clock->add_animation_library("", global);
+		root->add_child(clock);
+		clock->set_autoplay("Global");
+	}
 	if (animations->has_animation("Stand")) {
 		player->set_autoplay("Stand");
 	}

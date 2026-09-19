@@ -471,7 +471,8 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 				emit_signal("melee_swing", static_cast<int64_t>(data.attackerGuid), static_cast<int64_t>(data.targetGuid),
 						data.totalDamage, static_cast<int64_t>(data.hitInfo), static_cast<int64_t>(data.victimState));
 			}
-			return true;
+			// Falls through to packet_received too, where CombatEvents reads the absorbs, resists and blocks.
+			return false;
 		}
 		case LogicalOpcode::SMSG_ATTACKSTART: {
 			const int64_t attacker = static_cast<int64_t>(packet.readUInt64());

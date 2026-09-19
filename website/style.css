@@ -110,6 +110,24 @@ th, td {
   color: var(--ice);
 }
 
+figure {
+  margin: 0 0 20px;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+figcaption {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 pre {
   padding: 12px 16px;
   overflow-x: auto;

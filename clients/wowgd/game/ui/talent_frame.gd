@@ -146,28 +146,11 @@ func _update_tabs() -> void:
 			%TalentFrameSpentPoints.text = "%s %d" % [
 				WowStrings.get_text("MASTERY_POINTS_SPENT") % tab_name, _points_spent,
 			]
-		var text: Label = tab.get_node(tab.name + "Text")
-		text.text = tab_name
-		_resize_tab(tab, text)
+		(tab.get_node(tab.name + "Text") as Label).text = tab_name
+		PanelManager.resize_tab(tab, TAB_PADDING)
 		tab.position.x = x
 		x += tab.size.x + _tab_gap
 		PanelManager.select_tab(tab, i == _tab)
-
-
-# PanelTemplates_TabResize: the middle piece grows to the name plus padding.
-func _resize_tab(tab: Control, text: Label) -> void:
-	var prefix: String = tab.name
-	var left: Control = tab.get_node(prefix + "Left")
-	var text_width: float = text.get_minimum_size().x
-	var width: float = text_width + TAB_PADDING
-	for suffix: String in ["", "Disabled"]:
-		(tab.get_node(prefix + "Middle" + suffix) as Control).size.x = width
-		(tab.get_node(prefix + "Right" + suffix) as Control).position.x = left.size.x + width
-	tab.size.x = width + 2.0 * left.size.x
-	text.size.x = text_width
-	text.position.x = (tab.size.x - text_width) / 2.0
-	var highlight: Control = tab.get_node("HighlightTexture")
-	highlight.size.x = tab.size.x - 2.0 * highlight.position.x
 
 
 func _update_talents() -> void:

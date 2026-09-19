@@ -136,6 +136,13 @@ func unit_node(guid: int) -> Node3D:
 	return _nodes.get(guid)
 
 
+# The top of the unit's model in world space, or ZERO for a unit that is not shown.
+func head_position(guid: int) -> Vector3:
+	if not _nodes.has(guid) or not _bounds.has(guid):
+		return Vector3.ZERO
+	return _nodes[guid].global_transform * Vector3(0.0, _bounds[guid].end.y, 0.0)
+
+
 # Units and players within range of the point that the camera can see, nearest first.
 func visible_units(from: Vector3, max_distance: float, camera: Camera3D) -> Array[int]:
 	var found: Array[int] = []

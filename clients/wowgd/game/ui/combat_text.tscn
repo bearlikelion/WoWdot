@@ -1,0 +1,155 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/combat_text.gd" id="1_text"]
+[ext_resource type="Theme" path="res://game/ui/hud_theme.tres" id="2_theme"]
+
+[node name="CombatText" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_text")
+
+[node name="CombatText1" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText3" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText4" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText5" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText6" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText7" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText8" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText9" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText10" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText11" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText12" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText13" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText14" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText15" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText16" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText17" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText18" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText19" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1
+
+[node name="CombatText20" type="Label" parent="."]
+visible = false
+layout_mode = 0
+mouse_filter = 2
+theme_type_variation = &"CombatText"
+horizontal_alignment = 1

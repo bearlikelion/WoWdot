@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[node name="FloatingDamage" type="Label3D"]
+pixel_size = 0.012
+billboard = 1
+no_depth_test = true
+render_priority = 10
+outline_render_priority = 9
+outline_modulate = Color(0.16, 0.16, 0.18, 1)
+font_size = 40
+outline_size = 8

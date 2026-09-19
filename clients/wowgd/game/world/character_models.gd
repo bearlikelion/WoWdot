@@ -18,6 +18,8 @@ const SKIN_REGIONS: Dictionary[String, Vector2i] = {
 # Bare hands, feet and legs, ears, and 1501 (no cloak), which also carries the neck and upper chest.
 const BARE_GEOSETS: Array[int] = [0, 401, 501, 702, 1301, 1501]
 const BAKED_TEXTURES: String = "Textures\\BakedNpcTextures\\"
+const TEXTURE_COLUMNS: PackedStringArray = ["Texture1", "Texture2", "Texture3"]
+const SCALP_COLUMNS: PackedStringArray = ["Texture2", "Texture3"]
 # Body geoset group an item's first GeosetGroup picks from, per equipment slot.
 const SLOT_GEOSET_GROUPS: Dictionary[EquipSlot, int] = {
 	EquipSlot.HANDS: 400, EquipSlot.FEET: 500, EquipSlot.CHEST: 800, EquipSlot.WRIST: 800,
@@ -199,8 +201,10 @@ func _skin(race: int, gender: int, look: Dictionary) -> ImageTexture:
 	overlays.append_array(
 		_textures(race, gender, Section.FACIAL_HAIR, look.get("facial_hair", 0), hair_color)
 	)
-	# The first hair texture is the hair itself; the scalp overlays that follow match a region.
-	overlays.append_array(_textures(race, gender, Section.HAIR, look.get("hair_style", 0), hair_color))
+	# Texture1 is the hair itself, and a stray FaceLower on tauren; only scalp textures overlay.
+	overlays.append_array(
+		_textures(race, gender, Section.HAIR, look.get("hair_style", 0), hair_color, SCALP_COLUMNS)
+	)
 	overlays.append_array(_textures(race, gender, Section.UNDERWEAR, -1, skin))
 	var scale: int = maxi(base.get_width() / SKIN_ATLAS_SIZE, 1)
 	for path: String in overlays:
@@ -262,6 +266,7 @@ func _texture(race: int, gender: int, section: Section, variation: int, color: i
 # A variation of -1 matches any variation that has textures; a row carries up to three.
 func _textures(
 	race: int, gender: int, section: Section, variation: int, color: int,
+	columns: PackedStringArray = TEXTURE_COLUMNS,
 ) -> PackedStringArray:
 	var found: PackedStringArray = []
 	for row: int in _rows(race, gender):
@@ -271,7 +276,7 @@ func _textures(
 			continue
 		if variation >= 0 and _sections.get_uint(row, "VariationIndex") != variation:
 			continue
-		for column: String in ["Texture1", "Texture2", "Texture3"]:
+		for column: String in columns:
 			var path: String = _sections.get_string(row, column)
 			if not path.is_empty():
 				found.append(path)

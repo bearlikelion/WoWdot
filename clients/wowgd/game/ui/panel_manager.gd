@@ -60,6 +60,24 @@ static func select_tab(tab: Control, selected: bool) -> void:
 	label.theme_type_variation = &"GameFontHighlightSmall" if selected else &"GameFontNormalSmall"
 
 
+# PanelTemplates_TabResize: the middle piece grows to the tab's text plus padding.
+static func resize_tab(tab: Control, padding: float) -> void:
+	var text: Label = tab.get_node(tab.name + "Text")
+	var left: Control = tab.get_node(tab.name + "Left")
+	var text_width: float = text.get_minimum_size().x
+	var width: float = text_width + padding
+	for suffix: String in ["", "Disabled"]:
+		var middle: Control = tab.get_node_or_null(NodePath(tab.name + "Middle" + suffix))
+		if middle:
+			middle.size.x = width
+			(tab.get_node(tab.name + "Right" + suffix) as Control).position.x = left.size.x + width
+	tab.size.x = width + 2.0 * left.size.x
+	text.size.x = text_width
+	text.position.x = (tab.size.x - text_width) / 2.0
+	var highlight: Control = tab.get_node("HighlightTexture")
+	highlight.size.x = tab.size.x - 2.0 * highlight.position.x
+
+
 func toggle_panel(frame: Control) -> void:
 	if frame.visible:
 		hide_panel(frame)

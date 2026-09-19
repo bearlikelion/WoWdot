@@ -40,6 +40,9 @@ const PANEL_TIPS: Dictionary[GamePanel, Array] = {
 	GamePanel.HELP: ["HELP_BUTTON", "NEWBIE_TOOLTIP_HELP", ""],
 	GamePanel.BAGS: ["BACKPACK_TOOLTIP", "", "toggle_bags"],
 }
+# MicroButtonPortrait's SetTexCoord in CharacterMicroButton_SetNormal and _SetPushed.
+const PORTRAIT_NORMAL: Rect2 = Rect2(0.2, 0.0666, 0.6, 0.8334)
+const PORTRAIT_PUSHED: Rect2 = Rect2(0.2666, 0.0, 0.6, 0.8333)
 
 var page: int = 1:
 	set(value):
@@ -51,7 +54,9 @@ var _bottom_left: Array[ActionButton] = []
 var _bottom_right: Array[ActionButton] = []
 var _shown_page: int = 0
 var _empty_bag_icons: Array[Texture2D] = []
+var _portrait: AtlasTexture = AtlasTexture.new()
 
+@onready var _portrait_rect: TextureRect = %MicroButtonPortrait
 @onready var _page_number: Label = %MainMenuBarPageNumber
 @onready var _bottom_left_bar: Control = %MultiBarBottomLeft
 @onready var _bottom_right_bar: Control = %MultiBarBottomRight
@@ -81,6 +86,8 @@ func _ready() -> void:
 		button.pressed.connect(panel_toggled.emit.bind(_micro_buttons[button]))
 		button.mouse_entered.connect(_on_micro_button_hovered.bind(button))
 		button.mouse_exited.connect(_on_micro_button_left.bind(button))
+	%CharacterMicroButton.button_down.connect(_set_portrait_pushed.bind(true))
+	%CharacterMicroButton.button_up.connect(_set_portrait_pushed.bind(false))
 	for bag: int in range(1, Inventory.BAG_COUNT + 1):
 		var slot: WowButton = _bag_button(bag)
 		slot.pressed.connect(bag_toggled.emit.bind(bag))
@@ -182,6 +189,21 @@ func _hotkey_text(action: String) -> String:
 # The backpack button and the bag slots stay checked while their bag is open.
 func set_bag_open(bag: int, is_open: bool) -> void:
 	_bag_button(bag).checked = is_open
+
+
+func set_portrait(texture: Texture2D) -> void:
+	_portrait.atlas = texture
+	_portrait_rect.texture = _portrait
+	_set_portrait_pushed(false)
+
+
+func _set_portrait_pushed(pushed: bool) -> void:
+	if _portrait.atlas == null:
+		return
+	var uv: Rect2 = PORTRAIT_PUSHED if pushed else PORTRAIT_NORMAL
+	var size: Vector2 = _portrait.atlas.get_size()
+	_portrait.region = Rect2(uv.position * size, uv.size * size)
+	_portrait_rect.modulate.a = 0.5 if pushed else 1.0
 
 
 func _bag_button(bag: int) -> WowButton:

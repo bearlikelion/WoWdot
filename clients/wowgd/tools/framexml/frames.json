@@ -123,6 +123,11 @@
 			"script": "res://game/ui/chat_frame.gd"
 		},
 		{
+			"frame": "ChatFrame2",
+			"out": "game/ui/wow/combat_log_frame.tscn",
+			"script": "res://game/ui/combat_log_frame.gd"
+		},
+		{
 			"frame": "AccountLogin",
 			"out": "game/ui/wow/account_login.tscn",
 			"script": "res://game/ui/login_screen.gd"
@@ -276,6 +281,7 @@
 		"MultiBarBottomRight": "MainMenuBar",
 		"MultiBarLeft": "MultiBarRight",
 		"ChatFrame1Tab": "ChatFrame1",
+		"ChatFrame2Tab": "ChatFrame2",
 		"ChatFrameEditBox": "ChatFrame1",
 		"ChatFrameMenuButton": "ChatFrame1",
 		"CharacterDeleteDialog": "CharacterSelect"

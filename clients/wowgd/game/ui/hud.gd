@@ -27,11 +27,14 @@ const SWING_ERRORS: Dictionary[WowSession.AttackError, String] = {
 const OUT_OF_POWER: Array[String] = [
 	"ERR_OUT_OF_MANA", "ERR_OUT_OF_RAGE", "ERR_OUT_OF_FOCUS", "ERR_OUT_OF_ENERGY",
 ]
+# CHAT_TAB_SHOW_DELAY: the dock's tabs wait for the mouse to rest over the chat this long.
+const CHAT_TAB_SHOW_DELAY: float = 0.2
 
 var _area: int = 0
 var _menu_name: String = ""
 var _spell_failures: Dictionary = {}
 var _casting_bar_top: float = 0.0
+var _chat_hover_time: float = 0.0
 
 @onready var _ui_parent: Control = %UIParent
 @onready var _main_menu_bar: MainMenuBar = %MainMenuBar
@@ -44,6 +47,7 @@ var _casting_bar_top: float = 0.0
 @onready var _side_bars: SideActionBars = %MultiBarRight
 @onready var _minimap: MinimapCluster = %MinimapCluster
 @onready var _chat: ChatFrame = %ChatFrame1
+@onready var _chat_frames: Array[DockedChatFrame] = [_chat, %ChatFrame2]
 @onready var _panels: PanelManager = %UIPanels
 @onready var _character: CharacterFrame = _panels.get_node("%CharacterFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
@@ -104,6 +108,7 @@ func _ready() -> void:
 	_main_menu_bar.bottom_bars_toggled.connect(_on_bottom_bars_toggled)
 	_on_bottom_bars_toggled(_main_menu_bar.get_node("%MultiBarBottomLeft").visible)
 	_player_frame.unit_selected.connect(unit_selected.emit)
+	_main_menu_bar.set_portrait(_player_frame.portrait_texture())
 	_party.unit_selected.connect(unit_selected.emit)
 	_party.invited.connect(_on_party_invited)
 	_party.message_added.connect(add_system_line)
@@ -117,6 +122,20 @@ func _ready() -> void:
 	WowClient.session.object_updated.connect(_on_object_updated)
 	WowClient.session.item_info_received.connect(func(_entry: int) -> void: _panels.refresh_bags())
 	_spell_failures = JSON.parse_string(FileAccess.get_file_as_string(SPELL_FAILURES))
+	var tab_at: Vector2 = _chat_frames[0].tab_position()
+	for frame: DockedChatFrame in _chat_frames:
+		tab_at.x += frame.dock_tab(tab_at)
+		frame.tab_selected.connect(_select_chat_frame.bind(frame))
+	_select_chat_frame(_chat_frames[0])
+
+
+func _process(delta: float) -> void:
+	var hovered: bool = _chat_frames.any(
+		func(frame: DockedChatFrame) -> bool: return frame.is_hovered()
+	)
+	_chat_hover_time = _chat_hover_time + delta if hovered else 0.0
+	for frame: DockedChatFrame in _chat_frames:
+		frame.set_hovered(_chat_hover_time > CHAT_TAB_SHOW_DELAY)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -312,6 +331,12 @@ func _on_bottom_bars_toggled(shown: bool) -> void:
 	var height: float = _casting_bar.offset_bottom - _casting_bar.offset_top
 	_casting_bar.offset_top = _casting_bar_top - (CASTING_BAR_LIFT if shown else 0.0)
 	_casting_bar.offset_bottom = _casting_bar.offset_top + height
+
+
+# FCF_SelectDockFrame: the docked frames share one area and show only the chosen one.
+func _select_chat_frame(selected: DockedChatFrame) -> void:
+	for frame: DockedChatFrame in _chat_frames:
+		frame.set_selected(frame == selected)
 
 
 func _fit_ui_parent() -> void:

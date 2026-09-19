@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://game/world/world_sky.gd" id="6_sky"]
 [ext_resource type="Shader" path="res://game/world/sky.gdshader" id="7_sky_shader"]
 [ext_resource type="PackedScene" path="res://game/world/world_weather.tscn" id="8_weather"]
+[ext_resource type="Script" path="res://game/world/floating_combat_text.gd" id="9_floating_text"]
 
 [sub_resource type="FastNoiseLite" id="Noise_clouds"]
 frequency = 0.008
@@ -79,6 +80,10 @@ target = NodePath("../Player")
 
 [node name="Entities" type="Node3D" parent="."]
 script = ExtResource("4_entities")
+
+[node name="FloatingCombatText" type="Node3D" parent="." node_paths=PackedStringArray("entities")]
+script = ExtResource("9_floating_text")
+entities = NodePath("../Entities")
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
 

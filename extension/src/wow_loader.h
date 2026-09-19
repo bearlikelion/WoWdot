@@ -50,6 +50,7 @@ class WowLoader : public RefCounted {
 	std::shared_ptr<const M2Data> get_m2_data(const String &path);
 	Ref<ArrayMesh> get_m2_mesh(const String &path, const M2Data &data, const Dictionary &skins, const PackedInt32Array &geosets);
 	Ref<AnimationLibrary> get_m2_animations(const String &path, const M2Data &data);
+	Ref<AnimationLibrary> get_m2_global_animations(const String &path, const M2Data &data);
 	Ref<StandardMaterial3D> get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint);
 	String animation_name(uint32_t id, uint32_t variation);
 

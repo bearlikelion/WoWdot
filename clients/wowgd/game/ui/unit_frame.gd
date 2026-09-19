@@ -72,6 +72,10 @@ func show_unit(unit: int) -> void:
 	refresh()
 
 
+func portrait_texture() -> Texture2D:
+	return _portrait.get_texture()
+
+
 func refresh() -> void:
 	var session: WowSession = WowClient.session
 	visible = guid != 0 and session.has_object(guid)

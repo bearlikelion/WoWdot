@@ -1,5 +1,5 @@
 class_name ChatFrame
-extends WowScrollingMessageFrame
+extends DockedChatFrame
 
 # GlobalStrings key stem per chat type: CHAT_<stem>_GET formats lines, CHAT_<stem>_SEND the header.
 const TYPE_KEYS: Dictionary[WowSession.ChatType, String] = {
@@ -56,8 +56,6 @@ const STICKY: Array[WowSession.ChatType] = [
 	WowSession.CHAT_OFFICER, WowSession.CHAT_RAID,
 ]
 const HISTORY_LINES: int = 32
-# DEFAULT_CHATFRAME_ALPHA: the background only shows while the mouse is over the chat.
-const HOVER_ALPHA: float = 0.25
 # ChatEdit_UpdateHeader: SetTextInsets(15 + header width, 13, 0, 0).
 const INSET_LEFT: float = 15.0
 const INSET_RIGHT: float = 13.0
@@ -72,25 +70,12 @@ var _insets: StyleBoxEmpty = StyleBoxEmpty.new()
 
 @onready var _edit_box: LineEdit = %ChatFrameEditBox
 @onready var _header: Label = %ChatFrameEditBoxHeader
-@onready var _background: TextureRect = %ChatFrame1Background
 
 
 func _ready() -> void:
-	mouse_filter = Control.MOUSE_FILTER_PASS
-	mouse_entered.connect(func() -> void: _background.self_modulate.a = HOVER_ALPHA)
-	mouse_exited.connect(func() -> void: _background.self_modulate.a = 0.0)
-	_background.self_modulate = Color(0.0, 0.0, 0.0, 0.0)
-	%ChatFrame1UpButton.pressed.connect(scroll_up)
-	%ChatFrame1DownButton.pressed.connect(scroll_down)
-	%ChatFrame1BottomButton.pressed.connect(scroll_to_bottom)
+	super()
 	%ChatFrame1TabText.text = WowStrings.get_text("GENERAL")
-	for unused: String in [
-		"ChatFrame1ResizeTopLeft", "ChatFrame1ResizeTopRight", "ChatFrame1ResizeBottomLeft",
-		"ChatFrame1ResizeBottomRight", "ChatFrame1ResizeTop", "ChatFrame1ResizeBottom",
-		"ChatFrame1ResizeLeft", "ChatFrame1ResizeRight", "ChatFrameEditBoxLanguage",
-		"ChatFrame1TabDropDown",
-	]:
-		(get_node("%" + unused) as CanvasItem).hide()
+	%ChatFrameEditBoxLanguage.hide()
 	_edit_box.theme_type_variation = &"ChatEditBox"
 	# SetTextInsets moves with the header's width, so this one style is the edit box's own.
 	for state: StringName in [&"normal", &"focus", &"read_only"]:
