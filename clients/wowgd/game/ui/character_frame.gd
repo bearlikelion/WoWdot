@@ -5,6 +5,7 @@ signal close_requested
 signal item_hovered(slot: Inventory.Slot, button: ItemButton)
 signal item_left(button: ItemButton)
 signal item_used(slot: Inventory.Slot)
+signal unlearn_requested(skill_id: int, skill_name: String)
 
 enum Tab { CHARACTER = 1, PET, REPUTATION, SKILLS, HONOR }
 
@@ -87,6 +88,8 @@ func _ready() -> void:
 		var stat_label: Label = get_node("%%CharacterStatFrame%dLabel" % (i + 1))
 		stat_label.text = WowStrings.get_text("SPELL_STAT%d_NAME" % i) + ":"
 	%CharacterFrameCloseButton.pressed.connect(close_requested.emit)
+	%SkillFrame.close_requested.connect(close_requested.emit)
+	%SkillFrame.unlearn_requested.connect(unlearn_requested.emit)
 	# CharacterNameFrame raises its frame level on load so the name draws over the tab art.
 	move_child(%CharacterNameFrame, get_child_count() - 1)
 	_portrait = PORTRAIT.instantiate()
@@ -132,6 +135,10 @@ static func slot_label(slot: Inventory.Slot) -> String:
 		if SLOTS[slot_name][0] == slot:
 			return WowStrings.get_text(slot_name.to_upper() + "SLOT")
 	return ""
+
+
+func unlearn_skill(skill_id: int) -> void:
+	(%SkillFrame as SkillFrame).unlearn(skill_id)
 
 
 func current_tab() -> Tab:

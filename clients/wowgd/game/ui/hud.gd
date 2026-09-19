@@ -61,6 +61,7 @@ func _ready() -> void:
 		container.item_left.connect(_hide_tooltip)
 	_spell_book.spell_used.connect(spell_used.emit)
 	_quest_log.abandon_requested.connect(_on_abandon_requested)
+	_character.unlearn_requested.connect(_on_unlearn_requested)
 	_character.item_hovered.connect(_on_equipped_item_hovered)
 	_character.item_left.connect(_hide_tooltip)
 	_side_bars.action_used.connect(action_used.emit)
@@ -161,6 +162,11 @@ func _escape() -> void:
 
 func _on_abandon_requested(slot: int, title: String) -> void:
 	_popup.ask(WowStrings.get_text("ABANDON_QUEST_CONFIRM") % title, _quest_log.abandon.bind(slot))
+
+
+func _on_unlearn_requested(skill_id: int, skill_name: String) -> void:
+	var text: String = WowStrings.get_text("UNLEARN_SKILL") % skill_name
+	_popup.ask(text, _character.unlearn_skill.bind(skill_id), "UNLEARN", "CANCEL")
 
 
 # ToggleCharacter: the key for the tab already showing closes the frame.

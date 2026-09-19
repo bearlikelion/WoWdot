@@ -26,12 +26,14 @@ func _ready() -> void:
 	_cancel.pressed.connect(cancel)
 
 
-# StaticPopup_Show for a yes or no question, sized to its text as StaticPopup_Resize does.
-func ask(text: String, on_accept: Callable) -> void:
+# StaticPopup_Show for a two button question, sized to its text as StaticPopup_Resize does.
+func ask(
+	text: String, on_accept: Callable, accept_key: String = "YES", cancel_key: String = "NO",
+) -> void:
 	_on_accept = on_accept
 	_text.text = text
-	_set_button(_accept, WowStrings.get_text("YES"))
-	_set_button(_cancel, WowStrings.get_text("NO"))
+	_set_button(_accept, WowStrings.get_text(accept_key))
+	_set_button(_cancel, WowStrings.get_text(cancel_key))
 	var text_bottom: float = _text.position.y + _text.get_minimum_size().y
 	_accept.position = Vector2(
 		size.x / 2.0 + BUTTON_OFFSET.x - _accept.size.x, text_bottom + BUTTON_OFFSET.y,

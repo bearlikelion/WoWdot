@@ -1016,6 +1016,38 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			emit_signal("game_object_info_received", static_cast<int64_t>(data.entry));
 			return;
 		}
+		case LogicalOpcode::SMSG_INITIALIZE_FACTIONS: {
+			const uint32_t count = packet.readUInt32();
+			faction_flags.resize(0);
+			faction_standings.resize(0);
+			for (uint32_t i = 0; i < count && packet.hasRemaining(5); ++i) {
+				faction_flags.push_back(packet.readUInt8());
+				faction_standings.push_back(static_cast<int32_t>(packet.readUInt32()));
+			}
+			emit_signal("factions_changed");
+			return;
+		}
+		case LogicalOpcode::SMSG_SET_FACTION_STANDING: {
+			const uint32_t count = packet.readUInt32();
+			for (uint32_t i = 0; i < count && packet.hasRemaining(8); ++i) {
+				const int64_t index = packet.readUInt32();
+				const int32_t standing = static_cast<int32_t>(packet.readUInt32());
+				if (index < faction_standings.size()) {
+					faction_standings.set(index, standing);
+					// A standing change makes the faction show in the list.
+					faction_flags.set(index, faction_flags[index] | 0x01);
+				}
+			}
+			emit_signal("factions_changed");
+			return;
+		}
+		case LogicalOpcode::SMSG_SET_FACTION_VISIBLE: {
+			if (const int64_t index = packet.readUInt32(); index < faction_flags.size()) {
+				faction_flags.set(index, faction_flags[index] | 0x01);
+				emit_signal("factions_changed");
+			}
+			return;
+		}
 		case LogicalOpcode::SMSG_QUEST_QUERY_RESPONSE:
 			handle_quest_query(packet);
 			return;
@@ -1204,6 +1236,8 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("cancel_aura", "spell_id"), &WowSession::cancel_aura);
 	ClassDB::bind_method(D_METHOD("get_known_spells"), &WowSession::get_known_spells);
 	ClassDB::bind_method(D_METHOD("get_action_buttons"), &WowSession::get_action_buttons);
+	ClassDB::bind_method(D_METHOD("get_faction_flags"), &WowSession::get_faction_flags);
+	ClassDB::bind_method(D_METHOD("get_faction_standings"), &WowSession::get_faction_standings);
 	ClassDB::bind_method(D_METHOD("set_action_button", "slot", "packed"), &WowSession::set_action_button);
 	ClassDB::bind_method(D_METHOD("get_object_name", "guid"), &WowSession::get_object_name);
 	ClassDB::bind_method(D_METHOD("get_item_info", "entry"), &WowSession::get_item_info);
@@ -1238,6 +1272,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("chat_received", PropertyInfo(Variant::DICTIONARY, "line")));
 	ADD_SIGNAL(MethodInfo("spells_changed"));
 	ADD_SIGNAL(MethodInfo("action_buttons_changed"));
+	ADD_SIGNAL(MethodInfo("factions_changed"));
 	ADD_SIGNAL(MethodInfo("spell_cast_started", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cast_time_msec")));
 	ADD_SIGNAL(MethodInfo("spell_cast_finished", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id")));
 	ADD_SIGNAL(MethodInfo("spell_cast_failed", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "reason")));

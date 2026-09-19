@@ -108,15 +108,26 @@
   },
   "Faction": {
     "ID": 0,
-    "Name": 19,
+    "ReputationIndex": 1,
+    "ReputationRaceMask0": 2,
+    "ReputationRaceMask1": 3,
+    "ReputationRaceMask2": 4,
+    "ReputationRaceMask3": 5,
+    "ReputationClassMask0": 6,
+    "ReputationClassMask1": 7,
+    "ReputationClassMask2": 8,
+    "ReputationClassMask3": 9,
     "ReputationBase0": 10,
     "ReputationBase1": 11,
     "ReputationBase2": 12,
     "ReputationBase3": 13,
-    "ReputationRaceMask0": 2,
-    "ReputationRaceMask1": 3,
-    "ReputationRaceMask2": 4,
-    "ReputationRaceMask3": 5
+    "ReputationFlags0": 14,
+    "ReputationFlags1": 15,
+    "ReputationFlags2": 16,
+    "ReputationFlags3": 17,
+    "ParentFactionID": 18,
+    "Name": 19,
+    "Description": 28
   },
   "FactionTemplate": {
     "Enemy0": 6,
@@ -206,11 +217,25 @@
     "Category": 1,
     "ID": 0,
     "Name": 3,
-    "SpellIconID": 21
+    "SpellIconID": 21,
+    "Description": 12
   },
   "SkillLineAbility": {
     "SkillLineID": 1,
     "SpellID": 2
+  },
+  "SkillLineCategory": {
+    "ID": 0,
+    "Name": 1,
+    "SortIndex": 10
+  },
+  "SkillRaceClassInfo": {
+    "ID": 0,
+    "SkillID": 1,
+    "RaceMask": 2,
+    "ClassMask": 3,
+    "Flags": 4,
+    "MinLevel": 5
   },
   "Spell": {
     "ID": 0,

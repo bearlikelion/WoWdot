@@ -5,8 +5,10 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/wow_model_frame.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/item_button.tscn" id="4"]
 [ext_resource type="Script" path="res://game/ui/wow/wow_cooldown.gd" id="5"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="6"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="7"]
+[ext_resource type="Script" path="res://game/ui/skill_frame.gd" id="6"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="7"]
+[ext_resource type="Script" path="res://game/ui/reputation_frame.gd" id="8"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="9"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
@@ -3210,6 +3212,7 @@ vertical_alignment = 1
 
 [node name="SkillFrame" type="Control" parent="."]
 unique_name_in_owner = true
+script = ExtResource("6")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1
@@ -4063,7 +4066,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillListScrollFrame" type="Control" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("6")
+script = ExtResource("7")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -4222,7 +4225,7 @@ mouse_filter = 2
 
 [node name="SkillDetailScrollFrame" type="Control" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("6")
+script = ExtResource("7")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -5666,6 +5669,7 @@ expand_mode = 1
 
 [node name="ReputationFrame" type="Control" parent="."]
 unique_name_in_owner = true
+script = ExtResource("8")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1
@@ -8082,7 +8086,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="ReputationListScrollFrame" type="Control" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("6")
+script = ExtResource("7")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -8268,7 +8272,7 @@ visible = false
 mouse_filter = 0
 
 [node name="Backdrop" type="Control" parent="ReputationFrame/ReputationDetailFrame"]
-script = ExtResource("7")
+script = ExtResource("9")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

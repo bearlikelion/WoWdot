@@ -218,7 +218,9 @@
 		"CharacterDeleteDialog": "CharacterSelect"
 	},
 	"frame_scripts": {
-		"Minimap": "res://game/ui/minimap_view.gd"
+		"Minimap": "res://game/ui/minimap_view.gd",
+		"SkillFrame": "res://game/ui/skill_frame.gd",
+		"ReputationFrame": "res://game/ui/reputation_frame.gd"
 	},
 	"exclude": [
 		"VirtualKeypadFrame",

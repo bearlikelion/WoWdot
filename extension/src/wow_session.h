@@ -123,6 +123,9 @@ private:
 	std::unordered_map<uint32_t, Dictionary> quest_info;
 	std::unordered_set<uint32_t> quest_queries;
 	PackedInt32Array known_spells;
+	// Reputation list order: SMSG_INITIALIZE_FACTIONS flags and standings on top of Faction.dbc's base.
+	PackedByteArray faction_flags;
+	PackedInt32Array faction_standings;
 	// SMSG_ACTION_BUTTONS order: action id in the low 24 bits, the type in the high byte.
 	PackedInt32Array action_buttons;
 
@@ -166,6 +169,8 @@ public:
 	void cancel_aura(int spell_id);
 	PackedInt32Array get_known_spells() const { return known_spells; }
 	PackedInt32Array get_action_buttons() const { return action_buttons; }
+	PackedByteArray get_faction_flags() const { return faction_flags; }
+	PackedInt32Array get_faction_standings() const { return faction_standings; }
 	void set_action_button(int slot, int packed);
 	void set_selection(int64_t guid);
 	String get_object_name(int64_t guid);
