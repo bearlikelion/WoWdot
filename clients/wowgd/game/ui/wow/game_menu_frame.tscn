@@ -1,7 +1,8 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="1"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/game_menu.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
@@ -44,6 +45,7 @@ region = Rect2(0, 0, 80, 22)
 blend_mode = 1
 
 [node name="GameMenuFrame" type="Control"]
+script = ExtResource("1")
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -58,7 +60,7 @@ visible = false
 mouse_filter = 0
 
 [node name="Backdrop" type="Control" parent="."]
-script = ExtResource("1")
+script = ExtResource("2")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,18 +75,24 @@ insets = Vector4(11, 12, 12, 11)
 
 [node name="GameMenuFrameHeader" type="TextureRect" parent="."]
 unique_name_in_owner = true
-offset_left = -30.5
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128
 offset_top = -12
-offset_right = 225.5
+offset_right = 128
 offset_bottom = 52
 mouse_filter = 2
 texture = SubResource("WowTexture_3")
 expand_mode = 1
 
 [node name="FontString" type="Label" parent="."]
-offset_left = 97.5
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
 offset_top = 2
-offset_right = 97.5
+offset_right = 0
 offset_bottom = 14
 grow_horizontal = 2
 grow_vertical = 1
@@ -96,10 +104,13 @@ vertical_alignment = 1
 
 [node name="GameMenuButtonOptions" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25.5
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72
 offset_top = 26.5
-offset_right = 169.5
+offset_right = 72
 offset_bottom = 47.5
 ignore_texture_size = true
 
@@ -157,10 +168,13 @@ material = SubResource("CanvasItemMaterial_12")
 
 [node name="GameMenuButtonSoundOptions" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25.5
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72
 offset_top = 48.5
-offset_right = 169.5
+offset_right = 72
 offset_bottom = 69.5
 ignore_texture_size = true
 
@@ -218,10 +232,13 @@ material = SubResource("CanvasItemMaterial_12")
 
 [node name="GameMenuButtonUIOptions" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25.5
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72
 offset_top = 70.5
-offset_right = 169.5
+offset_right = 72
 offset_bottom = 91.5
 ignore_texture_size = true
 
@@ -279,10 +296,13 @@ material = SubResource("CanvasItemMaterial_12")
 
 [node name="GameMenuButtonKeybindings" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25.5
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72
 offset_top = 92.5
-offset_right = 169.5
+offset_right = 72
 offset_bottom = 113.5
 ignore_texture_size = true
 
@@ -340,10 +360,13 @@ material = SubResource("CanvasItemMaterial_12")
 
 [node name="GameMenuButtonMacros" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25.5
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72
 offset_top = 114.5
-offset_right = 169.5
+offset_right = 72
 offset_bottom = 135.5
 ignore_texture_size = true
 
@@ -401,10 +424,13 @@ material = SubResource("CanvasItemMaterial_12")
 
 [node name="GameMenuButtonLogout" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25.5
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72
 offset_top = 136.5
-offset_right = 169.5
+offset_right = 72
 offset_bottom = 157.5
 ignore_texture_size = true
 
@@ -462,10 +488,13 @@ material = SubResource("CanvasItemMaterial_12")
 
 [node name="GameMenuButtonQuit" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25.5
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72
 offset_top = 158.5
-offset_right = 169.5
+offset_right = 72
 offset_bottom = 179.5
 ignore_texture_size = true
 
@@ -523,10 +552,13 @@ material = SubResource("CanvasItemMaterial_12")
 
 [node name="GameMenuButtonContinue" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25.5
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72
 offset_top = 195.5
-offset_right = 169.5
+offset_right = 72
 offset_bottom = 216.5
 ignore_texture_size = true
 

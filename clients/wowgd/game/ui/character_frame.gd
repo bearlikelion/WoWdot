@@ -39,7 +39,7 @@ const SLOTS: Dictionary[String, Array] = {
 }
 const EMPTY_SLOT: String = "Interface\\PaperDoll\\UI-PaperDoll-Slot-%s.blp"
 const STAT_COUNT: int = 5
-# MagicResFrame1 to 5 show these UNIT_FIELD_RESISTANCES entries: arcane, fire, nature, frost, shadow.
+# MagicResFrame1 to 5 show UNIT_FIELD_RESISTANCES arcane, fire, nature, frost and shadow.
 const RESISTANCE_INDEXES: Array[int] = [6, 2, 3, 4, 5]
 # PaperDollFrame_OnLoad's stat labels.
 const STAT_LABELS: Dictionary[String, String] = {
@@ -51,6 +51,8 @@ const STAT_LABELS: Dictionary[String, String] = {
 	"CharacterRangedAttackPowerFrameLabel": "ATTACK_POWER_COLON",
 	"CharacterArmorFrameLabel": "ARMOR_COLON",
 }
+const PORTRAIT: PackedScene = preload("res://game/ui/unit_portrait.tscn")
+const PORTRAIT_MASK: Shader = preload("res://game/ui/portrait.gdshader")
 const ROTATE_DEGREES_PER_SECOND: float = 120.0
 const DRAG_DEGREES_PER_PIXEL: float = 0.6
 
@@ -58,6 +60,7 @@ var _tab: Tab = Tab.CHARACTER
 var _slot_buttons: Dictionary[Inventory.Slot, ItemButton] = {}
 var _empty_icons: Dictionary[Inventory.Slot, Texture2D] = {}
 var _worn: PackedInt32Array = []
+var _portrait: UnitPortrait
 
 @onready var _model: WowModelFrame = %CharacterModelFrameModel
 @onready var _rotate_left: BaseButton = %CharacterModelFrameRotateLeftButton
@@ -84,8 +87,19 @@ func _ready() -> void:
 		var stat_label: Label = get_node("%%CharacterStatFrame%dLabel" % (i + 1))
 		stat_label.text = WowStrings.get_text("SPELL_STAT%d_NAME" % i) + ":"
 	%CharacterFrameCloseButton.pressed.connect(close_requested.emit)
+	# CharacterNameFrame raises its frame level on load so the name draws over the tab art.
+	move_child(%CharacterNameFrame, get_child_count() - 1)
+	_portrait = PORTRAIT.instantiate()
+	add_child(_portrait)
+	var mask: ShaderMaterial = ShaderMaterial.new()
+	mask.shader = PORTRAIT_MASK
+	%CharacterFramePortrait.material = mask
+	%CharacterFramePortrait.texture = _portrait.get_texture()
 	%CharacterModelFrame.gui_input.connect(_on_model_input)
-	# The pet and honor tabs wait on pets and the PvP data.
+	# The pet and honor tabs wait on pets and the PvP data; the tabs after the pet tab close up.
+	var gap: float = %CharacterFrameTab3.position.x - %CharacterFrameTab2.position.x
+	for tab: Control in [%CharacterFrameTab3, %CharacterFrameTab4]:
+		tab.position.x -= gap
 	%CharacterFrameTab2.hide()
 	%CharacterFrameTab5.hide()
 	visibility_changed.connect(refresh)
@@ -115,8 +129,17 @@ func show_tab(tab: Tab) -> void:
 			normal.visible = not selected
 			chosen.visible = selected
 		var label: Label = get_node(prefix + "Text")
-		label.theme_type_variation = &"GameFontHighlightSmall" if selected else &"GameFontNormalSmall"
+		label.theme_type_variation = \
+		&"GameFontHighlightSmall" if selected else &"GameFontNormalSmall"
 	refresh()
+
+
+# The empty slot's tooltip, such as HEADSLOT.
+static func slot_label(slot: Inventory.Slot) -> String:
+	for slot_name: String in SLOTS:
+		if SLOTS[slot_name][0] == slot:
+			return WowStrings.get_text(slot_name.to_upper() + "SLOT")
+	return ""
 
 
 func current_tab() -> Tab:
@@ -143,6 +166,7 @@ func refresh() -> void:
 	var worn: PackedInt32Array = CharacterModels.visible_items(session, guid)
 	if worn != _worn or _model.get_node("%Scene").get_child_count() == 0:
 		_worn = worn
+		_portrait.show_unit(guid)
 		var display: int = session.get_field(guid, "UNIT_FIELD_DISPLAYID")
 		var look: Dictionary = CharacterModels.player_look(session, guid)
 		_model.frame_character(WowAssets.creatures.instantiate(display, look))
@@ -179,7 +203,7 @@ func _set_stats(session: WowSession, guid: int) -> void:
 		session.get_field_float(guid, "UNIT_FIELD_MINDAMAGE"),
 		session.get_field_float(guid, "UNIT_FIELD_MAXDAMAGE"),
 	]
-	# ponytail: attack rating as the level's weapon skill cap; the real skill comes with the skills tab.
+	# ponytail: attack rating is the level's skill cap; read the real skill with the skills tab.
 	%CharacterAttackFrameStatText.text = str(session.get_field(guid, "UNIT_FIELD_LEVEL") * 5)
 	var has_ranged: bool = Inventory.equipped(Inventory.Slot.RANGED) != 0
 	var not_applicable: String = WowStrings.get_text("NOT_APPLICABLE")

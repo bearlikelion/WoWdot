@@ -1,12 +1,9 @@
 [gd_scene format=3 uid="uid://bgr12idwovqlg"]
 
-[ext_resource type="Script" uid="uid://daoqrlc7577ep" path="res://game/ui/character_select.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://cy5341kr34ndw" path="res://game/ui/wow/wow_model_frame.tscn" id="2"]
-[ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://game/ui/wow/wow_button.gd" id="3"]
-[ext_resource type="Script" uid="uid://4halh0ojluje" path="res://game/ui/wow/wow_backdrop.gd" id="4"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_wji2p"]
-viewport_path = NodePath("CharacterSelectModel/Viewport")
+[ext_resource type="Script" path="res://game/ui/character_select.gd" id="1"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/wow_model_frame.tscn" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="4"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Glues\\Common\\Glues-WoW-Logo.blp"
@@ -32,15 +29,15 @@ file = "Interface\\Glues\\Common\\Glue-Panel-Button-Disabled.blp"
 atlas = SubResource("WowTexture_6")
 region = Rect2(0, 0, 148, 48)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_10"]
-blend_mode = 1
-
 [sub_resource type="WowTexture" id="WowTexture_8"]
 file = "Interface\\Glues\\Common\\Glue-Panel-Button-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_9"]
 atlas = SubResource("WowTexture_8")
 region = Rect2(0, 0, 160, 44)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_10"]
+blend_mode = 1
 
 [sub_resource type="WowTexture" id="WowTexture_11"]
 file = "Interface\\Glues\\CharacterCreate\\UI-RotationRight-Big-Up.blp"
@@ -93,1312 +90,1436 @@ file = "Interface\\ChatFrame\\UI-ChatInputBorder-Right.blp"
 atlas = SubResource("WowTexture_25")
 region = Rect2(181, 0, 75, 32)
 
-[node name="CharacterSelect" type="Control" unique_id=1768459136]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="CharacterSelect" type="Control"]
+script = ExtResource("1")
+anchor_right = 1
+anchor_bottom = 1
 grow_horizontal = 2
 grow_vertical = 2
+visible = false
 mouse_filter = 2
-script = ExtResource("1")
 
-[node name="CharacterSelectModel" parent="." unique_id=2142249700 instance=ExtResource("2")]
-unique_name_in_owner = true
-layout_mode = 1
-texture = SubResource("ViewportTexture_wji2p")
-
-[node name="CharacterSelectUI" type="Control" parent="." unique_id=889068262]
+[node name="CharacterSelectModel" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
-[node name="CharSelectCharacterName" type="Label" parent="CharacterSelectUI" unique_id=777272811]
+[node name="CharacterSelectUI" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 7
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 0
+
+[node name="CharSelectCharacterName" type="Label" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+layout_mode = 1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 1
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_top = -122.0
-offset_bottom = -100.0
+anchor_bottom = 1
+offset_left = 0
+offset_top = -122
+offset_right = 0
+offset_bottom = -100
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormalHuge"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CharacterSelectLogo" type="TextureRect" parent="CharacterSelectUI" unique_id=625668289]
+[node name="CharacterSelectLogo" type="TextureRect" parent="CharacterSelectUI"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 3.0
-offset_top = 7.0
-offset_right = 259.0
-offset_bottom = 135.0
+offset_left = 3
+offset_top = 7
+offset_right = 259
+offset_bottom = 135
 mouse_filter = 2
 texture = SubResource("WowTexture_1")
 expand_mode = 1
 
-[node name="CharSelectEnterWorldButton" type="TextureButton" parent="CharacterSelectUI" unique_id=1203144791]
+[node name="CharSelectEnterWorldButton" type="TextureButton" parent="CharacterSelectUI"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = -90.0
-offset_right = 100.0
-offset_bottom = -30.0
-ignore_texture_size = true
 script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -100
+offset_top = -90
+offset_right = 100
+offset_bottom = -30
+ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton" unique_id=894179442]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 60.0
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 60
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton" unique_id=29966530]
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 60
 visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 60.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton" unique_id=1169219419]
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 60
 visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 60.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7")
 expand_mode = 1
 
-[node name="CharSelectEnterWorldButtonText" type="Label" parent="CharacterSelectUI/CharSelectEnterWorldButton" unique_id=151712764]
+[node name="CharSelectEnterWorldButtonText" type="Label" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 97.0
+offset_left = 97
 offset_top = 19.5
-offset_right = 97.0
+offset_right = 97
 offset_bottom = 34.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
 text = "Enter World"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton" unique_id=1213177021]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 60
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 60.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_9")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharacterSelectRotateLeft" type="TextureButton" parent="CharacterSelectUI" unique_id=139027975]
+[node name="CharacterSelectRotateLeft" type="TextureButton" parent="CharacterSelectUI"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -49.0
-offset_right = 10.0
-offset_bottom = 1.0
-ignore_texture_size = true
 script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -40
+offset_top = -49
+offset_right = 10
+offset_bottom = 1
+ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft" unique_id=89565804]
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft"]
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
 mouse_filter = 2
 texture = SubResource("AtlasTexture_12")
 expand_mode = 1
 flip_h = true
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft" unique_id=2145186236]
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft"]
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
 visible = false
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_14")
 expand_mode = 1
 flip_h = true
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft" unique_id=79725713]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft"]
+offset_left = 10
+offset_top = 10
+offset_right = 40
+offset_bottom = 40
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 40.0
-offset_bottom = 40.0
 mouse_filter = 2
 texture = SubResource("WowTexture_15")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharacterSelectRotateRight" type="TextureButton" parent="CharacterSelectUI" unique_id=1789362232]
+[node name="CharacterSelectRotateRight" type="TextureButton" parent="CharacterSelectUI"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -9.0
-offset_top = -49.0
-offset_right = 41.0
-offset_bottom = 1.0
-ignore_texture_size = true
 script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -9
+offset_top = -49
+offset_right = 41
+offset_bottom = 1
+ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight" unique_id=1663431288]
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight"]
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
 mouse_filter = 2
 texture = SubResource("WowTexture_11")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight" unique_id=1728154198]
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight"]
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
 visible = false
-layout_mode = 0
-offset_right = 50.0
-offset_bottom = 50.0
 mouse_filter = 2
 texture = SubResource("WowTexture_13")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight" unique_id=647824398]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight"]
+offset_left = 10
+offset_top = 10
+offset_right = 40
+offset_bottom = 40
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 40.0
-offset_bottom = 40.0
 mouse_filter = 2
 texture = SubResource("WowTexture_15")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharacterSelectBackButton" type="TextureButton" parent="CharacterSelectUI" unique_id=336401264]
+[node name="CharacterSelectBackButton" type="TextureButton" parent="CharacterSelectUI"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -60.0
-offset_right = -30.0
-offset_bottom = -25.0
-ignore_texture_size = true
 script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -130
+offset_top = -60
+offset_right = -30
+offset_bottom = -25
+ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton" unique_id=1564529413]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 35.0
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 35
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton" unique_id=904864467]
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 35
 visible = false
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 35.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton" unique_id=15981729]
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 35
 visible = false
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 35.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7")
 expand_mode = 1
 
-[node name="CharacterSelectBackButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectBackButton" unique_id=1372656017]
+[node name="CharacterSelectBackButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectBackButton"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 50.0
+offset_left = 50
 offset_top = 8.5
-offset_right = 50.0
+offset_right = 50
 offset_bottom = 20.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormalSmall"
 text = "Back"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton" unique_id=904490092]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 35
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 35.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_9")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharacterSelectDeleteButton" type="TextureButton" parent="CharacterSelectUI" unique_id=646678105]
+[node name="CharacterSelectDeleteButton" type="TextureButton" parent="CharacterSelectUI"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -295.0
-offset_top = -60.0
-offset_right = -130.0
-offset_bottom = -25.0
-ignore_texture_size = true
 script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -295
+offset_top = -60
+offset_right = -130
+offset_bottom = -25
+ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton" unique_id=1740852315]
-layout_mode = 0
-offset_right = 165.0
-offset_bottom = 35.0
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 165
+offset_bottom = 35
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton" unique_id=1819613931]
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 165
+offset_bottom = 35
 visible = false
-layout_mode = 0
-offset_right = 165.0
-offset_bottom = 35.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton" unique_id=335713733]
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 165
+offset_bottom = 35
 visible = false
-layout_mode = 0
-offset_right = 165.0
-offset_bottom = 35.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7")
 expand_mode = 1
 
-[node name="CharacterSelectDeleteButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectDeleteButton" unique_id=1046808903]
+[node name="CharacterSelectDeleteButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_left = 82.5
 offset_top = 8.5
 offset_right = 82.5
 offset_bottom = 20.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormalSmall"
 text = "Delete Character"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton" unique_id=1144112483]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 165
+offset_bottom = 35
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_right = 165.0
-offset_bottom = 35.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_9")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharacterSelectCharacterFrame" type="Control" parent="CharacterSelectUI" unique_id=469771472]
+[node name="CharacterSelectCharacterFrame" type="Control" parent="CharacterSelectUI"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -265.0
-offset_top = 15.0
-offset_right = -5.0
-offset_bottom = 657.0
+anchor_left = 1
+anchor_right = 1
+offset_left = -265
+offset_top = 15
+offset_right = -5
+offset_bottom = 657
 mouse_filter = 2
 
-[node name="Backdrop" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=1526950512]
-texture_repeat = 2
+[node name="Backdrop" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+script = ExtResource("4")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("4")
 background = SubResource("WowTexture_16")
 edge = SubResource("WowTexture_17")
 tile = true
-tile_size = 16.0
-edge_size = 16.0
+tile_size = 16
+edge_size = 16
 insets = Vector4(10, 5, 4, 9)
 
-[node name="CharSelectRealmName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=867748489]
+[node name="CharSelectRealmName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 2.0
-offset_top = 10.0
-offset_right = 258.0
-offset_bottom = 23.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 2
+offset_top = 10
+offset_right = 258
+offset_bottom = 23
+mouse_filter = 2
 theme_type_variation = &"GlueFontDisableLarge"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="CharSelectChangeRealmButton" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=637718257]
+[node name="CharSelectChangeRealmButton" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 62.5
-offset_top = 23.0
-offset_right = 197.5
-offset_bottom = 56.0
-ignore_texture_size = true
 script = ExtResource("3")
+offset_left = 62.5
+offset_top = 23
+offset_right = 197.5
+offset_bottom = 56
+ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton" unique_id=869507262]
-layout_mode = 0
-offset_right = 135.0
-offset_bottom = 33.0
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 33
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton" unique_id=1766385024]
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 33
 visible = false
-layout_mode = 0
-offset_right = 135.0
-offset_bottom = 33.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton" unique_id=627363623]
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 33
 visible = false
-layout_mode = 0
-offset_right = 135.0
-offset_bottom = 33.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7")
 expand_mode = 1
 
-[node name="CharSelectChangeRealmButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton" unique_id=1394383315]
+[node name="CharSelectChangeRealmButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_left = 67.5
 offset_top = 7.5
 offset_right = 67.5
 offset_bottom = 19.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormalSmall"
 text = "Change Realm"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton" unique_id=244683450]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 33
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_right = 135.0
-offset_bottom = 33.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_9")
 expand_mode = 1
-
-[node name="CharSelectCharacterButton1" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=363698775]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 65.0
-offset_right = 280.0
-offset_bottom = 135.0
-ignore_texture_size = true
-script = ExtResource("3")
-
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1" unique_id=483761724]
-visible = false
 material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+
+[node name="CharSelectCharacterButton1" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 65
+offset_right = 280
+offset_bottom = 135
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton1ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1" unique_id=1705659820]
+[node name="CharSelectCharacterButton1ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton1ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText" unique_id=382510632]
+[node name="CharSelectCharacterButton1ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton1ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText" unique_id=926441293]
+[node name="CharSelectCharacterButton1ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton1ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText" unique_id=39357485]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton2" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=639681980]
+[node name="CharSelectCharacterButton1ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 122.0
-offset_right = 280.0
-offset_bottom = 192.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2" unique_id=172541856]
+[node name="CharSelectCharacterButton2" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 122
+offset_right = 280
+offset_bottom = 192
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton2ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2" unique_id=121190027]
+[node name="CharSelectCharacterButton2ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton2ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText" unique_id=37895433]
+[node name="CharSelectCharacterButton2ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton2ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText" unique_id=600137819]
+[node name="CharSelectCharacterButton2ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton2ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText" unique_id=1519177461]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton3" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=735353181]
+[node name="CharSelectCharacterButton2ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 179.0
-offset_right = 280.0
-offset_bottom = 249.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3" unique_id=1227870700]
+[node name="CharSelectCharacterButton3" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 179
+offset_right = 280
+offset_bottom = 249
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton3ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3" unique_id=786323915]
+[node name="CharSelectCharacterButton3ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton3ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText" unique_id=1623092102]
+[node name="CharSelectCharacterButton3ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton3ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText" unique_id=550217023]
+[node name="CharSelectCharacterButton3ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton3ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText" unique_id=1935004718]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton4" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=1007493944]
+[node name="CharSelectCharacterButton3ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 236.0
-offset_right = 280.0
-offset_bottom = 306.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4" unique_id=896212707]
+[node name="CharSelectCharacterButton4" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 236
+offset_right = 280
+offset_bottom = 306
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton4ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4" unique_id=670179560]
+[node name="CharSelectCharacterButton4ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton4ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText" unique_id=276546547]
+[node name="CharSelectCharacterButton4ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton4ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText" unique_id=1846697693]
+[node name="CharSelectCharacterButton4ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton4ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText" unique_id=1952946282]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton5" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=1503854037]
+[node name="CharSelectCharacterButton4ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 293.0
-offset_right = 280.0
-offset_bottom = 363.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5" unique_id=134991609]
+[node name="CharSelectCharacterButton5" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 293
+offset_right = 280
+offset_bottom = 363
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton5ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5" unique_id=1478337978]
+[node name="CharSelectCharacterButton5ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton5ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText" unique_id=696198792]
+[node name="CharSelectCharacterButton5ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton5ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText" unique_id=1846439748]
+[node name="CharSelectCharacterButton5ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton5ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText" unique_id=1999228813]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton6" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=1647431332]
+[node name="CharSelectCharacterButton5ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 350.0
-offset_right = 280.0
-offset_bottom = 420.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6" unique_id=799046891]
+[node name="CharSelectCharacterButton6" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 350
+offset_right = 280
+offset_bottom = 420
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton6ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6" unique_id=796000495]
+[node name="CharSelectCharacterButton6ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton6ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText" unique_id=50996]
+[node name="CharSelectCharacterButton6ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton6ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText" unique_id=508686456]
+[node name="CharSelectCharacterButton6ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton6ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText" unique_id=241393690]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton7" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=1728428185]
+[node name="CharSelectCharacterButton6ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 407.0
-offset_right = 280.0
-offset_bottom = 477.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7" unique_id=117307800]
+[node name="CharSelectCharacterButton7" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 407
+offset_right = 280
+offset_bottom = 477
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton7ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7" unique_id=1876690420]
+[node name="CharSelectCharacterButton7ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton7ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText" unique_id=1403534140]
+[node name="CharSelectCharacterButton7ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton7ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText" unique_id=1266284577]
+[node name="CharSelectCharacterButton7ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton7ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText" unique_id=668877987]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton8" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=791726214]
+[node name="CharSelectCharacterButton7ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 464.0
-offset_right = 280.0
-offset_bottom = 534.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8" unique_id=1005404500]
+[node name="CharSelectCharacterButton8" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 464
+offset_right = 280
+offset_bottom = 534
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton8ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8" unique_id=515139540]
+[node name="CharSelectCharacterButton8ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton8ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText" unique_id=1770981718]
+[node name="CharSelectCharacterButton8ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton8ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText" unique_id=874652339]
+[node name="CharSelectCharacterButton8ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton8ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText" unique_id=960521927]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton9" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=1042556904]
+[node name="CharSelectCharacterButton8ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 521.0
-offset_right = 280.0
-offset_bottom = 591.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9" unique_id=1767187536]
+[node name="CharSelectCharacterButton9" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 521
+offset_right = 280
+offset_bottom = 591
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton9ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9" unique_id=1590442765]
+[node name="CharSelectCharacterButton9ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton9ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText" unique_id=875714239]
+[node name="CharSelectCharacterButton9ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton9ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText" unique_id=1250378884]
+[node name="CharSelectCharacterButton9ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton9ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText" unique_id=489626571]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCharacterButton10" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=475941644]
+[node name="CharSelectCharacterButton9ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 578.0
-offset_right = 280.0
-offset_bottom = 648.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10" unique_id=1430994310]
+[node name="CharSelectCharacterButton10" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 578
+offset_right = 280
+offset_bottom = 648
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_left = -20.0
-offset_top = -8.0
-offset_right = 236.0
-offset_bottom = 66.0
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharSelectCharacterButton10ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10" unique_id=713879404]
+[node name="CharSelectCharacterButton10ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10"]
 unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 70.0
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
 mouse_filter = 2
 
-[node name="CharSelectCharacterButton10ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText" unique_id=267642080]
+[node name="CharSelectCharacterButton10ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 5.0
-offset_bottom = 20.0
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="CharSelectCharacterButton10ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText" unique_id=1287680919]
+[node name="CharSelectCharacterButton10ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 21.0
-offset_right = 217.0
-offset_bottom = 33.0
-grow_vertical = 2
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
 theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
 vertical_alignment = 1
-
-[node name="CharSelectCharacterButton10ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText" unique_id=1840190870]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 34.0
-offset_right = 217.0
-offset_bottom = 50.0
+grow_horizontal = 1
 grow_vertical = 2
-theme_type_variation = &"GlueFontDisableSmall"
-vertical_alignment = 1
 
-[node name="CharSelectCreateCharacterButton" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame" unique_id=899520437]
+[node name="CharSelectCharacterButton10ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 30.0
-offset_top = 582.0
-offset_right = 230.0
-offset_bottom = 627.0
-ignore_texture_size = true
-script = ExtResource("3")
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton" unique_id=515482673]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 45.0
+[node name="CharSelectCreateCharacterButton" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 30
+offset_top = 582
+offset_right = 230
+offset_bottom = 627
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 45
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton" unique_id=1176977008]
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 45
 visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 45.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton" unique_id=153256267]
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 45
 visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 45.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7")
 expand_mode = 1
 
-[node name="CharSelectCreateCharacterButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton" unique_id=1903526707]
+[node name="CharSelectCreateCharacterButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 100.0
+offset_left = 100
 offset_top = 13.5
-offset_right = 100.0
+offset_right = 100
 offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormalSmall"
 text = "Create New Character"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton" unique_id=1306926926]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 45
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 45.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_9")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharacterDeleteDialog" type="Control" parent="." unique_id=716636741]
+[node name="CharacterDeleteDialog" type="Control" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+mouse_filter = 0
 
-[node name="CharacterDeleteBackground" type="Control" parent="CharacterDeleteDialog" unique_id=2010236299]
+[node name="CharacterDeleteBackground" type="Control" parent="CharacterDeleteDialog"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -128.0
-offset_right = 256.0
-offset_bottom = 128.0
+offset_left = -256
+offset_top = -128
+offset_right = 256
+offset_bottom = 128
 mouse_filter = 2
 
-[node name="Backdrop" type="Control" parent="CharacterDeleteDialog/CharacterDeleteBackground" unique_id=1811795049]
-texture_repeat = 2
+[node name="Backdrop" type="Control" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
+script = ExtResource("4")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("4")
 background = SubResource("WowTexture_19")
 edge = SubResource("WowTexture_20")
 tile = true
-tile_size = 32.0
-edge_size = 32.0
+tile_size = 32
+edge_size = 32
 insets = Vector4(11, 12, 12, 11)
 
-[node name="CharacterDeleteText1" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground" unique_id=1571116677]
+[node name="CharacterDeleteText1" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 56.0
-offset_top = 16.0
-offset_right = 456.0
-offset_bottom = 34.0
+offset_left = 56
+offset_top = 16
+offset_right = 456
+offset_bottom = 34
 grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormalLarge"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CharacterDeleteText2" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground" unique_id=421860935]
+[node name="CharacterDeleteText2" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 56.0
-offset_top = 54.0
-offset_right = 456.0
-offset_bottom = 66.0
+offset_left = 56
+offset_top = 54
+offset_right = 456
+offset_bottom = 66
 grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormalSmall"
 text = "Type \"DELETE\" into the field to confirm."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CharacterDeleteAlertIcon" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground" unique_id=1613594983]
+[node name="CharacterDeleteAlertIcon" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 12.0
-offset_top = 86.0
-offset_right = 76.0
-offset_bottom = 150.0
+offset_left = 12
+offset_top = 86
+offset_right = 76
+offset_bottom = 150
 mouse_filter = 2
 texture = SubResource("WowTexture_21")
 expand_mode = 1
 
-[node name="CharacterDeleteButton1" type="TextureButton" parent="CharacterDeleteDialog/CharacterDeleteBackground" unique_id=613843376]
+[node name="CharacterDeleteButton1" type="TextureButton" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 50.0
-offset_top = 200.0
-offset_right = 250.0
-offset_bottom = 240.0
-ignore_texture_size = true
 script = ExtResource("3")
+offset_left = 50
+offset_top = 200
+offset_right = 250
+offset_bottom = 240
+ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1" unique_id=233289953]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
+[node name="NormalTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 40
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1" unique_id=1905820536]
+[node name="PushedTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 40
 visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1" unique_id=746644881]
+[node name="DisabledTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 40
 visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7")
 expand_mode = 1
 
-[node name="CharacterDeleteButton1Text" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1" unique_id=29323112]
+[node name="CharacterDeleteButton1Text" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 100.0
+offset_left = 100
 offset_top = 10.5
-offset_right = 100.0
+offset_right = 100
 offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
 text = "Okay"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1" unique_id=1966643832]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 40
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_9")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharacterDeleteButton2" type="TextureButton" parent="CharacterDeleteDialog/CharacterDeleteBackground" unique_id=102616975]
+[node name="CharacterDeleteButton2" type="TextureButton" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 263.0
-offset_top = 200.0
-offset_right = 463.0
-offset_bottom = 240.0
-ignore_texture_size = true
 script = ExtResource("3")
+offset_left = 263
+offset_top = 200
+offset_right = 463
+offset_bottom = 240
+ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2" unique_id=2040297237]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
+[node name="NormalTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 40
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2" unique_id=13909632]
+[node name="PushedTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 40
 visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2" unique_id=1471008507]
+[node name="DisabledTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 40
 visible = false
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7")
 expand_mode = 1
 
-[node name="CharacterDeleteButton2Text" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2" unique_id=1403166321]
+[node name="CharacterDeleteButton2Text" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 100.0
+offset_left = 100
 offset_top = 10.5
-offset_right = 100.0
+offset_right = 100
 offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2" unique_id=1503690862]
+[node name="HighlightTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 40
 visible = false
-material = SubResource("CanvasItemMaterial_10")
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_9")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
 
-[node name="CharacterDeleteEditBox" type="LineEdit" parent="CharacterDeleteDialog" unique_id=105500750]
+[node name="CharacterDeleteEditBox" type="LineEdit" parent="CharacterDeleteDialog"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = -57.0
-offset_right = 65.0
-offset_bottom = -25.0
+offset_left = -65
+offset_top = -57
+offset_right = 65
+offset_bottom = -25
+mouse_filter = 0
 theme_type_variation = &"GlueFontHighlight"
-theme_override_styles/normal = SubResource("StyleBoxEmpty_22")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_22")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_22")
 max_length = 32
 caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_22")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_22")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_22")
 
-[node name="Texture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteEditBox" unique_id=1851135403]
-layout_mode = 0
-offset_left = -10.0
-offset_right = 65.0
-offset_bottom = 32.0
+[node name="Texture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteEditBox"]
+offset_left = -10
+offset_top = 0
+offset_right = 65
+offset_bottom = 32
 mouse_filter = 2
 texture = SubResource("AtlasTexture_24")
 expand_mode = 1
 
-[node name="Texture2" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteEditBox" unique_id=1581012953]
-layout_mode = 0
-offset_left = 65.0
-offset_right = 140.0
-offset_bottom = 32.0
+[node name="Texture2" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteEditBox"]
+offset_left = 65
+offset_top = 0
+offset_right = 140
+offset_bottom = 32
 mouse_filter = 2
 texture = SubResource("AtlasTexture_26")
 expand_mode = 1

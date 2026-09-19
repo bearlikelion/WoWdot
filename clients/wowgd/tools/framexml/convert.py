@@ -39,7 +39,8 @@ WOW_MESSAGE_FRAME = "res://game/ui/wow/wow_message_frame.gd"
 WOW_SCROLLING_MESSAGE_FRAME = "res://game/ui/wow/wow_scrolling_message_frame.gd"
 WOW_MODEL_FRAME = "res://game/ui/wow/wow_model_frame.tscn"
 WOW_SCROLL_FRAME = "res://game/ui/wow/wow_scroll_frame.gd"
-MODEL_TAGS = {"Model", "ModelFFX", "PlayerModel", "DressUpModel"}
+# Frames that show a 3D scene; plain Models are cooldown spirals and sparkles drawn another way.
+MODEL_TAGS = {"ModelFFX", "PlayerModel", "DressUpModel", "TabardModel"}
 # Two root sizes the layout is solved at; how an edge moves between them gives its Godot anchor.
 LAYOUT_STRETCH = 2.0
 # The glue screens are laid out on the stock 1024x768 screen.
@@ -459,6 +460,8 @@ class Converter:
         size = root.size or (0.0, 0.0)
         if root.attrs.get("setAllPoints") == "true":
             size = SCREEN_SIZE
+        # Frames get resized at runtime (SetWidth), so every sized root is solved at two sizes.
+        if size[0] and size[1]:
             self.layout(root, (size[0] * LAYOUT_STRETCH, size[1] * LAYOUT_STRETCH))
             for w in widgets(root):
                 w.stretched, w.rect = w.rect, None

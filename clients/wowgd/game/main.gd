@@ -5,7 +5,7 @@ signal world_ready(world: World)
 
 const WORLD: PackedScene = preload("res://game/world/world.tscn")
 
-## Filled from `-- --realmlist= --account= --password= --character=` for scripted logins.
+## Filled from `-- --realmlist= --account= --password= --character=`; no character enters the first.
 @export var auto_realmlist: String = ""
 @export var auto_account: String = ""
 @export var auto_password: String = ""

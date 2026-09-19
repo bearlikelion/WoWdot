@@ -4,6 +4,7 @@ extends Control
 signal action_used(slot: int)
 signal panel_toggled(panel: GamePanel)
 signal bottom_bars_toggled(shown: bool)
+signal bag_toggled(bag: int)
 
 enum GamePanel {
 	CHARACTER, SPELLBOOK, TALENTS, QUEST_LOG, SOCIAL, WORLD_MAP, GAME_MENU, HELP, BAGS,
@@ -49,6 +50,7 @@ var _buttons: Array[ActionButton] = []
 var _bottom_left: Array[ActionButton] = []
 var _bottom_right: Array[ActionButton] = []
 var _shown_page: int = 0
+var _empty_bag_icons: Array[Texture2D] = []
 
 @onready var _page_number: Label = %MainMenuBarPageNumber
 @onready var _bottom_left_bar: Control = %MultiBarBottomLeft
@@ -79,6 +81,10 @@ func _ready() -> void:
 		button.pressed.connect(panel_toggled.emit.bind(_micro_buttons[button]))
 		button.mouse_entered.connect(_on_micro_button_hovered.bind(button))
 		button.mouse_exited.connect(_on_micro_button_left.bind(button))
+	for bag: int in range(1, Inventory.BAG_COUNT + 1):
+		var slot: WowButton = _bag_button(bag)
+		slot.pressed.connect(bag_toggled.emit.bind(bag))
+		_empty_bag_icons.append(_bag_icon(bag).texture)
 	%ActionBarUpButton.pressed.connect(func() -> void: page += 1)
 	%ActionBarDownButton.pressed.connect(func() -> void: page -= 1)
 	_xp_bar.mouse_filter = Control.MOUSE_FILTER_PASS
@@ -92,6 +98,7 @@ func _ready() -> void:
 	_assign_slots()
 	_update_xp()
 	_update_bottom_bars()
+	_update_bags()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -170,6 +177,29 @@ func _hotkey_text(action: String) -> String:
 	return ""
 
 
+# The backpack button and the bag slots stay checked while their bag is open.
+func set_bag_open(bag: int, is_open: bool) -> void:
+	_bag_button(bag).checked = is_open
+
+
+func _bag_button(bag: int) -> WowButton:
+	if bag == Inventory.BACKPACK:
+		return %MainMenuBarBackpackButton
+	return get_node("%%CharacterBag%dSlot" % (bag - 1))
+
+
+func _bag_icon(bag: int) -> TextureRect:
+	return get_node("%%CharacterBag%dSlotIconTexture" % (bag - 1))
+
+
+func _update_bags() -> void:
+	for bag: int in range(1, Inventory.BAG_COUNT + 1):
+		var slot: Inventory.Slot = (Inventory.Slot.BAG_1 + bag - 1) as Inventory.Slot
+		var bag_entry: int = Inventory.entry(Inventory.equipped(slot))
+		var icon: Texture2D = Inventory.icon(bag_entry) if bag_entry else null
+		_bag_icon(bag).texture = icon if icon else _empty_bag_icons[bag - 1]
+
+
 func _on_micro_button_hovered(button: BaseButton) -> void:
 	if GameTooltip.current == null:
 		return
@@ -189,3 +219,4 @@ func _on_object_updated(guid: int) -> void:
 	if guid == WowClient.session.get_player_guid():
 		_update_xp()
 		_assign_slots()
+		_update_bags()

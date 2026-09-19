@@ -11,6 +11,7 @@ const CENTER_POSITION: Vector2 = Vector2(384.0, 104.0)
 # UIPanelWindows: where each panel opens and how readily it moves aside for another.
 const PANELS: Dictionary[StringName, Array] = {
 	&"CharacterFrame": [Area.LEFT, 2],
+	&"SpellBookFrame": [Area.LEFT, 0],
 	&"GameMenuFrame": [Area.CENTER, 0],
 }
 # updateContainerFrameAnchors: bags stack up from the bottom right, starting a new column when full.

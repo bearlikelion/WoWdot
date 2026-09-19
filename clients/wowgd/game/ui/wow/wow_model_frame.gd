@@ -82,7 +82,8 @@ func frame_character(model: Node3D) -> void:
 		var box: AABB = model.transform * mesh.get_aabb()
 		bounds = bounds.merge(box) if bounds.has_volume() else box
 	var center: Vector3 = bounds.get_center()
-	var distance: float = bounds.size.y / 2.0 / tan(deg_to_rad(CHARACTER_FOV) / 2.0) * CHARACTER_MARGIN
+	var half_fov: float = deg_to_rad(CHARACTER_FOV) / 2.0
+	var distance: float = bounds.size.y / 2.0 / tan(half_fov) * CHARACTER_MARGIN
 	_diagonal_fov = 0.0
 	_camera.fov = CHARACTER_FOV
 	_camera.look_at_from_position(center + Vector3(0.0, 0.0, distance), center)

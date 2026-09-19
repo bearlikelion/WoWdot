@@ -1,7 +1,8 @@
 class_name GameTooltip
 extends Control
 
-enum TooltipAnchor { DEFAULT, BOTTOM_LEFT, BOTTOM_RIGHT }
+# LEFT and RIGHT are WoW's ANCHOR_LEFT and ANCHOR_RIGHT, which sit above the owner.
+enum TooltipAnchor { DEFAULT, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT, RIGHT }
 
 const LINE: PackedScene = preload("res://game/ui/tooltip_line.tscn")
 const PADDING: Vector2 = Vector2(10.0, 10.0)
@@ -15,6 +16,28 @@ const GRAY: Color = Color(0.5, 0.5, 0.5)
 const HOSTILE_NAME: Color = Color(0.8, 0.3, 0.22)
 const NEUTRAL_NAME: Color = Color(0.9, 0.7, 0.0)
 const FRIENDLY_NAME: Color = Color(0.0, 0.6, 0.1)
+const RED: Color = Color(1.0, 0.13, 0.13)
+# ITEM_QUALITY0_COLOR to ITEM_QUALITY6_COLOR, poor to artifact.
+const QUALITY_COLORS: Array[Color] = [
+	Color(0.62, 0.62, 0.62), Color(1.0, 1.0, 1.0), Color(0.12, 1.0, 0.0), Color(0.0, 0.44, 0.87),
+	Color(0.64, 0.21, 0.93), Color(1.0, 0.5, 0.0), Color(0.9, 0.8, 0.5),
+]
+# The INVTYPE_ string for each item InventoryType; bags and ammo name no slot.
+const INVENTORY_TYPES: PackedStringArray = [
+	"", "INVTYPE_HEAD", "INVTYPE_NECK", "INVTYPE_SHOULDER", "INVTYPE_BODY", "INVTYPE_CHEST",
+	"INVTYPE_WAIST", "INVTYPE_LEGS", "INVTYPE_FEET", "INVTYPE_WRIST", "INVTYPE_HAND",
+	"INVTYPE_FINGER", "INVTYPE_TRINKET", "INVTYPE_WEAPON", "INVTYPE_SHIELD", "INVTYPE_RANGED",
+	"INVTYPE_CLOAK", "INVTYPE_2HWEAPON", "", "INVTYPE_TABARD", "INVTYPE_ROBE",
+	"INVTYPE_WEAPONMAINHAND", "INVTYPE_WEAPONOFFHAND", "INVTYPE_HOLDABLE", "", "INVTYPE_THROWN",
+	"INVTYPE_RANGEDRIGHT", "", "INVTYPE_RELIC",
+]
+const ITEM_STATS: Dictionary[String, String] = {
+	"strength": "ITEM_MOD_STRENGTH",
+	"agility": "ITEM_MOD_AGILITY",
+	"stamina": "ITEM_MOD_STAMINA",
+	"intellect": "ITEM_MOD_INTELLECT",
+	"spirit": "ITEM_MOD_SPIRIT",
+}
 const CREATURE_TYPE_NOT_SPECIFIED: int = 10
 const SKULL_LEVEL_GAP: int = 10
 
@@ -96,8 +119,10 @@ func hide_for(owner: Object) -> void:
 		hide()
 
 
-func set_spell(owner: Object, spell_id: int) -> void:
-	begin(owner)
+func set_spell(
+	owner: Object, spell_id: int, anchor: TooltipAnchor = TooltipAnchor.DEFAULT,
+) -> void:
+	begin(owner, anchor, owner as Control)
 	var spells: SpellInfo = WowAssets.spells
 	add_double_line(spells.spell_name(spell_id), spells.rank(spell_id), HIGHLIGHT, GRAY)
 	_add_pair(SpellText.cost(spell_id), SpellText.range_text(spell_id))
@@ -115,6 +140,55 @@ func set_aura(owner: Control, spell_id: int, anchor: TooltipAnchor) -> void:
 	if not tooltip.is_empty():
 		add_line(tooltip, NORMAL, true)
 	present()
+
+
+# SetBagItem and SetInventoryItem: false while the item query has not answered yet.
+func set_item(
+	owner: Control, item_entry: int, item: int = 0, anchor: TooltipAnchor = TooltipAnchor.RIGHT,
+) -> bool:
+	var info: Dictionary = WowClient.session.get_item_info(item_entry)
+	if info.is_empty():
+		hide_for(owner)
+		return false
+	begin(owner, anchor, owner)
+	add_line(info["name"], QUALITY_COLORS[clampi(info["quality"], 0, QUALITY_COLORS.size() - 1)])
+	if item and Inventory.is_soulbound(item):
+		add_line(WowStrings.get_text("ITEM_SOULBOUND"))
+	var inventory_type: int = info["inventory_type"]
+	if inventory_type < INVENTORY_TYPES.size() and not INVENTORY_TYPES[inventory_type].is_empty():
+		add_line(WowStrings.get_text(INVENTORY_TYPES[inventory_type]))
+	if info["armor"] > 0:
+		add_line(WowStrings.get_text("ARMOR_TEMPLATE") % info["armor"])
+	if info["damage_max"] > 0.0:
+		var speed: float = info["delay_msec"] / 1000.0
+		add_double_line(
+			WowStrings.get_text("DAMAGE_TEMPLATE") % [info["damage_min"], info["damage_max"]],
+			"%s %.2f" % [WowStrings.get_text("SPEED"), speed],
+		)
+		var average: float = (info["damage_min"] + info["damage_max"]) / 2.0
+		add_line(WowStrings.get_text("DPS_TEMPLATE") % (average / maxf(speed, 0.001)))
+	for stat: String in ITEM_STATS:
+		var amount: int = info[stat]
+		if amount != 0:
+			var line: String = WowStrings.get_text(ITEM_STATS[stat])
+			add_line(line.replace("%c", "+" if amount > 0 else "-") % absi(amount))
+	if info["container_slots"] > 0:
+		add_line(WowStrings.get_text("CONTAINER_SLOTS") % [
+			info["container_slots"], WowStrings.get_text("INVTYPE_BAG"),
+		])
+	var session: WowSession = WowClient.session
+	var durability: int = session.get_field(item, "ITEM_FIELD_MAXDURABILITY") if item else 0
+	if durability > 0:
+		add_line(WowStrings.get_text("DURABILITY_TEMPLATE") % [
+			session.get_field(item, "ITEM_FIELD_DURABILITY"), durability,
+		])
+	var required: int = info["required_level"]
+	if required > 1:
+		var level: int = session.get_field(session.get_player_guid(), "UNIT_FIELD_LEVEL")
+		var color: Color = RED if level < required else HIGHLIGHT
+		add_line(WowStrings.get_text("ITEM_MIN_LEVEL") % required, color)
+	present()
+	return true
 
 
 func set_text(owner: Object, title: String, text: String = "", right: String = "") -> void:
@@ -198,9 +272,13 @@ func _fit() -> void:
 	if _anchor != TooltipAnchor.DEFAULT and is_instance_valid(_anchor_to):
 		var to_parent: Transform2D = parent.get_global_transform().affine_inverse()
 		var owner_rect: Rect2 = to_parent * _anchor_to.get_global_rect()
-		at = owner_rect.position + Vector2(0.0, owner_rect.size.y)
-		if _anchor == TooltipAnchor.BOTTOM_LEFT:
-			at.x -= size.x
-		else:
-			at.x += owner_rect.size.x
+		match _anchor:
+			TooltipAnchor.BOTTOM_LEFT:
+				at = owner_rect.position + Vector2(-size.x, owner_rect.size.y)
+			TooltipAnchor.BOTTOM_RIGHT:
+				at = owner_rect.end
+			TooltipAnchor.LEFT:
+				at = owner_rect.position - size
+			TooltipAnchor.RIGHT:
+				at = owner_rect.position + Vector2(owner_rect.size.x, -size.y)
 	position = at.clamp(Vector2.ZERO, (parent.size - size).max(Vector2.ZERO))

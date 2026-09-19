@@ -13,7 +13,6 @@ func _ready() -> void:
 	_main = MAIN.instantiate()
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
-	_main.auto_character = "Tessaline"
 	add_child(_main)
 	_run.call_deferred()
 
@@ -28,9 +27,26 @@ func _run() -> void:
 	var hud: Hud = _main.world.hud()
 	var session: WowSession = WowClient.session
 	var me: int = session.get_player_guid()
+	var player: Player = _main.world.player()
+	var nearest: Vector3 = Vector3.INF
+	for guid: int in session.get_object_guids():
+		if session.get_object_type(guid) != Entities.ObjectType.UNIT \
+		or UnitReaction.between(session, me, guid) == UnitReaction.Reaction.FRIENDLY \
+		or session.get_field(guid, "UNIT_FIELD_HEALTH") == 0:
+			continue
+		var at: Vector3 = WowCoords.to_godot(session.get_object_position(guid))
+		var here: Vector3 = player.global_position
+		if at.distance_to(here) < minf(30.0, nearest.distance_to(here)):
+			nearest = at
+	if nearest == Vector3.INF:
+		print("no enemy within 30 yards; Tab has nothing to find here")
+		return _finish("")
+	var toward: Vector3 = nearest - player.global_position
+	player.rotation.y = atan2(-toward.x, -toward.z)
+	await _frames(20)
 	var entities: Entities = _main.world.get_node("Entities")
 	var camera: Camera3D = get_viewport().get_camera_3d()
-	var nearby: Array[int] = entities.visible_units(_main.world.player().global_position, 40.0, camera)
+	var nearby: Array[int] = entities.visible_units(player.global_position, 40.0, camera)
 	var enemies: int = 0
 	for guid: int in nearby:
 		if UnitReaction.between(session, me, guid) != UnitReaction.Reaction.FRIENDLY:
@@ -45,7 +61,7 @@ func _run() -> void:
 	await _press(KEY_TAB)
 	var second: int = hud.target()
 	print("%d enemies on screen, Tab picked %d then %d" % [enemies, first, second])
-	_check((second != first) == (enemies > 1), "a second Tab moves on only when there is another enemy")
+	_check((second != first) == (enemies > 1), "a second Tab moves on when there is another enemy")
 	await _press(KEY_TAB, true)
 	_check(hud.target() == first, "Shift+Tab goes back")
 	await _press(KEY_F1)

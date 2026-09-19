@@ -2,11 +2,17 @@ class_name SpellInfo
 extends RefCounted
 
 const QUESTION_MARK_ICON: String = "Interface\\Icons\\INV_Misc_QuestionMark"
+const GENERAL_TAB_ICON: String = "Interface\\Icons\\INV_Misc_Book_09"
+const SKILL_CATEGORY_CLASS: int = 7
+const SPELL_ATTR_DO_NOT_DISPLAY: int = 0x80
 
 var _spells: WowDBC
 var _icons: WowDBC
 var _cast_times: WowDBC
 var _icon_textures: Dictionary[String, WowTexture] = {}
+var _skill_lines: WowDBC
+# Each spell's class skill line, such as Arms, from SkillLineAbility.
+var _class_lines: Dictionary[int, int] = {}
 
 
 func _init(archive: WowArchive) -> void:
@@ -68,6 +74,74 @@ func dispel_type(spell_id: int) -> int:
 func is_passive(spell_id: int) -> bool:
 	const SPELL_ATTR_PASSIVE: int = 0x40
 	return _uint(spell_id, "Attributes") & SPELL_ATTR_PASSIVE != 0
+
+
+# Spells the stock spellbook lists; weapon and armor skills, languages and internal spells hide.
+func is_displayed(spell_id: int) -> bool:
+	return _uint(spell_id, "Attributes") & SPELL_ATTR_DO_NOT_DISPLAY == 0
+
+
+# GetSpellTabInfo as {name, icon, spells}: General, then class skill lines in talent tree order.
+func book_tabs(known: PackedInt32Array) -> Array[Dictionary]:
+	if _skill_lines == null:
+		_load_skill_lines()
+	var general: Array[int] = []
+	var by_line: Dictionary[int, Array] = {}
+	for spell: int in known:
+		if not is_displayed(spell):
+			continue
+		var line: int = _class_lines.get(spell, 0)
+		if line == 0:
+			general.append(spell)
+		else:
+			if not by_line.has(line):
+				by_line[line] = []
+			by_line[line].append(spell)
+	var tabs: Array[Dictionary] = [{
+		"name": WowStrings.get_text("GENERAL"),
+		"icon": icon_texture(GENERAL_TAB_ICON),
+		"spells": _by_name_and_rank(general),
+	}]
+	var lines: Array[int] = []
+	lines.assign(by_line.keys())
+	lines.sort_custom(func(a: int, b: int) -> bool: return _line_name(a) < _line_name(b))
+	for line: int in lines:
+		var spells: Array[int] = []
+		spells.assign(by_line[line])
+		var icon_id: int = _skill_lines.get_uint(_skill_lines.find(line), "SpellIconID")
+		var icon_row: int = _icons.find(icon_id)
+		tabs.append({
+			"name": _line_name(line),
+			"icon": icon_texture(
+				_icons.get_string(icon_row, "Path") if icon_row >= 0 else QUESTION_MARK_ICON
+			),
+			"spells": _by_name_and_rank(spells),
+		})
+	return tabs
+
+
+func _load_skill_lines() -> void:
+	_skill_lines = WowDBC.open(WowAssets.archive, "SkillLine")
+	var abilities: WowDBC = WowDBC.open(WowAssets.archive, "SkillLineAbility")
+	for row: int in abilities.row_count():
+		var line: int = abilities.get_uint(row, "SkillLineID")
+		var line_row: int = _skill_lines.find(line)
+		if line_row >= 0 and _skill_lines.get_uint(line_row, "Category") == SKILL_CATEGORY_CLASS:
+			_class_lines[abilities.get_uint(row, "SpellID")] = line
+
+
+func _line_name(line: int) -> String:
+	return _skill_lines.get_string(_skill_lines.find(line), "Name")
+
+
+func _by_name_and_rank(spells: Array[int]) -> Array[int]:
+	var sorted: Array[int] = spells.duplicate()
+	sorted.sort_custom(func(a: int, b: int) -> bool:
+		if spell_name(a) != spell_name(b):
+			return spell_name(a) < spell_name(b)
+		return rank(a).to_int() < rank(b).to_int()
+	)
+	return sorted
 
 
 func _string(spell_id: int, column: String) -> String:

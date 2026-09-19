@@ -23,13 +23,14 @@ static var _icons: Dictionary[int, Texture2D] = {}
 
 static func equipped(slot: Slot) -> int:
 	var session: WowSession = WowClient.session
-	return _guid(session.get_player_guid(), session.field_index("PLAYER_FIELD_INV_SLOT_HEAD") + slot * 2)
+	var first: int = session.field_index("PLAYER_FIELD_INV_SLOT_HEAD")
+	return _guid(session.get_player_guid(), first + slot * 2)
 
 
 static func container_size(bag: int) -> int:
 	if bag == BACKPACK:
 		return BACKPACK_SLOTS
-	var container: int = equipped(Slot.BAG_1 + bag - 1)
+	var container: int = equipped((Slot.BAG_1 + bag - 1) as Slot)
 	return WowClient.session.get_field(container, "CONTAINER_FIELD_NUM_SLOTS") if container else 0
 
 
@@ -40,7 +41,7 @@ static func container_item(bag: int, slot: int) -> int:
 		return _guid(
 			session.get_player_guid(), session.field_index("PLAYER_FIELD_PACK_SLOT_1") + slot * 2
 		)
-	var container: int = equipped(Slot.BAG_1 + bag - 1)
+	var container: int = equipped((Slot.BAG_1 + bag - 1) as Slot)
 	if container == 0:
 		return 0
 	return _guid(container, session.field_index("CONTAINER_FIELD_SLOT_1") + slot * 2)

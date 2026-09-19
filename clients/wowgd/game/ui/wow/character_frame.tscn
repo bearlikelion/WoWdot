@@ -1,11 +1,12 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="1"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/wow_model_frame.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/item_button.tscn" id="3"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_cooldown.gd" id="4"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="5"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="6"]
+[ext_resource type="Script" path="res://game/ui/character_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/wow_model_frame.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/item_button.tscn" id="4"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_cooldown.gd" id="5"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="6"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="7"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
@@ -445,6 +446,7 @@ file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-BottomLeft.blp"
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-BottomRight.blp"
 
 [node name="CharacterFrame" type="Control"]
+script = ExtResource("1")
 anchor_left = 0
 anchor_top = 0
 anchor_right = 0
@@ -469,10 +471,15 @@ expand_mode = 1
 
 [node name="CharacterNameFrame" type="Control" parent="."]
 unique_name_in_owner = true
-offset_left = 143.5
-offset_top = 18
-offset_right = 252.5
-offset_bottom = 30
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -238
+offset_right = 60.5
+offset_bottom = -226
 mouse_filter = 2
 
 [node name="CharacterNameText" type="Label" parent="CharacterNameFrame"]
@@ -491,10 +498,13 @@ grow_vertical = 2
 
 [node name="CharacterFrameCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1")
-offset_left = 324
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -60
 offset_top = 9
-offset_right = 356
+offset_right = -28
 offset_bottom = 41
 ignore_texture_size = true
 
@@ -530,11 +540,14 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="CharacterFrameTab1" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 2.5
-offset_top = 434
+offset_top = -78
 offset_right = 117.5
-offset_bottom = 466
+offset_bottom = -46
 ignore_texture_size = true
 
 [node name="CharacterFrameTab1LeftDisabled" type="TextureRect" parent="CharacterFrameTab1"]
@@ -624,11 +637,14 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="CharacterFrameTab2" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 101.5
-offset_top = 434
+offset_top = -78
 offset_right = 216.5
-offset_bottom = 466
+offset_bottom = -46
 ignore_texture_size = true
 
 [node name="CharacterFrameTab2LeftDisabled" type="TextureRect" parent="CharacterFrameTab2"]
@@ -718,11 +734,14 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="CharacterFrameTab3" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 200.5
-offset_top = 434
+offset_top = -78
 offset_right = 315.5
-offset_bottom = 466
+offset_bottom = -46
 ignore_texture_size = true
 
 [node name="CharacterFrameTab3LeftDisabled" type="TextureRect" parent="CharacterFrameTab3"]
@@ -812,11 +831,14 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="CharacterFrameTab4" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 299.5
-offset_top = 434
+offset_top = -78
 offset_right = 414.5
-offset_bottom = 466
+offset_bottom = -46
 ignore_texture_size = true
 
 [node name="CharacterFrameTab4LeftDisabled" type="TextureRect" parent="CharacterFrameTab4"]
@@ -906,11 +928,14 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="CharacterFrameTab5" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 398.5
-offset_top = 434
+offset_top = -78
 offset_right = 513.5
-offset_bottom = 466
+offset_bottom = -46
 ignore_texture_size = true
 
 [node name="CharacterFrameTab5LeftDisabled" type="TextureRect" parent="CharacterFrameTab5"]
@@ -1000,10 +1025,13 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="PaperDollFrame" type="Control" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
 offset_left = 0
 offset_top = 0
-offset_right = 384
-offset_bottom = 512
+offset_right = 0
+offset_bottom = 0
 mouse_filter = 0
 
 [node name="Texture" type="TextureRect" parent="PaperDollFrame"]
@@ -1044,10 +1072,15 @@ expand_mode = 1
 
 [node name="CharacterLevelText" type="Label" parent="PaperDollFrame"]
 unique_name_in_owner = true
-offset_left = 198
-offset_top = 36
-offset_right = 198
-offset_bottom = 46
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6
+offset_top = -220
+offset_right = 6
+offset_bottom = -210
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -1058,10 +1091,15 @@ vertical_alignment = 1
 
 [node name="CharacterTitleText" type="Label" parent="PaperDollFrame"]
 unique_name_in_owner = true
-offset_left = 198
-offset_top = 47
-offset_right = 198
-offset_bottom = 57
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6
+offset_top = -209
+offset_right = 6
+offset_bottom = -199
 grow_horizontal = 2
 grow_vertical = 1
 visible = false
@@ -1073,10 +1111,15 @@ vertical_alignment = 1
 
 [node name="CharacterGuildText" type="Label" parent="PaperDollFrame"]
 unique_name_in_owner = true
-offset_left = 198
-offset_top = 47
-offset_right = 198
-offset_bottom = 57
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6
+offset_top = -209
+offset_right = 6
+offset_bottom = -199
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -1092,7 +1135,7 @@ offset_right = 298
 offset_bottom = 302
 mouse_filter = 2
 
-[node name="CharacterModelFrameModel" parent="PaperDollFrame/CharacterModelFrame" instance=ExtResource("2")]
+[node name="CharacterModelFrameModel" parent="PaperDollFrame/CharacterModelFrame" instance=ExtResource("3")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -1102,7 +1145,7 @@ mouse_filter = 2
 
 [node name="CharacterModelFrameRotateLeftButton" type="TextureButton" parent="PaperDollFrame/CharacterModelFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 35
@@ -1141,7 +1184,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="CharacterModelFrameRotateRightButton" type="TextureButton" parent="PaperDollFrame/CharacterModelFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 35
 offset_top = 0
 offset_right = 70
@@ -1943,146 +1986,158 @@ text = "X"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CharacterHeadSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterHeadSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 74
 offset_right = 58
 offset_bottom = 111
 
-[node name="CharacterNeckSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterNeckSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 115
 offset_right = 58
 offset_bottom = 152
 
-[node name="CharacterShoulderSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterShoulderSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 156
 offset_right = 58
 offset_bottom = 193
 
-[node name="CharacterBackSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterBackSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 197
 offset_right = 58
 offset_bottom = 234
 
-[node name="CharacterChestSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterChestSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 238
 offset_right = 58
 offset_bottom = 275
 
-[node name="CharacterShirtSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterShirtSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 279
 offset_right = 58
 offset_bottom = 316
 
-[node name="CharacterTabardSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterTabardSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 320
 offset_right = 58
 offset_bottom = 357
 
-[node name="CharacterWristSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterWristSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 361
 offset_right = 58
 offset_bottom = 398
 
-[node name="CharacterHandsSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterHandsSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 74
 offset_right = 342
 offset_bottom = 111
 
-[node name="CharacterWaistSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterWaistSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 115
 offset_right = 342
 offset_bottom = 152
 
-[node name="CharacterLegsSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterLegsSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 156
 offset_right = 342
 offset_bottom = 193
 
-[node name="CharacterFeetSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterFeetSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 197
 offset_right = 342
 offset_bottom = 234
 
-[node name="CharacterFinger0Slot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterFinger0Slot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 238
 offset_right = 342
 offset_bottom = 275
 
-[node name="CharacterFinger1Slot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterFinger1Slot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 279
 offset_right = 342
 offset_bottom = 316
 
-[node name="CharacterTrinket0Slot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterTrinket0Slot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 320
 offset_right = 342
 offset_bottom = 357
 
-[node name="CharacterTrinket1Slot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterTrinket1Slot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 361
 offset_right = 342
 offset_bottom = 398
 
-[node name="CharacterMainHandSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterMainHandSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 122
-offset_top = 385
+offset_top = -127
 offset_right = 159
-offset_bottom = 422
+offset_bottom = -90
 
-[node name="CharacterSecondaryHandSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterSecondaryHandSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 164
-offset_top = 385
+offset_top = -127
 offset_right = 201
-offset_bottom = 422
+offset_bottom = -90
 
-[node name="CharacterRangedSlot" parent="PaperDollFrame" instance=ExtResource("3")]
+[node name="CharacterRangedSlot" parent="PaperDollFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 206
-offset_top = 385
+offset_top = -127
 offset_right = 243
-offset_bottom = 422
+offset_bottom = -90
 
 [node name="CharacterAmmoSlot" type="TextureButton" parent="PaperDollFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 258
-offset_top = 390
+offset_top = -122
 offset_right = 285
-offset_bottom = 417
+offset_bottom = -95
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="PaperDollFrame/CharacterAmmoSlot"]
@@ -2172,7 +2227,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="CharacterAmmoSlotCooldown" type="Control" parent="PaperDollFrame/CharacterAmmoSlot"]
 unique_name_in_owner = true
-script = ExtResource("4")
+script = ExtResource("5")
 offset_left = 0
 offset_top = 0
 offset_right = 27
@@ -2180,21 +2235,15 @@ offset_bottom = 27
 visible = false
 mouse_filter = 2
 
-[node name="CharacterAmmoSlotCooldownModel" parent="PaperDollFrame/CharacterAmmoSlot/CharacterAmmoSlotCooldown" instance=ExtResource("2")]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-model_file = "Interface\\Cooldown\\UI-Cooldown-Indicator.m2"
-
 [node name="PetPaperDollFrame" type="Control" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
 offset_left = 0
 offset_top = 0
-offset_right = 384
-offset_bottom = 512
+offset_right = 0
+offset_bottom = 0
 visible = false
 mouse_filter = 0
 
@@ -2208,9 +2257,12 @@ texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="PetPaperDollFrame"]
-offset_left = 258
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -126
 offset_top = 1
-offset_right = 386
+offset_right = 2
 offset_bottom = 257
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2236,10 +2288,15 @@ expand_mode = 1
 
 [node name="PetNameText" type="Label" parent="PetPaperDollFrame"]
 unique_name_in_owner = true
-offset_left = 143.5
-offset_top = 16
-offset_right = 252.5
-offset_bottom = 32
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -240
+offset_right = 60.5
+offset_bottom = -224
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlight"
 horizontal_alignment = 1
@@ -2249,10 +2306,15 @@ grow_vertical = 2
 
 [node name="PetLevelText" type="Label" parent="PetPaperDollFrame"]
 unique_name_in_owner = true
-offset_left = 198
-offset_top = 38
-offset_right = 198
-offset_bottom = 48
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6
+offset_top = -218
+offset_right = 6
+offset_bottom = -208
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -2263,10 +2325,15 @@ vertical_alignment = 1
 
 [node name="PetLoyaltyText" type="Label" parent="PetPaperDollFrame"]
 unique_name_in_owner = true
-offset_left = 198
-offset_top = 49
-offset_right = 198
-offset_bottom = 59
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6
+offset_top = -207
+offset_right = 6
+offset_bottom = -197
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -2276,10 +2343,15 @@ vertical_alignment = 1
 
 [node name="PetTrainingPointText" type="Label" parent="PetPaperDollFrame"]
 unique_name_in_owner = true
-offset_left = 249
-offset_top = 416
-offset_right = 249
-offset_bottom = 426
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -135
+offset_top = -96
+offset_right = -135
+offset_bottom = -86
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
@@ -2289,10 +2361,15 @@ vertical_alignment = 1
 
 [node name="PetTrainingPointLabel" type="Label" parent="PetPaperDollFrame"]
 unique_name_in_owner = true
-offset_left = 244
-offset_top = 416
-offset_right = 244
-offset_bottom = 426
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -140
+offset_top = -96
+offset_right = -140
+offset_bottom = -86
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
@@ -2303,10 +2380,13 @@ vertical_alignment = 1
 
 [node name="PetPaperDollFrameExpBar" type="TextureProgressBar" parent="PetPaperDollFrame"]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 23
-offset_top = 396
+offset_top = -116
 offset_right = 342
-offset_bottom = 407
+offset_bottom = -105
 mouse_filter = 2
 texture_progress = SubResource("WowTexture_43")
 nine_patch_stretch = true
@@ -2355,7 +2435,7 @@ offset_right = 343
 offset_bottom = 302
 mouse_filter = 2
 
-[node name="PetModelFrameModel" parent="PetPaperDollFrame/PetModelFrame" instance=ExtResource("2")]
+[node name="PetModelFrameModel" parent="PetPaperDollFrame/PetModelFrame" instance=ExtResource("3")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -2365,7 +2445,7 @@ mouse_filter = 2
 
 [node name="PetModelFrameRotateLeftButton" type="TextureButton" parent="PetPaperDollFrame/PetModelFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -2
 offset_top = -2
 offset_right = 33
@@ -2404,7 +2484,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="PetModelFrameRotateRightButton" type="TextureButton" parent="PetPaperDollFrame/PetModelFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 33
 offset_top = -2
 offset_right = 68
@@ -2460,7 +2540,7 @@ expand_mode = 1
 
 [node name="PetPaperDollCloseButton" type="TextureButton" parent="PetPaperDollFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 265
 offset_top = 411
 offset_right = 345
@@ -3130,10 +3210,13 @@ vertical_alignment = 1
 
 [node name="SkillFrame" type="Control" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
 offset_left = 0
 offset_top = 0
-offset_right = 384
-offset_bottom = 512
+offset_right = 0
+offset_bottom = 0
 visible = false
 mouse_filter = 0
 
@@ -3147,28 +3230,39 @@ texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="SkillFrame"]
-offset_left = 258
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -126
 offset_top = 1
-offset_right = 386
+offset_right = 2
 offset_bottom = 257
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="Texture3" type="TextureRect" parent="SkillFrame"]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 2
-offset_top = 257
+offset_top = -255
 offset_right = 258
-offset_bottom = 513
+offset_bottom = 1
 mouse_filter = 2
 texture = SubResource("WowTexture_57")
 expand_mode = 1
 
 [node name="Texture4" type="TextureRect" parent="SkillFrame"]
-offset_left = 258
-offset_top = 257
-offset_right = 386
-offset_bottom = 513
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -126
+offset_top = -255
+offset_right = 2
+offset_bottom = 1
 mouse_filter = 2
 texture = SubResource("WowTexture_58")
 expand_mode = 1
@@ -3232,7 +3326,7 @@ expand_mode = 1
 
 [node name="SkillFrameCollapseAllButton" type="TextureButton" parent="SkillFrame/SkillFrameExpandButtonFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 5
 offset_top = 2
 offset_right = 45
@@ -3284,7 +3378,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillFrameCancelButton" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 265
 offset_top = 411
 offset_right = 345
@@ -3345,7 +3439,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel1" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 79
 offset_right = 307
@@ -3397,7 +3491,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel2" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 97
 offset_right = 307
@@ -3449,7 +3543,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel3" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 115
 offset_right = 307
@@ -3501,7 +3595,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel4" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 133
 offset_right = 307
@@ -3553,7 +3647,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel5" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 151
 offset_right = 307
@@ -3605,7 +3699,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel6" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 169
 offset_right = 307
@@ -3657,7 +3751,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel7" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 187
 offset_right = 307
@@ -3709,7 +3803,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel8" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 205
 offset_right = 307
@@ -3761,7 +3855,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel9" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 223
 offset_right = 307
@@ -3813,7 +3907,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel10" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 241
 offset_right = 307
@@ -3865,7 +3959,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel11" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 259
 offset_right = 307
@@ -3917,7 +4011,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillTypeLabel12" type="TextureButton" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 22
 offset_top = 277
 offset_right = 307
@@ -3969,10 +4063,13 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillListScrollFrame" type="Control" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("5")
-offset_left = 21
+script = ExtResource("6")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -363
 offset_top = 75
-offset_right = 317
+offset_right = -67
 offset_bottom = 295
 mouse_filter = 0
 
@@ -4011,7 +4108,7 @@ step = 0.0
 
 [node name="SkillListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="SkillFrame/SkillListScrollFrame/SkillListScrollFrameScrollBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 0
 offset_top = -16
 offset_right = 16
@@ -4060,7 +4157,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="SkillFrame/SkillListScrollFrame/SkillListScrollFrameScrollBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 0
 offset_top = 188
 offset_right = 16
@@ -4125,10 +4222,13 @@ mouse_filter = 2
 
 [node name="SkillDetailScrollFrame" type="Control" parent="SkillFrame"]
 unique_name_in_owner = true
-script = ExtResource("5")
-offset_left = 21
+script = ExtResource("6")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -363
 offset_top = 303
-offset_right = 317
+offset_right = -67
 offset_bottom = 410
 mouse_filter = 0
 
@@ -4167,7 +4267,7 @@ step = 0.0
 
 [node name="SkillDetailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameScrollBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 0
 offset_top = -16
 offset_right = 16
@@ -4216,7 +4316,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillDetailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameScrollBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 0
 offset_top = 75
 offset_right = 16
@@ -4376,7 +4476,7 @@ vertical_alignment = 1
 
 [node name="SkillDetailStatusBarLearnSkillButton" type="TextureButton" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 211
@@ -4385,7 +4485,7 @@ ignore_texture_size = true
 
 [node name="SkillDetailStatusBarLeftArrow" type="TextureButton" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -37
 offset_top = -8.5
 offset_right = -5
@@ -4434,7 +4534,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillDetailStatusBarRightArrow" type="TextureButton" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 216
 offset_top = -8.5
 offset_right = 248
@@ -4483,7 +4583,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillDetailStatusBarUnlearnButton" type="TextureButton" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 213
 offset_top = -7.5
 offset_right = 245
@@ -4581,7 +4681,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame1Border" type="TextureButton" parent="SkillFrame/SkillRankFrame1"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -4668,7 +4768,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame2Border" type="TextureButton" parent="SkillFrame/SkillRankFrame2"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -4755,7 +4855,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame3Border" type="TextureButton" parent="SkillFrame/SkillRankFrame3"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -4842,7 +4942,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame4Border" type="TextureButton" parent="SkillFrame/SkillRankFrame4"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -4929,7 +5029,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame5Border" type="TextureButton" parent="SkillFrame/SkillRankFrame5"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -5016,7 +5116,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame6Border" type="TextureButton" parent="SkillFrame/SkillRankFrame6"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -5103,7 +5203,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame7Border" type="TextureButton" parent="SkillFrame/SkillRankFrame7"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -5190,7 +5290,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame8Border" type="TextureButton" parent="SkillFrame/SkillRankFrame8"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -5277,7 +5377,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame9Border" type="TextureButton" parent="SkillFrame/SkillRankFrame9"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -5364,7 +5464,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame10Border" type="TextureButton" parent="SkillFrame/SkillRankFrame10"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -5451,7 +5551,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame11Border" type="TextureButton" parent="SkillFrame/SkillRankFrame11"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -5538,7 +5638,7 @@ vertical_alignment = 1
 
 [node name="SkillRankFrame12Border" type="TextureButton" parent="SkillFrame/SkillRankFrame12"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = -5
 offset_top = -8.5
 offset_right = 276
@@ -5566,10 +5666,13 @@ expand_mode = 1
 
 [node name="ReputationFrame" type="Control" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
 offset_left = 0
 offset_top = 0
-offset_right = 384
-offset_bottom = 512
+offset_right = 0
+offset_bottom = 0
 visible = false
 mouse_filter = 0
 
@@ -5753,7 +5856,7 @@ expand_mode = 1
 
 [node name="ReputationHeader1" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 86
 offset_right = 327
@@ -5909,7 +6012,7 @@ expand_mode = 1
 
 [node name="ReputationHeader2" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 109
 offset_right = 327
@@ -6065,7 +6168,7 @@ expand_mode = 1
 
 [node name="ReputationHeader3" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 132
 offset_right = 327
@@ -6221,7 +6324,7 @@ expand_mode = 1
 
 [node name="ReputationHeader4" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 155
 offset_right = 327
@@ -6377,7 +6480,7 @@ expand_mode = 1
 
 [node name="ReputationHeader5" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 178
 offset_right = 327
@@ -6533,7 +6636,7 @@ expand_mode = 1
 
 [node name="ReputationHeader6" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 201
 offset_right = 327
@@ -6689,7 +6792,7 @@ expand_mode = 1
 
 [node name="ReputationHeader7" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 224
 offset_right = 327
@@ -6845,7 +6948,7 @@ expand_mode = 1
 
 [node name="ReputationHeader8" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 247
 offset_right = 327
@@ -7001,7 +7104,7 @@ expand_mode = 1
 
 [node name="ReputationHeader9" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 270
 offset_right = 327
@@ -7157,7 +7260,7 @@ expand_mode = 1
 
 [node name="ReputationHeader10" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 293
 offset_right = 327
@@ -7313,7 +7416,7 @@ expand_mode = 1
 
 [node name="ReputationHeader11" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 316
 offset_right = 327
@@ -7469,7 +7572,7 @@ expand_mode = 1
 
 [node name="ReputationHeader12" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 339
 offset_right = 327
@@ -7625,7 +7728,7 @@ expand_mode = 1
 
 [node name="ReputationHeader13" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 362
 offset_right = 327
@@ -7781,7 +7884,7 @@ expand_mode = 1
 
 [node name="ReputationHeader14" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 385
 offset_right = 327
@@ -7937,7 +8040,7 @@ expand_mode = 1
 
 [node name="ReputationHeader15" type="TextureButton" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 25
 offset_top = 408
 offset_right = 327
@@ -7979,10 +8082,13 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="ReputationListScrollFrame" type="Control" parent="ReputationFrame"]
 unique_name_in_owner = true
-script = ExtResource("5")
-offset_left = 22
+script = ExtResource("6")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -362
 offset_top = 76
-offset_right = 318
+offset_right = -66
 offset_bottom = 430
 mouse_filter = 0
 
@@ -8021,7 +8127,7 @@ step = 0.0
 
 [node name="ReputationListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="ReputationFrame/ReputationListScrollFrame/ReputationListScrollFrameScrollBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 0
 offset_top = -16
 offset_right = 16
@@ -8070,7 +8176,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="ReputationListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="ReputationFrame/ReputationListScrollFrame/ReputationListScrollFrameScrollBar"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 0
 offset_top = 322
 offset_right = 16
@@ -8151,15 +8257,18 @@ mouse_filter = 2
 
 [node name="ReputationDetailFrame" type="Control" parent="ReputationFrame"]
 unique_name_in_owner = true
-offset_left = 351
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -33
 offset_top = 28
-offset_right = 563
+offset_right = 179
 offset_bottom = 231
 visible = false
 mouse_filter = 0
 
 [node name="Backdrop" type="Control" parent="ReputationFrame/ReputationDetailFrame"]
-script = ExtResource("6")
+script = ExtResource("7")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -8229,7 +8338,7 @@ expand_mode = 1
 
 [node name="ReputationDetailCloseButton" type="TextureButton" parent="ReputationFrame/ReputationDetailFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 177
 offset_top = 3
 offset_right = 209
@@ -8268,7 +8377,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="ReputationDetailAtWarCheckBox" type="TextureButton" parent="ReputationFrame/ReputationDetailFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 14
 offset_top = 143
 offset_right = 40
@@ -8340,7 +8449,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="ReputationDetailInactiveCheckBox" type="TextureButton" parent="ReputationFrame/ReputationDetailFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 41
 offset_top = 143
 offset_right = 67
@@ -8412,7 +8521,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="ReputationDetailMainScreenCheckBox" type="TextureButton" parent="ReputationFrame/ReputationDetailFrame"]
 unique_name_in_owner = true
-script = ExtResource("1")
+script = ExtResource("2")
 offset_left = 14
 offset_top = 166
 offset_right = 40
@@ -8484,10 +8593,13 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="HonorFrame" type="Control" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
 offset_left = 0
 offset_top = 0
-offset_right = 384
-offset_bottom = 512
+offset_right = 0
+offset_bottom = 0
 visible = false
 mouse_filter = 0
 
@@ -8529,10 +8641,15 @@ expand_mode = 1
 
 [node name="HonorLevelText" type="Label" parent="HonorFrame"]
 unique_name_in_owner = true
-offset_left = 198
-offset_top = 36
-offset_right = 198
-offset_bottom = 46
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6
+offset_top = -220
+offset_right = 6
+offset_bottom = -210
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -8543,10 +8660,15 @@ vertical_alignment = 1
 
 [node name="HonorGuildText" type="Label" parent="HonorFrame"]
 unique_name_in_owner = true
-offset_left = 198
-offset_top = 47
-offset_right = 198
-offset_bottom = 57
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6
+offset_top = -209
+offset_right = 6
+offset_bottom = -199
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -8592,9 +8714,12 @@ expand_mode = 1
 
 [node name="HonorFrameCurrentPVPTitle" type="Label" parent="HonorFrame"]
 unique_name_in_owner = true
-offset_left = 192
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
 offset_top = 87
-offset_right = 192
+offset_right = 0
 offset_bottom = 99
 grow_horizontal = 2
 grow_vertical = 1
@@ -8605,9 +8730,12 @@ vertical_alignment = 1
 
 [node name="HonorFrameCurrentPVPRank" type="Label" parent="HonorFrame"]
 unique_name_in_owner = true
-offset_left = 197
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 5
 offset_top = 89
-offset_right = 197
+offset_right = 5
 offset_bottom = 99
 grow_horizontal = 1
 grow_vertical = 2
@@ -8688,9 +8816,12 @@ vertical_alignment = 1
 
 [node name="HonorFramePvPIcon" type="TextureRect" parent="HonorFrame"]
 unique_name_in_owner = true
-offset_left = 163
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29
 offset_top = 81
-offset_right = 187
+offset_right = -5
 offset_bottom = 105
 mouse_filter = 2
 expand_mode = 1
@@ -9117,9 +9248,12 @@ vertical_alignment = 1
 
 [node name="HonorFrameRankButton" type="Control" parent="HonorFrame"]
 unique_name_in_owner = true
-offset_left = 163
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29
 offset_top = 82
-offset_right = 197
+offset_right = 5
 offset_bottom = 106
 mouse_filter = 0
 

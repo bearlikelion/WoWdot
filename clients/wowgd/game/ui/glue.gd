@@ -41,7 +41,8 @@ var _realms: Array = []
 var _realm_name: String = ""
 var _choosing_realm: bool = false
 var _characters: Array = []
-# Picked by name as soon as the list arrives, for scripted logins.
+# Scripted logins enter this character, or the first one when the name is empty.
+var _auto_entering: bool = false
 var _auto_character: String = ""
 # The character just created, selected once the new list arrives.
 var _created_name: String = ""
@@ -85,6 +86,7 @@ func _ready() -> void:
 
 
 func auto_login(realmlist: String, account: String, password: String, character: String) -> void:
+	_auto_entering = true
 	_auto_character = character
 	_login.fill(realmlist if not realmlist.is_empty() else _saved_realmlist(), account, password)
 	_login.log_in()
@@ -224,8 +226,8 @@ func _on_characters_received(characters: Array) -> void:
 	_characters = characters
 	_dialog.hide()
 	for character: Dictionary in characters:
-		if not _auto_character.is_empty() and character["name"] == _auto_character:
-			_auto_character = ""
+		if _auto_entering and _auto_character in ["", character["name"]]:
+			_auto_entering = false
 			_on_character_chosen(character)
 			return
 	var select_guid: int = 0

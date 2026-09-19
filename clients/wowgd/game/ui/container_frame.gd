@@ -98,7 +98,8 @@ func refresh() -> void:
 	for j: int in _size:
 		var item: int = Inventory.container_item(bag, _slot(j))
 		var item_entry: int = Inventory.entry(item)
-		_buttons[j].set_item(Inventory.icon(item_entry) if item_entry else null, Inventory.stack_count(item))
+		var icon: Texture2D = Inventory.icon(item_entry) if item_entry else null
+		_buttons[j].set_item(icon, Inventory.stack_count(item))
 	if _money.visible:
 		_money.set_money(Inventory.money())
 
@@ -133,9 +134,8 @@ func _layout_bag_background(rows: int) -> float:
 		var height: float = ROW_HEIGHT * mini(remaining, ROWS_IN_BG_TEXTURE)
 		if remaining <= ROWS_IN_BG_TEXTURE:
 			height -= FIRST_ROW_PIXELS
-		_set_texture(
-			middle, BAG_BACKGROUND, FIRST_ROW_TEXCOORD, FIRST_ROW_TEXCOORD + height / BG_TEXTURE_HEIGHT
-		)
+		var bottom: float = FIRST_ROW_TEXCOORD + height / BG_TEXTURE_HEIGHT
+		_set_texture(middle, BAG_BACKGROUND, FIRST_ROW_TEXCOORD, bottom)
 		middle.position.y = y
 		middle.size.y = height
 		middle.show()
@@ -151,7 +151,8 @@ func _set_texture(rect: TextureRect, file: String, top: float, bottom: float) ->
 	sheet.file = file
 	var atlas: AtlasTexture = AtlasTexture.new()
 	atlas.atlas = sheet
-	atlas.region = Rect2(0.0, top * sheet.get_height(), sheet.get_width(), (bottom - top) * sheet.get_height())
+	var height: float = sheet.get_height()
+	atlas.region = Rect2(0.0, top * height, sheet.get_width(), (bottom - top) * height)
 	rect.texture = atlas
 
 

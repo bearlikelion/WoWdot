@@ -1,7 +1,7 @@
 class_name KeyBindings
 extends RefCounted
 
-# Stock 1.12 keys for bindings project.godot lacks; one each, as PackedStringArray values crash here.
+# Stock keys for bindings project.godot lacks; one each, as PackedStringArray values crash here.
 const DEFAULTS: Dictionary[String, String] = {
 	"target_nearest_friend": "Ctrl+Tab",
 	"target_previous_friend": "Ctrl+Shift+Tab",
@@ -9,6 +9,12 @@ const DEFAULTS: Dictionary[String, String] = {
 	"target_last_hostile": "G",
 	"assist_target": "F",
 	"attack_target": "T",
+	"toggle_reputation": "U",
+	"toggle_backpack": "F12",
+	"toggle_bag_1": "F11",
+	"toggle_bag_2": "F10",
+	"toggle_bag_3": "F9",
+	"toggle_bag_4": "F8",
 }
 
 

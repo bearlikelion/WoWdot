@@ -24,7 +24,6 @@ func _ready() -> void:
 	_main = MAIN.instantiate()
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
-	_main.auto_character = "Tessaline"
 	add_child(_main)
 	_run.call_deferred()
 

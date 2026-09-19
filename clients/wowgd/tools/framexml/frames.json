@@ -4,7 +4,8 @@
 		"wowgd.xml"
 	],
 	"template_scripts": {
-		"CooldownFrameTemplate": "res://game/ui/wow/wow_cooldown.gd"
+		"CooldownFrameTemplate": "res://game/ui/wow/wow_cooldown.gd",
+		"SpellButtonTemplate": "res://game/ui/spell_button.gd"
 	},
 	"inject": {
 		"CharacterMicroButton": {
@@ -153,6 +154,12 @@
 			"script": "res://game/ui/item_button.gd"
 		},
 		{
+			"frame": "SmallMoneyFrameTemplate",
+			"template": true,
+			"out": "game/ui/wow/small_money_frame.tscn",
+			"script": "res://game/ui/money_frame.gd"
+		},
+		{
 			"frame": "ContainerFrameTemplate",
 			"template": true,
 			"out": "game/ui/wow/container_frame.tscn",
@@ -167,6 +174,11 @@
 			"frame": "CharacterFrame",
 			"out": "game/ui/wow/character_frame.tscn",
 			"script": "res://game/ui/character_frame.gd"
+		},
+		{
+			"frame": "SpellBookFrame",
+			"out": "game/ui/wow/spell_book_frame.tscn",
+			"script": "res://game/ui/spell_book.gd"
 		}
 	],
 	"graft": {

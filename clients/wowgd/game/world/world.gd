@@ -29,6 +29,7 @@ func _ready() -> void:
 	_player.movement_changed.connect(_on_player_movement_changed)
 	_player.clicked.connect(_on_player_clicked)
 	_hud.action_used.connect(_on_action_used)
+	_hud.spell_used.connect(_use_spell)
 	_hud.unit_selected.connect(select)
 	WowClient.session.attack_started.connect(_on_attack_changed.bind(true))
 	WowClient.session.attack_stopped.connect(_on_attack_changed.bind(false))
@@ -56,16 +57,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	var motion: InputEventMouseMotion = event as InputEventMouseMotion
 	if motion and motion.button_mask == 0:
 		_update_hover(motion.position)
-	if event.is_action_pressed("ui_cancel") and _hud.target() != 0:
-		get_viewport().set_input_as_handled()
-		select(0)
-	elif _binding_pressed(event):
+	if _binding_pressed(event):
 		get_viewport().set_input_as_handled()
 
 
 # The Bindings.xml actions the world answers; true when the event was one of them.
 func _binding_pressed(event: InputEvent) -> bool:
-	if not event.is_pressed() or event.is_echo() or get_viewport().gui_get_focus_owner() is LineEdit:
+	var typing: bool = get_viewport().gui_get_focus_owner() is LineEdit
+	if not event.is_pressed() or event.is_echo() or typing:
 		return false
 	var session: WowSession = WowClient.session
 	var target: int = _hud.target()
@@ -92,8 +91,8 @@ func _binding_pressed(event: InputEvent) -> bool:
 		elif not _auto_attacking:
 			session.attack(target)
 	elif _exact(event, "sit_stand"):
-		var sitting: bool = session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_1") & 0xFF \
-		!= STAND_STATE_STAND
+		var bytes_1: int = session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_1")
+		var sitting: bool = bytes_1 & 0xFF != STAND_STATE_STAND
 		var payload: PackedByteArray = []
 		payload.resize(4)
 		payload.encode_u32(0, STAND_STATE_STAND if sitting else STAND_STATE_SIT)
@@ -127,7 +126,8 @@ func _cycle_target(friendly: bool, step: int) -> void:
 		if friendly and reaction == UnitReaction.Reaction.FRIENDLY:
 			candidates.append(guid)
 		elif not friendly and reaction != UnitReaction.Reaction.FRIENDLY \
-		and flags & UNIT_FLAG_NON_ATTACKABLE == 0 and session.get_field(guid, "UNIT_FIELD_HEALTH") > 0:
+		and flags & UNIT_FLAG_NON_ATTACKABLE == 0 \
+		and session.get_field(guid, "UNIT_FIELD_HEALTH") > 0:
 			candidates.append(guid)
 	if candidates.is_empty():
 		return
@@ -208,7 +208,12 @@ func _on_action_used(slot: int) -> void:
 	# ponytail: only spell actions so far; items and macros come with the bags and the macro frame.
 	if (packed >> 24) & 0xFF != ActionButton.ActionType.SPELL:
 		return
-	var spell: int = packed & ActionButton.ACTION_MASK
+	_use_spell(packed & ActionButton.ACTION_MASK)
+
+
+# Attack toggles auto-attack on the target; every other spell is cast at it.
+func _use_spell(spell: int) -> void:
+	var session: WowSession = WowClient.session
 	if spell != ActionButton.SPELL_ATTACK:
 		session.cast_spell(spell, _hud.target())
 	elif _auto_attacking:

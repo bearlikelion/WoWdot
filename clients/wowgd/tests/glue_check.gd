@@ -6,7 +6,6 @@ const STEP_TIMEOUT_MSEC: int = 60000
 const REALMLIST: String = "127.0.0.1"
 const ACCOUNT: String = "wowgd"
 const PASSWORD: String = "wowgd"
-const CHARACTER: String = "Tessaline"
 # Created and deleted again, so the account ends as it started.
 const THROWAWAY: String = "Glueckcheck"
 
@@ -43,7 +42,7 @@ func _run() -> void:
 		return _finish()
 	await _frames(30)
 	_capture("user://glue_select.png")
-	_check(_names().has(CHARACTER), "%s is listed" % CHARACTER)
+	var character: String = _names()[0]
 
 	if _names().has(THROWAWAY):
 		await _delete(THROWAWAY)
@@ -72,7 +71,7 @@ func _run() -> void:
 	if not await _until(_select_ready, "choosing the realm returns to the character list"):
 		return _finish()
 
-	_select.select(_names().find(CHARACTER))
+	_select.select(_names().find(character))
 	_select.enter_world()
 	var loading: LoadingScreen = _glue.get_node("%LoadingScreen")
 	_check(loading.visible, "entering the world shows the loading screen")

@@ -22,7 +22,6 @@ func _ready() -> void:
 	_main = MAIN.instantiate()
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
-	_main.auto_character = "Tessaline"
 	add_child(_main)
 	WowClient.session.characters_received.connect(_on_characters_received)
 	_run.call_deferred()
@@ -68,13 +67,14 @@ func _run() -> void:
 	await _check_jump(player)
 
 	var expected: Vector3 = WowCoords.from_godot(player.global_position)
+	var player_name: String = WowClient.session.get_object_name(WowClient.session.get_player_guid())
 	_characters.clear()
 	WowClient.session.logout()
 	var logout_at: int = Time.get_ticks_msec() + TIMEOUT_MSEC
 	while _characters.is_empty() and Time.get_ticks_msec() < logout_at:
 		await tree.process_frame
 	for saved: Dictionary in _characters:
-		if saved["name"] == "Tessaline":
+		if saved["name"] == player_name:
 			var off: float = (saved["position"] as Vector3).distance_to(expected)
 			print("server saved %s, client at %s" % [saved["position"], expected])
 			_check(off < MAX_SAVED_ERROR, "server position matches the client (%.2f yd off)" % off)
@@ -163,7 +163,9 @@ func _check_hud() -> void:
 	_check(header.text.begins_with("Yell"), "/y switches the header")
 	chat_input.text = "/s " + SAY_TEXT
 	chat_input.text_submitted.emit(chat_input.text)
-	var said: String = "[Tessaline] says: " + SAY_TEXT
+	var session: WowSession = WowClient.session
+	var speaker: String = session.get_object_name(session.get_player_guid())
+	var said: String = "[%s] says: %s" % [speaker, SAY_TEXT]
 	var heard_at: int = Time.get_ticks_msec() + TIMEOUT_MSEC
 	while not chat_frame.all_text().contains(said) and Time.get_ticks_msec() < heard_at:
 		await get_tree().process_frame

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/character_frame.tscn" id="2_character"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/game_menu_frame.tscn" id="3_menu"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/container_frame.tscn" id="4_bag"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/spell_book_frame.tscn" id="5_spells"]
+
+[node name="UIPanels" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_panels")
+
+[node name="CharacterFrame" parent="." instance=ExtResource("2_character")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SpellBookFrame" parent="." instance=ExtResource("5_spells")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame1" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame2" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame3" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame4" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame5" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GameMenuFrame" parent="." instance=ExtResource("3_menu")]
+unique_name_in_owner = true
+visible = false

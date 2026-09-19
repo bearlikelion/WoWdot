@@ -45,6 +45,29 @@ func _ready() -> void:
 	refresh()
 
 
+# PickupAction: dragging an action lifts it off the bar, and dropping it places it.
+func _get_drag_data(_at_position: Vector2) -> Variant:
+	var carried: int = spell()
+	if Engine.is_editor_hint() or carried == 0:
+		return null
+	var preview: TextureRect = TextureRect.new()
+	preview.texture = WowAssets.spells.icon(carried)
+	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	preview.size = size
+	set_drag_preview(preview)
+	WowClient.session.set_action_button(slot, 0)
+	return {"spell": carried}
+
+
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	return not Engine.is_editor_hint() and slot >= 0 and data is Dictionary and data.has("spell")
+
+
+# A spell action packs the spell id with type 0 in the high byte.
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	WowClient.session.set_action_button(slot, data["spell"])
+
+
 func spell() -> int:
 	var packed: int = _packed()
 	return packed & ACTION_MASK if packed != 0 and _type(packed) == ActionType.SPELL else 0
