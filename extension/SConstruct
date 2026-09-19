@@ -14,7 +14,13 @@ if ARGUMENTS.get("sanitize") == "yes":
 	sanitizers = ["-fsanitize=address,undefined", "-fno-omit-frame-pointer"]
 	env.Append(CCFLAGS=sanitizers, LINKFLAGS=sanitizers)
 env.Append(CPPPATH=["src/", "wowee/include/", "thirdparty/StormLib/src/"])
-env.Append(LIBS=["z", "bz2", "crypto"])
+windows = env["platform"] == "windows"
+if windows:
+	# mingw has zlib only: libcrypto is cross-built into ../../deps/mingw, bzip2 comes from StormLib.
+	env.Append(CPPPATH=["../../deps/mingw/include"], LIBPATH=["../../deps/mingw/lib64"])
+	env.Append(LIBS=["crypto", "z", "ws2_32", "crypt32", "wininet"])
+else:
+	env.Append(LIBS=["z", "bz2", "crypto"])
 
 # Our own sources build with full warnings; vendored mWoWee and StormLib keep their upstream flags.
 strict_env = env.Clone()
@@ -29,11 +35,11 @@ import re
 storm_dir = "thirdparty/StormLib/"
 storm_cmake = open(storm_dir + "CMakeLists.txt").read()
 storm_sources = []
-for name in ["SRC_FILES", "TOMCRYPT_FILES", "TOMMATH_FILES"]:
+for name in ["SRC_FILES", "TOMCRYPT_FILES", "TOMMATH_FILES"] + (["BZIP2_FILES"] if windows else []):
 	block = re.search(r"set\(" + name + r"\s+(.*?)\)", storm_cmake, re.S).group(1)
 	storm_sources += [storm_dir + f for f in block.split() if f.endswith((".c", ".cpp"))]
 storm_env = env.Clone()
-storm_env.Append(CPPDEFINES=["_7ZIP_ST", "BZ_STRICT_ANSI", "__SYS_ZLIB", "__SYS_BZLIB"])
+storm_env.Append(CPPDEFINES=["_7ZIP_ST", "BZ_STRICT_ANSI", "__SYS_ZLIB"] + ([] if windows else ["__SYS_BZLIB"]))
 sources += [storm_env.SharedObject(f) for f in storm_sources]
 
 library = env.SharedLibrary(

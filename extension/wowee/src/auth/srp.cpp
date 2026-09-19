@@ -249,6 +249,15 @@ void SRP::computeProofs(const std::string& username) {
     std::vector<uint8_t> B_bytes = B.toArray(true);
     std::vector<uint8_t> s_bytes = s.toArray(true);
 
+    // The server hashes K and M1 as big numbers, which drop their high zero bytes.
+    const auto natural = [](std::vector<uint8_t> bytes) {
+        while (!bytes.empty() && bytes.back() == 0) {
+            bytes.pop_back();
+        }
+        return bytes;
+    };
+    const std::vector<uint8_t> K_bytes = natural(K);
+
     // M1 = H( H(N)^H(g) | H(I) | s | A | B | K )
     std::vector<uint8_t> M1_input;
     M1_input.insert(M1_input.end(), Ng_xor.begin(), Ng_xor.end());
@@ -256,7 +265,7 @@ void SRP::computeProofs(const std::string& username) {
     M1_input.insert(M1_input.end(), s_bytes.begin(), s_bytes.end());
     M1_input.insert(M1_input.end(), A_bytes.begin(), A_bytes.end());
     M1_input.insert(M1_input.end(), B_bytes.begin(), B_bytes.end());
-    M1_input.insert(M1_input.end(), K.begin(), K.end());
+    M1_input.insert(M1_input.end(), K_bytes.begin(), K_bytes.end());
 
     M1 = Crypto::sha1(M1_input);
 
@@ -267,8 +276,9 @@ void SRP::computeProofs(const std::string& username) {
     // M2 = H( A | M1 | K )
     std::vector<uint8_t> M2_input;
     M2_input.insert(M2_input.end(), A_bytes.begin(), A_bytes.end());
-    M2_input.insert(M2_input.end(), M1.begin(), M1.end());
-    M2_input.insert(M2_input.end(), K.begin(), K.end());
+    const std::vector<uint8_t> M1_bytes = natural(M1);
+    M2_input.insert(M2_input.end(), M1_bytes.begin(), M1_bytes.end());
+    M2_input.insert(M2_input.end(), K_bytes.begin(), K_bytes.end());
 
     M2 = Crypto::sha1(M2_input);
 

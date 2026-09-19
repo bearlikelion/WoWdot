@@ -74,12 +74,12 @@ Error WowArchive::open(const String &data_dir) {
 			continue;
 		}
 		HANDLE archive = nullptr;
-		if (!SFileOpenArchive(it->second.c_str(), 0, MPQ_OPEN_READ_ONLY | MPQ_OPEN_NO_LISTFILE | MPQ_OPEN_NO_ATTRIBUTES, &archive)) {
-			UtilityFunctions::push_error("WowArchive: failed to open ", String(it->second.c_str()));
+		if (!SFileOpenArchive(it->second.string().c_str(), 0, MPQ_OPEN_READ_ONLY | MPQ_OPEN_NO_LISTFILE | MPQ_OPEN_NO_ATTRIBUTES, &archive)) {
+			UtilityFunctions::push_error("WowArchive: failed to open ", String(it->second.string().c_str()));
 			continue;
 		}
 		archives.insert(archives.begin(), archive);
-		archive_names.insert(0, String(it->second.filename().c_str()));
+		archive_names.insert(0, String(it->second.filename().string().c_str()));
 	}
 	return archives.empty() ? ERR_FILE_NOT_FOUND : OK;
 }

@@ -3,6 +3,7 @@
 #include "pipeline/blp_loader.hpp"
 
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/classes/os.hpp>
 #include <godot_cpp/classes/project_settings.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
@@ -69,7 +70,11 @@ Ref<WowLoader> WowLoader::get_shared() {
 	if (shared_loader.is_null()) {
 		Ref<WowArchive> archive;
 		archive.instantiate();
-		const String data_dir = ProjectSettings::get_singleton()->get_setting("wowgd/client_data_dir", "");
+		String data_dir = ProjectSettings::get_singleton()->get_setting("wowgd/client_data_dir", "");
+		// An exported build sits in the player's 1.12.1 folder, next to its Data.
+		if (OS::get_singleton()->has_feature("template")) {
+			data_dir = OS::get_singleton()->get_executable_path().get_base_dir().path_join("Data");
+		}
 		if (archive->open(data_dir) != OK) {
 			UtilityFunctions::push_error("WowLoader: cannot open client data at '", data_dir, "'");
 		}

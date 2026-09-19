@@ -59,6 +59,21 @@ std::unordered_map<std::string, int> &field_indices() {
 	return indices;
 }
 
+// The vendored loaders read from disk, and an exported build keeps res:// inside the PCK.
+static std::string table_path(const String &name) {
+	const String packed = "res://data/classic/" + name;
+	ProjectSettings *settings = ProjectSettings::get_singleton();
+	if (!OS::get_singleton()->has_feature("template")) {
+		return settings->globalize_path(packed).utf8().get_data();
+	}
+	const String copy = "user://" + name;
+	const Ref<FileAccess> out = FileAccess::open(copy, FileAccess::WRITE);
+	if (out.is_valid()) {
+		out->store_string(FileAccess::get_file_as_string(packed));
+	}
+	return settings->globalize_path(copy).utf8().get_data();
+}
+
 // The vendored parsers read the opcode and update field tables through process-wide pointers.
 void load_protocol_tables() {
 	static game::OpcodeTable opcodes;
@@ -67,9 +82,8 @@ void load_protocol_tables() {
 	if (loaded) {
 		return;
 	}
-	ProjectSettings *settings = ProjectSettings::get_singleton();
-	opcodes.loadFromJson(settings->globalize_path("res://data/classic/opcodes.json").utf8().get_data());
-	fields.loadFromJson(settings->globalize_path("res://data/classic/update_fields.json").utf8().get_data());
+	opcodes.loadFromJson(table_path("opcodes.json"));
+	fields.loadFromJson(table_path("update_fields.json"));
 	game::setActiveOpcodeTable(&opcodes);
 	game::setActiveUpdateFieldTable(&fields);
 	const Dictionary names = JSON::parse_string(FileAccess::get_file_as_string("res://data/classic/update_fields.json"));
