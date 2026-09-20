@@ -4,6 +4,11 @@ extends Node
 signal world_ready(world: World)
 
 const WORLD: PackedScene = preload("res://game/world/world.tscn")
+const DATA_MISSING_TITLE: String = "World of Warcraft data not found"
+const DATA_MISSING: String = """No World of Warcraft 1.12.1 data was found in:
+%s
+
+Put this build in a 1.12.1 client folder, beside its Data folder, and start it again."""
 
 ## From `--realm`, `--account`, `--password` and `--character`; no character enters the first.
 @export var auto_realmlist: String = ""
@@ -17,6 +22,8 @@ var world: World
 
 
 func _ready() -> void:
+	if not _client_data_found():
+		return
 	WowAssets.video.apply()
 	_read_command_line()
 	WowClient.session.world_entered.connect(_on_world_entered)
@@ -37,6 +44,18 @@ func _process(_delta: float) -> void:
 	if world.player().active and progress >= 1.0:
 		_glue.hide()
 		world_ready.emit(world)
+
+
+# Without the client's MPQs there is nothing to draw, so say where they were looked for and stop.
+func _client_data_found() -> bool:
+	if not WowAssets.archive.get_archive_names().is_empty():
+		return true
+	var message: String = WowStrings.get_text("DATA_MISSING_MESSAGE", DATA_MISSING) % \
+	WowLoader.client_data_dir()
+	printerr(message)
+	OS.alert(message, WowStrings.get_text("DATA_MISSING_TITLE", DATA_MISSING_TITLE))
+	get_tree().quit(1)
+	return false
 
 
 # Options work before or after `--`, as `--realm=127.0.0.1` or `--realm 127.0.0.1`.

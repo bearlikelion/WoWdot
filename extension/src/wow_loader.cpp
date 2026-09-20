@@ -140,6 +140,7 @@ Ref<ImageTexture> WowLoader::load_texture(const String &path) {
 
 void WowLoader::_bind_methods() {
 	ClassDB::bind_static_method("WowLoader", D_METHOD("get_shared"), &WowLoader::get_shared);
+	ClassDB::bind_static_method("WowLoader", D_METHOD("client_data_dir"), &WowLoader::client_data_dir);
 	ClassDB::bind_method(D_METHOD("set_archive", "archive"), &WowLoader::set_archive);
 	ClassDB::bind_method(D_METHOD("get_archive"), &WowLoader::get_archive);
 	ClassDB::bind_method(D_METHOD("set_terrain_shader", "shader"), &WowLoader::set_terrain_shader);

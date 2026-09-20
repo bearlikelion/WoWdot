@@ -1,5 +1,4 @@
 #include "wow_session.h"
-#include "wow_loader.h"
 
 #include "auth/auth_handler.hpp"
 #include "auth/auth_packets.hpp"
@@ -167,8 +166,6 @@ void WowSession::begin_auth() {
 	info.protocolVersion = auth_attempt == 0 ? AUTH_PROTOCOL : AUTH_PROTOCOL_LEGACY;
 	info.legacyVanillaRealmList = true;
 	auth->setClientInfo(info);
-	// realmd's StrictVersionCheck wants a hash of WoW.exe and its DLLs, which sit beside Data.
-	auth->setIntegrityDir(WowLoader::client_data_dir().get_base_dir().utf8().get_data());
 	// Callbacks keep their own handler, since a handler replaced mid-callback may still report.
 	auth::AuthHandler *handler = auth.get();
 	auth->setOnSuccess([this, handler](const std::vector<uint8_t> &key) {

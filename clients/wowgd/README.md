@@ -13,7 +13,7 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 
 | Area | Working |
 | --- | --- |
-| Login | Account login, realm list, character select, create and delete, loading screen, glue music. Passes realmd's default `StrictVersionCheck`. |
+| Login | Account login, realm list, character select, create and delete, loading screen, glue music. |
 | World | Streaming terrain, WMOs and doodads, water, sky with day and night from Light.dbc, weather, zone music and ambience. |
 | Characters | Skin compositing, hair and facial hair, equipment on the model, sheathing, mounts, 3D portraits. |
 | Movement | Movement relays, jumping, falling, swimming, flights on taxi splines, dead reckoning for other players. Server speed changes, roots, knockbacks and water walking are applied and acknowledged. |
@@ -30,8 +30,8 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 
 - Godot 4.7 and the `wowdot` extension built from [`extension/`](../../extension) (see the [top-level README](../../README.md#building)).
   `shared/wowdot/wowdot.gdextension` has `reloadable = true`, which needs an editor with the extension instance-binding fix; on a stock editor set it to `false`.
-- A 1.12.1 (build 5875) client folder: `Data` with its MPQs, plus `WoW.exe`, `fmod.dll`, `ijl15.dll`, `dbghelp.dll` and `unicows.dll` beside it.
-  realmd hashes those five files into the login proof, so they must sit in the folder that holds `Data`.
+- A 1.12.1 (build 5875) client folder with its `Data` directory.
+  WoWGD ships no Blizzard files and reads none of the stock client's binaries; it only reads the MPQs in `Data`.
 
 ## Server setup
 
@@ -41,8 +41,8 @@ WoWGD targets the latest vMaNGOS `development` commit with no source changes and
    Passing `-DSUPPORTED_CLIENT_BUILD=5875` also works, but CMake then rewrites the tracked `src/shared/Progression.h` and leaves the tree dirty.
 2. Create the `realmd`, `characters`, `mangos` and `logs` databases, load the schemas, the world database from [brotalnia/database](https://github.com/brotalnia/database) and the migrations, as vMaNGOS's install guide describes.
 3. Run vMaNGOS's `MapExtractor` from the client folder, and point `DataDir` in `mangosd.conf` at the extracted `dbc` and `maps` (vmaps and mmaps are optional).
-4. Copy `realmd.conf.dist` and `mangosd.conf.dist` and change only the database connections and paths.
-   Keep `StrictVersionCheck = 1`.
+4. Copy `realmd.conf.dist` and `mangosd.conf.dist` and change the database connections and paths.
+   Set `StrictVersionCheck = 0` in `realmd.conf`: that check wants a hash of the stock client's executables, which WoWGD does not read or ship, so realmd refuses the login while it is on.
 5. Set the realm's address in `realmd.realmlist`, then create an account from the mangosd console: `account create wowgd wowgd`.
 6. For the checks in [`tests/`](tests), which use GM commands, run `account set gmlevel wowgd 6`.
 

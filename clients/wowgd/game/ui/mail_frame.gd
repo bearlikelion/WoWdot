@@ -5,15 +5,24 @@ extends Control
 signal open_requested
 signal close_requested
 signal mail_opened(mail: Dictionary)
+signal message_added(text: String)
 
 const MAILS_PER_PAGE: int = 7
 const AUCTION_SENDER: String = "Auction House"
 # Message types, which say how the sender field reads.
 enum Sender { NORMAL = 0, CREATURE = 1, GAMEOBJECT = 2, AUCTION = 3, ITEM = 4 }
+enum Tab { INBOX, SEND }
+# SMSG_SEND_MAIL_RESULT actions, and MAIL_OK.
+enum MailAction { SENT, MONEY_TAKEN, ITEM_TAKEN, RETURNED, DELETED, MADE_PERMANENT }
+
+const MAIL_OK: int = 0
+const COPPER_PER_SILVER: int = 100
+const COPPER_PER_GOLD: int = 10000
 
 var _guid: int = 0
 var _mails: Array[Dictionary] = []
 var _page: int = 0
+var _tab: Tab = Tab.INBOX
 
 
 func _ready() -> void:
@@ -25,6 +34,10 @@ func _ready() -> void:
 	%InboxPrevPageButton.pressed.connect(_turn_page.bind(-1))
 	%InboxNextPageButton.pressed.connect(_turn_page.bind(1))
 	%InboxCloseButton.pressed.connect(close_requested.emit)
+	%MailFrameTab1.pressed.connect(show_tab.bind(Tab.INBOX))
+	%MailFrameTab2.pressed.connect(show_tab.bind(Tab.SEND))
+	%SendMailCancelButton.pressed.connect(show_tab.bind(Tab.INBOX))
+	%SendMailMailButton.pressed.connect(send)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	hide()
 
@@ -43,6 +56,32 @@ func mailbox() -> int:
 	return _guid
 
 
+func show_tab(tab: Tab) -> void:
+	_tab = tab
+	%InboxFrame.visible = tab == Tab.INBOX
+	%SendMailFrame.visible = tab == Tab.SEND
+	refresh()
+
+
+# CMSG_SEND_MAIL: the letter, with whatever money the three coin boxes hold.
+func send() -> void:
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, _guid)
+	payload.append_array(_text_bytes((%SendMailNameEditBox as LineEdit).text))
+	payload.append_array(_text_bytes((%SendMailSubjectEditBox as LineEdit).text))
+	payload.append_array(_text_bytes((%SendMailBodyEditBox as TextEdit).text))
+	var tail: PackedByteArray = []
+	tail.resize(24)
+	tail.encode_u32(0, 41)
+	tail.encode_u32(4, 0)
+	tail.encode_u64(8, 0)
+	tail.encode_u32(16, _money_typed())
+	tail.encode_u32(20, 0)
+	payload.append_array(tail)
+	WowClient.session.send_packet("CMSG_SEND_MAIL", payload)
+
+
 func take_money(mail_id: int) -> void:
 	_send("CMSG_MAIL_TAKE_MONEY", mail_id)
 
@@ -56,6 +95,8 @@ func delete(mail_id: int) -> void:
 
 
 func refresh() -> void:
+	if _tab == Tab.SEND:
+		return
 	var pages: int = maxi(1, ceili(float(_mails.size()) / MAILS_PER_PAGE))
 	_page = clampi(_page, 0, pages - 1)
 	%InboxCurrentPage.text = "%d / %d" % [_page + 1, pages]
@@ -73,6 +114,19 @@ func refresh() -> void:
 		var icon: TextureRect = get_node("%%MailItem%dButtonIcon" % (i + 1))
 		icon.texture = Inventory.icon(mail["item_entry"]) if mail["item_entry"] != 0 else null
 		icon.visible = icon.texture != null
+
+
+func _text_bytes(text: String) -> PackedByteArray:
+	var bytes: PackedByteArray = text.to_utf8_buffer()
+	bytes.append(0)
+	return bytes
+
+
+func _money_typed() -> int:
+	var gold: int = (%SendMailMoneyGold as LineEdit).text.to_int()
+	var silver: int = (%SendMailMoneySilver as LineEdit).text.to_int()
+	var copper: int = (%SendMailMoneyCopper as LineEdit).text.to_int()
+	return gold * COPPER_PER_GOLD + silver * COPPER_PER_SILVER + copper
 
 
 func _send(opcode: String, mail_id: int) -> void:
@@ -97,11 +151,21 @@ func _on_mail_pressed(index: int) -> void:
 
 
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
-	if opcode != "SMSG_MAIL_LIST_RESULT":
+	var reader: PacketReader = PacketReader.new(payload)
+	if opcode == "SMSG_MAIL_LIST_RESULT":
+		_mails = _read_mails(payload)
+		refresh()
+		open_requested.emit()
 		return
-	_mails = _read_mails(payload)
-	refresh()
-	open_requested.emit()
+	if opcode != "SMSG_SEND_MAIL_RESULT":
+		return
+	reader.u32()
+	var action: MailAction = reader.u32() as MailAction
+	var error: int = reader.u32()
+	if action == MailAction.SENT and error == MAIL_OK:
+		message_added.emit(WowStrings.get_text("ERR_MAIL_SENT", "Mail sent."))
+		show_tab(Tab.INBOX)
+	open(_guid)
 
 
 func _read_mails(payload: PackedByteArray) -> Array[Dictionary]:

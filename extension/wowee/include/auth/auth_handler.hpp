@@ -58,8 +58,6 @@ public:
     // Set client version info (call before authenticate)
     void setClientInfo(const ClientInfo& info) { clientInfo = info; }
     const ClientInfo& getClientInfo() const { return clientInfo; }
-    // Folder holding the stock client's executables for the logon proof's integrity hash.
-    void setIntegrityDir(const std::string& dir) { integrityDir = dir; }
 
     // Realm list
     void requestRealmList();
@@ -106,7 +104,6 @@ private:
     std::string username;
     std::string password;
     ClientInfo clientInfo;
-    std::string integrityDir;
 
     // True when the last failure looks like an auth-protocol mismatch rather
     // than a credential/account problem. Never set for wrong-password, banned,
