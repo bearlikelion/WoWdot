@@ -1,0 +1,602 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/video_options_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_9"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 80, 22)
+
+[node name="VideoOptionsFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170
+offset_top = -100
+offset_right = 170
+offset_bottom = 100
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="Backdrop" type="Control" parent="."]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="VideoOptionsFrameHeader" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128
+offset_top = -12
+offset_right = 128
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 2
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Video Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VideoOptionsFrameCheckButton1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 14
+offset_top = 44
+offset_right = 46
+offset_bottom = 76
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="VideoOptionsFrameCheckButton1Text" type="Label" parent="VideoOptionsFrameCheckButton1"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 11
+offset_right = 30
+offset_bottom = 21
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="VideoOptionsFrameCheckButton2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 74
+offset_right = 48
+offset_bottom = 98
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="VideoOptionsFrameCheckButton2Text" type="Label" parent="VideoOptionsFrameCheckButton2"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 7
+offset_right = 22
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="VideoOptionsFrameCheckButton3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 14
+offset_top = 98
+offset_right = 46
+offset_bottom = 130
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="VideoOptionsFrameCheckButton3Text" type="Label" parent="VideoOptionsFrameCheckButton3"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 11
+offset_right = 30
+offset_bottom = 21
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="VideoOptionsFrameCheckButton4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 14
+offset_top = 124
+offset_right = 46
+offset_bottom = 156
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="VideoOptionsFrameCheckButton4Text" type="Label" parent="VideoOptionsFrameCheckButton4"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 11
+offset_right = 30
+offset_bottom = 21
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="VideoOptionsFrameDefaults" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 16
+offset_top = -37
+offset_right = 116
+offset_bottom = -16
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="VideoOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="VideoOptionsFrameDefaultsText" type="Label" parent="VideoOptionsFrameDefaults"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Defaults"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="VideoOptionsFrameCancel" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -116
+offset_top = -37
+offset_right = -16
+offset_bottom = -16
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="VideoOptionsFrameCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="VideoOptionsFrameCancelText" type="Label" parent="VideoOptionsFrameCancel"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="VideoOptionsFrameOkay" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -216
+offset_top = -37
+offset_right = -116
+offset_bottom = -16
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameOkay"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameOkay"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="VideoOptionsFrameOkay"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="VideoOptionsFrameOkayText" type="Label" parent="VideoOptionsFrameOkay"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameOkay"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")

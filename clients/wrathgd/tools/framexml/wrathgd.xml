@@ -1,0 +1,193 @@
+<Ui>
+	<EditBox name="AccountLoginRealmlistEdit" parent="AccountLoginUI" letters="64">
+		<Size>
+			<AbsDimension x="160" y="37"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="AccountLoginAccountEdit" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="34"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString inherits="GlueFontNormal" text="Realmlist">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-23"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Glues\Common\Glue-Tooltip-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="10" right="5" top="4" bottom="9"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+		</Backdrop>
+		<FontString inherits="GlueEditBoxFont"/>
+		<TextInsets>
+			<AbsInset left="15" bottom="5"/>
+		</TextInsets>
+	</EditBox>
+	<Button name="AccountLoginSoundOptionsButton" inherits="GlueButtonSmallTemplateBlue" parent="AccountLoginUI" text="SOUNDOPTIONS_MENU">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="AccountLoginExitButton" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Button name="AccountLoginVideoOptionsButton" inherits="GlueButtonSmallTemplateBlue" parent="AccountLoginUI" text="VIDEOOPTIONS_MENU">
+		<Anchors>
+			<Anchor point="BOTTOM" relativeTo="AccountLoginSoundOptionsButton" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	<Frame name="VideoOptionsFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="340" y="200"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="VideoOptionsFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="VIDEOOPTIONS_MENU">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="VideoOptionsFrameHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="VideoOptionsFrameCheckButton1" inherits="OptionsCheckButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="14" y="-44"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="VideoOptionsFrameCheckButton2" inherits="OptionsCheckButtonTemplate" id="2">
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="VideoOptionsFrameCheckButton1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="6" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="VideoOptionsFrameCheckButton3" inherits="OptionsCheckButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="VideoOptionsFrameCheckButton2" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="-6" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="VideoOptionsFrameCheckButton4" inherits="OptionsCheckButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="VideoOptionsFrameCheckButton3" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="VideoOptionsFrameDefaults" inherits="GameMenuButtonTemplate" text="DEFAULTS">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="16" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="VideoOptionsFrameCancel" inherits="GameMenuButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="VideoOptionsFrameOkay" inherits="GameMenuButtonTemplate" text="OKAY">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="VideoOptionsFrameCancel" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Frame>
+	<CheckButton name="UIOptionsFrameCheckButton70" inherits="UIOptionsCheckButtonTemplate" parent="BasicOptions">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="BasicOptionsHelp" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="10" y="-10"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
+</Ui>

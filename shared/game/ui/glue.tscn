@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cq22pawhr28if"]
 
 [ext_resource type="Script" uid="uid://b4i3o7drrf2lp" path="res://game/ui/glue.gd" id="1_glue"]
-[ext_resource type="Theme" uid="uid://03nk5nhbqtxc" path="res://game/ui/wow/fonts.tres" id="2_fonts"]
-[ext_resource type="PackedScene" uid="uid://d0ea3csrch1us" path="res://game/ui/wow/account_login.tscn" id="3_login"]
-[ext_resource type="PackedScene" uid="uid://bgr12idwovqlg" path="res://game/ui/wow/character_select.tscn" id="4_select"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/character_create.tscn" id="5_create"]
+[ext_resource type="Theme" uid="uid://03nk5nhbqtxc" path="res://ui/fonts.tres" id="2_fonts"]
+[ext_resource type="PackedScene" uid="uid://d0ea3csrch1us" path="res://ui/account_login.tscn" id="3_login"]
+[ext_resource type="PackedScene" uid="uid://bgr12idwovqlg" path="res://ui/character_select.tscn" id="4_select"]
+[ext_resource type="PackedScene" path="res://ui/character_create.tscn" id="5_create"]
 [ext_resource type="PackedScene" path="res://game/ui/loading_screen.tscn" id="6_loading"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/realm_list.tscn" id="7_realms"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/glue_dialog.tscn" id="8_dialog"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/sound_options_frame.tscn" id="9_sound"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/video_options_frame.tscn" id="10_video"]
+[ext_resource type="PackedScene" path="res://ui/realm_list.tscn" id="7_realms"]
+[ext_resource type="PackedScene" path="res://ui/glue_dialog.tscn" id="8_dialog"]
+[ext_resource type="PackedScene" path="res://ui/sound_options_frame.tscn" id="9_sound"]
+[ext_resource type="PackedScene" path="res://ui/video_options_frame.tscn" id="10_video"]
 
 [node name="Glue" type="Control" unique_id=1283474943]
 layout_mode = 3

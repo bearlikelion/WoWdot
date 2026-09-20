@@ -4,9 +4,11 @@
 
 #include "pipeline/blp_loader.hpp"
 
-#include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/classes/file_access.hpp>
+#include <godot_cpp/classes/json.hpp>
 #include <godot_cpp/classes/os.hpp>
 #include <godot_cpp/classes/project_settings.hpp>
+#include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 #include <algorithm>
@@ -76,9 +78,24 @@ String WowLoader::client_data_dir() {
 	return ProjectSettings::get_singleton()->get_setting("wowgd/client_data_dir", "");
 }
 
-// The game code reads its own tables out of the profile's folder, as the extension does.
-String WowLoader::data_path(const String &name) {
-	return wow_data_path(name);
+// The game code reads its own tables out of the profile's folder; a profile without one gets nothing.
+Dictionary WowLoader::data_table(const String &name) {
+	const String path = wow_data_path(name);
+	if (!FileAccess::file_exists(path)) {
+		return Dictionary();
+	}
+	const Variant parsed = JSON::parse_string(FileAccess::get_file_as_string(path));
+	return parsed.get_type() == Variant::DICTIONARY ? Dictionary(parsed) : Dictionary();
+}
+
+// What the game code shows and branches on: the expansion, its version string and its build.
+Dictionary WowLoader::profile() {
+	const WowProfile &active = wow_profile();
+	Dictionary out;
+	out["id"] = String(active.id);
+	out["version"] = String(active.version);
+	out["build"] = active.build;
+	return out;
 }
 
 // Without the archives there is nothing to draw, so a game says where it looked and stops.
@@ -163,7 +180,8 @@ Ref<ImageTexture> WowLoader::load_texture(const String &path) {
 void WowLoader::_bind_methods() {
 	ClassDB::bind_static_method("WowLoader", D_METHOD("get_shared"), &WowLoader::get_shared);
 	ClassDB::bind_static_method("WowLoader", D_METHOD("client_data_dir"), &WowLoader::client_data_dir);
-	ClassDB::bind_static_method("WowLoader", D_METHOD("data_path", "name"), &WowLoader::data_path);
+	ClassDB::bind_static_method("WowLoader", D_METHOD("data_table", "name"), &WowLoader::data_table);
+	ClassDB::bind_static_method("WowLoader", D_METHOD("profile"), &WowLoader::profile);
 	ClassDB::bind_method(D_METHOD("set_archive", "archive"), &WowLoader::set_archive);
 	ClassDB::bind_method(D_METHOD("get_archive"), &WowLoader::get_archive);
 	ClassDB::bind_method(D_METHOD("set_terrain_shader", "shader"), &WowLoader::set_terrain_shader);

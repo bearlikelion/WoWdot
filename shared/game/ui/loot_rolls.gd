@@ -3,7 +3,7 @@ extends Control
 
 signal message_added(text: String)
 
-const FRAME: PackedScene = preload("res://game/ui/wow/group_loot_frame.tscn")
+const FRAME: PackedScene = preload("res://ui/group_loot_frame.tscn")
 const FRAME_GAP: float = 90.0
 # A roll number over this means the player passed, as GroupLootFrame reads it.
 const PASSED_ROLL: int = 127

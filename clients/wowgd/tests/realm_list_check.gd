@@ -1,7 +1,7 @@
 class_name RealmListCheck
 extends Node
 
-const REALM_LIST: PackedScene = preload("res://game/ui/wow/realm_list.tscn")
+const REALM_LIST: PackedScene = preload("res://ui/realm_list.tscn")
 const REALMS: int = 25
 const SCROLL_TO: int = 7
 

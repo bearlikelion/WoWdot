@@ -37,7 +37,9 @@ func _ready() -> void:
 			_row_label(row, column).position.x += COLUMN_SHIFT
 	# vMaNGOS reports one realm category, so the tabs stay hidden as RealmList_UpdateTabs does.
 	for i: int in TABS:
-		(get_node("%%RealmListTab%d" % (i + 1)) as CanvasItem).hide()
+		var tab: CanvasItem = get_node_or_null("%%RealmListTab%d" % (i + 1)) as CanvasItem
+		if tab != null:
+			tab.hide()
 	(%RealmListScrollFrame as WowScrollFrame).scrolled.connect(_on_scrolled)
 	_ok.pressed.connect(_accept)
 	%RealmListCancelButton.pressed.connect(_cancel)

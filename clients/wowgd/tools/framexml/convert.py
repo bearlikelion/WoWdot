@@ -689,7 +689,7 @@ class SceneWriter:
         props = FULL_RECT + [("mouse_filter", "2")]
         if w.attrs.get("file"):
             props.append(("model_file", quote(re.sub(r"\.(mdx|mdl)$", ".m2", w.attrs["file"], flags=re.I))))
-        for attr, prop in (("fogNear", "fog_near"), ("fogFar", "fog_far")):
+        for attr, prop in (("fogNear", "fog_near"), ("fogFar", "fog_far"), ("glow", "glow")):
             if w.attrs.get(attr):
                 props.append((prop, f"{fnum(w.attrs[attr]):g}"))
         self.nodes.append({"name": f"{w.name}Model", "parent": path, "type": None,

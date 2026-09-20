@@ -804,6 +804,8 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 		b["texture_count"] = batch.textureCount;
 		b["texture"] = batch.textureIndex < model.textureLookup.size() ? static_cast<int64_t>(model.textureLookup[batch.textureIndex]) : static_cast<int64_t>(-1);
 		b["blend"] = batch.materialIndex < model.materials.size() ? static_cast<int64_t>(model.materials[batch.materialIndex].blendMode) : static_cast<int64_t>(-1);
+		b["tint"] = batch_tint(model, batch);
+		b["flags"] = batch.materialIndex < model.materials.size() ? static_cast<int64_t>(model.materials[batch.materialIndex].flags) : static_cast<int64_t>(0);
 		b["texture_animation"] = static_cast<int64_t>(batch.textureAnimIndex);
 		batches.push_back(b);
 	}

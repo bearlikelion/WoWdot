@@ -11,11 +11,42 @@
     "ID": 0,
     "Quantity": 4
   },
+  "AreaPOI": {
+    "AreaID": 17,
+    "Description": 35,
+    "FactionID": 11,
+    "Flags": 16,
+    "ID": 0,
+    "Icon": 2,
+    "Importance": 1,
+    "MapID": 15,
+    "Name": 18,
+    "WorldStateID": 52,
+    "X": 12,
+    "Y": 13,
+    "Z": 14
+  },
   "AreaTable": {
+    "ExplorationLevel": 10,
     "ExploreFlag": 3,
+    "FactionGroup": 28,
+    "Flags": 4,
     "ID": 0,
     "MapID": 1,
+    "Name": 11,
     "ParentAreaNum": 2
+  },
+  "AreaTrigger": {
+    "BoxHeight": 8,
+    "BoxLength": 6,
+    "BoxWidth": 7,
+    "BoxYaw": 9,
+    "ID": 0,
+    "MapID": 1,
+    "Radius": 5,
+    "X": 2,
+    "Y": 3,
+    "Z": 4
   },
   "CharHairGeosets": {
     "GeosetID": 4,
@@ -25,14 +56,15 @@
   },
   "CharSections": {
     "BaseSection": 3,
-    "ColorIndex": 5,
-    "Flags": 9,
+    "ColorIndex": 9,
+    "Flags": 7,
+    "ID": 0,
     "RaceID": 1,
     "SexID": 2,
-    "Texture1": 6,
-    "Texture2": 7,
-    "Texture3": 8,
-    "VariationIndex": 4
+    "Texture1": 4,
+    "Texture2": 5,
+    "Texture3": 6,
+    "VariationIndex": 8
   },
   "CharTitles": {
     "ID": 0,
@@ -47,10 +79,28 @@
     "SexID": 1,
     "Variation": 2
   },
+  "ChrClasses": {
+    "ID": 0,
+    "Name": 4,
+    "Filename": 55
+  },
+  "ChrRaces": {
+    "ID": 0,
+    "MaleDisplayId": 4,
+    "FemaleDisplayId": 5,
+    "ClientPrefix": 6,
+    "BaseLanguage": 7,
+    "ClientFileString": 11,
+    "Name": 14,
+    "FacialHairCustomizationMale": 65,
+    "FacialHairCustomizationFemale": 66,
+    "HairCustomization": 67
+  },
   "CreatureDisplayInfo": {
     "ExtraDisplayId": 3,
     "ID": 0,
     "ModelID": 1,
+    "Scale": 4,
     "Skin1": 6,
     "Skin2": 7,
     "Skin3": 8
@@ -81,6 +131,10 @@
     "ID": 0,
     "ModelPath": 2
   },
+  "CreatureType": {
+    "ID": 0,
+    "Name": 1
+  },
   "Emotes": {
     "AnimID": 2,
     "ID": 0,
@@ -100,16 +154,27 @@
     "Text": 1
   },
   "Faction": {
+    "Description": 40,
     "ID": 0,
+    "Name": 23,
+    "ParentFactionID": 18,
     "ReputationBase0": 10,
     "ReputationBase1": 11,
     "ReputationBase2": 12,
     "ReputationBase3": 13,
+    "ReputationClassMask0": 6,
+    "ReputationClassMask1": 7,
+    "ReputationClassMask2": 8,
+    "ReputationClassMask3": 9,
+    "ReputationFlags0": 14,
+    "ReputationFlags1": 15,
+    "ReputationFlags2": 16,
+    "ReputationFlags3": 17,
+    "ReputationIndex": 1,
     "ReputationRaceMask0": 2,
     "ReputationRaceMask1": 3,
     "ReputationRaceMask2": 4,
-    "ReputationRaceMask3": 5,
-    "Name": 23
+    "ReputationRaceMask3": 5
   },
   "FactionTemplate": {
     "Enemy0": 6,
@@ -125,6 +190,14 @@
   "GameObjectDisplayInfo": {
     "ID": 0,
     "ModelName": 1
+  },
+  "HelmetGeosetVisData": {
+    "Ears": 5,
+    "Facial1": 2,
+    "Facial2": 3,
+    "Facial3": 4,
+    "Hair": 1,
+    "ID": 0
   },
   "ItemDisplayInfo": {
     "GeosetGroup1": 7,
@@ -216,9 +289,24 @@
     "Type": 3,
     "SoundEntriesID": 4
   },
+  "LoadingScreens": {
+    "FileName": 2,
+    "ID": 0,
+    "Name": 1
+  },
   "Map": {
     "ID": 0,
-    "InternalName": 1
+    "InternalName": 1,
+    "LoadingScreenID": 57,
+    "MapName": 5
+  },
+  "QuestInfo": {
+    "ID": 0,
+    "Name": 1
+  },
+  "QuestSort": {
+    "ID": 0,
+    "Name": 1
   },
   "SkillLine": {
     "Category": 1,
@@ -229,19 +317,31 @@
     "SkillLineID": 1,
     "SpellID": 2
   },
+  "SkillLineCategory": {
+    "ID": 0,
+    "Name": 1,
+    "SortIndex": 18
+  },
+  "SkillRaceClassInfo": {
+    "ClassMask": 3,
+    "Flags": 4,
+    "ID": 0,
+    "MinLevel": 5,
+    "RaceMask": 2,
+    "SkillID": 1
+  },
   "Spell": {
     "Attributes": 4,
     "AttributesEx": 5,
-    "Targets": 16,
     "CasterAuraState": 20,
     "CasterAuraStateNot": 22,
     "CastingTimeIndex": 28,
     "DispelType": 2,
     "DurationIndex": 40,
-    "EffectBasePoints0": 80,
     "Effect0": 71,
     "Effect1": 72,
     "Effect2": 73,
+    "EffectBasePoints0": 80,
     "EffectBasePoints1": 81,
     "EffectBasePoints2": 82,
     "ID": 0,
@@ -253,7 +353,18 @@
     "Rank": 153,
     "SchoolMask": 225,
     "SpellVisualID": 131,
+    "StartRecoveryCategory": 205,
+    "StartRecoveryTime": 206,
+    "Targets": 16,
     "Tooltip": 139
+  },
+  "SpellCastTimes": {
+    "Base": 1,
+    "ID": 0
+  },
+  "SpellDuration": {
+    "Base": 1,
+    "ID": 0
   },
   "SpellIcon": {
     "ID": 0,
@@ -263,12 +374,17 @@
     "ID": 0,
     "Name": 14
   },
+  "SpellRadius": {
+    "ID": 0,
+    "Radius": 1
+  },
   "SpellRange": {
     "MinRange": 2,
     "MaxRange": 4
   },
   "SpellVisual": {
     "CastKit": 2,
+    "HasMissile": 7,
     "ID": 0,
     "ImpactKit": 3,
     "MissileModel": 8,
@@ -333,6 +449,15 @@
     "Y": 5,
     "Z": 6
   },
+  "TransportAnimation": {
+    "ID": 0,
+    "SequenceID": 6,
+    "TimeIndex": 2,
+    "TransportEntry": 1,
+    "X": 3,
+    "Y": 4,
+    "Z": 5
+  },
   "WorldMapArea": {
     "AreaID": 2,
     "AreaName": 3,
@@ -344,5 +469,35 @@
     "LocTop": 6,
     "MapID": 1,
     "ParentWorldMapID": 10
+  },
+  "WorldMapContinent": {
+    "BottomBoundary": 5,
+    "ID": 0,
+    "LeftBoundary": 2,
+    "MapID": 1,
+    "OffsetX": 6,
+    "OffsetY": 7,
+    "RightBoundary": 3,
+    "Scale": 8,
+    "TaxiMaxX": 11,
+    "TaxiMaxY": 12,
+    "TaxiMinX": 9,
+    "TaxiMinY": 10,
+    "TopBoundary": 4
+  },
+  "WorldMapOverlay": {
+    "AreaID0": 2,
+    "AreaID1": 3,
+    "AreaID2": 4,
+    "AreaID3": 5,
+    "ID": 0,
+    "MapAreaID": 1,
+    "MapPointX": 6,
+    "MapPointY": 7,
+    "OffsetX": 11,
+    "OffsetY": 12,
+    "TextureHeight": 10,
+    "TextureName": 8,
+    "TextureWidth": 9
   }
 }

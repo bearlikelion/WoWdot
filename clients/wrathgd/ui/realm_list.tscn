@@ -1,0 +1,2126 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/realm_list.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\HelpFrame\\HelpFrame-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\HelpFrame\\HelpFrame-Top.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\HelpFrame\\HelpFrame-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\HelpFrame\\HelpFrame-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\HelpFrame\\HelpFrame-Bottom.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\HelpFrame\\HelpFrame-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\FriendsFrame\\WhoFrame-ColumnTabs.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 5, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(58, 0, 4, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(5, 0, 53, 19)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-SortArrow.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 9, 8)
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_15"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\QuestFrame\\UI-QuestLogTitleHighlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(0, 0, 31, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(33, 0, 31, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(0, 192, 31, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_32")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34"]
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(7.36, 7.36, 17.28, 17.28)
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(7.36, 7.36, 17.28, 17.28)
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(7.36, 7.36, 17.28, 17.28)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(7.36, 7.36, 17.28, 17.28)
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
+atlas = SubResource("WowTexture_43")
+region = Rect2(7.36, 7.36, 17.28, 17.28)
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46"]
+atlas = SubResource("WowTexture_45")
+region = Rect2(7.36, 7.36, 17.28, 17.28)
+
+[sub_resource type="WowTexture" id="WowTexture_47"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
+atlas = SubResource("WowTexture_47")
+region = Rect2(7.36, 7.36, 17.28, 17.28)
+
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(7.36, 7.36, 17.28, 17.28)
+
+[sub_resource type="WowTexture" id="WowTexture_51"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52"]
+atlas = SubResource("WowTexture_51")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_53"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54"]
+atlas = SubResource("WowTexture_53")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_55"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56"]
+atlas = SubResource("WowTexture_55")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_57"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58"]
+atlas = SubResource("WowTexture_57")
+region = Rect2(0, 0, 160, 44)
+
+[node name="RealmList" type="Control"]
+script = ExtResource("1")
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="RealmListBackground" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296
+offset_top = -256
+offset_right = 344
+offset_bottom = 256
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="RealmListBackground"]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="RealmListBackground"]
+offset_left = 256
+offset_top = 0
+offset_right = 512
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="RealmListBackground"]
+offset_left = 512
+offset_top = 0
+offset_right = 640
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="RealmListBackground"]
+offset_left = 0
+offset_top = 256
+offset_right = 256
+offset_bottom = 512
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="Texture5" type="TextureRect" parent="RealmListBackground"]
+offset_left = 256
+offset_top = 256
+offset_right = 512
+offset_bottom = 512
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="Texture6" type="TextureRect" parent="RealmListBackground"]
+offset_left = 512
+offset_top = 256
+offset_right = 640
+offset_bottom = 512
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="RealmListHeader" type="TextureRect" parent="RealmListBackground"]
+unique_name_in_owner = true
+offset_left = 180
+offset_top = -12
+offset_right = 436
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="RealmListBackground"]
+offset_left = 308
+offset_top = 2
+offset_right = 308
+offset_bottom = 14
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Realm Selection"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RealmNameSort" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = 31
+offset_right = 244
+offset_bottom = 50
+ignore_texture_size = true
+
+[node name="RealmNameSortLeft" type="TextureRect" parent="RealmListBackground/RealmNameSort"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="RealmNameSortRight" type="TextureRect" parent="RealmListBackground/RealmNameSort"]
+unique_name_in_owner = true
+offset_left = 219
+offset_top = 0
+offset_right = 223
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="RealmNameSortMiddle" type="TextureRect" parent="RealmListBackground/RealmNameSort"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 219
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmNameSort"]
+offset_left = 11
+offset_top = 7.5
+offset_right = 20
+offset_bottom = 15.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="RealmNameSortText" type="Label" parent="RealmListBackground/RealmNameSort"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = 9.5
+offset_right = 8
+offset_bottom = 9.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+text = "Realm Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmNameSort"]
+offset_left = 0
+offset_top = -2.5
+offset_right = 227
+offset_bottom = 21.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmTypeSort" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 244
+offset_top = 31
+offset_right = 324
+offset_bottom = 50
+ignore_texture_size = true
+
+[node name="RealmTypeSortLeft" type="TextureRect" parent="RealmListBackground/RealmTypeSort"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="RealmTypeSortRight" type="TextureRect" parent="RealmListBackground/RealmTypeSort"]
+unique_name_in_owner = true
+offset_left = 76
+offset_top = 0
+offset_right = 80
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="RealmTypeSortMiddle" type="TextureRect" parent="RealmListBackground/RealmTypeSort"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 76
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmTypeSort"]
+offset_left = 11
+offset_top = 7.5
+offset_right = 20
+offset_bottom = 15.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="RealmTypeSortText" type="Label" parent="RealmListBackground/RealmTypeSort"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = 9.5
+offset_right = 8
+offset_bottom = 9.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+text = "Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmTypeSort"]
+offset_left = 0
+offset_top = -2.5
+offset_right = 84
+offset_bottom = 21.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmCharactersSort" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 324
+offset_top = 31
+offset_right = 424
+offset_bottom = 50
+ignore_texture_size = true
+
+[node name="RealmCharactersSortLeft" type="TextureRect" parent="RealmListBackground/RealmCharactersSort"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="RealmCharactersSortRight" type="TextureRect" parent="RealmListBackground/RealmCharactersSort"]
+unique_name_in_owner = true
+offset_left = 96
+offset_top = 0
+offset_right = 100
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="RealmCharactersSortMiddle" type="TextureRect" parent="RealmListBackground/RealmCharactersSort"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 96
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmCharactersSort"]
+offset_left = 11
+offset_top = 7.5
+offset_right = 20
+offset_bottom = 15.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="RealmCharactersSortText" type="Label" parent="RealmListBackground/RealmCharactersSort"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = 9.5
+offset_right = 8
+offset_bottom = 9.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+text = "Characters"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmCharactersSort"]
+offset_left = 0
+offset_top = -2.5
+offset_right = 104
+offset_bottom = 21.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmLoadSort" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 424
+offset_top = 31
+offset_right = 562
+offset_bottom = 50
+ignore_texture_size = true
+
+[node name="RealmLoadSortLeft" type="TextureRect" parent="RealmListBackground/RealmLoadSort"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="RealmLoadSortRight" type="TextureRect" parent="RealmListBackground/RealmLoadSort"]
+unique_name_in_owner = true
+offset_left = 134
+offset_top = 0
+offset_right = 138
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="RealmLoadSortMiddle" type="TextureRect" parent="RealmListBackground/RealmLoadSort"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 134
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmLoadSort"]
+offset_left = 11
+offset_top = 7.5
+offset_right = 20
+offset_bottom = 15.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="RealmLoadSortText" type="Label" parent="RealmListBackground/RealmLoadSort"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = 9.5
+offset_right = 8
+offset_bottom = 9.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+text = "Population"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmLoadSort"]
+offset_left = 0
+offset_top = -2.5
+offset_right = 142
+offset_bottom = 21.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmListTab1" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 11
+offset_top = 495
+offset_right = 126
+offset_bottom = 527
+ignore_texture_size = true
+
+[node name="RealmListTab1LeftDisabled" type="TextureRect" parent="RealmListBackground/RealmListTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -3
+offset_right = 20
+offset_bottom = 29
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="RealmListTab1MiddleDisabled" type="TextureRect" parent="RealmListBackground/RealmListTab1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -3
+offset_right = 108
+offset_bottom = 29
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="RealmListTab1RightDisabled" type="TextureRect" parent="RealmListBackground/RealmListTab1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -3
+offset_right = 128
+offset_bottom = 29
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="RealmListTab1Left" type="TextureRect" parent="RealmListBackground/RealmListTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_21")
+expand_mode = 1
+
+[node name="RealmListTab1Middle" type="TextureRect" parent="RealmListBackground/RealmListTab1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="RealmListTab1Right" type="TextureRect" parent="RealmListBackground/RealmListTab1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="RealmListTab1Text" type="Label" parent="RealmListBackground/RealmListTab1"]
+unique_name_in_owner = true
+offset_left = 57.5
+offset_top = 14
+offset_right = 57.5
+offset_bottom = 14
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmListTab1"]
+offset_left = 10
+offset_top = -2
+offset_right = 105
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmListCloseButton" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 566
+offset_top = 3
+offset_right = 598
+offset_bottom = 35
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmListCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="RealmListBackground/RealmListCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmListCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_26")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmListHighlight" type="Control" parent="RealmListBackground"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 557
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+
+[node name="RealmListHighlightTexture" type="TextureRect" parent="RealmListBackground/RealmListHighlight"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 557
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmListRealmButton1" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 56
+offset_right = 534
+offset_bottom = 72
+visible = false
+ignore_texture_size = true
+
+[node name="RealmListRealmButton1PVP" type="Label" parent="RealmListBackground/RealmListRealmButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton1Players" type="Label" parent="RealmListBackground/RealmListRealmButton1"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton1Load" type="Label" parent="RealmListBackground/RealmListRealmButton1"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton1NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton1"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton2" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 76
+offset_right = 534
+offset_bottom = 92
+ignore_texture_size = true
+
+[node name="RealmListRealmButton2PVP" type="Label" parent="RealmListBackground/RealmListRealmButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton2Players" type="Label" parent="RealmListBackground/RealmListRealmButton2"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton2Load" type="Label" parent="RealmListBackground/RealmListRealmButton2"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton2NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton2"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton3" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 96
+offset_right = 534
+offset_bottom = 112
+ignore_texture_size = true
+
+[node name="RealmListRealmButton3PVP" type="Label" parent="RealmListBackground/RealmListRealmButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton3Players" type="Label" parent="RealmListBackground/RealmListRealmButton3"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton3Load" type="Label" parent="RealmListBackground/RealmListRealmButton3"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton3NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton3"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton4" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 116
+offset_right = 534
+offset_bottom = 132
+ignore_texture_size = true
+
+[node name="RealmListRealmButton4PVP" type="Label" parent="RealmListBackground/RealmListRealmButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton4Players" type="Label" parent="RealmListBackground/RealmListRealmButton4"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton4Load" type="Label" parent="RealmListBackground/RealmListRealmButton4"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton4NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton4"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton5" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 136
+offset_right = 534
+offset_bottom = 152
+ignore_texture_size = true
+
+[node name="RealmListRealmButton5PVP" type="Label" parent="RealmListBackground/RealmListRealmButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton5Players" type="Label" parent="RealmListBackground/RealmListRealmButton5"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton5Load" type="Label" parent="RealmListBackground/RealmListRealmButton5"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton5NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton5"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton6" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 156
+offset_right = 534
+offset_bottom = 172
+ignore_texture_size = true
+
+[node name="RealmListRealmButton6PVP" type="Label" parent="RealmListBackground/RealmListRealmButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton6Players" type="Label" parent="RealmListBackground/RealmListRealmButton6"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton6Load" type="Label" parent="RealmListBackground/RealmListRealmButton6"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton6NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton6"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton7" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 176
+offset_right = 534
+offset_bottom = 192
+ignore_texture_size = true
+
+[node name="RealmListRealmButton7PVP" type="Label" parent="RealmListBackground/RealmListRealmButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton7Players" type="Label" parent="RealmListBackground/RealmListRealmButton7"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton7Load" type="Label" parent="RealmListBackground/RealmListRealmButton7"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton7NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton7"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton8" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 196
+offset_right = 534
+offset_bottom = 212
+ignore_texture_size = true
+
+[node name="RealmListRealmButton8PVP" type="Label" parent="RealmListBackground/RealmListRealmButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton8Players" type="Label" parent="RealmListBackground/RealmListRealmButton8"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton8Load" type="Label" parent="RealmListBackground/RealmListRealmButton8"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton8NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton8"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton9" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 216
+offset_right = 534
+offset_bottom = 232
+ignore_texture_size = true
+
+[node name="RealmListRealmButton9PVP" type="Label" parent="RealmListBackground/RealmListRealmButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton9Players" type="Label" parent="RealmListBackground/RealmListRealmButton9"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton9Load" type="Label" parent="RealmListBackground/RealmListRealmButton9"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton9NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton9"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton10" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 236
+offset_right = 534
+offset_bottom = 252
+ignore_texture_size = true
+
+[node name="RealmListRealmButton10PVP" type="Label" parent="RealmListBackground/RealmListRealmButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton10Players" type="Label" parent="RealmListBackground/RealmListRealmButton10"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton10Load" type="Label" parent="RealmListBackground/RealmListRealmButton10"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton10NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton10"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton11" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 256
+offset_right = 534
+offset_bottom = 272
+ignore_texture_size = true
+
+[node name="RealmListRealmButton11PVP" type="Label" parent="RealmListBackground/RealmListRealmButton11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton11Players" type="Label" parent="RealmListBackground/RealmListRealmButton11"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton11Load" type="Label" parent="RealmListBackground/RealmListRealmButton11"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton11NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton11"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton12" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 276
+offset_right = 534
+offset_bottom = 292
+ignore_texture_size = true
+
+[node name="RealmListRealmButton12PVP" type="Label" parent="RealmListBackground/RealmListRealmButton12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton12Players" type="Label" parent="RealmListBackground/RealmListRealmButton12"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton12Load" type="Label" parent="RealmListBackground/RealmListRealmButton12"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton12NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton12"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton13" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 296
+offset_right = 534
+offset_bottom = 312
+ignore_texture_size = true
+
+[node name="RealmListRealmButton13PVP" type="Label" parent="RealmListBackground/RealmListRealmButton13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton13Players" type="Label" parent="RealmListBackground/RealmListRealmButton13"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton13Load" type="Label" parent="RealmListBackground/RealmListRealmButton13"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton13NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton13"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton14" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 316
+offset_right = 534
+offset_bottom = 332
+ignore_texture_size = true
+
+[node name="RealmListRealmButton14PVP" type="Label" parent="RealmListBackground/RealmListRealmButton14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton14Players" type="Label" parent="RealmListBackground/RealmListRealmButton14"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton14Load" type="Label" parent="RealmListBackground/RealmListRealmButton14"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton14NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton14"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton15" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 336
+offset_right = 534
+offset_bottom = 352
+ignore_texture_size = true
+
+[node name="RealmListRealmButton15PVP" type="Label" parent="RealmListBackground/RealmListRealmButton15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton15Players" type="Label" parent="RealmListBackground/RealmListRealmButton15"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton15Load" type="Label" parent="RealmListBackground/RealmListRealmButton15"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton15NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton15"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton16" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 356
+offset_right = 534
+offset_bottom = 372
+ignore_texture_size = true
+
+[node name="RealmListRealmButton16PVP" type="Label" parent="RealmListBackground/RealmListRealmButton16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton16Players" type="Label" parent="RealmListBackground/RealmListRealmButton16"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton16Load" type="Label" parent="RealmListBackground/RealmListRealmButton16"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton16NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton16"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton17" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 376
+offset_right = 534
+offset_bottom = 392
+ignore_texture_size = true
+
+[node name="RealmListRealmButton17PVP" type="Label" parent="RealmListBackground/RealmListRealmButton17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton17Players" type="Label" parent="RealmListBackground/RealmListRealmButton17"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton17Load" type="Label" parent="RealmListBackground/RealmListRealmButton17"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton17NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton17"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton18" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 396
+offset_right = 534
+offset_bottom = 412
+ignore_texture_size = true
+
+[node name="RealmListRealmButton18PVP" type="Label" parent="RealmListBackground/RealmListRealmButton18"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 2
+offset_right = 60
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton18Players" type="Label" parent="RealmListBackground/RealmListRealmButton18"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 2
+offset_right = 132
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton18Load" type="Label" parent="RealmListBackground/RealmListRealmButton18"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 2
+offset_right = 287
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListRealmButton18NormalText" type="Label" parent="RealmListBackground/RealmListRealmButton18"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 2
+offset_right = 225
+offset_bottom = 14
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RealmListScrollFrame" type="Control" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 49
+offset_top = 53
+offset_right = 559
+offset_bottom = 463
+mouse_filter = 0
+
+[node name="RealmListScrollFrameScrollBarTop" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 508
+offset_top = -5
+offset_right = 539
+offset_bottom = 251
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="RealmListScrollFrameScrollBarBottom" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 508
+offset_top = 306
+offset_right = 539
+offset_bottom = 412
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="RealmListScrollFrameScrollBarMiddle" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 508
+offset_top = 251
+offset_right = 539
+offset_bottom = 306
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="RealmListScrollFrameScrollBar" type="VSlider" parent="RealmListBackground/RealmListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 516
+offset_top = 16
+offset_right = 532
+offset_bottom = 394
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_33")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_33")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_34")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_34")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_34")
+max_value = 0.0
+step = 0.0
+
+[node name="RealmListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -18
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar/RealmListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar/RealmListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar/RealmListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar/RealmListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 378
+offset_right = 17
+offset_bottom = 396
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar/RealmListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar/RealmListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_46")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar/RealmListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameScrollBar/RealmListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmListScrollFrameClip" type="Control" parent="RealmListBackground/RealmListScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="RealmListScrollFrameScrollChildFrame" type="Control" parent="RealmListBackground/RealmListScrollFrame/RealmListScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 510
+offset_bottom = 395
+mouse_filter = 2
+
+[node name="RealmListCancelButton" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 469
+offset_top = 464
+offset_right = 594
+offset_bottom = 499
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmListCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="RealmListBackground/RealmListCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="RealmListBackground/RealmListCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+
+[node name="RealmListCancelButtonText" type="Label" parent="RealmListBackground/RealmListCancelButton"]
+unique_name_in_owner = true
+offset_left = 62.5
+offset_top = 15.5
+offset_right = 62.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmListCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_58")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="RealmListOkButton" type="TextureButton" parent="RealmListBackground"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 352
+offset_top = 464
+offset_right = 477
+offset_bottom = 499
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="RealmListBackground/RealmListOkButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="RealmListBackground/RealmListOkButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="RealmListBackground/RealmListOkButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+
+[node name="RealmListOkButtonText" type="Label" parent="RealmListBackground/RealmListOkButton"]
+unique_name_in_owner = true
+offset_left = 62.5
+offset_top = 15.5
+offset_right = 62.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="RealmListBackground/RealmListOkButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_58")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://game/ui/party_frame.gd" id="1_party"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/party_member_frame.tscn" id="2_member"]
+[ext_resource type="PackedScene" path="res://ui/party_member_frame.tscn" id="2_member"]
 
 [node name="PartyFrame" type="Control"]
 layout_mode = 3

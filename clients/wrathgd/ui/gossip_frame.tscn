@@ -1,0 +1,1905 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/gossip_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\QuestFrame\\UI-QuestGreeting-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\QuestFrame\\UI-QuestGreeting-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\QuestFrame\\UI-QuestGreeting-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\QuestFrame\\UI-QuestGreeting-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\QuestFrame\\UI-Quest-BotLeftPatch.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20"]
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
+atlas = SubResource("WowTexture_23")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28"]
+atlas = SubResource("WowTexture_27")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_33")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\QuestFrame\\UI-Quest-BulletPoint.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\QuestFrame\\UI-QuestTitleHighlight.blp"
+
+[node name="GossipFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 384
+offset_bottom = 616
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="GossipFramePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GossipNpcNameFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150
+offset_top = 23
+offset_right = 150
+offset_bottom = 37
+mouse_filter = 2
+
+[node name="GossipFrameNpcNameText" type="Label" parent="GossipNpcNameFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GossipFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -58
+offset_top = 15
+offset_right = -26
+offset_bottom = 47
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GossipFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GossipFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipFrameGreetingPanel" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 384
+offset_bottom = 512
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="GossipFrameGreetingPanel"]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="GossipFrameGreetingPanel"]
+offset_left = 256
+offset_top = 0
+offset_right = 384
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="GossipFrameGreetingPanel"]
+offset_left = 0
+offset_top = 256
+offset_right = 256
+offset_bottom = 512
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="GossipFrameGreetingPanel"]
+offset_left = 256
+offset_top = 256
+offset_right = 384
+offset_bottom = 512
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="GossipFrameGreetingPanelMaterialTopLeft" type="TextureRect" parent="GossipFrameGreetingPanel"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 75
+offset_right = 260
+offset_bottom = 316
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GossipFrameGreetingPanelMaterialTopRight" type="TextureRect" parent="GossipFrameGreetingPanel"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 75
+offset_right = 324
+offset_bottom = 316
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GossipFrameGreetingPanelMaterialBotLeft" type="TextureRect" parent="GossipFrameGreetingPanel"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 316
+offset_right = 260
+offset_bottom = 444
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GossipFrameGreetingPanelMaterialBotRight" type="TextureRect" parent="GossipFrameGreetingPanel"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 316
+offset_right = 324
+offset_bottom = 444
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Texture5" type="TextureRect" parent="GossipFrameGreetingPanel"]
+offset_left = 22
+offset_top = 380
+offset_right = 150
+offset_bottom = 444
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="GossipFrameGreetingGoodbyeButton" type="TextureButton" parent="GossipFrameGreetingPanel"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 267
+offset_top = 417
+offset_right = 345
+offset_bottom = 439
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipFrameGreetingGoodbyeButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipFrameGreetingGoodbyeButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipFrameGreetingGoodbyeButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="GossipFrameGreetingGoodbyeButtonText" type="Label" parent="GossipFrameGreetingPanel/GossipFrameGreetingGoodbyeButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Goodbye"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipFrameGreetingGoodbyeButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipGreetingScrollFrame" type="Control" parent="GossipFrameGreetingPanel"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 23
+offset_top = 81
+offset_right = 323
+offset_bottom = 415
+mouse_filter = 0
+
+[node name="GossipGreetingScrollFrameScrollBar" type="VSlider" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame"]
+unique_name_in_owner = true
+offset_left = 306
+offset_top = 16
+offset_right = 322
+offset_bottom = 318
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_19")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_19")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_20")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_20")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_20")
+max_value = 0.0
+step = 0.0
+
+[node name="GossipGreetingScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipGreetingScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 302
+offset_right = 16
+offset_bottom = 318
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipGreetingScrollFrameClip" type="Control" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="GossipGreetingScrollChildFrame" type="Control" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="GossipGreetingText" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 10
+offset_right = 280
+offset_bottom = 23
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Filler Text"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="GossipTitleButton1" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 43
+offset_right = 300
+offset_bottom = 59
+ignore_texture_size = true
+
+[node name="GossipTitleButton1GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton1Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton2" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 59
+offset_right = 300
+offset_bottom = 75
+ignore_texture_size = true
+
+[node name="GossipTitleButton2GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton2Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton2"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton3" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 75
+offset_right = 300
+offset_bottom = 91
+ignore_texture_size = true
+
+[node name="GossipTitleButton3GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton3Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton3"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton4" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 91
+offset_right = 300
+offset_bottom = 107
+ignore_texture_size = true
+
+[node name="GossipTitleButton4GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton4Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton4"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton5" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 107
+offset_right = 300
+offset_bottom = 123
+ignore_texture_size = true
+
+[node name="GossipTitleButton5GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton5Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton5"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton6" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 123
+offset_right = 300
+offset_bottom = 139
+ignore_texture_size = true
+
+[node name="GossipTitleButton6GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton6Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton6"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton7" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 139
+offset_right = 300
+offset_bottom = 155
+ignore_texture_size = true
+
+[node name="GossipTitleButton7GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton7Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton7"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton8" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 155
+offset_right = 300
+offset_bottom = 171
+ignore_texture_size = true
+
+[node name="GossipTitleButton8GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton8Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton8"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton9" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 171
+offset_right = 300
+offset_bottom = 187
+ignore_texture_size = true
+
+[node name="GossipTitleButton9GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton9Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton9"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton10" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 187
+offset_right = 300
+offset_bottom = 203
+ignore_texture_size = true
+
+[node name="GossipTitleButton10GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton10Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton10"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton10"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton11" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 203
+offset_right = 300
+offset_bottom = 219
+ignore_texture_size = true
+
+[node name="GossipTitleButton11GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton11Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton11"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton12" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 219
+offset_right = 300
+offset_bottom = 235
+ignore_texture_size = true
+
+[node name="GossipTitleButton12GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton12Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton12"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton13" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 235
+offset_right = 300
+offset_bottom = 251
+ignore_texture_size = true
+
+[node name="GossipTitleButton13GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton13Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton13"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton14" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 251
+offset_right = 300
+offset_bottom = 267
+ignore_texture_size = true
+
+[node name="GossipTitleButton14GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton14Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton14"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton15" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 267
+offset_right = 300
+offset_bottom = 283
+ignore_texture_size = true
+
+[node name="GossipTitleButton15GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton15Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton15"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton16" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 283
+offset_right = 300
+offset_bottom = 299
+ignore_texture_size = true
+
+[node name="GossipTitleButton16GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton16Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton16"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton16"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton17" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 299
+offset_right = 300
+offset_bottom = 315
+ignore_texture_size = true
+
+[node name="GossipTitleButton17GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton17Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton17"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton17"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton18" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 315
+offset_right = 300
+offset_bottom = 331
+ignore_texture_size = true
+
+[node name="GossipTitleButton18GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton18"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton18Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton18"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton18"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton19" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 331
+offset_right = 300
+offset_bottom = 347
+ignore_texture_size = true
+
+[node name="GossipTitleButton19GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton19"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton19Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton19"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton19"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton20" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 347
+offset_right = 300
+offset_bottom = 363
+ignore_texture_size = true
+
+[node name="GossipTitleButton20GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton20"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton20Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton20"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton20"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton21" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 363
+offset_right = 300
+offset_bottom = 379
+ignore_texture_size = true
+
+[node name="GossipTitleButton21GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton21"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton21Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton21"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton21"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton22" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 379
+offset_right = 300
+offset_bottom = 395
+ignore_texture_size = true
+
+[node name="GossipTitleButton22GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton22"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton22Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton22"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton22"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton23" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 395
+offset_right = 300
+offset_bottom = 411
+ignore_texture_size = true
+
+[node name="GossipTitleButton23GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton23"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton23Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton23"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton23"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton24" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 411
+offset_right = 300
+offset_bottom = 427
+ignore_texture_size = true
+
+[node name="GossipTitleButton24GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton24"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton24Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton24"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton24"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton25" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 427
+offset_right = 300
+offset_bottom = 443
+ignore_texture_size = true
+
+[node name="GossipTitleButton25GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton25"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton25Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton25"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton25"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton26" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 443
+offset_right = 300
+offset_bottom = 459
+ignore_texture_size = true
+
+[node name="GossipTitleButton26GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton26"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton26Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton26"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton26"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton27" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 459
+offset_right = 300
+offset_bottom = 475
+ignore_texture_size = true
+
+[node name="GossipTitleButton27GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton27"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton27Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton27"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton27"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton28" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 475
+offset_right = 300
+offset_bottom = 491
+ignore_texture_size = true
+
+[node name="GossipTitleButton28GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton28"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton28Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton28"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton28"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton29" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 491
+offset_right = 300
+offset_bottom = 507
+ignore_texture_size = true
+
+[node name="GossipTitleButton29GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton29"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton29Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton29"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton29"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton30" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 507
+offset_right = 300
+offset_bottom = 523
+ignore_texture_size = true
+
+[node name="GossipTitleButton30GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton30"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton30Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton30"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton30"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton31" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 523
+offset_right = 300
+offset_bottom = 539
+ignore_texture_size = true
+
+[node name="GossipTitleButton31GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton31"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton31Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton31"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton31"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipTitleButton32" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 539
+offset_right = 300
+offset_bottom = 555
+ignore_texture_size = true
+
+[node name="GossipTitleButton32GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton32"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="GossipTitleButton32Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton32"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 1.5
+offset_right = 295
+offset_bottom = 14.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton32"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GossipSpacerFrame" type="Control" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 0
+offset_right = 152.5
+offset_bottom = 15
+mouse_filter = 2

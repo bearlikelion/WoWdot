@@ -1,7 +1,7 @@
 class_name InterfaceOptionsCheck
 extends Node
 
-const OPTIONS_FRAME: PackedScene = preload("res://game/ui/wow/ui_options_frame.tscn")
+const OPTIONS_FRAME: PackedScene = preload("res://ui/ui_options_frame.tscn")
 # Show Buff Durations and one this client does not answer yet.
 const HONOURED: int = 39
 const UNANSWERED: int = 28

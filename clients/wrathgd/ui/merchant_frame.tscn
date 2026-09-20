@@ -1,0 +1,1548 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/merchant_frame.gd" id="1"]
+[ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="3"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\MerchantFrame\\UI-Merchant-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\MerchantFrame\\UI-Merchant-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\MerchantFrame\\UI-Merchant-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\MerchantFrame\\UI-Merchant-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\MerchantFrame\\UI-BuyBack-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\MerchantFrame\\UI-BuyBack-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\MerchantFrame\\UI-BuyBack-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\MerchantFrame\\UI-BuyBack-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\MerchantFrame\\UI-Merchant-BottomBorder.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(0, 0, 256, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(0, 61, 76, 61)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-EmptySlot.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\MerchantFrame\\UI-Merchant-LabelSlots.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\MerchantFrame\\UI-Merchant-RepairIcons.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-Quickslot-Depress.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\UI-PageButton-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+
+[node name="MerchantFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 384
+offset_bottom = 616
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="MerchantFramePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -256
+offset_right = 256
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -256
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="MerchantNameText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 17
+offset_right = 0
+offset_bottom = 29
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Merchant Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantPageText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -66
+offset_top = -162
+offset_right = 38
+offset_bottom = -150
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Page"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantRepairText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 26
+offset_top = -113
+offset_right = 26
+offset_bottom = -103
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Repair Items"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuybackFrameTopLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 19
+offset_top = 71
+offset_right = 275
+offset_bottom = 327
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="BuybackFrameTopRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 275
+offset_top = 71
+offset_right = 339
+offset_bottom = 327
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="BuybackFrameBotLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 19
+offset_top = 327
+offset_right = 275
+offset_bottom = 455
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="BuybackFrameBotRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 275
+offset_top = 327
+offset_right = 339
+offset_bottom = 455
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="MerchantFrameBottomLeftBorder" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 14
+offset_top = -146
+offset_right = 270
+offset_bottom = -85
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="MerchantFrameBottomRightBorder" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 270
+offset_top = -146
+offset_right = 346
+offset_bottom = -85
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="MerchantItem1" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 80
+offset_right = 177
+offset_bottom = 124
+mouse_filter = 2
+
+[node name="MerchantItem1SlotTexture" type="TextureRect" parent="MerchantItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem1NameFrame" type="TextureRect" parent="MerchantItem1"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem1Name" type="Label" parent="MerchantItem1"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem1ItemButton" parent="MerchantItem1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem1MoneyFrame" parent="MerchantItem1" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem2" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 189
+offset_top = 80
+offset_right = 342
+offset_bottom = 124
+mouse_filter = 2
+
+[node name="MerchantItem2SlotTexture" type="TextureRect" parent="MerchantItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem2NameFrame" type="TextureRect" parent="MerchantItem2"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem2Name" type="Label" parent="MerchantItem2"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem2ItemButton" parent="MerchantItem2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem2MoneyFrame" parent="MerchantItem2" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem3" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 132
+offset_right = 177
+offset_bottom = 176
+mouse_filter = 2
+
+[node name="MerchantItem3SlotTexture" type="TextureRect" parent="MerchantItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem3NameFrame" type="TextureRect" parent="MerchantItem3"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem3Name" type="Label" parent="MerchantItem3"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem3ItemButton" parent="MerchantItem3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem3MoneyFrame" parent="MerchantItem3" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem4" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 189
+offset_top = 132
+offset_right = 342
+offset_bottom = 176
+mouse_filter = 2
+
+[node name="MerchantItem4SlotTexture" type="TextureRect" parent="MerchantItem4"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem4NameFrame" type="TextureRect" parent="MerchantItem4"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem4Name" type="Label" parent="MerchantItem4"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem4ItemButton" parent="MerchantItem4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem4MoneyFrame" parent="MerchantItem4" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem5" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 184
+offset_right = 177
+offset_bottom = 228
+mouse_filter = 2
+
+[node name="MerchantItem5SlotTexture" type="TextureRect" parent="MerchantItem5"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem5NameFrame" type="TextureRect" parent="MerchantItem5"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem5Name" type="Label" parent="MerchantItem5"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem5ItemButton" parent="MerchantItem5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem5MoneyFrame" parent="MerchantItem5" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem6" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 189
+offset_top = 184
+offset_right = 342
+offset_bottom = 228
+mouse_filter = 2
+
+[node name="MerchantItem6SlotTexture" type="TextureRect" parent="MerchantItem6"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem6NameFrame" type="TextureRect" parent="MerchantItem6"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem6Name" type="Label" parent="MerchantItem6"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem6ItemButton" parent="MerchantItem6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem6MoneyFrame" parent="MerchantItem6" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem7" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 236
+offset_right = 177
+offset_bottom = 280
+mouse_filter = 2
+
+[node name="MerchantItem7SlotTexture" type="TextureRect" parent="MerchantItem7"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem7NameFrame" type="TextureRect" parent="MerchantItem7"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem7Name" type="Label" parent="MerchantItem7"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem7ItemButton" parent="MerchantItem7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem7MoneyFrame" parent="MerchantItem7" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem8" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 189
+offset_top = 236
+offset_right = 342
+offset_bottom = 280
+mouse_filter = 2
+
+[node name="MerchantItem8SlotTexture" type="TextureRect" parent="MerchantItem8"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem8NameFrame" type="TextureRect" parent="MerchantItem8"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem8Name" type="Label" parent="MerchantItem8"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem8ItemButton" parent="MerchantItem8" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem8MoneyFrame" parent="MerchantItem8" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem9" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 288
+offset_right = 177
+offset_bottom = 332
+mouse_filter = 2
+
+[node name="MerchantItem9SlotTexture" type="TextureRect" parent="MerchantItem9"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem9NameFrame" type="TextureRect" parent="MerchantItem9"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem9Name" type="Label" parent="MerchantItem9"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem9ItemButton" parent="MerchantItem9" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem9MoneyFrame" parent="MerchantItem9" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem10" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 189
+offset_top = 288
+offset_right = 342
+offset_bottom = 332
+mouse_filter = 2
+
+[node name="MerchantItem10SlotTexture" type="TextureRect" parent="MerchantItem10"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem10NameFrame" type="TextureRect" parent="MerchantItem10"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem10Name" type="Label" parent="MerchantItem10"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem10ItemButton" parent="MerchantItem10" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem10MoneyFrame" parent="MerchantItem10" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem11" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 347
+offset_right = 177
+offset_bottom = 391
+mouse_filter = 2
+
+[node name="MerchantItem11SlotTexture" type="TextureRect" parent="MerchantItem11"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem11NameFrame" type="TextureRect" parent="MerchantItem11"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem11Name" type="Label" parent="MerchantItem11"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem11ItemButton" parent="MerchantItem11" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem11MoneyFrame" parent="MerchantItem11" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantItem12" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 189
+offset_top = 347
+offset_right = 342
+offset_bottom = 391
+mouse_filter = 2
+
+[node name="MerchantItem12SlotTexture" type="TextureRect" parent="MerchantItem12"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantItem12NameFrame" type="TextureRect" parent="MerchantItem12"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -2
+offset_right = 170
+offset_bottom = 76
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantItem12Name" type="Label" parent="MerchantItem12"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -3
+offset_right = 146
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantItem12ItemButton" parent="MerchantItem12" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantItem12MoneyFrame" parent="MerchantItem12" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+
+[node name="MerchantRepairAllButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 136
+offset_top = -127
+offset_right = 172
+offset_bottom = -91
+ignore_texture_size = true
+
+[node name="MerchantRepairAllIcon" type="TextureRect" parent="MerchantRepairAllButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantRepairAllButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MerchantRepairAllButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MerchantRepairAllButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
+
+[node name="MerchantRepairItemButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 98
+offset_top = -127
+offset_right = 134
+offset_bottom = -91
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MerchantRepairItemButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantRepairItemButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MerchantRepairItemButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MerchantRepairItemButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
+
+[node name="MerchantBuyBackItem" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 189
+offset_top = 385
+offset_right = 342
+offset_bottom = 422
+mouse_filter = 2
+
+[node name="MerchantBuyBackItemSlotTexture" type="TextureRect" parent="MerchantBuyBackItem"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="MerchantBuyBackItemNameFrame" type="TextureRect" parent="MerchantBuyBackItem"]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = -3
+offset_right = 170
+offset_bottom = 61
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="MerchantBuyBackItemName" type="Label" parent="MerchantBuyBackItem"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -6
+offset_right = 136
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Item Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="MerchantBuyBackItemItemButton" parent="MerchantBuyBackItem" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="MerchantBuyBackItemMoneyFrame" parent="MerchantBuyBackItem" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 42
+offset_top = 23
+offset_right = 170
+offset_bottom = 36
+
+[node name="MerchantMoneyFrame" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -168
+offset_top = -80
+offset_right = -40
+offset_bottom = -67
+
+[node name="MerchantPrevPageButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 21
+offset_top = -172
+offset_right = 53
+offset_bottom = -140
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="MerchantPrevPageButton"]
+offset_left = 32
+offset_top = 10
+offset_right = 32
+offset_bottom = 22
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Prev"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="MerchantPrevPageButton"]
+offset_left = 0
+offset_top = -1
+offset_right = 32
+offset_bottom = 31
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantPrevPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MerchantPrevPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MerchantPrevPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MerchantPrevPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
+
+[node name="MerchantNextPageButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 308
+offset_top = -172
+offset_right = 340
+offset_bottom = -140
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="MerchantNextPageButton"]
+offset_left = -3
+offset_top = 10
+offset_right = -3
+offset_bottom = 22
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Next"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="MerchantNextPageButton"]
+offset_left = 0
+offset_top = -1
+offset_right = 32
+offset_bottom = 31
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantNextPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_25")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MerchantNextPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_26")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MerchantNextPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MerchantNextPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
+
+[node name="MerchantFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -62
+offset_top = 8
+offset_right = -30
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MerchantFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MerchantFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_30")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
+
+[node name="MerchantFrameTab1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 2.5
+offset_top = -62
+offset_right = 117.5
+offset_bottom = -30
+ignore_texture_size = true
+
+[node name="MerchantFrameTab1LeftDisabled" type="TextureRect" parent="MerchantFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="MerchantFrameTab1MiddleDisabled" type="TextureRect" parent="MerchantFrameTab1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="MerchantFrameTab1RightDisabled" type="TextureRect" parent="MerchantFrameTab1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="MerchantFrameTab1Left" type="TextureRect" parent="MerchantFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="MerchantFrameTab1Middle" type="TextureRect" parent="MerchantFrameTab1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_37")
+expand_mode = 1
+
+[node name="MerchantFrameTab1Right" type="TextureRect" parent="MerchantFrameTab1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="MerchantFrameTab1Text" type="Label" parent="MerchantFrameTab1"]
+unique_name_in_owner = true
+offset_left = 57.5
+offset_top = 9
+offset_right = 57.5
+offset_bottom = 19
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Merchant"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MerchantFrameTab1"]
+offset_left = 10
+offset_top = -2
+offset_right = 105
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_39")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
+
+[node name="MerchantFrameTab2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 101.5
+offset_top = -62
+offset_right = 216.5
+offset_bottom = -30
+ignore_texture_size = true
+
+[node name="MerchantFrameTab2LeftDisabled" type="TextureRect" parent="MerchantFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="MerchantFrameTab2MiddleDisabled" type="TextureRect" parent="MerchantFrameTab2"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="MerchantFrameTab2RightDisabled" type="TextureRect" parent="MerchantFrameTab2"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="MerchantFrameTab2Left" type="TextureRect" parent="MerchantFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="MerchantFrameTab2Middle" type="TextureRect" parent="MerchantFrameTab2"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_37")
+expand_mode = 1
+
+[node name="MerchantFrameTab2Right" type="TextureRect" parent="MerchantFrameTab2"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="MerchantFrameTab2Text" type="Label" parent="MerchantFrameTab2"]
+unique_name_in_owner = true
+offset_left = 57.5
+offset_top = 9
+offset_right = 57.5
+offset_bottom = 19
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Buyback"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MerchantFrameTab2"]
+offset_left = 10
+offset_top = -2
+offset_right = 105
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_39")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")

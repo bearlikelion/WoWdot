@@ -1,7 +1,7 @@
 class_name MapPoiCheck
 extends Node
 
-const WORLD_MAP: PackedScene = preload("res://game/ui/wow/world_map_frame.tscn")
+const WORLD_MAP: PackedScene = preload("res://ui/world_map_frame.tscn")
 # A zone with landmarks of its own, by its AreaTable id.
 const ELWYNN_AREA: int = 12
 

@@ -80,7 +80,7 @@
     <section class="col">
       <h2><img src="wrathgd.png" alt="" width="32" height="32">WrathGD</h2>
       <p class="sub">3.3.5a (12340) &middot; AzerothCore &middot; <span class="status ice">In development</span></p>
-      <p>Just started. One <code>wowdot</code> build serves both clients: a project setting picks the wire build, the packet parsers, the MPQ chain and the data tables.</p>
+      <p>The client runs: it logs in, makes a character and walks around Shadowglen. One <code>wowdot</code> build serves both clients, and one folder of GDScript too: a project setting picks the wire build, the packet parsers, the MPQ chain and the data tables.</p>
 
       <h3>Done so far</h3>
       <ul>
@@ -92,15 +92,17 @@
         <li><strong>Chat.</strong> Lines go out and come back in the WotLK layout, whose message types are numbered differently.</li>
         <li><strong>Models.</strong> M2 version 264, whose geometry arrives from the <code>.skin</code> file beside the model.</li>
         <li><strong>Terrain.</strong> Azeroth and Northrend tiles, with MH2O water named out of LiquidType.dbc.</li>
+        <li><strong>The screens.</strong> The login screen, the character list and the create screen, all shared with WoWGD, driving a real character into the world with nothing amiss in the log.</li>
       </ul>
 
       <h3>Next</h3>
       <ul>
+        <li>The update fields and Spell columns the interface reads, which is what the HUD and tooltips want.</li>
         <li>Animations, which version 264 moved into <code>.anim</code> files, hundreds per model.</li>
-        <li>The rest of the hand-parsed packets that still read the vanilla layout, and auras, which lost their update fields.</li>
-        <li>Moving WoWGD's game code somewhere both clients load, then porting the 3.3.5a interface.</li>
+        <li>The packets still parsed in the vanilla layout, and auras, which lost their update fields.</li>
+        <li>The 3.3.5a interface, whose FrameXML differs from 1.12's.</li>
       </ul>
-      <p class="muted">No scenes or game scripts yet, so there is nothing to download.</p>
+      <p class="muted">Too early to play, so there is nothing to download yet.</p>
     </section>
     </div>
 

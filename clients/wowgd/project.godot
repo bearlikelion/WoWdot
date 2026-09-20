@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/image="uid://b3fnroatmb24b"
 config/icon="uid://b3fnroatmb24b"
 
+[audio]
+
+buses/default_bus_layout="res://game/default_bus_layout.tres"
+
 [autoload]
 
 WowAssets="*res://game/wow_assets.gd"

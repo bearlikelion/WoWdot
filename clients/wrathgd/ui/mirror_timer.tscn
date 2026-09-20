@@ -1,0 +1,80 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/mirror_timer.gd" id="1"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\CastingBar\\UI-CastingBar-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[node name="MirrorTimer1" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -103
+offset_top = 96
+offset_right = 103
+offset_bottom = 122
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+
+[node name="Texture" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.5
+offset_top = 2
+offset_right = 97.5
+offset_bottom = 15
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="MirrorTimer1Text" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MirrorTimer1Border" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128
+offset_top = -25
+offset_right = 128
+offset_bottom = 39
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="MirrorTimer1StatusBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.5
+offset_top = 2
+offset_right = 97.5
+offset_bottom = 15
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_2")
+nine_patch_stretch = true
+max_value = 1.0
+step = 0.0
+value = 1.0

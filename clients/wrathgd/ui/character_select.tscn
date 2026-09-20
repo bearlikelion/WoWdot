@@ -1,0 +1,2712 @@
+[gd_scene format=3 uid="uid://bgr12idwovqlg"]
+
+[ext_resource type="Script" path="res://game/ui/character_select.gd" id="1"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/wow_model_frame.tscn" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Glues\\Common\\Glues-WoW-WotLKLogo.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 160, 44)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_10"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\Glues\\CharacterCreate\\UI-RotationRight-Big-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Glues\\CharacterCreate\\UI-RotationRight-Big-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Glow.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Glues\\Common\\Glue-Tooltip-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Glues\\Common\\Glue-Tooltip-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Glues\\CharacterSelect\\Glue-CharacterSelect-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-PaidCharacterCustomization-Button.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\DialogFrame\\UI-Dialog-Icon-AlertNew.blp"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_29"]
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\ChatFrame\\UI-ChatInputBorder-Left.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_30")
+region = Rect2(0, 0, 75, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\ChatFrame\\UI-ChatInputBorder-Right.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_32")
+region = Rect2(181, 0, 75, 32)
+
+[node name="CharacterSelect" type="Control"]
+script = ExtResource("1")
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+
+[node name="CharacterSelectModel" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="CharacterSelectUI" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 0
+
+[node name="CharSelectCharacterName" type="Label" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = -122
+offset_right = 0
+offset_bottom = -100
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalHuge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterSelectLogo" type="TextureRect" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 7
+offset_right = 259
+offset_bottom = 135
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="CharSelectEnterWorldButton" type="TextureButton" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -100
+offset_top = -90
+offset_right = 100
+offset_bottom = -30
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 60
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 60
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 60
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharSelectEnterWorldButtonText" type="Label" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 27
+offset_right = 100
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Enter World"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharSelectEnterWorldButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 60
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterSelectRotateLeft" type="TextureButton" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -40
+offset_top = -49
+offset_right = 10
+offset_bottom = 1
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft"]
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+flip_h = true
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft"]
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+flip_h = true
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateLeft"]
+offset_left = 10
+offset_top = 10
+offset_right = 40
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterSelectRotateRight" type="TextureButton" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -9
+offset_top = -49
+offset_right = 41
+offset_bottom = 1
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight"]
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight"]
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRotateRight"]
+offset_left = 10
+offset_top = 10
+offset_right = 40
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterSelectBackButton" type="TextureButton" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -130
+offset_top = -60
+offset_right = -30
+offset_bottom = -25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharacterSelectBackButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectBackButton"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 14.5
+offset_right = 50
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectBackButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterSelectRealmSplitButton" type="TextureButton" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 56
+offset_top = 140
+offset_right = 206
+offset_bottom = 195
+visible = false
+ignore_texture_size = true
+
+[node name="RealmSplitCurrentChoice" type="Label" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
+unique_name_in_owner = true
+offset_left = -53
+offset_top = 55
+offset_right = 203
+offset_bottom = 70
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RealmSplitPending" type="Label" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
+unique_name_in_owner = true
+offset_left = -53
+offset_top = 80
+offset_right = 203
+offset_bottom = 95
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Realm Split Pending..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharacterSelectRealmSplitButtonGlow" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterSelectRealmSplitButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 24.5
+offset_right = 75
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Realm Split"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterSelectUpgradeAccountButton" type="TextureButton" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160
+offset_top = 0
+offset_right = 160
+offset_bottom = 60
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectUpgradeAccountButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 320
+offset_bottom = 60
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectUpgradeAccountButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 320
+offset_bottom = 60
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectUpgradeAccountButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 320
+offset_bottom = 60
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharacterSelectUpgradeAccountButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectUpgradeAccountButton"]
+unique_name_in_owner = true
+offset_left = 160
+offset_top = 27
+offset_right = 160
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Upgrade to Full Version"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectUpgradeAccountButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 320
+offset_bottom = 60
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterSelectDeleteButton" type="TextureButton" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -295
+offset_top = -60
+offset_right = -130
+offset_bottom = -25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 165
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 165
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 165
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharacterSelectDeleteButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+unique_name_in_owner = true
+offset_left = 82.5
+offset_top = 14.5
+offset_right = 82.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Delete Character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectDeleteButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 165
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterSelectCharacterFrame" type="Control" parent="CharacterSelectUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -265
+offset_top = 15
+offset_right = -5
+offset_bottom = 657
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+script = ExtResource("4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_18")
+edge = SubResource("WowTexture_19")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(10, 5, 4, 9)
+
+[node name="CharSelectRealmName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = 10
+offset_right = 252
+offset_bottom = 23
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharSelectChangeRealmButton" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 62.5
+offset_top = 23
+offset_right = 197.5
+offset_bottom = 56
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 33
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 33
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 33
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharSelectChangeRealmButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+unique_name_in_owner = true
+offset_left = 67.5
+offset_top = 13.5
+offset_right = 67.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Change Realm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectChangeRealmButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 33
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton1" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 65
+offset_right = 280
+offset_bottom = 135
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton1Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton1ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton1ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton1ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton1ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton1/CharSelectCharacterButton1ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton2" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 122
+offset_right = 280
+offset_bottom = 192
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton2Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton2ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton2ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton2ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton2ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton2/CharSelectCharacterButton2ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton3" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 179
+offset_right = 280
+offset_bottom = 249
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton3Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton3ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton3ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton3ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton3ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton3/CharSelectCharacterButton3ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton4" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 236
+offset_right = 280
+offset_bottom = 306
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton4Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton4ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton4ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton4ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton4ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton4/CharSelectCharacterButton4ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton5" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 293
+offset_right = 280
+offset_bottom = 363
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton5Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton5ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton5ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton5ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton5ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton5/CharSelectCharacterButton5ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton6" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 350
+offset_right = 280
+offset_bottom = 420
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton6Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton6ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton6ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton6ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton6ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton6/CharSelectCharacterButton6ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton7" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 407
+offset_right = 280
+offset_bottom = 477
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton7Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton7ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton7ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton7ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton7ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton7/CharSelectCharacterButton7ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton8" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 464
+offset_right = 280
+offset_bottom = 534
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton8Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton8ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton8ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton8ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton8ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton8/CharSelectCharacterButton8ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton9" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 521
+offset_right = 280
+offset_bottom = 591
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton9Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton9ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton9ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton9ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton9ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton9/CharSelectCharacterButton9ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton10" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 578
+offset_right = 280
+offset_bottom = 648
+visible = false
+ignore_texture_size = true
+
+[node name="CharSelectCharacterButton10Text" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10"]
+offset_left = -20
+offset_top = -8
+offset_right = 236
+offset_bottom = 66
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterButton10ButtonText" type="Control" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 70
+mouse_filter = 2
+
+[node name="CharSelectCharacterButton10ButtonTextName" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="CharSelectCharacterButton10ButtonTextInfo" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 21
+offset_right = 217
+offset_bottom = 33
+mouse_filter = 2
+theme_type_variation = &"GlueFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCharacterButton10ButtonTextLocation" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterButton10/CharSelectCharacterButton10ButtonText"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 34
+offset_right = 217
+offset_bottom = 50
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CharSelectCreateCharacterButton" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 30
+offset_top = 582
+offset_right = 230
+offset_bottom = 627
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharSelectCreateCharacterButtonText" type="Label" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 19.5
+offset_right = 100
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Create New Character"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCreateCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize1" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 59
+offset_right = 9
+offset_bottom = 123
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize1"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize1"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize2" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 116
+offset_right = 9
+offset_bottom = 180
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize2"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize2"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize3" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 173
+offset_right = 9
+offset_bottom = 237
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize3"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize3"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize4" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 230
+offset_right = 9
+offset_bottom = 294
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize4"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize4"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize5" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 287
+offset_right = 9
+offset_bottom = 351
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize5"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize5"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize6" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 344
+offset_right = 9
+offset_bottom = 408
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize6"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize6"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize7" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 401
+offset_right = 9
+offset_bottom = 465
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize7"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize7"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize8" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 458
+offset_right = 9
+offset_bottom = 522
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize8"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize8"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize9" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 515
+offset_right = 9
+offset_bottom = 579
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize9"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize9"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectCharacterCustomize10" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 572
+offset_right = 9
+offset_bottom = 636
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize10"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectCharacterCustomize10"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange1" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 59
+offset_right = 9
+offset_bottom = 123
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange1"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange1"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange2" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 116
+offset_right = 9
+offset_bottom = 180
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange2"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange2"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange3" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 173
+offset_right = 9
+offset_bottom = 237
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange3"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange3"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange4" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 230
+offset_right = 9
+offset_bottom = 294
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange4"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange4"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange5" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 287
+offset_right = 9
+offset_bottom = 351
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange5"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange5"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange6" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 344
+offset_right = 9
+offset_bottom = 408
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange6"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange6"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange7" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 401
+offset_right = 9
+offset_bottom = 465
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange7"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange7"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange8" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 458
+offset_right = 9
+offset_bottom = 522
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange8"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange8"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange9" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 515
+offset_right = 9
+offset_bottom = 579
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange9"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange9"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectRaceChange10" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 572
+offset_right = 9
+offset_bottom = 636
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange10"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectRaceChange10"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange1" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 59
+offset_right = 9
+offset_bottom = 123
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange1"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange1"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange2" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 116
+offset_right = 9
+offset_bottom = 180
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange2"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange2"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange3" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 173
+offset_right = 9
+offset_bottom = 237
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange3"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange3"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange4" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 230
+offset_right = 9
+offset_bottom = 294
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange4"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange4"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange5" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 287
+offset_right = 9
+offset_bottom = 351
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange5"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange5"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange6" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 344
+offset_right = 9
+offset_bottom = 408
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange6"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange6"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange7" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 401
+offset_right = 9
+offset_bottom = 465
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange7"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange7"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange8" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 458
+offset_right = 9
+offset_bottom = 522
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange8"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange8"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange9" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 515
+offset_right = 9
+offset_bottom = 579
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange9"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange9"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharSelectFactionChange10" type="TextureButton" parent="CharacterSelectUI/CharacterSelectCharacterFrame"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -55
+offset_top = 572
+offset_right = 9
+offset_bottom = 636
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange10"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectCharacterFrame/CharSelectFactionChange10"]
+offset_left = 9
+offset_top = 9
+offset_right = 55
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterDeleteDialog" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 0
+
+[node name="CharacterDeleteBackground" type="Control" parent="CharacterDeleteDialog"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256
+offset_top = -128
+offset_right = 256
+offset_bottom = 128
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
+script = ExtResource("4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_26")
+edge = SubResource("WowTexture_27")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="CharacterDeleteText1" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 16
+offset_right = 456
+offset_bottom = 34
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterDeleteText2" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 54
+offset_right = 456
+offset_bottom = 66
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Type \"DELETE\" into the field to confirm."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterDeleteAlertIcon" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 94
+offset_right = 72
+offset_bottom = 142
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="CharacterDeleteButton1" type="TextureButton" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 30
+offset_top = 200
+offset_right = 250
+offset_bottom = 240
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharacterDeleteButton1Text" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+unique_name_in_owner = true
+offset_left = 110
+offset_top = 18
+offset_right = 110
+offset_bottom = 18
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterDeleteButton2" type="TextureButton" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 263
+offset_top = 200
+offset_right = 483
+offset_bottom = 240
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharacterDeleteButton2Text" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+unique_name_in_owner = true
+offset_left = 110
+offset_top = 18
+offset_right = 110
+offset_bottom = 18
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground/CharacterDeleteButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterDeleteEditBox" type="LineEdit" parent="CharacterDeleteDialog"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65
+offset_top = -57
+offset_right = 65
+offset_bottom = -25
+mouse_filter = 0
+theme_type_variation = &"GlueFontHighlight"
+max_length = 32
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_29")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_29")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_29")
+
+[node name="Texture" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteEditBox"]
+offset_left = -10
+offset_top = 0
+offset_right = 65
+offset_bottom = 32
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteEditBox"]
+offset_left = 65
+offset_top = 0
+offset_right = 140
+offset_bottom = 32
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1

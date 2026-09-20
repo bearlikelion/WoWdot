@@ -18,7 +18,7 @@ func _ready() -> void:
 	var ui_scale: float = get_viewport_rect().size.y / UI_HEIGHT
 	_root.scale = Vector2(ui_scale, ui_scale)
 	_root.size = get_viewport_rect().size / ui_scale
-	var scene: PackedScene = load(args.get("scene", "res://game/ui/wow/main_menu_bar.tscn"))
+	var scene: PackedScene = load(args.get("scene", "res://ui/main_menu_bar.tscn"))
 	var view: Control = scene.instantiate()
 	_root.add_child(view)
 	view.show()

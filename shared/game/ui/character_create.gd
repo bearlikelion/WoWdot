@@ -96,11 +96,13 @@ func _ready() -> void:
 		var right: BaseButton = get_node(frame + "RightButton")
 		left.pressed.connect(_cycle.bind(CUSTOMIZATIONS[i], -1))
 		right.pressed.connect(_cycle.bind(CUSTOMIZATIONS[i], 1))
-	for label: Label in [
-		%CharacterCreateFactionText, %CharacterCreateRaceText, %CharacterCreateRaceAbilityText,
-		%CharacterCreateClassText,
+	for name: String in [
+		"CharacterCreateFactionText", "CharacterCreateRaceText",
+		"CharacterCreateRaceAbilityText", "CharacterCreateClassText",
 	]:
-		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		var label: Label = get_node_or_null("%" + name) as Label
+		if label != null:
+			label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	var name_backdrop: WowBackdrop = _name_edit.get_node("Backdrop")
 	name_backdrop.border_color = NAME_BORDER
 	name_backdrop.background_color = FACTION_BACKGROUNDS[CharacterOptions.Faction.ALLIANCE]
@@ -165,7 +167,7 @@ func _choose_race(race: int) -> void:
 		_class_buttons[i].visible = i < _classes.size()
 		if _class_buttons[i].visible:
 			var icon: TextureRect = _class_buttons[i].get_node("NormalTexture")
-			_set_tex_coords(icon, CLASS_ICON_RECTS[CharacterOptions.class_file(_classes[i])])
+			_set_tex_coords(icon, _class_icon(CharacterOptions.class_file(_classes[i])))
 	_choose_class(0)
 	_refresh_gender()
 	_model.facing = INITIAL_FACING
@@ -177,7 +179,7 @@ func _choose_class(index: int) -> void:
 	for i: int in _class_buttons.size():
 		_mark(_class_buttons[i], i == index, CharacterOptions.class_label(_class_id))
 	var class_file: String = CharacterOptions.class_file(_class_id)
-	_set_tex_coords(%CharacterCreateClassIcon, CLASS_ICON_RECTS[class_file])
+	_set_tex_coords(%CharacterCreateClassIcon, _class_icon(class_file))
 	%CharacterCreateClassLabel.text = CharacterOptions.class_label(_class_id)
 	%CharacterCreateClassText.text = WowStrings.get_text("CLASS_" + class_file)
 	_show_character()
@@ -251,7 +253,9 @@ func _race_icon(race: int, gender: CharacterOptions.Gender) -> Rect2:
 # SetChecked and LockHighlight on the chosen button, with its name shown under it.
 # CharacterCreateRaceButton_OnEnter: the button under the cursor names itself, as the chosen one does.
 func _name_on_hover(button: WowButton, label: Callable) -> void:
-	var text: Label = get_node("%" + button.name + "HighlightText")
+	var text: Label = _highlight_text(button)
+	if text == null:
+		return
 	button.mouse_entered.connect(func() -> void: text.text = label.call())
 	button.mouse_exited.connect(func() -> void:
 		if not button.checked:
@@ -259,10 +263,17 @@ func _name_on_hover(button: WowButton, label: Callable) -> void:
 	)
 
 
+# 3.3.5a names the chosen race and class elsewhere, so its buttons carry no label of their own.
+func _highlight_text(button: WowButton) -> Label:
+	return get_node_or_null("%" + button.name + "HighlightText") as Label
+
+
 func _mark(button: WowButton, chosen: bool, label: String) -> void:
 	button.checked = chosen
 	button.highlight_locked = chosen
-	(get_node("%" + button.name + "HighlightText") as Label).text = label if chosen else ""
+	var text: Label = _highlight_text(button)
+	if text != null:
+		text.text = label if chosen else ""
 
 
 # The info texts anchor to the bottom of the text above, which only exists once they are wrapped.
@@ -284,6 +295,11 @@ func _stack_texts() -> void:
 
 
 # WoW's SetTexCoord: the region, in 0..1 of the texture, that the rect shows.
+# The 1.12 atlas has no Death Knight cell, so a class it does not know draws nothing.
+func _class_icon(class_file: String) -> Rect2:
+	return CLASS_ICON_RECTS.get(class_file, Rect2())
+
+
 func _set_tex_coords(rect: TextureRect, region: Rect2) -> void:
 	var atlas: AtlasTexture = rect.texture as AtlasTexture
 	if atlas == null:

@@ -7,7 +7,7 @@ signal error_raised(text: String)
 
 enum NodeType { NONE, CURRENT, REACHABLE, DISTANT }
 
-const TAXI_BUTTON: PackedScene = preload("res://game/ui/wow/taxi_button.tscn")
+const TAXI_BUTTON: PackedScene = preload("res://ui/taxi_button.tscn")
 const MAP_PATH: String = "Interface\\TaxiFrame\\TAXIMAP%d.blp"
 const ICONS: Dictionary[NodeType, String] = {
 	NodeType.CURRENT: "Interface\\TaxiFrame\\UI-Taxi-Icon-Green.blp",

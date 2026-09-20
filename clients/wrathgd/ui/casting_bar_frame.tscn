@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://t55ke7okpvwe"]
+
+[ext_resource type="Script" uid="uid://djfjaavtfhp7g" path="res://game/ui/casting_bar.gd" id="1"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\CastingBar\\UI-CastingBar-Border.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\CastingBar\\UI-CastingBar-Spark.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\CastingBar\\UI-CastingBar-Flash.blp"
+
+[node name="CastingBarFrame" type="TextureProgressBar" unique_id=691380374]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -97.5
+offset_top = -68.0
+offset_right = 97.5
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_1")
+tint_progress = Color(1, 0.7, 0, 1)
+script = ExtResource("1")
+
+[node name="Texture" type="ColorRect" parent="." unique_id=2091516718]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 195.0
+offset_bottom = 13.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="CastingBarBorder" type="TextureRect" parent="." unique_id=1121164605]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -30.5
+offset_top = -28.0
+offset_right = 225.5
+offset_bottom = 36.0
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="CastingBarSpark" type="TextureRect" parent="." unique_id=2025691140]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_4")
+layout_mode = 0
+offset_left = 81.5
+offset_top = -9.5
+offset_right = 113.5
+offset_bottom = 22.5
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="CastingBarFlash" type="TextureRect" parent="." unique_id=1040993652]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_4")
+layout_mode = 0
+offset_left = -30.5
+offset_top = -28.0
+offset_right = 225.5
+offset_bottom = 36.0
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="CastingBarText" type="Label" parent="." unique_id=12407736]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.5
+offset_top = -13.5
+offset_right = 94.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1

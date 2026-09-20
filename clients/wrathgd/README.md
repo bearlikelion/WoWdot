@@ -9,13 +9,16 @@ Like [WoWGD](../wowgd), it will read the stock client's MPQs at runtime and ship
 
 ## Status
 
-Enters the world and walks around.
+Plays: the real client logs in, makes a character and walks around Shadowglen.
 The extension reads its expansion from **Project Settings > wowgd > expansion**, so one `wowdot` build serves both clients: WoWGD leaves the setting at `classic`, this project sets `wotlk`.
 That choice picks the wire build, the client version, the realm list format, the packet parsers, the MPQ chain, the `data/wotlk/` tables, the movement layout and the chat type numbering.
-The four checks in [`tests/`](tests) log in, create a character, enter the world, read its fields out of the update object, walk, run a GM command, take a near teleport and log out again, all against a stock AzerothCore.
+The five checks in [`tests/`](tests) log in, create a character, enter the world, read its fields out of the update object, walk, run a GM command, take a near teleport and log out again, all against a stock AzerothCore.
 They also load WotLK models and terrain tiles out of the archives: M2 version 264 geometry from its `.skin` files, and ADT water from MH2O.
 The world socket also takes AzerothCore's five byte header for packets over 0x8000 bytes, which nothing the client does yet is big enough to ask for, so no check covers it.
-`game/` links to [`shared/game`](../../shared/game), the GDScript both clients load, but this project still lacks the settings that code needs, so there is nothing to run but the checks.
+`game/` links to [`shared/game`](../../shared/game), the GDScript both clients load, and `res://game/main.tscn` is this project's main scene, so `godot --path .` opens the 3.3.5a login screen.
+The screens themselves are this client's own: [`ui/`](ui) holds the scenes `tools/framexml/convert.py` wrote from the 3.3.5a GlueXML, which the shared scenes reach by `res://ui/<name>.tscn`, so each client draws its own interface from one set of scripts.
+`glue_check` drives it the way a player would: log in, create a character on the create screen, enter the world.
+That run leaves no errors or warnings in its log, which took filling in 17 DBC layout tables, the columns WotLK moved, and the game object rotation field.
 
 ## Requirements
 
@@ -76,16 +79,20 @@ The profile setting decides what the extension speaks; what is left is the code 
 `shared/game/` is about 21,000 lines of GDScript, linked in as `game/` by both clients, and roughly 75 to 85 percent of it should be reusable here.
 The three tables it reads by path go through `WowLoader.data_path()`, which follows the expansion setting, so this client looks in `res://data/wotlk/` for them.
 
-- **Project settings.** This `project.godot` has no `[autoload]`, `[input]` or `[rendering]` section, so `WowClient`, `WowAssets` and every input action the world and interface bind are missing. Bringing those across is what it takes to run `res://game/main.tscn` here at all.
-- **Data tables.** `data/wotlk/` holds only the three protocol tables: `ui_sounds.json`, `spell_failures.json` and `equip_failures.json` have no WotLK versions yet. `dbc_layouts.json` also lacks tables the game reads (ChrRaces, ChrClasses, SpellCastTimes, SpellDuration, SpellRadius, HelmetGeosetVisData, QuestSort, WorldMapOverlay and others), and `update_fields.json` has 62 entries where the game code uses 324.
+- **Data tables.** `ui_sounds.json`, `spell_failures.json` and `equip_failures.json` have no WotLK versions yet, so `WowLoader.data_table()` hands the game an empty one: UI sounds are silent and a refused cast or equip has no text. They come out of the 3.3.5a FrameXML with the UI.
+- **Spell.dbc.** `dbc_layouts.json` names the Spell columns the client has asked for so far. The rest of what the game code reads (reagents, cooldowns, the effect blocks, descriptions) still wants placing. Three anchors pin the layout: Speed is 47, Name_lang starts at 136, and StartRecoveryCategory and StartRecoveryTime are 205 and 206. `tools/dbc_dump.gd` prints a table's columns, and `Spell:133` prints Fireball, whose values are known.
+- **Update fields.** `update_fields.json` has 63 entries where the game code uses 324; each one the client reaches shows up as a `field_index` of -1.
 - **Removed fields.** `UNIT_FIELD_AURAS`, `UNIT_VIRTUAL_ITEM_*` and the 12-field `PLAYER_VISIBLE_ITEM` stride are gone in WotLK, and quest log slots grow from 3 fields to 5.
 - **Raw packets.** 14 scripts decode payloads in the vanilla layout (loot, merchant, party, taxi, talents, skills, combat events, NPC dialogs and others).
 - **Constants.** Movement flag values, fixed DBC column numbers (Spell, SoundEntries, Light), and the character create screen's 8 races without Death Knights.
-- **UI.** The 3.3.5a FrameXML differs from 1.12's, so `tools/framexml/convert.py` has to run against the WotLK interface files, with a `frames.json` of its own.
+- **UI.** The login screen, character list, create screen, realm list and glue dialog are converted from the 3.3.5a GlueXML with [`tools/framexml/frames.json`](tools/framexml/frames.json), and `wrathgd.xml` grafts this project's own realmlist box onto the login screen the way WoWGD's does. Everything else in `ui/` is still the 1.12 conversion, copied in so the HUD keeps working; each screen wants converting and then the shared script pointing at whatever 3.3.5a renamed. Run the converter with `python3 ../wowgd/tools/framexml/convert.py <dump> . tools/framexml/frames.json`, where the dump comes from `--script tools/framexml/dump.gd -- --out=<dir>`.
+- **Login screen polish.** Three fixes brought the glue scene close to the stock client: `wow_model_frame.gd` gives each transparent surface the model's own batch order, since a viewport sorts them by distance and drew the sky bowl over the citadel inside it; it plays the scene's sequence, which drives the sky, the snow and the frost wyrm's flight, whose batches rest at zero alpha until the animation fades them in; and it caps the camera at 60 degrees, because this model asks for 120 across the diagonal and the set is only dressed for the tighter view the stock client frames. It also reads the `glow` the XML names into the viewport's ambient, which is what 3.3.5a's 0.08 asks for against the 0.3 every other screen leaves at the default. Two measured gaps are left, and one feature covers both. The animation library carries bone and texture transforms but not the M2's colour and texture weight tracks, so a batch keeps its at-rest tint: the frost wyrm rests at alpha 0 and never fades in as it flies past, and the sky keeps the sky bowl's raw cyan, measured at RGB (68, 150, 191) against the stock client's (33, 53, 67), which no gamma curve explains. The other half is that 24 of the 64 batches name two textures, an M2 shader combination the material only draws the first of, which is what should be darkening those clouds. Two smaller ones: 3.3.5a anchors the Remember Account Name tick to the label's left edge, which lands inside the text because the converted FontString is wider than its glyphs, and the label reads "Battle.net Account Name" because that is what 3.3.5a's own `ACCOUNT_NAME` string says.
+- **Diagnostics.** [`tools/`](tools) holds the scripts that answered the questions above: `dbc_dump.gd` prints a DBC's columns (`Spell:133` for a known row), `m2_dump.gd` a model's batches with their blend mode and at-rest tint, and `blp_dump.gd` a texture's size, format and alpha spread.
+- **Hidden by Lua.** 3.3.5a leaves frames like `ChangedOptionsDialog` and `AccountLoginDropDown` visible in the XML and hides them from `AccountLogin.lua`, so anything the client does not drive belongs in this project's `exclude` list, as those two now are.
 
 ### Order
 
-The game code is shared and the extension answers for both expansions everywhere a check reaches, so the work left is on the GDScript side: the project settings first, so `main.tscn` runs, then the tables and the packet layouts the interface reads, then the 3.3.5a FrameXML.
+The client runs, so the work left is what a player would notice: the update fields and Spell columns the interface reads, the packet layouts still parsed as vanilla, then the 3.3.5a FrameXML for the screens that differ.
 
 ## Checks
 
@@ -99,6 +106,7 @@ Run one with `godot --headless --path . tests/<name>.tscn`.
 | `world_check` | A character of its own, made and deleted again: entering the world, its health and level read through the WotLK update field indices, walking on heartbeats that name the mover, a GM command as say with the answer read back, and a near teleport whose ack has to land before the walk after it counts. |
 | `model_check` | A character and a creature model: version 264, the batches and geometry that only arrive once the `.skin` beside the model is read. |
 | `terrain_check` | An Azeroth and a Northrend tile: 256 terrain chunks each, and MH2O water through the LiquidType.dbc rows that name which of the four liquid materials to use. |
+| `glue_check` | The client as a player drives it: the login screen against the local AzerothCore, the character create screen, and the world loading around the new character until it is active. |
 
 ## References
 

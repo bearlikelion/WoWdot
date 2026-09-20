@@ -1,0 +1,196 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/side_action_bars.gd" id="1"]
+[ext_resource type="PackedScene" path="res://ui/action_button_template.tscn" id="2"]
+
+[node name="MultiBarRight" type="Control"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -45
+offset_top = -598
+offset_right = -7
+offset_bottom = -98
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+
+[node name="MultiBarRightButton1" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 0
+offset_right = 38
+offset_bottom = 36
+
+[node name="MultiBarRightButton2" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 42
+offset_right = 38
+offset_bottom = 78
+
+[node name="MultiBarRightButton3" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 84
+offset_right = 38
+offset_bottom = 120
+
+[node name="MultiBarRightButton4" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 126
+offset_right = 38
+offset_bottom = 162
+
+[node name="MultiBarRightButton5" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 168
+offset_right = 38
+offset_bottom = 204
+
+[node name="MultiBarRightButton6" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 210
+offset_right = 38
+offset_bottom = 246
+
+[node name="MultiBarRightButton7" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 252
+offset_right = 38
+offset_bottom = 288
+
+[node name="MultiBarRightButton8" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 294
+offset_right = 38
+offset_bottom = 330
+
+[node name="MultiBarRightButton9" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 336
+offset_right = 38
+offset_bottom = 372
+
+[node name="MultiBarRightButton10" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 378
+offset_right = 38
+offset_bottom = 414
+
+[node name="MultiBarRightButton11" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 420
+offset_right = 38
+offset_bottom = 456
+
+[node name="MultiBarRightButton12" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 462
+offset_right = 38
+offset_bottom = 498
+
+[node name="MultiBarLeft" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = -43
+offset_top = 0
+offset_right = -5
+offset_bottom = 500
+visible = false
+mouse_filter = 2
+
+[node name="MultiBarLeftButton1" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 0
+offset_right = 38
+offset_bottom = 36
+
+[node name="MultiBarLeftButton2" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 42
+offset_right = 38
+offset_bottom = 78
+
+[node name="MultiBarLeftButton3" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 84
+offset_right = 38
+offset_bottom = 120
+
+[node name="MultiBarLeftButton4" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 126
+offset_right = 38
+offset_bottom = 162
+
+[node name="MultiBarLeftButton5" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 168
+offset_right = 38
+offset_bottom = 204
+
+[node name="MultiBarLeftButton6" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 210
+offset_right = 38
+offset_bottom = 246
+
+[node name="MultiBarLeftButton7" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 252
+offset_right = 38
+offset_bottom = 288
+
+[node name="MultiBarLeftButton8" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 294
+offset_right = 38
+offset_bottom = 330
+
+[node name="MultiBarLeftButton9" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 336
+offset_right = 38
+offset_bottom = 372
+
+[node name="MultiBarLeftButton10" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 378
+offset_right = 38
+offset_bottom = 414
+
+[node name="MultiBarLeftButton11" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 420
+offset_right = 38
+offset_bottom = 456
+
+[node name="MultiBarLeftButton12" parent="MultiBarLeft" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 462
+offset_right = 38
+offset_bottom = 498

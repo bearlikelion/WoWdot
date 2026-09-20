@@ -7,7 +7,10 @@ signal sound_options_requested
 signal video_options_requested
 
 # GetBuildInfo: version type, version, build, build type and build date.
-const BUILD_INFO: Array[String] = ["Version", "1.12.1", "5875", "WoWGD", ""]
+# AccountLogin_OnLoad calls SetModel, so the scene itself names no background.
+const GLUE_MODELS: Dictionary[String, String] = {
+	"wotlk": "Interface\\Glues\\Models\\UI_MainMenu_Northrend\\UI_MainMenu_Northrend.m2",
+}
 # DEFAULT_TOOLTIP_COLOR from AccountLogin.lua: border, then background.
 const EDIT_BORDER: Color = Color(0.8, 0.8, 0.8)
 const EDIT_BACKGROUND: Color = Color(0.09, 0.09, 0.09)
@@ -19,7 +22,17 @@ const EDIT_BACKGROUND: Color = Color(0.09, 0.09, 0.09)
 
 
 func _ready() -> void:
-	%AccountLoginVersion.text = (WowStrings.get_text("VERSION_TEMPLATE") % BUILD_INFO).strip_edges()
+	var profile: Dictionary = WowLoader.profile()
+	var build_info: Array[String] = [
+		"Version", profile["version"], str(profile["build"]),
+		ProjectSettings.get_setting("application/config/name", ""), "",
+	]
+	%AccountLoginVersion.text = (
+		WowStrings.get_text("VERSION_TEMPLATE") % build_info
+	).strip_edges()
+	var background: WowModelFrame = get_node_or_null("%AccountLoginModel") as WowModelFrame
+	if background != null and background.model_file.is_empty():
+		background.model_file = GLUE_MODELS.get(String(profile["id"]), "")
 	for unused: CanvasItem in [%AccountLoginCommunityButton, %AccountLoginManageAccountButton]:
 		unused.hide()
 	var edits: Array[LineEdit] = [_realmlist, _account, _password]

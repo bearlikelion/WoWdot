@@ -1,0 +1,584 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/minimap_cluster.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/minimap_view.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Minimap\\UI-Minimap-Border.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(64, 0, 192, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Minimap\\MiniMap-TrackingBorder.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Icons\\INV_Misc_Rune_06.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Icons\\INV_Letter_15.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-Icon.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\ComboFrame\\ComboPoint.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(18, 0, 14, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(64, 32, 192, 192)
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\Minimap\\UI-Minimap-ZoomInButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Minimap\\UI-Minimap-ZoomInButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\Minimap\\UI-Minimap-ZoomInButton-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Minimap\\UI-Minimap-ZoomOutButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\Minimap\\UI-Minimap-ZoomOutButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Minimap\\UI-Minimap-ZoomOutButton-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\Minimap\\MinimapArrow.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Minimap\\UI-TOD-Indicator.blp"
+
+[node name="MinimapCluster" type="Control"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = -192
+offset_top = -0
+offset_right = 0
+offset_bottom = 192
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 0
+
+[node name="MinimapBorderTop" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 192
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="MinimapZoneTextButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 29
+offset_top = 7
+offset_right = 157
+offset_bottom = 19
+ignore_texture_size = true
+
+[node name="MinimapZoneText" type="Label" parent="MinimapZoneTextButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 12
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinimapToggleButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 161
+offset_top = -3
+offset_right = 193
+offset_bottom = 29
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MinimapToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MinimapToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MinimapToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="Minimap" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 35
+offset_top = 22
+offset_right = 175
+offset_bottom = 162
+mouse_filter = 0
+
+[node name="MiniMapTrackingFrame" type="Control" parent="Minimap"]
+unique_name_in_owner = true
+offset_left = -15
+offset_top = 0
+offset_right = 18
+offset_bottom = 33
+visible = false
+mouse_filter = 0
+
+[node name="MiniMapTrackingIcon" type="TextureRect" parent="Minimap/MiniMapTrackingFrame"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 33
+offset_bottom = 32
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MiniMapTrackingBorder" type="TextureRect" parent="Minimap/MiniMapTrackingFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="MiniMapMeetingStoneFrame" type="TextureButton" parent="Minimap"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 130
+offset_top = 65
+offset_right = 163
+offset_bottom = 98
+visible = false
+ignore_texture_size = true
+
+[node name="MiniMapMeetingStoneIcon" type="TextureRect" parent="Minimap/MiniMapMeetingStoneFrame"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 25
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="MiniMapMeetingStoneBorder" type="TextureRect" parent="Minimap/MiniMapMeetingStoneFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Minimap/MiniMapMeetingStoneFrame"]
+offset_left = 0
+offset_top = 0
+offset_right = 33
+offset_bottom = 33
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="MiniMapMailFrame" type="Control" parent="Minimap"]
+unique_name_in_owner = true
+offset_left = 128
+offset_top = 38
+offset_right = 161
+offset_bottom = 71
+visible = false
+mouse_filter = 0
+
+[node name="MiniMapMailIcon" type="TextureRect" parent="Minimap/MiniMapMailFrame"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 25
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="MiniMapMailBorder" type="TextureRect" parent="Minimap/MiniMapMailFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="MiniMapBattlefieldFrame" type="TextureButton" parent="Minimap"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 13
+offset_top = 120
+offset_right = 46
+offset_bottom = 153
+visible = false
+ignore_texture_size = true
+
+[node name="MiniMapBattlefieldIcon" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = 0.5
+offset_right = 31.5
+offset_bottom = 32.5
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="BattlegroundShine" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame"]
+unique_name_in_owner = true
+offset_left = 3.5
+offset_top = -2.5
+offset_right = 35.5
+offset_bottom = 29.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="MiniMapBattlefieldBorder" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="MiniMapBattlefieldDropDown" type="Control" parent="Minimap/MiniMapBattlefieldFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+
+[node name="MiniMapBattlefieldDropDownLeft" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="MiniMapBattlefieldDropDownMiddle" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="MiniMapBattlefieldDropDownRight" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="MiniMapBattlefieldDropDownText" type="Label" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MiniMapBattlefieldDropDownButton" type="TextureButton" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown/MiniMapBattlefieldDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown/MiniMapBattlefieldDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown/MiniMapBattlefieldDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Minimap/MiniMapBattlefieldFrame/MiniMapBattlefieldDropDown/MiniMapBattlefieldDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="MiniMapPing" type="Control" parent="Minimap"]
+unique_name_in_owner = true
+offset_left = 45
+offset_top = 45
+offset_right = 95
+offset_bottom = 95
+visible = false
+mouse_filter = 2
+
+[node name="MinimapBackdrop" type="Control" parent="Minimap"]
+unique_name_in_owner = true
+offset_left = -35
+offset_top = -2
+offset_right = 157
+offset_bottom = 190
+mouse_filter = 2
+
+[node name="MinimapBorder" type="TextureRect" parent="Minimap/MinimapBackdrop"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 192
+offset_bottom = 192
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="MinimapZoomIn" type="TextureButton" parent="Minimap/MinimapBackdrop"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 157
+offset_top = 93
+offset_right = 189
+offset_bottom = 125
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="Minimap/MinimapBackdrop/MinimapZoomIn"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="Minimap/MinimapBackdrop/MinimapZoomIn"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Minimap/MinimapBackdrop/MinimapZoomIn"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_25")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Minimap/MinimapBackdrop/MinimapZoomIn"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="MinimapZoomOut" type="TextureButton" parent="Minimap/MinimapBackdrop"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 131
+offset_top = 121
+offset_right = 163
+offset_bottom = 153
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="Minimap/MinimapBackdrop/MinimapZoomOut"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_26")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="Minimap/MinimapBackdrop/MinimapZoomOut"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Minimap/MinimapBackdrop/MinimapZoomOut"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Minimap/MinimapBackdrop/MinimapZoomOut"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="MinimapArrow" type="TextureRect" parent="Minimap"]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 54
+offset_right = 86
+offset_bottom = 86
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+
+[node name="GameTimeFrame" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 146
+offset_top = 19
+offset_right = 196
+offset_bottom = 69
+mouse_filter = 2
+
+[node name="GameTimeTexture" type="TextureRect" parent="GameTimeFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 50
+mouse_filter = 2
+texture = SubResource("WowTexture_30")
+expand_mode = 1

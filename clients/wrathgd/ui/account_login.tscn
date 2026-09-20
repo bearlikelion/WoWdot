@@ -1,0 +1,879 @@
+[gd_scene format=3 uid="uid://d0ea3csrch1us"]
+
+[ext_resource type="Script" path="res://game/ui/login_screen.gd" id="1"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/wow_model_frame.tscn" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="3"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Glues\\Mainmenu\\Glues-BlizzardLogo.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\Glues\\Common\\Glues-WoW-WotLKLogo.blp"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3"]
+content_margin_left = 12
+content_margin_right = 5
+content_margin_bottom = 5
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Tooltips\\UI-Tooltip-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Glues\\Common\\Glue-Tooltip-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Up-Blue.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Down-Blue.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Highlight-Blue.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 160, 44)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_14"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20"]
+content_margin_left = 15
+content_margin_bottom = 5
+
+[node name="AccountLogin" type="Control"]
+script = ExtResource("1")
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+
+[node name="AccountLoginModel" parent="." instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+fog_near = 0
+fog_far = 1200
+glow = 0.08
+
+[node name="AccountLoginUI" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="AccountLoginUI"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -50
+offset_top = -108
+offset_right = 50
+offset_bottom = -8
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="AccountLoginUI"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = -22
+offset_right = 0
+offset_bottom = -10
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Copyright 2004-2010  Blizzard Entertainment. All Rights Reserved."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AccountLoginVersion" type="Label" parent="AccountLoginUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -22
+offset_right = 0
+offset_bottom = -10
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="AccountLoginLogo" type="TextureRect" parent="AccountLoginUI"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 7
+offset_right = 259
+offset_bottom = 135
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="WorldOfWarcraftRating" type="TextureRect" parent="AccountLoginUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 128
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="AccountLoginAccountEdit" type="LineEdit" parent="AccountLoginUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -100
+offset_top = -382
+offset_right = 100
+offset_bottom = -345
+mouse_filter = 0
+theme_type_variation = &"GlueEditBoxFont"
+max_length = 320
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_3")
+
+[node name="Backdrop" type="Control" parent="AccountLoginUI/AccountLoginAccountEdit"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+show_behind_parent = true
+background = SubResource("WowTexture_4")
+edge = SubResource("WowTexture_5")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(10, 5, 4, 9)
+
+[node name="AccountLoginAccountEditLabel" type="Label" parent="AccountLoginUI/AccountLoginAccountEdit"]
+unique_name_in_owner = true
+offset_left = -200
+offset_top = -41
+offset_right = 400
+offset_bottom = 23
+show_behind_parent = true
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Battle.net Account Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccountLoginPasswordEdit" type="LineEdit" parent="AccountLoginUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -100
+offset_top = -312
+offset_right = 100
+offset_bottom = -275
+mouse_filter = 0
+theme_type_variation = &"GlueEditBoxFont"
+secret = true
+max_length = 16
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_3")
+
+[node name="Backdrop" type="Control" parent="AccountLoginUI/AccountLoginPasswordEdit"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+show_behind_parent = true
+background = SubResource("WowTexture_4")
+edge = SubResource("WowTexture_5")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(10, 5, 4, 9)
+
+[node name="FontString" type="Label" parent="AccountLoginUI/AccountLoginPasswordEdit"]
+offset_left = -28
+offset_top = -41
+offset_right = 228
+offset_bottom = 23
+show_behind_parent = true
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Password"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccountLoginLoginButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -110
+offset_top = -215
+offset_right = 110
+offset_bottom = -170
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginLoginButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginLoginButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginLoginButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginLoginButtonText" type="Label" parent="AccountLoginUI/AccountLoginLoginButton"]
+unique_name_in_owner = true
+offset_left = 110
+offset_top = 19.5
+offset_right = 110
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Login"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginLoginButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="AccountLoginExitButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -67
+offset_right = -5
+offset_bottom = -29
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginExitButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginExitButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginExitButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginExitButtonText" type="Label" parent="AccountLoginUI/AccountLoginExitButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 16
+offset_right = 75
+offset_bottom = 16
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginExitButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="OptionsButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75
+offset_top = -36
+offset_right = 75
+offset_bottom = 2
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/OptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/OptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/OptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="OptionsButtonText" type="Label" parent="AccountLoginUI/OptionsButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 16
+offset_right = 75
+offset_bottom = 16
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/OptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="AccountLoginCommunityButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 10
+offset_top = -173
+offset_right = 160
+offset_bottom = -135
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCommunityButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCommunityButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCommunityButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginCommunityButtonText" type="Label" parent="AccountLoginUI/AccountLoginCommunityButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 16
+offset_right = 75
+offset_bottom = 16
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Community Site"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCommunityButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="AccountLoginManageAccountButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 10
+offset_top = -211
+offset_right = 160
+offset_bottom = -173
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginManageAccountButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginManageAccountButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginManageAccountButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginManageAccountButtonText" type="Label" parent="AccountLoginUI/AccountLoginManageAccountButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 16
+offset_right = 75
+offset_bottom = 16
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Manage Account"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginManageAccountButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="Frame" type="Control" parent="AccountLoginUI"]
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="AccountLoginSaveAccountNameText" type="Label" parent="AccountLoginUI/Frame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 10
+offset_top = -170
+offset_right = 10
+offset_bottom = -158
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Remember Account Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AccountLoginSaveAccountName" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -10
+offset_top = -174
+offset_right = 10
+offset_bottom = -154
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSaveAccountName"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSaveAccountName"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSaveAccountName"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSaveAccountName"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSaveAccountName"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="AccountLoginRealmlistEdit" type="LineEdit" parent="AccountLoginUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -80
+offset_top = -453
+offset_right = 80
+offset_bottom = -416
+mouse_filter = 0
+theme_type_variation = &"GlueEditBoxFont"
+max_length = 64
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_20")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_20")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_20")
+
+[node name="Backdrop" type="Control" parent="AccountLoginUI/AccountLoginRealmlistEdit"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+show_behind_parent = true
+background = SubResource("WowTexture_4")
+edge = SubResource("WowTexture_5")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(10, 5, 4, 9)
+
+[node name="FontString" type="Label" parent="AccountLoginUI/AccountLoginRealmlistEdit"]
+offset_left = -48
+offset_top = -41
+offset_right = 208
+offset_bottom = 23
+show_behind_parent = true
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Realmlist"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AccountLoginSoundOptionsButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -103
+offset_right = -5
+offset_bottom = -65
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginSoundOptionsButtonText" type="Label" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 16
+offset_right = 75
+offset_bottom = 16
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Sound & Voice"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="AccountLoginVideoOptionsButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -139
+offset_right = -5
+offset_bottom = -101
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginVideoOptionsButtonText" type="Label" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 16
+offset_right = 75
+offset_bottom = 16
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Video"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")

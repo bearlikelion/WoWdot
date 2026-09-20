@@ -1,0 +1,390 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/quest_watch_frame.gd" id="1"]
+
+[node name="QuestWatchFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -280
+offset_top = -10
+offset_right = 0
+offset_bottom = 10
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="QuestWatchQuestName" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine1" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 13
+offset_right = 0
+offset_bottom = 26
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine2" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 26
+offset_right = 0
+offset_bottom = 39
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine3" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 39
+offset_right = 0
+offset_bottom = 52
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine4" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 52
+offset_right = 0
+offset_bottom = 65
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine5" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 65
+offset_right = 0
+offset_bottom = 78
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine6" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 78
+offset_right = 0
+offset_bottom = 91
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine7" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 91
+offset_right = 0
+offset_bottom = 104
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine8" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 104
+offset_right = 0
+offset_bottom = 117
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine9" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 117
+offset_right = 0
+offset_bottom = 130
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine10" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 130
+offset_right = 0
+offset_bottom = 143
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine11" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 143
+offset_right = 0
+offset_bottom = 156
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine12" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 156
+offset_right = 0
+offset_bottom = 169
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine13" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 169
+offset_right = 0
+offset_bottom = 182
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine14" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 182
+offset_right = 0
+offset_bottom = 195
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine15" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 195
+offset_right = 0
+offset_bottom = 208
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine16" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 208
+offset_right = 0
+offset_bottom = 221
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine17" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 221
+offset_right = 0
+offset_bottom = 234
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine18" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 234
+offset_right = 0
+offset_bottom = 247
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine19" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 247
+offset_right = 0
+offset_bottom = 260
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine20" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 260
+offset_right = 0
+offset_bottom = 273
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine21" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 273
+offset_right = 0
+offset_bottom = 286
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine22" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 286
+offset_right = 0
+offset_bottom = 299
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine23" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 299
+offset_right = 0
+offset_bottom = 312
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine24" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 312
+offset_right = 0
+offset_bottom = 325
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine25" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 325
+offset_right = 0
+offset_bottom = 338
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine26" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 338
+offset_right = 0
+offset_bottom = 351
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine27" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 351
+offset_right = 0
+offset_bottom = 364
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine28" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 364
+offset_right = 0
+offset_bottom = 377
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine29" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 377
+offset_right = 0
+offset_bottom = 390
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestWatchLine30" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 390
+offset_right = 0
+offset_bottom = 403
+mouse_filter = 2
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2

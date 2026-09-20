@@ -1,7 +1,7 @@
 class_name KeyBindingCheck
 extends Node
 
-const BINDING_FRAME: PackedScene = preload("res://game/ui/wow/key_binding_frame.tscn")
+const BINDING_FRAME: PackedScene = preload("res://ui/key_binding_frame.tscn")
 const REBOUND_ACTION: String = "toggle_sheath"
 const REBOUND_KEY: Key = KEY_J
 

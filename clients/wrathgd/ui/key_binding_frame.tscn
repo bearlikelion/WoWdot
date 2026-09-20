@@ -1,0 +1,3457 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/key_binding_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\KeyBindingFrame\\UI-KeyBindingFrame-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\KeyBindingFrame\\UI-KeyBindingFrame-Top.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\KeyBindingFrame\\UI-KeyBindingFrame-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\KeyBindingFrame\\UI-KeyBindingFrame-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\KeyBindingFrame\\UI-KeyBindingFrame-Bot.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\KeyBindingFrame\\UI-KeyBindingFrame-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(68, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(12, 0, 56, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_14"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_17"]
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_22")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_30")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_32")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(0, 0, 80, 22)
+
+[node name="KeyBindingFrame" type="TextureButton"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -320
+offset_top = 100
+offset_right = 320
+offset_bottom = 612
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+offset_left = 256
+offset_top = 0
+offset_right = 512
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -256
+offset_right = 256
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="Texture5" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 256
+offset_top = -256
+offset_right = 512
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="Texture6" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -256
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="KeyBindingFrameCommandLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 35
+offset_right = 26
+offset_bottom = 47
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Command"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameKey1Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 211
+offset_top = 35
+offset_right = 211
+offset_bottom = 47
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Key 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameKey2Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 356
+offset_top = 35
+offset_right = 356
+offset_bottom = 47
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Key 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameOutputText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = -64
+offset_right = 0
+offset_bottom = -52
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameHeader" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230
+offset_top = -12
+offset_right = 170
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="KeyBindingFrameHeaderText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.5
+offset_top = 1
+offset_right = 57.5
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Key Bindings"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding1" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 53
+offset_right = 587
+offset_bottom = 78
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding1Description" type="Label" parent="KeyBindingFrameBinding1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding1Header" type="Label" parent="KeyBindingFrameBinding1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding1Key1Button" type="TextureButton" parent="KeyBindingFrameBinding1"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding1Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding1Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding1Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding1Key1ButtonText" type="Label" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding1Key2Button" type="TextureButton" parent="KeyBindingFrameBinding1"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding1Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding1Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding1Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding1Key2ButtonText" type="Label" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding1/KeyBindingFrameBinding1Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding2" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 76
+offset_right = 587
+offset_bottom = 101
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding2Description" type="Label" parent="KeyBindingFrameBinding2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding2Header" type="Label" parent="KeyBindingFrameBinding2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding2Key1Button" type="TextureButton" parent="KeyBindingFrameBinding2"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding2Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding2Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding2Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding2Key1ButtonText" type="Label" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding2Key2Button" type="TextureButton" parent="KeyBindingFrameBinding2"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding2Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding2Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding2Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding2Key2ButtonText" type="Label" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding2/KeyBindingFrameBinding2Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding3" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 99
+offset_right = 587
+offset_bottom = 124
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding3Description" type="Label" parent="KeyBindingFrameBinding3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding3Header" type="Label" parent="KeyBindingFrameBinding3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding3Key1Button" type="TextureButton" parent="KeyBindingFrameBinding3"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding3Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding3Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding3Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding3Key1ButtonText" type="Label" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding3Key2Button" type="TextureButton" parent="KeyBindingFrameBinding3"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding3Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding3Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding3Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding3Key2ButtonText" type="Label" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding3/KeyBindingFrameBinding3Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding4" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 122
+offset_right = 587
+offset_bottom = 147
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding4Description" type="Label" parent="KeyBindingFrameBinding4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding4Header" type="Label" parent="KeyBindingFrameBinding4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding4Key1Button" type="TextureButton" parent="KeyBindingFrameBinding4"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding4Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding4Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding4Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding4Key1ButtonText" type="Label" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding4Key2Button" type="TextureButton" parent="KeyBindingFrameBinding4"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding4Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding4Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding4Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding4Key2ButtonText" type="Label" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding4/KeyBindingFrameBinding4Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding5" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 145
+offset_right = 587
+offset_bottom = 170
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding5Description" type="Label" parent="KeyBindingFrameBinding5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding5Header" type="Label" parent="KeyBindingFrameBinding5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding5Key1Button" type="TextureButton" parent="KeyBindingFrameBinding5"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding5Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding5Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding5Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding5Key1ButtonText" type="Label" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding5Key2Button" type="TextureButton" parent="KeyBindingFrameBinding5"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding5Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding5Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding5Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding5Key2ButtonText" type="Label" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding5/KeyBindingFrameBinding5Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding6" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 168
+offset_right = 587
+offset_bottom = 193
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding6Description" type="Label" parent="KeyBindingFrameBinding6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding6Header" type="Label" parent="KeyBindingFrameBinding6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding6Key1Button" type="TextureButton" parent="KeyBindingFrameBinding6"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding6Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding6Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding6Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding6Key1ButtonText" type="Label" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding6Key2Button" type="TextureButton" parent="KeyBindingFrameBinding6"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding6Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding6Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding6Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding6Key2ButtonText" type="Label" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding6/KeyBindingFrameBinding6Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding7" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 191
+offset_right = 587
+offset_bottom = 216
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding7Description" type="Label" parent="KeyBindingFrameBinding7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding7Header" type="Label" parent="KeyBindingFrameBinding7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding7Key1Button" type="TextureButton" parent="KeyBindingFrameBinding7"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding7Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding7Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding7Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding7Key1ButtonText" type="Label" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding7Key2Button" type="TextureButton" parent="KeyBindingFrameBinding7"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding7Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding7Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding7Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding7Key2ButtonText" type="Label" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding7/KeyBindingFrameBinding7Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding8" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 214
+offset_right = 587
+offset_bottom = 239
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding8Description" type="Label" parent="KeyBindingFrameBinding8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding8Header" type="Label" parent="KeyBindingFrameBinding8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding8Key1Button" type="TextureButton" parent="KeyBindingFrameBinding8"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding8Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding8Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding8Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding8Key1ButtonText" type="Label" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding8Key2Button" type="TextureButton" parent="KeyBindingFrameBinding8"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding8Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding8Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding8Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding8Key2ButtonText" type="Label" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding8/KeyBindingFrameBinding8Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding9" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 237
+offset_right = 587
+offset_bottom = 262
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding9Description" type="Label" parent="KeyBindingFrameBinding9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding9Header" type="Label" parent="KeyBindingFrameBinding9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding9Key1Button" type="TextureButton" parent="KeyBindingFrameBinding9"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding9Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding9Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding9Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding9Key1ButtonText" type="Label" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding9Key2Button" type="TextureButton" parent="KeyBindingFrameBinding9"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding9Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding9Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding9Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding9Key2ButtonText" type="Label" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding9/KeyBindingFrameBinding9Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding10" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 260
+offset_right = 587
+offset_bottom = 285
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding10Description" type="Label" parent="KeyBindingFrameBinding10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding10Header" type="Label" parent="KeyBindingFrameBinding10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding10Key1Button" type="TextureButton" parent="KeyBindingFrameBinding10"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding10Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding10Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding10Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding10Key1ButtonText" type="Label" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding10Key2Button" type="TextureButton" parent="KeyBindingFrameBinding10"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding10Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding10Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding10Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding10Key2ButtonText" type="Label" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding10/KeyBindingFrameBinding10Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding11" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 283
+offset_right = 587
+offset_bottom = 308
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding11Description" type="Label" parent="KeyBindingFrameBinding11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding11Header" type="Label" parent="KeyBindingFrameBinding11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding11Key1Button" type="TextureButton" parent="KeyBindingFrameBinding11"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding11Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding11Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding11Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding11Key1ButtonText" type="Label" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding11Key2Button" type="TextureButton" parent="KeyBindingFrameBinding11"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding11Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding11Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding11Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding11Key2ButtonText" type="Label" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding11/KeyBindingFrameBinding11Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding12" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 306
+offset_right = 587
+offset_bottom = 331
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding12Description" type="Label" parent="KeyBindingFrameBinding12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding12Header" type="Label" parent="KeyBindingFrameBinding12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding12Key1Button" type="TextureButton" parent="KeyBindingFrameBinding12"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding12Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding12Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding12Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding12Key1ButtonText" type="Label" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding12Key2Button" type="TextureButton" parent="KeyBindingFrameBinding12"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding12Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding12Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding12Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding12Key2ButtonText" type="Label" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding12/KeyBindingFrameBinding12Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding13" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 329
+offset_right = 587
+offset_bottom = 354
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding13Description" type="Label" parent="KeyBindingFrameBinding13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding13Header" type="Label" parent="KeyBindingFrameBinding13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding13Key1Button" type="TextureButton" parent="KeyBindingFrameBinding13"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding13Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding13Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding13Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding13Key1ButtonText" type="Label" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding13Key2Button" type="TextureButton" parent="KeyBindingFrameBinding13"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding13Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding13Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding13Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding13Key2ButtonText" type="Label" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding13/KeyBindingFrameBinding13Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding14" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 352
+offset_right = 587
+offset_bottom = 377
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding14Description" type="Label" parent="KeyBindingFrameBinding14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding14Header" type="Label" parent="KeyBindingFrameBinding14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding14Key1Button" type="TextureButton" parent="KeyBindingFrameBinding14"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding14Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding14Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding14Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding14Key1ButtonText" type="Label" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding14Key2Button" type="TextureButton" parent="KeyBindingFrameBinding14"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding14Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding14Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding14Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding14Key2ButtonText" type="Label" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding14/KeyBindingFrameBinding14Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding15" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 375
+offset_right = 587
+offset_bottom = 400
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding15Description" type="Label" parent="KeyBindingFrameBinding15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding15Header" type="Label" parent="KeyBindingFrameBinding15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding15Key1Button" type="TextureButton" parent="KeyBindingFrameBinding15"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding15Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding15Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding15Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding15Key1ButtonText" type="Label" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding15Key2Button" type="TextureButton" parent="KeyBindingFrameBinding15"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding15Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding15Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding15Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding15Key2ButtonText" type="Label" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding15/KeyBindingFrameBinding15Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding16" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 398
+offset_right = 587
+offset_bottom = 423
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding16Description" type="Label" parent="KeyBindingFrameBinding16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding16Header" type="Label" parent="KeyBindingFrameBinding16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding16Key1Button" type="TextureButton" parent="KeyBindingFrameBinding16"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding16Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding16Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding16Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding16Key1ButtonText" type="Label" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding16Key2Button" type="TextureButton" parent="KeyBindingFrameBinding16"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding16Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding16Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding16Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding16Key2ButtonText" type="Label" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding16/KeyBindingFrameBinding16Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding17" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 421
+offset_right = 587
+offset_bottom = 446
+mouse_filter = 2
+
+[node name="KeyBindingFrameBinding17Description" type="Label" parent="KeyBindingFrameBinding17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0.5
+offset_right = 170
+offset_bottom = 24.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="KeyBindingFrameBinding17Header" type="Label" parent="KeyBindingFrameBinding17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 18.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyBindingFrameBinding17Key1Button" type="TextureButton" parent="KeyBindingFrameBinding17"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 175
+offset_top = 1.5
+offset_right = 355
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding17Key1ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding17Key1ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key1Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding17Key1ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key1Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding17Key1ButtonText" type="Label" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameBinding17Key2Button" type="TextureButton" parent="KeyBindingFrameBinding17"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 355
+offset_top = 1.5
+offset_right = 535
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="KeyBindingFrameBinding17Key2ButtonLeft" type="TextureRect" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding17Key2ButtonRight" type="TextureRect" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key2Button"]
+unique_name_in_owner = true
+offset_left = 168
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding17Key2ButtonMiddle" type="TextureRect" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key2Button"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 168
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="KeyBindingFrameBinding17Key2ButtonText" type="Label" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameBinding17/KeyBindingFrameBinding17Key2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 180
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 2
+offset_top = 53
+offset_right = 562
+offset_bottom = 443
+mouse_filter = 0
+
+[node name="KeyBindingFrameScrollFrameScrollBar" type="VSlider" parent="KeyBindingFrameScrollFrame"]
+unique_name_in_owner = true
+offset_left = 566
+offset_top = 16
+offset_right = 582
+offset_bottom = 374
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_16")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_16")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_17")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_17")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_17")
+max_value = 0.0
+step = 0.0
+
+[node name="KeyBindingFrameScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_21")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 358
+offset_right = 16
+offset_bottom = 374
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameScrollFrameClip" type="Control" parent="KeyBindingFrameScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="KeyBindingFrameScrollFrameScrollChildFrame" type="Control" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="KeyBindingFrameCharacterButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -245
+offset_top = 12
+offset_right = -225
+offset_bottom = 32
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="KeyBindingFrameCharacterButtonText" type="Label" parent="KeyBindingFrameCharacterButton"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="KeyBindingFrameCharacterButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="KeyBindingFrameCharacterButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameCharacterButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameDefaultButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 10
+offset_top = -43
+offset_right = 140
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameDefaultButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameDefaultButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="KeyBindingFrameDefaultButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="KeyBindingFrameDefaultButtonText" type="Label" parent="KeyBindingFrameDefaultButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameDefaultButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameCancelButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -180
+offset_top = -43
+offset_right = -50
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="KeyBindingFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="KeyBindingFrameCancelButtonText" type="Label" parent="KeyBindingFrameCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameOkayButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -310
+offset_top = -43
+offset_right = -180
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="KeyBindingFrameOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="KeyBindingFrameOkayButtonText" type="Label" parent="KeyBindingFrameOkayButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="KeyBindingFrameUnbindButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -440
+offset_top = -43
+offset_right = -310
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameUnbindButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameUnbindButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="KeyBindingFrameUnbindButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="KeyBindingFrameUnbindButtonText" type="Label" parent="KeyBindingFrameUnbindButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Unbind Key"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameUnbindButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 130
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")

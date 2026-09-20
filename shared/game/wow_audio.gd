@@ -48,10 +48,7 @@ func _ready() -> void:
 	_sounds = WowDBC.open(archive, "SoundEntries")
 	for row: int in _sounds.row_count():
 		_sound_rows[_sounds.get_string(row, SoundColumn.NAME).to_lower()] = row
-	var table: Variant = JSON.parse_string(
-			FileAccess.get_file_as_string(WowLoader.data_path("ui_sounds.json")))
-	if table is Dictionary:
-		_ui_sounds = table
+	_ui_sounds = WowLoader.data_table("ui_sounds.json")
 	_settings.load(SETTINGS_PATH)
 	for bus: Bus in BUS_NAMES:
 		_apply(bus)

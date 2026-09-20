@@ -422,14 +422,19 @@ func _game_object(guid: int) -> Node3D:
 		return null
 	# GAMEOBJECT_ROTATION is a WoW-space quaternion; an empty one means only the facing is set.
 	var base: int = session.field_index("GAMEOBJECT_ROTATION")
-	var x: float = session.get_field_float(guid, base)
-	var y: float = session.get_field_float(guid, base + 1)
-	var z: float = session.get_field_float(guid, base + 2)
-	var w: float = session.get_field_float(guid, base + 3)
-	if Vector4(x, y, z, w).length_squared() > 0.5:
-		node.quaternion = Quaternion(-y, z, -x, w).normalized()
+	var turn: Vector4 = Vector4.ZERO
+	if base >= 0:
+		turn = Vector4(
+			session.get_field_float(guid, base), session.get_field_float(guid, base + 1),
+			session.get_field_float(guid, base + 2), session.get_field_float(guid, base + 3),
+		)
+	if turn.length_squared() > 0.5:
+		node.quaternion = Quaternion(-turn.y, turn.z, -turn.x, turn.w).normalized()
 	else:
-		node.rotation.y = session.get_field_float(guid, "GAMEOBJECT_FACING")
+		# WotLK dropped the facing field, leaving only the orientation the object arrived with.
+		var facing: int = session.field_index("GAMEOBJECT_FACING")
+		node.rotation.y = session.get_field_float(guid, facing) if facing >= 0 \
+				else session.get_object_orientation(guid)
 	return node
 
 

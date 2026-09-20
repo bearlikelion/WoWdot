@@ -1,7 +1,7 @@
 class_name WowFonts
 extends RefCounted
 
-const THEME: Theme = preload("res://game/ui/wow/fonts.tres")
+const THEME: Theme = preload("res://ui/fonts.tres")
 const HUD_THEME: Theme = preload("res://game/ui/hud_theme.tres")
 const DEFAULT_FONT: String = "Fonts\\FRIZQT__.TTF"
 
