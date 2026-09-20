@@ -170,6 +170,21 @@ li {
 }
 
 
+.split {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.split img {
+  flex: none;
+  border-radius: 8px;
+}
+
+.split p:first-child {
+  margin-top: 0;
+}
+
 figure {
   margin: 0 0 20px;
 }
@@ -261,5 +276,14 @@ footer p {
 
   td > div {
     text-align: right;
+  }
+
+  .split {
+    display: block;
+  }
+
+  .split img {
+    display: block;
+    margin: 0 auto 12px;
   }
 }
