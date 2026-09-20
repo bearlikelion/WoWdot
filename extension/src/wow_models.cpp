@@ -372,11 +372,14 @@ Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t
 			break;
 		case M2_NO_ALPHA_ADD:
 		case M2_ADD:
-			mat->set_transparency(wmo ? BaseMaterial3D::TRANSPARENCY_ALPHA : BaseMaterial3D::TRANSPARENCY_DISABLED);
+			// A blend mode only reaches the pipeline from the transparent pass, else the glow draws as a solid card.
+			mat->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
 			mat->set_blend_mode(wmo ? BaseMaterial3D::BLEND_MODE_MIX : BaseMaterial3D::BLEND_MODE_ADD);
+			mat->set_depth_draw_mode(BaseMaterial3D::DEPTH_DRAW_DISABLED);
 			break;
 		case M2_MOD:
 		case M2_MOD2X:
+			mat->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
 			mat->set_blend_mode(wmo ? BaseMaterial3D::BLEND_MODE_MIX : BaseMaterial3D::BLEND_MODE_MUL);
 			break;
 		default:
