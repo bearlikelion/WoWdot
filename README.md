@@ -12,15 +12,18 @@ Godot clients for classic World of Warcraft servers.
 | [WrathGD](clients/wrathgd) | 3.3.5a (build 12340) | AzerothCore | Enters the world |
 
 WoWdot ships no Blizzard data.
-Point the client at your own game install.
+Point the client at your own game install; each client reads the data for its own game version.
+
+`shared/game/` is one folder of GDScript symlinked in as `game/` by both clients, so `res://game/...` resolves the same in each while the data folder, the expansion setting and the client's own `Data` directory stay per client.
 
 ## Layout
 
 ```text
 extension/       C++ GDExtension: sessions, crypto, MPQ access and WoW file formats
 shared/wowdot/   Addon both clients load; the built libraries land in its bin/
-clients/wowgd/   Vanilla client, addons/wowdot links to shared/wowdot
-clients/wrathgd/ WrathGD client, addons/wowdot links to shared/wowdot
+shared/game/     GDScript both clients load: the interface, world and gameplay
+clients/wowgd/   Vanilla client; game and addons/wowdot link into shared/
+clients/wrathgd/ WrathGD client; game and addons/wowdot link into shared/
 docs/            Provenance and license audit
 website/         Project site, built with website/build.sh into _site/
 packaging/       Release zip contents and publish.sh

@@ -33,13 +33,15 @@ struct WowProfile {
 	uint8_t char_delete_success;
 	// The chat types are numbered differently and SMSG_MESSAGECHAT names its sender up front.
 	bool renumbered_chat;
+	// MH2O names a LiquidType.dbc row where MCLQ named one of the four liquid materials.
+	bool dbc_liquid_types;
 	MovementLayout movement;
 };
 
 inline const WowProfile &wow_profile() {
-	static const WowProfile classic = { "classic", "1.12.1", 5875, 1, 12, 1, true, 46, 57, false,
+	static const WowProfile classic = { "classic", "1.12.1", 5875, 1, 12, 1, true, 46, 57, false, false,
 		{ 0x2000000, 0x2000, 0x200000, 0, false, false } };
-	static const WowProfile wotlk = { "wotlk", "3.3.5a", 12340, 3, 3, 5, false, 47, 71, true,
+	static const WowProfile wotlk = { "wotlk", "3.3.5a", 12340, 3, 3, 5, false, 47, 71, true, true,
 		{ 0x200, 0x1000, 0x200000 | 0x2000000, 2, true, true } };
 	static const WowProfile &active =
 			String(ProjectSettings::get_singleton()->get_setting("wowgd/expansion", "classic")) == "wotlk"

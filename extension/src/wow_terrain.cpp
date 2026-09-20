@@ -1,5 +1,7 @@
 #include "wow_coords.h"
+#include "wow_dbc.h"
 #include "wow_loader.h"
+#include "wow_profile.h"
 
 #include "core/coordinates.hpp"
 #include "pipeline/adt_loader.hpp"
@@ -16,6 +18,7 @@
 
 #include <cmath>
 #include <cstring>
+#include <mutex>
 #include <unordered_map>
 
 using namespace wowee;
@@ -35,6 +38,27 @@ constexpr double VERTEX_STEP = 1600.0 / 3.0 / 128.0;
 constexpr int VERTEX_GRID = 129;
 constexpr float HEIGHT_STEP = core::coords::TILE_SIZE / (HEIGHT_GRID - 1);
 constexpr int GROUND_CELLS = 64;
+
+// MH2O names a LiquidType.dbc row, whose Type column picks one of the four liquid materials.
+int liquid_material(const Ref<WowArchive> &archive, uint16_t liquid_type) {
+	if (!wow_profile().dbc_liquid_types) {
+		return liquid_type <= 3 ? liquid_type : -1;
+	}
+	static std::mutex liquid_mutex;
+	static std::unordered_map<uint16_t, int> buckets;
+	std::lock_guard<std::mutex> lock(liquid_mutex);
+	if (buckets.empty()) {
+		const Ref<WowDBC> table = WowDBC::open(archive, "LiquidType");
+		if (table.is_null()) {
+			return -1;
+		}
+		for (int row = 0; row < table->row_count(); row++) {
+			buckets[static_cast<uint16_t>(table->get_uint(row, "ID"))] = static_cast<int>(table->get_uint(row, "Type"));
+		}
+	}
+	const auto it = buckets.find(liquid_type);
+	return it == buckets.end() || it->second > 3 ? -1 : it->second;
+}
 
 String map_dir(const String &map_name) {
 	return "World\\Maps\\" + map_name + "\\" + map_name;
@@ -271,14 +295,15 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 	terrain_instance->set_mesh(terrain_mesh);
 	root->add_child(terrain_instance);
 
-	// MCLQ water: 9x9 absolute heights per chunk with an 8x8 tile mask, laid out like the outer MCVT grid.
+	// Water: 9x9 absolute heights per chunk with an 8x8 tile mask, laid out like the outer MCVT grid.
 	std::vector<PackedVector3Array> liquid_vertices(4);
 	for (int c = 0; c < 256; c++) {
 		const float base_x = (32.0f - tile_y) * core::coords::TILE_SIZE - (c / 16) * CHUNK_SIZE;
 		const float base_y = (32.0f - tile_x) * core::coords::TILE_SIZE - (c % 16) * CHUNK_SIZE;
 		for (const pipeline::ADTTerrain::WaterLayer &layer : terrain.waterData[c].layers) {
 			const int stride = layer.width + 1;
-			if (layer.heights.size() < static_cast<size_t>(stride * (layer.height + 1)) || layer.liquidType > 3) {
+			const int material = liquid_material(archive, layer.liquidType);
+			if (layer.heights.size() < static_cast<size_t>(stride * (layer.height + 1)) || material < 0) {
 				continue;
 			}
 			auto corner = [&](int col, int row) {
@@ -292,7 +317,7 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 						continue;
 					}
 					const Vector3 a = corner(col, row), b = corner(col + 1, row), d = corner(col, row + 1), e = corner(col + 1, row + 1);
-					liquid_vertices[layer.liquidType].append_array(PackedVector3Array({ a, b, e, a, e, d }));
+					liquid_vertices[material].append_array(PackedVector3Array({ a, b, e, a, e, d }));
 				}
 			}
 		}

@@ -76,6 +76,11 @@ String WowLoader::client_data_dir() {
 	return ProjectSettings::get_singleton()->get_setting("wowgd/client_data_dir", "");
 }
 
+// The game code reads its own tables out of the profile's folder, as the extension does.
+String WowLoader::data_path(const String &name) {
+	return wow_data_path(name);
+}
+
 // Without the archives there is nothing to draw, so a game says where it looked and stops.
 void WowLoader::report_missing_data(const String &data_dir) {
 	const String version = wow_profile().version;
@@ -158,6 +163,7 @@ Ref<ImageTexture> WowLoader::load_texture(const String &path) {
 void WowLoader::_bind_methods() {
 	ClassDB::bind_static_method("WowLoader", D_METHOD("get_shared"), &WowLoader::get_shared);
 	ClassDB::bind_static_method("WowLoader", D_METHOD("client_data_dir"), &WowLoader::client_data_dir);
+	ClassDB::bind_static_method("WowLoader", D_METHOD("data_path", "name"), &WowLoader::data_path);
 	ClassDB::bind_method(D_METHOD("set_archive", "archive"), &WowLoader::set_archive);
 	ClassDB::bind_method(D_METHOD("get_archive"), &WowLoader::get_archive);
 	ClassDB::bind_method(D_METHOD("set_terrain_shader", "shader"), &WowLoader::set_terrain_shader);

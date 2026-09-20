@@ -89,14 +89,15 @@
         <li><strong>World.</strong> Entering the world on a WotLK map, with the player's update object read through the WotLK field indices.</li>
         <li><strong>Movement.</strong> Walk heartbeats land, the server keeps the position across a relog, and a GM teleport is acknowledged.</li>
         <li><strong>Large packets.</strong> The world socket takes the 5 byte header AzerothCore uses above 32 KB, which update objects need.</li>
-        <li><strong>Chat.</strong> Incoming lines parse in the WotLK layout.</li>
+        <li><strong>Chat.</strong> Lines go out and come back in the WotLK layout, whose message types are numbered differently.</li>
+        <li><strong>Models.</strong> M2 version 264, whose geometry arrives from the <code>.skin</code> file beside the model.</li>
+        <li><strong>Terrain.</strong> Azeroth and Northrend tiles, with MH2O water named out of LiquidType.dbc.</li>
       </ul>
 
       <h3>Next</h3>
       <ul>
-        <li>M2 version 264: geometry moved into <code>.skin</code> files, animations into <code>.anim</code>.</li>
-        <li>MH2O water, which replaces MCLQ and names liquids out of LiquidType.dbc.</li>
-        <li>The rest of the hand-parsed packets that still read the vanilla layout.</li>
+        <li>Animations, which version 264 moved into <code>.anim</code> files, hundreds per model.</li>
+        <li>The rest of the hand-parsed packets that still read the vanilla layout, and auras, which lost their update fields.</li>
         <li>Moving WoWGD's game code somewhere both clients load, then porting the 3.3.5a interface.</li>
       </ul>
       <p class="muted">No scenes or game scripts yet, so there is nothing to download.</p>

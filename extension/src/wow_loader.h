@@ -72,6 +72,7 @@ public:
 	static Ref<WowLoader> get_shared();
 	static void release_shared();
 	static String client_data_dir();
+	static String data_path(const String &name);
 	static void report_missing_data(const String &data_dir);
 
 	void set_archive(const Ref<WowArchive> &p_archive) { archive = p_archive; }

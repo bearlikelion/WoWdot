@@ -55,6 +55,7 @@ WoWGD targets the latest vMaNGOS `development` commit with no source changes and
 ## Running
 
 Open this folder in Godot, set **Project Settings > wowgd > client_data_dir** to the client's `Data` folder, and run.
+`game/` is a symlink to [`shared/game`](../../shared/game), the GDScript both clients load, so `res://game/...` paths are the same here and in WrathGD.
 The login screen starts on `127.0.0.1`; whatever you log in with is saved for next time.
 Command-line options after `--` fill the login screen for one run without saving: `--realm=<address>`, `--account=`, `--password=` and `--character=` (logs straight in; without `--character` it enters the first character).
 
@@ -69,8 +70,10 @@ After exporting both presets, `packaging/publish.sh <tag>` writes `WoWGD-linux.z
 
 ## Checks
 
-The checks in `tests/` log into a local server as `wowgd` / `wowgd` and use the account's first character.
-Run one with `godot --headless --path . tests/glue_check.tscn` (or without `--headless` for the ones that capture screenshots); each prints `<name>: OK` or the number of failures.
+The checks in `tests/` log in as `wowgd` / `wowgd` and use the account's first character.
+They reach whatever `--realm=<address>` names, falling back to the realmlist the client saved last; the vMaNGOS server they run against here is `192.168.1.251`, since the local docker stack holds AzerothCore for [WrathGD](../wrathgd).
+Run one with `godot --headless --path . tests/glue_check.tscn -- --realm=192.168.1.251` (or without `--headless` for the ones that capture screenshots); each prints `<name>: OK` or the number of failures.
+The shell-driven checks pass no realm of their own, so they follow the saved realmlist.
 `party_check.sh` and `remote_movement_check.sh` also need a second account, `wowgd2` / `wowgd2`, and `death_check.sh` makes and removes its own character.
 A character left dead cannot use chat, which silently breaks the GM commands later checks rely on; revive it from the server with `bin/soap.sh "revive <name>"`.
 

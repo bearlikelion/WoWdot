@@ -59,6 +59,9 @@ constexpr float DOODAD_RANGE_PER_YARD = 24.0f;
 constexpr float DOODAD_NEAREST_RANGE = 120.0f;
 constexpr float DOODAD_FURTHEST_RANGE = 600.0f;
 
+// The first M2 version that keeps its geometry in .skin files.
+constexpr uint32_t M2_SKIN_VERSION = 264;
+
 constexpr uint32_t WMO_GROUP_HAS_VERTEX_COLORS = 0x4;
 constexpr uint32_t WMO_GROUP_OCEAN = 0x80000;
 // MLIQ tiles are the same size as the terrain's, and 0x08 marks one that does not draw.
@@ -453,6 +456,15 @@ std::shared_ptr<const WowLoader::M2Data> WowLoader::get_m2_data(const String &pa
 	}
 	auto data = std::make_shared<M2Data>();
 	data->model = M2Loader::load(bytes);
+	// From version 264 the batches and indices live in a .skin file beside the model.
+	if (data->model.version >= M2_SKIN_VERSION && data->model.indices.empty()) {
+		std::vector<uint8_t> skin;
+		if (archive->read_bytes(WowArchive::normalize(path.get_basename() + "00.skin"), skin)) {
+			M2Loader::loadSkin(skin, data->model);
+		} else {
+			UtilityFunctions::push_warning("WowLoader: missing skin for ", path);
+		}
+	}
 	// A spell effect is often nothing but emitters, so geometry alone does not decide.
 	if (!data->model.isValid() && data->model.particleEmitters.empty() && data->model.ribbonEmitters.empty()) {
 		if (!data->model.vertices.empty()) {

@@ -12,9 +12,10 @@ Like [WoWGD](../wowgd), it will read the stock client's MPQs at runtime and ship
 Enters the world and walks around.
 The extension reads its expansion from **Project Settings > wowgd > expansion**, so one `wowdot` build serves both clients: WoWGD leaves the setting at `classic`, this project sets `wotlk`.
 That choice picks the wire build, the client version, the realm list format, the packet parsers, the MPQ chain, the `data/wotlk/` tables, the movement layout and the chat type numbering.
-The two checks in [`tests/`](tests) log in, create a character, enter the world, read its fields out of the update object, walk, run a GM command, take a near teleport and log out again, all against a stock AzerothCore.
+The four checks in [`tests/`](tests) log in, create a character, enter the world, read its fields out of the update object, walk, run a GM command, take a near teleport and log out again, all against a stock AzerothCore.
+They also load WotLK models and terrain tiles out of the archives: M2 version 264 geometry from its `.skin` files, and ADT water from MH2O.
 The world socket also takes AzerothCore's five byte header for packets over 0x8000 bytes, which nothing the client does yet is big enough to ask for, so no check covers it.
-There are no scenes or game scripts yet.
+`game/` links to [`shared/game`](../../shared/game), the GDScript both clients load, but this project still lacks the settings that code needs, so there is nothing to run but the checks.
 
 ## Requirements
 
@@ -68,15 +69,15 @@ The profile setting decides what the extension speaks; what is left is the code 
 | Hand-parsed packets | `wow_session.cpp` still parses these in the vanilla layout: learned spells (u16 ids), cast failed, spell cooldown, quest query, quest giver status, gossip options, vendor, trainer and taxi lists, and the flying spline flag. |
 | Auras | `SMSG_UPDATE_AURA_DURATION` and the `UNIT_FIELD_AURAS` fields are both gone. WotLK sends `SMSG_AURA_UPDATE` and `SMSG_AURA_UPDATE_ALL`, which arrive in the world check and are dropped, so nothing tracks a buff yet. |
 | Time sync | AzerothCore asks every ten seconds with `SMSG_TIME_SYNC_REQ` and nothing answers. It only measures the clock with the reply, so nothing breaks, but the stock client does answer. |
-| Models | M2 version 264 keeps its geometry in `.skin` files and some animations in `.anim` files; `wow_models.cpp` calls only `M2Loader::load()`, so every WotLK model comes out empty until it also calls `loadSkin()` and `loadAnimFile()`. |
-| Water | ADT liquids are MH2O with LiquidType.dbc ids instead of MCLQ's four types, so the liquid material mapping needs the new ids. |
+| Animations | Version 264 keeps the sequences without flag 0x20 in `<model><id>-<variation>.anim` files. A model has hundreds of them, so they want loading when an animation is asked for rather than with the model, which is work for whatever drives animation here. |
 
 ### Game code
 
-WoWGD's `game/` folder is about 15,000 lines of GDScript, and roughly 75 to 85 percent of it can be reused once it moves somewhere both clients load.
+`shared/game/` is about 21,000 lines of GDScript, linked in as `game/` by both clients, and roughly 75 to 85 percent of it should be reusable here.
+The three tables it reads by path go through `WowLoader.data_path()`, which follows the expansion setting, so this client looks in `res://data/wotlk/` for them.
 
-- **Sharing.** The code lives in `clients/wowgd/game/` today, and there is no profile boundary between vanilla and WotLK yet; it should be shaped by the real differences found while bringing this client up.
-- **Data tables.** `data/wotlk/dbc_layouts.json` lacks tables the game reads (ChrRaces, ChrClasses, SpellCastTimes, SpellDuration, SpellRadius, HelmetGeosetVisData, QuestSort, WorldMapOverlay and others), and `update_fields.json` has 62 entries where WoWGD uses 324.
+- **Project settings.** This `project.godot` has no `[autoload]`, `[input]` or `[rendering]` section, so `WowClient`, `WowAssets` and every input action the world and interface bind are missing. Bringing those across is what it takes to run `res://game/main.tscn` here at all.
+- **Data tables.** `data/wotlk/` holds only the three protocol tables: `ui_sounds.json`, `spell_failures.json` and `equip_failures.json` have no WotLK versions yet. `dbc_layouts.json` also lacks tables the game reads (ChrRaces, ChrClasses, SpellCastTimes, SpellDuration, SpellRadius, HelmetGeosetVisData, QuestSort, WorldMapOverlay and others), and `update_fields.json` has 62 entries where the game code uses 324.
 - **Removed fields.** `UNIT_FIELD_AURAS`, `UNIT_VIRTUAL_ITEM_*` and the 12-field `PLAYER_VISIBLE_ITEM` stride are gone in WotLK, and quest log slots grow from 3 fields to 5.
 - **Raw packets.** 14 scripts decode payloads in the vanilla layout (loot, merchant, party, taxi, talents, skills, combat events, NPC dialogs and others).
 - **Constants.** Movement flag values, fixed DBC column numbers (Spell, SoundEntries, Light), and the character create screen's 8 races without Death Knights.
@@ -84,18 +85,20 @@ WoWGD's `game/` folder is about 15,000 lines of GDScript, and roughly 75 to 85 p
 
 ### Order
 
-1. M2 v264 skins and MH2O water: render the world and characters.
-2. Move the shared game code out of `clients/wowgd`, then port the UI.
+The game code is shared and the extension answers for both expansions everywhere a check reaches, so the work left is on the GDScript side: the project settings first, so `main.tscn` runs, then the tables and the packet layouts the interface reads, then the 3.3.5a FrameXML.
 
 ## Checks
 
-Both checks log into the developer server as `wowgd` / `wowgd` and print `<name>: OK` or the number of failures.
+Each check prints `<name>: OK` or the number of failures.
 Run one with `godot --headless --path . tests/<name>.tscn`.
+`login_check` and `world_check` log into the developer server as `wowgd` / `wowgd`; the other two only read the archives.
 
 | Check | Covers |
 | --- | --- |
 | `login_check` | Northrend out of Map.dbc, which only the WotLK chain's locale archive carries, then the handshake: SRP6 against the authserver, the realm list, the RC4 header cipher and the WotLK `CMSG_AUTH_SESSION`, through to `SMSG_CHAR_ENUM`. |
 | `world_check` | A character of its own, made and deleted again: entering the world, its health and level read through the WotLK update field indices, walking on heartbeats that name the mover, a GM command as say with the answer read back, and a near teleport whose ack has to land before the walk after it counts. |
+| `model_check` | A character and a creature model: version 264, the batches and geometry that only arrive once the `.skin` beside the model is read. |
+| `terrain_check` | An Azeroth and a Northrend tile: 256 terrain chunks each, and MH2O water through the LiquidType.dbc rows that name which of the four liquid materials to use. |
 
 ## References
 

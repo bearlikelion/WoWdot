@@ -16,8 +16,6 @@ const NOTICE_COLOR: Color = Color(1.0, 0.82, 0.0)
 const ITEM_TYPES: Array[int] = [1, 2]
 # UIParent_ManageFramePositions lifts the casting bar clear of the bottom action bars.
 const CASTING_BAR_LIFT: float = 40.0
-const SPELL_FAILURES: String = "res://data/classic/spell_failures.json"
-const EQUIP_FAILURES: String = "res://data/classic/equip_failures.json"
 # The one reason SMSG_INVENTORY_CHANGE_FAILURE follows with a level.
 const EQUIP_ERR_LEVEL: int = 1
 const SWING_ERRORS: Dictionary[WowSession.AttackError, String] = {
@@ -186,8 +184,10 @@ func _ready() -> void:
 	WowClient.session.attack_swing_error.connect(_on_attack_swing_error)
 	WowClient.session.object_updated.connect(_on_object_updated)
 	WowClient.session.item_info_received.connect(func(_entry: int) -> void: _panels.refresh_bags())
-	_spell_failures = JSON.parse_string(FileAccess.get_file_as_string(SPELL_FAILURES))
-	_equip_failures = JSON.parse_string(FileAccess.get_file_as_string(EQUIP_FAILURES))
+	_spell_failures = JSON.parse_string(
+			FileAccess.get_file_as_string(WowLoader.data_path("spell_failures.json")))
+	_equip_failures = JSON.parse_string(
+			FileAccess.get_file_as_string(WowLoader.data_path("equip_failures.json")))
 	ItemButton.split_prompt = _ask_split
 	var tab_at: Vector2 = _chat_frames[0].tab_position()
 	for frame: DockedChatFrame in _chat_frames:

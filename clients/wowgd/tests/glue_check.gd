@@ -3,6 +3,7 @@ extends Node
 
 const MAIN: PackedScene = preload("res://game/main.tscn")
 const STEP_TIMEOUT_MSEC: int = 60000
+# Whatever `--realm=` names, and this when nothing does.
 const REALMLIST: String = "127.0.0.1"
 const ACCOUNT: String = "wowgd"
 const PASSWORD: String = "wowgd"
@@ -36,7 +37,8 @@ func _run() -> void:
 	await _frames(30)
 	_capture("user://glue_login.png")
 	var login: LoginScreen = _glue.get_node("%AccountLogin")
-	login.fill(REALMLIST, ACCOUNT, PASSWORD)
+	login.fill(_main.auto_realmlist if not _main.auto_realmlist.is_empty() else REALMLIST,
+			ACCOUNT, PASSWORD)
 	login.log_in()
 	if not await _until(_select_ready, "the character list shows"):
 		return _finish()
