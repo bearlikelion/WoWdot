@@ -34,6 +34,7 @@ constexpr int HEIGHT_GRID = 257;
 constexpr double VERTEX_STEP = 1600.0 / 3.0 / 128.0;
 constexpr int VERTEX_GRID = 129;
 constexpr float HEIGHT_STEP = core::coords::TILE_SIZE / (HEIGHT_GRID - 1);
+constexpr int GROUND_CELLS = 64;
 
 String map_dir(const String &map_name) {
 	return "World\\Maps\\" + map_name + "\\" + map_name;
@@ -68,6 +69,37 @@ Ref<ImageTexture> alpha_texture(const pipeline::ChunkMesh &chunk) {
 		}
 	}
 	return ImageTexture::create_from_image(Image::create_from_data(64, 64, false, Image::FORMAT_RGBA8, pixels));
+}
+
+// The GroundEffectTexture of the layer covering each 8x8 cell of a chunk, for the footstep sound.
+PackedInt32Array ground_effects(const pipeline::TerrainMesh &mesh) {
+	PackedInt32Array effects;
+	effects.resize(256 * GROUND_CELLS);
+	int32_t *out = effects.ptrw();
+	for (int c = 0; c < 256; c++) {
+		const pipeline::ChunkMesh &chunk = mesh.chunks[c];
+		for (int cell = 0; cell < GROUND_CELLS; cell++) {
+			const size_t texel = ((cell / 8) * 8 + 4) * 64 + (cell % 8) * 8 + 4;
+			// Each layer is painted over the ones below it, so their weights shrink by its alpha.
+			float weights[4] = { 1.0f, 0.0f, 0.0f, 0.0f };
+			for (size_t layer = 1; layer < chunk.layers.size() && layer < 4; layer++) {
+				const std::vector<uint8_t> &alpha = chunk.layers[layer].alphaData;
+				const float painted = texel < alpha.size() ? alpha[texel] / 255.0f : 0.0f;
+				for (size_t below = 0; below < layer; below++) {
+					weights[below] *= 1.0f - painted;
+				}
+				weights[layer] = painted;
+			}
+			size_t top = 0;
+			for (size_t layer = 1; layer < chunk.layers.size() && layer < 4; layer++) {
+				if (weights[layer] > weights[top]) {
+					top = layer;
+				}
+			}
+			out[c * GROUND_CELLS + cell] = chunk.layers.empty() ? 0 : static_cast<int32_t>(chunk.layers[top].effectId);
+		}
+	}
+	return effects;
 }
 
 // A half-quad grid hits every MCVT vertex, and edge midpoints of the fan triangulation are corner averages.
@@ -338,6 +370,7 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 		}
 	}
 	root->set_meta("area_ids", area_ids);
+	root->set_meta("ground_effects", ground_effects(mesh));
 	return root;
 }
 

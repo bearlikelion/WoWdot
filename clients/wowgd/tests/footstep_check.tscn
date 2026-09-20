@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://tests/footstep_check.gd" id="1_check"]
+[ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
+
+[node name="FootstepCheck" type="Node3D"]
+script = ExtResource("1_check")
+
+[node name="Focus" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 0, 9460)
+
+[node name="WowMap" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_map")
+target = NodePath("../Focus")
+radius = 0
+load_placements = false

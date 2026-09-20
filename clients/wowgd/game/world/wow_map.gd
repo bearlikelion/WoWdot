@@ -8,6 +8,7 @@ const TILE_SIZE: float = 1600.0 / 3.0
 const FOCUS_MARKER_SIZE: float = 60.0
 const FOCUS_ARRIVAL_FRAMES: int = 120
 const LIQUID_HEIGHTS_META: StringName = &"liquid_heights"
+const GROUND_CELLS: int = 64
 
 @export var map_name: String = "Azeroth":
 	set(value):
@@ -90,6 +91,17 @@ func area_id_at(godot_position: Vector3) -> int:
 	return area_ids[_chunk_index(godot_position, tile)] if area_ids.size() == 256 else 0
 
 
+# The GroundEffectTexture id of the ground under the position, 0 where it has none.
+func ground_effect_at(godot_position: Vector3) -> int:
+	var tile: Vector2i = tile_at(godot_position)
+	if not _tiles.has(tile):
+		return 0
+	var effects: PackedInt32Array = _tiles[tile].get_meta("ground_effects", PackedInt32Array())
+	if effects.size() != 256 * GROUND_CELLS:
+		return 0
+	return effects[_cell_index(godot_position, tile)]
+
+
 # The liquid surface over the position's terrain chunk, or NAN where there is none.
 func liquid_height_at(godot_position: Vector3) -> float:
 	var tile: Vector2i = tile_at(godot_position)
@@ -126,6 +138,14 @@ func is_idle() -> bool:
 
 func loaded_tiles() -> Array[Vector2i]:
 	return _tiles.keys()
+
+
+# One of the tile's 128x128 ground cells, laid out as 8x8 within each chunk of _chunk_index.
+func _cell_index(godot_position: Vector3, tile: Vector2i) -> int:
+	var wow: Vector3 = WowCoords.from_godot(godot_position)
+	var x: int = clampi(floori((32.0 - wow.y / TILE_SIZE - tile.x) * 128.0), 0, 127)
+	var y: int = clampi(floori((32.0 - wow.x / TILE_SIZE - tile.y) * 128.0), 0, 127)
+	return ((y / 8) * 16 + x / 8) * GROUND_CELLS + (y % 8) * 8 + x % 8
 
 
 func _chunk_index(godot_position: Vector3, tile: Vector2i) -> int:

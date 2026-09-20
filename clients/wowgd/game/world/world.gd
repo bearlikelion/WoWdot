@@ -90,6 +90,7 @@ func _ready() -> void:
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
 	_effects.watch(_entities, _player)
+	UnitVoice.map = _map
 	_death = Death.new(WowClient.session)
 	_death.corpse_located.connect(_hud.show_corpse)
 	_death.resurrect_offered.connect(_on_resurrect_offered)

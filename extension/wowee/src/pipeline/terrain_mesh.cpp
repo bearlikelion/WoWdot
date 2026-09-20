@@ -116,6 +116,7 @@ ChunkMesh TerrainMeshGenerator::generateChunkMesh(const MapChunk& chunk, int chu
         ChunkMesh::LayerInfo layerInfo;
         layerInfo.textureId = layer.textureId;
         layerInfo.flags = layer.flags;
+        layerInfo.effectId = layer.effectId;
 
         if (!decodeLayerAlpha(chunk, layerIdx, layerInfo.alphaData)) {
             layerInfo.alphaData.clear();

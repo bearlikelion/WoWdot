@@ -12,6 +12,10 @@ enum Kit { PRECAST = 1, CAST = 2, IMPACT = 3 }
 enum VictimState { HIT = 1, PARRY = 3, BLOCK = 5 }
 # WeaponSwingSounds2 rows.
 enum Swing { LIGHT = 1, LIGHT_CRITICAL = 2 }
+# FootstepTerrainLookup columns.
+enum Step { CREATURE = 1, TERRAIN = 2, SOUND = 3, SPLASH = 4 }
+# TerrainType rows, which GroundEffectTexture names for each ground texture.
+enum Terrain { DIRT, METALLIC, STONE, SNOW, WOOD, GRASS, LEAVES, SAND, SOGGY, DUSTY_GRASS, NONE }
 
 const SCENE_PATH: String = "res://game/world/unit_voice.tscn"
 const NODE_NAME: StringName = &"UnitVoice"
@@ -28,8 +32,7 @@ const FOOTSTEP_COLUMN: int = 9
 const SPELL_VISUAL_COLUMN: int = 115
 const KIT_SOUND_COLUMN: int = 13
 const SWING_SOUND_COLUMN: int = 3
-# ponytail: every footstep lands on dirt, read the ADT ground texture's TerrainType for the rest.
-const TERRAIN_SOUND_DIRT: int = 1
+const GROUND_TERRAIN_COLUMN: int = 6
 # ponytail: a fixed stride per gait, the M2 footstep events would give the exact frames.
 const STRIDES: Dictionary[String, float] = {
 	"Run": 0.33,
@@ -40,6 +43,8 @@ const STRIDES: Dictionary[String, float] = {
 }
 
 static var by_guid: Dictionary[int, UnitVoice] = {}
+## The terrain a unit walks on decides its footstep sound; unset, every step lands on dirt.
+static var map: WowMap
 
 static var _displays: WowDBC
 static var _models: WowDBC
@@ -49,14 +54,17 @@ static var _spells: WowDBC
 static var _visuals: WowDBC
 static var _kits: WowDBC
 static var _swings: WowDBC
-static var _footsteps: Dictionary[int, int] = {}
+# Keyed by (CreatureSoundData footstep id, Terrain).
+static var _footsteps: Dictionary[Vector2i, int] = {}
+static var _splashes: Dictionary[Vector2i, int] = {}
+static var _ground_terrain: Dictionary[int, Terrain] = {}
 static var _impacts: Dictionary[int, int] = {}
 static var _impact_table: WowDBC
 
 var _guid: int = 0
 var _sound_row: int = -1
 var _npc_row: int = -1
-var _footstep_sound: int = 0
+var _footstep_id: int = 0
 var _was_alive: bool = false
 var _precast: int = AudioStreamPlaybackPolyphonic.INVALID_ID
 
@@ -85,7 +93,7 @@ static func attach(model: Node3D, guid: int, display_id: int, mount_display_id: 
 	)
 	var walker: int = _sound_data_row(mount_display_id) if mount_display_id else voice._sound_row
 	if walker >= 0:
-		voice._footstep_sound = _footsteps.get(_creature_sounds.get_uint(walker, FOOTSTEP_COLUMN), 0)
+		voice._footstep_id = _creature_sounds.get_uint(walker, FOOTSTEP_COLUMN)
 	model.add_child(voice)
 	by_guid[guid] = voice
 
@@ -143,8 +151,16 @@ static func _open() -> void:
 		_impacts[_impact_table.get_uint(row, 1)] = row
 	var lookup: WowDBC = WowDBC.open(archive, "FootstepTerrainLookup")
 	for row: int in lookup.row_count():
-		if lookup.get_uint(row, 2) == TERRAIN_SOUND_DIRT:
-			_footsteps[lookup.get_uint(row, 1)] = lookup.get_uint(row, 3)
+		var key: Vector2i = Vector2i(
+			lookup.get_uint(row, Step.CREATURE), lookup.get_uint(row, Step.TERRAIN)
+		)
+		_footsteps[key] = lookup.get_uint(row, Step.SOUND)
+		_splashes[key] = lookup.get_uint(row, Step.SPLASH)
+	var ground: WowDBC = WowDBC.open(archive, "GroundEffectTexture")
+	for row: int in ground.row_count():
+		var terrain: int = ground.get_uint(row, GROUND_TERRAIN_COLUMN)
+		if terrain > 0:
+			_ground_terrain[ground.get_uint(row, 0)] = terrain as Terrain
 	var session: WowSession = WowClient.session
 	session.melee_swing.connect(_on_melee_swing)
 	session.attack_started.connect(_on_attack_started)
@@ -262,4 +278,13 @@ func _stop_precast() -> void:
 
 
 func _on_step() -> void:
-	play_entry(_footstep_sound)
+	var key: Vector2i = Vector2i(_footstep_id, _terrain_under())
+	var wading: bool = map != null and global_position.y < map.liquid_height_at(global_position)
+	play_entry(_splashes.get(key, 0) if wading else _footsteps.get(key, 0))
+
+
+# Ground with no GroundEffectTexture of its own sounds like dirt, as it does in the stock client.
+func _terrain_under() -> Terrain:
+	if map == null:
+		return Terrain.DIRT
+	return _ground_terrain.get(map.ground_effect_at(global_position), Terrain.DIRT)

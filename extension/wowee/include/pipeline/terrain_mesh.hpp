@@ -50,6 +50,7 @@ struct ChunkMesh {
     struct LayerInfo {
         uint32_t textureId;
         uint32_t flags;
+        uint32_t effectId;               // GroundEffectTexture ID
         std::vector<uint8_t> alphaData;  // 64x64 alpha map
     };
     std::vector<LayerInfo> layers;
