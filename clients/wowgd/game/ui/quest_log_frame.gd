@@ -65,6 +65,7 @@ func _ready() -> void:
 	%QuestLogFrameAbandonButton.pressed.connect(_on_abandon_pressed)
 	%QuestFramePushQuestButton.pressed.connect(_on_push_pressed)
 	WowClient.session.packet_received.connect(_on_packet_received)
+	%QuestLogTrack.gui_input.connect(_on_track_input)
 	%QuestLogTrackTracking.self_modulate = TRACKING_OFF
 	%QuestLogSpacerFrame.hide()
 	for label_name: String in ["QuestLogObjectivesText", "QuestLogQuestDescription"]:
@@ -116,7 +117,7 @@ func refresh(keep_scroll: bool = false) -> void:
 # The quest watch frame's list, for the checks and the track light.
 func set_watched(quest_ids: Array[int]) -> void:
 	_watched = quest_ids
-	%QuestLogTrackTracking.self_modulate = TRACKING_OFF if _watched.is_empty() else TRACKING_ON
+	_update_track_light()
 	if is_visible_in_tree():
 		_update_list()
 
@@ -283,6 +284,7 @@ func _gray_level(player_level: int) -> int:
 
 # QuestLog_UpdateQuestDetails and QuestFrameItems_Update, stacked as their anchors chain.
 func _update_details(keep_scroll: bool) -> void:
+	_update_track_light()
 	if _selected_slot < 0:
 		_detail_scroll.hide()
 		return
@@ -356,6 +358,21 @@ func _objective(index: int) -> Label:
 
 func _item(index: int) -> BaseButton:
 	return get_node("%%QuestLogItem%d" % (index + 1))
+
+
+# QuestLogTrack converts to a plain Control, so its click is read here.
+func _on_track_input(event: InputEvent) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click == null or not click.pressed or click.button_index != MOUSE_BUTTON_LEFT:
+		return
+	if _selected_slot >= 0:
+		watch_toggled.emit(QuestLog.quest_id(_selected_slot))
+
+
+# The light burns while the quest on show is one of the tracked ones.
+func _update_track_light() -> void:
+	var tracked: bool = _selected_slot >= 0 and QuestLog.quest_id(_selected_slot) in _watched
+	%QuestLogTrackTracking.self_modulate = TRACKING_ON if tracked else TRACKING_OFF
 
 
 # QuestLogTitleButton_OnClick: headers fold, quests become the selection.
