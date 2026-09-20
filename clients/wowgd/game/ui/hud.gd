@@ -116,6 +116,7 @@ func _ready() -> void:
 	_friends.close_requested.connect(_panels.hide_panel.bind(_friends))
 	_friends.message_added.connect(add_system_line)
 	_friends.name_requested.connect(_on_friend_name_requested)
+	_friends.guild_invited.connect(_on_guild_invited)
 	_duel = Duel.new(WowClient.session)
 	_duel.challenged.connect(_on_duel_challenged)
 	_duel.counted_down.connect(func(seconds: int) -> void:
@@ -392,15 +393,25 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 
 # UseContainerItem: gear equips, everything else is used.
 # The stock frame asks for a name in a popup with an edit box; a targeted player fills it here.
-func _on_friend_name_requested(add_friend: bool) -> void:
+func _on_friend_name_requested(tab: FriendsFrame.Tab) -> void:
 	var player_name: String = WowClient.session.get_object_name(target())
 	if player_name.is_empty():
 		show_error(WowStrings.get_text("ERR_BAD_PLAYER_NAME_S", "") % "")
 		return
 	_friends.add(player_name)
+	if tab == FriendsFrame.Tab.GUILD:
+		return
 	add_system_line(WowStrings.get_text(
-		"FRIEND_ADDED" if add_friend else "IGNORE_ADDED", player_name
+		"FRIEND_ADDED" if tab == FriendsFrame.Tab.FRIENDS else "IGNORE_ADDED", player_name
 	))
+
+
+func _on_guild_invited(inviter: String, guild_name: String) -> void:
+	_popup.ask(
+		WowStrings.get_text("GUILD_INVITATION", "%s invites you to join %s") % \
+		[inviter, guild_name],
+		_friends.accept_guild_invite, "ACCEPT", "DECLINE", _friends.decline_guild_invite,
+	)
 
 
 func _on_ready_check_started() -> void:

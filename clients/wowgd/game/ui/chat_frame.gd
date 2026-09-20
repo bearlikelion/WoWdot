@@ -53,6 +53,15 @@ const COMMANDS: Dictionary[String, WowSession.ChatType] = {
 	"/w": WowSession.CHAT_WHISPER, "/whisper": WowSession.CHAT_WHISPER,
 	"/t": WowSession.CHAT_WHISPER, "/tell": WowSession.CHAT_WHISPER,
 }
+
+const GUILD_COMMANDS: Dictionary[String, String] = {
+	"/ginvite": "CMSG_GUILD_INVITE", "/guildinvite": "CMSG_GUILD_INVITE",
+	"/gremove": "CMSG_GUILD_REMOVE", "/guildremove": "CMSG_GUILD_REMOVE",
+	"/gpromote": "CMSG_GUILD_PROMOTE", "/guildpromote": "CMSG_GUILD_PROMOTE",
+	"/gdemote": "CMSG_GUILD_DEMOTE", "/guilddemote": "CMSG_GUILD_DEMOTE",
+	"/gmotd": "CMSG_GUILD_MOTD", "/guildmotd": "CMSG_GUILD_MOTD",
+	"/gquit": "CMSG_GUILD_LEAVE", "/guildleave": "CMSG_GUILD_LEAVE",
+}
 # Chat types the edit box keeps between messages; whispers and emotes fall back to the last one.
 const STICKY: Array[WowSession.ChatType] = [
 	WowSession.CHAT_SAY, WowSession.CHAT_YELL, WowSession.CHAT_PARTY, WowSession.CHAT_GUILD,
@@ -213,6 +222,17 @@ func _take_command(text: String) -> String:
 	return rest
 
 
+# SlashCmdList GUILD_INVITE, GUILD_REMOVE, GUILD_PROMOTE, GUILD_DEMOTE, GUILD_MOTD and GUILD_QUIT.
+func _run_guild_command(message: String) -> bool:
+	var words: PackedStringArray = message.split(" ", false, 1)
+	var opcode: String = GUILD_COMMANDS.get(words[0].to_lower(), "")
+	var rest: String = words[1].strip_edges() if words.size() > 1 else ""
+	if opcode.is_empty() or (rest.is_empty() and opcode != "CMSG_GUILD_LEAVE"):
+		return false
+	FriendsFrame.send_command(opcode, rest)
+	return true
+
+
 # SlashCmdList INVITE, UNINVITE and LEAVE.
 func _run_party_command(message: String) -> bool:
 	var words: PackedStringArray = message.split(" ", false, 1)
@@ -244,6 +264,8 @@ func _on_text_submitted(text: String) -> void:
 	if text.begins_with("/") and _run_channel_command(text.strip_edges()):
 		return
 	if _run_party_command(message):
+		return
+	if _run_guild_command(message):
 		return
 	if text.begins_with("/") and _send_emote(text.strip_edges()):
 		return

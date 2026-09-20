@@ -25,7 +25,8 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video and sound options. |
 | NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag slot purchases, auctioneers. |
 | Mail | Inbox from a mailbox, reading letters, taking money and attachments, deleting, and writing letters with money. |
-| Groups | Party invites, party frames, loot window, quest sharing. |
+| Groups | Party invites, party frames, loot window, group loot rolls, ready check, quest sharing. |
+| Social | Trade, duels, friends and ignore, and the guild window with its roster, message of the day and invites. |
 
 ## Requirements
 
@@ -77,6 +78,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `npc_check`, `npc_services_check.sh`, `bank_check` | Gossip, quests, vendor, trainer, flights, the bank. |
 | `mail_check`, `auction_check` | The mailbox and the auction house. |
 | `loot_check`, `party_check.sh` | Loot and parties. |
+| `trade_check.sh`, `friends_check`, `guild_check` | Trading, the friends and ignore lists, the guild window. |
 | `remote_motion_check`, `remote_movement_check.sh` | Other players' movement. |
 | `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming. |
 | `stance_check`, `target_of_target_check` | The stance bar and the target of target frame. |
@@ -92,7 +94,7 @@ In the order they are planned:
 | Milestone | Work |
 | --- | --- |
 | M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
-| M4 social | Trade, duel, group loot rolls, ready check, friends and ignore, guild, the stock dropdown menu, chat tabs and bubbles. |
+| M4 social | The stock dropdown menu, chat tabs and bubbles. |
 | M5 pets | Pet frame, pet action bar, pet spellbook, hunter and warlock pets. |
 | M6 visuals | M2 particles, ribbons and texture animation, spell visuals and projectiles, WMO liquids, transports. |
 | M7 polish | Key binding UI, interface options, starting outfit on the create preview, race and class tooltips, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the corpse marker on the map and minimap, the breath meter underwater. |
