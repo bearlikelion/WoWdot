@@ -34,6 +34,14 @@ func _run() -> void:
 	_check(not visuals.has_missile(168), "Frost Armor throws nothing")
 	var sparkle: String = visuals.loot_sparkle()
 	_check(not sparkle.is_empty(), "loot has its sparkle: " + sparkle)
+	var shine: Node3D = WowAssets.loader.load_m2(sparkle)
+	_check(shine != null, "the loot sparkle loads")
+	if shine:
+		_check(
+			shine.find_children("Particles*", "GPUParticles3D", true, false).size() > 0,
+			"the loot sparkle emits",
+		)
+		shine.queue_free()
 	var model: Node3D = WowAssets.loader.load_m2(visuals.missile(133))
 	_check(model != null, "the fireball missile loads")
 	if model:

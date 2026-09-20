@@ -13,6 +13,8 @@ const MAGE_LEVEL: int = 10
 # Teleport hops allowed while closing on a creature that wanders, and the range they end at.
 const HOPS: int = 5
 const NEAR: float = 25.0
+# Creatures killed while hunting for one that drops loot.
+const CORPSES: int = 4
 # Rank 1 fireballs it takes to put a starting-zone beast down.
 const CASTS: int = 5
 
@@ -83,21 +85,25 @@ func _run() -> void:
 					_capture("user://spell_missile.png")
 				flew = true
 			await get_tree().process_frame
-	# A creature the player has hit drops loot, which is what the sparkle hangs on.
-	_main.world.select(prey)
-	session.send_chat(WowSession.CHAT_SAY, ".die")
-	await _frames(120)
-	_check(dressed, "the caster wears the spell while it goes off")
-	_check(posed, "the caster holds the casting pose")
-	_check(flew, "the fireball crosses to the target")
-	print("  prey health %d dynflags %d" % [
-		session.get_field(prey, "UNIT_FIELD_HEALTH"),
-		session.get_field(prey, "UNIT_DYNAMIC_FLAGS"),
-	])
-	var sparkles: Dictionary = effects.get("_sparkles")
-	_check(sparkles.has(prey), "a lootable corpse sparkles")
-	if sparkles.has(prey):
-		_capture("user://loot_sparkle.png")
+	# Only a corpse that dropped something sparkles, and not every creature carries loot.
+	var sparkled: bool = false
+	for attempt: int in CORPSES:
+		var corpse: int = prey if attempt == 0 else _nearest_prey()
+		if corpse == 0:
+			break
+		_main.world.select(corpse)
+		await _frames(20)
+		session.send_chat(WowSession.CHAT_SAY, ".die")
+		await _frames(120)
+		if not _main.world.call("_is_lootable", corpse):
+			print("  %s dropped nothing" % session.get_object_name(corpse))
+			continue
+		sparkled = (effects.get("_sparkles") as Dictionary).has(corpse)
+		print("  %s is lootable, sparkling: %s" % [session.get_object_name(corpse), sparkled])
+		if sparkled:
+			_capture("user://loot_sparkle.png")
+		break
+	_check(sparkled, "a lootable corpse sparkles")
 	await _go(home)
 	_finish("")
 

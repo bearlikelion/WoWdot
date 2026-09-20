@@ -426,8 +426,8 @@ std::shared_ptr<const WowLoader::M2Data> WowLoader::get_m2_data(const String &pa
 	}
 	auto data = std::make_shared<M2Data>();
 	data->model = M2Loader::load(bytes);
-	if (!data->model.isValid()) {
-		// Particle-only emitter models carry no geometry, so only warn about ones that should have some.
+	// A spell effect is often nothing but emitters, so geometry alone does not decide.
+	if (!data->model.isValid() && data->model.particleEmitters.empty() && data->model.ribbonEmitters.empty()) {
 		if (!data->model.vertices.empty()) {
 			UtilityFunctions::push_warning("WowLoader: bad model ", path);
 		}
