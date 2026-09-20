@@ -35,6 +35,10 @@ func _process(_delta: float) -> void:
 	indicator.region = Rect2(Vector2(left, 0.0), half)
 
 
+func show_corpse(wow_position: Vector3, map_id: int) -> void:
+	%Minimap.show_corpse(wow_position, map_id)
+
+
 func show_location(map_dir: String, wow_position: Vector3, facing: float) -> void:
 	_view.show_location(map_dir, wow_position, facing)
 

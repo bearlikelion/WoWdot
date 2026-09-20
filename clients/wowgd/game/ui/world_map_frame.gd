@@ -23,6 +23,9 @@ const LABEL_OFFSET: Vector2 = Vector2(10.0, -8.0)
 var _shown: int = -1
 var _map_ids: Dictionary[String, int] = {}
 var _player_map: int = -1
+# Where the player's corpse lies while they are a ghost, and the map it is on.
+var _corpse_map: int = -1
+var _corpse_position: Vector3 = Vector3.ZERO
 var _player_area: int = 0
 var _player_position: Vector3 = Vector3.ZERO
 var _player_facing: float = 0.0
@@ -80,6 +83,14 @@ func _process(_delta: float) -> void:
 	var cursor: Vector2 = _button.get_local_mouse_position() / _button.size
 	var zone: int = _zone_at(cursor) if _is_continent(_shown) else -1
 	_area_label.text = _areas.get_string(_areas.find(zone), "AreaName") if zone >= 0 else ""
+
+
+# The corpse the player has to walk back to, or map -1 once they are alive again.
+func set_corpse(map_id: int, wow_position: Vector3) -> void:
+	_corpse_map = map_id
+	_corpse_position = wow_position
+	if is_visible_in_tree():
+		_update_markers()
 
 
 # The HUD passes where the player is each frame, as it does for the minimap.
@@ -187,6 +198,11 @@ func _update_markers() -> void:
 			map_id, TaxiNodes.position(node),
 			WorldMapMarker.Kind.FLIGHT_KNOWN if known else WorldMapMarker.Kind.FLIGHT_UNKNOWN,
 			TaxiNodes.node_name(node), "(%s)" % hint if known else "(%s, not yet discovered)" % hint,
+		)
+	if map_id == _corpse_map:
+		_add_marker(
+			map_id, _corpse_position, WorldMapMarker.Kind.CORPSE,
+			WowStrings.get_text("CORPSE_TOOLTIP", "Your corpse"), "",
 		)
 	var session: WowSession = WowClient.session
 	if map_id == _player_map:

@@ -91,6 +91,7 @@ func _ready() -> void:
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
 	_effects.watch(_entities, _player)
 	_death = Death.new(WowClient.session)
+	_death.corpse_located.connect(_hud.show_corpse)
 	_death.resurrect_offered.connect(_on_resurrect_offered)
 	_death.spirit_healer_offered.connect(_on_spirit_healer_offered)
 
@@ -280,6 +281,7 @@ func _follow_death(dead: bool, ghost: bool) -> void:
 		_release_offered = false
 		_reclaim_offered = false
 		_death.forget_corpse()
+		_hud.show_corpse(Vector3.ZERO, -1)
 		return
 	_ghost = ghost
 	if not ghost and not _release_offered:

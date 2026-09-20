@@ -51,6 +51,23 @@ func _run() -> void:
 	if not await _until(func() -> bool: return _ghost(me)):
 		return _finish("releasing the spirit never made a ghost")
 	_check(true, "releasing the spirit works")
+	var located: bool = await _until(
+		func() -> bool: return _main.world._death.corpse_map >= 0, RECLAIM_MSEC
+	)
+	_check(located, "the corpse query answers where the body lies")
+	if located:
+		var minimap: MinimapView = _main.world.hud().find_child("Minimap", true, false)
+		_check(minimap.get("_corpse_map") >= 0, "the minimap knows the corpse")
+		var map_frame: Control = _main.world.hud().find_child("WorldMapFrame", true, false)
+		map_frame.show()
+		await _frames(30)
+		var corpses: int = 0
+		for marker: Node in map_frame.find_children("*", "WorldMapMarker", true, false):
+			corpses += 1 if (marker as WorldMapMarker).kind == WorldMapMarker.Kind.CORPSE else 0
+		_check(corpses == 1, "the world map shows one corpse marker (%d)" % corpses)
+		_capture("user://death_corpse_map.png")
+		map_frame.hide()
+		await _frames(10)
 
 	session.send_chat(
 		WowSession.CHAT_SAY, ".go xyz %f %f %f" % [grave.x, grave.y, grave.z]
@@ -95,6 +112,11 @@ func _popup_text() -> String:
 func _accept() -> void:
 	var button: BaseButton = _popup().find_child("StaticPopup1Button1", true, false)
 	button.pressed.emit()
+
+
+func _capture(path: String) -> void:
+	get_viewport().get_texture().get_image().save_png(path)
+	print("wrote ", ProjectSettings.globalize_path(path))
 
 
 func _until(condition: Callable, timeout_msec: int = STEP_MSEC) -> bool:

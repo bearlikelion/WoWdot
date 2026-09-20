@@ -14,8 +14,16 @@ var zoom: int = 0:
 		queue_redraw()
 		zoom_changed.emit(zoom)
 
+const CORPSE_COLOR: Color = Color("#E8E8E8")
+const CORPSE_OUTLINE: Color = Color(0.1, 0.08, 0.02)
+const CORPSE_SIZE: float = 10.0
+# A corpse beyond the edge rides the rim, as it does in the stock minimap.
+const CORPSE_MARGIN: float = 6.0
+
 var _map_dir: String = ""
 var _position: Vector3 = Vector3.ZERO
+var _corpse: Vector3 = Vector3.ZERO
+var _corpse_map: int = -1
 
 @onready var _arrow: TextureRect = %MinimapArrow
 
@@ -38,6 +46,13 @@ func show_location(map_dir: String, wow_position: Vector3, facing: float) -> voi
 	queue_redraw()
 
 
+# Where the player's corpse lies, or map -1 once they are alive again.
+func show_corpse(wow_position: Vector3, map_id: int) -> void:
+	_corpse = wow_position
+	_corpse_map = map_id
+	queue_redraw()
+
+
 func _draw() -> void:
 	if _map_dir.is_empty():
 		return
@@ -53,3 +68,21 @@ func _draw() -> void:
 				continue
 			var corner: Vector2 = size / 2.0 + (Vector2(tile_x, tile_y) - center) * tile_pixels
 			draw_texture_rect(image, Rect2(corner, Vector2(tile_pixels, tile_pixels)), false)
+	if _corpse_map >= 0:
+		_draw_corpse(center, tile_pixels)
+
+
+func _draw_corpse(center: Vector2, tile_pixels: float) -> void:
+	var tile: Vector2 = Vector2(32.0 - _corpse.y / TILE_YARDS, 32.0 - _corpse.x / TILE_YARDS)
+	var middle: Vector2 = size / 2.0
+	var away: Vector2 = (tile - center) * tile_pixels
+	var rim: float = middle.x - CORPSE_MARGIN
+	if away.length() > rim:
+		away = away.normalized() * rim
+	var arm: float = CORPSE_SIZE * 0.2
+	for bar: Rect2 in [
+		Rect2(middle + away - Vector2(arm, CORPSE_SIZE / 2.0), Vector2(arm * 2.0, CORPSE_SIZE)),
+		Rect2(middle + away - Vector2(CORPSE_SIZE / 2.0, arm * 0.5), Vector2(CORPSE_SIZE, arm)),
+	]:
+		draw_rect(bar.grow(1.0), CORPSE_OUTLINE)
+		draw_rect(bar, CORPSE_COLOR)

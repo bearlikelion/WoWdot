@@ -279,6 +279,11 @@ func show_location(map_dir: String, wow_position: Vector3, facing: float) -> voi
 	_world_map.set_player(map_dir, wow_position, facing, _area)
 
 
+func show_corpse(wow_position: Vector3, map_id: int) -> void:
+	_minimap.show_corpse(wow_position, map_id)
+	_world_map.set_corpse(map_id, wow_position)
+
+
 func show_area(area_id: int, player_race: int) -> void:
 	_area = area_id
 	_minimap.show_area(area_id, player_race)

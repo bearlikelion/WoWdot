@@ -87,7 +87,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming. |
 | `stance_check`, `target_of_target_check` | The stance bar and the target of target frame. |
 | `emote_check`, `channel_check` | Slash emotes and chat channels. |
-| `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting. |
+| `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting with the corpse marked on both maps. |
 | `sheath_check`, `sky_check` | Sheathing, sky, light and weather. |
 | `audio_check`, `effects_check` | Audio; scrolling textures and particle emitters, both with no server needed. |
 | `spell_target_check`, `visual_check` | Self-only buffs cast on the caster; the spell visual chain resolves. Neither needs a server. |
@@ -103,7 +103,7 @@ In the order they are planned:
 | --- | --- |
 | M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
 | M6 visuals | M2 ribbons, WMO liquids, transports. |
-| M7 polish | Key binding UI, interface options, race and class tooltips, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the corpse marker on the map and minimap, the breath meter underwater. |
+| M7 polish | Key binding UI, interface options, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the breath meter underwater. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 
