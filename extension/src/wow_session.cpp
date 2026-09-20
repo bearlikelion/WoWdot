@@ -524,7 +524,17 @@ void WowSession::set_selection(int64_t guid) {
 // Empty until the server answers the query this sends; name_received follows.
 String WowSession::get_object_name(int64_t guid) {
 	const WorldObject *object = find(guid);
-	if (!object || !world) {
+	if (!world) {
+		return String();
+	}
+	// A friend or an ignored player has no object to read, so their name comes from a query alone.
+	if (!object) {
+		if (const auto it = player_names.find(static_cast<uint64_t>(guid)); it != player_names.end()) {
+			return String::utf8(it->second.c_str());
+		}
+		if (is_player_guid(static_cast<uint64_t>(guid))) {
+			query_player_name(static_cast<uint64_t>(guid));
+		}
 		return String();
 	}
 	if (object->type_id == TYPEID_PLAYER) {

@@ -57,6 +57,7 @@ var _chat_hover_time: float = 0.0
 @onready var _mail: MailFrame = _panels.get_node("%MailFrame")
 @onready var _auction: AuctionFrame = _panels.get_node("%AuctionFrame")
 @onready var _trade: TradeFrame = _panels.get_node("%TradeFrame")
+@onready var _friends: FriendsFrame = _panels.get_node("%FriendsFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
 @onready var _spell_book: SpellBook = _panels.get_node("%SpellBookFrame")
@@ -110,6 +111,9 @@ func _ready() -> void:
 	_trade.error_raised.connect(show_error)
 	_trade.message_added.connect(add_system_line)
 	_trade.trade_offered.connect(_on_trade_offered)
+	_friends.close_requested.connect(_panels.hide_panel.bind(_friends))
+	_friends.message_added.connect(add_system_line)
+	_friends.name_requested.connect(_on_friend_name_requested)
 	_duel = Duel.new(WowClient.session)
 	_duel.challenged.connect(_on_duel_challenged)
 	_duel.counted_down.connect(func(seconds: int) -> void:
@@ -367,6 +371,9 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 			_panels.toggle_panel(_talents)
 		MainMenuBar.GamePanel.QUEST_LOG:
 			_panels.toggle_panel(_quest_log)
+		MainMenuBar.GamePanel.SOCIAL:
+			_friends.request_lists()
+			_panels.toggle_panel(_friends)
 		MainMenuBar.GamePanel.WORLD_MAP:
 			_panels.toggle_panel(_world_map)
 		MainMenuBar.GamePanel.BAGS:
@@ -380,6 +387,18 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 
 
 # UseContainerItem: gear equips, everything else is used.
+# The stock frame asks for a name in a popup with an edit box; a targeted player fills it here.
+func _on_friend_name_requested(add_friend: bool) -> void:
+	var player_name: String = WowClient.session.get_object_name(target())
+	if player_name.is_empty():
+		show_error(WowStrings.get_text("ERR_BAD_PLAYER_NAME_S", "") % "")
+		return
+	_friends.add(player_name)
+	add_system_line(WowStrings.get_text(
+		"FRIEND_ADDED" if add_friend else "IGNORE_ADDED", player_name
+	))
+
+
 func _on_duel_challenged(challenger: String) -> void:
 	_popup.ask(
 		WowStrings.get_text("DUEL_REQUESTED", "%s has challenged you to a duel.") % challenger,

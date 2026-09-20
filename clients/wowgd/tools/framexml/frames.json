@@ -304,6 +304,11 @@
       "frame": "TradeFrame",
       "out": "game/ui/wow/trade_frame.tscn",
       "script": "res://game/ui/trade_frame.gd"
+    },
+    {
+      "frame": "FriendsFrame",
+      "out": "game/ui/wow/friends_frame.tscn",
+      "script": "res://game/ui/friends_frame.gd"
     }
   ],
   "graft": {
