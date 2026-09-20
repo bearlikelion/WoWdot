@@ -23,7 +23,8 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap, tooltips, reputation watch bar. |
 | Chat | Say, yell, party, guild and whispers, channels with /join and numbered commands, emotes such as /dance. |
 | Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video and sound options. |
-| NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag slot purchases. |
+| NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag slot purchases, auctioneers. |
+| Mail | Inbox from a mailbox, reading letters, taking money and attachments, deleting, and writing letters with money. |
 | Groups | Party invites, party frames, loot window, quest sharing. |
 
 ## Requirements
@@ -73,6 +74,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `play_check`, `targeting_check`, `combat_check`, `combat_log_check` | Entering the world, targeting and combat. |
 | `panels_check` | Every panel, quest add and abandon. |
 | `npc_check`, `npc_services_check.sh`, `bank_check` | Gossip, quests, vendor, trainer, flights, the bank. |
+| `mail_check`, `auction_check` | The mailbox and the auction house. |
 | `loot_check`, `party_check.sh` | Loot and parties. |
 | `remote_motion_check`, `remote_movement_check.sh` | Other players' movement. |
 | `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming. |
@@ -88,7 +90,7 @@ In the order they are planned:
 
 | Milestone | Work |
 | --- | --- |
-| M3 NPC services | Mailbox, auction house, bags in the bank bag slots, then stable, petition and tabard. |
+| M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
 | M4 social | Trade, duel, group loot rolls, ready check, friends and ignore, guild, the stock dropdown menu, chat tabs and bubbles. |
 | M5 pets | Pet frame, pet action bar, pet spellbook, hunter and warlock pets. |
 | M6 visuals | M2 particles, ribbons and texture animation, spell visuals and projectiles, WMO liquids, transports. |
