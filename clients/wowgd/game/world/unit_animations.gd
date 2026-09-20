@@ -52,9 +52,9 @@ static func die(model: Node3D) -> void:
 	UnitVoice.set_gait(model, "")
 	if clip.is_empty():
 		return
+	# Every M2 clip is built looping, so a corpse would stand up and fall over again.
+	player.get_animation(clip).loop_mode = Animation.LOOP_NONE
 	player.play(clip, BLEND)
-	var length: float = player.get_animation(clip).length
-	model.get_tree().create_timer(length).timeout.connect(_hold.bind(model.get_instance_id(), clip))
 
 
 static func revive(model: Node3D) -> void:
@@ -96,15 +96,6 @@ static func _return_to_base(model_id: int, clip: String) -> void:
 	var player: AnimationPlayer = _player(model)
 	if player and player.current_animation == clip:
 		player.play(String(model.get_meta(BASE_META, "Stand")), BLEND)
-
-
-static func _hold(model_id: int, clip: String) -> void:
-	var model: Node3D = instance_from_id(model_id) as Node3D
-	if model == null:
-		return
-	var player: AnimationPlayer = _player(model)
-	if player and player.current_animation == clip and model.get_meta(DEAD_META, false):
-		player.pause()
 
 
 static func _player(model: Node3D) -> AnimationPlayer:
