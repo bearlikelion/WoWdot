@@ -101,7 +101,6 @@ func _ready() -> void:
 	_stable.open_requested.connect(_panels.show_panel.bind(_stable))
 	_stable.close_requested.connect(_panels.hide_panel.bind(_stable))
 	_stable.error_raised.connect(show_error)
-	_stable.message_added.connect(add_system_line)
 	_mail.open_requested.connect(_panels.show_panel.bind(_mail))
 	_mail.close_requested.connect(_panels.hide_panel.bind(_mail))
 	_mail.mail_opened.connect(_open_mail.show_mail)

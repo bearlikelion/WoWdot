@@ -91,8 +91,9 @@ func is_hunter_pet() -> bool:
 func happiness() -> Happiness:
 	if not is_hunter_pet():
 		return Happiness.NONE
-	var power: int = _session.get_field(guid, "UNIT_FIELD_POWER5")
-	return clampi(power / HAPPINESS_STEP + 1, Happiness.UNHAPPY, Happiness.HAPPY) as Happiness
+	var power: float = _session.get_field(guid, "UNIT_FIELD_POWER5")
+	var mood: int = floori(power / HAPPINESS_STEP) + 1
+	return clampi(mood, Happiness.UNHAPPY, Happiness.HAPPY) as Happiness
 
 
 func spell_of(packed: int) -> int:

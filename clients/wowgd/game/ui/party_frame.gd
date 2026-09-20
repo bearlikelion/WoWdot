@@ -80,8 +80,8 @@ static func start_ready_check() -> void:
 	WowClient.session.send_packet("MSG_RAID_READY_CHECK", PackedByteArray())
 
 
-static func answer_ready_check(ready: bool) -> void:
-	WowClient.session.send_packet("MSG_RAID_READY_CHECK", PackedByteArray([1 if ready else 0]))
+static func answer_ready_check(is_ready: bool) -> void:
+	WowClient.session.send_packet("MSG_RAID_READY_CHECK", PackedByteArray([1 if is_ready else 0]))
 
 
 # CMSG_LOOT_METHOD: how the party shares loot, and the quality that starts a roll.
@@ -130,9 +130,9 @@ func _on_ready_check(payload: PackedByteArray) -> void:
 		return
 	var reader: PacketReader = PacketReader.new(payload)
 	var member: String = WowClient.session.get_object_name(reader.u64())
-	var ready: bool = reader.u8() != 0
+	var is_ready: bool = reader.u8() != 0
 	# 1.12 has no ready check of its own, so these lines carry their own words.
-	message_added.emit((READY_YES if ready else READY_NO) % member)
+	message_added.emit((READY_YES if is_ready else READY_NO) % member)
 
 
 # Deferred so each frame has dropped a destroyed member before it is shown again by name.

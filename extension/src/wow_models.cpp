@@ -247,7 +247,7 @@ Animation::InterpolationType interpolation(const M2AnimationTrack &track) {
 }
 
 // Texture transforms scroll and spin a batch's UVs, which is how water, fire and portals move.
-Ref<Animation> build_uv_animation(const M2Model &model, const std::vector<uint32_t> &batches) {
+Ref<Animation> build_uv_animation(const M2Model &model, const std::vector<uint32_t> &batches, const String &mesh_path) {
 	Ref<Animation> anim;
 	anim.instantiate();
 	anim->set_loop_mode(Animation::LOOP_LINEAR);
@@ -278,7 +278,8 @@ Ref<Animation> build_uv_animation(const M2Model &model, const std::vector<uint32
 			continue;
 		}
 		const int t = anim->add_track(Animation::TYPE_VALUE);
-		anim->track_set_path(t, NodePath("Mesh:surface_material_override/" + String::num_int64(surface) + ":uv1_offset"));
+		const String property = String(":surface_material_override/") + String::num_int64(surface) + String(":uv1_offset");
+		anim->track_set_path(t, NodePath(mesh_path + property));
 		anim->track_set_interpolation_type(t, interpolation(track));
 		for (const auto &[msec, value] : keys) {
 			anim->track_insert_key(t, msec / 1000.0, Vector3(value.x, value.y, 0.0f));
@@ -538,9 +539,9 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 	MeshInstance3D *mesh = memnew(MeshInstance3D);
 	mesh->set_name("Mesh");
 	mesh->set_mesh(get_m2_mesh(path, *data, skins, geosets));
-	add_texture_animation(root, mesh, data->model, geosets);
 	if (data->bone_rests.empty()) {
 		root->add_child(mesh);
+		add_texture_animation(root, mesh, data->model, geosets);
 		add_particles(root, nullptr, data->model);
 		return root;
 	}
@@ -557,6 +558,7 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 	root->add_child(skeleton);
 	skeleton->add_child(mesh);
 	mesh->set_skeleton_path(NodePath(".."));
+	add_texture_animation(root, mesh, data->model, geosets);
 
 	const Ref<AnimationLibrary> animations = get_m2_animations(path, *data);
 	AnimationPlayer *player = memnew(AnimationPlayer);
@@ -580,7 +582,8 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 // The scrolling UVs animate a copy of the material, so other models with the same one stay put.
 void WowLoader::add_texture_animation(Node3D *root, MeshInstance3D *mesh, const M2Model &model, const PackedInt32Array &geosets) {
 	const std::vector<uint32_t> batches = visible_batches(model, geosets);
-	const Ref<Animation> anim = build_uv_animation(model, batches);
+	// The mesh sits under the skeleton on a skinned model, and straight under the root otherwise.
+	const Ref<Animation> anim = build_uv_animation(model, batches, String(root->get_path_to(mesh)));
 	if (anim->get_track_count() == 0) {
 		return;
 	}

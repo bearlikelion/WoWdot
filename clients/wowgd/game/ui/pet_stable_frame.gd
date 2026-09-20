@@ -4,7 +4,6 @@ extends Control
 
 signal open_requested
 signal close_requested
-signal message_added(text: String)
 signal error_raised(text: String)
 
 # SMSG_STABLE_RESULT, as NPCHandler's StableResultCode numbers them.

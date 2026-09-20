@@ -82,9 +82,9 @@ func search() -> void:
 	payload.resize(12)
 	payload.encode_u64(0, _guid)
 	payload.encode_u32(8, 0)
-	var name: PackedByteArray = (%BrowseName as LineEdit).text.to_utf8_buffer()
-	name.append(0)
-	payload.append_array(name)
+	var wanted: PackedByteArray = (%BrowseName as LineEdit).text.to_utf8_buffer()
+	wanted.append(0)
+	payload.append_array(wanted)
 	var filters: PackedByteArray = []
 	filters.resize(19)
 	filters.encode_u8(0, 0)
