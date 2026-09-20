@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://game/ui/player_frame.gd" id="1"]
 [ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/pet_frame.gd" id="3_pet"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame.blp"
@@ -556,7 +557,7 @@ vertical_alignment = 1
 
 [node name="PetFrame" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
+script = ExtResource("3_pet")
 offset_left = 80
 offset_top = 60
 offset_right = 208

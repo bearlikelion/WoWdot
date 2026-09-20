@@ -20,6 +20,11 @@ var stance_spell: int = 0:
 	set(value):
 		stance_spell = value
 		refresh()
+# Set by the pet bar for its command buttons, which show a fixed icon instead of a spell.
+var command_icon: String = "":
+	set(value):
+		command_icon = value
+		refresh()
 var stance_active: bool = false:
 	set(value):
 		stance_active = value
@@ -99,7 +104,13 @@ func refresh() -> void:
 	var item_entry: int = _item()
 	_icon.self_modulate = Color.WHITE
 	_count.text = ""
-	if spell() != 0:
+	if not command_icon.is_empty():
+		var icon: WowTexture = WowTexture.new()
+		icon.file = command_icon
+		_icon.texture = icon
+		_icon.visible = true
+		_normal.self_modulate.a = 1.0
+	elif spell() != 0:
 		_icon.texture = _action_icon(spell())
 	elif item_entry != 0:
 		var count: int = Inventory.item_count(item_entry)

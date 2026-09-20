@@ -1,7 +1,8 @@
 class_name ThrowawayCharacter
 extends SceneTree
 
-# Makes or removes a test character: -- --create=Name or --delete=Name [--account= --password=].
+# Makes or removes a test character: -- --create=Name or --delete=Name
+# [--account= --password= --race= --class=].
 const HOST: String = "127.0.0.1"
 const PORT: int = 3724
 const ACCOUNT: String = "wowgd"
@@ -42,7 +43,9 @@ func _run() -> void:
 			func(_ok: bool, _code: int) -> void: _session.request_characters(), CONNECT_ONE_SHOT
 		)
 		_session.create_character({
-			"name": args["create"], "race": DWARF, "class": WARRIOR, "gender": 0,
+			"name": args["create"], "gender": 0,
+			"race": args.get("race", str(DWARF)).to_int(),
+			"class": args.get("class", str(WARRIOR)).to_int(),
 		})
 		await _until(func() -> bool: return _fresh)
 		return _done("" if _names().has(args["create"]) else "could not create " + args["create"])
