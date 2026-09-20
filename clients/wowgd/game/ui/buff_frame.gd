@@ -28,7 +28,9 @@ func _ready() -> void:
 		_buttons.append(button)
 		_icons.append(get_node("%%BuffButton%dIcon" % i))
 		_counts.append(get_node("%%BuffButton%dCount" % i))
-		_durations.append(get_node("%%BuffButton%dDuration" % i))
+		var duration: Label = get_node("%%BuffButton%dDuration" % i)
+		_place_duration(button, duration)
+		_durations.append(duration)
 		_borders.append(get_node_or_null("%%BuffButton%dBorder" % i))
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)
@@ -71,6 +73,19 @@ func refresh() -> void:
 		_counts[i].text = str(aura["stacks"])
 		if _borders[i]:
 			_borders[i].self_modulate = UnitAuras.border_color(aura["spell"])
+
+
+# The converted anchor drops the timer on the icon; the stock frame keeps it under the button.
+func _place_duration(button: WowButton, duration: Label) -> void:
+	const LINE_HEIGHT: float = 12.0
+	duration.anchor_left = button.anchor_left
+	duration.anchor_top = button.anchor_top
+	duration.anchor_right = button.anchor_right
+	duration.anchor_bottom = button.anchor_bottom
+	duration.offset_left = button.offset_left
+	duration.offset_right = button.offset_right
+	duration.offset_top = button.offset_bottom
+	duration.offset_bottom = button.offset_bottom + LINE_HEIGHT
 
 
 # BuffFrame_UpdateDuration: minutes above a minute, seconds below.
