@@ -682,15 +682,18 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 		quad->set_material(material);
 		particles->set_draw_pass_mesh(0, quad);
 		Node3D *holder = root;
+		Vector3 offset = wow_to_godot(emitter.position);
 		if (skeleton && emitter.bone < static_cast<uint16_t>(skeleton->get_bone_count())) {
 			BoneAttachment3D *attachment = memnew(BoneAttachment3D);
 			attachment->set_name("ParticleBone" + String::num_int64(i));
 			skeleton->add_child(attachment);
 			attachment->set_bone_idx(emitter.bone);
 			holder = attachment;
+			// The bone already stands at its pivot, and the emitter position is model space too.
+			offset -= wow_to_godot(model.bones[emitter.bone].pivot);
 		}
 		holder->add_child(particles);
-		particles->set_position(wow_to_godot(emitter.position));
+		particles->set_position(offset);
 	}
 }
 
@@ -769,6 +772,9 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 				: String("?");
 		e["blend"] = emitter.blendingType;
 		e["type"] = emitter.emitterType;
+		e["flags"] = emitter.flags;
+		e["rows"] = emitter.textureRows;
+		e["cols"] = emitter.textureCols;
 		e["rate"] = track_value(emitter.emissionRate, 0.0f);
 		e["speed"] = track_value(emitter.emissionSpeed, 0.0f);
 		e["lifespan"] = track_value(emitter.lifespan, 0.0f);

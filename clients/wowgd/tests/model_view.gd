@@ -45,7 +45,7 @@ func _ready() -> void:
 	var view: PackedFloat64Array = String(args.get("view", "0.7,0.45,-1")).split_floats(",")
 	_frame(_bounds(model), float(args.get("zoom", "1.0")), Vector3(view[0], view[1], view[2]))
 
-	for i: int in SETTLE_FRAMES:
+	for i: int in int(args.get("settle", str(SETTLE_FRAMES))):
 		await get_tree().process_frame
 	var out: String = args.get("out", "user://model_view.png")
 	get_viewport().get_texture().get_image().save_png(out)
