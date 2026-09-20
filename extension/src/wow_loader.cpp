@@ -9,6 +9,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <cstdlib>
 #include <cstring>
 
 namespace godot {
@@ -73,6 +74,19 @@ String WowLoader::client_data_dir() {
 	return ProjectSettings::get_singleton()->get_setting("wowgd/client_data_dir", "");
 }
 
+// Without the archives there is nothing to draw, so a game says where it looked and stops.
+void WowLoader::report_missing_data(const String &data_dir) {
+	const String message = "No World of Warcraft 1.12.1 data was found in:\n" + data_dir +
+			"\n\nPut this build in a 1.12.1 client folder, beside its Data folder, and start it again.";
+	UtilityFunctions::push_error(message);
+	if (OS::get_singleton()->has_feature("editor")) {
+		return;
+	}
+	OS::get_singleton()->alert(message, "World of Warcraft data not found");
+	// The engine is still starting, so a quit request would let the load carry on and crash.
+	std::exit(1);
+}
+
 Ref<WowLoader> WowLoader::get_shared() {
 	const std::lock_guard<std::mutex> lock(shared_mutex);
 	if (shared_loader.is_null()) {
@@ -80,7 +94,7 @@ Ref<WowLoader> WowLoader::get_shared() {
 		archive.instantiate();
 		const String data_dir = client_data_dir();
 		if (archive->open(data_dir) != OK) {
-			UtilityFunctions::push_error("WowLoader: cannot open client data at '", data_dir, "'");
+			report_missing_data(data_dir);
 		}
 		shared_loader.instantiate();
 		shared_loader->set_archive(archive);

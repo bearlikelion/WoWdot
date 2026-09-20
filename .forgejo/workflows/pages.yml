@@ -18,8 +18,9 @@ jobs:
       run:
         shell: bash
     steps:
-      - name: Install git
-        run: pacman -Syu --noconfirm --needed git
+      # actions/checkout is a JavaScript action, so node has to exist before it runs.
+      - name: Install git and node
+        run: pacman -Syu --noconfirm --needed git nodejs
 
       - uses: actions/checkout@v4
 

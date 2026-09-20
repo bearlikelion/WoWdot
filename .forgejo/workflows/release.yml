@@ -19,8 +19,9 @@ jobs:
       run:
         shell: bash
     steps:
+      # nodejs is for actions/checkout, which is a JavaScript action.
       - name: Install build dependencies
-        run: pacman -Syu --noconfirm --needed base-devel git scons unzip zip mingw-w64-gcc github-cli
+        run: pacman -Syu --noconfirm --needed base-devel git nodejs scons unzip zip mingw-w64-gcc github-cli
 
       - uses: actions/checkout@v4
         with:
