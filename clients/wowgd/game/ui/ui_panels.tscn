@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/character_frame.tscn" id="2_character"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/mail_frame.tscn" id="18_mail"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/open_mail_frame.tscn" id="19_openmail"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/auction_frame.tscn" id="20_auction"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/guild_registrar_frame.tscn" id="27_registrar"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/petition_frame.tscn" id="28_petition"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/trade_frame.tscn" id="21_trade"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/friends_frame.tscn" id="22_friends"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/world_map_frame.tscn" id="14_map"]
@@ -86,6 +88,16 @@ visible = false
 layout_mode = 1
 
 [node name="AuctionFrame" parent="." instance=ExtResource("20_auction")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="GuildRegistrarFrame" parent="." instance=ExtResource("27_registrar")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="PetitionFrame" parent="." instance=ExtResource("28_petition")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

@@ -64,6 +64,8 @@ var _chat_hover_time: float = 0.0
 @onready var _stable: PetStableFrame = _panels.get_node("%PetStableFrame")
 @onready var _mail: MailFrame = _panels.get_node("%MailFrame")
 @onready var _auction: AuctionFrame = _panels.get_node("%AuctionFrame")
+@onready var _registrar: GuildRegistrarFrame = _panels.get_node("%GuildRegistrarFrame")
+@onready var _petition: PetitionFrame = _panels.get_node("%PetitionFrame")
 @onready var _trade: TradeFrame = _panels.get_node("%TradeFrame")
 @onready var _friends: FriendsFrame = _panels.get_node("%FriendsFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
@@ -116,6 +118,10 @@ func _ready() -> void:
 	_open_mail.delete_requested.connect(_mail.delete)
 	_auction.open_requested.connect(_panels.show_panel.bind(_auction))
 	_auction.error_raised.connect(show_error)
+	for frame: Control in [_registrar, _petition]:
+		frame.open_requested.connect(_panels.show_panel.bind(frame))
+		frame.error_raised.connect(show_error)
+		frame.message_added.connect(show_notice)
 	_auction.message_added.connect(add_system_line)
 	_trade.open_requested.connect(_panels.show_panel.bind(_trade))
 	_trade.error_raised.connect(show_error)
@@ -494,6 +500,9 @@ func use_container_item(bag: int, slot: int) -> void:
 	if _auction.offer(item):
 		return
 	if _trade.offer(bag, slot):
+		return
+	if item_entry == GuildRegistrarFrame.CHARTER_ENTRY:
+		_petition.show_signatures(item)
 		return
 	var address: Vector2i = Inventory.wire_address(bag, slot)
 	var session: WowSession = WowClient.session
