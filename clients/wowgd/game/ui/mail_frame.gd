@@ -18,6 +18,7 @@ enum MailAction { SENT, MONEY_TAKEN, ITEM_TAKEN, RETURNED, DELETED, MADE_PERMANE
 const MAIL_OK: int = 0
 const COPPER_PER_SILVER: int = 100
 const COPPER_PER_GOLD: int = 10000
+const DEFAULT_STATIONERY: int = 41
 
 var _guid: int = 0
 var _mails: Array[Dictionary] = []
@@ -70,10 +71,11 @@ func send() -> void:
 	payload.encode_u64(0, _guid)
 	payload.append_array(_text_bytes((%SendMailNameEditBox as LineEdit).text))
 	payload.append_array(_text_bytes((%SendMailSubjectEditBox as LineEdit).text))
-	payload.append_array(_text_bytes((%SendMailBodyEditBox as TextEdit).text))
+	payload.append_array(_text_bytes((%SendMailBodyEditBox as LineEdit).text))
+	# Stationery, package, the attached item, money, cash on delivery, then the two the client pads with.
 	var tail: PackedByteArray = []
-	tail.resize(24)
-	tail.encode_u32(0, 41)
+	tail.resize(33)
+	tail.encode_u32(0, DEFAULT_STATIONERY)
 	tail.encode_u32(4, 0)
 	tail.encode_u64(8, 0)
 	tail.encode_u32(16, _money_typed())

@@ -11,6 +11,8 @@ const GAMEOBJECT_TYPE_MAILBOX: int = 19
 const QUERY_SECONDS: float = 3.0
 const SUBJECT: String = "Checkmail"
 const BODY: String = "A letter from the check."
+# Another character on the test account, since the server refuses mail to yourself.
+const RECEIVER: String = "Mogue"
 
 var _failures: PackedStringArray = []
 var _main: Main
@@ -59,11 +61,28 @@ func _run() -> void:
 		(letter.get_node("%OpenMailDeleteButton") as BaseButton).pressed.emit()
 		var gone: bool = await _until(func() -> bool: return not letter.visible)
 		_check(gone, "deleting closes the letter")
+	await _send_a_letter(inbox)
 	(inbox.get_node("%InboxCloseButton") as BaseButton).pressed.emit()
 	await _frames(10)
 	_check(not inbox.visible, "the close button shuts the inbox")
 	await _teleport(HOME)
 	_finish("")
+
+
+# The send tab writes to another character on the account, since mail to yourself is refused.
+func _send_a_letter(inbox: MailFrame) -> void:
+	var sent: PackedStringArray = []
+	inbox.message_added.connect(func(text: String) -> void: sent.append(text))
+	inbox.show_tab(MailFrame.Tab.SEND)
+	await _frames(10)
+	(inbox.find_child("SendMailNameEditBox", true, false) as LineEdit).text = RECEIVER
+	(inbox.find_child("SendMailSubjectEditBox", true, false) as LineEdit).text = SUBJECT
+	(inbox.find_child("SendMailBodyEditBox", true, false) as LineEdit).text = BODY
+	(inbox.find_child("SendMailMailButton", true, false) as BaseButton).pressed.emit()
+	var answered: bool = await _until(func() -> bool: return not sent.is_empty())
+	_check(answered, "sending a letter is confirmed")
+	if answered:
+		print("send answer: ", sent[0])
 
 
 func _subject_shown(inbox: MailFrame) -> bool:
