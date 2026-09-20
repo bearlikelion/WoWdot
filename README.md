@@ -9,7 +9,7 @@ Godot clients for classic World of Warcraft servers.
 | Client | Game version | Server | Status |
 | --- | --- | --- | --- |
 | [WoWGD](clients/wowgd) | 1.12.1 (build 5875) | vMaNGOS | Playable |
-| [WrathGD](clients/wrathgd) | 3.3.5a (build 12340) | AzerothCore | Logs in |
+| [WrathGD](clients/wrathgd) | 3.3.5a (build 12340) | AzerothCore | Enters the world |
 
 WoWdot ships no Blizzard data.
 Point the client at your own game install.

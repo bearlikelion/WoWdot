@@ -146,6 +146,8 @@ private:
 	void handle_movement_relay(wowee::network::Packet &packet);
 	void handle_compressed_moves(wowee::network::Packet &packet);
 	void handle_chat(wowee::network::Packet &packet);
+	void read_vanilla_chat(wowee::network::Packet &packet, uint8_t type, uint64_t &sender, std::string &name, Dictionary &line);
+	void read_wide_chat(wowee::network::Packet &packet, uint8_t type, uint64_t &sender, std::string &name, Dictionary &line);
 	void handle_quest_query(wowee::network::Packet &packet);
 	bool handle_npc_packet(uint16_t op, wowee::network::Packet &packet);
 	bool handle_combat_packet(uint16_t op, wowee::network::Packet &packet);

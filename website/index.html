@@ -16,38 +16,88 @@
   </header>
 
   <main>
-    <section>
-      <h2>Clients</h2>
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr><th>Client</th><th>Game version</th><th>Supported server</th><th>Status</th><th>Download</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Client"><span class="client"><img src="wowgd.png" alt="" width="32" height="32">WoWGD</span></td>
-              <td data-label="Game version">1.12.1 (build 5875)</td>
-              <td data-label="Supported server">vMaNGOS</td>
-              <td data-label="Status"><span class="status gold">Playable</span></td>
-              <td data-label="Download">
-                <div>
-                  <a class="dl" href="{{RELEASES}}/download/WoWGD-windows.zip"><svg class="plat" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4.6 10.4 3.4v8.1H2zM11.6 3.2 22 1.8v9.7H11.6zM2 12.7h8.4v8.1L2 19.6zM11.6 12.7H22v9.7l-10.4-1.4z"/></svg>Windows</a>
-                  <a class="dl" href="{{RELEASES}}/download/WoWGD-linux.zip"><svg class="plat" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15" rx="6.6" ry="6.8"/><ellipse cx="12" cy="7" rx="4.4" ry="4.8"/><ellipse class="bg" cx="12" cy="16.2" rx="3.6" ry="4.6"/><circle class="bg" cx="10.3" cy="6.4" r="1.2"/><circle class="bg" cx="13.7" cy="6.4" r="1.2"/><ellipse class="beak" cx="12" cy="9.3" rx="2.3" ry="1.3"/><ellipse class="beak" cx="8.8" cy="21" rx="2.3" ry="1.1" transform="rotate(-20 8.8 21)"/><ellipse class="beak" cx="15.2" cy="21" rx="2.3" ry="1.1" transform="rotate(20 15.2 21)"/></svg>Linux</a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Client"><span class="client"><img src="wrathgd.png" alt="" width="32" height="32">WrathGD</span></td>
-              <td data-label="Game version">3.3.5a (build 12340)</td>
-              <td data-label="Supported server">AzerothCore</td>
-              <td data-label="Status"><span class="status ice">Logs in</span></td>
-              <td data-label="Download" class="muted">In development</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="muted">WrathGD has started: the extension speaks either expansion now, and the 3.3.5a client logs in to AzerothCore and reaches its character list.</p>
+    <div class="columns">
+    <section class="col">
+      <h2><img src="wowgd.png" alt="" width="32" height="32">WoWGD</h2>
+      <p class="sub">1.12.1 (5875) &middot; vMaNGOS &middot; <span class="status gold">Playable</span></p>
+      <p>Log in, quest, fight, loot, group, train and fly on an unmodified vMaNGOS server.</p>
+      <table>
+        <thead><tr><th>Feature</th><th>What's in</th></tr></thead>
+        <tbody>
+          <tr><td>Login</td><td>account, realm list, character create and select</td></tr>
+          <tr><td>World</td><td>streaming terrain, buildings, water, sky, weather, music</td></tr>
+          <tr><td>Characters</td><td>customisation, gear on the model, mounts, portraits</td></tr>
+          <tr><td>Movement</td><td>run, jump, swim, taxi, other players moving</td></tr>
+          <tr><td>Zoning</td><td>continents, dungeons, portals</td></tr>
+          <tr><td>Death</td><td>release, corpse run, spirit healer</td></tr>
+          <tr><td>Combat</td><td>targeting, casts, cooldowns, auras, combat log</td></tr>
+          <tr><td>HUD</td><td>action bars, unit frames, cast bar, minimap, tooltips</td></tr>
+          <tr><td>Chat</td><td>say, party, guild, whisper, channels, emotes</td></tr>
+          <tr><td>Panels</td><td>character, bags, spellbook, talents, quests, map, options</td></tr>
+          <tr><td>NPCs</td><td>gossip, quests, vendors, trainers, flight, bank, auctioneer</td></tr>
+          <tr><td>Groups</td><td>invites, party frames, loot rolls, ready checks</td></tr>
+          <tr><td>Items</td><td>bags, bank, equipping, stacks</td></tr>
+          <tr><td>Objects</td><td>chests, doors, levers, chairs, herbs, ore</td></tr>
+          <tr><td>Mail</td><td>inbox, attachments, sending</td></tr>
+          <tr><td>Auction house</td><td>browse, bid, buyout, post</td></tr>
+          <tr><td>Social</td><td>trade, duels, friends, guild, charters, tabards</td></tr>
+          <tr><td>Pets</td><td>taming, pet bar, happiness, stable</td></tr>
+          <tr><td>Effects</td><td>particles, spell visuals, missiles, loot sparkle</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Left to implement</h3>
+      <ul>
+        <li>Ribbon trails, read but not drawn yet.</li>
+        <li>Ferries across a continent boundary.</li>
+        <li>Battleground, tradeskill and raid windows, all working on the wire already.</li>
+        <li>Who list and inspect.</li>
+        <li>Honor, PvP ranks and the PvP flag.</li>
+        <li>Fishing.</li>
+        <li>Macros.</li>
+        <li>Readable books and letters.</li>
+        <li>Looking for group and meeting stones.</li>
+      </ul>
+      <p class="muted">Then the content tools: spells, creatures, items, quests and maps authored in Godot.</p>
+
+      <h3>Download</h3>
+      <p>
+        <a class="dl" href="{{RELEASES}}/download/WoWGD-windows.zip"><svg class="plat" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4.6 10.4 3.4v8.1H2zM11.6 3.2 22 1.8v9.7H11.6zM2 12.7h8.4v8.1L2 19.6zM11.6 12.7H22v9.7l-10.4-1.4z"/></svg>Windows</a>
+        <a class="dl" href="{{RELEASES}}/download/WoWGD-linux.zip"><svg class="plat" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15" rx="6.6" ry="6.8"/><ellipse cx="12" cy="7" rx="4.4" ry="4.8"/><ellipse class="bg" cx="12" cy="16.2" rx="3.6" ry="4.6"/><circle class="bg" cx="10.3" cy="6.4" r="1.2"/><circle class="bg" cx="13.7" cy="6.4" r="1.2"/><ellipse class="beak" cx="12" cy="9.3" rx="2.3" ry="1.3"/><ellipse class="beak" cx="8.8" cy="21" rx="2.3" ry="1.1" transform="rotate(-20 8.8 21)"/><ellipse class="beak" cx="15.2" cy="21" rx="2.3" ry="1.1" transform="rotate(20 15.2 21)"/></svg>Linux</a>
+        <a class="dl" href="{{RELEASES}}">all releases</a>
+      </p>
+      <ol>
+        <li>Copy the zip's files into your own 1.12.1 client folder, next to its <code>Data</code> folder.</li>
+        <li>Run <code>WoWGD.exe</code> or <code>WoWGD.x86_64</code>.</li>
+        <li>Enter your server's realmlist and log in.</li>
+      </ol>
     </section>
+
+    <section class="col">
+      <h2><img src="wrathgd.png" alt="" width="32" height="32">WrathGD</h2>
+      <p class="sub">3.3.5a (12340) &middot; AzerothCore &middot; <span class="status ice">In development</span></p>
+      <p>Just started. One <code>wowdot</code> build serves both clients: a project setting picks the wire build, the packet parsers, the MPQ chain and the data tables.</p>
+
+      <h3>Done so far</h3>
+      <ul>
+        <li><strong>Login.</strong> SRP6 against the authserver, realm list, the RC4 header cipher and the WotLK auth session.</li>
+        <li><strong>Characters.</strong> The character list, creating and deleting.</li>
+        <li><strong>World.</strong> Entering the world on a WotLK map, with the player's update object read through the WotLK field indices.</li>
+        <li><strong>Movement.</strong> Walk heartbeats land, the server keeps the position across a relog, and a GM teleport is acknowledged.</li>
+        <li><strong>Large packets.</strong> The world socket takes the 5 byte header AzerothCore uses above 32 KB, which update objects need.</li>
+        <li><strong>Chat.</strong> Incoming lines parse in the WotLK layout.</li>
+      </ul>
+
+      <h3>Next</h3>
+      <ul>
+        <li>M2 version 264: geometry moved into <code>.skin</code> files, animations into <code>.anim</code>.</li>
+        <li>MH2O water, which replaces MCLQ and names liquids out of LiquidType.dbc.</li>
+        <li>The rest of the hand-parsed packets that still read the vanilla layout.</li>
+        <li>Moving WoWGD's game code somewhere both clients load, then porting the 3.3.5a interface.</li>
+      </ul>
+      <p class="muted">No scenes or game scripts yet, so there is nothing to download.</p>
+    </section>
+    </div>
 
     <section>
       <h2>Screenshots</h2>
@@ -66,67 +116,6 @@
           <p>It then exposes these to GDScript with Godot signals for gameplay, like the interface, world, and combat.</p>
         </div>
       </div>
-    </section>
-
-    <section>
-      <h2>What works</h2>
-      <p>You can log in, create a character, quest, fight, loot, group, train and fly on an unmodified vMaNGOS server.</p>
-      <ul>
-        <li><strong>Login.</strong> Account login, realm list, character create, select and delete, loading screens, glue screen music.</li>
-        <li><strong>World.</strong> Streaming terrain, buildings and doodads, water, a sky with day and night, weather, zone music and ambience.</li>
-        <li><strong>Characters.</strong> Skin, hair and facial hair, equipment on the model, sheathing, mounts, 3D portraits.</li>
-        <li><strong>Movement.</strong> Running, jumping, falling, swimming and taxi flights, with other players moving smoothly.</li>
-        <li><strong>Zoning.</strong> Continents, dungeons and portals, with the loading screen in between.</li>
-        <li><strong>Death.</strong> Releasing, finding and reclaiming your corpse, resurrection offers, the spirit healer.</li>
-        <li><strong>Combat.</strong> Targeting, auto attack, spell casts with cooldowns and the global cooldown, buffs and debuffs, floating combat text, the combat log.</li>
-        <li><strong>HUD.</strong> Action bars with pages and side bars, the stance bar, player, target and target of target frames, cast bar, minimap, tooltips, reputation watch bar.</li>
-        <li><strong>Chat.</strong> Say, yell, party, guild and whispers, channels, and emotes such as /dance.</li>
-        <li><strong>Panels.</strong> Character sheet, bags, spellbook, talents, quest log, skills, reputation, world map, video and sound options.</li>
-        <li><strong>NPCs.</strong> Gossip, quests, vendors with buyback and repair, class trainers, flight masters, bankers, auctioneers.</li>
-        <li><strong>Groups.</strong> Party invites, party frames, the loot window, group loot rolls, ready checks, quest sharing.</li>
-        <li><strong>Items.</strong> Dragging between your bags, the bank and your character, splitting a stack and destroying one.</li>
-        <li><strong>World objects.</strong> Chests, doors, levers, chairs, herbs and mining nodes answer a click.</li>
-        <li><strong>Mail.</strong> The inbox from a mailbox, reading letters, taking money and attachments, and writing your own.</li>
-        <li><strong>Auction house.</strong> Browsing, bidding, buyout, and putting your own items up.</li>
-        <li><strong>Social.</strong> Trade, duels, friends and ignore, the guild window with its roster and invites, guild charters and tabards.</li>
-        <li><strong>Pets.</strong> The pet frame with happiness, the pet bar with autocast, taming and naming, the stable master.</li>
-        <li><strong>Effects.</strong> Particles and scrolling textures, spell visuals with missiles that fly to their target, and the sparkle over a lootable corpse.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>What's next</h2>
-      <p>In the order they are planned:</p>
-      <ul>
-        <li><strong>Ribbon trails.</strong> The vanilla emitters are read; drawing them is still to come.</li>
-        <li><strong>Ferries between continents.</strong> The route is kept whole, but riding one across the boundary is untested.</li>
-        <li><strong>Windows for what already answers.</strong> Battleground queues, crafting and raids all work on the wire, but the battleground, tradeskill and 40 player raid windows are not built yet.</li>
-      </ul>
-      <p>After that come the content tools: custom spells, creatures, items and quests authored in Godot, and map editing in the Godot editor.</p>
-    </section>
-
-    <section>
-      <h2>Not in v0.0.1</h2>
-      <p>These parts of 1.12 are not in the current build at all:</p>
-      <ul>
-        <li><strong>Who list and inspect.</strong> You cannot search for other players or look at their gear.</li>
-        <li><strong>Honor and PvP ranks.</strong> No honor tab, no ranks, and no PvP flag to toggle.</li>
-        <li><strong>Fishing.</strong> The bobber and its catch are not there.</li>
-        <li><strong>Macros.</strong> No macro window, so nothing to put on an action bar but spells and items.</li>
-        <li><strong>Books and letters.</strong> Readable items open nothing.</li>
-        <li><strong>Looking for group.</strong> No group browser and no meeting stone summons.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Download and play</h2>
-      <p>Grab the <a href="{{RELEASES}}/download/WoWGD-windows.zip">Windows</a> or <a href="{{RELEASES}}/download/WoWGD-linux.zip">Linux</a> build, or browse <a href="{{RELEASES}}">every release</a>.</p>
-      <ol>
-        <li>Copy the files from the zip into your own 1.12.1 client folder, next to its <code>Data</code> folder.</li>
-        <li>Run <code>WoWGD.exe</code> or <code>WoWGD.x86_64</code>.</li>
-        <li>Enter the realmlist of the server you play on and log in.</li>
-      </ol>
-      <p>Nothing else to install on either platform.</p>
     </section>
 
     <section>

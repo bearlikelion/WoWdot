@@ -84,18 +84,48 @@ nav {
 }
 
 main {
-  max-width: 760px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 16px;
 }
 
 h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-top: 32px;
   font-size: 1.3rem;
 }
 
-.table-scroll {
-  overflow-x: auto;
+h3 {
+  margin: 24px 0 8px;
+  font-size: 1rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.col {
+  min-width: 0;
+}
+
+.col > h2 {
+  margin-top: 24px;
+}
+
+.col h2 img {
+  border-radius: 6px;
+}
+
+.sub {
+  margin: 4px 0 12px;
+  color: var(--muted);
 }
 
 table {
@@ -104,10 +134,15 @@ table {
 }
 
 th, td {
-  padding: 8px 12px;
+  padding: 6px 10px 6px 0;
   border-bottom: 1px solid var(--line);
   text-align: left;
+  vertical-align: top;
+}
+
+td:first-child {
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .status {
@@ -137,8 +172,8 @@ li {
 }
 
 .dl {
-  display: block;
-  margin: 3px 0;
+  display: inline-block;
+  margin-right: 16px;
   color: var(--text);
   text-decoration: none;
   white-space: nowrap;
@@ -236,7 +271,7 @@ code {
 }
 
 footer {
-  max-width: 760px;
+  max-width: 1120px;
   margin: 32px auto 0;
   padding: 16px 16px 40px;
   border-top: 1px solid var(--line);
@@ -248,34 +283,9 @@ footer p {
   margin: 4px 0;
 }
 
-/* Five columns do not fit a phone, so each row becomes a labelled block. */
-@media (max-width: 620px) {
-  thead {
-    display: none;
-  }
-
-  tr {
+@media (max-width: 860px) {
+  .columns {
     display: block;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  td {
-    display: flex;
-    gap: 16px;
-    justify-content: space-between;
-    padding: 3px 0;
-    border: 0;
-    white-space: normal;
-  }
-
-  td::before {
-    content: attr(data-label);
-    color: var(--muted);
-  }
-
-  td > div {
-    text-align: right;
   }
 
   .split {

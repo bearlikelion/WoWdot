@@ -42,16 +42,52 @@ constexpr uint8_t AUTH_PROTOCOL_LEGACY = 3;
 constexpr uint64_t PING_INTERVAL_MSEC = 30000;
 constexpr uint32_t LANG_ORCISH = 1;
 constexpr uint32_t LANG_COMMON = 7;
+constexpr uint16_t PET_GUID_HIGH = 0xF14;
 constexpr uint8_t TYPEID_UNIT = 3;
 constexpr uint8_t TYPEID_PLAYER = 4;
 constexpr uint8_t MONSTER_MOVE_FACING_ANGLE = 4;
-constexpr uint32_t MOVEFLAG_JUMPING = 0x2000;
-constexpr uint32_t MOVEFLAG_SWIMMING = 0x200000;
-constexpr uint32_t MOVEFLAG_ONTRANSPORT = 0x2000000;
 constexpr uint32_t MOVEFLAG_SPLINE_ELEVATION = 0x4000000;
+constexpr uint16_t MOVEFLAG2_INTERPOLATED = 0x400;
 
 bool is_player_guid(uint64_t guid) {
 	return guid != 0 && (guid >> 48) == 0;
+}
+
+// WotLK's wire number for each chat type the session knows, which vanilla sends as it is.
+constexpr std::array<std::pair<uint8_t, uint8_t>, 18> WOTLK_CHAT_TYPES = { {
+	{ WowSession::CHAT_SYSTEM, 0x00 }, { WowSession::CHAT_SAY, 0x01 },
+	{ WowSession::CHAT_PARTY, 0x02 }, { WowSession::CHAT_RAID, 0x03 },
+	{ WowSession::CHAT_GUILD, 0x04 }, { WowSession::CHAT_OFFICER, 0x05 },
+	{ WowSession::CHAT_YELL, 0x06 }, { WowSession::CHAT_WHISPER, 0x07 },
+	{ WowSession::CHAT_WHISPER_INFORM, 0x09 }, { WowSession::CHAT_EMOTE, 0x0A },
+	{ WowSession::CHAT_TEXT_EMOTE, 0x0B }, { WowSession::CHAT_MONSTER_SAY, 0x0C },
+	{ WowSession::CHAT_MONSTER_YELL, 0x0E }, { WowSession::CHAT_MONSTER_WHISPER, 0x0F },
+	{ WowSession::CHAT_MONSTER_EMOTE, 0x10 }, { WowSession::CHAT_CHANNEL, 0x11 },
+	{ WowSession::CHAT_RAID_BOSS_EMOTE, 0x29 }, { WowSession::CHAT_RAID_BOSS_WHISPER, 0x2A },
+} };
+
+uint32_t chat_to_wire(uint8_t type) {
+	if (!wow_profile().renumbered_chat) {
+		return type;
+	}
+	for (const auto &pair : WOTLK_CHAT_TYPES) {
+		if (pair.first == type) {
+			return pair.second;
+		}
+	}
+	return type;
+}
+
+uint8_t chat_from_wire(uint8_t wire) {
+	if (!wow_profile().renumbered_chat) {
+		return wire;
+	}
+	for (const auto &pair : WOTLK_CHAT_TYPES) {
+		if (pair.second == wire) {
+			return pair.first;
+		}
+	}
+	return wire;
 }
 
 bool is_horde(uint8_t race) {
@@ -109,24 +145,38 @@ Vector3 wow_vector(float x, float y, float z) {
 
 // Vanilla MovementInfo; the game code already uses vanilla flag bits, which the vendored writer would remap.
 void write_movement_info(network::Packet &packet, uint32_t flags, const Vector3 &position, float orientation, float pitch, uint32_t fall_time, const Vector3 &jump_velocity, uint64_t transport_guid, const Vector3 &transport_offset, float transport_orientation) {
+	const MovementLayout &layout = wow_profile().movement;
+	const uint32_t now = static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec());
 	packet.writeUInt32(flags);
-	packet.writeUInt32(static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec()));
+	if (layout.flags2_size == 2) {
+		packet.writeUInt16(0);
+	}
+	packet.writeUInt32(now);
 	packet.writeFloat(position.x);
 	packet.writeFloat(position.y);
 	packet.writeFloat(position.z);
 	packet.writeFloat(orientation);
-	if (flags & MOVEFLAG_ONTRANSPORT) {
-		packet.writeUInt64(transport_guid);
+	if (flags & layout.on_transport) {
+		if (layout.wide_transport) {
+			packet.writePackedGuid(transport_guid);
+		} else {
+			packet.writeUInt64(transport_guid);
+		}
 		packet.writeFloat(transport_offset.x);
 		packet.writeFloat(transport_offset.y);
 		packet.writeFloat(transport_offset.z);
 		packet.writeFloat(transport_orientation);
+		if (layout.wide_transport) {
+			packet.writeUInt32(now);
+			// Seat only means anything on a vehicle, and a passenger sends none.
+			packet.writeUInt8(0xFF);
+		}
 	}
-	if (flags & MOVEFLAG_SWIMMING) {
+	if (flags & layout.pitch_mask) {
 		packet.writeFloat(pitch);
 	}
 	packet.writeUInt32(fall_time);
-	if (flags & MOVEFLAG_JUMPING) {
+	if (flags & layout.falling) {
 		const float xy_speed = Vector2(jump_velocity.x, jump_velocity.y).length();
 		// The stock client sends upward speed negated, which vMaNGOS's knockback check also expects.
 		packet.writeFloat(-jump_velocity.z);
@@ -299,8 +349,12 @@ void WowSession::send_movement(const String &opcode, const Vector3 &position, do
 	const auto op = game::OpcodeTable::nameToLogical(opcode.utf8().get_data());
 	ERR_FAIL_COND_MSG(!op, "WowSession: unknown opcode " + opcode);
 	network::Packet packet(game::wireOpcode(*op));
-	if (ack_counter >= 0) {
+	if (wow_profile().movement.names_mover) {
+		packet.writePackedGuid(player_guid);
+	} else if (ack_counter >= 0) {
 		packet.writeUInt64(player_guid);
+	}
+	if (ack_counter >= 0) {
 		packet.writeUInt32(static_cast<uint32_t>(ack_counter));
 	}
 	write_movement_info(packet, static_cast<uint32_t>(flags), position, static_cast<float>(orientation), static_cast<float>(pitch), static_cast<uint32_t>(fall_time_msec), jump_velocity, static_cast<uint64_t>(transport_guid), transport_offset, static_cast<float>(transport_orientation));
@@ -523,7 +577,7 @@ void WowSession::send_chat(ChatType type, const String &message, const String &t
 	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
 	const uint8_t race = static_cast<uint8_t>(get_field(int64_t(player_guid), "UNIT_FIELD_BYTES_0") & 0xFF);
 	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_MESSAGECHAT));
-	packet.writeUInt32(type);
+	packet.writeUInt32(chat_to_wire(static_cast<uint8_t>(type)));
 	packet.writeUInt32(is_horde(race) ? LANG_ORCISH : LANG_COMMON);
 	if (type == CHAT_WHISPER || type == CHAT_CHANNEL) {
 		packet.writeString(target.utf8().get_data());
@@ -1030,12 +1084,34 @@ void WowSession::query_player_name(uint64_t guid) {
 }
 
 void WowSession::handle_chat(network::Packet &packet) {
-	const uint8_t type = packet.readUInt8();
+	const uint8_t type = chat_from_wire(packet.readUInt8());
 	Dictionary line;
 	line["type"] = type;
 	line["language"] = packet.readUInt32();
 	uint64_t sender = 0;
 	std::string name;
+	if (wow_profile().renumbered_chat) {
+		read_wide_chat(packet, type, sender, name, line);
+	} else {
+		read_vanilla_chat(packet, type, sender, name, line);
+	}
+	packet.readUInt32();
+	line["text"] = String::utf8(packet.readString().c_str());
+	line["sender_guid"] = static_cast<int64_t>(sender);
+	if (name.empty() && is_player_guid(sender)) {
+		const auto it = player_names.find(sender);
+		if (it == player_names.end()) {
+			chat_waiting[sender].push_back(line);
+			query_player_name(sender);
+			return;
+		}
+		name = it->second;
+	}
+	line["sender_name"] = String::utf8(name.c_str());
+	emit_signal("chat_received", line);
+}
+
+void WowSession::read_vanilla_chat(network::Packet &packet, uint8_t type, uint64_t &sender, std::string &name, Dictionary &line) {
 	switch (type) {
 		case CHAT_MONSTER_EMOTE:
 		case CHAT_MONSTER_WHISPER:
@@ -1067,20 +1143,37 @@ void WowSession::handle_chat(network::Packet &packet) {
 			sender = packet.readUInt64();
 			break;
 	}
+}
+
+// WotLK names the sender first for every type, then the receiver the line was aimed at.
+void WowSession::read_wide_chat(network::Packet &packet, uint8_t type, uint64_t &sender, std::string &name, Dictionary &line) {
+	sender = packet.readUInt64();
 	packet.readUInt32();
-	line["text"] = String::utf8(packet.readString().c_str());
-	line["sender_guid"] = static_cast<int64_t>(sender);
-	if (name.empty() && is_player_guid(sender)) {
-		const auto it = player_names.find(sender);
-		if (it == player_names.end()) {
-			chat_waiting[sender].push_back(line);
-			query_player_name(sender);
-			return;
+	switch (type) {
+		case CHAT_MONSTER_SAY:
+		case CHAT_MONSTER_YELL:
+		case CHAT_MONSTER_EMOTE:
+		case CHAT_MONSTER_WHISPER:
+		case CHAT_RAID_BOSS_EMOTE:
+		case CHAT_RAID_BOSS_WHISPER: {
+			packet.readUInt32();
+			name = packet.readString();
+			const uint64_t receiver = packet.readUInt64();
+			// A line aimed at a creature carries that creature's name as well.
+			if (receiver != 0 && !is_player_guid(receiver) && (receiver >> 48) != PET_GUID_HIGH) {
+				packet.readUInt32();
+				packet.readString();
+			}
+			break;
 		}
-		name = it->second;
+		case CHAT_CHANNEL:
+			line["channel"] = String::utf8(packet.readString().c_str());
+			packet.readUInt64();
+			break;
+		default:
+			packet.readUInt64();
+			break;
 	}
-	line["sender_name"] = String::utf8(name.c_str());
-	emit_signal("chat_received", line);
 }
 
 void WowSession::retire_sockets() {
@@ -1490,9 +1583,13 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			return;
 		case LogicalOpcode::MSG_MOVE_TELEPORT_ACK: {
 			// A near teleport: the server holds the player until the counter comes back with the time.
+			const MovementLayout &layout = wow_profile().movement;
 			const uint64_t guid = packet.readPackedGuid();
 			const uint32_t counter = packet.readUInt32();
 			packet.readUInt32(); // Movement flags.
+			if (layout.flags2_size == 2) {
+				packet.readUInt16();
+			}
 			packet.readUInt32(); // Server time.
 			const float x = packet.readFloat();
 			const float y = packet.readFloat();
@@ -1506,7 +1603,11 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				it->second.orientation = orientation;
 			}
 			network::Packet ack(game::wireOpcode(LogicalOpcode::MSG_MOVE_TELEPORT_ACK));
-			ack.writeUInt64(guid);
+			if (layout.names_mover) {
+				ack.writePackedGuid(guid);
+			} else {
+				ack.writeUInt64(guid);
+			}
 			ack.writeUInt32(counter);
 			ack.writeUInt32(static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec()));
 			world->send(ack);
@@ -1595,7 +1696,7 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 	}
 }
 
-// Vanilla relays carry a packed GUID, then MovementInfo with no second flags field; speed changes append the speed.
+// A relay carries a packed GUID, then the MovementInfo the profile describes; speed changes append the speed.
 void WowSession::handle_movement_relay(network::Packet &packet) {
 	constexpr std::array<const char *, 6> SPEED_OPCODES = {
 		"MSG_MOVE_SET_WALK_SPEED", "MSG_MOVE_SET_RUN_SPEED", "MSG_MOVE_SET_RUN_BACK_SPEED",
@@ -1605,25 +1706,38 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 		"walk_speed", "run_speed", "run_back_speed", "swim_speed", "swim_back_speed", "turn_rate",
 	};
 	const char *name = game::OpcodeTable::logicalToName(*logical(packet));
+	const MovementLayout &layout = wow_profile().movement;
 	const uint64_t guid = packet.readPackedGuid();
 	const uint32_t flags = packet.readUInt32();
+	const uint16_t flags2 = layout.flags2_size == 2 ? packet.readUInt16() : 0;
 	packet.readUInt32();
 	const float x = packet.readFloat();
 	const float y = packet.readFloat();
 	const float z = packet.readFloat();
 	const float orientation = packet.readFloat();
-	if (flags & MOVEFLAG_ONTRANSPORT) {
-		packet.readUInt64();
+	if (flags & layout.on_transport) {
+		if (layout.wide_transport) {
+			packet.readPackedGuid();
+		} else {
+			packet.readUInt64();
+		}
 		for (int i = 0; i < 4; i++) {
 			packet.readFloat();
 		}
+		if (layout.wide_transport) {
+			packet.readUInt32();
+			packet.readUInt8();
+			if (flags2 & MOVEFLAG2_INTERPOLATED) {
+				packet.readUInt32();
+			}
+		}
 	}
-	if (flags & MOVEFLAG_SWIMMING) {
+	if (flags & layout.pitch_mask) {
 		packet.readFloat();
 	}
 	const uint32_t fall_time = packet.hasRemaining(4) ? packet.readUInt32() : 0;
 	Vector3 jump_velocity;
-	if ((flags & MOVEFLAG_JUMPING) && packet.hasRemaining(16)) {
+	if ((flags & layout.falling) && packet.hasRemaining(16)) {
 		const float z_speed = packet.readFloat();
 		const float cos_angle = packet.readFloat();
 		const float sin_angle = packet.readFloat();

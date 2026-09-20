@@ -1,0 +1,263 @@
+class_name WorldCheck
+extends Node
+
+const STEP_TIMEOUT_MSEC: int = 60000
+const REALMLIST: String = "127.0.0.1"
+const AUTH_PORT: int = 3725
+const ACCOUNT: String = "wowgd"
+const PASSWORD: String = "wowgd"
+const CHARACTER: String = "Wrathcheck"
+const HEARTBEATS: int = 10
+const STEP_METRES: float = 0.5
+const STEP_SECONDS: float = 0.1
+const TELEPORT_METRES: float = 20.0
+const COPPER: int = 1000
+
+# Wire values, which WotLK shares with vanilla for these two.
+enum MoveFlag { NONE = 0, FORWARD = 1 }
+
+var _session: WowSession = WowSession.new()
+var _realms: Array = []
+var _characters: Array = []
+var _enumerations: int = 0
+var _entries: int = 0
+var _created: int = -1
+var _deleted: int = -1
+var _map: int = -1
+var _position: Vector3 = Vector3.ZERO
+var _teleports: int = 0
+var _walked_from_teleport: Vector3 = Vector3.ZERO
+var _chat: Array[Dictionary] = []
+var _failures: PackedStringArray = []
+
+
+func _ready() -> void:
+	_session.realms_received.connect(_on_realms_received)
+	_session.characters_received.connect(_on_characters_received)
+	_session.character_created.connect(_on_character_created)
+	_session.character_deleted.connect(_on_character_deleted)
+	_session.world_entered.connect(_on_world_entered)
+	_session.player_teleported.connect(_on_player_teleported)
+	_session.chat_received.connect(_on_chat_received)
+	_run.call_deferred()
+
+
+func _process(_delta: float) -> void:
+	_session.poll()
+
+
+func _run() -> void:
+	if not await _log_in():
+		return _finish()
+	var guid: int = await _make_character()
+	if guid == 0:
+		return _finish()
+	if not await _enter(guid):
+		return _finish()
+	var start: Vector3 = _position
+	print("entered map %d at %v" % [_map, start])
+	_check_update_fields(guid)
+	var walked: Vector3 = await _walk()
+	if not await _log_out():
+		return _finish()
+	if not await _enter(guid):
+		return _finish()
+	print("came back at %v" % _position)
+	_check(_position.distance_to(walked) < 1.0, "the server kept the walk's last position")
+	_check(_position.distance_to(start) > 3.0, "the kept position is not where the walk began")
+	if await _gm_command() and await _teleport() and await _log_out() and await _enter(guid):
+		print("after the teleport and a second walk, came back at %v" % _position)
+		_check(_position.distance_to(_walked_from_teleport) < 1.0,
+				"the server took movement after the teleport was acknowledged")
+	if await _log_out():
+		await _remove_character(guid)
+	_finish()
+
+
+# GM commands travel as ordinary say, so this proves the chat types are renumbered
+# both ways: the command lands and the server's answer reads back.
+func _gm_command() -> bool:
+	var guid: int = _session.get_player_guid()
+	if not _check(_session.get_field(guid, "PLAYER_FIELD_COINAGE") == 0,
+			"a new character carries no money"):
+		return false
+	_session.send_chat(WowSession.CHAT_SAY, ".modify money %d" % COPPER)
+	if not await _until(
+			func() -> bool: return _session.get_field(guid, "PLAYER_FIELD_COINAGE") == COPPER,
+			"a GM command reaches the server"):
+		return false
+	return _check(_said("You give"), "the server's answer reads back as chat")
+
+
+# A near teleport holds the player until the ack lands, so the walk after it only
+# reaches the server when the ack was right.
+func _teleport() -> bool:
+	var goal: Vector3 = _position + Vector3(0.0, TELEPORT_METRES, 0.0)
+	var seen: int = _teleports
+	_session.send_chat(WowSession.CHAT_SAY, ".go xyz %f %f %f" % [goal.x, goal.y, goal.z])
+	if not await _until(func() -> bool: return _teleports > seen, "the GM command teleports"):
+		return false
+	if not _check(_position.distance_to(goal) < 2.0, "the teleport lands where it was asked"):
+		return false
+	_walked_from_teleport = await _walk()
+	return true
+
+
+# The update object that follows login, read through the WotLK field indices.
+func _check_update_fields(guid: int) -> void:
+	if not _check(_session.has_object(guid), "the player object arrives in an update"):
+		return
+	_check(_session.get_field(guid, "UNIT_FIELD_HEALTH") > 0, "the player's health reads")
+	_check(_session.get_field(guid, "UNIT_FIELD_LEVEL") == 1, "the player's level reads as 1")
+	_check(_session.get_field(guid, "OBJECT_FIELD_ENTRY") == 0, "a player carries no entry")
+	print("objects in sight: %d" % _session.get_object_guids().size())
+
+
+func _log_in() -> bool:
+	_session.login(REALMLIST, AUTH_PORT, ACCOUNT, PASSWORD)
+	if not await _until(func() -> bool: return not _realms.is_empty(),
+			"the realm list arrives"):
+		return false
+	_session.select_realm(0)
+	return await _until(
+			func() -> bool: return _session.get_state() == WowSession.STATE_CHARACTER_LIST,
+			"the world server takes the session")
+
+
+func _make_character() -> int:
+	if not await _list_characters():
+		return 0
+	if _find(CHARACTER) != 0:
+		return _find(CHARACTER)
+	_session.create_character({ "name": CHARACTER, "race": 1, "class": 1, "gender": 0 })
+	if not await _until(func() -> bool: return _created >= 0, "the create answer arrives"):
+		return 0
+	if not _check(_created == 1, "creating %s is accepted (code %d)" % [CHARACTER, _created]):
+		return 0
+	if not await _list_characters():
+		return 0
+	var guid: int = _find(CHARACTER)
+	_check(guid != 0, "%s is in the character list" % CHARACTER)
+	return guid
+
+
+func _remove_character(guid: int) -> void:
+	_session.delete_character(guid)
+	if await _until(func() -> bool: return _deleted >= 0, "the delete answer arrives"):
+		_check(_deleted == 1, "deleting %s is accepted (code %d)" % [CHARACTER, _deleted])
+
+
+func _list_characters() -> bool:
+	var seen: int = _enumerations
+	_session.request_characters()
+	return await _until(func() -> bool: return _enumerations > seen,
+			"the character list arrives")
+
+
+func _enter(guid: int) -> bool:
+	var seen: int = _entries
+	_session.enter_world(guid)
+	return await _until(
+			func() -> bool: return _entries > seen and _session.get_state() == WowSession.STATE_IN_WORLD,
+			"the world takes the character")
+
+
+func _log_out() -> bool:
+	_session.logout()
+	return await _until(
+			func() -> bool: return _session.get_state() == WowSession.STATE_CHARACTER_LIST,
+			"logging out returns to the character list")
+
+
+# Walks the wire's +x by a run speed's worth of ground each heartbeat.
+func _walk() -> Vector3:
+	var at: Vector3 = _position
+	_send("MSG_MOVE_START_FORWARD", at, MoveFlag.FORWARD)
+	for i: int in HEARTBEATS:
+		await _wait(STEP_SECONDS)
+		at.x += STEP_METRES
+		_send("MSG_MOVE_HEARTBEAT", at, MoveFlag.FORWARD)
+	await _wait(STEP_SECONDS)
+	_send("MSG_MOVE_STOP", at, MoveFlag.NONE)
+	await _wait(STEP_SECONDS)
+	return at
+
+
+func _send(opcode: String, at: Vector3, flags: MoveFlag) -> void:
+	_session.send_movement(opcode, at, 0.0, flags)
+
+
+func _find(character_name: String) -> int:
+	for character: Dictionary in _characters:
+		if character["name"] == character_name:
+			return character["guid"]
+	return 0
+
+
+func _on_realms_received(realms: Array) -> void:
+	_realms = realms
+
+
+func _on_characters_received(characters: Array) -> void:
+	_characters = characters
+	_enumerations += 1
+
+
+func _on_character_created(success: bool, code: int) -> void:
+	_created = 1 if success else code
+
+
+func _on_character_deleted(success: bool, code: int) -> void:
+	_deleted = 1 if success else code
+
+
+func _said(fragment: String) -> bool:
+	for line: Dictionary in _chat:
+		if String(line["text"]).contains(fragment):
+			return true
+	return false
+
+
+func _on_chat_received(line: Dictionary) -> void:
+	_chat.append(line)
+
+
+func _on_player_teleported(position: Vector3, _orientation: float) -> void:
+	_position = position
+	_teleports += 1
+
+
+func _on_world_entered(map_id: int, position: Vector3, _orientation: float) -> void:
+	_map = map_id
+	_position = position
+	_entries += 1
+
+
+func _wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
+
+
+func _until(condition: Callable, what: String) -> bool:
+	var give_up: int = Time.get_ticks_msec() + STEP_TIMEOUT_MSEC
+	while not condition.call():
+		if _session.get_state() == WowSession.STATE_FAILED:
+			_failures.append("%s (session failed)" % what)
+			return false
+		if Time.get_ticks_msec() > give_up:
+			_failures.append(what)
+			return false
+		await get_tree().process_frame
+	return true
+
+
+func _check(condition: bool, what: String) -> bool:
+	if not condition:
+		_failures.append(what)
+	return condition
+
+
+func _finish() -> void:
+	for failure: String in _failures:
+		printerr("FAIL: ", failure)
+	print("world_check: ", "OK" if _failures.is_empty() else "%d failed" % _failures.size())
+	get_tree().quit(0 if _failures.is_empty() else 1)

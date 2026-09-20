@@ -9,10 +9,11 @@ Like [WoWGD](../wowgd), it will read the stock client's MPQs at runtime and ship
 
 ## Status
 
-Logs in.
+Enters the world and walks around.
 The extension reads its expansion from **Project Settings > wowgd > expansion**, so one `wowdot` build serves both clients: WoWGD leaves the setting at `classic`, this project sets `wotlk`.
-That choice picks the wire build, the client version, the realm list format, the packet parsers, the MPQ chain and the `data/wotlk/` tables.
-`tests/login_check.tscn` authenticates against a local AzerothCore, takes its realm list, is accepted by the world server and reads an empty character list back.
+That choice picks the wire build, the client version, the realm list format, the packet parsers, the MPQ chain, the `data/wotlk/` tables, the movement layout and the chat type numbering.
+The two checks in [`tests/`](tests) log in, create a character, enter the world, read its fields out of the update object, walk, run a GM command, take a near teleport and log out again, all against a stock AzerothCore.
+The world socket also takes AzerothCore's five byte header for packets over 0x8000 bytes, which nothing the client does yet is big enough to ask for, so no check covers it.
 There are no scenes or game scripts yet.
 
 ## Requirements
@@ -64,8 +65,9 @@ The profile setting decides what the extension speaks; what is left is the code 
 
 | Area | Work |
 | --- | --- |
-| Large packets | The world socket rejects the 5-byte header AzerothCore uses for packets over 0x8000 bytes, which large update objects need. |
-| Hand-parsed packets | `wow_session.cpp` parses these in the vanilla layout: learned spells (u16 ids), cast failed, spell cooldown, aura duration (WotLK has `SMSG_AURA_UPDATE` instead), quest query, quest giver status, gossip options, vendor, trainer and taxi lists, chat (vanilla chat type numbering), movement relays and the teleport ack (no `flags2`, vanilla flag values), and the flying spline flag. |
+| Hand-parsed packets | `wow_session.cpp` still parses these in the vanilla layout: learned spells (u16 ids), cast failed, spell cooldown, quest query, quest giver status, gossip options, vendor, trainer and taxi lists, and the flying spline flag. |
+| Auras | `SMSG_UPDATE_AURA_DURATION` and the `UNIT_FIELD_AURAS` fields are both gone. WotLK sends `SMSG_AURA_UPDATE` and `SMSG_AURA_UPDATE_ALL`, which arrive in the world check and are dropped, so nothing tracks a buff yet. |
+| Time sync | AzerothCore asks every ten seconds with `SMSG_TIME_SYNC_REQ` and nothing answers. It only measures the clock with the reply, so nothing breaks, but the stock client does answer. |
 | Models | M2 version 264 keeps its geometry in `.skin` files and some animations in `.anim` files; `wow_models.cpp` calls only `M2Loader::load()`, so every WotLK model comes out empty until it also calls `loadSkin()` and `loadAnimFile()`. |
 | Water | ADT liquids are MH2O with LiquidType.dbc ids instead of MCLQ's four types, so the liquid material mapping needs the new ids. |
 
@@ -82,15 +84,18 @@ WoWGD's `game/` folder is about 15,000 lines of GDScript, and roughly 75 to 85 p
 
 ### Order
 
-1. Large packets, update fields and movement: enter the world and move.
-2. M2 v264 skins and MH2O water: render the world and characters.
-3. Move the shared game code out of `clients/wowgd`, then port the UI.
+1. M2 v264 skins and MH2O water: render the world and characters.
+2. Move the shared game code out of `clients/wowgd`, then port the UI.
 
 ## Checks
 
-`tests/login_check.tscn` logs into the developer server as `wowgd` / `wowgd`.
-Run it with `godot --headless --path . tests/login_check.tscn`; it prints `login_check: OK` or the number of failures.
-It reads Northrend out of Map.dbc, which only the WotLK chain's locale archive carries, then walks the handshake: SRP6 against the authserver, the realm list, the RC4 header cipher and the WotLK `CMSG_AUTH_SESSION`, through to `SMSG_CHAR_ENUM`.
+Both checks log into the developer server as `wowgd` / `wowgd` and print `<name>: OK` or the number of failures.
+Run one with `godot --headless --path . tests/<name>.tscn`.
+
+| Check | Covers |
+| --- | --- |
+| `login_check` | Northrend out of Map.dbc, which only the WotLK chain's locale archive carries, then the handshake: SRP6 against the authserver, the realm list, the RC4 header cipher and the WotLK `CMSG_AUTH_SESSION`, through to `SMSG_CHAR_ENUM`. |
+| `world_check` | A character of its own, made and deleted again: entering the world, its health and level read through the WotLK update field indices, walking on heartbeats that name the mover, a GM command as say with the answer read back, and a near teleport whose ack has to land before the walk after it counts. |
 
 ## References
 

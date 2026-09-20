@@ -189,7 +189,7 @@ bool WorldSocket::connect(const std::string& host, uint16_t port) {
             return false;
         }
 
-        // Non-blocking connect in progress — wait up to 10s for completion.
+        // Non-blocking connect in progress: wait up to 10s for completion.
         // On Windows, calling recv() before the connect completes returns
         // WSAENOTCONN; we must poll writability before declaring connected.
         fd_set writefds, errfds;
@@ -210,7 +210,7 @@ bool WorldSocket::connect(const std::string& host, uint16_t port) {
             return false;
         }
 
-        // Verify the socket error code — writeable doesn't guarantee success on all platforms
+        // Verify the socket error code, since writeable does not guarantee success on all platforms
         int sockErr = 0;
         socklen_t errLen = sizeof(sockErr);
         getsockopt(sockfd, SOL_SOCKET, SO_ERROR,
@@ -223,7 +223,7 @@ bool WorldSocket::connect(const std::string& host, uint16_t port) {
         }
     }
 
-    // Disable Nagle's algorithm — send small packets immediately.
+    // Disable Nagle's algorithm so small packets go out immediately.
     int one = 1;
     setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY,
                reinterpret_cast<const char*>(&one), sizeof(one));
@@ -447,7 +447,7 @@ void WorldSocket::send(const Packet& packet) {
         if (sent < 0) {
             int err = net::lastError();
             if (net::isWouldBlock(err)) {
-                // Kernel buffer full — yield briefly and retry.
+                // Kernel buffer full: yield briefly and retry.
                 std::this_thread::sleep_for(std::chrono::microseconds(100));
                 continue;
             }
@@ -605,7 +605,7 @@ void WorldSocket::pumpNetworkIO() {
             break;
         }
         if (net::isConnectionClosed(err)) {
-            // Peer closed the connection — treat the same as recv() returning 0
+            // Peer closed the connection, which is the same as recv() returning 0
             sawClose = true;
             break;
         }
@@ -685,11 +685,33 @@ void WorldSocket::tryParsePackets() {
             localHeaderBytesDecrypted = 4;
         }
 
+        // Post-TBC servers announce a size that needs three bytes by setting the top bit of the first.
+        const bool bigHeader = encryptionEnabled && !useVanillaCrypt
+                && (receiveBuffer[parseOffset] & 0x80) != 0;
+        if (bigHeader) {
+            if ((receiveBuffer.size() - parseOffset) < 5) {
+                break;
+            }
+            if (localHeaderBytesDecrypted < 5) {
+                decryptCipher.process(receiveBuffer.data() + parseOffset + 4, 1);
+                localHeaderBytesDecrypted = 5;
+            }
+        }
+        const size_t headerLen = bigHeader ? 5 : 4;
+
         // Parse header (now decrypted in-place).
-        // Size: 2 bytes big-endian. For world packets, this includes opcode bytes.
-        uint16_t size = (receiveBuffer[parseOffset + 0] << 8) | receiveBuffer[parseOffset + 1];
-        // Opcode: 2 bytes little-endian.
-        uint16_t opcode = receiveBuffer[parseOffset + 2] | (receiveBuffer[parseOffset + 3] << 8);
+        // Size is big-endian and counts the opcode bytes; the opcode is little-endian.
+        uint32_t size;
+        uint16_t opcode;
+        if (bigHeader) {
+            size = ((receiveBuffer[parseOffset] & 0x7Fu) << 16)
+                    | (receiveBuffer[parseOffset + 1] << 8)
+                    | receiveBuffer[parseOffset + 2];
+            opcode = receiveBuffer[parseOffset + 3] | (receiveBuffer[parseOffset + 4] << 8);
+        } else {
+            size = (receiveBuffer[parseOffset + 0] << 8) | receiveBuffer[parseOffset + 1];
+            opcode = receiveBuffer[parseOffset + 2] | (receiveBuffer[parseOffset + 3] << 8);
+        }
         if (size < 2) {
             LOG_ERROR("World packet framing desync: invalid size=", size,
                       " rawHdr=", std::hex,
@@ -701,8 +723,10 @@ void WorldSocket::tryParsePackets() {
             closeSocketNoJoin();
             return;
         }
-        constexpr uint16_t kMaxWorldPacketSize = 0x8000;  // 32KB — allows large guild rosters, auction lists
-        if (size > kMaxWorldPacketSize) {
+        // 32KB covers a guild roster or an auction list; a three-byte size carries update objects.
+        constexpr uint32_t kMaxWorldPacketSize = 0x8000;
+        constexpr uint32_t kMaxLargeWorldPacketSize = 0x200000;
+        if (size > (bigHeader ? kMaxLargeWorldPacketSize : kMaxWorldPacketSize)) {
             LOG_ERROR("World packet framing desync: oversized packet size=", size,
                       " rawHdr=", std::hex,
                       static_cast<int>(rawHeader[0]), " ",
@@ -714,8 +738,8 @@ void WorldSocket::tryParsePackets() {
             return;
         }
 
-        const uint16_t payloadLen = size - 2;
-        const size_t totalSize = 4 + payloadLen;
+        const uint32_t payloadLen = size - 2;
+        const size_t totalSize = headerLen + payloadLen;
 
         if (headerTracePacketsLeft > 0) {
             LOG_INFO("WS HDR TRACE raw=",
@@ -742,7 +766,7 @@ void WorldSocket::tryParsePackets() {
                      " buffered=", (receiveBuffer.size() - parseOffset),
                      " enc=", encryptionEnabled ? "yes" : "no");
         }
-        recordRecentPacket(false, opcode, payloadLen);
+        recordRecentPacket(false, opcode, static_cast<uint16_t>(payloadLen));
         const auto traceNow = std::chrono::steady_clock::now();
         if (packetTraceUntil_ > traceNow) {
             const auto elapsedMs = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -764,7 +788,7 @@ void WorldSocket::tryParsePackets() {
         try {
             std::vector<uint8_t> packetData(payloadLen);
             if (payloadLen > 0) {
-                std::memcpy(packetData.data(), receiveBuffer.data() + parseOffset + 4, payloadLen);
+                std::memcpy(packetData.data(), receiveBuffer.data() + parseOffset + headerLen, payloadLen);
             }
             // Queue packet; callbacks run after buffer state is finalized.
             parsedPackets->emplace_back(opcode, std::move(packetData));
