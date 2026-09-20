@@ -77,6 +77,7 @@ func _ready() -> void:
 		empty.file = EMPTY_SLOT % SLOTS[slot_name][1]
 		_slot_buttons[slot] = button
 		_empty_icons[slot] = empty
+		button.address = Vector2i(Inventory.WIRE_BACKPACK, slot)
 		button.mouse_entered.connect(func() -> void: item_hovered.emit(slot, button))
 		button.mouse_exited.connect(func() -> void: item_left.emit(button))
 		button.right_clicked.connect(func() -> void: item_used.emit(slot))

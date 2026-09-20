@@ -75,6 +75,7 @@ func open(bag_id: int) -> void:
 	for j: int in _buttons.size():
 		var button: ItemButton = _buttons[j]
 		button.visible = j < _size
+		button.address = Inventory.wire_address(bag, _slot(j)) if j < _size else -Vector2i.ONE
 		var column: int = j % COLUMNS
 		var row: int = floori(j / float(COLUMNS))
 		button.position = Vector2(

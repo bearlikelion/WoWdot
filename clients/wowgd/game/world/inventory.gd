@@ -14,6 +14,10 @@ const BACKPACK_SLOTS: int = 16
 # The wire addresses the backpack as bag 255, its slots as inventory slots 23 to 38.
 const WIRE_BACKPACK: int = 255
 const WIRE_PACK_SLOT_START: int = 23
+const WIRE_BANK_SLOT_START: int = 39
+const WIRE_BANK_SLOTS: int = 24
+const WIRE_BANK_BAG_START: int = 63
+const WIRE_BANK_BAGS: int = 6
 const ICON_PATH: String = "Interface\\Icons\\%s.blp"
 const ITEM_FLAG_SOULBOUND: int = 0x1
 
@@ -52,6 +56,42 @@ static func wire_address(bag: int, slot: int) -> Vector2i:
 	if bag == BACKPACK:
 		return Vector2i(WIRE_BACKPACK, WIRE_PACK_SLOT_START + slot)
 	return Vector2i(Slot.BAG_1 + bag - 1, slot)
+
+
+# Equipment, bag slots, the backpack, the bank and its bags are one guid array from the head slot on.
+static func item_at(address: Vector2i) -> int:
+	var session: WowSession = WowClient.session
+	var first: int = session.field_index("PLAYER_FIELD_INV_SLOT_HEAD")
+	if address.x == WIRE_BACKPACK:
+		return _guid(session.get_player_guid(), first + address.y * 2)
+	var container: int = _guid(session.get_player_guid(), first + address.x * 2)
+	if container == 0:
+		return 0
+	return _guid(container, session.field_index("CONTAINER_FIELD_SLOT_1") + address.y * 2)
+
+
+# Moving within the player's own container takes CMSG_SWAP_INV_ITEM, anything else CMSG_SWAP_ITEM.
+static func move(from: Vector2i, to: Vector2i) -> void:
+	if from == to:
+		return
+	var session: WowSession = WowClient.session
+	if from.x == WIRE_BACKPACK and to.x == WIRE_BACKPACK:
+		session.send_packet("CMSG_SWAP_INV_ITEM", PackedByteArray([from.y, to.y]))
+	else:
+		session.send_packet("CMSG_SWAP_ITEM", PackedByteArray([to.x, to.y, from.x, from.y]))
+
+
+static func split(from: Vector2i, to: Vector2i, count: int) -> void:
+	WowClient.session.send_packet(
+		"CMSG_SPLIT_ITEM", PackedByteArray([from.x, from.y, to.x, to.y, count])
+	)
+
+
+# The server reads three more bytes after the count and ignores them.
+static func destroy(at: Vector2i, count: int) -> void:
+	WowClient.session.send_packet(
+		"CMSG_DESTROYITEM", PackedByteArray([at.x, at.y, count, 0, 0, 0])
+	)
 
 
 # The first bag and slot holding an item, or -1, -1 when none does.

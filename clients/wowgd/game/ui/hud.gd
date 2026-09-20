@@ -17,6 +17,9 @@ const ITEM_TYPES: Array[int] = [1, 2]
 # UIParent_ManageFramePositions lifts the casting bar clear of the bottom action bars.
 const CASTING_BAR_LIFT: float = 40.0
 const SPELL_FAILURES: String = "res://data/classic/spell_failures.json"
+const EQUIP_FAILURES: String = "res://data/classic/equip_failures.json"
+# The one reason SMSG_INVENTORY_CHANGE_FAILURE follows with a level.
+const EQUIP_ERR_LEVEL: int = 1
 const SWING_ERRORS: Dictionary[WowSession.AttackError, String] = {
 	WowSession.ATTACK_ERROR_NOT_IN_RANGE: "ERR_BADATTACKPOS",
 	WowSession.ATTACK_ERROR_BAD_FACING: "ERR_BADATTACKFACING",
@@ -39,6 +42,7 @@ var _menu_guid: int = 0
 var _duel: Duel
 var _named_pet: int = 0
 var _spell_failures: Dictionary = {}
+var _equip_failures: Dictionary = {}
 var _casting_bar_top: float = 0.0
 var _chat_hover_time: float = 0.0
 
@@ -171,6 +175,8 @@ func _ready() -> void:
 	WowClient.session.object_updated.connect(_on_object_updated)
 	WowClient.session.item_info_received.connect(func(_entry: int) -> void: _panels.refresh_bags())
 	_spell_failures = JSON.parse_string(FileAccess.get_file_as_string(SPELL_FAILURES))
+	_equip_failures = JSON.parse_string(FileAccess.get_file_as_string(EQUIP_FAILURES))
+	ItemButton.split_prompt = _ask_split
 	var tab_at: Vector2 = _chat_frames[0].tab_position()
 	for frame: DockedChatFrame in _chat_frames:
 		tab_at.x += frame.dock_tab(tab_at)
@@ -248,6 +254,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		var notice: String = Channels.notice(payload)
 		if not notice.is_empty():
 			add_system_line(notice)
+		return
+	if opcode == "SMSG_INVENTORY_CHANGE_FAILURE":
+		_show_equip_error(PacketReader.new(payload))
 		return
 	if opcode != "SMSG_TEXT_EMOTE":
 		return
@@ -550,6 +559,43 @@ func _on_spell_cast_failed(caster: int, _spell_id: int, reason: int) -> void:
 		key = OUT_OF_POWER[power] if power < OUT_OF_POWER.size() else key
 	if not key.is_empty():
 		show_error(WowStrings.get_text(key))
+
+
+# An item dropped anywhere but a slot is destroyed, as it is in the stock client.
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	return data is Dictionary and data.has("item_address")
+
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	var address: Vector2i = data["item_address"]
+	var item: int = Inventory.item_at(address)
+	if item == 0:
+		return
+	var info: Dictionary = WowClient.session.get_item_info(Inventory.entry(item))
+	_popup.ask(
+		WowStrings.get_text("DELETE_ITEM") % info.get("name", ""),
+		Inventory.destroy.bind(address, Inventory.stack_count(item)),
+	)
+
+
+# ponytail: a typed count, where the stock client drags a slider in StackSplitFrame.
+func _ask_split(from: Vector2i, to: Vector2i, stack: int) -> void:
+	_popup.ask_name(
+		"Split how many of %d?" % stack,
+		func(text: String) -> void: Inventory.split(from, to, clampi(text.to_int(), 1, stack - 1)),
+	)
+
+
+# Anything past the table shows as a full bag, as the stock client does.
+func _show_equip_error(reader: PacketReader) -> void:
+	var reason: int = reader.u8()
+	if reason == 0:
+		return
+	var key: String = _equip_failures.get(str(reason), "ERR_BAG_FULL")
+	if reason == EQUIP_ERR_LEVEL:
+		show_error(WowStrings.get_text(key) % reader.u32())
+		return
+	show_error(WowStrings.get_text(key))
 
 
 func _on_attack_swing_error(error: WowSession.AttackError) -> void:

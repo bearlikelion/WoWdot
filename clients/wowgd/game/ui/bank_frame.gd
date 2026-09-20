@@ -27,6 +27,7 @@ func _ready() -> void:
 	_empty_bag_icon.file = BAG_SLOT_ICON
 	for i: int in BANK_SLOTS:
 		var button: ItemButton = get_node("%%BankFrameItem%d" % (i + 1))
+		button.address = Vector2i(Inventory.WIRE_BACKPACK, Inventory.WIRE_BANK_SLOT_START + i)
 		button.pressed.connect(_take_item.bind(i))
 		button.right_clicked.connect(_take_item.bind(i))
 		button.mouse_entered.connect(_show_tooltip.bind(button, _bank_item.bind(i)))
