@@ -5,13 +5,14 @@ signal close_requested
 signal sound_options_requested
 signal video_options_requested
 signal interface_options_requested
+signal key_bindings_requested
 
 
 func _ready() -> void:
-	# The key binding and macro windows are not ported yet.
-	for unported: BaseButton in [%GameMenuButtonKeybindings, %GameMenuButtonMacros]:
-		unported.disabled = true
+	# The macro window is not ported yet.
+	(%GameMenuButtonMacros as BaseButton).disabled = true
 	%GameMenuButtonUIOptions.pressed.connect(interface_options_requested.emit)
+	%GameMenuButtonKeybindings.pressed.connect(key_bindings_requested.emit)
 	%GameMenuButtonOptions.pressed.connect(video_options_requested.emit)
 	%GameMenuButtonSoundOptions.pressed.connect(sound_options_requested.emit)
 	%GameMenuButtonLogout.pressed.connect(_on_logout_pressed)

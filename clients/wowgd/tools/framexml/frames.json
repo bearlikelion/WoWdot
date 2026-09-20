@@ -335,6 +335,11 @@
 			"frame": "UIOptionsFrame",
 			"out": "game/ui/wow/ui_options_frame.tscn",
 			"script": "res://game/ui/ui_options_frame.gd"
+		},
+		{
+			"frame": "KeyBindingFrame",
+			"out": "game/ui/wow/key_binding_frame.tscn",
+			"script": "res://game/ui/key_binding_frame.gd"
 		}
 	],
 	"graft": {

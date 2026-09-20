@@ -10,6 +10,12 @@ var _content: Control
 var _content_top: float = 0.0
 # Where a FauxScrollFrame stands, since it has no content of its own to read it back from.
 var _value: float = 0.0
+# Set by an owner that draws its own rows, so the frame stops sliding the content it was given.
+var faux: bool = false:
+	set(value):
+		faux = value
+		if faux:
+			_content = null
 var _bar: Range
 var _up: BaseButton
 var _down: BaseButton
