@@ -107,6 +107,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `gameobject_check` | Using a game object: a chair seats the player. |
 | `auction_bid_check.sh` | A second character lists an item and this one bids on it. Proving the money moves needs `wowgd2` at GM level, and the check says so and skips that leg when it is not. |
 | `tabard_check` | The guild crest designer: cycling the icon changes the preview, and saving it puts the choice on the guild. The character is made a guild leader first, which `petition_check.sh` undoes again. |
+| `transport_check` | A zeppelin sails the taxi path its game object names, and standing on its deck carries the player while their place on it holds still. |
 | `petition_check.sh` | Buying a guild charter from a registrar, a second character signing it, and handing it back. It leaves the guild the character was in first, which `guild_check` makes again. Nine signatures from nine accounts are needed to found a guild, so the check asserts the refusal rather than the guild. |
 
 ## Still to do
@@ -115,7 +116,8 @@ In the order they are planned:
 
 | Milestone | Work |
 | --- | --- |
-| M6 visuals | Transports, and drawing the ribbon trails the parser now reads. |
+| M6 visuals | Drawing the ribbon trails the parser now reads. |
+| M6 visuals | Elevators and lifts, which read `TransportAnimation.dbc` rather than a taxi path, and boats whose route crosses between maps. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 
