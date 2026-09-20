@@ -132,6 +132,30 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
+[node name="ContainerFrame6" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame7" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame8" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame9" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame10" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame11" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
 [node name="GameMenuFrame" parent="." instance=ExtResource("3_menu")]
 unique_name_in_owner = true
 layout_mode = 1

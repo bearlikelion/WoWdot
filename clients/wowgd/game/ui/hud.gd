@@ -101,6 +101,11 @@ func _ready() -> void:
 	_quest_log.share_answered.connect(show_notice)
 	_bank.open_requested.connect(_panels.show_panel.bind(_bank))
 	_bank.error_raised.connect(show_error)
+	_bank.bag_toggled.connect(_panels.toggle_bag)
+	_bank.visibility_changed.connect(func() -> void:
+		if not _bank.visible:
+			_panels.close_bank_bags()
+	)
 	_stable.open_requested.connect(_panels.show_panel.bind(_stable))
 	_stable.error_raised.connect(show_error)
 	_mail.open_requested.connect(_panels.show_panel.bind(_mail))

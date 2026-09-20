@@ -208,8 +208,11 @@ func _hotkey_text(action: String) -> String:
 
 
 # The backpack button and the bag slots stay checked while their bag is open.
+# A bank bag has no button on the bar, so there is nothing to light up for it.
 func set_bag_open(bag: int, is_open: bool) -> void:
-	_bag_button(bag).checked = is_open
+	var button: WowButton = _bag_button(bag)
+	if button:
+		button.checked = is_open
 
 
 func set_portrait(texture: Texture2D) -> void:
@@ -230,7 +233,7 @@ func _set_portrait_pushed(pushed: bool) -> void:
 func _bag_button(bag: int) -> WowButton:
 	if bag == Inventory.BACKPACK:
 		return %MainMenuBarBackpackButton
-	return get_node("%%CharacterBag%dSlot" % (bag - 1))
+	return get_node_or_null("%%CharacterBag%dSlot" % (bag - 1))
 
 
 func _bag_icon(bag: int) -> TextureRect:

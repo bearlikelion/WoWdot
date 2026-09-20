@@ -173,7 +173,7 @@ func _bag_icon() -> Texture2D:
 
 
 func _bag_entry() -> int:
-	return Inventory.entry(Inventory.equipped((Inventory.Slot.BAG_1 + bag - 1) as Inventory.Slot))
+	return Inventory.entry(Inventory.container_of(bag))
 
 
 func _on_button_used(button_index: int) -> void:

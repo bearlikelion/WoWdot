@@ -5,6 +5,7 @@ extends Control
 signal open_requested
 signal close_requested
 signal error_raised(text: String)
+signal bag_toggled(bag: int)
 
 # BANK_SLOT_ITEM_START, as the wire counts the player's own slots.
 const BANK_SLOT_START: int = 39
@@ -35,7 +36,8 @@ func _ready() -> void:
 		_items.append(button)
 	for i: int in BANK_BAGS:
 		var bag: ItemButton = get_node("%%BankFrameBag%d" % (i + 1))
-		bag.mouse_entered.connect(_show_tooltip.bind(bag, _bank_bag.bind(i)))
+		bag.pressed.connect(func() -> void: bag_toggled.emit(Inventory.BANK_BAG_FIRST + i))
+		bag.mouse_entered.connect(_show_tooltip.bind(bag, Inventory.bank_bag.bind(i)))
 		bag.mouse_exited.connect(_hide_tooltip.bind(bag))
 		_bags.append(bag)
 	%BankCloseButton.pressed.connect(close_requested.emit)
@@ -52,6 +54,10 @@ func activate(guid: int) -> void:
 	payload.resize(8)
 	payload.encode_u64(0, guid)
 	WowClient.session.send_packet("CMSG_BANKER_ACTIVATE", payload)
+
+
+func bought_bags() -> int:
+	return _bought_bags
 
 
 # The banker the player is talking to, or 0 when the bank is closed.
@@ -74,11 +80,15 @@ func refresh() -> void:
 	for i: int in BANK_SLOTS:
 		_show(_items[i], _bank_item(i))
 	for i: int in BANK_BAGS:
-		var bag: int = _bank_bag(i)
+		var bag: int = Inventory.bank_bag(i)
 		_show(_bags[i], bag)
 		if bag == 0:
 			_bags[i].set_item(_empty_bag_icon)
-		_bags[i].modulate.a = 1.0 if i < _bought_bags else 0.5
+		var bought: bool = i < _bought_bags
+		_bags[i].modulate.a = 1.0 if bought else 0.5
+		_bags[i].address = Vector2i(
+			Inventory.WIRE_BACKPACK, Inventory.WIRE_BANK_BAG_START + i
+		) if bought else -Vector2i.ONE
 	var next_cost: int = _slot_cost(_bought_bags)
 	%BankFramePurchaseInfo.visible = next_cost > 0
 	(%BankFrameDetailMoneyFrame as MoneyFrame).set_money(next_cost)
@@ -102,12 +112,6 @@ func _slot_cost(bought: int) -> int:
 func _bank_item(index: int) -> int:
 	var session: WowSession = WowClient.session
 	var first: int = session.field_index("PLAYER_FIELD_BANK_SLOT_1")
-	return session.get_field_guid(session.get_player_guid(), first + index * 2)
-
-
-func _bank_bag(index: int) -> int:
-	var session: WowSession = WowClient.session
-	var first: int = session.field_index("PLAYER_FIELD_BANKBAG_SLOT_1")
 	return session.get_field_guid(session.get_player_guid(), first + index * 2)
 
 
@@ -137,8 +141,10 @@ func _hide_tooltip(button: ItemButton) -> void:
 		GameTooltip.current.hide_for(button)
 
 
+# A bought slot arrives as a field update; the server only answers the purchase when it fails.
 func _on_object_updated(guid: int) -> void:
 	if visible and guid == WowClient.session.get_player_guid():
+		_bought_bags = _bought_bag_count()
 		refresh()
 
 

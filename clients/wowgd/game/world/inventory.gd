@@ -10,6 +10,8 @@ enum Slot {
 # Container ids as the stock UI numbers them: the backpack is 0 and the bag slots 1 to 4.
 const BACKPACK: int = 0
 const BAG_COUNT: int = 4
+# Bank bags carry on the numbering the stock UI gives the worn ones.
+const BANK_BAG_FIRST: int = 5
 const BACKPACK_SLOTS: int = 16
 # The wire addresses the backpack as bag 255, its slots as inventory slots 23 to 38.
 const WIRE_BACKPACK: int = 255
@@ -31,10 +33,21 @@ static func equipped(slot: Slot) -> int:
 	return _guid(session.get_player_guid(), first + slot * 2)
 
 
+static func bank_bag(index: int) -> int:
+	return item_at(Vector2i(WIRE_BACKPACK, WIRE_BANK_BAG_START + index))
+
+
+# The container worn or banked in a bag slot, or 0 when the slot is empty.
+static func container_of(bag: int) -> int:
+	if bag >= BANK_BAG_FIRST:
+		return bank_bag(bag - BANK_BAG_FIRST)
+	return equipped((Slot.BAG_1 + bag - 1) as Slot)
+
+
 static func container_size(bag: int) -> int:
 	if bag == BACKPACK:
 		return BACKPACK_SLOTS
-	var container: int = equipped((Slot.BAG_1 + bag - 1) as Slot)
+	var container: int = container_of(bag)
 	return WowClient.session.get_field(container, "CONTAINER_FIELD_NUM_SLOTS") if container else 0
 
 
@@ -45,7 +58,7 @@ static func container_item(bag: int, slot: int) -> int:
 		return _guid(
 			session.get_player_guid(), session.field_index("PLAYER_FIELD_PACK_SLOT_1") + slot * 2
 		)
-	var container: int = equipped((Slot.BAG_1 + bag - 1) as Slot)
+	var container: int = container_of(bag)
 	if container == 0:
 		return 0
 	return _guid(container, session.field_index("CONTAINER_FIELD_SLOT_1") + slot * 2)
@@ -55,10 +68,12 @@ static func container_item(bag: int, slot: int) -> int:
 static func wire_address(bag: int, slot: int) -> Vector2i:
 	if bag == BACKPACK:
 		return Vector2i(WIRE_BACKPACK, WIRE_PACK_SLOT_START + slot)
+	if bag >= BANK_BAG_FIRST:
+		return Vector2i(WIRE_BANK_BAG_START + bag - BANK_BAG_FIRST, slot)
 	return Vector2i(Slot.BAG_1 + bag - 1, slot)
 
 
-# Equipment, bag slots, the backpack, the bank and its bags are one guid array from the head slot on.
+# Equipment, bags, the backpack and the bank are one guid array from the head slot on.
 static func item_at(address: Vector2i) -> int:
 	var session: WowSession = WowClient.session
 	var first: int = session.field_index("PLAYER_FIELD_INV_SLOT_HEAD")
