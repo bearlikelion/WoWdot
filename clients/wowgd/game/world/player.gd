@@ -217,6 +217,11 @@ func transport_guid() -> int:
 	return _transport_guid
 
 
+# A lift answers here but not to transport_guid(), being only a platform on the client.
+func on_transport() -> bool:
+	return _transport != null
+
+
 func transport_offset() -> Vector3:
 	return _transport_offset
 
@@ -264,6 +269,9 @@ func pitch() -> float:
 
 
 func place(godot_position: Vector3, facing: float) -> void:
+	# Being put somewhere else ends the ride, or the deck drags them back the very next frame.
+	_transport = null
+	_transport_guid = 0
 	global_position = godot_position
 	rotation.y = facing
 
@@ -439,7 +447,7 @@ func _input_flags() -> int:
 	var flags: int = _key_flags()
 	if _persistent & MoveFlag.ROOT:
 		flags &= TURN
-	if _transport:
+	if _transport_guid != 0:
 		flags |= MoveFlag.ONTRANSPORT
 	return flags | _persistent
 

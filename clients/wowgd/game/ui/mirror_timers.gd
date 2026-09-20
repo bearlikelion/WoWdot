@@ -8,7 +8,7 @@ func _ready() -> void:
 	for child: Node in get_children():
 		_timers.append(child)
 	WowClient.session.packet_received.connect(_on_packet_received)
-	WowClient.session.world_entered.connect(_stop_all)
+	WowClient.session.world_entered.connect(_on_world_entered)
 
 
 # SMSG_START_MIRROR_TIMER: the timer, where it stands, its length, how fast it runs and a pause.
@@ -50,6 +50,10 @@ func _shown(kind: MirrorTimer.Kind) -> Array[MirrorTimer]:
 	return _timers.filter(
 		func(timer: MirrorTimer) -> bool: return timer.visible and timer.kind == kind
 	)
+
+
+func _on_world_entered(_map_id: int, _position: Vector3, _orientation: float) -> void:
+	_stop_all()
 
 
 func _stop_all() -> void:

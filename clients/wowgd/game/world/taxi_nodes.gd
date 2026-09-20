@@ -10,6 +10,7 @@ static var _nodes: WowDBC
 static var _paths: WowDBC
 static var _continents: WowDBC
 static var _path_nodes: WowDBC
+static var _animations: WowDBC
 # Direct routes out of each node: destination node id to [path id, cost].
 static var _edges: Dictionary[int, Dictionary] = {}
 
@@ -89,27 +90,49 @@ static func map_point(node: int) -> Vector2:
 	return Vector2(-1.0, -1.0)
 
 
-# The cheapest chain of known nodes from one to the other, both ends included, or empty.
-# The points a path runs through on one map, in Godot space and node order, for a transport to sail.
-static func path_points(path_id: int, map_id: int) -> PackedVector3Array:
+# The whole path, map ids and all: a transport still spends time on the legs we cannot see.
+static func path_route(path_id: int) -> Dictionary:
 	_open()
 	var ordered: Array[Array] = []
 	for row: int in _path_nodes.row_count():
-		if _path_nodes.get_uint(row, "PathID") != path_id \
-		or _path_nodes.get_uint(row, "MapID") != map_id:
+		if _path_nodes.get_uint(row, "PathID") != path_id:
 			continue
 		ordered.append([_path_nodes.get_uint(row, "NodeIndex"), WowCoords.to_godot(Vector3(
 			_path_nodes.get_float(row, "X"),
 			_path_nodes.get_float(row, "Y"),
 			_path_nodes.get_float(row, "Z"),
-		))])
+		)), _path_nodes.get_uint(row, "MapID")])
 	ordered.sort_custom(func(a: Array, b: Array) -> bool: return a[0] < b[0])
 	var points: PackedVector3Array = []
+	var maps: PackedInt32Array = []
 	for entry: Array in ordered:
 		points.append(entry[1])
-	return points
+		maps.append(entry[2])
+	return {"points": points, "maps": maps}
 
 
+# A lift's keyframes as seconds and model-space offsets, keyed by the game object entry.
+static func lift_frames(entry: int) -> Dictionary:
+	_open()
+	var ordered: Array[Array] = []
+	for row: int in _animations.row_count():
+		if _animations.get_uint(row, "TransportEntry") != entry:
+			continue
+		ordered.append([_animations.get_uint(row, "TimeIndex"), WowCoords.to_godot(Vector3(
+			_animations.get_float(row, "X"),
+			_animations.get_float(row, "Y"),
+			_animations.get_float(row, "Z"),
+		))])
+	ordered.sort_custom(func(a: Array, b: Array) -> bool: return a[0] < b[0])
+	var times: PackedFloat32Array = []
+	var offsets: PackedVector3Array = []
+	for frame: Array in ordered:
+		times.append(float(frame[0]) / 1000.0)
+		offsets.append(frame[1])
+	return {"times": times, "offsets": offsets}
+
+
+# The cheapest chain of known nodes from one to the other, both ends included, or empty.
 static func route(from: int, to: int) -> Array[int]:
 	_open()
 	var costs: Dictionary[int, int] = {from: 0}
@@ -160,6 +183,7 @@ static func _open() -> void:
 	_paths = WowDBC.open(archive, "TaxiPath")
 	_continents = WowDBC.open(archive, "WorldMapContinent")
 	_path_nodes = WowDBC.open(archive, "TaxiPathNode")
+	_animations = WowDBC.open(archive, "TransportAnimation")
 	for row: int in _paths.row_count():
 		var from: int = _paths.get_uint(row, "FromNode")
 		if not _edges.has(from):

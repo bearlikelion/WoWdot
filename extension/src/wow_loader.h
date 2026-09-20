@@ -61,6 +61,7 @@ class WowLoader : public RefCounted {
 	String animation_name(uint32_t id, uint32_t variation);
 	void add_texture_animation(Node3D *root, MeshInstance3D *mesh, const wowee::pipeline::M2Model &model, const PackedInt32Array &geosets);
 	void add_particles(Node3D *root, Skeleton3D *skeleton, const wowee::pipeline::M2Model &model);
+	void add_m2_collision(Node3D *root, const wowee::pipeline::M2Model &model);
 	void add_wmo_liquid(Node3D *root, const wowee::pipeline::WMOGroup &group, size_t index);
 
 protected:
@@ -83,6 +84,7 @@ public:
 	Ref<Image> load_image(const String &path);
 	Ref<ImageTexture> load_texture(const String &path);
 	Node3D *load_m2(const String &path, const Dictionary &skins = Dictionary(), const PackedInt32Array &geosets = PackedInt32Array());
+	void add_collision(Node3D *node);
 	Node3D *load_wmo(const String &path, int doodad_set = 0);
 	Node3D *build_static_models(const Array &placements);
 	Dictionary get_m2_info(const String &path);

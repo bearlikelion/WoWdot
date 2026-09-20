@@ -558,6 +558,48 @@ Ref<AnimationLibrary> WowLoader::get_m2_global_animations(const String &path, co
 	return m2_animations.emplace(key, animations).first->second;
 }
 
+// Asked for after loading, because a shape per streamed model costs far more than it is worth.
+void WowLoader::add_collision(Node3D *node) {
+	ERR_FAIL_NULL(node);
+	if (node->find_child("Collision", false, false) != nullptr) {
+		return;
+	}
+	const String path = node->get_meta("m2_path", String());
+	if (path.is_empty()) {
+		return;
+	}
+	if (const std::shared_ptr<const M2Data> data = get_m2_data(path)) {
+		add_m2_collision(node, data->model);
+	}
+}
+
+void WowLoader::add_m2_collision(Node3D *root, const M2Model &model) {
+	PackedVector3Array faces;
+	for (size_t t = 0; t + 2 < model.collisionIndices.size(); t += 3) {
+		for (int k : { 0, 2, 1 }) {
+			const uint16_t index = model.collisionIndices[t + k];
+			if (index >= model.collisionVertices.size()) {
+				return;
+			}
+			faces.push_back(wow_to_godot(model.collisionVertices[index]));
+		}
+	}
+	if (faces.is_empty()) {
+		return;
+	}
+	Ref<ConcavePolygonShape3D> shape;
+	shape.instantiate();
+	shape->set_faces(faces);
+	// Both sides collide, so a ray finds the deck whichever way the collision mesh was wound.
+	shape->set_backface_collision_enabled(true);
+	CollisionShape3D *collision = memnew(CollisionShape3D);
+	collision->set_shape(shape);
+	StaticBody3D *body = memnew(StaticBody3D);
+	body->set_name("Collision");
+	body->add_child(collision);
+	root->add_child(body);
+}
+
 Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const PackedInt32Array &geosets) {
 	ERR_FAIL_COND_V(archive.is_null(), nullptr);
 	const std::shared_ptr<const M2Data> data = get_m2_data(path);
