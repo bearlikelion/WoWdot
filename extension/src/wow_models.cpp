@@ -200,8 +200,13 @@ Color track_color(const M2AnimationTrack &track, const Color &fallback) {
 	return fallback;
 }
 
+// ponytail: additive emitters stack to white at rest; matching the stock client's blend is the fix.
+constexpr float ADDITIVE_DAMPING = 0.35f;
+
 // An FBlock is a small curve over a particle's life, which Godot takes as a ramp texture.
 Ref<GradientTexture1D> particle_colors(const M2ParticleEmitter &emitter) {
+	const bool additive = emitter.blendingType == M2_ADD || emitter.blendingType == M2_NO_ALPHA_ADD;
+	const float damping = additive ? ADDITIVE_DAMPING : 1.0f;
 	Ref<Gradient> gradient;
 	gradient.instantiate();
 	PackedFloat32Array offsets;
@@ -210,7 +215,7 @@ Ref<GradientTexture1D> particle_colors(const M2ParticleEmitter &emitter) {
 	for (size_t i = 0; i < count; i++) {
 		const glm::vec3 rgb = emitter.particleColor.vec3Values[i];
 		offsets.push_back(i < emitter.particleColor.timestamps.size() ? emitter.particleColor.timestamps[i] : float(i) / count);
-		colors.push_back(Color(rgb.r, rgb.g, rgb.b, emitter.particleAlpha.floatValues[i]));
+		colors.push_back(Color(rgb.r, rgb.g, rgb.b, emitter.particleAlpha.floatValues[i] * damping));
 	}
 	if (colors.is_empty()) {
 		return Ref<GradientTexture1D>();

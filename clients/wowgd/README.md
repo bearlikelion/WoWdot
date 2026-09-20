@@ -30,7 +30,7 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Groups | Party invites, party frames, loot window, group loot rolls, ready check, quest sharing. |
 | Social | Trade, duels, friends and ignore, the guild window with its roster, message of the day and invites, guild charters from a registrar and crests from a designer. |
 | Pets | The pet frame with happiness, the pet action bar with autocast, the pet spellbook tab, naming a tamed pet, and the stable master. |
-| Effects | M2 particles, ribbons and scrolling textures, spell visuals from SpellVisual.dbc with flying missiles, and the sparkle over lootable corpses. |
+| Effects | M2 particles and scrolling textures, spell visuals from SpellVisual.dbc with flying missiles, and the sparkle over lootable corpses. Additive emitters are damped, since they stack brighter than the stock client's. |
 
 ## Requirements
 
