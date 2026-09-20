@@ -284,6 +284,16 @@
       "frame": "BankFrame",
       "out": "game/ui/wow/bank_frame.tscn",
       "script": "res://game/ui/bank_frame.gd"
+    },
+    {
+      "frame": "MailFrame",
+      "out": "game/ui/wow/mail_frame.tscn",
+      "script": "res://game/ui/mail_frame.gd"
+    },
+    {
+      "frame": "OpenMailFrame",
+      "out": "game/ui/wow/open_mail_frame.tscn",
+      "script": "res://game/ui/open_mail_frame.gd"
     }
   ],
   "graft": {

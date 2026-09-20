@@ -45,6 +45,16 @@ func text(length: int) -> String:
 	return bytes.slice(0, end if end >= 0 else bytes.size()).get_string_from_utf8()
 
 
+# A NUL terminated string, as most packet strings are written.
+func cstring() -> String:
+	var start: int = _offset
+	while _offset < _data.size() and _data[_offset] != 0:
+		_offset += 1
+	var text_bytes: PackedByteArray = _data.slice(start, _offset)
+	_offset = mini(_offset + 1, _data.size())
+	return text_bytes.get_string_from_utf8()
+
+
 func packed_guid() -> int:
 	var mask: int = u8()
 	var guid: int = 0

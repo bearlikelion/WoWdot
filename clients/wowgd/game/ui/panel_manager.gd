@@ -18,6 +18,8 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"QuestFrame": [Area.LEFT, 0],
 	&"MerchantFrame": [Area.LEFT, 0],
 	&"BankFrame": [Area.LEFT, 0],
+	&"MailFrame": [Area.LEFT, 0],
+	&"OpenMailFrame": [Area.CENTER, 0],
 	&"ClassTrainerFrame": [Area.LEFT, 0],
 	&"TaxiFrame": [Area.LEFT, 0],
 	&"LootFrame": [Area.LEFT, 0],

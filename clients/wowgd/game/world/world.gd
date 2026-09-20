@@ -11,6 +11,7 @@ const PLAYER_FLAG_GHOST: int = 0x10
 const STAND_STATE_STAND: int = 0
 const STAND_STATE_SIT: int = 1
 const UNIT_DYNFLAG_LOOTABLE: int = 0x1
+const GAMEOBJECT_TYPE_MAILBOX: int = 19
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
 const SPEED_CHANGES: Dictionary[String, Player.SpeedKind] = {
 	"SMSG_FORCE_WALK_SPEED_CHANGE": Player.SpeedKind.WALK,
@@ -49,6 +50,7 @@ var _weapons: Array = []
 var _sheath_state: ItemModels.SheathState = ItemModels.SheathState.UNARMED
 var _area: int = -1
 var _hovered: int = 0
+var _pending_object: int = 0
 var _death: Death
 var _release_offered: bool = false
 var _reclaim_offered: bool = false
@@ -83,6 +85,7 @@ func _ready() -> void:
 	WowClient.session.object_moved.connect(_on_object_moved)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
+	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
 	_death = Death.new(WowClient.session)
 	_death.resurrect_offered.connect(_on_resurrect_offered)
 	_death.spirit_healer_offered.connect(_on_spirit_healer_offered)
@@ -502,6 +505,9 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 	if _is_lootable(guid):
 		LootFrame.loot(guid)
 		return
+	if session.get_object_type(guid) == Entities.ObjectType.GAMEOBJECT:
+		_use_game_object(guid)
+		return
 	if NpcDialog.interact(guid):
 		UnitVoice.speak(guid, UnitVoice.Speech.GREETING)
 		return
@@ -509,6 +515,28 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 	var hostile: bool = UnitReaction.between(session, me, guid) == UnitReaction.Reaction.HOSTILE
 	if hostile and not _auto_attacking:
 		session.attack(guid)
+
+
+# A game object's type comes from a query, so the first click on one waits for the answer.
+func _use_game_object(guid: int) -> void:
+	var session: WowSession = WowClient.session
+	var info: Dictionary = session.get_game_object_info(
+		session.get_field(guid, "OBJECT_FIELD_ENTRY")
+	)
+	if info.is_empty():
+		_pending_object = guid
+		return
+	if info.get("type", 0) == GAMEOBJECT_TYPE_MAILBOX:
+		_hud.open_mailbox(guid)
+
+
+func _on_game_object_info_received(entry: int) -> void:
+	var session: WowSession = WowClient.session
+	if _pending_object == 0 or session.get_field(_pending_object, "OBJECT_FIELD_ENTRY") != entry:
+		return
+	var guid: int = _pending_object
+	_pending_object = 0
+	_use_game_object(guid)
 
 
 func _is_lootable(guid: int) -> bool:

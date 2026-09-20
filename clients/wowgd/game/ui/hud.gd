@@ -52,6 +52,8 @@ var _chat_hover_time: float = 0.0
 @onready var _panels: PanelManager = %UIPanels
 @onready var _character: CharacterFrame = _panels.get_node("%CharacterFrame")
 @onready var _bank: BankFrame = _panels.get_node("%BankFrame")
+@onready var _mail: MailFrame = _panels.get_node("%MailFrame")
+@onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
 @onready var _spell_book: SpellBook = _panels.get_node("%SpellBookFrame")
 @onready var _talents: TalentFrame = _panels.get_node("%TalentFrame")
@@ -87,6 +89,14 @@ func _ready() -> void:
 	_bank.open_requested.connect(_panels.show_panel.bind(_bank))
 	_bank.close_requested.connect(_panels.hide_panel.bind(_bank))
 	_bank.error_raised.connect(show_error)
+	_mail.open_requested.connect(_panels.show_panel.bind(_mail))
+	_mail.close_requested.connect(_panels.hide_panel.bind(_mail))
+	_mail.mail_opened.connect(_open_mail.show_mail)
+	_open_mail.open_requested.connect(_panels.show_panel.bind(_open_mail))
+	_open_mail.close_requested.connect(_panels.hide_panel.bind(_open_mail))
+	_open_mail.take_money_requested.connect(_mail.take_money)
+	_open_mail.take_item_requested.connect(_mail.take_item)
+	_open_mail.delete_requested.connect(_mail.delete)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
@@ -351,6 +361,11 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 
 
 # UseContainerItem: gear equips, everything else is used.
+# Right-clicking a mailbox in the world opens the inbox.
+func open_mailbox(guid: int) -> void:
+	_mail.open(guid)
+
+
 func use_container_item(bag: int, slot: int) -> void:
 	var item: int = Inventory.container_item(bag, slot)
 	var item_entry: int = Inventory.entry(item)

@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/taxi_frame.tscn" id="13_taxi"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/loot_frame.tscn" id="14_loot"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/bank_frame.tscn" id="17_bank"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/mail_frame.tscn" id="18_mail"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/open_mail_frame.tscn" id="19_openmail"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/world_map_frame.tscn" id="14_map"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/sound_options_frame.tscn" id="15_sound"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/video_options_frame.tscn" id="16_video"]
@@ -58,6 +60,16 @@ unique_name_in_owner = true
 visible = false
 
 [node name="BankFrame" parent="." instance=ExtResource("17_bank")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="MailFrame" parent="." instance=ExtResource("18_mail")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="OpenMailFrame" parent="." instance=ExtResource("19_openmail")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
