@@ -81,7 +81,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `loot_check`, `party_check.sh` | Loot and parties. |
 | `trade_check.sh`, `friends_check`, `guild_check` | Trading, the friends and ignore lists, the guild window. |
 | `bubble_check`, `pet_check.sh` | Speech bubbles; a warlock's imp, its frame, bar and spellbook. |
-| `hunter_check.sh` | Taming, naming, happiness and the stable, with a throwaway hunter. |
+| `hunter_check.sh` | Taming, naming, happiness and the stable, with a throwaway hunter. It leans on the GM commands `.npc tame` and `.stable`, and needs a quiet machine: a busy one can take minutes to reach the world. |
 | `remote_motion_check`, `remote_movement_check.sh` | Other players' movement. |
 | `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming. |
 | `stance_check`, `target_of_target_check` | The stance bar and the target of target frame. |
