@@ -534,6 +534,7 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 	var me: int = session.get_player_guid()
 	var hostile: bool = UnitReaction.between(session, me, guid) == UnitReaction.Reaction.HOSTILE
 	if hostile and not _auto_attacking:
+		_face(guid)
 		session.attack(guid)
 
 

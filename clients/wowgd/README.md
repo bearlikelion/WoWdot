@@ -92,6 +92,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `audio_check`, `effects_check` | Audio; scrolling textures and particle emitters, both with no server needed. |
 | `spell_target_check`, `visual_check` | Self-only buffs cast on the caster; the spell visual chain resolves. Neither needs a server. |
 | `effect_check` | A fireball crosses to its target and a lootable corpse sparkles. |
+| `chase_check` | A pulled creature closes to melee, trades blows and follows a running player. |
 
 ## Still to do
 
