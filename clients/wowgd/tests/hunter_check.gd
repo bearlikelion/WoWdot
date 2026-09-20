@@ -108,6 +108,10 @@ func _stable(session: WowSession, hud: Hud, pet: Pet) -> void:
 	var master: int = await _find(session, STABLE_MASTER)
 	if master == 0:
 		return _check(false, "the stable master is there")
+	# The server only answers a stable master the player is standing next to.
+	var at: Vector3 = session.get_object_position(master)
+	session.send_chat(WowSession.CHAT_SAY, ".go xyz %.1f %.1f %.1f 0" % [at.x, at.y, at.z])
+	await get_tree().create_timer(4.0).timeout
 	var stable: PetStableFrame = hud.get_node("%UIPanels").get_node("%PetStableFrame")
 	hud.open_stable(master)
 	_check(await _until(func() -> bool: return stable.visible), "the stable master opens the stable")

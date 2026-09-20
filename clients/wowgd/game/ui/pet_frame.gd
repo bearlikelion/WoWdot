@@ -7,6 +7,7 @@ const HAPPINESS_SIZE: Vector2 = Vector2(24.0, 23.0)
 
 # Hunter pets are named by their owner, and only the query knows that name.
 var _pet_name: String = ""
+var _name_stamp: int = 0
 
 
 func _ready() -> void:
@@ -29,12 +30,18 @@ func _ready() -> void:
 func show_unit(unit: int) -> void:
 	if unit != guid:
 		_pet_name = ""
+		_name_stamp = 0
 		if unit != 0:
 			_query_name(unit)
 	super(unit)
 
 
 func _update_unit() -> void:
+	# Renaming a pet bumps its name stamp, and the new name only comes from another query.
+	var stamp: int = WowClient.session.get_field(guid, "UNIT_FIELD_PET_NAME_TIMESTAMP")
+	if stamp != _name_stamp:
+		_name_stamp = stamp
+		_query_name(guid)
 	if not _pet_name.is_empty():
 		_name_label.text = _pet_name
 	var happiness: Pet.Happiness = WowClient.pet.happiness()
