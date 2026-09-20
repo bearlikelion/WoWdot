@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://game/world/world.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://game/world/world_weather.tscn" id="8_weather"]
 [ext_resource type="Script" path="res://game/world/floating_combat_text.gd" id="9_floating_text"]
 [ext_resource type="PackedScene" path="res://game/world/selection_circle.tscn" id="10_selection"]
+[ext_resource type="Script" path="res://game/ui/chat_bubbles.gd" id="11_bubbles"]
 
 [sub_resource type="FastNoiseLite" id="Noise_clouds"]
 frequency = 0.008
@@ -90,6 +91,15 @@ entities = NodePath("../Entities")
 entities = NodePath("../Entities")
 
 [node name="HudLayer" type="CanvasLayer" parent="."]
+
+[node name="ChatBubbles" type="Control" parent="HudLayer" node_paths=PackedStringArray("entities", "player")]
+script = ExtResource("11_bubbles")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+entities = NodePath("../../Entities")
+player = NodePath("../../Player")
 
 [node name="Hud" parent="HudLayer" instance=ExtResource("5_hud")]
 unique_name_in_owner = true

@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="1_backdrop"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Tooltips\\ChatBubble-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\Tooltips\\ChatBubble-Backdrop.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Tooltips\\ChatBubble-Tail.blp"
+
+[node name="ChatBubble" type="Control"]
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="."]
+script = ExtResource("1_backdrop")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(12, 12, 12, 12)
+
+[node name="Tail" type="TextureRect" parent="."]
+unique_name_in_owner = true
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+
+[node name="Text" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_type_variation = &"ChatFontNormal"
+autowrap_mode = 3
+horizontal_alignment = 1
+vertical_alignment = 1

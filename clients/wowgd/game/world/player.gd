@@ -105,6 +105,7 @@ var _auto_run: bool = false
 # The liquid surface over the player, set by the world each frame, NAN where there is none.
 var _water_surface: float = NAN
 
+@onready var _collision: CollisionShape3D = $Collision
 @onready var _model_slot: Node3D = $Model
 @onready var _pivot: Node3D = $CameraPivot
 @onready var _arm: SpringArm3D = $CameraPivot/SpringArm3D
@@ -260,6 +261,11 @@ func set_model(model: Node3D) -> void:
 
 
 # WoW facing: 0 is north (+X) and it grows toward west (+Y), which matches Godot yaw here.
+# The top of the capsule the player moves in, for anything drawn over their head.
+func head_position() -> Vector3:
+	return global_position + Vector3.UP * (_collision.shape as CapsuleShape3D).height
+
+
 func orientation() -> float:
 	return wrapf(rotation.y, 0.0, TAU)
 
