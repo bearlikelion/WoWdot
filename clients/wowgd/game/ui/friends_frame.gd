@@ -331,7 +331,7 @@ func _on_guild_result(reader: PacketReader) -> void:
 
 # ERR_FRIEND_ONLINE_SS wants the name twice, so a short list repeats its last entry.
 func _fill(text: String, params: PackedStringArray) -> String:
-	var filled: PackedStringArray = []
+	var filled: Array[String] = []
 	for i: int in text.count("%s"):
 		if params.is_empty():
 			return text

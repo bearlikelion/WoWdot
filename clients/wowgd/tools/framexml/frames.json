@@ -315,6 +315,11 @@
       "template": true,
       "out": "game/ui/wow/group_loot_frame.tscn",
       "script": "res://game/ui/group_loot_frame.gd"
+    },
+    {
+      "frame": "DropDownList1",
+      "out": "game/ui/wow/drop_down_list.tscn",
+      "script": "res://game/ui/drop_down_list.gd"
     }
   ],
   "graft": {

@@ -59,12 +59,12 @@ func _run() -> void:
 	_check(first.visible and first.member_name == PARTNER, "the partner has a party frame")
 	_capture("user://party_frame.png")
 
-	var menu: PopupMenu = hud.get_node("%UnitMenu")
+	var menu: DropDownList = hud.get_node("%UnitMenu")
 	get_viewport().warp_mouse(Vector2(200.0, 120.0))
 	await _frames(5)
 	(hud.get_node("%PlayerFrame") as UnitFrame).unit_menu_requested.emit(session.get_player_guid())
 	await _frames(10)
-	_check(menu.visible and menu.item_count == 1, "right-clicking my portrait offers leaving")
+	_check(_menu_texts(menu).has("Leave party"), "right-clicking my portrait offers leaving")
 	_capture("user://party_menu.png")
 	menu.hide()
 	var partner_guid: int = PartyFrame.members[0]["guid"]
@@ -74,7 +74,7 @@ func _run() -> void:
 
 	(hud.get_node("%TargetFrame") as UnitFrame).unit_menu_requested.emit(partner_guid)
 	await _frames(10)
-	var offers_invite: bool = menu.visible and menu.get_item_text(0) == "Invite"
+	var offers_invite: bool = menu.visible and _menu_texts(menu).has("Invite")
 	_check(offers_invite, "right-clicking a player offers an invite")
 	menu.hide()
 
@@ -265,6 +265,17 @@ func _frames(count: int) -> void:
 func _capture(path: String) -> void:
 	get_viewport().get_texture().get_image().save_png(path)
 	print("wrote ", ProjectSettings.globalize_path(path))
+
+
+# The menu's entries, as the visible rows read.
+func _menu_texts(menu: DropDownList) -> PackedStringArray:
+	var texts: PackedStringArray = []
+	for i: int in DropDownList.MAX_BUTTONS:
+		if (menu.get_node("%%DropDownList1Button%d" % (i + 1)) as Control).visible:
+			texts.append(
+				(menu.get_node("%%DropDownList1Button%dNormalText" % (i + 1)) as Label).text
+			)
+	return texts
 
 
 func _check(condition: bool, what: String) -> void:

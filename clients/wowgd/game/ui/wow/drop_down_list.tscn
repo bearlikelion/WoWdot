@@ -1,0 +1,3585 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/drop_down_list.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Tooltips\\UI-Tooltip-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Tooltips\\UI-Tooltip-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\QuestFrame\\UI-QuestTitleHighlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\ChatFrame\\ChatFrameColorSwatch.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\ChatFrame\\ChatFrameExpandArrow.blp"
+
+[node name="DropDownList1" type="TextureButton"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = -0
+offset_right = 180
+offset_bottom = 10
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Backdrop" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="DropDownList1Backdrop"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="DropDownList1MenuBackdrop" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="DropDownList1MenuBackdrop"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_3")
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="DropDownList1Button1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button1Highlight" type="TextureRect" parent="DropDownList1Button1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button1Check" type="TextureRect" parent="DropDownList1Button1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button1Icon" type="TextureRect" parent="DropDownList1Button1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button1NormalText" type="Label" parent="DropDownList1Button1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button1ColorSwatch" type="TextureButton" parent="DropDownList1Button1"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button1ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button1/DropDownList1Button1ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button1/DropDownList1Button1ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button1ExpandArrow" type="TextureButton" parent="DropDownList1Button1"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button1/DropDownList1Button1ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button1InvisibleButton" type="TextureButton" parent="DropDownList1Button1"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button2Highlight" type="TextureRect" parent="DropDownList1Button2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button2Check" type="TextureRect" parent="DropDownList1Button2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button2Icon" type="TextureRect" parent="DropDownList1Button2"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button2NormalText" type="Label" parent="DropDownList1Button2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button2ColorSwatch" type="TextureButton" parent="DropDownList1Button2"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button2ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button2/DropDownList1Button2ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button2/DropDownList1Button2ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button2ExpandArrow" type="TextureButton" parent="DropDownList1Button2"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button2/DropDownList1Button2ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button2InvisibleButton" type="TextureButton" parent="DropDownList1Button2"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button3Highlight" type="TextureRect" parent="DropDownList1Button3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button3Check" type="TextureRect" parent="DropDownList1Button3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button3Icon" type="TextureRect" parent="DropDownList1Button3"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button3NormalText" type="Label" parent="DropDownList1Button3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button3ColorSwatch" type="TextureButton" parent="DropDownList1Button3"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button3ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button3/DropDownList1Button3ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button3/DropDownList1Button3ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button3ExpandArrow" type="TextureButton" parent="DropDownList1Button3"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button3/DropDownList1Button3ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button3InvisibleButton" type="TextureButton" parent="DropDownList1Button3"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button4Highlight" type="TextureRect" parent="DropDownList1Button4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button4Check" type="TextureRect" parent="DropDownList1Button4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button4Icon" type="TextureRect" parent="DropDownList1Button4"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button4NormalText" type="Label" parent="DropDownList1Button4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button4ColorSwatch" type="TextureButton" parent="DropDownList1Button4"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button4ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button4/DropDownList1Button4ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button4/DropDownList1Button4ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button4ExpandArrow" type="TextureButton" parent="DropDownList1Button4"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button4/DropDownList1Button4ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button4InvisibleButton" type="TextureButton" parent="DropDownList1Button4"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button5Highlight" type="TextureRect" parent="DropDownList1Button5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button5Check" type="TextureRect" parent="DropDownList1Button5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button5Icon" type="TextureRect" parent="DropDownList1Button5"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button5NormalText" type="Label" parent="DropDownList1Button5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button5ColorSwatch" type="TextureButton" parent="DropDownList1Button5"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button5ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button5/DropDownList1Button5ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button5/DropDownList1Button5ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button5ExpandArrow" type="TextureButton" parent="DropDownList1Button5"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button5/DropDownList1Button5ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button5InvisibleButton" type="TextureButton" parent="DropDownList1Button5"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button6" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button6Highlight" type="TextureRect" parent="DropDownList1Button6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button6Check" type="TextureRect" parent="DropDownList1Button6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button6Icon" type="TextureRect" parent="DropDownList1Button6"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button6NormalText" type="Label" parent="DropDownList1Button6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button6ColorSwatch" type="TextureButton" parent="DropDownList1Button6"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button6ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button6/DropDownList1Button6ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button6/DropDownList1Button6ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button6ExpandArrow" type="TextureButton" parent="DropDownList1Button6"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button6/DropDownList1Button6ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button6InvisibleButton" type="TextureButton" parent="DropDownList1Button6"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button7" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button7Highlight" type="TextureRect" parent="DropDownList1Button7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button7Check" type="TextureRect" parent="DropDownList1Button7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button7Icon" type="TextureRect" parent="DropDownList1Button7"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button7NormalText" type="Label" parent="DropDownList1Button7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button7ColorSwatch" type="TextureButton" parent="DropDownList1Button7"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button7ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button7/DropDownList1Button7ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button7/DropDownList1Button7ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button7ExpandArrow" type="TextureButton" parent="DropDownList1Button7"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button7/DropDownList1Button7ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button7InvisibleButton" type="TextureButton" parent="DropDownList1Button7"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button8" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button8Highlight" type="TextureRect" parent="DropDownList1Button8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button8Check" type="TextureRect" parent="DropDownList1Button8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button8Icon" type="TextureRect" parent="DropDownList1Button8"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button8NormalText" type="Label" parent="DropDownList1Button8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button8ColorSwatch" type="TextureButton" parent="DropDownList1Button8"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button8ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button8/DropDownList1Button8ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button8/DropDownList1Button8ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button8ExpandArrow" type="TextureButton" parent="DropDownList1Button8"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button8/DropDownList1Button8ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button8InvisibleButton" type="TextureButton" parent="DropDownList1Button8"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button9" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button9Highlight" type="TextureRect" parent="DropDownList1Button9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button9Check" type="TextureRect" parent="DropDownList1Button9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button9Icon" type="TextureRect" parent="DropDownList1Button9"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button9NormalText" type="Label" parent="DropDownList1Button9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button9ColorSwatch" type="TextureButton" parent="DropDownList1Button9"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button9ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button9/DropDownList1Button9ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button9/DropDownList1Button9ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button9ExpandArrow" type="TextureButton" parent="DropDownList1Button9"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button9/DropDownList1Button9ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button9InvisibleButton" type="TextureButton" parent="DropDownList1Button9"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button10" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button10Highlight" type="TextureRect" parent="DropDownList1Button10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button10Check" type="TextureRect" parent="DropDownList1Button10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button10Icon" type="TextureRect" parent="DropDownList1Button10"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button10NormalText" type="Label" parent="DropDownList1Button10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button10ColorSwatch" type="TextureButton" parent="DropDownList1Button10"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button10ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button10/DropDownList1Button10ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button10/DropDownList1Button10ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button10ExpandArrow" type="TextureButton" parent="DropDownList1Button10"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button10/DropDownList1Button10ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button10InvisibleButton" type="TextureButton" parent="DropDownList1Button10"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button11" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button11Highlight" type="TextureRect" parent="DropDownList1Button11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button11Check" type="TextureRect" parent="DropDownList1Button11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button11Icon" type="TextureRect" parent="DropDownList1Button11"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button11NormalText" type="Label" parent="DropDownList1Button11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button11ColorSwatch" type="TextureButton" parent="DropDownList1Button11"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button11ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button11/DropDownList1Button11ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button11/DropDownList1Button11ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button11ExpandArrow" type="TextureButton" parent="DropDownList1Button11"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button11/DropDownList1Button11ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button11InvisibleButton" type="TextureButton" parent="DropDownList1Button11"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button12" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button12Highlight" type="TextureRect" parent="DropDownList1Button12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button12Check" type="TextureRect" parent="DropDownList1Button12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button12Icon" type="TextureRect" parent="DropDownList1Button12"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button12NormalText" type="Label" parent="DropDownList1Button12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button12ColorSwatch" type="TextureButton" parent="DropDownList1Button12"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button12ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button12/DropDownList1Button12ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button12/DropDownList1Button12ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button12ExpandArrow" type="TextureButton" parent="DropDownList1Button12"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button12/DropDownList1Button12ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button12InvisibleButton" type="TextureButton" parent="DropDownList1Button12"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button13" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button13Highlight" type="TextureRect" parent="DropDownList1Button13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button13Check" type="TextureRect" parent="DropDownList1Button13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button13Icon" type="TextureRect" parent="DropDownList1Button13"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button13NormalText" type="Label" parent="DropDownList1Button13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button13ColorSwatch" type="TextureButton" parent="DropDownList1Button13"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button13ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button13/DropDownList1Button13ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button13/DropDownList1Button13ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button13ExpandArrow" type="TextureButton" parent="DropDownList1Button13"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button13/DropDownList1Button13ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button13InvisibleButton" type="TextureButton" parent="DropDownList1Button13"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button14" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button14Highlight" type="TextureRect" parent="DropDownList1Button14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button14Check" type="TextureRect" parent="DropDownList1Button14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button14Icon" type="TextureRect" parent="DropDownList1Button14"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button14NormalText" type="Label" parent="DropDownList1Button14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button14ColorSwatch" type="TextureButton" parent="DropDownList1Button14"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button14ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button14/DropDownList1Button14ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button14/DropDownList1Button14ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button14ExpandArrow" type="TextureButton" parent="DropDownList1Button14"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button14/DropDownList1Button14ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button14InvisibleButton" type="TextureButton" parent="DropDownList1Button14"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button15" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button15Highlight" type="TextureRect" parent="DropDownList1Button15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button15Check" type="TextureRect" parent="DropDownList1Button15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button15Icon" type="TextureRect" parent="DropDownList1Button15"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button15NormalText" type="Label" parent="DropDownList1Button15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button15ColorSwatch" type="TextureButton" parent="DropDownList1Button15"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button15ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button15/DropDownList1Button15ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button15/DropDownList1Button15ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button15ExpandArrow" type="TextureButton" parent="DropDownList1Button15"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button15/DropDownList1Button15ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button15InvisibleButton" type="TextureButton" parent="DropDownList1Button15"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button16" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button16Highlight" type="TextureRect" parent="DropDownList1Button16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button16Check" type="TextureRect" parent="DropDownList1Button16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button16Icon" type="TextureRect" parent="DropDownList1Button16"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button16NormalText" type="Label" parent="DropDownList1Button16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button16ColorSwatch" type="TextureButton" parent="DropDownList1Button16"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button16ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button16/DropDownList1Button16ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button16/DropDownList1Button16ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button16ExpandArrow" type="TextureButton" parent="DropDownList1Button16"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button16/DropDownList1Button16ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button16InvisibleButton" type="TextureButton" parent="DropDownList1Button16"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button17" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button17Highlight" type="TextureRect" parent="DropDownList1Button17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button17Check" type="TextureRect" parent="DropDownList1Button17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button17Icon" type="TextureRect" parent="DropDownList1Button17"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button17NormalText" type="Label" parent="DropDownList1Button17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button17ColorSwatch" type="TextureButton" parent="DropDownList1Button17"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button17ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button17/DropDownList1Button17ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button17/DropDownList1Button17ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button17ExpandArrow" type="TextureButton" parent="DropDownList1Button17"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button17/DropDownList1Button17ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button17InvisibleButton" type="TextureButton" parent="DropDownList1Button17"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button18" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button18Highlight" type="TextureRect" parent="DropDownList1Button18"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button18Check" type="TextureRect" parent="DropDownList1Button18"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button18Icon" type="TextureRect" parent="DropDownList1Button18"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button18NormalText" type="Label" parent="DropDownList1Button18"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button18ColorSwatch" type="TextureButton" parent="DropDownList1Button18"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button18ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button18/DropDownList1Button18ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button18/DropDownList1Button18ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button18ExpandArrow" type="TextureButton" parent="DropDownList1Button18"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button18/DropDownList1Button18ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button18InvisibleButton" type="TextureButton" parent="DropDownList1Button18"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button19" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button19Highlight" type="TextureRect" parent="DropDownList1Button19"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button19Check" type="TextureRect" parent="DropDownList1Button19"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button19Icon" type="TextureRect" parent="DropDownList1Button19"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button19NormalText" type="Label" parent="DropDownList1Button19"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button19ColorSwatch" type="TextureButton" parent="DropDownList1Button19"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button19ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button19/DropDownList1Button19ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button19/DropDownList1Button19ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button19ExpandArrow" type="TextureButton" parent="DropDownList1Button19"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button19/DropDownList1Button19ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button19InvisibleButton" type="TextureButton" parent="DropDownList1Button19"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button20" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button20Highlight" type="TextureRect" parent="DropDownList1Button20"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button20Check" type="TextureRect" parent="DropDownList1Button20"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button20Icon" type="TextureRect" parent="DropDownList1Button20"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button20NormalText" type="Label" parent="DropDownList1Button20"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button20ColorSwatch" type="TextureButton" parent="DropDownList1Button20"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button20ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button20/DropDownList1Button20ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button20/DropDownList1Button20ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button20ExpandArrow" type="TextureButton" parent="DropDownList1Button20"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button20/DropDownList1Button20ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button20InvisibleButton" type="TextureButton" parent="DropDownList1Button20"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button21" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button21Highlight" type="TextureRect" parent="DropDownList1Button21"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button21Check" type="TextureRect" parent="DropDownList1Button21"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button21Icon" type="TextureRect" parent="DropDownList1Button21"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button21NormalText" type="Label" parent="DropDownList1Button21"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button21ColorSwatch" type="TextureButton" parent="DropDownList1Button21"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button21ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button21/DropDownList1Button21ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button21/DropDownList1Button21ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button21ExpandArrow" type="TextureButton" parent="DropDownList1Button21"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button21/DropDownList1Button21ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button21InvisibleButton" type="TextureButton" parent="DropDownList1Button21"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button22" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button22Highlight" type="TextureRect" parent="DropDownList1Button22"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button22Check" type="TextureRect" parent="DropDownList1Button22"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button22Icon" type="TextureRect" parent="DropDownList1Button22"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button22NormalText" type="Label" parent="DropDownList1Button22"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button22ColorSwatch" type="TextureButton" parent="DropDownList1Button22"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button22ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button22/DropDownList1Button22ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button22/DropDownList1Button22ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button22ExpandArrow" type="TextureButton" parent="DropDownList1Button22"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button22/DropDownList1Button22ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button22InvisibleButton" type="TextureButton" parent="DropDownList1Button22"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button23" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button23Highlight" type="TextureRect" parent="DropDownList1Button23"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button23Check" type="TextureRect" parent="DropDownList1Button23"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button23Icon" type="TextureRect" parent="DropDownList1Button23"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button23NormalText" type="Label" parent="DropDownList1Button23"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button23ColorSwatch" type="TextureButton" parent="DropDownList1Button23"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button23ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button23/DropDownList1Button23ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button23/DropDownList1Button23ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button23ExpandArrow" type="TextureButton" parent="DropDownList1Button23"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button23/DropDownList1Button23ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button23InvisibleButton" type="TextureButton" parent="DropDownList1Button23"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button24" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button24Highlight" type="TextureRect" parent="DropDownList1Button24"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button24Check" type="TextureRect" parent="DropDownList1Button24"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button24Icon" type="TextureRect" parent="DropDownList1Button24"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button24NormalText" type="Label" parent="DropDownList1Button24"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button24ColorSwatch" type="TextureButton" parent="DropDownList1Button24"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button24ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button24/DropDownList1Button24ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button24/DropDownList1Button24ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button24ExpandArrow" type="TextureButton" parent="DropDownList1Button24"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button24/DropDownList1Button24ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button24InvisibleButton" type="TextureButton" parent="DropDownList1Button24"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button25" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button25Highlight" type="TextureRect" parent="DropDownList1Button25"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button25Check" type="TextureRect" parent="DropDownList1Button25"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button25Icon" type="TextureRect" parent="DropDownList1Button25"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button25NormalText" type="Label" parent="DropDownList1Button25"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button25ColorSwatch" type="TextureButton" parent="DropDownList1Button25"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button25ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button25/DropDownList1Button25ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button25/DropDownList1Button25ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button25ExpandArrow" type="TextureButton" parent="DropDownList1Button25"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button25/DropDownList1Button25ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button25InvisibleButton" type="TextureButton" parent="DropDownList1Button25"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button26" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button26Highlight" type="TextureRect" parent="DropDownList1Button26"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button26Check" type="TextureRect" parent="DropDownList1Button26"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button26Icon" type="TextureRect" parent="DropDownList1Button26"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button26NormalText" type="Label" parent="DropDownList1Button26"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button26ColorSwatch" type="TextureButton" parent="DropDownList1Button26"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button26ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button26/DropDownList1Button26ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button26/DropDownList1Button26ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button26ExpandArrow" type="TextureButton" parent="DropDownList1Button26"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button26/DropDownList1Button26ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button26InvisibleButton" type="TextureButton" parent="DropDownList1Button26"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button27" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button27Highlight" type="TextureRect" parent="DropDownList1Button27"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button27Check" type="TextureRect" parent="DropDownList1Button27"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button27Icon" type="TextureRect" parent="DropDownList1Button27"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button27NormalText" type="Label" parent="DropDownList1Button27"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button27ColorSwatch" type="TextureButton" parent="DropDownList1Button27"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button27ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button27/DropDownList1Button27ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button27/DropDownList1Button27ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button27ExpandArrow" type="TextureButton" parent="DropDownList1Button27"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button27/DropDownList1Button27ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button27InvisibleButton" type="TextureButton" parent="DropDownList1Button27"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button28" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button28Highlight" type="TextureRect" parent="DropDownList1Button28"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button28Check" type="TextureRect" parent="DropDownList1Button28"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button28Icon" type="TextureRect" parent="DropDownList1Button28"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button28NormalText" type="Label" parent="DropDownList1Button28"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button28ColorSwatch" type="TextureButton" parent="DropDownList1Button28"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button28ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button28/DropDownList1Button28ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button28/DropDownList1Button28ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button28ExpandArrow" type="TextureButton" parent="DropDownList1Button28"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button28/DropDownList1Button28ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button28InvisibleButton" type="TextureButton" parent="DropDownList1Button28"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button29" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button29Highlight" type="TextureRect" parent="DropDownList1Button29"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button29Check" type="TextureRect" parent="DropDownList1Button29"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button29Icon" type="TextureRect" parent="DropDownList1Button29"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button29NormalText" type="Label" parent="DropDownList1Button29"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button29ColorSwatch" type="TextureButton" parent="DropDownList1Button29"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button29ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button29/DropDownList1Button29ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button29/DropDownList1Button29ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button29ExpandArrow" type="TextureButton" parent="DropDownList1Button29"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button29/DropDownList1Button29ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button29InvisibleButton" type="TextureButton" parent="DropDownList1Button29"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button30" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button30Highlight" type="TextureRect" parent="DropDownList1Button30"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button30Check" type="TextureRect" parent="DropDownList1Button30"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button30Icon" type="TextureRect" parent="DropDownList1Button30"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button30NormalText" type="Label" parent="DropDownList1Button30"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button30ColorSwatch" type="TextureButton" parent="DropDownList1Button30"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button30ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button30/DropDownList1Button30ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button30/DropDownList1Button30ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button30ExpandArrow" type="TextureButton" parent="DropDownList1Button30"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button30/DropDownList1Button30ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button30InvisibleButton" type="TextureButton" parent="DropDownList1Button30"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button31" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button31Highlight" type="TextureRect" parent="DropDownList1Button31"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button31Check" type="TextureRect" parent="DropDownList1Button31"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button31Icon" type="TextureRect" parent="DropDownList1Button31"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button31NormalText" type="Label" parent="DropDownList1Button31"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button31ColorSwatch" type="TextureButton" parent="DropDownList1Button31"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button31ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button31/DropDownList1Button31ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button31/DropDownList1Button31ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button31ExpandArrow" type="TextureButton" parent="DropDownList1Button31"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button31/DropDownList1Button31ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button31InvisibleButton" type="TextureButton" parent="DropDownList1Button31"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button32" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="DropDownList1Button32Highlight" type="TextureRect" parent="DropDownList1Button32"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="DropDownList1Button32Check" type="TextureRect" parent="DropDownList1Button32"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 24
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DropDownList1Button32Icon" type="TextureRect" parent="DropDownList1Button32"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0.5
+offset_right = 123
+offset_bottom = 15.5
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="DropDownList1Button32NormalText" type="Label" parent="DropDownList1Button32"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="DropDownList1Button32ColorSwatch" type="TextureButton" parent="DropDownList1Button32"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="DropDownList1Button32ColorSwatchSwatchBg" type="ColorRect" parent="DropDownList1Button32/DropDownList1Button32ColorSwatch"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 1
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button32/DropDownList1Button32ColorSwatch"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DropDownList1Button32ExpandArrow" type="TextureButton" parent="DropDownList1Button32"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 106
+offset_top = 0
+offset_right = 122
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DropDownList1Button32/DropDownList1Button32ExpandArrow"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="DropDownList1Button32InvisibleButton" type="TextureButton" parent="DropDownList1Button32"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 106
+offset_bottom = 16
+visible = false
+ignore_texture_size = true
