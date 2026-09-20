@@ -61,6 +61,7 @@ var _ghost: bool = false
 @onready var _map: WowMap = $WowMap
 @onready var _player: Player = $Player
 @onready var _entities: Entities = $Entities
+@onready var _effects: SpellEffects = $SpellEffects
 @onready var _selection: SelectionCircle = $SelectionCircle
 @onready var _sun: DirectionalLight3D = $Sun
 @onready var _hud: Hud = %Hud
@@ -88,6 +89,7 @@ func _ready() -> void:
 	WowClient.session.packet_received.connect(_on_packet_received)
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
+	_effects.watch(_entities, _player)
 	_death = Death.new(WowClient.session)
 	_death.resurrect_offered.connect(_on_resurrect_offered)
 	_death.spirit_healer_offered.connect(_on_spirit_healer_offered)
@@ -374,11 +376,20 @@ func _use_spell(spell: int) -> void:
 		if WowAssets.spells.uses_ranged_slot(spell):
 			_sheathe(ItemModels.SheathState.RANGED)
 		var target: int = 0 if WowAssets.spells.targets_caster(spell) else _hud.target()
+		_face(target)
 		session.cast_spell(spell, target)
 	elif _auto_attacking:
 		session.stop_attack()
 	elif _hud.target() != 0:
+		_face(_hud.target())
 		session.attack(_hud.target())
+
+
+# The stock client turns you at whatever you aim at, so nothing is ever cast behind your back.
+func _face(guid: int) -> void:
+	var node: Node3D = _entities.unit_node(guid) if guid != 0 else null
+	if node:
+		_player.face(node.global_position)
 
 
 func _on_attack_changed(attacker: int, _victim: int, attacking: bool) -> void:

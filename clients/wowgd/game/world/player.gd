@@ -217,6 +217,15 @@ func place(godot_position: Vector3, facing: float) -> void:
 	rotation.y = facing
 
 
+# Turns to look at a spot, as the stock client does when a spell needs the target in front.
+func face(spot: Vector3) -> void:
+	var away: Vector3 = spot - global_position
+	if away.length_squared() < 0.01:
+		return
+	rotation.y = atan2(-away.x, -away.z)
+	_facing_dirty = true
+
+
 func set_speeds(speeds: PackedFloat32Array) -> void:
 	if speeds.size() == DEFAULT_SPEEDS.size():
 		_speeds = speeds
@@ -258,6 +267,10 @@ func set_model(model: Node3D) -> void:
 		child.queue_free()
 	_model_slot.add_child(model)
 	_model = model
+
+
+func model() -> Node3D:
+	return _model
 
 
 # WoW facing: 0 is north (+X) and it grows toward west (+Y), which matches Godot yaw here.
