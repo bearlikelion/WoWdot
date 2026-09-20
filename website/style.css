@@ -31,6 +31,16 @@ body {
   font: 16px/1.6 system-ui, sans-serif;
 }
 
+a {
+  color: var(--ice);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  color: var(--gold);
+}
+
 .hero {
   padding: 56px 16px 40px;
   text-align: center;
@@ -159,6 +169,12 @@ li {
   color: var(--muted);
 }
 
+.soon {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--gold);
+}
+
 figure {
   margin: 0 0 20px;
 }
@@ -177,6 +193,17 @@ figcaption {
   font-size: 0.9rem;
 }
 
+blockquote {
+  margin: 16px 0;
+  padding-left: 16px;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+
+blockquote p {
+  margin: 0;
+}
+
 pre {
   padding: 12px 16px;
   overflow-x: auto;
@@ -187,6 +214,15 @@ pre {
 
 code {
   font-family: ui-monospace, monospace;
+}
+
+/* Scoped so a code block inside pre does not get a second box. */
+:not(pre) > code {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  font-size: 0.9em;
 }
 
 footer {
@@ -200,4 +236,35 @@ footer {
 
 footer p {
   margin: 4px 0;
+}
+
+/* Five columns do not fit a phone, so each row becomes a labelled block. */
+@media (max-width: 620px) {
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: block;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  td {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    padding: 3px 0;
+    border: 0;
+    white-space: normal;
+  }
+
+  td::before {
+    content: attr(data-label);
+    color: var(--muted);
+  }
+
+  td > div {
+    text-align: right;
+  }
 }
