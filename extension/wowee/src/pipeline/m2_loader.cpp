@@ -21,6 +21,7 @@
  */
 #include "pipeline/m2_loader.hpp"
 #include "core/logger.hpp"
+#include <cmath>
 #include <cstring>
 #include <algorithm>
 
@@ -1504,7 +1505,8 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
                     em.particleScale.floatValues.resize(3);
                     for (int s = 0; s < 3; s++) {
                         float scale = readValue<float>(m2Data, base + 0x15C + s * 4);
-                        if (scale < 0.001f || scale > 100.0f) scale = 1.0f;
+                        // A zero end size is how a particle fades away, so only junk is replaced.
+                        if (!std::isfinite(scale) || scale < 0.0f || scale > 100.0f) scale = 1.0f;
                         em.particleScale.floatValues[s] = scale;
                     }
                 }

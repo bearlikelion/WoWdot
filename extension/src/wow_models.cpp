@@ -188,7 +188,7 @@ Ref<GradientTexture1D> particle_colors(const M2ParticleEmitter &emitter) {
 	for (size_t i = 0; i < count; i++) {
 		const glm::vec3 rgb = emitter.particleColor.vec3Values[i];
 		offsets.push_back(i < emitter.particleColor.timestamps.size() ? emitter.particleColor.timestamps[i] : float(i) / count);
-		colors.push_back(Color(rgb.r / 255.0f, rgb.g / 255.0f, rgb.b / 255.0f, emitter.particleAlpha.floatValues[i]));
+		colors.push_back(Color(rgb.r, rgb.g, rgb.b, emitter.particleAlpha.floatValues[i]));
 	}
 	if (colors.is_empty()) {
 		return Ref<GradientTexture1D>();
@@ -611,6 +611,13 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 		if (!emitter.enabled || track_value(emitter.emissionRate, 0.0f) <= 0.0f) {
 			continue;
 		}
+		String texture;
+		if (emitter.texture < model.textures.size()) {
+			texture = String(model.textures[emitter.texture].filename.c_str());
+		}
+		if (texture.is_empty()) {
+			continue;
+		}
 		const float lifespan = std::max(track_value(emitter.lifespan, 1.0f), 0.05f);
 		const float rate = track_value(emitter.emissionRate, 0.0f);
 		float largest = 1.0f;
@@ -628,6 +635,10 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 		process->set_param_max(ParticleProcessMaterial::PARAM_SCALE, largest);
 		if (sizes.is_valid()) {
 			process->set_param_texture(ParticleProcessMaterial::PARAM_SCALE, sizes);
+		}
+		if (emitter.textureRows * emitter.textureCols > 1) {
+			process->set_param_min(ParticleProcessMaterial::PARAM_ANIM_SPEED, 1.0f);
+			process->set_param_max(ParticleProcessMaterial::PARAM_ANIM_SPEED, 1.0f);
 		}
 		if (const Ref<GradientTexture1D> ramp = particle_colors(emitter); ramp.is_valid()) {
 			process->set_color_ramp(ramp);
@@ -649,14 +660,25 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 		Ref<QuadMesh> quad;
 		quad.instantiate();
 		quad->set_size(Vector2(1.0f, 1.0f));
-		String texture;
-		if (emitter.texture < model.textures.size()) {
-			texture = String(model.textures[emitter.texture].filename.c_str());
+		Ref<StandardMaterial3D> material;
+		material.instantiate();
+		material->set_texture(StandardMaterial3D::TEXTURE_ALBEDO, load_texture(texture));
+		material->set_shading_mode(StandardMaterial3D::SHADING_MODE_UNSHADED);
+		material->set_transparency(StandardMaterial3D::TRANSPARENCY_ALPHA);
+		material->set_depth_draw_mode(StandardMaterial3D::DEPTH_DRAW_DISABLED);
+		material->set_specular(0.0f);
+		// The emitter's colour and alpha arrive as the particle's vertex colour.
+		material->set_flag(StandardMaterial3D::FLAG_ALBEDO_FROM_VERTEX_COLOR, true);
+		// Only BILLBOARD_PARTICLES keeps the particle's scale and walks the texture's tiles.
+		material->set_billboard_mode(StandardMaterial3D::BILLBOARD_PARTICLES);
+		material->set_particles_anim_h_frames(emitter.textureCols);
+		material->set_particles_anim_v_frames(emitter.textureRows);
+		material->set_particles_anim_loop(false);
+		if (emitter.blendingType == M2_ADD || emitter.blendingType == M2_NO_ALPHA_ADD) {
+			material->set_blend_mode(StandardMaterial3D::BLEND_MODE_ADD);
+		} else if (emitter.blendingType == M2_MOD || emitter.blendingType == M2_MOD2X) {
+			material->set_blend_mode(StandardMaterial3D::BLEND_MODE_MUL);
 		}
-		Ref<StandardMaterial3D> material = get_material(texture, emitter.blendingType, 0, false, false, Color(1, 1, 1, 1));
-		material = material->duplicate();
-		material->set_billboard_mode(StandardMaterial3D::BILLBOARD_ENABLED);
-		material->set_flag(StandardMaterial3D::FLAG_PARTICLE_TRAILS_MODE, false);
 		quad->set_material(material);
 		particles->set_draw_pass_mesh(0, quad);
 		Node3D *holder = root;
@@ -739,6 +761,35 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 		transform_lookup.push_back(index);
 	}
 	info["texture_transform_lookup"] = transform_lookup;
+	Array emitters;
+	for (const M2ParticleEmitter &emitter : model.particleEmitters) {
+		Dictionary e;
+		e["texture"] = emitter.texture < model.textures.size()
+				? String(model.textures[emitter.texture].filename.c_str())
+				: String("?");
+		e["blend"] = emitter.blendingType;
+		e["type"] = emitter.emitterType;
+		e["rate"] = track_value(emitter.emissionRate, 0.0f);
+		e["speed"] = track_value(emitter.emissionSpeed, 0.0f);
+		e["lifespan"] = track_value(emitter.lifespan, 0.0f);
+		PackedFloat32Array scales;
+		for (const float size : emitter.particleScale.floatValues) {
+			scales.push_back(size);
+		}
+		e["scales"] = scales;
+		PackedColorArray tints;
+		for (const glm::vec3 rgb : emitter.particleColor.vec3Values) {
+			tints.push_back(Color(rgb.r, rgb.g, rgb.b, 1.0f));
+		}
+		e["colors"] = tints;
+		PackedFloat32Array alphas;
+		for (const float alpha : emitter.particleAlpha.floatValues) {
+			alphas.push_back(alpha);
+		}
+		e["alphas"] = alphas;
+		emitters.push_back(e);
+	}
+	info["particles"] = emitters;
 	Array cameras;
 	for (const M2Camera &camera : model.cameras) {
 		Dictionary c;
