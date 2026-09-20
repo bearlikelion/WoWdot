@@ -15,6 +15,11 @@ func u8() -> int:
 	return _data.decode_u8(at) if at >= 0 else 0
 
 
+func u16() -> int:
+	var at: int = _take(2)
+	return _data.decode_u16(at) if at >= 0 else 0
+
+
 func u32() -> int:
 	var at: int = _take(4)
 	return _data.decode_u32(at) if at >= 0 else 0
