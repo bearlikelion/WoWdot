@@ -79,7 +79,8 @@ func _bounds(root: Node3D) -> AABB:
 		var box: AABB = mesh.global_transform * mesh.get_aabb()
 		bounds = box if first else bounds.merge(box)
 		first = false
-	return bounds
+	# An effect made of emitters alone has no mesh to frame, so guess a body-sized box.
+	return AABB(Vector3(-1.0, 0.0, -1.0), Vector3(2.0, 2.0, 2.0)) if first else bounds
 
 
 # The default view is the front (Godot -Z) quarter, since M2 models face WoW +X.
