@@ -1,9 +1,12 @@
 #include "wow_session.h"
 
+#include "wow_profile.h"
+
 #include "auth/auth_handler.hpp"
 #include "auth/auth_packets.hpp"
 #include "game/character.hpp"
 #include "game/entity.hpp"
+#include "game/game_utils.hpp"
 #include "game/opcode_table.hpp"
 #include "game/packet_parsers.hpp"
 #include "game/update_field_table.hpp"
@@ -34,11 +37,8 @@ namespace godot {
 
 namespace {
 
-constexpr uint16_t CLIENT_BUILD = 5875;
 constexpr uint8_t AUTH_PROTOCOL = 8;
 constexpr uint8_t AUTH_PROTOCOL_LEGACY = 3;
-constexpr uint8_t CHAR_CREATE_SUCCESS = 46;
-constexpr uint8_t CHAR_DELETE_SUCCESS = 57;
 constexpr uint64_t PING_INTERVAL_MSEC = 30000;
 constexpr uint32_t LANG_ORCISH = 1;
 constexpr uint32_t LANG_COMMON = 7;
@@ -55,7 +55,7 @@ bool is_player_guid(uint64_t guid) {
 }
 
 bool is_horde(uint8_t race) {
-	return race == 2 || race == 5 || race == 6 || race == 8;
+	return race == 2 || race == 5 || race == 6 || race == 8 || race == 10;
 }
 
 std::unordered_map<std::string, int> &field_indices() {
@@ -65,7 +65,7 @@ std::unordered_map<std::string, int> &field_indices() {
 
 // The vendored loaders read from disk, and an exported build keeps res:// inside the PCK.
 static std::string table_path(const String &name) {
-	const String packed = "res://data/classic/" + name;
+	const String packed = wow_data_path(name);
 	ProjectSettings *settings = ProjectSettings::get_singleton();
 	if (!OS::get_singleton()->has_feature("template")) {
 		return settings->globalize_path(packed).utf8().get_data();
@@ -86,11 +86,12 @@ void load_protocol_tables() {
 	if (loaded) {
 		return;
 	}
+	game::activeExpansion() = wow_profile().id;
 	opcodes.loadFromJson(table_path("opcodes.json"));
 	fields.loadFromJson(table_path("update_fields.json"));
 	game::setActiveOpcodeTable(&opcodes);
 	game::setActiveUpdateFieldTable(&fields);
-	const Dictionary names = JSON::parse_string(FileAccess::get_file_as_string("res://data/classic/update_fields.json"));
+	const Dictionary names = JSON::parse_string(FileAccess::get_file_as_string(wow_data_path("update_fields.json")));
 	const Array keys = names.keys();
 	for (int i = 0; i < keys.size(); i++) {
 		field_indices()[String(keys[i]).utf8().get_data()] = static_cast<int>(names[keys[i]]);
@@ -139,7 +140,7 @@ void write_movement_info(network::Packet &packet, uint32_t flags, const Vector3 
 
 WowSession::WowSession() {
 	load_protocol_tables();
-	parsers = game::createPacketParsers("classic");
+	parsers = game::createPacketParsers(wow_profile().id);
 }
 
 WowSession::~WowSession() {
@@ -164,14 +165,15 @@ void WowSession::login(const String &host, int port, const String &p_username, c
 void WowSession::begin_auth() {
 	retire_sockets();
 	auth = std::make_unique<auth::AuthHandler>();
+	const WowProfile &profile = wow_profile();
 	auth::ClientInfo info;
-	info.majorVersion = 1;
-	info.minorVersion = 12;
-	info.patchVersion = 1;
-	info.build = CLIENT_BUILD;
+	info.majorVersion = profile.major;
+	info.minorVersion = profile.minor;
+	info.patchVersion = profile.patch;
+	info.build = profile.build;
 	// vMaNGOS answers protocol 8 while older MaNGOS cores only take 3, so a protocol failure retries once.
 	info.protocolVersion = auth_attempt == 0 ? AUTH_PROTOCOL : AUTH_PROTOCOL_LEGACY;
-	info.legacyVanillaRealmList = true;
+	info.legacyVanillaRealmList = profile.legacy_realm_list;
 	auth->setClientInfo(info);
 	// Callbacks keep their own handler, since a handler replaced mid-callback may still report.
 	auth::AuthHandler *handler = auth.get();
@@ -1161,9 +1163,9 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				return;
 			}
 			const uint32_t client_seed = std::random_device()();
-			world->send(game::AuthSessionPacket::build(CLIENT_BUILD, username, client_seed, session_key, challenge.serverSeed, realm_id));
+			world->send(game::AuthSessionPacket::build(wow_profile().build, username, client_seed, session_key, challenge.serverSeed, realm_id));
 			// The server encrypts from its next packet on, so the cipher starts right after AUTH_SESSION.
-			world->initEncryption(session_key, CLIENT_BUILD);
+			world->initEncryption(session_key, wow_profile().build);
 			return;
 		}
 		case LogicalOpcode::SMSG_AUTH_RESPONSE: {
@@ -1214,12 +1216,12 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		}
 		case LogicalOpcode::SMSG_CHAR_CREATE: {
 			const uint8_t code = packet.getSize() > 0 ? packet.readUInt8() : 0;
-			emit_signal("character_created", code == CHAR_CREATE_SUCCESS, code);
+			emit_signal("character_created", code == wow_profile().char_create_success, code);
 			return;
 		}
 		case LogicalOpcode::SMSG_CHAR_DELETE: {
 			const uint8_t code = packet.getSize() > 0 ? packet.readUInt8() : 0;
-			emit_signal("character_deleted", code == CHAR_DELETE_SUCCESS, code);
+			emit_signal("character_deleted", code == wow_profile().char_delete_success, code);
 			return;
 		}
 		case LogicalOpcode::SMSG_CHARACTER_LOGIN_FAILED: {

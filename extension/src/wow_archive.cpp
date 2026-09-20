@@ -1,5 +1,7 @@
 #include "wow_archive.h"
 
+#include "wow_profile.h"
+
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
@@ -7,6 +9,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <cstring>
 #include <filesystem>
 #include <set>
 #include <unordered_map>
@@ -35,6 +38,34 @@ std::vector<std::string> classic_sequence() {
 	return names;
 }
 
+// The 3.3.5a chain; the locale folder's archives carry the DBCs and every string.
+std::vector<std::string> wotlk_sequence(const std::string &locale) {
+	const std::string suffix = "-" + locale + ".mpq";
+	std::vector<std::string> names = {
+		"common.mpq", "common-2.mpq", "expansion.mpq", "lichking.mpq",
+		"locale" + suffix, "speech" + suffix, "expansion-locale" + suffix,
+		"lichking-locale" + suffix, "expansion-speech" + suffix, "lichking-speech" + suffix,
+		"patch.mpq",
+	};
+	for (char c = '2'; c <= '9'; c++) {
+		names.push_back(std::string("patch-") + c + ".mpq");
+	}
+	names.push_back("patch-" + locale + ".mpq");
+	for (char c = '2'; c <= '9'; c++) {
+		names.push_back("patch-" + locale + "-" + c + ".mpq");
+	}
+	return names;
+}
+
+std::string locale_from(const std::unordered_map<std::string, std::filesystem::path> &on_disk) {
+	for (const auto &entry : on_disk) {
+		if (entry.first.rfind("locale-", 0) == 0 && entry.first.size() == 15) {
+			return entry.first.substr(7, 4);
+		}
+	}
+	return "enus";
+}
+
 } // namespace
 
 WowArchive::~WowArchive() {
@@ -60,6 +91,15 @@ Error WowArchive::open(const String &data_dir) {
 	for (const fs::directory_entry &entry : fs::directory_iterator(dir, ec)) {
 		if (entry.is_regular_file()) {
 			on_disk[to_lower(entry.path().filename().string())] = entry.path();
+			continue;
+		}
+		// A locale folder holds archives of its own, and a root archive of the same name wins.
+		std::error_code sub_ec;
+		for (const fs::directory_entry &sub : fs::directory_iterator(entry.path(), sub_ec)) {
+			const std::string name = to_lower(sub.path().filename().string());
+			if (sub.is_regular_file() && name.size() > 4 && name.compare(name.size() - 4, 4, ".mpq") == 0) {
+				on_disk.emplace(name, sub.path());
+			}
 		}
 	}
 	if (ec) {
@@ -67,8 +107,12 @@ Error WowArchive::open(const String &data_dir) {
 		return ERR_FILE_NOT_FOUND;
 	}
 
+	const std::vector<std::string> sequence = std::strcmp(wow_profile().id, "wotlk") == 0
+			? wotlk_sequence(locale_from(on_disk))
+			: classic_sequence();
+
 	std::lock_guard<std::mutex> lock(mutex);
-	for (const std::string &name : classic_sequence()) {
+	for (const std::string &name : sequence) {
 		auto it = on_disk.find(name);
 		if (it == on_disk.end()) {
 			continue;

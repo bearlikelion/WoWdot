@@ -11,7 +11,7 @@
 
 namespace godot {
 
-// Read-only view over a 1.12.1 client's MPQ chain, later archives overriding earlier ones.
+// Read-only view over the client's MPQ chain, later archives overriding earlier ones.
 class WowArchive : public RefCounted {
 	GDCLASS(WowArchive, RefCounted)
 

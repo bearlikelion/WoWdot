@@ -1,5 +1,7 @@
 #include "wow_dbc.h"
 
+#include "wow_profile.h"
+
 #include <godot_cpp/classes/file_access.hpp>
 #include <godot_cpp/classes/json.hpp>
 #include <godot_cpp/core/class_db.hpp>
@@ -20,7 +22,7 @@ Ref<WowDBC> WowDBC::open(const Ref<WowArchive> &archive, const String &name) {
 		UtilityFunctions::push_error("WowDBC: ", name, ".dbc failed to parse");
 		return Ref<WowDBC>();
 	}
-	const Dictionary layouts = JSON::parse_string(FileAccess::get_file_as_string("res://data/classic/dbc_layouts.json"));
+	const Dictionary layouts = JSON::parse_string(FileAccess::get_file_as_string(wow_data_path("dbc_layouts.json")));
 	table->columns = layouts.get(name, Dictionary());
 	return table;
 }

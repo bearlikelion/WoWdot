@@ -1,5 +1,7 @@
 #include "wow_loader.h"
 
+#include "wow_profile.h"
+
 #include "pipeline/blp_loader.hpp"
 
 #include <godot_cpp/core/class_db.hpp>
@@ -67,7 +69,7 @@ Ref<WowLoader> shared_loader;
 } // namespace
 
 String WowLoader::client_data_dir() {
-	// An exported build sits in the player's 1.12.1 folder, next to its Data.
+	// An exported build sits in the player's client folder, next to its Data.
 	if (OS::get_singleton()->has_feature("template")) {
 		return OS::get_singleton()->get_executable_path().get_base_dir().path_join("Data");
 	}
@@ -76,8 +78,9 @@ String WowLoader::client_data_dir() {
 
 // Without the archives there is nothing to draw, so a game says where it looked and stops.
 void WowLoader::report_missing_data(const String &data_dir) {
-	const String message = "No World of Warcraft 1.12.1 data was found in:\n" + data_dir +
-			"\n\nPut this build in a 1.12.1 client folder, beside its Data folder, and start it again.";
+	const String version = wow_profile().version;
+	const String message = "No World of Warcraft " + version + " data was found in:\n" + data_dir +
+			"\n\nPut this build in a " + version + " client folder, beside its Data folder, and start it again.";
 	UtilityFunctions::push_error(message);
 	if (OS::get_singleton()->has_feature("editor")) {
 		return;

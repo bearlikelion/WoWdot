@@ -4,20 +4,25 @@
 #include <cstring>
 #include <string>
 
-// WoWGD rewrite: the client only speaks 1.12.1, so the expansion checks answer for classic.
+// WoWGD rewrite: one client speaks one expansion, which it names here once at startup.
 namespace wowee {
 namespace game {
 
+inline std::string &activeExpansion() {
+	static std::string id = "classic";
+	return id;
+}
+
 inline bool isActiveExpansion(const char *expansionId) {
-	return std::strcmp(expansionId, "classic") == 0;
+	return activeExpansion() == expansionId;
 }
 
 inline bool isClassicLikeExpansion() {
-	return true;
+	return activeExpansion() != "wotlk";
 }
 
 inline bool isPreWotlk() {
-	return true;
+	return activeExpansion() != "wotlk";
 }
 
 inline std::string buildItemLink(uint32_t itemId, uint32_t quality, const std::string& name) {

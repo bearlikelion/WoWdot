@@ -303,54 +303,19 @@ void AuthHandler::sendLogonProof() {
         pinHashPtr = &pinHash;
     }
 
-    // Legacy client integrity hash (aka "CRC hash"). Some servers enforce this for classic builds.
-    // We compute it when checksumSalt was provided (always present on success challenge) and files exist.
-    {
-        std::vector<std::string> candidateDirs;
-        if (const char* env = std::getenv("WOWEE_INTEGRITY_DIR")) {
-            if (env && *env) candidateDirs.push_back(env);
-        }
-        // Expansion-isolated extraction layouts. Select narrowly so a Wrath or
-        // stock Classic executable can never be used for a Turtle integrity hash.
-        if (clientInfo.majorVersion == 1 && clientInfo.minorVersion == 18) {
-            candidateDirs.push_back("Data/expansions/turtle/misc");
-        } else if (clientInfo.build <= 6005) {
-            candidateDirs.push_back("Data/expansions/classic/misc");
-        } else if (clientInfo.build <= 8606) {
-            candidateDirs.push_back("Data/expansions/tbc/misc");
-        } else {
-            candidateDirs.push_back("Data/expansions/wotlk/misc");
-        }
-        // Legacy flat extraction layout.
-        candidateDirs.push_back("Data/misc");
-        // Common turtle repack location used in this workspace
-        if (const char* home = std::getenv("HOME")) {
-            if (home && *home) {
-                candidateDirs.push_back(std::string(home) + "/Downloads/twmoa_1180");
-                candidateDirs.push_back(std::string(home) + "/twmoa_1180");
+    // WoWGD rewrite: neither client reads the stock executables, so the integrity hash is
+    // only computed when a client folder is named explicitly.
+    if (const char *dir = std::getenv("WOWEE_INTEGRITY_DIR"); dir && *dir) {
+        const char *exes[] = { "WoW.exe", "Wow.exe", "wow.exe" };
+        std::string err;
+        for (const char *exe : exes) {
+            if (computeIntegrityHashWin32WithExe(checksumSalt_, A, dir, exe, clientInfo.build, crcHash, err)) {
+                crcHashPtr = &crcHash;
+                break;
             }
         }
-
-        const char* candidateExes[] = { "WoW.exe", "TurtleWoW.exe", "Wow.exe", "wow.exe" };
-        bool ok = false;
-        std::string lastErr;
-        for (const auto& dir : candidateDirs) {
-            for (const char* exe : candidateExes) {
-                std::string err;
-                if (computeIntegrityHashWin32WithExe(checksumSalt_, A, dir, exe, clientInfo.build, crcHash, err)) {
-                    crcHashPtr = &crcHash;
-                    LOG_INFO("Integrity hash computed from ", dir, " (", exe, ")");
-                    ok = true;
-                    break;
-                }
-                lastErr = err;
-            }
-            if (ok) break;
-        }
-        if (!ok) {
-            LOG_WARNING("Integrity hash not computed (", lastErr,
-                        "). Server may reject classic clients without it. "
-                        "Set WOWEE_INTEGRITY_DIR to your client folder.");
+        if (!crcHashPtr) {
+            LOG_WARNING("Integrity hash not computed from ", dir, " (", err, ")");
         }
     }
 

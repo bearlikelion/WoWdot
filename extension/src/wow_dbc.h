@@ -9,7 +9,7 @@
 
 namespace godot {
 
-// A DBC table; columns are an index or a field name from res://data/classic/dbc_layouts.json.
+// A DBC table; columns are an index or a field name from the profile's dbc_layouts.json.
 class WowDBC : public RefCounted {
 	GDCLASS(WowDBC, RefCounted)
 

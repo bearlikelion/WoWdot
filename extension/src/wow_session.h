@@ -33,7 +33,7 @@ struct UpdateObjectData;
 
 namespace godot {
 
-// A 1.12.1 session against vMaNGOS in WoW wire coordinates; poll() drives it and emits every signal.
+// A session in WoW wire coordinates for the client's expansion; poll() drives it and emits every signal.
 class WowSession : public RefCounted {
 	GDCLASS(WowSession, RefCounted)
 
