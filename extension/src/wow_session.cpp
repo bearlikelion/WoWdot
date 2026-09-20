@@ -1700,6 +1700,17 @@ int WowSession::field_index(const String &name) const {
 	return it == field_indices().end() ? -1 : it->second;
 }
 
+// Guid fields take two words, low first, as UNIT_FIELD_TARGET and CORPSE_FIELD_OWNER do.
+int64_t WowSession::get_field_guid(int64_t guid, const Variant &field) const {
+	const int index = field.get_type() == Variant::INT ? static_cast<int>(field) : field_index(field);
+	if (index < 0) {
+		return 0;
+	}
+	const uint64_t low = static_cast<uint64_t>(get_field(guid, index)) & 0xFFFFFFFFu;
+	const uint64_t high = static_cast<uint64_t>(get_field(guid, index + 1)) & 0xFFFFFFFFu;
+	return static_cast<int64_t>(low | (high << 32));
+}
+
 int64_t WowSession::get_field(int64_t guid, const Variant &field) const {
 	const WorldObject *object = find(guid);
 	const int index = field.get_type() == Variant::INT ? static_cast<int>(field) : field_index(field);
@@ -1760,6 +1771,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_object_speeds", "guid"), &WowSession::get_object_speeds);
 	ClassDB::bind_method(D_METHOD("get_field", "guid", "field"), &WowSession::get_field);
 	ClassDB::bind_method(D_METHOD("get_field_float", "guid", "field"), &WowSession::get_field_float);
+	ClassDB::bind_method(D_METHOD("get_field_guid", "guid", "field"), &WowSession::get_field_guid);
 	ClassDB::bind_method(D_METHOD("field_index", "name"), &WowSession::field_index);
 
 	ADD_SIGNAL(MethodInfo("state_changed", PropertyInfo(Variant::INT, "state"), PropertyInfo(Variant::STRING, "message")));

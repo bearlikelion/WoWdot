@@ -155,8 +155,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Capturing only once a drag starts keeps plain clicks from grabbing the pointer.
 		if _drag_distance >= CLICK_SLOP and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		var pitch: float = _pivot.rotation.x - motion.relative.y * MOUSE_TURN
-		_pivot.rotation.x = clampf(pitch, MIN_PITCH, MAX_PITCH)
+		var tilt: float = _pivot.rotation.x - motion.relative.y * MOUSE_TURN
+		_pivot.rotation.x = clampf(tilt, MIN_PITCH, MAX_PITCH)
 		if _mouse_turning:
 			rotation.y -= motion.relative.x * MOUSE_TURN
 			_facing_dirty = true
@@ -178,7 +178,7 @@ func _physics_process(delta: float) -> void:
 		_send_changes(_flags, flags)
 		_flags = flags
 	elif _swimming():
-		_swim(flags, delta)
+		_swim(flags)
 	elif _flags & AIRBORNE:
 		_fly(flags, delta)
 	else:
@@ -298,7 +298,7 @@ func _swimming() -> bool:
 
 
 # Swimming follows the camera's pitch, and floats up to the surface when nothing is held.
-func _swim(flags: int, delta: float) -> void:
+func _swim(flags: int) -> void:
 	flags |= MoveFlag.SWIMMING
 	var local: Vector3 = Vector3.ZERO
 	if flags & MoveFlag.STRAFE_LEFT:

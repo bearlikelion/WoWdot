@@ -29,6 +29,7 @@ var _debuff_icons: Array[TextureRect] = []
 var _debuff_borders: Array[TextureRect] = []
 var _debuff_counts: Array[Label] = []
 var _aura_spells: Dictionary[Control, int] = {}
+var _target_of_target: TargetOfTargetFrame
 
 @onready var _name_background: TextureRect = %TargetFrameNameBackground
 @onready var _border: TextureRect = %TargetFrameTexture
@@ -47,12 +48,13 @@ func _ready() -> void:
 	_portrait_rect = %TargetPortrait
 	# The level text is tinted like SetVertexColor, so it starts from the white font.
 	_level_label.theme_type_variation = &"GameFontHighlightSmall"
-	# Target of target, raid marks and the right-click menu come later.
+	# Raid marks and the right-click menu come later.
 	for part: CanvasItem in [
-		%TargetofTargetFrame, %TargetLeaderIcon, %TargetRaidTargetIcon, %TargetPVPIcon,
-		%TargetFrameDropDown,
+		%TargetLeaderIcon, %TargetRaidTargetIcon, %TargetPVPIcon, %TargetFrameDropDown,
 	]:
 		part.hide()
+	_target_of_target = %TargetofTargetFrame
+	_target_of_target.unit_selected.connect(unit_selected.emit)
 	for i: int in range(1, TARGET_BUFFS + 1):
 		_buffs.append(get_node("%%TargetFrameBuff%d" % i))
 		_buff_icons.append(get_node("%%TargetFrameBuff%dIcon" % i))
@@ -105,7 +107,15 @@ func _update_unit() -> void:
 	var rank: Rank = session.get_creature_info(guid).get("rank", Rank.NORMAL) as Rank
 	_border.texture = _border_art.get(rank, _border_art[Rank.NORMAL])
 	_dead_text.visible = session.get_field(guid, "UNIT_FIELD_HEALTH") == 0
+	_update_target_of_target()
 	_update_auras()
+
+
+# TargetofTarget_Update: shown only while the target has a target of its own in sight.
+func _update_target_of_target() -> void:
+	var session: WowSession = WowClient.session
+	var of_target: int = session.get_field_guid(guid, "UNIT_FIELD_TARGET")
+	_target_of_target.show_unit(of_target if session.has_object(of_target) else 0)
 
 
 func _update_auras() -> void:

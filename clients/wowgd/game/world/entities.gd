@@ -157,7 +157,7 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 
 
 # Every object that currently has a node.
-func guids() -> PackedInt64Array:
+func shown_guids() -> PackedInt64Array:
 	return PackedInt64Array(_nodes.keys())
 
 

@@ -20,6 +20,8 @@ const COIN_ICONS: Array[String] = [
 ]
 const COIN_NAMES: PackedStringArray = ["COPPER", "SILVER", "GOLD"]
 const COIN_SLOT: int = -1
+const COIN_SOUND: String = "LOOTWINDOWCOINSOUND"
+const ITEM_SOUND: String = "INTERFACESOUND_CURSORDROPOBJECT"
 
 var _guid: int = 0
 var _money: int = 0
@@ -154,8 +156,11 @@ func _turn_page(by: int) -> void:
 func _on_button_pressed(index: int) -> void:
 	var slot: int = _slots[_page * _per_page() + index]
 	if slot == COIN_SLOT:
+		WowAssets.audio.play_sound(COIN_SOUND)
 		WowClient.session.send_packet("CMSG_LOOT_MONEY", PackedByteArray())
 		return
+	# ponytail: one sound for every item, where the stock client picks it by the item's material.
+	WowAssets.audio.play_sound(ITEM_SOUND)
 	WowClient.session.send_packet("CMSG_AUTOSTORE_LOOT_ITEM", PackedByteArray([slot]))
 
 

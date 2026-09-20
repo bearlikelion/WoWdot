@@ -101,6 +101,6 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		"SMSG_RESURRECT_REQUEST":
 			_resurrector = reader.u64()
 			var caster: String = reader.text(reader.u32())
-			resurrect_offered.emit(caster.trim_suffix("\u0000"), reader.u8() != 0)
+			resurrect_offered.emit(caster, reader.u8() != 0)
 		"SMSG_SPIRIT_HEALER_CONFIRM":
 			spirit_healer_offered.emit(reader.u64())

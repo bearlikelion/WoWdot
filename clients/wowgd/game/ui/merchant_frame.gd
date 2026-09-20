@@ -29,6 +29,7 @@ const PORTRAIT_MASK: Shader = preload("res://game/ui/portrait.gdshader")
 # MerchantItem3 onwards sit this far under the pair above, closer on the merchant tab.
 const MERCHANT_ROW_GAP: float = 8.0
 const BUYBACK_ROW_GAP: float = 15.0
+const COIN_SOUND: String = "LOOTWINDOWCOINSOUND"
 
 var _guid: int = 0
 var _items: Array[Dictionary] = []
@@ -85,6 +86,7 @@ func sell(item: int) -> void:
 	payload.resize(17)
 	payload.encode_u64(0, _guid)
 	payload.encode_u64(8, item)
+	WowAssets.audio.play_sound(COIN_SOUND)
 	WowClient.session.send_packet("CMSG_SELL_ITEM", payload)
 
 
@@ -236,6 +238,7 @@ func _on_item_clicked(index: int, right_click: bool) -> void:
 	payload.encode_u64(0, _guid)
 	payload.encode_u32(8, _items[item_index]["entry"])
 	payload.encode_u8(12, 1)
+	WowAssets.audio.play_sound(COIN_SOUND)
 	WowClient.session.send_packet("CMSG_BUY_ITEM", payload)
 
 

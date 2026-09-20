@@ -204,6 +204,7 @@ public:
 	PackedFloat32Array get_object_speeds(int64_t guid) const;
 	int64_t get_field(int64_t guid, const Variant &field) const;
 	double get_field_float(int64_t guid, const Variant &field) const;
+	int64_t get_field_guid(int64_t guid, const Variant &field) const;
 	int field_index(const String &name) const;
 };
 

@@ -22,6 +22,10 @@ func _ready() -> void:
 	assert(music.playing and "Mountain" in audio._music_path)
 	audio.play_sound("igMainMenuOpen")
 	assert(effects.playing)
+	for sound_name: String in [
+		LootFrame.COIN_SOUND, LootFrame.ITEM_SOUND, MerchantFrame.COIN_SOUND,
+	]:
+		assert(audio._sound_rows.has(sound_name.to_lower()), "unknown sound " + sound_name)
 
 	var camera: Camera3D = Camera3D.new()
 	add_child(camera)

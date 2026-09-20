@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://game/ui/target_frame.gd" id="1"]
 [ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/target_of_target_frame.gd" id="5"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame-LevelBackground.blp"
@@ -1087,7 +1088,7 @@ expand_mode = 1
 
 [node name="TargetofTargetFrame" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
+script = ExtResource("5")
 offset_left = 104
 offset_top = 65
 offset_right = 197

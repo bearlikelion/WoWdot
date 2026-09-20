@@ -35,9 +35,14 @@ func u64() -> int:
 	return _data.decode_u64(at) if at >= 0 else 0
 
 
+# The length a packet gives counts the terminator, which must not reach the decoder.
 func text(length: int) -> String:
 	var at: int = _take(length)
-	return _data.slice(at, at + length).get_string_from_utf8() if at >= 0 else ""
+	if at < 0:
+		return ""
+	var bytes: PackedByteArray = _data.slice(at, at + length)
+	var end: int = bytes.find(0)
+	return bytes.slice(0, end if end >= 0 else bytes.size()).get_string_from_utf8()
 
 
 func packed_guid() -> int:

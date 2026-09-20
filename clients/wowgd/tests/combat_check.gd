@@ -4,7 +4,8 @@ extends Node
 const MAIN: PackedScene = preload("res://game/main.tscn")
 const TIMEOUT_MSEC: int = 60000
 const FIGHT_MSEC: int = 20000
-const TARGET_NAME: String = "Young Wolf"
+# Coldridge Valley has Ragged Young Wolves, Elwynn has Young Wolves.
+const TARGET_NAME: String = "Wolf"
 const MELEE_GAP: float = 1.5
 # Warriors keep their Battle Stance bar in slots 72 to 83, with Attack first.
 const ATTACK_SLOT: int = 72
@@ -95,7 +96,7 @@ func _find(creature_name: String) -> int:
 	var best_distance: float = INF
 	for guid: int in units:
 		var distance: float = session.get_object_position(guid).distance_to(player)
-		if session.get_object_name(guid) == creature_name and distance < best_distance \
+		if session.get_object_name(guid).contains(creature_name) and distance < best_distance \
 		and session.get_field(guid, "UNIT_FIELD_HEALTH") > 0:
 			best = guid
 			best_distance = distance

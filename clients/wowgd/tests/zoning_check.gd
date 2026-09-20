@@ -73,7 +73,7 @@ func _zone(wow_position: Vector3, map_id: int, map_name: String) -> void:
 	_check(world.player().active, "the player walks on %s" % map_name)
 	var entities: Entities = world.get_node("Entities")
 	var strays: int = 0
-	for guid: int in entities.guids():
+	for guid: int in entities.shown_guids():
 		if not WowClient.session.has_object(guid):
 			strays += 1
 	_check(strays == 0, "the old map's objects are gone (%d left)" % strays)

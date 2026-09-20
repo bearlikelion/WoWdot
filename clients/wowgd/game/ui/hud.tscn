@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bnfpuen12o1q6" path="res://game/ui/wow/main_menu_bar.tscn" id="5_bar"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/player_frame.tscn" id="6_player"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/target_frame.tscn" id="7_target"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/casting_bar_frame.tscn" id="8_cast"]
+[ext_resource type="PackedScene" uid="uid://t55ke7okpvwe" path="res://game/ui/wow/casting_bar_frame.tscn" id="8_cast"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/buff_frame.tscn" id="9_buffs"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/ui_errors_frame.tscn" id="10_errors"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/multi_bar_right.tscn" id="11_side_bars"]
