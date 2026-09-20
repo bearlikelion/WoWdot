@@ -112,7 +112,7 @@ func _on_object_created(guid: int, type_id: int) -> void:
 		_arm(guid)
 	if type_id != ObjectType.GAMEOBJECT:
 		node.rotation.y = session.get_object_orientation(guid)
-		_add_nameplate(guid, node)
+		add_nameplate(guid, node)
 		UnitVoice.attach(node, guid, display)
 		_on_object_updated(guid)
 		if type_id == ObjectType.UNIT and NpcDialog.is_quest_giver(guid):
@@ -228,12 +228,15 @@ func _on_name_received(guid: int, _unit_name: String) -> void:
 		_place_marker(guid)
 
 
-# The stock options hide the names over players or over creatures separately.
+# The stock options hide your own name, other players' and creatures' separately.
 func _show_name(guid: int) -> void:
 	if not _nameplates.has(guid):
 		return
-	var player: bool = WowClient.session.get_object_type(guid) == ObjectType.PLAYER
-	var option: StringName = &"show_player_names" if player else &"show_npc_names"
+	var session: WowSession = WowClient.session
+	var option: StringName = &"show_own_name"
+	if guid != session.get_player_guid():
+		option = &"show_player_names" if session.get_object_type(guid) == ObjectType.PLAYER \
+		else &"show_npc_names"
 	_nameplates[guid].visible = WowAssets.interface.is_on(option)
 
 
@@ -264,7 +267,8 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 			_nodes.erase(guid)
 
 
-func _add_nameplate(guid: int, node: Node3D) -> void:
+# The player's own model is not one of these entities, so world.gd asks for its plate itself.
+func add_nameplate(guid: int, node: Node3D) -> void:
 	var node_space: Transform3D = node.global_transform.affine_inverse()
 	var bounds: AABB = AABB()
 	for mesh: MeshInstance3D in node.find_children("*", "MeshInstance3D", true, false):

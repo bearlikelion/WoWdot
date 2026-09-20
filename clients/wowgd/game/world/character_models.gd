@@ -32,6 +32,9 @@ const INVENTORY_SLOTS: Dictionary[int, EquipSlot] = {
 	9: EquipSlot.HANDS, 18: EquipSlot.TABARD,
 }
 const VISIBLE_ITEM_STRIDE: int = 12
+# PLAYER_FLAGS the server sets from CMSG_SHOWING_HELM and CMSG_SHOWING_CLOAK.
+const PLAYER_FLAG_HIDE_HELM: int = 0x400
+const PLAYER_FLAG_HIDE_CLOAK: int = 0x800
 # PLAYER_VISIBLE_ITEM slots of the main hand, off hand and ranged weapon, and of the cloak.
 const WEAPON_SLOTS: Array[int] = [15, 16, 17]
 const BACK_SLOT: int = 14
@@ -150,7 +153,10 @@ static func player_look(session: WowSession, guid: int) -> Dictionary:
 		weapons.append(ItemModels.Weapon.new(
 			info.get("display_id", 0), info.get("sheath", 0), info.get("subclass", 0)
 		))
-	var cloak: int = items[BACK_SLOT]
+	var flags: int = session.get_field(guid, "PLAYER_FLAGS")
+	if flags & PLAYER_FLAG_HIDE_HELM:
+		equipment[EquipSlot.HEAD] = 0
+	var cloak: int = 0 if flags & PLAYER_FLAG_HIDE_CLOAK else items[BACK_SLOT]
 	var cloak_info: Dictionary = session.get_item_info(cloak) if cloak != 0 else {}
 	pending = pending or (cloak != 0 and cloak_info.is_empty())
 	return {

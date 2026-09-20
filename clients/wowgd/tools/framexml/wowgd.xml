@@ -181,4 +181,13 @@
 			</Button>
 		</Frames>
 	</Frame>
+	<CheckButton name="UIOptionsFrameCheckButton70" inherits="UIOptionsCheckButtonTemplate" parent="BasicOptions">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="BasicOptionsHelp" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="10" y="-10"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</CheckButton>
 </Ui>

@@ -71,6 +71,7 @@ func _ready() -> void:
 	%WorldMapZoomOutButton.pressed.connect(_zoom_out)
 	%WorldMapFrameCloseButton.pressed.connect(close_requested.emit)
 	visibility_changed.connect(_on_visibility_changed)
+	WowAssets.interface.changed.connect(_update_markers)
 
 
 func _process(_delta: float) -> void:
@@ -161,7 +162,7 @@ func _update_overlays(file: String) -> void:
 				_overlay_pieces.append(piece)
 
 
-# mWoW's point-of-interest layer: AreaPOI landmarks, flight masters, and quest givers in view.
+# mWoW's marker layer: AreaPOI landmarks, flight masters, and quest givers in view.
 func _update_markers() -> void:
 	for node: Control in _markers:
 		node.queue_free()
@@ -173,21 +174,8 @@ func _update_markers() -> void:
 		return
 	var map_id: int = _areas.get_uint(_areas.find(_shown), "MapID")
 	var zone_level: bool = not _is_continent(_shown)
-	for row: int in _pois.row_count():
-		if _pois.get_uint(row, "MapID") != map_id:
-			continue
-		var importance: int = _pois.get_uint(row, "Importance")
-		if not zone_level and importance < LABELLED_IMPORTANCE:
-			continue
-		var at: Vector3 = Vector3(_pois.get_float(row, "X"), _pois.get_float(row, "Y"), 0.0)
-		var kind: WorldMapMarker.Kind = WorldMapMarker.Kind.MAJOR_POI \
-		if importance >= MAJOR_IMPORTANCE else WorldMapMarker.Kind.POI
-		var poi_name: String = _pois.get_string(row, "Name")
-		var marker: WorldMapMarker = _add_marker(
-			map_id, at, kind, poi_name, _pois.get_string(row, "Description"),
-		)
-		if marker and zone_level and importance >= LABELLED_IMPORTANCE:
-			_add_label(marker, poi_name)
+	if WowAssets.interface.is_on(&"show_map_pois"):
+		_add_pois(map_id, zone_level)
 	var alliance: bool = _player_race() in ALLIANCE_RACES
 	for node: int in TaxiNodes.all_on_map(map_id):
 		if not TaxiNodes.serves(node, alliance):
@@ -211,6 +199,25 @@ func _update_markers() -> void:
 				map_id, session.get_object_position(guid), WorldMapMarker.Kind.QUEST,
 				session.get_object_name(guid), "",
 			)
+
+
+# AreaPOI landmarks: inns, towns and the like, which the interface options can turn off.
+func _add_pois(map_id: int, zone_level: bool) -> void:
+	for row: int in _pois.row_count():
+		if _pois.get_uint(row, "MapID") != map_id:
+			continue
+		var importance: int = _pois.get_uint(row, "Importance")
+		if not zone_level and importance < LABELLED_IMPORTANCE:
+			continue
+		var at: Vector3 = Vector3(_pois.get_float(row, "X"), _pois.get_float(row, "Y"), 0.0)
+		var kind: WorldMapMarker.Kind = WorldMapMarker.Kind.MAJOR_POI \
+		if importance >= MAJOR_IMPORTANCE else WorldMapMarker.Kind.POI
+		var poi_name: String = _pois.get_string(row, "Name")
+		var marker: WorldMapMarker = _add_marker(
+			map_id, at, kind, poi_name, _pois.get_string(row, "Description"),
+		)
+		if marker and zone_level and importance >= LABELLED_IMPORTANCE:
+			_add_label(marker, poi_name)
 
 
 func _add_marker(

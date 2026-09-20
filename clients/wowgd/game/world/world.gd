@@ -8,6 +8,8 @@ const TAB_RANGE: float = 40.0
 const UNIT_FLAG_NON_ATTACKABLE: int = 0x2
 const UNIT_FLAG_NOT_SELECTABLE: int = 0x2000000
 const PLAYER_FLAG_GHOST: int = 0x10
+const HIDDEN_GEAR_FLAGS: int = CharacterModels.PLAYER_FLAG_HIDE_HELM \
+		| CharacterModels.PLAYER_FLAG_HIDE_CLOAK
 const STAND_STATE_STAND: int = 0
 const STAND_STATE_SIT: int = 1
 const UNIT_DYNFLAG_LOOTABLE: int = 0x1
@@ -46,6 +48,9 @@ var _last_hostile: int = 0
 var _worn: PackedInt32Array = []
 var _dressing: bool = false
 var _mount_display: int = 0
+# Which of the helm and cloak the server has hidden, and which we have asked it to.
+var _hidden_gear: int = -1
+var _wanted_gear: int = -1
 # The player's own model, under the mount while riding, and the weapons it carries.
 var _rider: Node3D
 var _weapons: Array = []
@@ -91,6 +96,7 @@ func _ready() -> void:
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
 	_effects.watch(_entities, _player)
 	UnitVoice.map = _map
+	WowAssets.interface.changed.connect(_on_interface_changed)
 	_death = Death.new(WowClient.session)
 	_death.corpse_located.connect(_hud.show_corpse)
 	_death.resurrect_offered.connect(_on_resurrect_offered)
@@ -424,7 +430,9 @@ func _on_object_updated(guid: int) -> void:
 	_follow_death(dead, ghost)
 	_player.stand_state = session.get_field(guid, "UNIT_FIELD_BYTES_1") & 0xFF
 	var mount: int = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
-	if CharacterModels.visible_items(session, guid) != _worn or mount != _mount_display:
+	var gear_changed: bool = _read_hidden_gear()
+	if gear_changed or CharacterModels.visible_items(session, guid) != _worn \
+	or mount != _mount_display:
 		_dress_player()
 	elif _rider and ItemModels.sheath_state(session, guid) != _sheath_state:
 		_sheath_state = ItemModels.sheath_state(session, guid)
@@ -458,6 +466,40 @@ func _dress_player() -> void:
 	if model:
 		_player.set_model(model)
 		UnitVoice.attach(model, guid, display, _mount_display)
+		_entities.add_nameplate(guid, model)
+
+
+# Show Helm and Show Cloak live in the character's own PLAYER_FLAGS, so the server's word sets them.
+func _read_hidden_gear() -> bool:
+	var session: WowSession = WowClient.session
+	var hidden: int = session.get_field(session.get_player_guid(), "PLAYER_FLAGS") \
+			& HIDDEN_GEAR_FLAGS
+	if hidden == _hidden_gear:
+		return false
+	_hidden_gear = hidden
+	_wanted_gear = hidden
+	var settings: InterfaceSettings = WowAssets.interface
+	settings.set_on(&"show_helm", (hidden & CharacterModels.PLAYER_FLAG_HIDE_HELM) == 0)
+	settings.set_on(&"show_cloak", (hidden & CharacterModels.PLAYER_FLAG_HIDE_CLOAK) == 0)
+	return true
+
+
+# CMSG_SHOWING_HELM and CMSG_SHOWING_CLOAK carry nothing and toggle the flag they are named for.
+func _on_interface_changed() -> void:
+	if _wanted_gear < 0:
+		return
+	var settings: InterfaceSettings = WowAssets.interface
+	var wanted: int = 0
+	if not settings.is_on(&"show_helm"):
+		wanted |= CharacterModels.PLAYER_FLAG_HIDE_HELM
+	if not settings.is_on(&"show_cloak"):
+		wanted |= CharacterModels.PLAYER_FLAG_HIDE_CLOAK
+	var turned: int = wanted ^ _wanted_gear
+	_wanted_gear = wanted
+	if turned & CharacterModels.PLAYER_FLAG_HIDE_HELM:
+		WowClient.session.send_packet("CMSG_SHOWING_HELM", PackedByteArray())
+	if turned & CharacterModels.PLAYER_FLAG_HIDE_CLOAK:
+		WowClient.session.send_packet("CMSG_SHOWING_CLOAK", PackedByteArray())
 
 
 func _apply_video() -> void:
@@ -594,5 +636,6 @@ func _on_object_created(guid: int, _type_id: int) -> void:
 		return
 	_hud.show_player(guid)
 	_player.set_speeds(WowClient.session.get_object_speeds(guid))
+	_read_hidden_gear()
 	_dress_player()
 	_follow_server_path()

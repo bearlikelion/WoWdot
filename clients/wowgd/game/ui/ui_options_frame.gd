@@ -28,13 +28,16 @@ const CHECK_TEXTS: Dictionary[int, String] = {
 	63: "COMBAT_TEXT_SHOW_REACTIVES_TEXT", 64: "COMBAT_TEXT_SHOW_FRIENDLY_NAMES_TEXT",
 	65: "COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT", 66: "AUTO_QUEST_WATCH_TEXT", 67: "SHOW_OWN_NAME",
 	68: "DISABLE_SPAM_FILTER", 69: "COMBAT_TEXT_SHOW_HONOR_GAINED_TEXT",
+	# This client's own, so it names itself rather than a global string.
+	70: "Show Map Landmarks",
 }
 # The options this client answers; the rest stay on show but greyed out.
 const CHECK_OPTIONS: Dictionary[int, StringName] = {
-	1: &"invert_mouse", 2: &"status_bar_text", 21: &"show_player_names",
-	30: &"show_npc_names", 33: &"multi_bar_1", 34: &"multi_bar_2",
+	1: &"invert_mouse", 2: &"status_bar_text", 20: &"show_helm", 21: &"show_player_names",
+	30: &"show_npc_names", 31: &"show_cloak", 33: &"multi_bar_1", 34: &"multi_bar_2",
 	35: &"multi_bar_3", 36: &"multi_bar_4", 37: &"chat_bubbles", 38: &"party_chat_bubbles",
-	39: &"show_buff_durations", 66: &"auto_quest_watch", 
+	39: &"show_buff_durations", 66: &"auto_quest_watch", 67: &"show_own_name",
+	70: &"show_map_pois",
 }
 
 # What the options stood at when the window opened, so Cancel can put them back.

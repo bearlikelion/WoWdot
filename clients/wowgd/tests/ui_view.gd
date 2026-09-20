@@ -22,6 +22,8 @@ func _ready() -> void:
 	var view: Control = scene.instantiate()
 	_root.add_child(view)
 	view.show()
+	for path: String in args.get("show", "").split(",", false):
+		(view.get_node(NodePath(path)) as CanvasItem).show()
 	for i: int in SETTLE_FRAMES:
 		await get_tree().process_frame
 	var out: String = args.get("out", "user://ui_view.png")

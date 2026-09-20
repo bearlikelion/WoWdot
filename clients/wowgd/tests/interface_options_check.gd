@@ -5,6 +5,8 @@ const OPTIONS_FRAME: PackedScene = preload("res://game/ui/wow/ui_options_frame.t
 # Show Buff Durations and one this client does not answer yet.
 const HONOURED: int = 39
 const UNANSWERED: int = 28
+# This client's own Show Map Landmarks, which the stock window has no button for.
+const ADDED: int = 70
 
 var _failures: PackedStringArray = []
 
@@ -34,9 +36,17 @@ func _run() -> void:
 	await get_tree().process_frame
 	_check(not settings.is_on(&"show_buff_durations"), "ticking a box moves the setting")
 	_check(not honoured.checked, "and the box follows it")
+	var added: WowButton = frame.get_node("%%UIOptionsFrameCheckButton%d" % ADDED)
+	_check(not added.disabled, "the added option can be ticked")
+	_check(_label(frame, ADDED) == "Show Map Landmarks", "it names itself")
+	_check(added.checked, "and starts on")
+	added.pressed.emit()
+	await get_tree().process_frame
+	_check(not settings.is_on(&"show_map_pois"), "ticking it moves the setting")
 	frame.hide()
 	await get_tree().process_frame
 	_check(settings.is_on(&"show_buff_durations"), "closing without Okay puts it back")
+	_check(settings.is_on(&"show_map_pois"), "and puts the added one back too")
 	if _failures.is_empty():
 		print("interface_options_check: OK")
 	else:

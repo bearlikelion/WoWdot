@@ -3052,6 +3052,78 @@ texture = SubResource("WowTexture_15")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
+[node name="UIOptionsFrameCheckButton70" type="TextureButton" parent="BasicOptions"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 42
+offset_top = 664
+offset_right = 68
+offset_bottom = 690
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/UIOptionsFrameCheckButton70"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/UIOptionsFrameCheckButton70"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton70Text" type="Label" parent="BasicOptions/UIOptionsFrameCheckButton70"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/UIOptionsFrameCheckButton70"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/UIOptionsFrameCheckButton70"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/UIOptionsFrameCheckButton70"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
 [node name="AdvancedOptions" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1

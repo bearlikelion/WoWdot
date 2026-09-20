@@ -15,10 +15,15 @@ const OPTIONS: Dictionary[StringName, bool] = {
 	&"party_chat_bubbles": false,
 	&"show_player_names": true,
 	&"show_npc_names": true,
+	&"show_own_name": false,
+	&"show_helm": true,
+	&"show_cloak": true,
 	&"multi_bar_1": true,
 	&"multi_bar_2": true,
 	&"multi_bar_3": true,
 	&"multi_bar_4": true,
+	# This client's own option, which the stock window has no check button for.
+	&"show_map_pois": true,
 }
 
 var _values: Dictionary[StringName, bool] = {}
