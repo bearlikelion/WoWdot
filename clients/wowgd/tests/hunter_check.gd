@@ -7,7 +7,6 @@ const STEP_MSEC: int = 40000
 const HUNTER: String = "Huntik"
 # A tamed beast has to be of the hunter's level or lower.
 const TAME_LEVEL: int = 10
-const BEAST_NAME: String = "Wolf"
 # The spawn of a Coldridge Valley wolf, where a dwarf hunter finds something to tame.
 const BEASTS_AT: String = ".go creature 332"
 const PET_NAME: String = "Fangs"
@@ -102,11 +101,18 @@ func _check_spell_book(hud: Hud, pet: Pet) -> void:
 # .stable is the stable master without the walk: the server lists the pets for the player itself.
 func _stable(session: WowSession, hud: Hud, pet: Pet) -> void:
 	var stable: PetStableFrame = hud.get_node("%UIPanels").get_node("%PetStableFrame")
+	# A stable slot has to be bought before a pet can go into it, and it costs five silver.
+	session.send_chat(WowSession.CHAT_SAY, ".modify money 100000")
 	session.send_chat(WowSession.CHAT_SAY, ".stable")
 	_check(await _until(func() -> bool: return stable.visible), "the stable lists the pets")
 	if not stable.visible:
 		return
 	var slot: BaseButton = stable.get_node("%PetStableStabledPet1")
+	(stable.get_node("%PetStablePurchaseButton") as BaseButton).pressed.emit()
+	_check(
+		await _until(func() -> bool: return (slot as Control).visible),
+		"buying a slot opens it in the stable",
+	)
 	slot.pressed.emit()
 	_check(
 		await _until(func() -> bool: return pet.guid == 0), "clicking a free slot stables the pet"
@@ -117,47 +123,35 @@ func _stable(session: WowSession, hud: Hud, pet: Pet) -> void:
 	_check(await _until(func() -> bool: return pet.guid != 0), "clicking the pet brings it back")
 
 
+# Beasts live around the wolf spawn, and .npc tame turns down anything that cannot be tamed.
 func _tame(session: WowSession, pet: Pet) -> bool:
-	for attempt: int in 2:
-		var wolf: int = await _find(session, BEAST_NAME)
-		if wolf == 0:
-			printerr("no wolf near %s" % WowCoords.from_godot(_main.world.player().global_position))
-			continue
-		_main.world.select(wolf)
-		# The server needs the selection first, and frames are not wall clock in a headless run.
-		await get_tree().create_timer(1.0).timeout
-		# .npc tame is the twenty second channel without the walk, the range and the line of sight.
-		session.send_chat(WowSession.CHAT_SAY, ".npc tame")
-		if await _until(
-			func() -> bool: return pet.guid != 0 and session.has_object(pet.guid), 15000
-		):
-			return true
+	for attempt: int in 3:
+		for unit: int in _units_near(session):
+			_main.world.select(unit)
+			# The server needs the selection first, and frames are not wall clock in a headless run.
+			await get_tree().create_timer(1.0).timeout
+			session.send_chat(WowSession.CHAT_SAY, ".npc tame")
+			if await _until(
+				func() -> bool: return pet.guid != 0 and session.has_object(pet.guid), 6000
+			):
+				return true
+		await get_tree().create_timer(5.0).timeout
 	return false
 
 
-# Asks for every unit's name first, then picks the nearest living match once the answers are in.
-func _find(session: WowSession, unit_name: String) -> int:
+# Every unit in the world the client knows, nearest first, the player left out.
+func _units_near(session: WowSession) -> Array[int]:
+	var player: Vector3 = WowCoords.from_godot(_main.world.player().global_position)
 	var units: Array[int] = []
 	for guid: int in session.get_object_guids():
-		if session.get_object_type(guid) == Entities.ObjectType.UNIT:
-			session.get_object_name(guid)
-			units.append(guid)
-	# Name answers take real time, which frames in a headless run are not.
-	await get_tree().create_timer(2.0).timeout
-	var player: Vector3 = WowCoords.from_godot(_main.world.player().global_position)
-	var best: int = 0
-	var best_distance: float = INF
-	var seen: PackedStringArray = []
-	for guid: int in units:
-		seen.append(session.get_object_name(guid))
-	printerr("looking for %s among %s" % [unit_name, seen])
-	for guid: int in units:
-		var distance: float = session.get_object_position(guid).distance_to(player)
-		if session.get_object_name(guid).contains(unit_name) and distance < best_distance \
+		if session.get_object_type(guid) == Entities.ObjectType.UNIT \
 		and session.get_field(guid, "UNIT_FIELD_HEALTH") > 0:
-			best = guid
-			best_distance = distance
-	return best
+			units.append(guid)
+	units.sort_custom(func(a: int, b: int) -> bool:
+		return session.get_object_position(a).distance_to(player) \
+		< session.get_object_position(b).distance_to(player)
+	)
+	return units
 
 
 func _until(condition: Callable, timeout_msec: int = STEP_MSEC) -> bool:
