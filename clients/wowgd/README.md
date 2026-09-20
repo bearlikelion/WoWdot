@@ -58,8 +58,9 @@ Command-line options after `--` fill the login screen for one run without saving
 `export_presets.cfg` has Linux and Windows presets that write to `export/wowgd/`.
 An exported build reads `Data` next to its executable, so players copy the export into their 1.12.1 folder.
 Build the extension's release libraries first: `scons target=template_release`, and `scons platform=windows target=template_release` (mingw-w64) for Windows.
-Both presets encrypt the pck, so the export needs the key in `export_credentials.cfg` or `GODOT_SCRIPT_ENCRYPTION_KEY`.
-Tagging `v*` runs `.forgejo/workflows/release.yml`, which does all of the above and attaches `WoWGD-linux.zip` and `WoWGD-windows.zip` to a GitHub release, each holding the binary, the extension library, `packaging/wowgd/README.txt`, `LICENSE` and `NOTICE.md`.
+Both presets encrypt the pck, so the export needs the key in `export_credentials.cfg` or `GODOT_SCRIPT_ENCRYPTION_KEY`, and it needs export templates compiled with that same key.
+The official templates cannot load an encrypted pck, which is why releases are built here rather than in CI.
+After exporting both presets, `packaging/publish.sh <tag>` writes `WoWGD-linux.zip` and `WoWGD-windows.zip`, each holding the binary, the extension library, `packaging/wowgd/README.txt`, `LICENSE` and `NOTICE.md`, and attaches them to a GitHub release.
 
 ## Checks
 

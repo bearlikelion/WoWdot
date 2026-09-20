@@ -247,6 +247,7 @@ class Converter:
         self.project = Path(project)
         self.config = config
         self.scene_of_template = {s["frame"]: s for s in config["scenes"] if s.get("template")}
+        self._template_children = {}
         # Frames left out of the port, such as the EULA pages and the billing notices.
         self.exclude = set(config.get("exclude", []))
         # Frames moved under another frame so their anchors resolve inside one scene.
@@ -256,6 +257,16 @@ class Converter:
                 if node in children:
                     children.remove(node)
             library.parented.setdefault(new_parent, []).append(node)
+
+    # The nodes a written template scene already holds, so instances do not add them twice.
+    def template_children(self, out):
+        if out not in self._template_children:
+            path = self.project / out
+            text = path.read_text() if path.exists() else ""
+            self._template_children[out] = {
+                m.group(1) for m in re.finditer(r'\[node name="([^"]+)" [^\]]*parent="\."', text)
+            }
+        return self._template_children[out]
 
     # ---- widget tree ----
 
@@ -588,7 +599,7 @@ class SceneWriter:
         ]
         self.emit(root, None, ".", props, is_root=True)
 
-    def emit(self, w, parent, parent_path, extra=None, is_root=False):
+    def emit(self, w, parent, parent_path, extra=None, is_root=False, in_template=()):
         name = (self.entry.get("name") or w.name) if is_root else self.node_name(w, parent)
         if not is_root:
             siblings = [n for n in self.nodes if n["parent"] == parent_path]
@@ -620,7 +631,11 @@ class SceneWriter:
             props.append(("script", self.ext_resource("Script", self.entry["script"])))
         elif script and not instance:
             props.append(("script", self.ext_resource("Script", script)))
-        record = {"name": name, "parent": parent_path, "type": None if instance else kind,
+        # A child the template scene already holds is edited in place, or Godot renames one of them.
+        override = name in in_template
+        if override:
+            props = [(k, v) for k, v in props if k != "script"]
+        record = {"name": name, "parent": parent_path, "type": None if instance or override else kind,
                   "instance": instance, "props": props, "unique": False}
         if w.name and not is_root:
             key = name
@@ -638,9 +653,10 @@ class SceneWriter:
             self.emit_model(w, path)
         if instance:
             # The template scene already holds the inherited children; only the frame's own are added.
+            inherited = self.conv.template_children(self.conv.scene_of_template[w.template_scene]["out"])
             for c in w.children:
                 if c.own:
-                    self.emit(c, w, path)
+                    self.emit(c, w, path, in_template=inherited)
             return
         for c in w.children:
             if not getattr(c, "scroll_child", False):

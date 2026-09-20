@@ -698,7 +698,7 @@ offset_top = -146.5
 offset_right = 34
 offset_bottom = -109.5
 
-[node name="HighlightTexture" type="TextureRect" parent="OpenMailLetterButton"]
+[node name="HighlightTexture" parent="OpenMailLetterButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 37
@@ -721,7 +721,7 @@ offset_top = -146.5
 offset_right = 81
 offset_bottom = -109.5
 
-[node name="HighlightTexture" type="TextureRect" parent="OpenMailPackageButton"]
+[node name="HighlightTexture" parent="OpenMailPackageButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 37
@@ -744,7 +744,7 @@ offset_top = -146.5
 offset_right = 128
 offset_bottom = -109.5
 
-[node name="HighlightTexture" type="TextureRect" parent="OpenMailMoneyButton"]
+[node name="HighlightTexture" parent="OpenMailMoneyButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 37

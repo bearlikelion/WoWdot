@@ -24,6 +24,8 @@ var _guid: int = 0
 var _mails: Array[Dictionary] = []
 var _page: int = 0
 var _tab: Tab = Tab.INBOX
+# True while a list was asked for by opening a mailbox, rather than to follow an action.
+var _opening: bool = false
 
 
 func _ready() -> void:
@@ -47,9 +49,14 @@ func _ready() -> void:
 func open(mailbox_guid: int) -> void:
 	_guid = mailbox_guid
 	_page = 0
+	_opening = true
+	_request_list()
+
+
+func _request_list() -> void:
 	var payload: PackedByteArray = []
 	payload.resize(8)
-	payload.encode_u64(0, mailbox_guid)
+	payload.encode_u64(0, _guid)
 	WowClient.session.send_packet("CMSG_GET_MAIL_LIST", payload)
 
 
@@ -157,7 +164,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_MAIL_LIST_RESULT":
 		_mails = _read_mails(payload)
 		refresh()
-		open_requested.emit()
+		if _opening:
+			_opening = false
+			open_requested.emit()
 		return
 	if opcode != "SMSG_SEND_MAIL_RESULT":
 		return
@@ -167,7 +176,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if action == MailAction.SENT and error == MAIL_OK:
 		message_added.emit(WowStrings.get_text("ERR_MAIL_SENT", "Mail sent."))
 		show_tab(Tab.INBOX)
-	open(_guid)
+	_request_list()
 
 
 func _read_mails(payload: PackedByteArray) -> Array[Dictionary]:
