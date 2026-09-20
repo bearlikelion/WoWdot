@@ -88,7 +88,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `emote_check`, `channel_check` | Slash emotes and chat channels. |
 | `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting. |
 | `sheath_check`, `sky_check` | Sheathing, sky, light and weather. |
-| `audio_check` | Audio, with no server needed. |
+| `audio_check`, `effects_check` | Audio; scrolling textures and particle emitters, both with no server needed. |
 
 ## Still to do
 
@@ -97,7 +97,7 @@ In the order they are planned:
 | Milestone | Work |
 | --- | --- |
 | M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
-| M6 visuals | M2 particles, ribbons and texture animation, spell visuals and projectiles, WMO liquids, transports. |
+| M6 visuals | M2 ribbons, spell visuals and projectiles, WMO liquids, transports. |
 | M7 polish | Key binding UI, interface options, starting outfit on the create preview, race and class tooltips, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the corpse marker on the map and minimap, the breath meter underwater. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
