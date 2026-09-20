@@ -69,15 +69,24 @@ func _ready() -> void:
 		var button: WowButton = get_node("%%CharacterCreateRaceButton%d" % (i + 1))
 		_race_buttons.append(button)
 		button.pressed.connect(_choose_race.bind(CharacterOptions.RACE_ORDER[i]))
+		_name_on_hover(button, func() -> String:
+			return CharacterOptions.race_name(CharacterOptions.RACE_ORDER[i])
+		)
 	for i: int in CLASS_BUTTONS:
 		var button: WowButton = get_node("%%CharacterCreateClassButton%d" % (i + 1))
 		_class_buttons.append(button)
 		button.pressed.connect(_choose_class.bind(i))
+		_name_on_hover(button, func() -> String:
+			return CharacterOptions.class_label(_classes[i]) if i < _classes.size() else ""
+		)
 	_gender_buttons.assign([%CharacterCreateGenderButtonMale, %CharacterCreateGenderButtonFemale])
 	for gender: int in _gender_buttons.size():
 		var icon: TextureRect = _gender_buttons[gender].get_node("NormalTexture")
 		_set_tex_coords(icon, GENDER_ICON_RECTS[gender])
 		_gender_buttons[gender].pressed.connect(_choose_gender.bind(gender))
+		_name_on_hover(_gender_buttons[gender], func() -> String:
+			return WowStrings.get_text(["MALE", "FEMALE"][gender])
+		)
 	for i: int in CUSTOMIZATIONS.size():
 		var frame: String = "%%CharacterCustomizationButtonFrame%d" % (i + 1)
 		(get_node(frame + "Text") as Label).text = WowStrings.get_text(
@@ -240,6 +249,16 @@ func _race_icon(race: int, gender: CharacterOptions.Gender) -> Rect2:
 
 
 # SetChecked and LockHighlight on the chosen button, with its name shown under it.
+# CharacterCreateRaceButton_OnEnter: the button under the cursor names itself, as the chosen one does.
+func _name_on_hover(button: WowButton, label: Callable) -> void:
+	var text: Label = get_node("%" + button.name + "HighlightText")
+	button.mouse_entered.connect(func() -> void: text.text = label.call())
+	button.mouse_exited.connect(func() -> void:
+		if not button.checked:
+			text.text = ""
+	)
+
+
 func _mark(button: WowButton, chosen: bool, label: String) -> void:
 	button.checked = chosen
 	button.highlight_locked = chosen
