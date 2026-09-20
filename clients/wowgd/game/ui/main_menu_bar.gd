@@ -63,6 +63,9 @@ var _portrait: AtlasTexture = AtlasTexture.new()
 @onready var _xp_bar: TextureProgressBar = %MainMenuExpBar
 @onready var _xp_text: Label = %MainMenuBarExpText
 @onready var _rested: ColorRect = %ExhaustionLevelFillBar
+@onready var _reputation_bar: Control = %ReputationWatchBar
+@onready var _reputation_status: TextureProgressBar = %ReputationWatchStatusBar
+@onready var _reputation_text: Label = %ReputationWatchStatusBarText
 @onready var _micro_buttons: Dictionary[BaseButton, GamePanel] = {
 	%CharacterMicroButton: GamePanel.CHARACTER,
 	%SpellbookMicroButton: GamePanel.SPELLBOOK,
@@ -104,6 +107,7 @@ func _ready() -> void:
 	WowClient.session.object_updated.connect(_on_object_updated)
 	# The player's own create block brings the stance, and it can land after the bar is built.
 	WowClient.session.object_created.connect(_on_object_created)
+	_reputation_bar.hide()
 	_assign_slots()
 	_update_xp()
 	_update_bottom_bars()
@@ -123,6 +127,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			page = i + 1
 			return
+
+
+# ReputationWatchBar_Update: the watched faction's standing, or nothing when none is watched.
+func show_reputation(entry: Dictionary) -> void:
+	_reputation_bar.visible = not entry.is_empty()
+	if entry.is_empty():
+		return
+	_reputation_status.max_value = maxi(entry["bar_max"], 1)
+	_reputation_status.value = entry["bar_value"]
+	_reputation_status.tint_progress = ReputationFrame.BAR_COLORS[entry["standing_id"] - 1]
+	_reputation_text.text = "%s: %d / %d" % [entry["name"], entry["bar_value"], entry["bar_max"]]
 
 
 # The page the buttons actually show, which a form's bonus bar can override.

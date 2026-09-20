@@ -1,6 +1,8 @@
 class_name ReputationFrame
 extends Control
 
+signal watched_changed(entry: Dictionary)
+
 const NUM_FACTIONS_DISPLAYED: int = 15
 const REPUTATIONFRAME_FACTIONHEIGHT: float = 26.0
 const BASE_SLOTS: int = 4
@@ -27,6 +29,7 @@ var _collapsed: Dictionary[int, bool] = {}
 var _selected: int = -1
 var _offset: int = 0
 var _factions: WowDBC
+var _watched: int = -1
 var _textures: Dictionary[String, WowTexture] = {}
 
 @onready var _list_scroll: WowScrollFrame = %ReputationListScrollFrame
@@ -47,16 +50,18 @@ func _ready() -> void:
 		bar.mouse_exited.connect(_on_bar_hovered.bind(i, false))
 		_header(i).pressed.connect(_on_header_pressed.bind(i))
 	%ReputationDetailCloseButton.pressed.connect(_detail.hide)
-	# Toggling war, inactive and the watch bar waits on their packets.
+	# Toggling war and inactive waits on their packets.
 	for check: BaseButton in [
 		%ReputationDetailAtWarCheckBox, %ReputationDetailInactiveCheckBox,
-		%ReputationDetailMainScreenCheckBox,
 	]:
 		check.disabled = true
+	%ReputationDetailMainScreenCheckBox.pressed.connect(_on_watch_pressed)
 	(%ReputationDetailFactionDescription as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_list_scroll.scrolled.connect(_on_list_scrolled)
-	WowClient.session.factions_changed.connect(refresh)
+	WowClient.session.factions_changed.connect(_on_factions_changed)
+	WowClient.session.object_updated.connect(_on_object_updated)
 	visibility_changed.connect(refresh)
+	_update_watch()
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -170,6 +175,45 @@ func _build_entries() -> void:
 		var factions: Array = by_header[header]
 		factions.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a["name"] < b["name"])
 		_entries.append_array(factions)
+
+
+# The faction shown on the main bar, or an empty dictionary when none is watched.
+func watched_entry() -> Dictionary:
+	for entry: Dictionary in _entries:
+		if not entry["header"] and entry["index"] == _watched:
+			return entry
+	return {}
+
+
+func _on_factions_changed() -> void:
+	refresh()
+	_update_watch()
+
+
+func _on_object_updated(guid: int) -> void:
+	if guid == WowClient.session.get_player_guid() and _watched_index() != _watched:
+		_update_watch()
+
+
+func _update_watch() -> void:
+	_watched = _watched_index()
+	_build_entries()
+	%ReputationDetailMainScreenCheckBox.checked = _watched >= 0 and _watched == _selected
+	watched_changed.emit(watched_entry())
+
+
+func _watched_index() -> int:
+	var session: WowSession = WowClient.session
+	var value: int = session.get_field(session.get_player_guid(), "PLAYER_FIELD_WATCHED_FACTION_INDEX")
+	return value - 0x100000000 if value >= 0x80000000 else value
+
+
+# CMSG_SET_WATCHED_FACTION takes the reputation index, or -1 to clear the bar.
+func _on_watch_pressed() -> void:
+	var payload: PackedByteArray = []
+	payload.resize(4)
+	payload.encode_s32(0, -1 if _watched == _selected else _selected)
+	WowClient.session.send_packet("CMSG_SET_WATCHED_FACTION", payload)
 
 
 # The starting reputation a race and class have with a faction, before anything earned.

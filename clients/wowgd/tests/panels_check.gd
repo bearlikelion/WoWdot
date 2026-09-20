@@ -89,10 +89,12 @@ func _run() -> void:
 	var faction: Label = character.get_node("%ReputationBar2FactionName")
 	var standing: Label = character.get_node("%ReputationBar2FactionStanding")
 	print("reputation: '%s' '%s' '%s'" % [
-		(character.get_node("%ReputationHeader1NormalText") as Label).text, faction.text, standing.text,
+		(character.get_node("%ReputationHeader1NormalText") as Label).text, faction.text,
+		standing.text,
 	])
 	_check(not faction.text.is_empty() and not standing.text.is_empty(), "factions list")
 	_capture("user://panels_reputation.png")
+	await _watch_bar(character, faction.text)
 	await _press(KEY_U)
 	_check(not character.visible, "U again closes the frame")
 	await _press(KEY_K)
@@ -260,6 +262,35 @@ func _drag(from: Control, to: Vector2) -> void:
 	release.position = screen * to
 	Input.parse_input_event(release)
 	await _frames(3)
+
+
+# Watching a faction puts it on the main bar, and unwatching takes it off again.
+func _watch_bar(character: CharacterFrame, faction_name: String) -> void:
+	var watch_bar: Control = _main.world.hud().find_child("ReputationWatchBar", true, false)
+	var text: Label = watch_bar.find_child("ReputationWatchStatusBarText", true, false)
+	(character.get_node("%ReputationBar2") as Control).gui_input.emit(_click())
+	await _frames(10)
+	(character.get_node("%ReputationDetailMainScreenCheckBox") as BaseButton).pressed.emit()
+	var watched: bool = await _until(func() -> bool: return watch_bar.visible)
+	_check(watched, "watching a faction shows the reputation bar")
+	_check(text.text.begins_with(faction_name), "the bar names the faction (%s)" % text.text)
+	(character.get_node("%ReputationDetailMainScreenCheckBox") as BaseButton).pressed.emit()
+	var cleared: bool = await _until(func() -> bool: return not watch_bar.visible)
+	_check(cleared, "unwatching hides the reputation bar")
+
+
+func _click() -> InputEventMouseButton:
+	var click: InputEventMouseButton = InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.pressed = false
+	return click
+
+
+func _until(condition: Callable, timeout_msec: int = 5000) -> bool:
+	var until: int = Time.get_ticks_msec() + timeout_msec
+	while not condition.call() and Time.get_ticks_msec() < until:
+		await get_tree().process_frame
+	return condition.call()
 
 
 func _press(key: Key) -> void:
