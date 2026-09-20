@@ -3,7 +3,8 @@ extends Node
 
 # Kobold Camp Cleanup, given in Coldridge Valley.
 const SHARED_QUEST: int = 179
-const KILLING_BLOW: int = 100000
+# Wolves do not drop something every time, so the check tries a few of them.
+const KILLS_FOR_LOOT: int = 3
 const MAIN: PackedScene = preload("res://game/main.tscn")
 const TIMEOUT_MSEC: int = 60000
 const HOST: String = "127.0.0.1"
@@ -92,7 +93,7 @@ func _run() -> void:
 	_finish("")
 
 
-# Group loot with the lowest threshold puts every drop up for a roll.
+# Group loot with the lowest threshold puts every drop up for a roll, when a drop comes at all.
 func _loot_roll(hud: Hud) -> void:
 	var session: WowSession = WowClient.session
 	var rolls: LootRolls = hud.find_child("LootRolls", true, false)
@@ -102,13 +103,32 @@ func _loot_roll(hud: Hud) -> void:
 	# Only party members in range roll, so the partner is summoned over first.
 	session.send_chat(WowSession.CHAT_SAY, ".namego %s" % PARTNER)
 	await get_tree().create_timer(3.0).timeout
-	var prey: int = _nearest_creature()
-	if prey == 0:
-		return _check(false, "a creature to kill for loot")
-	_main.world.select(prey)
-	# The party only rolls for loot it earned, so the player lands the killing blow itself.
+	for attempt: int in KILLS_FOR_LOOT:
+		var prey: int = _nearest_creature()
+		if prey == 0:
+			break
+		await _kill(prey)
+		if await _until(func() -> bool: return rolls.get_child_count() > 0, 5000):
+			break
+	if rolls.get_child_count() == 0:
+		print("no drop to roll for after %d kills" % KILLS_FOR_LOOT)
+		PartyFrame.set_loot_method(PartyFrame.LootMethod.GROUP_LOOT, 2)
+		return
+	var frame: GroupLootFrame = rolls.get_child(0)
+	frame.rolled.emit(GroupLootFrame.Roll.GREED)
+	var answered: bool = await _until(func() -> bool: return not lines.is_empty(), 10000)
+	_check(answered, "the roll is answered")
+	if answered:
+		print("roll line: ", lines[0])
+	PartyFrame.set_loot_method(PartyFrame.LootMethod.GROUP_LOOT, 2)
+
+
+# The party only rolls for loot it earned, so the player lands the killing blow itself.
+func _kill(prey: int) -> void:
+	var session: WowSession = WowClient.session
 	var player: Player = _main.world.player()
 	var prey_node: Node3D = (_main.world.get_node("Entities") as Entities).unit_node(prey)
+	_main.world.select(prey)
 	player.global_position = prey_node.global_position + Vector3.RIGHT
 	player.movement_changed.emit(
 		"MSG_MOVE_HEARTBEAT", player.global_position, player.orientation(), 0, 0, Vector3.ZERO,
@@ -122,16 +142,6 @@ func _loot_roll(hud: Hud) -> void:
 	session.stop_attack()
 	await get_tree().create_timer(1.0).timeout
 	LootFrame.loot(prey)
-	var offered: bool = await _until(func() -> bool: return rolls.get_child_count() > 0, 10000)
-	_check(offered, "a drop starts a roll")
-	if offered:
-		var frame: GroupLootFrame = rolls.get_child(0)
-		frame.rolled.emit(GroupLootFrame.Roll.GREED)
-		var answered: bool = await _until(func() -> bool: return not lines.is_empty(), 10000)
-		_check(answered, "the roll is answered")
-		if answered:
-			print("roll line: ", lines[0])
-	PartyFrame.set_loot_method(PartyFrame.LootMethod.GROUP_LOOT, 2)
 
 
 func _nearest_creature() -> int:
