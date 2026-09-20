@@ -20,7 +20,7 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Zoning | Continents, dungeons and portals, with the loading screen and a clean sweep of the old map's objects. |
 | Death | Release, corpse location and reclaim, resurrect offers from other players, and the spirit healer. |
 | Combat | Targeting, auto attack, spell casts with cooldowns and the GCD, buffs and debuffs, floating combat text, combat log. |
-| HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap, tooltips, reputation watch bar. |
+| HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap with the corpse marked, tooltips, reputation watch bar, breath and fatigue timers. |
 | Chat | Say, yell, party, guild and whispers, channels with /join and numbered commands, emotes such as /dance, speech bubbles over the speaker. |
 | Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video and sound options. |
 | NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag slot purchases, auctioneers. |
@@ -84,7 +84,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `bubble_check`, `pet_check.sh` | Speech bubbles; a warlock's imp, its frame, bar and spellbook. |
 | `hunter_check.sh` | Taming, naming, happiness and the stable, with a throwaway hunter. It leans on the GM commands `.npc tame` and `.stable`, and needs a quiet machine: a busy one can take minutes to reach the world. |
 | `remote_motion_check`, `remote_movement_check.sh` | Other players' movement. |
-| `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming. |
+| `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming and the breath timer. |
 | `stance_check`, `target_of_target_check` | The stance bar and the target of target frame. |
 | `emote_check`, `channel_check` | Slash emotes and chat channels. |
 | `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting with the corpse marked on both maps. |
@@ -103,7 +103,7 @@ In the order they are planned:
 | --- | --- |
 | M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
 | M6 visuals | M2 ribbons, WMO liquids, transports. |
-| M7 polish | Key binding UI, interface options, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the breath meter underwater. |
+| M7 polish | Key binding UI, interface options, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 

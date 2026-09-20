@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/chat_frame.tscn" id="14_chat"]
 [ext_resource type="PackedScene" path="res://game/ui/ui_panels.tscn" id="15_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/quest_watch_frame.tscn" id="16_watch"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/mirror_timer.tscn" id="30_timer"]
+[ext_resource type="Script" path="res://game/ui/mirror_timers.gd" id="31_timers"]
 [ext_resource type="PackedScene" path="res://game/ui/party_frame.tscn" id="17_party"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/combat_log_frame.tscn" id="18_combat_log"]
 [ext_resource type="PackedScene" path="res://game/ui/combat_text.tscn" id="19_combat_text"]
@@ -152,6 +154,28 @@ offset_left = -192.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 192.0
+
+[node name="MirrorTimers" type="Control" parent="UIParent"]
+unique_name_in_owner = true
+script = ExtResource("31_timers")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="MirrorTimer1" parent="UIParent/MirrorTimers" instance=ExtResource("30_timer")]
+layout_mode = 1
+
+[node name="MirrorTimer2" parent="UIParent/MirrorTimers" instance=ExtResource("30_timer")]
+layout_mode = 1
+offset_top = 122.0
+offset_bottom = 148.0
+
+[node name="MirrorTimer3" parent="UIParent/MirrorTimers" instance=ExtResource("30_timer")]
+layout_mode = 1
+offset_top = 148.0
+offset_bottom = 174.0
 
 [node name="QuestWatchFrame" parent="UIParent" unique_id=1274227025 instance=ExtResource("16_watch")]
 unique_name_in_owner = true

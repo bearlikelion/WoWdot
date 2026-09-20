@@ -1,364 +1,369 @@
 {
-  "theme": "game/ui/wow/fonts.tres",
-  "xml": [
-    "wowgd.xml"
-  ],
-  "template_scripts": {
-    "CooldownFrameTemplate": "res://game/ui/wow/wow_cooldown.gd",
-    "SpellButtonTemplate": "res://game/ui/spell_button.gd"
-  },
-  "inject": {
-    "CharacterMicroButton": {
-      "NormalTexture": "Interface\\Buttons\\UI-MicroButtonCharacter-Up",
-      "PushedTexture": "Interface\\Buttons\\UI-MicroButtonCharacter-Down",
-      "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
-    },
-    "SpellbookMicroButton": {
-      "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Up",
-      "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Down",
-      "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-      "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Disabled"
-    },
-    "TalentMicroButton": {
-      "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Up",
-      "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Down",
-      "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-      "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Disabled"
-    },
-    "QuestLogMicroButton": {
-      "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Up",
-      "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Down",
-      "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-      "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Disabled"
-    },
-    "SocialsMicroButton": {
-      "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Up",
-      "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Down",
-      "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-      "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Disabled"
-    },
-    "WorldMapMicroButton": {
-      "NormalTexture": "Interface\\Buttons\\UI-MicroButton-World-Up",
-      "PushedTexture": "Interface\\Buttons\\UI-MicroButton-World-Down",
-      "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-      "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-World-Disabled"
-    },
-    "MainMenuMicroButton": {
-      "NormalTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Up",
-      "PushedTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Down",
-      "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-      "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Disabled"
-    },
-    "HelpMicroButton": {
-      "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Help-Up",
-      "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Help-Down",
-      "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-      "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Help-Disabled"
-    },
-    "MainMenuBarBackpackButton": {
-      "IconTexture": "Interface\\Buttons\\Button-Backpack-Up"
-    },
-    "CharacterBag0Slot": {
-      "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
-    },
-    "CharacterBag1Slot": {
-      "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
-    },
-    "CharacterBag2Slot": {
-      "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
-    },
-    "CharacterBag3Slot": {
-      "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
-    }
-  },
-  "scenes": [
-    {
-      "frame": "ActionButtonTemplate",
-      "template": true,
-      "out": "game/ui/wow/action_button_template.tscn",
-      "script": "res://game/ui/action_button.gd"
-    },
-    {
-      "frame": "MainMenuBar",
-      "out": "game/ui/wow/main_menu_bar.tscn",
-      "script": "res://game/ui/main_menu_bar.gd"
-    },
-    {
-      "frame": "PlayerFrame",
-      "out": "game/ui/wow/player_frame.tscn",
-      "script": "res://game/ui/player_frame.gd"
-    },
-    {
-      "frame": "TargetFrame",
-      "out": "game/ui/wow/target_frame.tscn",
-      "script": "res://game/ui/target_frame.gd"
-    },
-    {
-      "frame": "CastingBarFrame",
-      "out": "game/ui/wow/casting_bar_frame.tscn",
-      "script": "res://game/ui/casting_bar.gd"
-    },
-    {
-      "frame": "BuffFrame",
-      "out": "game/ui/wow/buff_frame.tscn",
-      "script": "res://game/ui/buff_frame.gd"
-    },
-    {
-      "frame": "UIErrorsFrame",
-      "out": "game/ui/wow/ui_errors_frame.tscn"
-    },
-    {
-      "frame": "MultiBarRight",
-      "out": "game/ui/wow/multi_bar_right.tscn",
-      "script": "res://game/ui/side_action_bars.gd"
-    },
-    {
-      "frame": "MinimapCluster",
-      "out": "game/ui/wow/minimap_cluster.tscn",
-      "script": "res://game/ui/minimap_cluster.gd"
-    },
-    {
-      "frame": "ChatFrame1",
-      "out": "game/ui/wow/chat_frame.tscn",
-      "script": "res://game/ui/chat_frame.gd"
-    },
-    {
-      "frame": "ChatFrame2",
-      "out": "game/ui/wow/combat_log_frame.tscn",
-      "script": "res://game/ui/combat_log_frame.gd"
-    },
-    {
-      "frame": "AccountLogin",
-      "out": "game/ui/wow/account_login.tscn",
-      "script": "res://game/ui/login_screen.gd"
-    },
-    {
-      "frame": "RealmList",
-      "out": "game/ui/wow/realm_list.tscn",
-      "script": "res://game/ui/realm_list.gd"
-    },
-    {
-      "frame": "CharacterSelect",
-      "out": "game/ui/wow/character_select.tscn",
-      "script": "res://game/ui/character_select.gd"
-    },
-    {
-      "frame": "CharacterCreate",
-      "out": "game/ui/wow/character_create.tscn",
-      "script": "res://game/ui/character_create.gd"
-    },
-    {
-      "frame": "GlueDialog",
-      "out": "game/ui/wow/glue_dialog.tscn",
-      "script": "res://game/ui/glue_dialog.gd"
-    },
-    {
-      "frame": "ItemButtonTemplate",
-      "template": true,
-      "out": "game/ui/wow/item_button.tscn",
-      "script": "res://game/ui/item_button.gd"
-    },
-    {
-      "frame": "MoneyFrameTemplate",
-      "template": true,
-      "out": "game/ui/wow/money_frame.tscn",
-      "script": "res://game/ui/money_frame.gd"
-    },
-    {
-      "frame": "SmallMoneyFrameTemplate",
-      "template": true,
-      "out": "game/ui/wow/small_money_frame.tscn",
-      "script": "res://game/ui/money_frame.gd"
-    },
-    {
-      "frame": "ContainerFrameTemplate",
-      "template": true,
-      "out": "game/ui/wow/container_frame.tscn",
-      "script": "res://game/ui/container_frame.gd"
-    },
-    {
-      "frame": "GameMenuFrame",
-      "out": "game/ui/wow/game_menu_frame.tscn",
-      "script": "res://game/ui/game_menu.gd"
-    },
-    {
-      "frame": "SoundOptionsFrame",
-      "out": "game/ui/wow/sound_options_frame.tscn",
-      "script": "res://game/ui/sound_options_frame.gd"
-    },
-    {
-      "frame": "VideoOptionsFrame",
-      "out": "game/ui/wow/video_options_frame.tscn",
-      "script": "res://game/ui/video_options_frame.gd"
-    },
-    {
-      "frame": "CharacterFrame",
-      "out": "game/ui/wow/character_frame.tscn",
-      "script": "res://game/ui/character_frame.gd"
-    },
-    {
-      "frame": "SpellBookFrame",
-      "out": "game/ui/wow/spell_book_frame.tscn",
-      "script": "res://game/ui/spell_book.gd"
-    },
-    {
-      "frame": "TalentButtonTemplate",
-      "template": true,
-      "out": "game/ui/wow/talent_button.tscn",
-      "script": "res://game/ui/item_button.gd"
-    },
-    {
-      "frame": "TalentFrame",
-      "out": "game/ui/wow/talent_frame.tscn",
-      "script": "res://game/ui/talent_frame.gd"
-    },
-    {
-      "frame": "QuestLogFrame",
-      "out": "game/ui/wow/quest_log_frame.tscn",
-      "script": "res://game/ui/quest_log_frame.gd"
-    },
-    {
-      "frame": "StaticPopup1",
-      "out": "game/ui/wow/static_popup.tscn",
-      "script": "res://game/ui/static_popup.gd"
-    },
-    {
-      "frame": "GossipFrame",
-      "out": "game/ui/wow/gossip_frame.tscn",
-      "script": "res://game/ui/gossip_frame.gd"
-    },
-    {
-      "frame": "QuestFrame",
-      "out": "game/ui/wow/quest_frame.tscn",
-      "script": "res://game/ui/quest_frame.gd"
-    },
-    {
-      "frame": "QuestWatchFrame",
-      "out": "game/ui/wow/quest_watch_frame.tscn",
-      "script": "res://game/ui/quest_watch_frame.gd"
-    },
-    {
-      "frame": "MerchantFrame",
-      "out": "game/ui/wow/merchant_frame.tscn",
-      "script": "res://game/ui/merchant_frame.gd"
-    },
-    {
-      "frame": "PartyMemberFrameTemplate",
-      "template": true,
-      "out": "game/ui/wow/party_member_frame.tscn",
-      "script": "res://game/ui/party_member_frame.gd"
-    },
-    {
-      "frame": "LootButtonTemplate",
-      "template": true,
-      "out": "game/ui/wow/loot_button.tscn",
-      "script": "res://game/ui/item_button.gd"
-    },
-    {
-      "frame": "LootFrame",
-      "out": "game/ui/wow/loot_frame.tscn",
-      "script": "res://game/ui/loot_frame.gd"
-    },
-    {
-      "frame": "ClassTrainerFrame",
-      "out": "game/ui/wow/class_trainer_frame.tscn",
-      "script": "res://game/ui/class_trainer_frame.gd"
-    },
-    {
-      "frame": "TaxiButtonTemplate",
-      "template": true,
-      "out": "game/ui/wow/taxi_button.tscn",
-      "script": "res://game/ui/wow/wow_button.gd"
-    },
-    {
-      "frame": "TaxiFrame",
-      "out": "game/ui/wow/taxi_frame.tscn",
-      "script": "res://game/ui/taxi_frame.gd"
-    },
-    {
-      "frame": "WorldMapFrame",
-      "out": "game/ui/wow/world_map_frame.tscn",
-      "script": "res://game/ui/world_map_frame.gd"
-    },
-    {
-      "frame": "BankFrame",
-      "out": "game/ui/wow/bank_frame.tscn",
-      "script": "res://game/ui/bank_frame.gd"
-    },
-    {
-      "frame": "MailFrame",
-      "out": "game/ui/wow/mail_frame.tscn",
-      "script": "res://game/ui/mail_frame.gd"
-    },
-    {
-      "frame": "OpenMailFrame",
-      "out": "game/ui/wow/open_mail_frame.tscn",
-      "script": "res://game/ui/open_mail_frame.gd"
-    },
-    {
-      "frame": "AuctionFrame",
-      "out": "game/ui/wow/auction_frame.tscn",
-      "script": "res://game/ui/auction_frame.gd"
-    },
-    {
-      "frame": "TradeFrame",
-      "out": "game/ui/wow/trade_frame.tscn",
-      "script": "res://game/ui/trade_frame.gd"
-    },
-    {
-      "frame": "FriendsFrame",
-      "out": "game/ui/wow/friends_frame.tscn",
-      "script": "res://game/ui/friends_frame.gd"
-    },
-    {
-      "frame": "GroupLootFrameTemplate",
-      "template": true,
-      "out": "game/ui/wow/group_loot_frame.tscn",
-      "script": "res://game/ui/group_loot_frame.gd"
-    },
-    {
-      "frame": "DropDownList1",
-      "out": "game/ui/wow/drop_down_list.tscn",
-      "script": "res://game/ui/drop_down_list.gd"
-    },
-    {
-      "frame": "PetStableFrame",
-      "out": "game/ui/wow/pet_stable_frame.tscn",
-      "script": "res://game/ui/pet_stable_frame.gd"
-    }
-  ],
-  "graft": {
-    "MultiBarBottomLeft": "MainMenuBar",
-    "MultiBarBottomRight": "MainMenuBar",
-    "MultiBarLeft": "MultiBarRight",
-    "ChatFrame1Tab": "ChatFrame1",
-    "ChatFrame2Tab": "ChatFrame2",
-    "ChatFrameEditBox": "ChatFrame1",
-    "ChatFrameMenuButton": "ChatFrame1",
-    "CharacterDeleteDialog": "CharacterSelect"
-  },
-  "frame_scripts": {
-    "Minimap": "res://game/ui/minimap_view.gd",
-    "SkillFrame": "res://game/ui/skill_frame.gd",
-    "ReputationFrame": "res://game/ui/reputation_frame.gd",
-    "ShapeshiftBarFrame": "res://game/ui/stance_bar.gd",
-    "TargetofTargetFrame": "res://game/ui/target_of_target_frame.gd",
-    "PetFrame": "res://game/ui/pet_frame.gd",
-    "PetActionBarFrame": "res://game/ui/pet_action_bar.gd"
-  },
-  "exclude": [
-    "VirtualKeypadFrame",
-    "ConnectionHelpFrame",
-    "ServerAlertFrame",
-    "TOSFrame",
-    "SurveyNotificationFrame",
-    "AccountLoginTOSButton",
-    "AccountLoginCreditsButton",
-    "AccountLoginCinematicsButton",
-    "BillingWarningFrame",
-    "GameRoomBillingFrame",
-    "CharacterRenameDialog",
-    "CharacterSelectAddonsButton",
-    "CharacterCreateRandomName"
-  ]
+	"theme": "game/ui/wow/fonts.tres",
+	"xml": [
+		"wowgd.xml"
+	],
+	"template_scripts": {
+		"CooldownFrameTemplate": "res://game/ui/wow/wow_cooldown.gd",
+		"SpellButtonTemplate": "res://game/ui/spell_button.gd"
+	},
+	"inject": {
+		"CharacterMicroButton": {
+			"NormalTexture": "Interface\\Buttons\\UI-MicroButtonCharacter-Up",
+			"PushedTexture": "Interface\\Buttons\\UI-MicroButtonCharacter-Down",
+			"HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
+		},
+		"SpellbookMicroButton": {
+			"NormalTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Up",
+			"PushedTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Down",
+			"HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+			"DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Disabled"
+		},
+		"TalentMicroButton": {
+			"NormalTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Up",
+			"PushedTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Down",
+			"HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+			"DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Disabled"
+		},
+		"QuestLogMicroButton": {
+			"NormalTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Up",
+			"PushedTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Down",
+			"HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+			"DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Disabled"
+		},
+		"SocialsMicroButton": {
+			"NormalTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Up",
+			"PushedTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Down",
+			"HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+			"DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Disabled"
+		},
+		"WorldMapMicroButton": {
+			"NormalTexture": "Interface\\Buttons\\UI-MicroButton-World-Up",
+			"PushedTexture": "Interface\\Buttons\\UI-MicroButton-World-Down",
+			"HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+			"DisabledTexture": "Interface\\Buttons\\UI-MicroButton-World-Disabled"
+		},
+		"MainMenuMicroButton": {
+			"NormalTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Up",
+			"PushedTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Down",
+			"HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+			"DisabledTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Disabled"
+		},
+		"HelpMicroButton": {
+			"NormalTexture": "Interface\\Buttons\\UI-MicroButton-Help-Up",
+			"PushedTexture": "Interface\\Buttons\\UI-MicroButton-Help-Down",
+			"HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+			"DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Help-Disabled"
+		},
+		"MainMenuBarBackpackButton": {
+			"IconTexture": "Interface\\Buttons\\Button-Backpack-Up"
+		},
+		"CharacterBag0Slot": {
+			"IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+		},
+		"CharacterBag1Slot": {
+			"IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+		},
+		"CharacterBag2Slot": {
+			"IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+		},
+		"CharacterBag3Slot": {
+			"IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+		}
+	},
+	"scenes": [
+		{
+			"frame": "ActionButtonTemplate",
+			"template": true,
+			"out": "game/ui/wow/action_button_template.tscn",
+			"script": "res://game/ui/action_button.gd"
+		},
+		{
+			"frame": "MainMenuBar",
+			"out": "game/ui/wow/main_menu_bar.tscn",
+			"script": "res://game/ui/main_menu_bar.gd"
+		},
+		{
+			"frame": "PlayerFrame",
+			"out": "game/ui/wow/player_frame.tscn",
+			"script": "res://game/ui/player_frame.gd"
+		},
+		{
+			"frame": "TargetFrame",
+			"out": "game/ui/wow/target_frame.tscn",
+			"script": "res://game/ui/target_frame.gd"
+		},
+		{
+			"frame": "CastingBarFrame",
+			"out": "game/ui/wow/casting_bar_frame.tscn",
+			"script": "res://game/ui/casting_bar.gd"
+		},
+		{
+			"frame": "BuffFrame",
+			"out": "game/ui/wow/buff_frame.tscn",
+			"script": "res://game/ui/buff_frame.gd"
+		},
+		{
+			"frame": "UIErrorsFrame",
+			"out": "game/ui/wow/ui_errors_frame.tscn"
+		},
+		{
+			"frame": "MultiBarRight",
+			"out": "game/ui/wow/multi_bar_right.tscn",
+			"script": "res://game/ui/side_action_bars.gd"
+		},
+		{
+			"frame": "MinimapCluster",
+			"out": "game/ui/wow/minimap_cluster.tscn",
+			"script": "res://game/ui/minimap_cluster.gd"
+		},
+		{
+			"frame": "ChatFrame1",
+			"out": "game/ui/wow/chat_frame.tscn",
+			"script": "res://game/ui/chat_frame.gd"
+		},
+		{
+			"frame": "ChatFrame2",
+			"out": "game/ui/wow/combat_log_frame.tscn",
+			"script": "res://game/ui/combat_log_frame.gd"
+		},
+		{
+			"frame": "AccountLogin",
+			"out": "game/ui/wow/account_login.tscn",
+			"script": "res://game/ui/login_screen.gd"
+		},
+		{
+			"frame": "RealmList",
+			"out": "game/ui/wow/realm_list.tscn",
+			"script": "res://game/ui/realm_list.gd"
+		},
+		{
+			"frame": "CharacterSelect",
+			"out": "game/ui/wow/character_select.tscn",
+			"script": "res://game/ui/character_select.gd"
+		},
+		{
+			"frame": "CharacterCreate",
+			"out": "game/ui/wow/character_create.tscn",
+			"script": "res://game/ui/character_create.gd"
+		},
+		{
+			"frame": "GlueDialog",
+			"out": "game/ui/wow/glue_dialog.tscn",
+			"script": "res://game/ui/glue_dialog.gd"
+		},
+		{
+			"frame": "ItemButtonTemplate",
+			"template": true,
+			"out": "game/ui/wow/item_button.tscn",
+			"script": "res://game/ui/item_button.gd"
+		},
+		{
+			"frame": "MoneyFrameTemplate",
+			"template": true,
+			"out": "game/ui/wow/money_frame.tscn",
+			"script": "res://game/ui/money_frame.gd"
+		},
+		{
+			"frame": "SmallMoneyFrameTemplate",
+			"template": true,
+			"out": "game/ui/wow/small_money_frame.tscn",
+			"script": "res://game/ui/money_frame.gd"
+		},
+		{
+			"frame": "ContainerFrameTemplate",
+			"template": true,
+			"out": "game/ui/wow/container_frame.tscn",
+			"script": "res://game/ui/container_frame.gd"
+		},
+		{
+			"frame": "GameMenuFrame",
+			"out": "game/ui/wow/game_menu_frame.tscn",
+			"script": "res://game/ui/game_menu.gd"
+		},
+		{
+			"frame": "SoundOptionsFrame",
+			"out": "game/ui/wow/sound_options_frame.tscn",
+			"script": "res://game/ui/sound_options_frame.gd"
+		},
+		{
+			"frame": "VideoOptionsFrame",
+			"out": "game/ui/wow/video_options_frame.tscn",
+			"script": "res://game/ui/video_options_frame.gd"
+		},
+		{
+			"frame": "CharacterFrame",
+			"out": "game/ui/wow/character_frame.tscn",
+			"script": "res://game/ui/character_frame.gd"
+		},
+		{
+			"frame": "SpellBookFrame",
+			"out": "game/ui/wow/spell_book_frame.tscn",
+			"script": "res://game/ui/spell_book.gd"
+		},
+		{
+			"frame": "TalentButtonTemplate",
+			"template": true,
+			"out": "game/ui/wow/talent_button.tscn",
+			"script": "res://game/ui/item_button.gd"
+		},
+		{
+			"frame": "TalentFrame",
+			"out": "game/ui/wow/talent_frame.tscn",
+			"script": "res://game/ui/talent_frame.gd"
+		},
+		{
+			"frame": "QuestLogFrame",
+			"out": "game/ui/wow/quest_log_frame.tscn",
+			"script": "res://game/ui/quest_log_frame.gd"
+		},
+		{
+			"frame": "StaticPopup1",
+			"out": "game/ui/wow/static_popup.tscn",
+			"script": "res://game/ui/static_popup.gd"
+		},
+		{
+			"frame": "GossipFrame",
+			"out": "game/ui/wow/gossip_frame.tscn",
+			"script": "res://game/ui/gossip_frame.gd"
+		},
+		{
+			"frame": "QuestFrame",
+			"out": "game/ui/wow/quest_frame.tscn",
+			"script": "res://game/ui/quest_frame.gd"
+		},
+		{
+			"frame": "QuestWatchFrame",
+			"out": "game/ui/wow/quest_watch_frame.tscn",
+			"script": "res://game/ui/quest_watch_frame.gd"
+		},
+		{
+			"frame": "MerchantFrame",
+			"out": "game/ui/wow/merchant_frame.tscn",
+			"script": "res://game/ui/merchant_frame.gd"
+		},
+		{
+			"frame": "PartyMemberFrameTemplate",
+			"template": true,
+			"out": "game/ui/wow/party_member_frame.tscn",
+			"script": "res://game/ui/party_member_frame.gd"
+		},
+		{
+			"frame": "LootButtonTemplate",
+			"template": true,
+			"out": "game/ui/wow/loot_button.tscn",
+			"script": "res://game/ui/item_button.gd"
+		},
+		{
+			"frame": "LootFrame",
+			"out": "game/ui/wow/loot_frame.tscn",
+			"script": "res://game/ui/loot_frame.gd"
+		},
+		{
+			"frame": "ClassTrainerFrame",
+			"out": "game/ui/wow/class_trainer_frame.tscn",
+			"script": "res://game/ui/class_trainer_frame.gd"
+		},
+		{
+			"frame": "TaxiButtonTemplate",
+			"template": true,
+			"out": "game/ui/wow/taxi_button.tscn",
+			"script": "res://game/ui/wow/wow_button.gd"
+		},
+		{
+			"frame": "TaxiFrame",
+			"out": "game/ui/wow/taxi_frame.tscn",
+			"script": "res://game/ui/taxi_frame.gd"
+		},
+		{
+			"frame": "WorldMapFrame",
+			"out": "game/ui/wow/world_map_frame.tscn",
+			"script": "res://game/ui/world_map_frame.gd"
+		},
+		{
+			"frame": "BankFrame",
+			"out": "game/ui/wow/bank_frame.tscn",
+			"script": "res://game/ui/bank_frame.gd"
+		},
+		{
+			"frame": "MailFrame",
+			"out": "game/ui/wow/mail_frame.tscn",
+			"script": "res://game/ui/mail_frame.gd"
+		},
+		{
+			"frame": "OpenMailFrame",
+			"out": "game/ui/wow/open_mail_frame.tscn",
+			"script": "res://game/ui/open_mail_frame.gd"
+		},
+		{
+			"frame": "AuctionFrame",
+			"out": "game/ui/wow/auction_frame.tscn",
+			"script": "res://game/ui/auction_frame.gd"
+		},
+		{
+			"frame": "TradeFrame",
+			"out": "game/ui/wow/trade_frame.tscn",
+			"script": "res://game/ui/trade_frame.gd"
+		},
+		{
+			"frame": "FriendsFrame",
+			"out": "game/ui/wow/friends_frame.tscn",
+			"script": "res://game/ui/friends_frame.gd"
+		},
+		{
+			"frame": "GroupLootFrameTemplate",
+			"template": true,
+			"out": "game/ui/wow/group_loot_frame.tscn",
+			"script": "res://game/ui/group_loot_frame.gd"
+		},
+		{
+			"frame": "DropDownList1",
+			"out": "game/ui/wow/drop_down_list.tscn",
+			"script": "res://game/ui/drop_down_list.gd"
+		},
+		{
+			"frame": "PetStableFrame",
+			"out": "game/ui/wow/pet_stable_frame.tscn",
+			"script": "res://game/ui/pet_stable_frame.gd"
+		},
+		{
+			"frame": "MirrorTimer1",
+			"out": "game/ui/wow/mirror_timer.tscn",
+			"script": "res://game/ui/mirror_timer.gd"
+		}
+	],
+	"graft": {
+		"MultiBarBottomLeft": "MainMenuBar",
+		"MultiBarBottomRight": "MainMenuBar",
+		"MultiBarLeft": "MultiBarRight",
+		"ChatFrame1Tab": "ChatFrame1",
+		"ChatFrame2Tab": "ChatFrame2",
+		"ChatFrameEditBox": "ChatFrame1",
+		"ChatFrameMenuButton": "ChatFrame1",
+		"CharacterDeleteDialog": "CharacterSelect"
+	},
+	"frame_scripts": {
+		"Minimap": "res://game/ui/minimap_view.gd",
+		"SkillFrame": "res://game/ui/skill_frame.gd",
+		"ReputationFrame": "res://game/ui/reputation_frame.gd",
+		"ShapeshiftBarFrame": "res://game/ui/stance_bar.gd",
+		"TargetofTargetFrame": "res://game/ui/target_of_target_frame.gd",
+		"PetFrame": "res://game/ui/pet_frame.gd",
+		"PetActionBarFrame": "res://game/ui/pet_action_bar.gd"
+	},
+	"exclude": [
+		"VirtualKeypadFrame",
+		"ConnectionHelpFrame",
+		"ServerAlertFrame",
+		"TOSFrame",
+		"SurveyNotificationFrame",
+		"AccountLoginTOSButton",
+		"AccountLoginCreditsButton",
+		"AccountLoginCinematicsButton",
+		"BillingWarningFrame",
+		"GameRoomBillingFrame",
+		"CharacterRenameDialog",
+		"CharacterSelectAddonsButton",
+		"CharacterCreateRandomName"
+	]
 }

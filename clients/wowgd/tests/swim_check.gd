@@ -14,6 +14,8 @@ const SEARCH_RINGS: int = 10
 const DEEP_ENOUGH: float = 4.0
 const BOTTOM_REACH: float = 60.0
 const SWIM_FRAMES: int = 90
+# How long the server may take to notice a submerged head.
+const BREATH_MSEC: int = 15000
 const DIVE_PITCH: float = -1.2
 const RISE_PITCH: float = 0.5
 
@@ -59,6 +61,16 @@ func _run() -> void:
 	await _frames(SWIM_FRAMES)
 	var deep: float = player.global_position.y
 	_check(deep < floating - 2.0, "swimming forward while looking down dives")
+	# The server starts the breath timer once the head is under, which the mirror timers show.
+	var timers: Control = _main.world.hud().find_child("MirrorTimers", true, false)
+	var breathing: bool = false
+	var give_up: int = Time.get_ticks_msec() + BREATH_MSEC
+	while Time.get_ticks_msec() < give_up and not breathing:
+		breathing = timers.get_children().any(func(timer: Node) -> bool:
+			return (timer as Control).visible
+		)
+		await get_tree().process_frame
+	_check(breathing, "staying under starts the breath timer")
 	_pitch(RISE_PITCH)
 	await _frames(SWIM_FRAMES)
 	Input.action_release("move_forward")
