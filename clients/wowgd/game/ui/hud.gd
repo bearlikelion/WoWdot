@@ -9,6 +9,7 @@ signal unit_selected(guid: int)
 enum UnitMenuItem { INVITE, UNINVITE, LEAVE }
 
 const UI_HEIGHT: float = 768.0
+const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
 const ERROR_COLOR: Color = Color(1.0, 0.1, 0.1)
 const NOTICE_COLOR: Color = Color(1.0, 0.82, 0.0)
 # TYPEID_ITEM and TYPEID_CONTAINER.
@@ -82,6 +83,8 @@ func _ready() -> void:
 	_character.unlearn_requested.connect(_on_unlearn_requested)
 	_character.watched_changed.connect(_main_menu_bar.show_reputation)
 	_quest_log.share_answered.connect(show_notice)
+	WowClient.session.packet_received.connect(_on_packet_received)
+	_chat.emote_requested.connect(_on_emote_requested)
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
 	_quest_frame.open_requested.connect(_panels.show_panel.bind(_quest_frame))
 	_quest_frame.error_raised.connect(show_error)
@@ -184,6 +187,34 @@ func show_target(guid: int) -> void:
 
 func target() -> int:
 	return _target_frame.guid if _target_frame.visible else 0
+
+
+# CMSG_TEXT_EMOTE: the text emote, the animation variant, and the unit it is aimed at.
+func _on_emote_requested(text_emote: int) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(16)
+	payload.encode_u32(0, text_emote)
+	payload.encode_u64(8, target())
+	WowClient.session.send_packet("CMSG_TEXT_EMOTE", payload)
+
+
+# SMSG_TEXT_EMOTE: the client writes the line itself, from EmotesText and EmotesTextData.
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode != "SMSG_TEXT_EMOTE":
+		return
+	var session: WowSession = WowClient.session
+	var reader: PacketReader = PacketReader.new(payload)
+	var actor: int = reader.u64()
+	var text_emote: int = reader.u32()
+	reader.u32()
+	var target_name: String = reader.text(reader.u32())
+	var me: int = session.get_player_guid()
+	var line: String = Emotes.message(
+		text_emote, session.get_object_name(actor), target_name, actor == me,
+		target_name == session.get_object_name(me),
+	)
+	if not line.is_empty():
+		add_chat_line(line, EMOTE_COLOR)
 
 
 func add_chat_line(text: String, color: Color = Color.WHITE) -> void:

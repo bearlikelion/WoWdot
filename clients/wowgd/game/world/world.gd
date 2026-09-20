@@ -304,12 +304,28 @@ func _on_spirit_healer_offered(healer_guid: int) -> void:
 	_hud.ask_spirit_healer(_death.activate_spirit_healer.bind(healer_guid))
 
 
+func _play_emote(payload: PackedByteArray) -> void:
+	var reader: PacketReader = PacketReader.new(payload)
+	var clip: String = Emotes.animation(reader.u32())
+	var guid: int = reader.u64()
+	if clip.is_empty():
+		return
+	if guid == WowClient.session.get_player_guid():
+		_player.play_once([clip])
+		return
+	var node: Node3D = _entities.unit_node(guid)
+	if node:
+		UnitAnimations.play_once(node, [clip])
+
+
 func _on_transfer_aborted(reason: int) -> void:
 	_hud.show_error(WowStrings.get_text(TRANSFER_ABORTS.get(reason, ""), "Transfer aborted"))
 
 
 # Server changes to the player's own movement, which the client applies and acknowledges.
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "SMSG_EMOTE":
+		return _play_emote(payload)
 	var knock_back: bool = opcode == "SMSG_MOVE_KNOCK_BACK"
 	if not (knock_back or SPEED_CHANGES.has(opcode) or FLAG_CHANGES.has(opcode)):
 		return

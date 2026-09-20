@@ -2,6 +2,8 @@
 class_name ChatFrame
 extends DockedChatFrame
 
+signal emote_requested(text_emote: int)
+
 # GlobalStrings key stem per chat type: CHAT_<stem>_GET formats lines, CHAT_<stem>_SEND the header.
 const TYPE_KEYS: Dictionary[WowSession.ChatType, String] = {
 	WowSession.CHAT_SAY: "SAY", WowSession.CHAT_PARTY: "PARTY", WowSession.CHAT_RAID: "RAID",
@@ -237,12 +239,24 @@ func _on_text_submitted(text: String) -> void:
 		_history.remove_at(0)
 	if _run_party_command(message):
 		return
+	if text.begins_with("/") and _send_emote(text.strip_edges()):
+		return
 	if message.begins_with("/"):
 		add_message(WowStrings.get_text("HELP_TEXT_SIMPLE"), COLORS[WowSession.CHAT_SYSTEM])
 		return
 	if chat_type in STICKY:
 		_sticky_type = chat_type
 	WowClient.session.send_chat(chat_type, message, target)
+
+
+# Any EmotesText token works as its own slash command, as /dance and /wave do.
+func _send_emote(text: String) -> bool:
+	var token: String = text.substr(1).split(" ")[0]
+	var text_emote: int = Emotes.find(token)
+	if text_emote == 0:
+		return false
+	emote_requested.emit(text_emote)
+	return true
 
 
 func _on_edit_box_input(event: InputEvent) -> void:
