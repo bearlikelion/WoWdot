@@ -6,7 +6,7 @@ signal spell_used(spell_id: int)
 signal unit_selected(guid: int)
 
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
-enum UnitMenuItem { INVITE, UNINVITE, LEAVE }
+enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE }
 
 const UI_HEIGHT: float = 768.0
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
@@ -33,6 +33,7 @@ const CHAT_TAB_SHOW_DELAY: float = 0.2
 
 var _area: int = 0
 var _menu_name: String = ""
+var _menu_guid: int = 0
 var _spell_failures: Dictionary = {}
 var _casting_bar_top: float = 0.0
 var _chat_hover_time: float = 0.0
@@ -54,6 +55,7 @@ var _chat_hover_time: float = 0.0
 @onready var _bank: BankFrame = _panels.get_node("%BankFrame")
 @onready var _mail: MailFrame = _panels.get_node("%MailFrame")
 @onready var _auction: AuctionFrame = _panels.get_node("%AuctionFrame")
+@onready var _trade: TradeFrame = _panels.get_node("%TradeFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
 @onready var _spell_book: SpellBook = _panels.get_node("%SpellBookFrame")
@@ -102,6 +104,11 @@ func _ready() -> void:
 	_auction.close_requested.connect(_panels.hide_panel.bind(_auction))
 	_auction.error_raised.connect(show_error)
 	_auction.message_added.connect(add_system_line)
+	_trade.open_requested.connect(_panels.show_panel.bind(_trade))
+	_trade.close_requested.connect(_panels.hide_panel.bind(_trade))
+	_trade.error_raised.connect(show_error)
+	_trade.message_added.connect(add_system_line)
+	_trade.trade_offered.connect(_on_trade_offered)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
@@ -366,6 +373,13 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 
 
 # UseContainerItem: gear equips, everything else is used.
+func _on_trade_offered(player_name: String) -> void:
+	_popup.ask(
+		WowStrings.get_text("TRADE_WITH_QUESTION", "Trade with %s?") % player_name,
+		_trade.accept_offer, "ACCEPT", "DECLINE", _trade.decline_offer,
+	)
+
+
 # Right-clicking an auctioneer opens the auction house they work for.
 func open_auction_house(guid: int) -> void:
 	_auction.hello(guid)
@@ -387,6 +401,8 @@ func use_container_item(bag: int, slot: int) -> void:
 	if _bank.store(bag, slot):
 		return
 	if _auction.offer(item):
+		return
+	if _trade.offer(bag, slot):
 		return
 	var address: Vector2i = Inventory.wire_address(bag, slot)
 	var session: WowSession = WowClient.session
@@ -485,6 +501,10 @@ func _show_unit_menu(guid: int) -> void:
 			_unit_menu.add_item(WowStrings.get_text("PARTY_UNINVITE"), UnitMenuItem.UNINVITE)
 	elif session.get_object_type(guid) == Entities.ObjectType.PLAYER and may_change:
 		_unit_menu.add_item(WowStrings.get_text("PARTY_INVITE"), UnitMenuItem.INVITE)
+	if guid != session.get_player_guid() \
+	and session.get_object_type(guid) == Entities.ObjectType.PLAYER:
+		_unit_menu.add_item(WowStrings.get_text("TRADE", "Trade"), UnitMenuItem.TRADE)
+		_menu_guid = guid
 	if _unit_menu.item_count == 0:
 		return
 	_unit_menu.position = Vector2i(get_viewport().get_mouse_position())
@@ -500,3 +520,5 @@ func _on_unit_menu_pressed(id: int) -> void:
 			PartyFrame.uninvite(_menu_name)
 		UnitMenuItem.LEAVE:
 			PartyFrame.leave()
+		UnitMenuItem.TRADE:
+			_trade.start(_menu_guid)

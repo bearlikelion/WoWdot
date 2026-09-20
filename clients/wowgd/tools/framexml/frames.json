@@ -299,6 +299,11 @@
       "frame": "AuctionFrame",
       "out": "game/ui/wow/auction_frame.tscn",
       "script": "res://game/ui/auction_frame.gd"
+    },
+    {
+      "frame": "TradeFrame",
+      "out": "game/ui/wow/trade_frame.tscn",
+      "script": "res://game/ui/trade_frame.gd"
     }
   ],
   "graft": {
