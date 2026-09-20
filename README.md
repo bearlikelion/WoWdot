@@ -23,15 +23,16 @@ clients/wowgd/   Vanilla client, addons/wowdot links to shared/wowdot
 clients/wrathgd/ WrathGD client, addons/wowdot links to shared/wowdot
 docs/            Provenance and license audit
 website/         Project site, built with website/build.sh into _site/
-packaging/       Files that ship inside the release zips
+packaging/       Release zip contents and publish.sh
 ```
 
 The site is plain HTML in `website/`: what works, what is next, and the downloads.
 It carries no API reference, so the build is a file copy and needs neither Godot nor the extension.
 For the GDScript API locally, run `godot --headless --path clients/wowgd --script res://addons/gddocs/gddocs_cli.gd`, which writes `clients/wowgd/docs/api/index.html`.
 `.forgejo/workflows/pages.yml` builds the site on every push to `main`, pushes it to a `pages` branch here and to GitHub Pages.
-`.forgejo/workflows/release.yml` builds the Linux and Windows clients on a `v*` tag and attaches the zips to a GitHub release.
-Both read `SITE_REPO` at the top of the workflow and a `SITE_TOKEN` secret; the release also needs `GODOT_SCRIPT_ENCRYPTION_KEY`.
+It reads `SITE_REPO` at the top of the workflow and a `SITE_TOKEN` secret.
+Releases are not built in CI: `packaging/publish.sh <tag>` zips the local export and attaches it to a GitHub release with `gh`.
+The presets encrypt the pck, and only export templates compiled with the key can load one, so the build has to come from the machine that has them.
 
 ## Building
 
