@@ -50,6 +50,8 @@ func _run() -> void:
 	# A character that has only just logged in is still settling into the world.
 	await get_tree().create_timer(3.0).timeout
 	session.send_chat(WowSession.CHAT_SAY, ".character level %s %d" % [HUNTER, TAME_LEVEL])
+	# A stable slot costs five silver, and .modify money works on whoever is selected.
+	session.send_chat(WowSession.CHAT_SAY, ".modify money 100000")
 	session.send_chat(WowSession.CHAT_SAY, BEASTS_AT)
 	await get_tree().create_timer(5.0).timeout
 	if pet.guid != 0:
@@ -101,8 +103,6 @@ func _check_spell_book(hud: Hud, pet: Pet) -> void:
 # .stable is the stable master without the walk: the server lists the pets for the player itself.
 func _stable(session: WowSession, hud: Hud, pet: Pet) -> void:
 	var stable: PetStableFrame = hud.get_node("%UIPanels").get_node("%PetStableFrame")
-	# A stable slot has to be bought before a pet can go into it, and it costs five silver.
-	session.send_chat(WowSession.CHAT_SAY, ".modify money 100000")
 	session.send_chat(WowSession.CHAT_SAY, ".stable")
 	_check(await _until(func() -> bool: return stable.visible), "the stable lists the pets")
 	if not stable.visible:
