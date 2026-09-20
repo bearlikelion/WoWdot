@@ -22,6 +22,8 @@ const STATS: PackedStringArray = [
 
 
 func _ready() -> void:
+	# A benchmark locked to the refresh rate measures the monitor, not the renderer.
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	var args: Dictionary = _parse_args()
 	_camera.position = WowCoords.to_godot(_vec3(args.get("pos", "-9380,-20,130")))
 	_camera.look_at(WowCoords.to_godot(_vec3(args.get("look", "-9464,62,56"))))
@@ -29,6 +31,9 @@ func _ready() -> void:
 	var started: int = Time.get_ticks_msec()
 	await _wait_for_tiles()
 	print("tiles %s loaded in %d ms" % [_map.loaded_tiles(), Time.get_ticks_msec() - started])
+	if args.has("no_lod"):
+		_map.tile_loaded.connect(func(_tile: Vector2i) -> void: _clear_ranges(_map))
+		_clear_ranges(_map)
 	if args.has("fly_to"):
 		await _fly(_vec3(args["fly_to"]), float(args.get("fly_time", "20")))
 	for i: int in SETTLE_FRAMES:
@@ -82,6 +87,14 @@ func _fly(destination: Vector3, seconds: float) -> void:
 			values[int(values.size() * 0.99)],
 			values[values.size() - 1],
 		])
+
+
+# Benchmark baseline: draws every doodad batch whatever its distance.
+func _clear_ranges(node: Node) -> void:
+	if node is GeometryInstance3D:
+		(node as GeometryInstance3D).visibility_range_end = 0.0
+	for child: Node in node.get_children():
+		_clear_ranges(child)
 
 
 func _parse_args() -> Dictionary:

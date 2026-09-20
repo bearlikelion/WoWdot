@@ -25,6 +25,7 @@
 #include <godot_cpp/variant/utility_functions.hpp>
 
 #include <algorithm>
+#include <cmath>
 #include <cstdio>
 #include <optional>
 #include <utility>
@@ -51,6 +52,12 @@ enum MaterialFlag : uint32_t {
 	UNFOGGED = 0x2,
 	TWO_SIDED = 0x4,
 };
+
+// One batch per tile would vanish whole, since a batch is culled by the middle of its bounds.
+constexpr float DOODAD_CELL_YARDS = 133.333f;
+constexpr float DOODAD_RANGE_PER_YARD = 24.0f;
+constexpr float DOODAD_NEAREST_RANGE = 120.0f;
+constexpr float DOODAD_FURTHEST_RANGE = 600.0f;
 
 constexpr uint32_t WMO_GROUP_HAS_VERTEX_COLORS = 0x4;
 constexpr uint8_t WMO_TRIANGLE_NO_COLLIDE = 0x4;
@@ -823,14 +830,29 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 }
 
 // Static props draw in their rest pose as one MultiMesh per model, which skips per-instance skeletons.
+// A batch is culled by its middle, so the reach it covers is added to the range.
+static float doodad_range(const M2Model &model, const std::vector<Transform3D> &instances) {
+	AABB bounds;
+	for (size_t i = 0; i < instances.size(); i++) {
+		const float reach = std::max(model.boundRadius * static_cast<float>(instances[i].basis.get_scale().x), 1.0f);
+		const AABB box(instances[i].origin - Vector3(reach, reach, reach), Vector3(reach, reach, reach) * 2.0f);
+		bounds = i == 0 ? box : bounds.merge(box);
+	}
+	const float own = std::clamp(model.boundRadius * DOODAD_RANGE_PER_YARD, DOODAD_NEAREST_RANGE, DOODAD_FURTHEST_RANGE);
+	return own + bounds.size.length() * 0.5f;
+}
+
 Node3D *WowLoader::build_static_models(const Array &placements) {
 	std::unordered_map<std::string, std::pair<String, std::vector<Transform3D>>> groups;
 	for (int i = 0; i < placements.size(); i++) {
 		const Dictionary placement = placements[i];
 		const String path = placement["path"];
-		auto &group = groups[path.to_lower().utf8().get_data()];
+		const Transform3D transform = placement["transform"];
+		const std::string cell = std::to_string(static_cast<int>(std::floor(transform.origin.x / DOODAD_CELL_YARDS)))
+				+ "," + std::to_string(static_cast<int>(std::floor(transform.origin.z / DOODAD_CELL_YARDS)));
+		auto &group = groups[std::string(path.to_lower().utf8().get_data()) + "|" + cell];
 		group.first = path;
-		group.second.push_back(placement["transform"]);
+		group.second.push_back(transform);
 	}
 	Node3D *root = memnew(Node3D);
 	root->set_name("Doodads");
@@ -860,6 +882,7 @@ Node3D *WowLoader::build_static_models(const Array &placements) {
 		MultiMeshInstance3D *instance = memnew(MultiMeshInstance3D);
 		instance->set_name(file_stem(group.first));
 		instance->set_multimesh(multimesh);
+		instance->set_visibility_range_end(doodad_range(model, group.second));
 		root->add_child(instance);
 	}
 	if (!faces.is_empty()) {
