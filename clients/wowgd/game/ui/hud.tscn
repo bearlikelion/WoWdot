@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/party_frame.tscn" id="17_party"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/combat_log_frame.tscn" id="18_combat_log"]
 [ext_resource type="PackedScene" path="res://game/ui/combat_text.tscn" id="19_combat_text"]
+[ext_resource type="Script" path="res://game/ui/loot_rolls.gd" id="23_rolls"]
 
 [node name="Hud" type="Control" unique_id=2063934219]
 layout_mode = 3
@@ -72,6 +73,23 @@ offset_bottom = 100.0
 [node name="PartyFrame" parent="UIParent" unique_id=391331168 instance=ExtResource("17_party")]
 unique_name_in_owner = true
 layout_mode = 1
+
+[node name="LootRolls" type="Control" parent="UIParent" unique_id=722192806]
+unique_name_in_owner = true
+script = ExtResource("23_rolls")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -90.0
+offset_right = -220.0
+offset_bottom = 90.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="UnitMenu" type="PopupMenu" parent="UIParent" unique_id=722192805]
 unique_name_in_owner = true

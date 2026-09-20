@@ -8,6 +8,8 @@ signal unit_selected(guid: int)
 signal unit_menu_requested(guid: int)
 signal ready_check_started
 
+enum LootMethod { FREE_FOR_ALL, ROUND_ROBIN, MASTER_LOOT, GROUP_LOOT, NEED_BEFORE_GREED }
+
 const READY_YES: String = "%s is ready."
 const READY_NO: String = "%s is not ready."
 const MAX_MEMBERS: int = 4
@@ -80,6 +82,16 @@ static func start_ready_check() -> void:
 
 static func answer_ready_check(ready: bool) -> void:
 	WowClient.session.send_packet("MSG_RAID_READY_CHECK", PackedByteArray([1 if ready else 0]))
+
+
+# CMSG_LOOT_METHOD: how the party shares loot, and the quality that starts a roll.
+static func set_loot_method(method: LootMethod, threshold: int, master: int = 0) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(16)
+	payload.encode_u32(0, method)
+	payload.encode_u64(4, master)
+	payload.encode_u32(12, threshold)
+	WowClient.session.send_packet("CMSG_LOOT_METHOD", payload)
 
 
 static func leave() -> void:

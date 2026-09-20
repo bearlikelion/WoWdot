@@ -158,6 +158,7 @@ func _ready() -> void:
 	_party.message_added.connect(add_system_line)
 	_party.error_raised.connect(show_error)
 	_party.ready_check_started.connect(_on_ready_check_started)
+	(%LootRolls as LootRolls).message_added.connect(add_system_line)
 	_player_frame.unit_menu_requested.connect(_show_unit_menu)
 	_target_frame.unit_menu_requested.connect(_show_unit_menu)
 	_party.unit_menu_requested.connect(_show_unit_menu)

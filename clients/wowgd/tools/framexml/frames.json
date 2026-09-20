@@ -309,6 +309,12 @@
       "frame": "FriendsFrame",
       "out": "game/ui/wow/friends_frame.tscn",
       "script": "res://game/ui/friends_frame.gd"
+    },
+    {
+      "frame": "GroupLootFrameTemplate",
+      "template": true,
+      "out": "game/ui/wow/group_loot_frame.tscn",
+      "script": "res://game/ui/group_loot_frame.gd"
     }
   ],
   "graft": {

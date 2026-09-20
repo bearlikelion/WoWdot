@@ -3,6 +3,7 @@ extends Node
 
 # Kobold Camp Cleanup, given in Coldridge Valley.
 const SHARED_QUEST: int = 179
+const KILLING_BLOW: int = 100000
 const MAIN: PackedScene = preload("res://game/main.tscn")
 const TIMEOUT_MSEC: int = 60000
 const HOST: String = "127.0.0.1"
@@ -84,10 +85,70 @@ func _run() -> void:
 	_check(await _until(PartyFrame.in_party, 5000), "the partner accepting forms the party")
 	_check(PartyFrame.is_leader(), "the inviter leads the party")
 	await _ready_check(hud, chat)
+	await _loot_roll(hud)
 	await _share_a_quest(hud)
 	chat.call("_on_text_submitted", "/uninvite " + PARTNER)
 	_check(await _until(_alone, 5000), "/uninvite removes the partner")
 	_finish("")
+
+
+# Group loot with the lowest threshold puts every drop up for a roll.
+func _loot_roll(hud: Hud) -> void:
+	var session: WowSession = WowClient.session
+	var rolls: LootRolls = hud.find_child("LootRolls", true, false)
+	var lines: PackedStringArray = []
+	rolls.message_added.connect(func(text: String) -> void: lines.append(text))
+	PartyFrame.set_loot_method(PartyFrame.LootMethod.GROUP_LOOT, 0)
+	# Only party members in range roll, so the partner is summoned over first.
+	session.send_chat(WowSession.CHAT_SAY, ".namego %s" % PARTNER)
+	await get_tree().create_timer(3.0).timeout
+	var prey: int = _nearest_creature()
+	if prey == 0:
+		return _check(false, "a creature to kill for loot")
+	_main.world.select(prey)
+	# The party only rolls for loot it earned, so the player lands the killing blow itself.
+	var player: Player = _main.world.player()
+	var prey_node: Node3D = (_main.world.get_node("Entities") as Entities).unit_node(prey)
+	player.global_position = prey_node.global_position + Vector3.RIGHT
+	player.movement_changed.emit(
+		"MSG_MOVE_HEARTBEAT", player.global_position, player.orientation(), 0, 0, Vector3.ZERO,
+		-1, PackedByteArray(),
+	)
+	await get_tree().create_timer(1.0).timeout
+	session.send_chat(WowSession.CHAT_SAY, ".modify hp 1")
+	await get_tree().create_timer(1.0).timeout
+	session.attack(prey)
+	await _until(func() -> bool: return session.get_field(prey, "UNIT_FIELD_HEALTH") == 0, 20000)
+	session.stop_attack()
+	await get_tree().create_timer(1.0).timeout
+	LootFrame.loot(prey)
+	var offered: bool = await _until(func() -> bool: return rolls.get_child_count() > 0, 10000)
+	_check(offered, "a drop starts a roll")
+	if offered:
+		var frame: GroupLootFrame = rolls.get_child(0)
+		frame.rolled.emit(GroupLootFrame.Roll.GREED)
+		var answered: bool = await _until(func() -> bool: return not lines.is_empty(), 10000)
+		_check(answered, "the roll is answered")
+		if answered:
+			print("roll line: ", lines[0])
+	PartyFrame.set_loot_method(PartyFrame.LootMethod.GROUP_LOOT, 2)
+
+
+func _nearest_creature() -> int:
+	var session: WowSession = WowClient.session
+	var here: Vector3 = session.get_object_position(session.get_player_guid())
+	var best: int = 0
+	var best_range: float = INF
+	for guid: int in session.get_object_guids():
+		if session.get_object_type(guid) != Entities.ObjectType.UNIT \
+		or session.get_field(guid, "UNIT_FIELD_HEALTH") == 0 \
+		or not session.get_object_name(guid).contains("Wolf"):
+			continue
+		var away: float = session.get_object_position(guid).distance_to(here)
+		if away < best_range:
+			best_range = away
+			best = guid
+	return best
 
 
 # The leader asks, the partner answers, and the answer comes back as a line in the chat.
@@ -111,8 +172,11 @@ func _ready_check(hud: Hud, chat: ChatFrame) -> void:
 # Sharing tells the sharer how the party answered, even when the partner is too far to take it.
 func _share_a_quest(hud: Hud) -> void:
 	var session: WowSession = WowClient.session
+	# GM commands act on the selection, so the corpse from the loot roll is dropped first.
+	_main.world.select(session.get_player_guid())
+	await get_tree().create_timer(1.0).timeout
 	session.send_chat(WowSession.CHAT_SAY, ".quest add %d" % SHARED_QUEST)
-	if not await _until(func() -> bool: return QuestLog.slots().has(0), 5000):
+	if not await _until(func() -> bool: return not QuestLog.slots().is_empty(), 5000):
 		return _check(false, "the quest to share was added")
 	var quest_log: QuestLogFrame = hud.find_child("QuestLogFrame", true, false)
 	var answers: PackedStringArray = []
