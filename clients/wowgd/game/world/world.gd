@@ -594,6 +594,11 @@ func _use_game_object(guid: int) -> void:
 		return
 	if info.get("type", 0) == GAMEOBJECT_TYPE_MAILBOX:
 		_hud.open_mailbox(guid)
+		return
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, guid)
+	session.send_packet("CMSG_GAMEOBJ_USE", payload)
 
 
 func _on_game_object_info_received(entry: int) -> void:
