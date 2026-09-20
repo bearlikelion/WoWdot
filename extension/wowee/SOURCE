@@ -5,3 +5,4 @@ WoWGD changes: core/logger.cpp replaced by src/wowee_logger.cpp; include/game/ga
 include/game/opcode_table.hpp: nameToLogical made public.
 src/game/packet_parsers_classic.cpp: jump data written as cos then sin, the order vMaNGOS reads.
 include/auth/big_num.hpp, src/auth/big_num.cpp, src/auth/crypto.cpp: OpenSSL replaced by the LibTomMath and LibTomCrypt that StormLib bundles.
+src/pipeline/m2_loader.cpp: vanilla ribbon emitters parse, and the WotLK record size is 0xB0.

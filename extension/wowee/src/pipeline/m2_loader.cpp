@@ -1541,9 +1541,58 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
         } // end size check
     }
 
-    // Parse ribbon emitters (WotLK only; vanilla format TBD).
-    // WotLK M2RibbonEmitter = 0xAC (172) bytes per entry.
-    static constexpr uint32_t RIBBON_SIZE_WOTLK = 0xAC;
+    // WotLK M2RibbonEmitter is 0xB0 bytes; vanilla's tracks are 28 bytes each, making it 0xDC.
+    static constexpr uint32_t RIBBON_SIZE_WOTLK = 0xB0;
+    static constexpr uint32_t RIBBON_SIZE_VANILLA = 0xDC;
+    if (header.nRibbonEmitters > 0 && header.ofsRibbonEmitters > 0 &&
+        header.nRibbonEmitters < 64 && header.version < 264) {
+
+        if (static_cast<size_t>(header.ofsRibbonEmitters) +
+                static_cast<size_t>(header.nRibbonEmitters) * RIBBON_SIZE_VANILLA <= m2Data.size()) {
+
+            for (uint32_t ri = 0; ri < header.nRibbonEmitters; ri++) {
+                const uint32_t base = header.ofsRibbonEmitters + ri * RIBBON_SIZE_VANILLA;
+
+                M2RibbonEmitter rib;
+                rib.ribbonId = readValue<int32_t>(m2Data, base + 0x00);
+                rib.bone = readValue<uint32_t>(m2Data, base + 0x04);
+                rib.position.x = readValue<float>(m2Data, base + 0x08);
+                rib.position.y = readValue<float>(m2Data, base + 0x0C);
+                rib.position.z = readValue<float>(m2Data, base + 0x10);
+                if (const uint32_t ofsTex = readValue<uint32_t>(m2Data, base + 0x18);
+                    readValue<uint32_t>(m2Data, base + 0x14) > 0 &&
+                    ofsTex + sizeof(uint16_t) <= m2Data.size()) {
+                    rib.textureIndex = readValue<uint16_t>(m2Data, ofsTex);
+                }
+                if (const uint32_t ofsMat = readValue<uint32_t>(m2Data, base + 0x20);
+                    readValue<uint32_t>(m2Data, base + 0x1C) > 0 &&
+                    ofsMat + sizeof(uint16_t) <= m2Data.size()) {
+                    rib.materialIndex = readValue<uint16_t>(m2Data, ofsMat);
+                }
+                const auto track = [&](uint32_t offset, M2AnimationTrack &out, TrackType type) {
+                    if (base + offset + sizeof(M2TrackDiskVanilla) <= m2Data.size()) {
+                        parseAnimTrackVanilla(
+                                m2Data, readValue<M2TrackDiskVanilla>(m2Data, base + offset), out, type);
+                    }
+                };
+                track(0x24, rib.colorTrack, TrackType::VEC3);
+                track(0x40, rib.alphaTrack, TrackType::FIXED16);
+                track(0x5C, rib.heightAboveTrack, TrackType::FLOAT);
+                track(0x78, rib.heightBelowTrack, TrackType::FLOAT);
+                rib.edgesPerSecond = readValue<float>(m2Data, base + 0x94);
+                rib.edgeLifetime = readValue<float>(m2Data, base + 0x98);
+                rib.gravity = readValue<float>(m2Data, base + 0x9C);
+                rib.textureRows = std::max<uint16_t>(readValue<uint16_t>(m2Data, base + 0xA0), 1);
+                rib.textureCols = std::max<uint16_t>(readValue<uint16_t>(m2Data, base + 0xA2), 1);
+                if (rib.edgesPerSecond < 1.0f || rib.edgesPerSecond > 200.0f) rib.edgesPerSecond = 15.0f;
+                if (rib.edgeLifetime < 0.05f || rib.edgeLifetime > 10.0f) rib.edgeLifetime = 0.5f;
+                if (rib.bone == 0xFFFFFFFF) continue;
+                model.ribbonEmitters.push_back(std::move(rib));
+            }
+            core::Logger::getInstance().debug("  Ribbon emitters: ", model.ribbonEmitters.size());
+        }
+    }
+
     if (header.nRibbonEmitters > 0 && header.ofsRibbonEmitters > 0 &&
         header.nRibbonEmitters < 64 && header.version >= 264) {
 

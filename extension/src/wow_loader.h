@@ -57,6 +57,7 @@ class WowLoader : public RefCounted {
 	String animation_name(uint32_t id, uint32_t variation);
 	void add_texture_animation(Node3D *root, MeshInstance3D *mesh, const wowee::pipeline::M2Model &model, const PackedInt32Array &geosets);
 	void add_particles(Node3D *root, Skeleton3D *skeleton, const wowee::pipeline::M2Model &model);
+	void add_ribbons(Node3D *root, Skeleton3D *skeleton, const wowee::pipeline::M2Model &model);
 
 protected:
 	static void _bind_methods();

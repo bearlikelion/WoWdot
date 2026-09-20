@@ -1,6 +1,7 @@
 #include "wow_coords.h"
 #include "wow_dbc.h"
 #include "wow_loader.h"
+#include "wow_ribbon.h"
 
 #include "pipeline/m2_loader.hpp"
 #include "pipeline/wmo_loader.hpp"
@@ -180,6 +181,17 @@ float track_value(const M2AnimationTrack &track, float fallback) {
 	for (const M2AnimationTrack::SequenceKeys &keys : track.sequences) {
 		if (!keys.floatValues.empty()) {
 			return keys.floatValues[0];
+		}
+	}
+	return fallback;
+}
+
+// The colour form of the same, for tracks whose keys are RGB triples.
+Color track_color(const M2AnimationTrack &track, const Color &fallback) {
+	for (const M2AnimationTrack::SequenceKeys &keys : track.sequences) {
+		if (!keys.vec3Values.empty()) {
+			const glm::vec3 &rgb = keys.vec3Values[0];
+			return Color(rgb.r, rgb.g, rgb.b, 1.0f);
 		}
 	}
 	return fallback;
@@ -588,6 +600,7 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 		player->set_autoplay("Stand");
 	}
 	add_particles(root, skeleton, data->model);
+	add_ribbons(root, skeleton, data->model);
 	return root;
 }
 
@@ -709,6 +722,45 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 	}
 }
 
+// A ribbon is real geometry that trails its bone, so it hangs off a BoneAttachment3D like particles.
+void WowLoader::add_ribbons(Node3D *root, Skeleton3D *skeleton, const M2Model &model) {
+	for (size_t i = 0; i < model.ribbonEmitters.size(); i++) {
+		const M2RibbonEmitter &ribbon = model.ribbonEmitters[i];
+		if (skeleton == nullptr || ribbon.bone >= static_cast<uint32_t>(skeleton->get_bone_count())) {
+			continue;
+		}
+		const Variant texture = ribbon.textureIndex < model.textures.size()
+				? Variant(load_texture(model.textures[ribbon.textureIndex].filename.c_str()))
+				: Variant();
+		const M2Material *material = ribbon.materialIndex < model.materials.size()
+				? &model.materials[ribbon.materialIndex]
+				: nullptr;
+		Ref<StandardMaterial3D> surface = get_material(
+				texture, material ? material->blendMode : 4, material ? material->flags : 0,
+				true, false, Color(1.0f, 1.0f, 1.0f, 1.0f));
+		surface->set_shading_mode(StandardMaterial3D::SHADING_MODE_UNSHADED);
+		surface->set_cull_mode(StandardMaterial3D::CULL_DISABLED);
+		BoneAttachment3D *attachment = memnew(BoneAttachment3D);
+		attachment->set_name("RibbonBone" + String::num_int64(i));
+		skeleton->add_child(attachment);
+		attachment->set_bone_idx(ribbon.bone);
+		Node3D *anchor = memnew(Node3D);
+		anchor->set_position(wow_to_godot(ribbon.position) - wow_to_godot(model.bones[ribbon.bone].pivot));
+		attachment->add_child(anchor);
+		WowRibbon *trail = memnew(WowRibbon);
+		trail->set_name("Ribbon" + String::num_int64(i));
+		trail->set_material_override(surface);
+		trail->set_above(std::max(track_value(ribbon.heightAboveTrack, 0.5f), 0.01f));
+		trail->set_below(std::max(track_value(ribbon.heightBelowTrack, 0.5f), 0.01f));
+		trail->set_lifetime(ribbon.edgeLifetime);
+		trail->set_edges_per_second(ribbon.edgesPerSecond);
+		trail->set_gravity(ribbon.gravity);
+		const Color color = track_color(ribbon.colorTrack, Color(1.0f, 1.0f, 1.0f, 1.0f));
+		trail->set_tint(Color(color.r, color.g, color.b, track_value(ribbon.alphaTrack, 1.0f)));
+		anchor->add_child(trail);
+	}
+}
+
 Dictionary WowLoader::get_m2_info(const String &path) {
 	ERR_FAIL_COND_V(archive.is_null(), Dictionary());
 	const std::shared_ptr<const M2Data> data = get_m2_data(path);
@@ -808,6 +860,22 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 		emitters.push_back(e);
 	}
 	info["particles"] = emitters;
+	Array ribbons;
+	for (const M2RibbonEmitter &ribbon : model.ribbonEmitters) {
+		Dictionary r;
+		r["bone"] = ribbon.bone;
+		r["position"] = wow_to_godot(ribbon.position);
+		r["texture"] = ribbon.textureIndex < model.textures.size()
+				? String(model.textures[ribbon.textureIndex].filename.c_str())
+				: String("?");
+		r["edges_per_second"] = ribbon.edgesPerSecond;
+		r["lifetime"] = ribbon.edgeLifetime;
+		r["gravity"] = ribbon.gravity;
+		r["above"] = track_value(ribbon.heightAboveTrack, 1.0f);
+		r["below"] = track_value(ribbon.heightBelowTrack, 1.0f);
+		ribbons.push_back(r);
+	}
+	info["ribbons"] = ribbons;
 	Array cameras;
 	for (const M2Camera &camera : model.cameras) {
 		Dictionary c;
