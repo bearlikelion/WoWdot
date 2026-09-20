@@ -44,7 +44,12 @@ func _head_position(guid: int) -> Vector3:
 
 
 func _on_chat_received(line: Dictionary) -> void:
-	if not BUBBLE_TYPES.has(line["type"] as WowSession.ChatType):
+	var settings: InterfaceSettings = WowAssets.interface
+	var kind: WowSession.ChatType = line["type"] as WowSession.ChatType
+	var party: bool = kind == WowSession.CHAT_PARTY
+	if not settings.is_on(&"chat_bubbles"):
+		return
+	if not BUBBLE_TYPES.has(kind) and not (party and settings.is_on(&"party_chat_bubbles")):
 		return
 	var guid: int = line["sender_guid"]
 	if guid == 0:

@@ -330,6 +330,11 @@
 			"frame": "MirrorTimer1",
 			"out": "game/ui/wow/mirror_timer.tscn",
 			"script": "res://game/ui/mirror_timer.gd"
+		},
+		{
+			"frame": "UIOptionsFrame",
+			"out": "game/ui/wow/ui_options_frame.tscn",
+			"script": "res://game/ui/ui_options_frame.gd"
 		}
 	],
 	"graft": {

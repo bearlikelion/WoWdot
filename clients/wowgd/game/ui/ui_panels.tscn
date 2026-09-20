@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/world_map_frame.tscn" id="14_map"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/sound_options_frame.tscn" id="15_sound"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/video_options_frame.tscn" id="16_video"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/ui_options_frame.tscn" id="30_uiopt"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -141,6 +142,11 @@ layout_mode = 1
 visible = false
 
 [node name="VideoOptionsFrame" parent="." instance=ExtResource("16_video")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="UIOptionsFrame" parent="." instance=ExtResource("30_uiopt")]
 unique_name_in_owner = true
 layout_mode = 1
 visible = false

@@ -1,0 +1,6464 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/ui_options_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\OptionsFrame\\UIOptionsFrame-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\OptionsFrame\\UIOptionsFrame-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\OptionsFrame\\UIOptionsFrame-BottomLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\OptionsFrame\\UIOptionsFrame-BottomRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Tooltips\\UI-Tooltip-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Tooltips\\UI-Tooltip-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Buttons\\UI-SliderBar-Button-Horizontal.blp"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8"]
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\Buttons\\UI-SliderBar-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-SliderBar-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_16"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28"]
+atlas = SubResource("WowTexture_27")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\HelpFrame\\HelpFrameTab-Active.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_33")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35"]
+atlas = SubResource("WowTexture_33")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_33")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\HelpFrame\\HelpFrameTab-Inactive.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_39"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[node name="UIOptionsFrame" type="Control"]
+script = ExtResource("1")
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="UIOptionsBlackground" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="UIOptionsFrameTitle" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 17
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Interface Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = -384
+offset_right = 0
+offset_bottom = 128
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0
+offset_top = -384
+offset_right = 512
+offset_bottom = 128
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = 128
+offset_right = 0
+offset_bottom = 384
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0
+offset_top = 128
+offset_right = 512
+offset_bottom = 384
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="BasicOptions" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = -384
+offset_right = 512
+offset_bottom = 384
+mouse_filter = 2
+
+[node name="BasicOptionsGeneral" type="Control" parent="BasicOptions"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 104
+offset_right = 992
+offset_bottom = 254
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="BasicOptions/BasicOptionsGeneral"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_5")
+edge = SubResource("WowTexture_6")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="BasicOptionsGeneralTitle" type="Label" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = -12
+offset_right = 9
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider1" type="HSlider" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 20
+offset_right = 148
+offset_bottom = 37
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_7")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_7")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_8")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_8")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameSlider1"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_9")
+edge = SubResource("WowTexture_10")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="UIOptionsFrameSlider1Text" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameSlider1"]
+unique_name_in_owner = true
+offset_left = 64
+offset_top = -10
+offset_right = 64
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider1Low" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameSlider1"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 14
+offset_right = 2
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider1High" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameSlider1"]
+unique_name_in_owner = true
+offset_left = 126
+offset_top = 14
+offset_right = 126
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCheckButton1" type="TextureButton" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 188
+offset_top = 15
+offset_right = 214
+offset_bottom = 41
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton1Text" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton1"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton6" type="TextureButton" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 22
+offset_top = 55
+offset_right = 48
+offset_bottom = 81
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton6Text" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton6"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton45" type="TextureButton" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 400
+offset_top = 8
+offset_right = 426
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton45"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton45"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton45Text" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton45"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton45"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton45"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton45"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton3" type="TextureButton" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 400
+offset_top = 34
+offset_right = 426
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton3Text" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton3"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton16" type="TextureButton" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 400
+offset_top = 60
+offset_right = 426
+offset_bottom = 86
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton16"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton16"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton16Text" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton16"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton16"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton16"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton16"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton14" type="TextureButton" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 740
+offset_top = 8
+offset_right = 766
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton14Text" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton14"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton61" type="TextureButton" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 740
+offset_top = 34
+offset_right = 766
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton61"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton61"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton61Text" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton61"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton61"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton61"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameCheckButton61"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameClickCameraDropDown" type="Control" parent="BasicOptions/BasicOptionsGeneral"]
+unique_name_in_owner = true
+offset_left = 175
+offset_top = 55
+offset_right = 215
+offset_bottom = 87
+mouse_filter = 0
+
+[node name="UIOptionsFrameClickCameraDropDownLabel" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = -13
+offset_right = 16
+offset_bottom = -3
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Click-to-Move Camera Style"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameClickCameraDropDownLeft" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="UIOptionsFrameClickCameraDropDownMiddle" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="UIOptionsFrameClickCameraDropDownRight" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="UIOptionsFrameClickCameraDropDownText" type="Label" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="UIOptionsFrameClickCameraDropDownButton" type="TextureButton" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown/UIOptionsFrameClickCameraDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown/UIOptionsFrameClickCameraDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown/UIOptionsFrameClickCameraDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsGeneral/UIOptionsFrameClickCameraDropDown/UIOptionsFrameClickCameraDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="BasicOptionsDisplay" type="Control" parent="BasicOptions"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 274
+offset_right = 992
+offset_bottom = 429
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="BasicOptions/BasicOptionsDisplay"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_5")
+edge = SubResource("WowTexture_6")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="BasicOptionsDisplayTitle" type="Label" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = -12
+offset_right = 9
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCheckButton12" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 8
+offset_right = 36
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton12Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton12"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton2" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 34
+offset_right = 36
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton2Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton2"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton30" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 400
+offset_top = 8
+offset_right = 426
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton30"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton30"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton30Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton30"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton30"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton30"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton30"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton67" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 400
+offset_top = 34
+offset_right = 426
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton67"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton67"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton67Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton67"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton67"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton67"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton67"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton31" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 400
+offset_top = 60
+offset_right = 426
+offset_bottom = 86
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton31"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton31"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton31Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton31"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton31"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton31"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton31"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton42" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 740
+offset_top = 8
+offset_right = 766
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton42"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton42"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton42Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton42"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton42"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton42"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton42"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton39" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 740
+offset_top = 34
+offset_right = 766
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton39"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton39"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton39Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton39"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton39"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton39"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton39"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton21" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 60
+offset_right = 36
+offset_bottom = 86
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton21"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton21"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton21Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton21"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton21"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton21"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton21"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton22" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 20
+offset_top = 86
+offset_right = 46
+offset_bottom = 112
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton22"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton22"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton22Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton22"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton22"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton22"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton22"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton23" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 20
+offset_top = 112
+offset_right = 46
+offset_bottom = 138
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton23"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton23"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton23Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton23"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton23"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton23"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton23"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton20" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 400
+offset_top = 86
+offset_right = 426
+offset_bottom = 112
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton20"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton20"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton20Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton20"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton20"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton20"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton20"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton43" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 400
+offset_top = 112
+offset_right = 426
+offset_bottom = 138
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton43"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton43"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton43Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton43"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton43"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton43"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton43"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton62" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 740
+offset_top = 60
+offset_right = 766
+offset_bottom = 86
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton62"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton62"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton62Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton62"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton62"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton62"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton62"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton66" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 740
+offset_top = 86
+offset_right = 766
+offset_bottom = 112
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton66"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton66"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton66Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton66"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton66"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton66"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton66"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton5" type="TextureButton" parent="BasicOptions/BasicOptionsDisplay"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 740
+offset_top = 112
+offset_right = 766
+offset_bottom = 138
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton5Text" type="Label" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton5"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsDisplay/UIOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="BasicOptionsCamera" type="Control" parent="BasicOptions"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 449
+offset_right = 992
+offset_bottom = 564
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="BasicOptions/BasicOptionsCamera"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_5")
+edge = SubResource("WowTexture_6")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="BasicOptionsCameraTitle" type="Label" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = -12
+offset_right = 9
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCameraDropDown" type="Control" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 40
+offset_bottom = 56
+mouse_filter = 0
+
+[node name="UIOptionsFrameCameraDropDownLabel" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = -13
+offset_right = 16
+offset_bottom = -3
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Camera Following Style"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCameraDropDownLeft" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="UIOptionsFrameCameraDropDownMiddle" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="UIOptionsFrameCameraDropDownRight" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="UIOptionsFrameCameraDropDownText" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="UIOptionsFrameCameraDropDownButton" type="TextureButton" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown/UIOptionsFrameCameraDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown/UIOptionsFrameCameraDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown/UIOptionsFrameCameraDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCameraDropDown/UIOptionsFrameCameraDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton24" type="TextureButton" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 20
+offset_top = 56
+offset_right = 46
+offset_bottom = 82
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton24"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton24"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton24Text" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton24"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton24"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton24"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton24"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton26" type="TextureButton" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 20
+offset_top = 82
+offset_right = 46
+offset_bottom = 108
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton26"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton26"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton26Text" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton26"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton26"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton26"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton26"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameSlider2" type="HSlider" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+offset_left = 396
+offset_top = 19
+offset_right = 524
+offset_bottom = 36
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_7")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_7")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_8")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_8")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider2"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_9")
+edge = SubResource("WowTexture_10")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="UIOptionsFrameSlider2Text" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider2"]
+unique_name_in_owner = true
+offset_left = 64
+offset_top = -10
+offset_right = 64
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider2Low" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider2"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 14
+offset_right = 2
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider2High" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider2"]
+unique_name_in_owner = true
+offset_left = 126
+offset_top = 14
+offset_right = 126
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCheckButton27" type="TextureButton" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 396
+offset_top = 51
+offset_right = 422
+offset_bottom = 77
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton27"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton27"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton27Text" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton27"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton27"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton27"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton27"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton15" type="TextureButton" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 396
+offset_top = 77
+offset_right = 422
+offset_bottom = 103
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton15Text" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton15"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameCheckButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameSlider3" type="HSlider" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+offset_left = 745
+offset_top = 19
+offset_right = 873
+offset_bottom = 36
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_7")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_7")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_8")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_8")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider3"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_9")
+edge = SubResource("WowTexture_10")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="UIOptionsFrameSlider3Text" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider3"]
+unique_name_in_owner = true
+offset_left = 64
+offset_top = -10
+offset_right = 64
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider3Low" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider3"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 14
+offset_right = 2
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider3High" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider3"]
+unique_name_in_owner = true
+offset_left = 126
+offset_top = 14
+offset_right = 126
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider4" type="HSlider" parent="BasicOptions/BasicOptionsCamera"]
+unique_name_in_owner = true
+offset_left = 745
+offset_top = 63
+offset_right = 873
+offset_bottom = 80
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_7")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_7")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_8")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_8")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider4"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_9")
+edge = SubResource("WowTexture_10")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="UIOptionsFrameSlider4Text" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider4"]
+unique_name_in_owner = true
+offset_left = 64
+offset_top = -10
+offset_right = 64
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider4Low" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider4"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 14
+offset_right = 2
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameSlider4High" type="Label" parent="BasicOptions/BasicOptionsCamera/UIOptionsFrameSlider4"]
+unique_name_in_owner = true
+offset_left = 126
+offset_top = 14
+offset_right = 126
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BasicOptionsHelp" type="Control" parent="BasicOptions"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 584
+offset_right = 992
+offset_bottom = 654
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="BasicOptions/BasicOptionsHelp"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_5")
+edge = SubResource("WowTexture_6")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="BasicOptionsHelpTitle" type="Label" parent="BasicOptions/BasicOptionsHelp"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = -12
+offset_right = 9
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCheckButton28" type="TextureButton" parent="BasicOptions/BasicOptionsHelp"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 8
+offset_right = 36
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton28"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton28"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton28Text" type="Label" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton28"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton28"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton28"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton28"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameResetTutorials" type="TextureButton" parent="BasicOptions/BasicOptionsHelp"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 348
+offset_top = 12
+offset_right = 492
+offset_bottom = 33
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameResetTutorials"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameResetTutorials"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameResetTutorials"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="UIOptionsFrameResetTutorialsText" type="Label" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameResetTutorials"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Reset Tutorials"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameResetTutorials"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton29" type="TextureButton" parent="BasicOptions/BasicOptionsHelp"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 542
+offset_top = 9.5
+offset_right = 568
+offset_bottom = 35.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton29"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton29"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton29Text" type="Label" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton29"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton29"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton29"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton29"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton44" type="TextureButton" parent="BasicOptions/BasicOptionsHelp"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 34
+offset_right = 36
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton44"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton44"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton44Text" type="Label" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton44"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton44"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton44"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BasicOptions/BasicOptionsHelp/UIOptionsFrameCheckButton44"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="AdvancedOptions" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = -384
+offset_right = 512
+offset_bottom = 384
+visible = false
+mouse_filter = 2
+
+[node name="AdvancedOptionsActionBars" type="Control" parent="AdvancedOptions"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 449
+offset_right = 992
+offset_bottom = 516
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AdvancedOptions/AdvancedOptionsActionBars"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_5")
+edge = SubResource("WowTexture_6")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AdvancedOptionsActionBarsTitle" type="Label" parent="AdvancedOptions/AdvancedOptionsActionBars"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = -12
+offset_right = 9
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCheckButton32" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsActionBars"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 8
+offset_right = 36
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton32"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton32"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton32Text" type="Label" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton32"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton32"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton32"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton32"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton33" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsActionBars"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 34
+offset_right = 36
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton33"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton33"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton33Text" type="Label" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton33"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton33"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton33"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton33"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton40" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsActionBars"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 387
+offset_top = 8
+offset_right = 413
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton40"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton40"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton40Text" type="Label" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton40"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton40"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton40"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton40"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton34" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsActionBars"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 387
+offset_top = 34
+offset_right = 413
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton34"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton34"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton34Text" type="Label" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton34"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton34"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton34"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton34"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton35" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsActionBars"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 780
+offset_top = 8
+offset_right = 806
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton35"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton35"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton35Text" type="Label" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton35"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton35"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton35"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton35"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton36" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsActionBars"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 790
+offset_top = 30
+offset_right = 816
+offset_bottom = 56
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton36"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton36"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton36Text" type="Label" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton36"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton36"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton36"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsActionBars/UIOptionsFrameCheckButton36"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="AdvancedOptionsChat" type="Control" parent="AdvancedOptions"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 10
+offset_bottom = 415
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AdvancedOptions/AdvancedOptionsChat"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_5")
+edge = SubResource("WowTexture_6")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AdvancedOptionsChatTitle" type="Label" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = -12
+offset_right = 9
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCheckButton7" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 8
+offset_right = 36
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton7Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton7"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton8" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 34
+offset_right = 36
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton8Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton8"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton13" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 60
+offset_right = 36
+offset_bottom = 86
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton13Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton13"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton18" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 86
+offset_right = 36
+offset_bottom = 112
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton18"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton18"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton18Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton18"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton18"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton18"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton18"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton37" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 112
+offset_right = 36
+offset_bottom = 138
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton37"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton37"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton37Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton37"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton37"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton37"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton37"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton46" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 138
+offset_right = 36
+offset_bottom = 164
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton46"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton46"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton46Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton46"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton46"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton46"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton46"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton38" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 164
+offset_right = 36
+offset_bottom = 190
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton38"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton38"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton38Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton38"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton38"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton38"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton38"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton51" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 190
+offset_right = 36
+offset_bottom = 216
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton51"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton51"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton51Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton51"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton51"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton51"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton51"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton68" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsChat"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 216
+offset_right = 36
+offset_bottom = 242
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton68"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton68"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton68Text" type="Label" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton68"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton68"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton68"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsChat/UIOptionsFrameCheckButton68"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="AdvancedOptionsRaid" type="Control" parent="AdvancedOptions"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 10
+offset_bottom = 280
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AdvancedOptions/AdvancedOptionsRaid"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_5")
+edge = SubResource("WowTexture_6")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AdvancedOptionsRaidTitle" type="Label" parent="AdvancedOptions/AdvancedOptionsRaid"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = -12
+offset_right = 9
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCheckButton47" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsRaid"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 8
+offset_right = 36
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton47"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton47"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton47Text" type="Label" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton47"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton47"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton47"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton47"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton41" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsRaid"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 34
+offset_right = 36
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton41"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton41"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton41Text" type="Label" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton41"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton41"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton41"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton41"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton48" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsRaid"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 60
+offset_right = 36
+offset_bottom = 86
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton48"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton48"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton48Text" type="Label" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton48"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton48"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton48"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton48"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton49" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsRaid"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 86
+offset_right = 36
+offset_bottom = 112
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton49"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton49"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton49Text" type="Label" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton49"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton49"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton49"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton49"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton50" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsRaid"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 112
+offset_right = 36
+offset_bottom = 138
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton50"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton50"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton50Text" type="Label" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton50"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton50"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton50"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameCheckButton50"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameTargetofTargetDropDown" type="Control" parent="AdvancedOptions/AdvancedOptionsRaid"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 138
+offset_right = 55
+offset_bottom = 170
+mouse_filter = 0
+
+[node name="UIOptionsFrameTargetofTargetDropDownLabel" type="Label" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = -10
+offset_right = 21
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameTargetofTargetDropDownLeft" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="UIOptionsFrameTargetofTargetDropDownMiddle" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="UIOptionsFrameTargetofTargetDropDownRight" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="UIOptionsFrameTargetofTargetDropDownText" type="Label" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="UIOptionsFrameTargetofTargetDropDownButton" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown/UIOptionsFrameTargetofTargetDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown/UIOptionsFrameTargetofTargetDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown/UIOptionsFrameTargetofTargetDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsRaid/UIOptionsFrameTargetofTargetDropDown/UIOptionsFrameTargetofTargetDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="AdvancedOptionsCombatText" type="Control" parent="AdvancedOptions"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 10
+offset_bottom = 280
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_5")
+edge = SubResource("WowTexture_6")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AdvancedOptionsCombatTextTitle" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = -12
+offset_right = 9
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCheckButton52" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 10
+offset_top = 8
+offset_right = 36
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton52"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton52"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton52Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton52"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton52"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton52"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton52"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCombatTextDropDown" type="Control" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 49
+offset_right = 55
+offset_bottom = 81
+mouse_filter = 0
+
+[node name="UIOptionsFrameCombatTextDropDownLabel" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = -13
+offset_right = 16
+offset_bottom = -3
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIOptionsFrameCombatTextDropDownLeft" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="UIOptionsFrameCombatTextDropDownMiddle" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="UIOptionsFrameCombatTextDropDownRight" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="UIOptionsFrameCombatTextDropDownText" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="UIOptionsFrameCombatTextDropDownButton" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown/UIOptionsFrameCombatTextDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown/UIOptionsFrameCombatTextDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown/UIOptionsFrameCombatTextDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCombatTextDropDown/UIOptionsFrameCombatTextDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton53" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 79
+offset_right = 51
+offset_bottom = 99
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton53"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton53"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton53Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton53"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton53"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton53"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton53"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton54" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 99
+offset_right = 51
+offset_bottom = 119
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton54"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton54"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton54Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton54"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton54"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton54"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton54"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton55" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 119
+offset_right = 51
+offset_bottom = 139
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton55"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton55"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton55Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton55"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton55"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton55"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton55"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton56" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 139
+offset_right = 51
+offset_bottom = 159
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton56"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton56"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton56Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton56"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton56"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton56"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton56"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton57" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 159
+offset_right = 51
+offset_bottom = 179
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton57"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton57"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton57Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton57"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton57"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton57"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton57"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton58" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 179
+offset_right = 51
+offset_bottom = 199
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton58"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton58"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton58Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton58"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton58"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton58"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton58"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton60" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 199
+offset_right = 51
+offset_bottom = 219
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton60"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton60"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton60Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton60"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton60"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton60"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton60"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton63" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 219
+offset_right = 51
+offset_bottom = 239
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton63"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton63"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton63Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton63"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton63"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton63"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton63"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton64" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 239
+offset_right = 51
+offset_bottom = 259
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton64"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton64"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton64Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton64"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton64"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton64"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton64"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton65" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 259
+offset_right = 51
+offset_bottom = 279
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton65"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton65"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton65Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton65"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton65"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton65"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton65"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton59" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 279
+offset_right = 51
+offset_bottom = 299
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton59"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton59"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton59Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton59"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton59"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton59"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton59"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton69" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 299
+offset_right = 51
+offset_bottom = 319
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton69"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton69"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton69Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton69"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton69"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton69"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton69"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton19" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 22
+offset_top = 321
+offset_right = 48
+offset_bottom = 347
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton19"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton19"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton19Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton19"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 8
+offset_right = 24
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton19"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton19"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton19"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton11" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 35
+offset_top = 343
+offset_right = 55
+offset_bottom = 363
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton11Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton11"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCheckButton9" type="TextureButton" parent="AdvancedOptions/AdvancedOptionsCombatText"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 35
+offset_top = 363
+offset_right = 55
+offset_bottom = 383
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="UIOptionsFrameCheckButton9Text" type="Label" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton9"]
+unique_name_in_owner = true
+offset_left = 18
+offset_top = 5
+offset_right = 18
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AdvancedOptions/AdvancedOptionsCombatText/UIOptionsFrameCheckButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameCancel" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 360
+offset_top = 357
+offset_right = 504
+offset_bottom = 378
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="UIOptionsFrameCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="UIOptionsFrameCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="UIOptionsFrameCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="UIOptionsFrameCancelText" type="Label" parent="UIOptionsFrameCancel"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="UIOptionsFrameCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameOkay" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 216
+offset_top = 357
+offset_right = 360
+offset_bottom = 378
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="UIOptionsFrameOkay"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="UIOptionsFrameOkay"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="UIOptionsFrameOkay"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="UIOptionsFrameOkayText" type="Label" parent="UIOptionsFrameOkay"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="UIOptionsFrameOkay"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameDefaults" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -504
+offset_top = 357
+offset_right = -414
+offset_bottom = 378
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="UIOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="UIOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="UIOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="UIOptionsFrameDefaultsText" type="Label" parent="UIOptionsFrameDefaults"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Defaults"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="UIOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameTab1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492
+offset_top = -361
+offset_right = -377
+offset_bottom = -319
+ignore_texture_size = true
+
+[node name="UIOptionsFrameTab1LeftDisabled" type="TextureRect" parent="UIOptionsFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3
+offset_right = 16
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab1MiddleDisabled" type="TextureRect" parent="UIOptionsFrameTab1"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 3
+offset_right = 48
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_35")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab1RightDisabled" type="TextureRect" parent="UIOptionsFrameTab1"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 3
+offset_right = 64
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab1Left" type="TextureRect" parent="UIOptionsFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 42
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab1Middle" type="TextureRect" parent="UIOptionsFrameTab1"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 48
+offset_bottom = 42
+mouse_filter = 2
+texture = SubResource("AtlasTexture_39")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab1Right" type="TextureRect" parent="UIOptionsFrameTab1"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 0
+offset_right = 64
+offset_bottom = 42
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab1Text" type="Label" parent="UIOptionsFrameTab1"]
+unique_name_in_owner = true
+offset_left = 57.5
+offset_top = 24
+offset_right = 57.5
+offset_bottom = 37
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Basic"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="UIOptionsFrameTab1"]
+offset_left = 57
+offset_top = 18
+offset_right = 62
+offset_bottom = 50
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_41")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="UIOptionsFrameTab2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -374
+offset_top = -360
+offset_right = -259
+offset_bottom = -318
+ignore_texture_size = true
+
+[node name="UIOptionsFrameTab2LeftDisabled" type="TextureRect" parent="UIOptionsFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3
+offset_right = 16
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab2MiddleDisabled" type="TextureRect" parent="UIOptionsFrameTab2"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 3
+offset_right = 48
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_35")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab2RightDisabled" type="TextureRect" parent="UIOptionsFrameTab2"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 3
+offset_right = 64
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab2Left" type="TextureRect" parent="UIOptionsFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 42
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab2Middle" type="TextureRect" parent="UIOptionsFrameTab2"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 48
+offset_bottom = 42
+mouse_filter = 2
+texture = SubResource("AtlasTexture_39")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab2Right" type="TextureRect" parent="UIOptionsFrameTab2"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 0
+offset_right = 64
+offset_bottom = 42
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="UIOptionsFrameTab2Text" type="Label" parent="UIOptionsFrameTab2"]
+unique_name_in_owner = true
+offset_left = 57.5
+offset_top = 24
+offset_right = 57.5
+offset_bottom = 37
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Advanced Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="UIOptionsFrameTab2"]
+offset_left = 57
+offset_top = 18
+offset_right = 62
+offset_bottom = 50
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_41")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="Button" type="TextureButton" parent="."]
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 484
+offset_top = -388
+offset_right = 516
+offset_bottom = -356
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_42")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_43")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_44")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")

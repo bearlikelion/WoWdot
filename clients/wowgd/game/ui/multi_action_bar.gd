@@ -16,9 +16,10 @@ static func bind(bar: Control, first_slot: int, on_used: Callable) -> Array[Acti
 
 
 # Until the interface options exist, a bar shows whenever the server has an action in its slots.
-static func update_visibility(bar: Control, buttons: Array[ActionButton]) -> void:
+# The stock options hide a bar outright; an empty one stays hidden here, having nothing to show.
+static func update_visibility(bar: Control, buttons: Array[ActionButton], option: StringName = &"") -> void:
 	var actions: PackedInt32Array = WowClient.session.get_action_buttons()
 	var used: bool = false
 	for button: ActionButton in buttons:
 		used = used or (button.slot < actions.size() and actions[button.slot] != 0)
-	bar.visible = used
+	bar.visible = used and (option.is_empty() or WowAssets.interface.is_on(option))

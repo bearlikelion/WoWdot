@@ -46,7 +46,8 @@ func _process(_delta: float) -> void:
 			continue
 		var end: int = _ends.get(_shown[i]["slot"], 0)
 		var left: int = end - now
-		_durations[i].visible = end > 0 and left > 0
+		_durations[i].visible = end > 0 and left > 0 \
+		and WowAssets.interface.is_on(&"show_buff_durations")
 		if _durations[i].visible:
 			_durations[i].text = _duration_text(left)
 		_buttons[i].modulate.a = lerpf(MIN_ALPHA, 1.0, pulse) if end > 0 and left < WARNING_MSEC else 1.0

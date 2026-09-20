@@ -128,6 +128,23 @@ func _run() -> void:
 	_check(game_menu.visible, "Escape with nothing left opens the game menu")
 	await _frames(10)
 	_capture("user://panels_menu.png")
+	(game_menu.get_node("%GameMenuButtonUIOptions") as BaseButton).pressed.emit()
+	await _frames(20)
+	var options: UIOptionsFrame = panels.get_node("%UIOptionsFrame")
+	_check(options.visible, "the game menu opens the interface options")
+	_capture("user://panels_interface_options.png")
+	var names: WowButton = options.get_node("%UIOptionsFrameCheckButton21")
+	names.pressed.emit()
+	await _frames(20)
+	_check(
+		not WowAssets.interface.is_on(&"show_player_names"),
+		"unticking Show Player Names moves the setting",
+	)
+	names.pressed.emit()
+	await _frames(10)
+	(options.get_node("%UIOptionsFrameCancel") as BaseButton).pressed.emit()
+	await _frames(20)
+	_check(game_menu.visible, "closing the options goes back to the game menu")
 	await _press(KEY_ESCAPE)
 	_check(not game_menu.visible, "Escape closes the game menu")
 	await _press(KEY_M)

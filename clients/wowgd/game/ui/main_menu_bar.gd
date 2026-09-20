@@ -104,6 +104,7 @@ func _ready() -> void:
 	_bottom_left = MultiActionBar.bind(_bottom_left_bar, BOTTOM_LEFT_FIRST_SLOT, action_used.emit)
 	_bottom_right = MultiActionBar.bind(_bottom_right_bar, BOTTOM_RIGHT_FIRST_SLOT, action_used.emit)
 	WowClient.session.action_buttons_changed.connect(_update_bottom_bars)
+	WowAssets.interface.changed.connect(_update_bottom_bars)
 	WowClient.session.object_updated.connect(_on_object_updated)
 	# The player's own create block brings the stance, and it can land after the bar is built.
 	WowClient.session.object_created.connect(_on_object_created)
@@ -160,8 +161,8 @@ func _assign_slots() -> void:
 
 
 func _update_bottom_bars() -> void:
-	MultiActionBar.update_visibility(_bottom_left_bar, _bottom_left)
-	MultiActionBar.update_visibility(_bottom_right_bar, _bottom_right)
+	MultiActionBar.update_visibility(_bottom_left_bar, _bottom_left, &"multi_bar_1")
+	MultiActionBar.update_visibility(_bottom_right_bar, _bottom_right, &"multi_bar_2")
 	bottom_bars_toggled.emit(_bottom_left_bar.visible or _bottom_right_bar.visible)
 
 

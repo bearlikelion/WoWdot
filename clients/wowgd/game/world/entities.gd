@@ -36,6 +36,10 @@ var _quest_state: Array = []
 
 
 func _ready() -> void:
+	WowAssets.interface.changed.connect(func() -> void:
+		for guid: int in _nameplates:
+			_show_name(guid)
+	)
 	_game_object_displays = WowDBC.open(WowAssets.archive, "GameObjectDisplayInfo")
 	var session: WowSession = WowClient.session
 	session.object_created.connect(_on_object_created)
@@ -224,6 +228,15 @@ func _on_name_received(guid: int, _unit_name: String) -> void:
 		_place_marker(guid)
 
 
+# The stock options hide the names over players or over creatures separately.
+func _show_name(guid: int) -> void:
+	if not _nameplates.has(guid):
+		return
+	var player: bool = WowClient.session.get_object_type(guid) == ObjectType.PLAYER
+	var option: StringName = &"show_player_names" if player else &"show_npc_names"
+	_nameplates[guid].visible = WowAssets.interface.is_on(option)
+
+
 # The name, and under it the creature's title such as <Paladin Trainer>.
 func _plate_text(guid: int) -> String:
 	var session: WowSession = WowClient.session
@@ -264,6 +277,7 @@ func _add_nameplate(guid: int, node: Node3D) -> void:
 	plate.text = _plate_text(guid)
 	node.add_child(plate)
 	_nameplates[guid] = plate
+	_show_name(guid)
 
 
 func _on_object_updated(guid: int) -> void:

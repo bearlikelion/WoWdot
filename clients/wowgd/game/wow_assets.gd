@@ -41,6 +41,11 @@ var spell_visuals: SpellVisuals:
 		if _spell_visuals == null:
 			_spell_visuals = SpellVisuals.new(archive)
 		return _spell_visuals
+var interface: InterfaceSettings:
+	get:
+		if _interface == null:
+			_interface = InterfaceSettings.new()
+		return _interface
 var audio: WowAudio:
 	get:
 		if _audio == null:
@@ -59,6 +64,7 @@ var _characters: CharacterModels
 var _creatures: CreatureModels
 var _spells: SpellInfo
 var _spell_visuals: SpellVisuals
+var _interface: InterfaceSettings
 var _audio: WowAudio
 var _video: VideoSettings
 

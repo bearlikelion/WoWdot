@@ -156,7 +156,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Capturing only once a drag starts keeps plain clicks from grabbing the pointer.
 		if _drag_distance >= CLICK_SLOP and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		var tilt: float = _pivot.rotation.x - motion.relative.y * MOUSE_TURN
+		var pitch: float = -1.0 if WowAssets.interface.is_on(&"invert_mouse") else 1.0
+		var tilt: float = _pivot.rotation.x - motion.relative.y * MOUSE_TURN * pitch
 		_pivot.rotation.x = clampf(tilt, MIN_PITCH, MAX_PITCH)
 		if _mouse_turning:
 			rotation.y -= motion.relative.x * MOUSE_TURN

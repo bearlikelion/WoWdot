@@ -146,7 +146,8 @@ func _on_object_updated(guid: int) -> void:
 			counts.append(QuestLog.counter(slot, objective))
 		counts.append(QuestLog.state(slot))
 		current[quest] = counts
-		var moved: bool = _progress.has(quest) and _progress[quest] != counts
+		var moved: bool = _progress.has(quest) and _progress[quest] != counts \
+		and WowAssets.interface.is_on(&"auto_quest_watch")
 		if moved and not is_inf(_watches.get(quest, 0.0)) \
 		and (_watches.has(quest) or _watches.size() < MAX_WATCHABLE_QUESTS):
 			_watches[quest] = MAX_QUEST_WATCH_TIMER

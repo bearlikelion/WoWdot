@@ -58,6 +58,7 @@ func _ready() -> void:
 		bar.mouse_entered.connect(_show_bar_text.bind(true))
 		bar.mouse_exited.connect(_show_bar_text.bind(false))
 	_show_bar_text(false)
+	WowAssets.interface.changed.connect(func() -> void: _show_bar_text(false))
 	show_unit(guid)
 
 
@@ -120,10 +121,12 @@ func _update_unit() -> void:
 	pass
 
 
+# The stock STATUS_BAR_TEXT option keeps the numbers up; otherwise they answer the cursor.
 func _show_bar_text(shown: bool) -> void:
+	var always: bool = WowAssets.interface.is_on(&"status_bar_text")
 	for text: Label in [_health_text, _power_text]:
 		if text:
-			text.visible = shown
+			text.visible = shown or always
 
 
 func _on_mouse_entered() -> void:

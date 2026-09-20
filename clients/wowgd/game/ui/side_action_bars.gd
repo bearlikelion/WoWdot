@@ -17,10 +17,11 @@ func _ready() -> void:
 	_right = MultiActionBar.bind(self, RIGHT_FIRST_SLOT, action_used.emit)
 	_left = MultiActionBar.bind(_left_bar, LEFT_FIRST_SLOT, action_used.emit)
 	WowClient.session.action_buttons_changed.connect(_update_visibility)
+	WowAssets.interface.changed.connect(_update_visibility)
 	_update_visibility()
 
 
 func _update_visibility() -> void:
-	MultiActionBar.update_visibility(self, _right)
+	MultiActionBar.update_visibility(self, _right, &"multi_bar_3")
 	# MultiBarLeft is grafted under MultiBarRight, so it only shows alongside it as in the stock UI.
-	MultiActionBar.update_visibility(_left_bar, _left)
+	MultiActionBar.update_visibility(_left_bar, _left, &"multi_bar_4")

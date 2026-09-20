@@ -22,7 +22,7 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Combat | Targeting, auto attack, spell casts with cooldowns and the GCD, buffs and debuffs, floating combat text, combat log. |
 | HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap with the corpse marked, tooltips, reputation watch bar, breath and fatigue timers. |
 | Chat | Say, yell, party, guild and whispers, channels with /join and numbered commands, emotes such as /dance, speech bubbles over the speaker. |
-| Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video and sound options. |
+| Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video, sound and interface options. |
 | NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag slot purchases, auctioneers. |
 | Mail | Inbox from a mailbox, reading letters, taking money and attachments, deleting, and writing letters with money. |
 | Groups | Party invites, party frames, loot window, group loot rolls, ready check, quest sharing. |
@@ -95,6 +95,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `chase_check` | A pulled creature closes to melee, trades blows and follows a running player. |
 | `outfit_check` | The create screen's preview wears what CharStartOutfit.dbc gives it; no server needed. |
 | `realm_list_check` | A realm list longer than the frame scrolls; no server needed. |
+| `interface_options_check` | The options this client answers can be ticked, the rest are greyed; no server needed. |
 
 ## Still to do
 
@@ -104,7 +105,7 @@ In the order they are planned:
 | --- | --- |
 | M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
 | M6 visuals | M2 ribbons, WMO liquids, transports. |
-| M7 polish | Key binding UI, interface options, doodad LOD, footstep sounds by terrain. |
+| M7 polish | Key binding UI, the interface options this client cannot answer yet, doodad LOD per instance, footstep sounds by terrain. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 
