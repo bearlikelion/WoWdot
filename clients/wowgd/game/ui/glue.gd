@@ -5,7 +5,7 @@ enum Screen { LOGIN, CHARACTER_SELECT, CHARACTER_CREATE, LOADING }
 
 const SETTINGS_PATH: String = "user://settings.cfg"
 const SETTINGS_SECTION: String = "login"
-const DEFAULT_REALMLIST: String = "192.168.1.251"
+const DEFAULT_REALMLIST: String = "127.0.0.1"
 const AUTH_PORT: int = 3724
 const MUSIC: String = "Sound\\Music\\GlueScreenMusic\\wow_main_theme.mp3"
 const UI_HEIGHT: float = 768.0

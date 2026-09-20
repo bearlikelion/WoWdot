@@ -1,0 +1,82 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+env:
+  # The public GitHub repo that carries the site and the downloads. No source is ever pushed to it.
+  SITE_REPO: bearlikelion/wowdot-site
+  GODOT_VERSION: 4.7.2-stable
+
+jobs:
+  release:
+    runs-on: docker
+    container:
+      image: archlinux:latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Install build dependencies
+        run: pacman -Syu --noconfirm --needed base-devel git scons unzip zip mingw-w64-gcc github-cli
+
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # The debug library is what the editor loads during --import; without it every script using WowSession fails to parse.
+      - name: Build the extension
+        run: |
+          cd extension
+          scons -j"$(nproc)" target=template_debug
+          scons -j"$(nproc)" target=template_release
+          scons -j"$(nproc)" platform=windows target=template_release
+
+      - name: Download Godot and the export templates
+        run: |
+          base="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}"
+          curl -fsSLo godot.zip "${base}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          curl -fsSLo templates.tpz "${base}/Godot_v${GODOT_VERSION}_export_templates.tpz"
+          unzip -q godot.zip
+          unzip -q templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates
+          mv templates ~/.local/share/godot/export_templates/"${GODOT_VERSION/-/.}"
+          echo "GODOT=$PWD/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+
+      - name: Export the clients
+        env:
+          GODOT_SCRIPT_ENCRYPTION_KEY: ${{ secrets.GODOT_SCRIPT_ENCRYPTION_KEY }}
+        run: |
+          set -euo pipefail
+          [[ -n "${GODOT_SCRIPT_ENCRYPTION_KEY:-}" ]] \
+            || { echo "::error::GODOT_SCRIPT_ENCRYPTION_KEY is unset; the presets encrypt the pck"; exit 1; }
+          mkdir -p export/wowgd/{linux,windows,dist}
+          timeout 900 "$GODOT" --headless --path clients/wowgd --import
+          "$GODOT" --headless --path clients/wowgd --export-release Linux
+          "$GODOT" --headless --path clients/wowgd --export-release Windows
+          [[ -f export/wowgd/linux/WoWGD.x86_64 && -f export/wowgd/windows/WoWGD.exe ]] \
+            || { echo "::error::export produced no binary"; exit 1; }
+
+      - name: Package the downloads
+        run: |
+          set -euo pipefail
+          for platform in linux windows; do
+            cp packaging/wowgd/README.txt LICENSE NOTICE.md "export/wowgd/${platform}/"
+            # Named rather than globbed over the whole dir: a local export dir also holds symlinks into a real WoW install.
+            (cd "export/wowgd/${platform}" \
+              && zip -q "../dist/WoWGD-${platform}.zip" WoWGD.* libwowdot.* README.txt LICENSE NOTICE.md)
+          done
+
+      - name: Publish the downloads to GitHub
+        env:
+          GH_TOKEN: ${{ secrets.SITE_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag="$GITHUB_REF_NAME"
+          [[ "$GITHUB_REF" == refs/tags/* ]] || tag=dev
+          gh release create "$tag" --repo "$SITE_REPO" --title "WoWGD $tag" \
+            --notes "Unzip into your own World of Warcraft 1.12.1 (build 5875) folder. See README.txt in the zip." \
+            || true
+          gh release upload "$tag" --repo "$SITE_REPO" --clobber export/wowgd/dist/*.zip

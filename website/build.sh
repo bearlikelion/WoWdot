@@ -20,13 +20,13 @@ main() {
   [[ -f "${ROOT}/${LIBRARY}" ]] \
     || die "missing ${LIBRARY}, run scons target=template_debug in extension/"
 
-  # CI on GitHub and Forgejo sets both; local builds get a dead link.
-  local repo_url="${GITHUB_REPOSITORY:+${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}}"
+  # SITE_REPO is the public GitHub repo holding the releases; local builds get a dead link.
+  local releases="${SITE_REPO:+https://github.com/${SITE_REPO}/releases/latest}"
 
   rm -rf "$OUT"
   mkdir -p "$OUT"
   cp "${ROOT}"/website/*.{html,css,png} "$OUT"/
-  sed -i "s|{{REPO_URL}}|${repo_url:-#}|g" "${OUT}/index.html"
+  sed -i "s|{{RELEASES}}|${releases:-#}|g" "${OUT}/index.html"
 
   local client project
   for client in "${CLIENTS[@]}"; do

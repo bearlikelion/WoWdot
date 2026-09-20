@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WoWdot</title>
-  <meta name="description" content="Open-source Godot clients for classic World of Warcraft servers.">
+  <meta name="description" content="Godot clients for classic World of Warcraft servers.">
   <link rel="icon" href="favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,10 +12,10 @@
   <header class="hero">
     <img src="logo.png" alt="WoWdot logo" width="160" height="160">
     <h1>WoWdot</h1>
-    <p class="tagline">Open-source Godot clients for classic World of Warcraft servers.</p>
+    <p class="tagline">Godot clients for classic World of Warcraft servers.</p>
     <nav>
-      <a class="button" href="{{REPO_URL}}">Source</a>
-      <a class="button" href="api/wowgd/">WoWGD API reference</a>
+      <a class="button" href="{{RELEASES}}/download/WoWGD-windows.zip">Download for Windows</a>
+      <a class="button" href="{{RELEASES}}/download/WoWGD-linux.zip">Download for Linux</a>
     </nav>
   </header>
 
@@ -50,17 +50,19 @@
     </section>
 
     <section>
-      <h2>Build from source</h2>
-      <p>You need Godot 4.7, SCons and a C++20 compiler; every library is a submodule.</p>
-      <pre><code>git clone --recursive {{REPO_URL}} WoWdot
-cd WoWdot/extension
-scons target=template_debug</code></pre>
-      <p>Open <code>clients/wowgd</code> in Godot, set <strong>wowgd/client_data_dir</strong> to your client's <code>Data</code> folder, and run.</p>
+      <h2>Download and play</h2>
+      <p>Grab the <a href="{{RELEASES}}/download/WoWGD-windows.zip">Windows</a> or <a href="{{RELEASES}}/download/WoWGD-linux.zip">Linux</a> build, or browse <a href="{{RELEASES}}">every release</a>.</p>
+      <ol>
+        <li>Copy the files from the zip into your own 1.12.1 client folder, next to its <code>Data</code> folder.</li>
+        <li>Run <code>WoWGD.exe</code> or <code>WoWGD.x86_64</code>.</li>
+        <li>Enter the realmlist of the server you play on and log in.</li>
+      </ol>
+      <p>Nothing else to install on either platform.</p>
     </section>
   </main>
 
   <footer>
-    <p>WoWdot is MIT licensed. Third-party components are listed in NOTICE.md.</p>
+    <p>WoWdot will be MIT licensed. Each download ships its LICENSE and NOTICE.md, listing every third-party component.</p>
     <p>World of Warcraft is a trademark of Blizzard Entertainment, which does not endorse this project.</p>
     <p>The logo is based on the Godot logo by Andrea Calabró, CC BY 4.0.</p>
   </footer>

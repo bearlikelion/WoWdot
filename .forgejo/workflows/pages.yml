@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  # The public GitHub repo that carries the site and the downloads. No source is ever pushed to it.
+  SITE_REPO: bearlikelion/wowdot-site
+
 jobs:
   pages:
     runs-on: docker
@@ -47,3 +51,16 @@ jobs:
           git add -A
           git -c user.name="Forgejo Actions" -c user.email="actions@noreply.localhost" commit -q -m "Site for $SHA"
           git push -f "https://oauth2:${TOKEN}@${SERVER#https://}/${REPO}.git" pages
+
+      # The GDDocs page maps the whole GDScript API, so it stays on the internal site only.
+      - name: Publish to GitHub Pages
+        env:
+          TOKEN: ${{ secrets.SITE_TOKEN }}
+          SHA: ${{ github.sha }}
+        run: |
+          rm -rf _site/.git _site/api
+          cd _site
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name="Forgejo Actions" -c user.email="actions@noreply.localhost" commit -q -m "Site for $SHA"
+          git push -f "https://x-access-token:${TOKEN}@github.com/${SITE_REPO}.git" gh-pages

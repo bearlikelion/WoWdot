@@ -1,6 +1,6 @@
 # Notices
 
-WoWdot is MIT licensed, see [LICENSE](LICENSE).
+WoWdot will be MIT licensed, see [LICENSE](LICENSE).
 It includes or links the third-party components below, each under its own license.
 Keep these notices with every source and binary distribution.
 
