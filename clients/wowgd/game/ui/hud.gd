@@ -200,6 +200,11 @@ func _on_emote_requested(text_emote: int) -> void:
 
 # SMSG_TEXT_EMOTE: the client writes the line itself, from EmotesText and EmotesTextData.
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "SMSG_CHANNEL_NOTIFY":
+		var notice: String = Channels.notice(payload)
+		if not notice.is_empty():
+			add_system_line(notice)
+		return
 	if opcode != "SMSG_TEXT_EMOTE":
 		return
 	var session: WowSession = WowClient.session

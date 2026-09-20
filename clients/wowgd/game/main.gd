@@ -66,6 +66,8 @@ func _on_state_changed(state: WowSession.State, _message: String) -> void:
 	var left_world: bool = state in [
 		WowSession.STATE_CHARACTER_LIST, WowSession.STATE_FAILED, WowSession.STATE_DISCONNECTED,
 	]
+	if left_world:
+		Channels.forget()
 	if world and left_world:
 		world.queue_free()
 		world = null

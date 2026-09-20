@@ -154,7 +154,9 @@ func format_line(line: Dictionary) -> String:
 	var key: String = "CHAT_%s_GET" % TYPE_KEYS.get(chat_type, "SAY")
 	var header: String = WowStrings.get_text(key, "%s: ")
 	if chat_type == WowSession.CHAT_CHANNEL:
-		header = "[%s] %s" % [line.get("channel", ""), header]
+		var channel_name: String = line.get("channel", "")
+		var number: int = Channels.number_of(channel_name)
+		header = "[%s%s] %s" % ["%d. " % number if number > 0 else "", channel_name, header]
 	return header.replace("%s", who) + text
 
 
@@ -237,6 +239,8 @@ func _on_text_submitted(text: String) -> void:
 	_history.append(text.strip_edges())
 	if _history.size() > HISTORY_LINES:
 		_history.remove_at(0)
+	if text.begins_with("/") and _run_channel_command(text.strip_edges()):
+		return
 	if _run_party_command(message):
 		return
 	if text.begins_with("/") and _send_emote(text.strip_edges()):
@@ -247,6 +251,34 @@ func _on_text_submitted(text: String) -> void:
 	if chat_type in STICKY:
 		_sticky_type = chat_type
 	WowClient.session.send_chat(chat_type, message, target)
+
+
+# /join and /leave take a channel, and /1 to /9 talk on the channel with that number.
+func _run_channel_command(text: String) -> bool:
+	var parts: PackedStringArray = text.substr(1).split(" ", false)
+	if parts.is_empty():
+		return false
+	var command: String = parts[0].to_lower()
+	var rest: PackedStringArray = parts.slice(1)
+	if command in ["join", "j", "chat"] and not rest.is_empty():
+		Channels.join(rest[0], rest[1] if rest.size() > 1 else "")
+		return true
+	# A bare /leave still leaves the party, so this only takes the ones naming a channel.
+	if command in ["leave", "chatleave", "chatexit"] and not rest.is_empty():
+		var leaving: String = Channels.name_at(rest[0].to_int()) if rest[0].is_valid_int() \
+		else rest[0]
+		if Channels.number_of(leaving) == 0:
+			return false
+		Channels.leave(leaving)
+		return true
+	if not command.is_valid_int():
+		return false
+	var channel_name: String = Channels.name_at(command.to_int())
+	if channel_name.is_empty():
+		return false
+	if not rest.is_empty():
+		WowClient.session.send_chat(WowSession.CHAT_CHANNEL, " ".join(rest), channel_name)
+	return true
 
 
 # Any EmotesText token works as its own slash command, as /dance and /wave do.
