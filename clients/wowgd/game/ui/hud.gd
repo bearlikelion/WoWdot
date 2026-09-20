@@ -53,6 +53,7 @@ var _chat_hover_time: float = 0.0
 @onready var _character: CharacterFrame = _panels.get_node("%CharacterFrame")
 @onready var _bank: BankFrame = _panels.get_node("%BankFrame")
 @onready var _mail: MailFrame = _panels.get_node("%MailFrame")
+@onready var _auction: AuctionFrame = _panels.get_node("%AuctionFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
 @onready var _spell_book: SpellBook = _panels.get_node("%SpellBookFrame")
@@ -97,6 +98,10 @@ func _ready() -> void:
 	_open_mail.take_money_requested.connect(_mail.take_money)
 	_open_mail.take_item_requested.connect(_mail.take_item)
 	_open_mail.delete_requested.connect(_mail.delete)
+	_auction.open_requested.connect(_panels.show_panel.bind(_auction))
+	_auction.close_requested.connect(_panels.hide_panel.bind(_auction))
+	_auction.error_raised.connect(show_error)
+	_auction.message_added.connect(add_system_line)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
@@ -361,6 +366,11 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 
 
 # UseContainerItem: gear equips, everything else is used.
+# Right-clicking an auctioneer opens the auction house they work for.
+func open_auction_house(guid: int) -> void:
+	_auction.hello(guid)
+
+
 # Right-clicking a mailbox in the world opens the inbox.
 func open_mailbox(guid: int) -> void:
 	_mail.open(guid)
@@ -375,6 +385,8 @@ func use_container_item(bag: int, slot: int) -> void:
 		_merchant.sell(item)
 		return
 	if _bank.store(bag, slot):
+		return
+	if _auction.offer(item):
 		return
 	var address: Vector2i = Inventory.wire_address(bag, slot)
 	var session: WowSession = WowClient.session

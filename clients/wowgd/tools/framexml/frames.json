@@ -294,6 +294,11 @@
       "frame": "OpenMailFrame",
       "out": "game/ui/wow/open_mail_frame.tscn",
       "script": "res://game/ui/open_mail_frame.gd"
+    },
+    {
+      "frame": "AuctionFrame",
+      "out": "game/ui/wow/auction_frame.tscn",
+      "script": "res://game/ui/auction_frame.gd"
     }
   ],
   "graft": {
