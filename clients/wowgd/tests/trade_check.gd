@@ -15,6 +15,7 @@ var _main: Main
 var _partner: WowSession = WowSession.new()
 var _partner_in_world: bool = false
 var _offered: bool = false
+var _duel_flag: int = 0
 
 
 # Asks the partner to trade, puts an item up, then calls the trade off.
@@ -66,8 +67,38 @@ func _run() -> void:
 		trade.cancel()
 		await _frames(20)
 		_check(not trade.visible, "cancelling closes the trade window")
+	await _duel(hud, partner_guid)
 	_check(session.get_state() == WowSession.STATE_IN_WORLD, "the server kept the session")
 	_finish("")
+
+
+# The challenge plants a flag, and the partner's answer shows in the duel countdown.
+func _duel(hud: Hud, partner_guid: int) -> void:
+	var lines: PackedStringArray = []
+	WowClient.session.packet_received.connect(func(opcode: String, _p: PackedByteArray) -> void:
+		if opcode.begins_with("SMSG_DUEL"):
+			lines.append(opcode)
+	)
+	var duel: Duel = Duel.new(WowClient.session)
+	duel.challenge(partner_guid)
+	var asked: bool = await _until(
+		func() -> bool: return "SMSG_DUEL_REQUESTED" in lines, 15000
+	)
+	_check(asked, "challenging a player asks for a duel")
+	if asked:
+		_partner_duel_answer("CMSG_DUEL_CANCELLED")
+		var ended: bool = await _until(
+			func() -> bool: return "SMSG_DUEL_COMPLETE" in lines, 15000
+		)
+		_check(ended, "declining ends the duel")
+
+
+# The partner answers with the flag guid the request carried.
+func _partner_duel_answer(opcode: String) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, _duel_flag)
+	_partner.send_packet(opcode, payload)
 
 
 func _first_of(entry: int) -> Vector2i:
@@ -102,9 +133,11 @@ func _log_partner_in() -> bool:
 	_partner.world_entered.connect(
 		func(_map: int, _at: Vector3, _facing: float) -> void: _partner_in_world = true
 	)
-	_partner.packet_received.connect(func(opcode: String, _payload: PackedByteArray) -> void:
+	_partner.packet_received.connect(func(opcode: String, payload: PackedByteArray) -> void:
 		if opcode == "SMSG_TRADE_STATUS":
 			_offered = true
+		elif opcode == "SMSG_DUEL_REQUESTED":
+			_duel_flag = PacketReader.new(payload).u64()
 	)
 	_partner.login(HOST, PORT, PARTNER_ACCOUNT, PARTNER_ACCOUNT)
 	return await _until(func() -> bool: return _partner_in_world)

@@ -6,7 +6,7 @@ signal spell_used(spell_id: int)
 signal unit_selected(guid: int)
 
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
-enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE }
+enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE, DUEL }
 
 const UI_HEIGHT: float = 768.0
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
@@ -34,6 +34,7 @@ const CHAT_TAB_SHOW_DELAY: float = 0.2
 var _area: int = 0
 var _menu_name: String = ""
 var _menu_guid: int = 0
+var _duel: Duel
 var _spell_failures: Dictionary = {}
 var _casting_bar_top: float = 0.0
 var _chat_hover_time: float = 0.0
@@ -109,6 +110,12 @@ func _ready() -> void:
 	_trade.error_raised.connect(show_error)
 	_trade.message_added.connect(add_system_line)
 	_trade.trade_offered.connect(_on_trade_offered)
+	_duel = Duel.new(WowClient.session)
+	_duel.challenged.connect(_on_duel_challenged)
+	_duel.counted_down.connect(func(seconds: int) -> void:
+		show_notice(WowStrings.get_text("DUEL_COUNTDOWN", "%d") % seconds)
+	)
+	_duel.finished.connect(add_system_line)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
@@ -373,6 +380,13 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 
 
 # UseContainerItem: gear equips, everything else is used.
+func _on_duel_challenged(challenger: String) -> void:
+	_popup.ask(
+		WowStrings.get_text("DUEL_REQUESTED", "%s has challenged you to a duel.") % challenger,
+		_duel.accept, "ACCEPT", "DECLINE", _duel.decline,
+	)
+
+
 func _on_trade_offered(player_name: String) -> void:
 	_popup.ask(
 		WowStrings.get_text("TRADE_WITH_QUESTION", "Trade with %s?") % player_name,
@@ -504,6 +518,7 @@ func _show_unit_menu(guid: int) -> void:
 	if guid != session.get_player_guid() \
 	and session.get_object_type(guid) == Entities.ObjectType.PLAYER:
 		_unit_menu.add_item(WowStrings.get_text("TRADE", "Trade"), UnitMenuItem.TRADE)
+		_unit_menu.add_item(WowStrings.get_text("DUEL", "Duel"), UnitMenuItem.DUEL)
 		_menu_guid = guid
 	if _unit_menu.item_count == 0:
 		return
@@ -522,3 +537,5 @@ func _on_unit_menu_pressed(id: int) -> void:
 			PartyFrame.leave()
 		UnitMenuItem.TRADE:
 			_trade.start(_menu_guid)
+		UnitMenuItem.DUEL:
+			_duel.challenge(_menu_guid)
