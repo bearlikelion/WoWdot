@@ -52,7 +52,6 @@ func _update_unit() -> void:
 	_rest_glow.visible = resting
 	_status.visible = in_combat or resting
 	_status.self_modulate = COMBAT_TINT if in_combat else RESTING_TINT
-	(%PetFrame as PetFrame).show_unit(session.get_field_guid(guid, "UNIT_FIELD_SUMMON"))
 
 
 # PlayerFrame_OnEvent passes UNIT_COMBAT for the player to CombatFeedback.

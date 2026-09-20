@@ -320,6 +320,11 @@
       "frame": "DropDownList1",
       "out": "game/ui/wow/drop_down_list.tscn",
       "script": "res://game/ui/drop_down_list.gd"
+    },
+    {
+      "frame": "PetStableFrame",
+      "out": "game/ui/wow/pet_stable_frame.tscn",
+      "script": "res://game/ui/pet_stable_frame.gd"
     }
   ],
   "graft": {

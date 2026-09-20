@@ -1,0 +1,739 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/pet_stable_frame.gd" id="1"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/wow_model_frame.tscn" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/small_money_frame.tscn" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\PetStableFrame\\UI-PetStable-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\PetStableFrame\\UI-PetStable-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\PetStableFrame\\UI-PetStable-BottomLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\PetStableFrame\\UI-PetStable-BottomRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Buttons\\UI-RotationLeft-Button-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Buttons\\UI-RotationLeft-Button-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Buttons\\ButtonHilight-Round.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\Buttons\\UI-RotationRight-Button-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-RotationRight-Button-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\PetPaperDollFrame\\UI-PetHappiness.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 0, 24, 23)
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-EmptySlot.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-Quickslot2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-Quickslot-Depress.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\CheckButtonHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_22")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[node name="PetStableFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 384
+offset_bottom = 616
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="PetStableFramePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="PetStableFrameBottomLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -256
+offset_right = 256
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="PetStableFrameBottomRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -256
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="PetStableTitleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 18
+offset_right = 0
+offset_bottom = 30
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Stables"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetStableLevelText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 38
+offset_right = 0
+offset_bottom = 50
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Bobby The Fleshripper (Level 99 Raptor)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetStableLoyaltyText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 51
+offset_right = 0
+offset_bottom = 61
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Loyalty: Mans Best Friend"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetStableSlotText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -10
+offset_top = -142
+offset_right = -10
+offset_bottom = -132
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Do you wish to purchase another stable slot?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetStableCostLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 74
+offset_top = -122
+offset_right = 74
+offset_bottom = -110
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Cost:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetStableModel" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 23
+offset_top = 76
+offset_right = 336
+offset_bottom = 299
+mouse_filter = 2
+
+[node name="PetStableModelModel" parent="PetStableModel" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="PetStableModelRotateLeftButton" type="TextureButton" parent="PetStableModel"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 35
+offset_bottom = 35
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PetStableModel/PetStableModelRotateLeftButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 35
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStableModel/PetStableModelRotateLeftButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 35
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStableModel/PetStableModelRotateLeftButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 35
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="PetStableModelRotateRightButton" type="TextureButton" parent="PetStableModel"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 35
+offset_top = 0
+offset_right = 70
+offset_bottom = 35
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PetStableModel/PetStableModelRotateRightButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 35
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStableModel/PetStableModelRotateRightButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 35
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStableModel/PetStableModelRotateRightButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 35
+offset_bottom = 35
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="PetStablePetInfo" type="Control" parent="PetStableModel"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 35
+offset_right = 31
+offset_bottom = 58
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="PetStableModel/PetStablePetInfo"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 23
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="PetStableCurrentPet" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 95
+offset_top = -187
+offset_right = 132
+offset_bottom = -150
+ignore_texture_size = true
+
+[node name="PetStableCurrentPetBackground" type="TextureRect" parent="PetStableCurrentPet"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="PetStableCurrentPet"]
+offset_left = 18.5
+offset_top = -16
+offset_right = 18.5
+offset_bottom = -6
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Current Pet:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetStableCurrentPetIconTexture" type="TextureRect" parent="PetStableCurrentPet"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PetStableCurrentPet"]
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStableCurrentPet"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="PetStableCurrentPet"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStableCurrentPet"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="PetStableStabledPet1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 185
+offset_top = -187
+offset_right = 222
+offset_bottom = -150
+ignore_texture_size = true
+
+[node name="PetStableStabledPet1Background" type="TextureRect" parent="PetStableStabledPet1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="PetStableStabledPet1"]
+offset_left = 42.5
+offset_top = -16
+offset_right = 42.5
+offset_bottom = -6
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Stabled Pets:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetStableStabledPet1IconTexture" type="TextureRect" parent="PetStableStabledPet1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PetStableStabledPet1"]
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStableStabledPet1"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="PetStableStabledPet1"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStableStabledPet1"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="PetStableStabledPet2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 237
+offset_top = -187
+offset_right = 274
+offset_bottom = -150
+ignore_texture_size = true
+
+[node name="PetStableStabledPet2Background" type="TextureRect" parent="PetStableStabledPet2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="PetStableStabledPet2IconTexture" type="TextureRect" parent="PetStableStabledPet2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PetStableStabledPet2"]
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStableStabledPet2"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="PetStableStabledPet2"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStableStabledPet2"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="PetStablePurchaseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -190
+offset_top = -127
+offset_right = -110
+offset_bottom = -105
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PetStablePurchaseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStablePurchaseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_21")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PetStablePurchaseButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="PetStablePurchaseButtonText" type="Label" parent="PetStablePurchaseButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Purchase"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStablePurchaseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="PetStableMoneyFrame" parent="." instance=ExtResource("4")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -173
+offset_top = -97
+offset_right = -45
+offset_bottom = -84
+
+[node name="PetStableCostMoneyFrame" parent="." instance=ExtResource("4")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 79
+offset_top = -122.5
+offset_right = 207
+offset_bottom = -109.5
+
+[node name="PetStableFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -61
+offset_top = 8
+offset_right = -29
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PetStableFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_26")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStableFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStableFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")

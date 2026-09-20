@@ -2,7 +2,7 @@ class_name PetCheck
 extends Node
 
 const MAIN: PackedScene = preload("res://game/main.tscn")
-const TIMEOUT_MSEC: int = 60000
+const TIMEOUT_MSEC: int = 150000
 const STEP_MSEC: int = 30000
 # Warlocks learn Summon Imp from a trainer, so the check hands it over with a GM command.
 const SUMMON_IMP: int = 688
@@ -46,7 +46,7 @@ func _run() -> void:
 	await get_tree().create_timer(3.0).timeout
 	# The server brings back the pet of an earlier run at login, and summoning again dismisses it.
 	if _pet(session) != 0:
-		bar.dismiss()
+		WowClient.pet.dismiss()
 		await _until(func() -> bool: return _pet(session) == 0)
 	session.cast_spell(SUMMON_IMP)
 	var summoned: bool = await _until(func() -> bool:
@@ -65,17 +65,63 @@ func _run() -> void:
 		"the pet frame has the pet's health",
 	)
 	var commands: int = 0
-	for i: int in PetActionBar.BUTTON_COUNT:
+	for i: int in Pet.BAR_SLOTS:
 		var button: ActionButton = bar.get_node("%%PetActionButton%d" % (i + 1))
 		if button.visible and not button.command_icon.is_empty():
 			commands += 1
 	_check(commands >= 6, "the bar holds the pet's commands and reactions")
-	bar.dismiss()
+	_check(not WowClient.pet.spells.is_empty(), "the imp knows spells of its own")
+	await _check_spell_book(hud)
+	_check_autocast(bar)
+	WowClient.pet.dismiss()
 	_check(
 		await _until(func() -> bool: return _pet(session) == 0), "dismissing sends the pet away"
 	)
 	_check(await _until(func() -> bool: return not bar.visible), "the pet action bar goes away")
 	_finish("")
+
+
+# The pet book is the spellbook's second tab, holding what the pet itself can cast.
+func _check_spell_book(hud: Hud) -> void:
+	var book: SpellBook = hud.get_node("%UIPanels").get_node("%SpellBookFrame")
+	hud.find_child("MainMenuBar", true, false).panel_toggled.emit(
+		MainMenuBar.GamePanel.SPELLBOOK
+	)
+	await _frames(20)
+	(book.get_node("%SpellBookFrameTabButton2") as BaseButton).pressed.emit()
+	await _frames(20)
+	_check(
+		(book.get_node("%SpellButton1SpellName") as Label).text != "",
+		"the pet book lists the pet's spells",
+	)
+	hud.find_child("MainMenuBar", true, false).panel_toggled.emit(
+		MainMenuBar.GamePanel.SPELLBOOK
+	)
+
+
+# Right-clicking a pet spell on the bar turns its own casting on and off.
+func _check_autocast(bar: PetActionBar) -> void:
+	var pet: Pet = WowClient.pet
+	for i: int in Pet.BAR_SLOTS:
+		if i >= pet.actions.size():
+			break
+		var state: Pet.ActionState = pet.state_of(pet.actions[i])
+		if state != Pet.ActionState.ENABLED and state != Pet.ActionState.DISABLED:
+			continue
+		var button: ActionButton = bar.get_node("%%PetActionButton%d" % (i + 1))
+		var was: bool = button.stance_active
+		button.gui_input.emit(_right_click())
+		_check(button.stance_active != was, "a right-click toggles a pet spell's autocast")
+		button.gui_input.emit(_right_click())
+		return
+	_check(false, "the bar holds a pet spell to autocast")
+
+
+func _right_click() -> InputEventMouseButton:
+	var click: InputEventMouseButton = InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_RIGHT
+	click.pressed = true
+	return click
 
 
 func _pet(session: WowSession) -> int:

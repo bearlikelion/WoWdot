@@ -4,6 +4,8 @@ extends Control
 signal close_requested
 signal spell_used(spell_id: int)
 
+enum Book { SPELL, PET }
+
 const SPELLS_PER_PAGE: int = 12
 const MAX_SKILL_LINE_TABS: int = 8
 # Each SpellButton's id: the left column holds page slots 1 to 6, the right one 7 to 12.
@@ -12,7 +14,9 @@ const BUTTON_IDS: Array[int] = [1, 7, 2, 8, 3, 9, 4, 10, 5, 11, 6, 12]
 const PASSIVE_TINT: Color = Color(0.77, 0.78, 1.0)
 const PASSIVE_HIGHLIGHT: String = "Interface\\Buttons\\UI-PassiveHighlight.blp"
 const WHEEL_BUTTONS: Array[MouseButton] = [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]
+const WARLOCK: int = 9
 
+var _book: Book = Book.SPELL
 var _tabs: Array[Dictionary] = []
 var _tab: int = 0
 var _pages: Dictionary[int, int] = {}
@@ -39,9 +43,11 @@ func _ready() -> void:
 		tab.pressed.connect(_select_tab.bind(i))
 		tab.mouse_entered.connect(_on_tab_entered.bind(tab, i))
 		tab.mouse_exited.connect(_hide_tooltip.bind(tab))
-	# The book tabs switch to the pet book, which waits on pets.
-	for i: int in 3:
-		(get_node("%%SpellBookFrameTabButton%d" % (i + 1)) as CanvasItem).hide()
+	for i: int in Book.size():
+		var tab: BaseButton = get_node("%%SpellBookFrameTabButton%d" % (i + 1))
+		tab.pressed.connect(_show_book.bind(i as Book))
+	%SpellBookFrameTabButton3.hide()
+	WowClient.pet.changed.connect(refresh)
 	_prev.pressed.connect(_turn_page.bind(-1))
 	_next.pressed.connect(_turn_page.bind(1))
 	%SpellBookCloseButton.pressed.connect(close_requested.emit)
@@ -60,6 +66,13 @@ func _gui_input(event: InputEvent) -> void:
 # SpellBookFrame_Update and SpellButton_UpdateButton for the selected tab and page.
 func refresh() -> void:
 	if not is_visible_in_tree():
+		return
+	var pet: Pet = WowClient.pet
+	if pet.spells.is_empty():
+		_book = Book.SPELL
+	_show_book_tabs(not pet.spells.is_empty())
+	if _book == Book.PET:
+		_show_pet_spells(pet)
 		return
 	_tabs = WowAssets.spells.book_tabs(WowClient.session.get_known_spells())
 	_tab = mini(_tab, _tabs.size() - 1)
@@ -82,6 +95,45 @@ func refresh() -> void:
 	_prev.disabled = page == 0
 	_next.disabled = page == page_count - 1
 	_update_cooldowns()
+
+
+# The stock book grows a second tab named after the pet once one is out.
+func _show_book_tabs(has_pet: bool) -> void:
+	%SpellBookTitleText.text = WowStrings.get_text("SPELLBOOK") if _book == Book.SPELL \
+	else _pet_title()
+	for i: int in Book.size():
+		var tab: BaseButton = get_node("%%SpellBookFrameTabButton%d" % (i + 1))
+		tab.visible = has_pet
+		tab.disabled = i == _book
+	(%SpellBookFrameTabButton1Text as Label).text = WowStrings.get_text("SPELLBOOK")
+	(%SpellBookFrameTabButton2Text as Label).text = _pet_title()
+
+
+func _pet_title() -> String:
+	var session: WowSession = WowClient.session
+	var player_class: int = (session.get_field(
+		session.get_player_guid(), "UNIT_FIELD_BYTES_0"
+	) >> 8) & 0xFF
+	return WowStrings.get_text(
+		"PET_TYPE_DEMON" if player_class == WARLOCK else "PET_TYPE_PET"
+	)
+
+
+func _show_pet_spells(pet: Pet) -> void:
+	for i: int in MAX_SKILL_LINE_TABS:
+		(get_node("%%SpellBookSkillLineTab%d" % (i + 1)) as CanvasItem).hide()
+	for i: int in _buttons.size():
+		var index: int = BUTTON_IDS[i] - 1
+		_show_spell(_buttons[i], pet.spell_of(pet.spells[index]) if index < pet.spells.size() else 0)
+	%SpellBookPageText.text = WowStrings.get_text("PAGE_NUMBER") % 1
+	_prev.disabled = true
+	_next.disabled = true
+	_update_cooldowns()
+
+
+func _show_book(book: Book) -> void:
+	_book = book
+	refresh()
 
 
 func _show_spell(button: SpellButton, spell: int) -> void:
@@ -127,10 +179,14 @@ func _turn_page(step: int) -> void:
 	refresh()
 
 
-# SpellButton_OnClick casts; passive spells do nothing.
+# SpellButton_OnClick casts; a pet spell goes to the pet, and passive spells do nothing.
 func _on_spell_pressed(button: SpellButton) -> void:
-	if button.spell_id and not WowAssets.spells.is_passive(button.spell_id):
-		spell_used.emit(button.spell_id)
+	if button.spell_id == 0 or WowAssets.spells.is_passive(button.spell_id):
+		return
+	if _book == Book.PET:
+		WowClient.pet.send_action((Pet.ActionState.ENABLED << 24) | button.spell_id)
+		return
+	spell_used.emit(button.spell_id)
 
 
 func _on_spell_entered(button: SpellButton) -> void:

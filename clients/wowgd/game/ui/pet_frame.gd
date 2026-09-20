@@ -2,6 +2,9 @@
 class_name PetFrame
 extends UnitFrame
 
+# PetFrame_SetHappiness: the three moods sit side by side in UI-PetHappiness.
+const HAPPINESS_SIZE: Vector2 = Vector2(24.0, 23.0)
+
 # Hunter pets are named by their owner, and only the query knows that name.
 var _pet_name: String = ""
 
@@ -20,6 +23,7 @@ func _ready() -> void:
 		part.hide()
 	super()
 	WowClient.session.packet_received.connect(_on_packet_received)
+	WowClient.pet.changed.connect(_on_pet_changed)
 
 
 func show_unit(unit: int) -> void:
@@ -33,6 +37,17 @@ func show_unit(unit: int) -> void:
 func _update_unit() -> void:
 	if not _pet_name.is_empty():
 		_name_label.text = _pet_name
+	var happiness: Pet.Happiness = WowClient.pet.happiness()
+	%PetFrameHappiness.visible = happiness != Pet.Happiness.NONE
+	if %PetFrameHappiness.visible:
+		var mood: AtlasTexture = (%PetFrameHappinessTexture as TextureRect).texture
+		mood.region = Rect2(
+			Vector2((Pet.Happiness.HAPPY - happiness) * HAPPINESS_SIZE.x, 0.0), HAPPINESS_SIZE
+		)
+
+
+func _on_pet_changed() -> void:
+	show_unit(WowClient.pet.guid)
 
 
 func _query_name(unit: int) -> void:

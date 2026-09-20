@@ -14,6 +14,7 @@ var _on_cancel: Callable
 @onready var _text: Label = %StaticPopup1Text
 @onready var _accept: BaseButton = %StaticPopup1Button1
 @onready var _cancel: BaseButton = %StaticPopup1Button2
+@onready var _edit: LineEdit = %StaticPopup1EditBox
 
 
 func _ready() -> void:
@@ -32,18 +33,40 @@ func ask(
 	text: String, on_accept: Callable, accept_key: String = "YES", cancel_key: String = "NO",
 	on_cancel: Callable = Callable(),
 ) -> void:
+	_edit.hide()
+	_lay_out(text, on_accept, accept_key, cancel_key, on_cancel, 0.0)
+
+
+# The same popup with an edit box under the question, as naming a pet needs.
+func ask_name(text: String, on_accept: Callable) -> void:
+	_edit.text = ""
+	_edit.show()
+	_edit.grab_focus.call_deferred()
+	_lay_out(
+		text, func() -> void: on_accept.call(_edit.text), "OKAY", "CANCEL", Callable(),
+		_edit.size.y + BUTTON_GAP,
+	)
+
+
+func _lay_out(
+	text: String, on_accept: Callable, accept_key: String, cancel_key: String,
+	on_cancel: Callable, extra_height: float,
+) -> void:
 	_on_accept = on_accept
 	_on_cancel = on_cancel
 	_text.text = text
 	_set_button(_accept, WowStrings.get_text(accept_key))
 	_set_button(_cancel, WowStrings.get_text(cancel_key))
 	var text_bottom: float = _text.position.y + _text.get_minimum_size().y
+	if _edit.visible:
+		_edit.position = Vector2((size.x - _edit.size.x) / 2.0, text_bottom + BUTTON_GAP)
 	_accept.position = Vector2(
-		size.x / 2.0 + BUTTON_OFFSET.x - _accept.size.x, text_bottom + BUTTON_OFFSET.y,
+		size.x / 2.0 + BUTTON_OFFSET.x - _accept.size.x,
+		text_bottom + BUTTON_OFFSET.y + extra_height,
 	)
 	_cancel.position = _accept.position + Vector2(_accept.size.x + BUTTON_GAP, 0.0)
-	size.y = BORDER_PADDING + _text.get_minimum_size().y + BUTTON_OFFSET.y + _accept.size.y \
-	+ BORDER_PADDING
+	size.y = BORDER_PADDING + _text.get_minimum_size().y + BUTTON_OFFSET.y + extra_height \
+	+ _accept.size.y + BORDER_PADDING
 	show()
 
 

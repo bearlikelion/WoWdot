@@ -37,6 +37,7 @@ var _area: int = 0
 var _menu_name: String = ""
 var _menu_guid: int = 0
 var _duel: Duel
+var _named_pet: int = 0
 var _spell_failures: Dictionary = {}
 var _casting_bar_top: float = 0.0
 var _chat_hover_time: float = 0.0
@@ -56,6 +57,7 @@ var _chat_hover_time: float = 0.0
 @onready var _panels: PanelManager = %UIPanels
 @onready var _character: CharacterFrame = _panels.get_node("%CharacterFrame")
 @onready var _bank: BankFrame = _panels.get_node("%BankFrame")
+@onready var _stable: PetStableFrame = _panels.get_node("%PetStableFrame")
 @onready var _mail: MailFrame = _panels.get_node("%MailFrame")
 @onready var _auction: AuctionFrame = _panels.get_node("%AuctionFrame")
 @onready var _trade: TradeFrame = _panels.get_node("%TradeFrame")
@@ -96,6 +98,10 @@ func _ready() -> void:
 	_bank.open_requested.connect(_panels.show_panel.bind(_bank))
 	_bank.close_requested.connect(_panels.hide_panel.bind(_bank))
 	_bank.error_raised.connect(show_error)
+	_stable.open_requested.connect(_panels.show_panel.bind(_stable))
+	_stable.close_requested.connect(_panels.hide_panel.bind(_stable))
+	_stable.error_raised.connect(show_error)
+	_stable.message_added.connect(add_system_line)
 	_mail.open_requested.connect(_panels.show_panel.bind(_mail))
 	_mail.close_requested.connect(_panels.hide_panel.bind(_mail))
 	_mail.mail_opened.connect(_open_mail.show_mail)
@@ -163,6 +169,7 @@ func _ready() -> void:
 	var pet_frame: PetFrame = _player_frame.get_node("%PetFrame")
 	pet_frame.unit_selected.connect(unit_selected.emit)
 	pet_frame.unit_menu_requested.connect(_show_unit_menu)
+	WowClient.pet.changed.connect(_on_pet_changed)
 	_player_frame.unit_menu_requested.connect(_show_unit_menu)
 	_target_frame.unit_menu_requested.connect(_show_unit_menu)
 	_party.unit_menu_requested.connect(_show_unit_menu)
@@ -409,6 +416,15 @@ func _on_friend_name_requested(tab: FriendsFrame.Tab) -> void:
 	))
 
 
+# RENAME_PET: a pet that has just been tamed asks for a name once.
+func _on_pet_changed() -> void:
+	var pet: Pet = WowClient.pet
+	if pet.guid == _named_pet or not pet.can_rename():
+		return
+	_named_pet = pet.guid
+	_popup.ask_name(WowStrings.get_text("PET_RENAME_LABEL", "Name your pet"), pet.rename)
+
+
 func _on_guild_invited(inviter: String, guild_name: String) -> void:
 	_popup.ask(
 		WowStrings.get_text("GUILD_INVITATION", "%s invites you to join %s") % \
@@ -442,6 +458,11 @@ func _on_trade_offered(player_name: String) -> void:
 # Right-clicking an auctioneer opens the auction house they work for.
 func open_auction_house(guid: int) -> void:
 	_auction.hello(guid)
+
+
+# Right-clicking a stable master lists the pets they keep.
+func open_stable(guid: int) -> void:
+	_stable.list_pets(guid)
 
 
 # Right-clicking a mailbox in the world opens the inbox.
@@ -497,6 +518,8 @@ func _hide_tooltip(button: ItemButton) -> void:
 # Bags follow the player's slots, their containers and the items in them.
 func _on_object_updated(guid: int) -> void:
 	var session: WowSession = WowClient.session
+	if guid == WowClient.pet.guid:
+		_on_pet_changed()
 	if guid == session.get_player_guid() or session.get_object_type(guid) in ITEM_TYPES:
 		_panels.refresh_bags()
 

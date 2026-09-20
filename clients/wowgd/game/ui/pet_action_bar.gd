@@ -1,19 +1,12 @@
 class_name PetActionBar
 extends Control
 
-# SMSG_PET_SPELLS action types, as UnitDefines' ActiveStates numbers them.
-enum ActionState { DECIDE = 0x00, PASSIVE = 0x01, REACTION = 0x06, COMMAND = 0x07,
-	DISABLED = 0x81, ENABLED = 0xC1 }
 # The commands and reactions the stock bar draws instead of a spell icon.
-enum Command { STAY, FOLLOW, ATTACK, DISMISS }
-
-const BUTTON_COUNT: int = 10
-const ACTION_MASK: int = 0xFFFFFF
-const COMMAND_ICONS: Dictionary[Command, String] = {
-	Command.STAY: "Interface\\Icons\\Spell_Nature_TimeStop.blp",
-	Command.FOLLOW: "Interface\\Icons\\Ability_Tracking.blp",
-	Command.ATTACK: "Interface\\Icons\\Ability_GhoulFrenzy.blp",
-	Command.DISMISS: "Interface\\Icons\\Spell_Shadow_Teleport.blp",
+const COMMAND_ICONS: Dictionary[Pet.Command, String] = {
+	Pet.Command.STAY: "Interface\\Icons\\Spell_Nature_TimeStop.blp",
+	Pet.Command.FOLLOW: "Interface\\Icons\\Ability_Tracking.blp",
+	Pet.Command.ATTACK: "Interface\\Icons\\Ability_GhoulFrenzy.blp",
+	Pet.Command.DISMISS: "Interface\\Icons\\Spell_Shadow_Teleport.blp",
 }
 const REACTION_ICONS: Dictionary[int, String] = {
 	0: "Interface\\Icons\\Ability_Seal.blp",
@@ -21,102 +14,78 @@ const REACTION_ICONS: Dictionary[int, String] = {
 	2: "Interface\\Icons\\Ability_Racial_BloodRage.blp",
 }
 
-var _guid: int = 0
-var _actions: PackedInt32Array = []
-var _command: int = 0
-var _react: int = 0
 var _buttons: Array[ActionButton] = []
 
 
 func _ready() -> void:
-	for i: int in BUTTON_COUNT:
+	for i: int in Pet.BAR_SLOTS:
 		var button: ActionButton = get_node("%%PetActionButton%d" % (i + 1))
 		button.pressed.connect(_on_button_pressed.bind(i))
+		button.gui_input.connect(_on_button_input.bind(i))
 		_buttons.append(button)
-	WowClient.session.packet_received.connect(_on_packet_received)
+	WowClient.pet.changed.connect(refresh)
 	hide()
 
 
-# CMSG_PET_ACTION carries the packed action the bar was given, and who it is aimed at.
 func use(index: int) -> void:
-	if _guid == 0 or index < 0 or index >= _actions.size():
-		return
-	var packed: int = _actions[index]
-	# The server answers no command with a packet, so the bar follows its own clicks.
-	var state: ActionState = ((packed >> 24) & 0xFF) as ActionState
-	if state == ActionState.COMMAND:
-		_command = packed & ACTION_MASK
-	elif state == ActionState.REACTION:
-		_react = packed & ACTION_MASK
-	_send(packed)
-	refresh()
-
-
-# PetDismiss: the pet is sent away with a command the bar itself never holds.
-func dismiss() -> void:
-	if _guid != 0:
-		_send((ActionState.COMMAND << 24) | Command.DISMISS)
-
-
-func _send(packed: int) -> void:
-	var session: WowSession = WowClient.session
-	var payload: PackedByteArray = []
-	payload.resize(20)
-	payload.encode_u64(0, _guid)
-	payload.encode_u32(8, packed)
-	payload.encode_u64(12, session.get_field_guid(session.get_player_guid(), "UNIT_FIELD_TARGET"))
-	session.send_packet("CMSG_PET_ACTION", payload)
+	var pet: Pet = WowClient.pet
+	if index >= 0 and index < pet.actions.size():
+		pet.send_action(pet.actions[index])
 
 
 func refresh() -> void:
-	visible = _guid != 0 and not _actions.is_empty()
+	var pet: Pet = WowClient.pet
+	visible = pet.guid != 0 and not pet.actions.is_empty()
 	if not visible:
 		return
-	for i: int in BUTTON_COUNT:
-		var packed: int = _actions[i] if i < _actions.size() else 0
-		var state: ActionState = ((packed >> 24) & 0xFF) as ActionState
-		var action: int = packed & ACTION_MASK
+	for i: int in Pet.BAR_SLOTS:
+		var packed: int = pet.actions[i] if i < pet.actions.size() else 0
+		var state: Pet.ActionState = pet.state_of(packed)
+		var action: int = pet.spell_of(packed)
 		var button: ActionButton = _buttons[i]
 		button.command_icon = _icon_of(state, action)
 		button.stance_spell = action if button.command_icon.is_empty() else 0
-		button.stance_active = _is_active(state, action)
+		button.stance_active = _is_active(pet, state, action)
 		button.visible = packed != 0
 
 
-func _icon_of(state: ActionState, action: int) -> String:
-	if state == ActionState.COMMAND:
-		return COMMAND_ICONS.get(action as Command, "")
-	if state == ActionState.REACTION:
+func _icon_of(state: Pet.ActionState, action: int) -> String:
+	if state == Pet.ActionState.COMMAND:
+		return COMMAND_ICONS.get(action as Pet.Command, "")
+	if state == Pet.ActionState.REACTION:
 		return REACTION_ICONS.get(action, "")
 	return ""
 
 
 # ponytail: an autocasting spell reads as checked; the stock bar spins its own glow instead.
-func _is_active(state: ActionState, action: int) -> bool:
-	if state == ActionState.COMMAND:
-		return action == _command
-	if state == ActionState.REACTION:
-		return action == _react
-	return state == ActionState.ENABLED
+func _is_active(pet: Pet, state: Pet.ActionState, action: int) -> bool:
+	if state == Pet.ActionState.COMMAND:
+		return action == pet.command
+	if state == Pet.ActionState.REACTION:
+		return action == pet.react
+	return state == Pet.ActionState.ENABLED
 
 
 func _on_button_pressed(index: int) -> void:
 	use(index)
 
 
-# SMSG_PET_SPELLS: the pet, its stance, the ten bar slots, then the spells it knows.
-func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
-	if opcode != "SMSG_PET_SPELLS":
+# TogglePetAutocast: a right-click turns a pet spell's own casting on and off.
+func _on_button_input(event: InputEvent, index: int) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click == null or not click.pressed or click.button_index != MOUSE_BUTTON_RIGHT:
 		return
-	var reader: PacketReader = PacketReader.new(payload)
-	_guid = reader.u64()
-	_actions.clear()
-	if _guid != 0:
-		reader.u32()
-		_react = reader.u8()
-		_command = reader.u8()
-		reader.u8()
-		reader.u8()
-		for i: int in BUTTON_COUNT:
-			_actions.append(reader.u32())
+	get_viewport().set_input_as_handled()
+	var pet: Pet = WowClient.pet
+	if index >= pet.actions.size():
+		return
+	var state: Pet.ActionState = pet.state_of(pet.actions[index])
+	if state != Pet.ActionState.ENABLED and state != Pet.ActionState.DISABLED:
+		return
+	# The server keeps the new state to itself, so the bar shows it at once.
+	var enabled: bool = state == Pet.ActionState.DISABLED
+	pet.set_autocast(pet.spell_of(pet.actions[index]), enabled)
+	pet.actions[index] = (
+		(Pet.ActionState.ENABLED if enabled else Pet.ActionState.DISABLED) << 24
+	) | pet.spell_of(pet.actions[index])
 	refresh()

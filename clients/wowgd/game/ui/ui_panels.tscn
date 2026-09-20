@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/taxi_frame.tscn" id="13_taxi"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/loot_frame.tscn" id="14_loot"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/bank_frame.tscn" id="17_bank"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/pet_stable_frame.tscn" id="30_stable"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/mail_frame.tscn" id="18_mail"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/open_mail_frame.tscn" id="19_openmail"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/auction_frame.tscn" id="20_auction"]
@@ -61,6 +62,11 @@ visible = false
 [node name="MerchantFrame" parent="." instance=ExtResource("11_merchant")]
 unique_name_in_owner = true
 visible = false
+
+[node name="PetStableFrame" parent="." instance=ExtResource("30_stable")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="BankFrame" parent="." instance=ExtResource("17_bank")]
 unique_name_in_owner = true

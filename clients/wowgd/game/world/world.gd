@@ -13,6 +13,7 @@ const STAND_STATE_SIT: int = 1
 const UNIT_DYNFLAG_LOOTABLE: int = 0x1
 const GAMEOBJECT_TYPE_MAILBOX: int = 19
 const NPC_FLAG_AUCTIONEER: int = 0x1000
+const NPC_FLAG_STABLEMASTER: int = 0x4000
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
 const SPEED_CHANGES: Dictionary[String, Player.SpeedKind] = {
 	"SMSG_FORCE_WALK_SPEED_CHANGE": Player.SpeedKind.WALK,
@@ -511,6 +512,9 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 		return
 	if session.get_field(guid, "UNIT_NPC_FLAGS") & NPC_FLAG_AUCTIONEER:
 		_hud.open_auction_house(guid)
+		return
+	if session.get_field(guid, "UNIT_NPC_FLAGS") & NPC_FLAG_STABLEMASTER:
+		_hud.open_stable(guid)
 		return
 	if NpcDialog.interact(guid):
 		UnitVoice.speak(guid, UnitVoice.Speech.GREETING)

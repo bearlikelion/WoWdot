@@ -5,6 +5,7 @@ var cooldowns: Cooldowns = Cooldowns.new(session, WowAssets.spells)
 var clock: GameClock = GameClock.new(session)
 var weather: WeatherState = WeatherState.new(session)
 var combat: CombatEvents = CombatEvents.new(session)
+var pet: Pet = Pet.new(session)
 
 
 func _ready() -> void:
