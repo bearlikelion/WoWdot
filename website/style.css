@@ -112,6 +112,53 @@ th, td {
   color: var(--ice);
 }
 
+li {
+  margin: 6px 0;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.client img {
+  border-radius: 6px;
+}
+
+.dl {
+  display: block;
+  margin: 3px 0;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dl:hover {
+  color: var(--ice);
+}
+
+.plat {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  vertical-align: -4px;
+  fill: currentColor;
+}
+
+/* Cut out of the body so the penguin reads in both themes. */
+.plat .bg {
+  fill: var(--bg);
+}
+
+.plat .beak {
+  fill: var(--gold);
+}
+
+.muted {
+  color: var(--muted);
+}
+
 figure {
   margin: 0 0 20px;
 }

@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="wotlkgd_icon.png" alt="WotLKGD logo" width="200">
+  <img src="wrathgd_icon.png" alt="WrathGD logo" width="200">
 </p>
 
-# WotLKGD
+# WrathGD
 
 A Godot 4.7 client for World of Warcraft 3.3.5a (build 12340) that will play on [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk).
 Like [WoWGD](../wowgd), it will read the stock client's MPQs at runtime and ship no Blizzard data.
@@ -22,7 +22,7 @@ Work starts after WoWGD's remaining milestones (see [its README](../wowgd/README
 
 ## Server setup
 
-WotLKGD targets the latest AzerothCore `master` commit with no source changes, no modules, and the shipped defaults for anything the client can see.
+WrathGD targets the latest AzerothCore `master` commit with no source changes, no modules, and the shipped defaults for anything the client can see.
 A fork with custom modules is not a valid test server.
 
 1. Clone `azerothcore-wotlk` and build it by following AzerothCore's installation guide; the repository ships a Docker Compose setup.

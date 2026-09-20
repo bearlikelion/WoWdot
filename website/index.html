@@ -13,10 +13,6 @@
     <img src="logo.png" alt="WoWdot logo" width="160" height="160">
     <h1>WoWdot</h1>
     <p class="tagline">Godot clients for classic World of Warcraft servers.</p>
-    <nav>
-      <a class="button" href="{{RELEASES}}/download/WoWGD-windows.zip">Download for Windows</a>
-      <a class="button" href="{{RELEASES}}/download/WoWGD-linux.zip">Download for Linux</a>
-    </nav>
   </header>
 
   <main>
@@ -25,11 +21,26 @@
       <div class="table-scroll">
         <table>
           <thead>
-            <tr><th>Client</th><th>Game version</th><th>Server</th><th>Status</th></tr>
+            <tr><th>Client</th><th>Game version</th><th>Supported server</th><th>Status</th><th>Download</th></tr>
           </thead>
           <tbody>
-            <tr><td>WoWGD</td><td>1.12.1 (build 5875)</td><td>vMaNGOS</td><td><span class="status gold">Playable</span></td></tr>
-            <tr><td>WotLKGD</td><td>3.3.5a (build 12340)</td><td>AzerothCore</td><td><span class="status ice">In development</span></td></tr>
+            <tr>
+              <td><span class="client"><img src="wowgd.png" alt="" width="32" height="32">WoWGD</span></td>
+              <td>1.12.1 (build 5875)</td>
+              <td>vMaNGOS</td>
+              <td><span class="status gold">Playable</span></td>
+              <td>
+                <a class="dl" href="{{RELEASES}}/download/WoWGD-windows.zip"><svg class="plat" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4.6 10.4 3.4v8.1H2zM11.6 3.2 22 1.8v9.7H11.6zM2 12.7h8.4v8.1L2 19.6zM11.6 12.7H22v9.7l-10.4-1.4z"/></svg>Windows</a>
+                <a class="dl" href="{{RELEASES}}/download/WoWGD-linux.zip"><svg class="plat" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15" rx="6.6" ry="6.8"/><ellipse cx="12" cy="7" rx="4.4" ry="4.8"/><ellipse class="bg" cx="12" cy="16.2" rx="3.6" ry="4.6"/><circle class="bg" cx="10.3" cy="6.4" r="1.2"/><circle class="bg" cx="13.7" cy="6.4" r="1.2"/><ellipse class="beak" cx="12" cy="9.3" rx="2.3" ry="1.3"/><ellipse class="beak" cx="8.8" cy="21" rx="2.3" ry="1.1" transform="rotate(-20 8.8 21)"/><ellipse class="beak" cx="15.2" cy="21" rx="2.3" ry="1.1" transform="rotate(20 15.2 21)"/></svg>Linux</a>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="client"><img src="wrathgd.png" alt="" width="32" height="32">WrathGD</span></td>
+              <td>3.3.5a (build 12340)</td>
+              <td>AzerothCore</td>
+              <td><span class="status ice">Planned</span></td>
+              <td class="muted">Not yet</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -44,9 +55,35 @@
     </section>
 
     <section>
-      <h2>Your data, your install</h2>
-      <p>WoWdot ships no Blizzard code, archives or extracted assets.</p>
-      <p>The clients read the MPQ archives of a game install you already own, and talk to a server you point them at.</p>
+      <h2>What works</h2>
+      <p>You can log in, create a character, quest, fight, loot, group, train and fly on an unmodified vMaNGOS server.</p>
+      <ul>
+        <li><strong>Login.</strong> Account login, realm list, character create, select and delete, loading screens, glue screen music.</li>
+        <li><strong>World.</strong> Streaming terrain, buildings and doodads, water, a sky with day and night, weather, zone music and ambience.</li>
+        <li><strong>Characters.</strong> Skin, hair and facial hair, equipment on the model, sheathing, mounts, 3D portraits.</li>
+        <li><strong>Movement.</strong> Running, jumping, falling, swimming and taxi flights, with other players moving smoothly.</li>
+        <li><strong>Zoning.</strong> Continents, dungeons and portals, with the loading screen in between.</li>
+        <li><strong>Death.</strong> Releasing, finding and reclaiming your corpse, resurrection offers, the spirit healer.</li>
+        <li><strong>Combat.</strong> Targeting, auto attack, spell casts with cooldowns and the global cooldown, buffs and debuffs, floating combat text, the combat log.</li>
+        <li><strong>HUD.</strong> Action bars with pages and side bars, the stance bar, player, target and target of target frames, cast bar, minimap, tooltips, reputation watch bar.</li>
+        <li><strong>Chat.</strong> Say, yell, party, guild and whispers, channels, and emotes such as /dance.</li>
+        <li><strong>Panels.</strong> Character sheet, bags, spellbook, talents, quest log, skills, reputation, world map, video and sound options.</li>
+        <li><strong>NPCs.</strong> Gossip, quests, vendors with buyback and repair, class trainers, flight masters, bankers.</li>
+        <li><strong>Groups.</strong> Party invites, party frames, the loot window, quest sharing.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What's next</h2>
+      <p>In the order they are planned:</p>
+      <ul>
+        <li><strong>NPC services.</strong> Mailbox, auction house, then stable, petition and tabard.</li>
+        <li><strong>Social.</strong> Trade, duel, group loot rolls, ready check, friends and ignore, guild, chat tabs and bubbles.</li>
+        <li><strong>Pets.</strong> Pet frame, pet action bar, pet spellbook, hunter and warlock pets.</li>
+        <li><strong>Visuals.</strong> Spell visuals and projectiles, particles and ribbons, WMO liquids, transports.</li>
+        <li><strong>Polish.</strong> Key bindings, interface options, footstep sounds by terrain, the corpse marker on the map, the breath meter underwater.</li>
+      </ul>
+      <p>After that come the content tools: custom spells, creatures, items and quests authored in Godot, and map editing in the Godot editor.</p>
     </section>
 
     <section>
@@ -58,6 +95,27 @@
         <li>Enter the realmlist of the server you play on and log in.</li>
       </ol>
       <p>Nothing else to install on either platform.</p>
+    </section>
+
+    <section>
+      <h2>Your data, your install</h2>
+      <p>WoWdot ships no Blizzard code, archives or extracted assets.</p>
+      <p>The clients read the MPQ archives of a game install you already own, and talk to a server you point them at.</p>
+    </section>
+
+    <section>
+      <h2>Open source, later</h2>
+      <p>WoWdot will be MIT licensed.</p>
+      <p>The source is not published yet, so the builds come first while the client is still moving quickly.
+      Every release zip carries the LICENSE and NOTICE.md the source will ship under.</p>
+    </section>
+
+    <section>
+      <h2>Thanks</h2>
+      <ul>
+        <li><a href="https://github.com/Kelsidavis/WoWee">WoWee</a>, whose MIT-licensed auth, packet parsing and file format loaders WoWdot is built on.</li>
+        <li><a href="https://wowdev.wiki/Main_Page">wowdev.wiki</a>, for documenting the client's file formats and protocol so carefully.</li>
+      </ul>
     </section>
   </main>
 

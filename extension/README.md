@@ -6,7 +6,7 @@
 
 The C++ GDExtension behind the WoWdot clients.
 It reads a stock World of Warcraft install (MPQ archives, DBC tables, BLP textures, M2 and WMO models, ADT terrain) and speaks the game's network protocol, and exposes both to GDScript.
-Both [WoWGD](../clients/wowgd) and [WrathGD](../clients/wotlkgd) load the same library through the shared addon in [`shared/wowdot`](../shared/wowdot).
+Both [WoWGD](../clients/wowgd) and [WrathGD](../clients/wrathgd) load the same library through the shared addon in [`shared/wowdot`](../shared/wowdot).
 
 ## Classes
 
@@ -62,4 +62,4 @@ The server projects (vMaNGOS, AzerothCore) are GPL: read them to learn the proto
 ## Expansion support
 
 The extension currently assumes vanilla 1.12.1 (build 5875) in several places: the build number and auth flow in `WowSession`, the classic packet parsers, the MPQ list in `WowArchive`, the DBC layout path, and M2 loading without `.skin` files.
-The [WrathGD README](../clients/wotlkgd/README.md#extension-extensionsrc) lists what 3.3.5a needs.
+The [WrathGD README](../clients/wrathgd/README.md#extension-extensionsrc) lists what 3.3.5a needs.

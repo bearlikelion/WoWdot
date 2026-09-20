@@ -4,12 +4,12 @@
 
 # WoWdot
 
-Open-source Godot clients for classic World of Warcraft servers.
+Godot clients for classic World of Warcraft servers.
 
 | Client | Game version | Server | Status |
 | --- | --- | --- | --- |
 | [WoWGD](clients/wowgd) | 1.12.1 (build 5875) | vMaNGOS | Playable |
-| [WotLKGD](clients/wotlkgd) | 3.3.5a (build 12340) | AzerothCore | Scaffold |
+| [WrathGD](clients/wrathgd) | 3.3.5a (build 12340) | AzerothCore | Planned |
 
 WoWdot ships no Blizzard data.
 Point the client at your own game install.
@@ -20,13 +20,18 @@ Point the client at your own game install.
 extension/       C++ GDExtension: sessions, crypto, MPQ access and WoW file formats
 shared/wowdot/   Addon both clients load; the built libraries land in its bin/
 clients/wowgd/   Vanilla client, addons/wowdot links to shared/wowdot
-clients/wotlkgd/ WotLK client, addons/wowdot links to shared/wowdot
+clients/wrathgd/ WrathGD client, addons/wowdot links to shared/wowdot
 docs/            Provenance and license audit
 website/         Project site, built with website/build.sh into _site/
+packaging/       Files that ship inside the release zips
 ```
 
-The site includes a GDDocs API reference for each client.
-GitHub Pages deploys it from `.github/workflows/pages.yml`, and Forgejo pushes it to a `pages` branch from `.forgejo/workflows/pages.yml`.
+The site is plain HTML in `website/`: what works, what is next, and the downloads.
+It carries no API reference, so the build is a file copy and needs neither Godot nor the extension.
+For the GDScript API locally, run `godot --headless --path clients/wowgd --script res://addons/gddocs/gddocs_cli.gd`, which writes `clients/wowgd/docs/api/index.html`.
+`.forgejo/workflows/pages.yml` builds the site on every push to `main`, pushes it to a `pages` branch here and to GitHub Pages.
+`.forgejo/workflows/release.yml` builds the Linux and Windows clients on a `v*` tag and attaches the zips to a GitHub release.
+Both read `SITE_REPO` at the top of the workflow and a `SITE_TOKEN` secret; the release also needs `GODOT_SCRIPT_ENCRYPTION_KEY`.
 
 ## Building
 
