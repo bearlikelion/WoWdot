@@ -183,7 +183,7 @@ func _on_spell_cast_started(caster: int, spell_id: int, _cast_time_msec: int) ->
 		_update_checked()
 
 
-func _on_spell_cast_ended(caster: int, _spell_id: int) -> void:
+func _on_spell_cast_ended(caster: int, _spell_id: int, _targets: PackedInt64Array = []) -> void:
 	if caster == WowClient.session.get_player_guid():
 		_casting_spell = 0
 		_update_checked()

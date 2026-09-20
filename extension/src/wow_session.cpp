@@ -414,7 +414,14 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 		case LogicalOpcode::SMSG_SPELL_GO: {
 			game::SpellGoData data;
 			if (parsers->parseSpellGo(packet, data)) {
-				emit_signal("spell_cast_finished", static_cast<int64_t>(data.casterUnit ? data.casterUnit : data.casterGuid), static_cast<int>(data.spellId));
+				PackedInt64Array targets;
+				for (const uint64_t hit : data.hitTargets) {
+					targets.push_back(static_cast<int64_t>(hit));
+				}
+				if (targets.is_empty() && data.targetGuid) {
+					targets.push_back(static_cast<int64_t>(data.targetGuid));
+				}
+				emit_signal("spell_cast_finished", static_cast<int64_t>(data.casterUnit ? data.casterUnit : data.casterGuid), static_cast<int>(data.spellId), targets);
 			}
 			return true;
 		}
@@ -1800,7 +1807,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("factions_changed"));
 	ADD_SIGNAL(MethodInfo("player_teleported", PropertyInfo(Variant::VECTOR3, "position"), PropertyInfo(Variant::FLOAT, "orientation")));
 	ADD_SIGNAL(MethodInfo("spell_cast_started", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cast_time_msec")));
-	ADD_SIGNAL(MethodInfo("spell_cast_finished", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id")));
+	ADD_SIGNAL(MethodInfo("spell_cast_finished", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::PACKED_INT64_ARRAY, "targets")));
 	ADD_SIGNAL(MethodInfo("spell_cast_failed", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "reason")));
 	ADD_SIGNAL(MethodInfo("spell_cast_delayed", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "delay_msec")));
 	ADD_SIGNAL(MethodInfo("spell_channel_started", PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "duration_msec")));

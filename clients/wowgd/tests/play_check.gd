@@ -191,7 +191,7 @@ func _check_casting_bar(hud: Hud) -> void:
 	_check(bar.visible and label.text == "Fireball", "the casting bar shows the spell")
 	_check(bar.value > 0.3 and bar.value < 0.7, "the casting bar fills with the cast time")
 	_capture("user://play_casting.png")
-	session.spell_cast_finished.emit(session.get_player_guid(), FIREBALL)
+	session.spell_cast_finished.emit(session.get_player_guid(), FIREBALL, PackedInt64Array())
 	await get_tree().create_timer(1.5).timeout
 	_check(not bar.visible, "the casting bar fades after the cast")
 

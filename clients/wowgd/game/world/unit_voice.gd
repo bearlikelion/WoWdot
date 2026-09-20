@@ -239,7 +239,9 @@ static func _on_spell_cast_started(caster: int, spell_id: int, _cast_time_msec: 
 
 
 # ponytail: the impact plays at the caster on cast, SMSG_SPELL_GO targets would place it.
-static func _on_spell_cast_finished(caster: int, spell_id: int) -> void:
+static func _on_spell_cast_finished(
+	caster: int, spell_id: int, _targets: PackedInt64Array,
+) -> void:
 	var voice: UnitVoice = by_guid.get(caster)
 	if voice:
 		voice._stop_precast()

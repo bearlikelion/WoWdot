@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
 [ext_resource type="PackedScene" path="res://game/world/player.tscn" id="3_player"]
 [ext_resource type="Script" path="res://game/world/entities.gd" id="4_entities"]
+[ext_resource type="Script" path="res://game/world/spell_effects.gd" id="11_effects"]
 [ext_resource type="PackedScene" path="res://game/ui/hud.tscn" id="5_hud"]
 [ext_resource type="Script" path="res://game/world/world_sky.gd" id="6_sky"]
 [ext_resource type="Shader" path="res://game/world/sky.gdshader" id="7_sky_shader"]
@@ -82,6 +83,9 @@ target = NodePath("../Player")
 
 [node name="Entities" type="Node3D" parent="."]
 script = ExtResource("4_entities")
+
+[node name="SpellEffects" type="Node3D" parent="."]
+script = ExtResource("11_effects")
 
 [node name="FloatingCombatText" type="Node3D" parent="." node_paths=PackedStringArray("entities")]
 script = ExtResource("9_floating_text")

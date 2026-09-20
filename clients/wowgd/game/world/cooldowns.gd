@@ -34,7 +34,9 @@ func _on_player_cast(caster: int, spell_id: int, _cast_time_msec: int, session: 
 
 
 # Instant spells only arrive as SMSG_SPELL_GO; cast-time spells already started the GCD.
-func _on_player_cast_finished(caster: int, spell_id: int, session: WowSession) -> void:
+func _on_player_cast_finished(
+	caster: int, spell_id: int, _targets: PackedInt64Array, session: WowSession,
+) -> void:
 	if caster == session.get_player_guid() and _spells.cast_time_msec(spell_id) == 0:
 		_start_global(spell_id)
 

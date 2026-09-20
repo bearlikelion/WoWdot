@@ -26,6 +26,12 @@ static func set_base(model: Node3D, candidates: PackedStringArray) -> void:
 		player.play(clip, BLEND)
 
 
+# Keeps a one-shot clip running while the caller holds it, as a spell does until it goes off.
+static func hold(model: Node3D, candidates: PackedStringArray) -> void:
+	if Time.get_ticks_msec() >= int(model.get_meta(BUSY_META, 0)):
+		play_once(model, candidates)
+
+
 static func play_once(model: Node3D, candidates: PackedStringArray) -> void:
 	var player: AnimationPlayer = _player(model)
 	if player == null or model.get_meta(DEAD_META, false):

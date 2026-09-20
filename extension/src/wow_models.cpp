@@ -539,6 +539,8 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 	}
 	Node3D *root = memnew(Node3D);
 	root->set_name(file_stem(path));
+	// Anything hung on the model later finds its attachment points through this.
+	root->set_meta("m2_path", path);
 	MeshInstance3D *mesh = memnew(MeshInstance3D);
 	mesh->set_name("Mesh");
 	mesh->set_mesh(get_m2_mesh(path, *data, skins, geosets));

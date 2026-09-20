@@ -28,6 +28,7 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Groups | Party invites, party frames, loot window, group loot rolls, ready check, quest sharing. |
 | Social | Trade, duels, friends and ignore, and the guild window with its roster, message of the day and invites. |
 | Pets | The pet frame with happiness, the pet action bar with autocast, the pet spellbook tab, naming a tamed pet, and the stable master. |
+| Effects | M2 particles and scrolling textures, spell visuals from SpellVisual.dbc with flying missiles, and the sparkle over lootable corpses. |
 
 ## Requirements
 
@@ -89,7 +90,8 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting. |
 | `sheath_check`, `sky_check` | Sheathing, sky, light and weather. |
 | `audio_check`, `effects_check` | Audio; scrolling textures and particle emitters, both with no server needed. |
-| `spell_target_check` | Self-only buffs cast on the caster whatever is targeted; no server needed. |
+| `spell_target_check`, `visual_check` | Self-only buffs cast on the caster; the spell visual chain resolves. Neither needs a server. |
+| `effect_check` | A fireball crosses to its target and a lootable corpse sparkles. |
 
 ## Still to do
 
@@ -98,7 +100,7 @@ In the order they are planned:
 | Milestone | Work |
 | --- | --- |
 | M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
-| M6 visuals | M2 ribbons, spell visuals and projectiles, WMO liquids, transports. |
+| M6 visuals | M2 ribbons, WMO liquids, transports. |
 | M7 polish | Key binding UI, interface options, starting outfit on the create preview, race and class tooltips, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the corpse marker on the map and minimap, the breath meter underwater. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.

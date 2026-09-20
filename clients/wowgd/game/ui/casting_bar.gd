@@ -103,7 +103,7 @@ func _on_cast_started(caster: int, spell: int, cast_time_msec: int) -> void:
 		_begin(Mode.CASTING, spell, cast_time_msec)
 
 
-func _on_cast_finished(caster: int, _spell_id: int) -> void:
+func _on_cast_finished(caster: int, _spell_id: int, _targets: PackedInt64Array) -> void:
 	if _is_player(caster) and _mode == Mode.CASTING:
 		_finish(SUCCESS_COLOR, "", true)
 

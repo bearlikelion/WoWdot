@@ -195,7 +195,7 @@ func _on_name_received(guid: int, name: String) -> void:
 	_names[guid] = name
 
 
-func _on_spell_cast_finished(caster: int, spell_id: int) -> void:
+func _on_spell_cast_finished(caster: int, spell_id: int, _targets: PackedInt64Array) -> void:
 	if caster == _session.get_player_guid():
 		print("cast went: ", spell_id)
 		_casts.append(spell_id)
