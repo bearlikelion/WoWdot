@@ -9,6 +9,7 @@
 #include <godot_cpp/classes/image.hpp>
 #include <godot_cpp/classes/image_texture.hpp>
 #include <godot_cpp/classes/material.hpp>
+#include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/classes/node3d.hpp>
 #include <godot_cpp/classes/ref_counted.hpp>
 #include <godot_cpp/classes/shader.hpp>
@@ -53,6 +54,7 @@ class WowLoader : public RefCounted {
 	Ref<AnimationLibrary> get_m2_global_animations(const String &path, const M2Data &data);
 	Ref<StandardMaterial3D> get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint);
 	String animation_name(uint32_t id, uint32_t variation);
+	void add_texture_animation(Node3D *root, MeshInstance3D *mesh, const wowee::pipeline::M2Model &model, const PackedInt32Array &geosets);
 
 protected:
 	static void _bind_methods();

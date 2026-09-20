@@ -816,13 +816,14 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
         header.ofsTextures = r32();
         header.nTransparency = r32();
         header.ofsTransparency = r32();
+
+        // Vanilla and BC keep texture_flipbooks here, before the texture transforms.
+        c += 8;
+
         header.nUVAnimation = r32();
         header.ofsUVAnimation = r32();
         header.nTexReplace = r32();
         header.ofsTexReplace = r32();
-
-        // Skip unknown extra M2Array (8 bytes)
-        c += 8;
 
         // nRenderFlags through ofsUVAnimLookup
         header.nRenderFlags = r32();

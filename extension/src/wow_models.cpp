@@ -160,9 +160,71 @@ Color batch_tint(const M2Model &model, const M2Batch &batch) {
 	return Color(rgb.r, rgb.g, rgb.b, alpha);
 }
 
+// The batches a mesh keeps, in surface order, so animation can find the material of each one.
+std::vector<uint32_t> visible_batches(const M2Model &model, const PackedInt32Array &geosets) {
+	std::vector<uint32_t> kept;
+	for (uint32_t b = 0; b < model.batches.size(); b++) {
+		const M2Batch &batch = model.batches[b];
+		if (batch.indexStart + batch.indexCount > model.indices.size() || batch.indexCount == 0) {
+			continue;
+		}
+		if (!geosets.is_empty() && !geosets.has(batch.submeshId)) {
+			continue;
+		}
+		if (batch_tint(model, batch).a < 0.01f) {
+			continue;
+		}
+		kept.push_back(b);
+	}
+	return kept;
+}
+
 Animation::InterpolationType interpolation(const M2AnimationTrack &track) {
 	// ponytail: hermite and bezier keys play back as linear.
 	return track.interpolationType == 0 ? Animation::INTERPOLATION_NEAREST : Animation::INTERPOLATION_LINEAR;
+}
+
+// Texture transforms scroll and spin a batch's UVs, which is how water, fire and portals move.
+Ref<Animation> build_uv_animation(const M2Model &model, const std::vector<uint32_t> &batches) {
+	Ref<Animation> anim;
+	anim.instantiate();
+	anim->set_loop_mode(Animation::LOOP_LINEAR);
+	double length = 0.0;
+	for (size_t surface = 0; surface < batches.size(); surface++) {
+		const M2Batch &batch = model.batches[batches[surface]];
+		if (batch.textureAnimIndex >= model.textureTransformLookup.size()) {
+			continue;
+		}
+		const uint16_t slot = model.textureTransformLookup[batch.textureAnimIndex];
+		if (slot >= model.textureTransforms.size()) {
+			continue;
+		}
+		const M2AnimationTrack &track = model.textureTransforms[slot].translation;
+		const bool global = track.globalSequence >= 0;
+		const uint32_t period = global
+				&& static_cast<size_t>(track.globalSequence) < model.globalSequenceDurations.size()
+				? model.globalSequenceDurations[static_cast<size_t>(track.globalSequence)]
+				: 0;
+		uint32_t span = 0;
+		if (!track.sequences.empty()) {
+			for (const uint32_t stamp : track.sequences[0].timestamps) {
+				span = std::max(span, stamp);
+			}
+		}
+		const auto keys = track_keys(model, track, global ? std::nullopt : std::optional<size_t>(0), std::max({ period, span, 1u }), &M2AnimationTrack::SequenceKeys::vec3Values);
+		if (keys.size() < 2) {
+			continue;
+		}
+		const int t = anim->add_track(Animation::TYPE_VALUE);
+		anim->track_set_path(t, NodePath("Mesh:surface_material_override/" + String::num_int64(surface) + ":uv1_offset"));
+		anim->track_set_interpolation_type(t, interpolation(track));
+		for (const auto &[msec, value] : keys) {
+			anim->track_insert_key(t, msec / 1000.0, Vector3(value.x, value.y, 0.0f));
+			length = std::max(length, msec / 1000.0);
+		}
+	}
+	anim->set_length(std::max(length, 0.001));
+	return anim;
 }
 
 Ref<Animation> build_animation(const M2Model &model, std::optional<size_t> sequence, uint32_t length, const std::vector<Vector3> &rests) {
@@ -329,17 +391,9 @@ Ref<ArrayMesh> WowLoader::get_m2_mesh(const String &path, const M2Data &data, co
 	const bool skinned = !model.bones.empty();
 	Ref<ArrayMesh> mesh;
 	mesh.instantiate();
-	for (const M2Batch &batch : model.batches) {
-		if (batch.indexStart + batch.indexCount > model.indices.size() || batch.indexCount == 0) {
-			continue;
-		}
-		if (!geosets.is_empty() && !geosets.has(batch.submeshId)) {
-			continue;
-		}
+	for (const uint32_t index : visible_batches(model, geosets)) {
+		const M2Batch &batch = model.batches[index];
 		const Color tint = batch_tint(model, batch);
-		if (tint.a < 0.01f) {
-			continue;
-		}
 		SurfaceBuilder s;
 		for (uint32_t t = batch.indexStart; t + 2 < batch.indexStart + batch.indexCount; t += 3) {
 			for (int k : { 0, 2, 1 }) {
@@ -422,6 +476,7 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 	MeshInstance3D *mesh = memnew(MeshInstance3D);
 	mesh->set_name("Mesh");
 	mesh->set_mesh(get_m2_mesh(path, *data, skins, geosets));
+	add_texture_animation(root, mesh, data->model, geosets);
 	if (data->bone_rests.empty()) {
 		root->add_child(mesh);
 		return root;
@@ -458,6 +513,30 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 	return root;
 }
 
+// The scrolling UVs animate a copy of the material, so other models with the same one stay put.
+void WowLoader::add_texture_animation(Node3D *root, MeshInstance3D *mesh, const M2Model &model, const PackedInt32Array &geosets) {
+	const std::vector<uint32_t> batches = visible_batches(model, geosets);
+	const Ref<Animation> anim = build_uv_animation(model, batches);
+	if (anim->get_track_count() == 0) {
+		return;
+	}
+	for (int t = 0; t < anim->get_track_count(); t++) {
+		const int surface = String(anim->track_get_path(t).get_subname(0)).get_slice("/", 1).to_int();
+		const Ref<Material> material = mesh->get_mesh()->surface_get_material(surface);
+		if (material.is_valid()) {
+			mesh->set_surface_override_material(surface, material->duplicate());
+		}
+	}
+	Ref<AnimationLibrary> library;
+	library.instantiate();
+	library->add_animation("Textures", anim);
+	AnimationPlayer *player = memnew(AnimationPlayer);
+	player->set_name("TextureAnimation");
+	player->add_animation_library("", library);
+	root->add_child(player);
+	player->set_autoplay("Textures");
+}
+
 Dictionary WowLoader::get_m2_info(const String &path) {
 	ERR_FAIL_COND_V(archive.is_null(), Dictionary());
 	const std::shared_ptr<const M2Data> data = get_m2_data(path);
@@ -479,6 +558,7 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 		b["texture_count"] = batch.textureCount;
 		b["texture"] = batch.textureIndex < model.textureLookup.size() ? static_cast<int64_t>(model.textureLookup[batch.textureIndex]) : static_cast<int64_t>(-1);
 		b["blend"] = batch.materialIndex < model.materials.size() ? static_cast<int64_t>(model.materials[batch.materialIndex].blendMode) : static_cast<int64_t>(-1);
+		b["texture_animation"] = static_cast<int64_t>(batch.textureAnimIndex);
 		batches.push_back(b);
 	}
 	PackedStringArray animations;
@@ -496,6 +576,34 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 	info["textures"] = texture_list;
 	info["batches"] = batches;
 	info["animations"] = animations;
+	Array transforms;
+	for (const M2TextureTransform &transform : model.textureTransforms) {
+		Dictionary t;
+		t["global_sequence"] = transform.translation.globalSequence;
+		t["sequences"] = static_cast<int64_t>(transform.translation.sequences.size());
+		int64_t keys = 0;
+		for (const M2AnimationTrack::SequenceKeys &sequence : transform.translation.sequences) {
+			keys += static_cast<int64_t>(sequence.timestamps.size());
+		}
+		t["translation_keys"] = keys;
+		int64_t spins = 0;
+		for (const M2AnimationTrack::SequenceKeys &sequence : transform.rotation.sequences) {
+			spins += static_cast<int64_t>(sequence.timestamps.size());
+		}
+		t["rotation_keys"] = spins;
+		int64_t zooms = 0;
+		for (const M2AnimationTrack::SequenceKeys &sequence : transform.scale.sequences) {
+			zooms += static_cast<int64_t>(sequence.timestamps.size());
+		}
+		t["scale_keys"] = zooms;
+		transforms.push_back(t);
+	}
+	info["texture_transforms"] = transforms;
+	PackedInt32Array transform_lookup;
+	for (const uint16_t index : model.textureTransformLookup) {
+		transform_lookup.push_back(index);
+	}
+	info["texture_transform_lookup"] = transform_lookup;
 	Array cameras;
 	for (const M2Camera &camera : model.cameras) {
 		Dictionary c;
