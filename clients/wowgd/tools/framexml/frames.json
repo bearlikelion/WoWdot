@@ -279,6 +279,11 @@
       "frame": "WorldMapFrame",
       "out": "game/ui/wow/world_map_frame.tscn",
       "script": "res://game/ui/world_map_frame.gd"
+    },
+    {
+      "frame": "BankFrame",
+      "out": "game/ui/wow/bank_frame.tscn",
+      "script": "res://game/ui/bank_frame.gd"
     }
   ],
   "graft": {

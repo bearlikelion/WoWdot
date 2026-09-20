@@ -49,6 +49,7 @@ WoWGD targets the latest vMaNGOS `development` commit with no source changes and
 ## Running
 
 Open this folder in Godot, set **Project Settings > wowgd > client_data_dir** to the client's `Data` folder, and run.
+The login screen starts on `127.0.0.1`; whatever you log in with is saved for next time.
 Command-line options after `--` fill the login screen for one run without saving: `--realm=<address>`, `--account=`, `--password=` and `--character=` (logs straight in; without `--character` it enters the first character).
 
 ## Exporting
@@ -56,6 +57,8 @@ Command-line options after `--` fill the login screen for one run without saving
 `export_presets.cfg` has Linux and Windows presets that write to `export/wowgd/`.
 An exported build reads `Data` next to its executable, so players copy the export into their 1.12.1 folder.
 Build the extension's release libraries first: `scons target=template_release`, and `scons platform=windows target=template_release` (mingw-w64) for Windows.
+Both presets encrypt the pck, so the export needs the key in `export_credentials.cfg` or `GODOT_SCRIPT_ENCRYPTION_KEY`.
+Tagging `v*` runs `.forgejo/workflows/release.yml`, which does all of the above and attaches `WoWGD-linux.zip` and `WoWGD-windows.zip` to a GitHub release, each holding the binary, the extension library, `packaging/wowgd/README.txt`, `LICENSE` and `NOTICE.md`.
 
 ## Checks
 
@@ -85,7 +88,7 @@ In the order they are planned:
 
 | Milestone | Work |
 | --- | --- |
-| M3 NPC services | Bank, mailbox, auction house, then stable, petition and tabard. |
+| M3 NPC services | Bank (in progress), mailbox, auction house, then stable, petition and tabard. |
 | M4 social | Trade, duel, group loot rolls, ready check, friends and ignore, guild, the stock dropdown menu, chat tabs and bubbles. |
 | M5 pets | Pet frame, pet action bar, pet spellbook, hunter and warlock pets. |
 | M6 visuals | M2 particles, ribbons and texture animation, spell visuals and projectiles, WMO liquids, transports. |

@@ -51,6 +51,7 @@ var _chat_hover_time: float = 0.0
 @onready var _chat_frames: Array[DockedChatFrame] = [_chat, %ChatFrame2]
 @onready var _panels: PanelManager = %UIPanels
 @onready var _character: CharacterFrame = _panels.get_node("%CharacterFrame")
+@onready var _bank: BankFrame = _panels.get_node("%BankFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
 @onready var _spell_book: SpellBook = _panels.get_node("%SpellBookFrame")
 @onready var _talents: TalentFrame = _panels.get_node("%TalentFrame")
@@ -83,6 +84,9 @@ func _ready() -> void:
 	_character.unlearn_requested.connect(_on_unlearn_requested)
 	_character.watched_changed.connect(_main_menu_bar.show_reputation)
 	_quest_log.share_answered.connect(show_notice)
+	_bank.open_requested.connect(_panels.show_panel.bind(_bank))
+	_bank.close_requested.connect(_panels.hide_panel.bind(_bank))
+	_bank.error_raised.connect(show_error)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
@@ -354,6 +358,8 @@ func use_container_item(bag: int, slot: int) -> void:
 		return
 	if _merchant.vendor() != 0:
 		_merchant.sell(item)
+		return
+	if _bank.store(bag, slot):
 		return
 	var address: Vector2i = Inventory.wire_address(bag, slot)
 	var session: WowSession = WowClient.session
