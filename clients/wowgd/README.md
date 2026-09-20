@@ -89,6 +89,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting. |
 | `sheath_check`, `sky_check` | Sheathing, sky, light and weather. |
 | `audio_check`, `effects_check` | Audio; scrolling textures and particle emitters, both with no server needed. |
+| `spell_target_check` | Self-only buffs cast on the caster whatever is targeted; no server needed. |
 
 ## Still to do
 

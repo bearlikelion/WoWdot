@@ -373,7 +373,8 @@ func _use_spell(spell: int) -> void:
 	if spell != ActionButton.SPELL_ATTACK:
 		if WowAssets.spells.uses_ranged_slot(spell):
 			_sheathe(ItemModels.SheathState.RANGED)
-		session.cast_spell(spell, _hud.target())
+		var target: int = 0 if WowAssets.spells.targets_caster(spell) else _hud.target()
+		session.cast_spell(spell, target)
 	elif _auto_attacking:
 		session.stop_attack()
 	elif _hud.target() != 0:

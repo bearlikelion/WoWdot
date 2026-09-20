@@ -84,6 +84,24 @@ func uses_ranged_slot(spell_id: int) -> bool:
 	return _uint(spell_id, "Attributes") & SPELL_ATTR_USES_RANGED_SLOT != 0
 
 
+# A buff like Frost Armor lands on the caster whatever is targeted, so it is cast with no target.
+func targets_caster(spell_id: int) -> bool:
+	const EFFECT_TARGET_COLUMN: int = 82
+	const EFFECT_COUNT: int = 3
+	const TARGET_SELF: int = 1
+	var row: int = _spells.find(spell_id)
+	if row < 0:
+		return false
+	var self_cast: bool = false
+	for effect: int in EFFECT_COUNT:
+		var target: int = _spells.get_uint(row, EFFECT_TARGET_COLUMN + effect)
+		if target == TARGET_SELF:
+			self_cast = true
+		elif target != 0:
+			return false
+	return self_cast
+
+
 # Spells the stock spellbook lists; weapon and armor skills, languages and internal spells hide.
 func is_displayed(spell_id: int) -> bool:
 	return _uint(spell_id, "Attributes") & SPELL_ATTR_DO_NOT_DISPLAY == 0
