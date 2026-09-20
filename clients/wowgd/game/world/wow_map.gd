@@ -33,6 +33,8 @@ var _loading: Dictionary[Vector2i, bool] = {}
 var _tile_placements: Dictionary[Vector2i, PackedInt64Array] = {}
 var _placement_nodes: Dictionary[int, Node3D] = {}
 var _root_wmo: Node3D
+# Each WMO liquid surface as {"box": AABB, "top": float}, so swimming works indoors.
+var _wmo_liquids: Array[Dictionary] = []
 var _focus_tile: Vector2i
 var _awaiting_focus_tile: bool = false
 var _camera_moving: bool = false
@@ -102,8 +104,11 @@ func ground_effect_at(godot_position: Vector3) -> int:
 	return effects[_cell_index(godot_position, tile)]
 
 
-# The liquid surface over the position's terrain chunk, or NAN where there is none.
+# The liquid surface over the position, from a WMO's own water first and the terrain chunk after.
 func liquid_height_at(godot_position: Vector3) -> float:
+	for liquid: Dictionary in _wmo_liquids:
+		if (liquid["box"] as AABB).has_point(godot_position):
+			return liquid["top"]
 	var tile: Vector2i = tile_at(godot_position)
 	if not _tiles.has(tile):
 		return NAN
@@ -148,6 +153,15 @@ func _cell_index(godot_position: Vector3, tile: Vector2i) -> int:
 	return ((y / 8) * 16 + x / 8) * GROUND_CELLS + (y % 8) * 8 + x % 8
 
 
+# A WMO's water is one mesh per flooded group, and its box is what tells the player they are in it.
+func _collect_liquids(node: Node3D) -> void:
+	for mesh: MeshInstance3D in node.find_children("Liquid*", "MeshInstance3D", true, false):
+		if not mesh.has_meta("liquid_volume"):
+			continue
+		var box: AABB = mesh.global_transform * (mesh.get_meta("liquid_volume") as AABB)
+		_wmo_liquids.append({"box": box, "top": box.end.y, "node": mesh})
+
+
 func _chunk_index(godot_position: Vector3, tile: Vector2i) -> int:
 	var wow: Vector3 = WowCoords.from_godot(godot_position)
 	var chunk_x: int = clampi(floori((32.0 - wow.y / TILE_SIZE - tile.x) * 16.0), 0, 15)
@@ -155,7 +169,7 @@ func _chunk_index(godot_position: Vector3, tile: Vector2i) -> int:
 	return chunk_y * 16 + chunk_x
 
 
-# ponytail: one height per chunk from the tile's liquid mesh, WMO liquids are not covered.
+# ponytail: one height per chunk from the tile's own liquid mesh.
 func _liquid_heights(node: Node3D, tile: Vector2i) -> PackedFloat32Array:
 	var heights: PackedFloat32Array = []
 	heights.resize(256)
@@ -278,6 +292,7 @@ func _reset() -> void:
 	if _root_wmo:
 		_root_wmo.queue_free()
 		_root_wmo = null
+	_wmo_liquids.clear()
 	_existing.clear()
 	var info: Dictionary = WowAssets.loader.get_map_info(map_name)
 	for tile: Vector2i in info.get("tiles", []):
@@ -288,6 +303,7 @@ func _reset() -> void:
 		if _root_wmo:
 			_root_wmo.transform = info["wmo_transform"]
 			add_child(_root_wmo)
+			_collect_liquids(_root_wmo)
 
 
 func _attach(result: Dictionary) -> void:
@@ -304,6 +320,7 @@ func _attach(result: Dictionary) -> void:
 	for unique_id: int in built:
 		_placement_nodes[unique_id] = built[unique_id]
 		add_child(built[unique_id])
+		_collect_liquids(built[unique_id])
 	tile_loaded.emit(tile)
 	if _awaiting_focus_tile and tile == _focus_tile:
 		_awaiting_focus_tile = false
@@ -312,6 +329,9 @@ func _attach(result: Dictionary) -> void:
 
 
 func _unload(tile: Vector2i) -> void:
+	_wmo_liquids = _wmo_liquids.filter(
+		func(liquid: Dictionary) -> bool: return is_instance_valid(liquid["node"])
+	)
 	_tiles[tile].queue_free()
 	_tiles.erase(tile)
 	for unique_id: int in _streamer.release(_tile_placements.get(tile, PackedInt64Array())):

@@ -1,7 +1,6 @@
 #include "wow_coords.h"
 #include "wow_dbc.h"
 #include "wow_loader.h"
-#include "wow_ribbon.h"
 
 #include "pipeline/m2_loader.hpp"
 #include "pipeline/wmo_loader.hpp"
@@ -61,6 +60,10 @@ constexpr float DOODAD_NEAREST_RANGE = 120.0f;
 constexpr float DOODAD_FURTHEST_RANGE = 600.0f;
 
 constexpr uint32_t WMO_GROUP_HAS_VERTEX_COLORS = 0x4;
+constexpr uint32_t WMO_GROUP_OCEAN = 0x80000;
+// MLIQ tiles are the same size as the terrain's, and 0x08 marks one that does not draw.
+constexpr float WMO_LIQUID_TILE = 1600.0f / 3.0f / 16.0f / 8.0f;
+constexpr uint8_t WMO_LIQUID_TILE_HIDDEN = 0x08;
 constexpr uint8_t WMO_TRIANGLE_NO_COLLIDE = 0x4;
 
 String file_stem(const String &path) {
@@ -600,7 +603,6 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 		player->set_autoplay("Stand");
 	}
 	add_particles(root, skeleton, data->model);
-	add_ribbons(root, skeleton, data->model);
 	return root;
 }
 
@@ -719,45 +721,6 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 		}
 		holder->add_child(particles);
 		particles->set_position(offset);
-	}
-}
-
-// A ribbon is real geometry that trails its bone, so it hangs off a BoneAttachment3D like particles.
-void WowLoader::add_ribbons(Node3D *root, Skeleton3D *skeleton, const M2Model &model) {
-	for (size_t i = 0; i < model.ribbonEmitters.size(); i++) {
-		const M2RibbonEmitter &ribbon = model.ribbonEmitters[i];
-		if (skeleton == nullptr || ribbon.bone >= static_cast<uint32_t>(skeleton->get_bone_count())) {
-			continue;
-		}
-		const Variant texture = ribbon.textureIndex < model.textures.size()
-				? Variant(load_texture(model.textures[ribbon.textureIndex].filename.c_str()))
-				: Variant();
-		const M2Material *material = ribbon.materialIndex < model.materials.size()
-				? &model.materials[ribbon.materialIndex]
-				: nullptr;
-		Ref<StandardMaterial3D> surface = get_material(
-				texture, material ? material->blendMode : 4, material ? material->flags : 0,
-				true, false, Color(1.0f, 1.0f, 1.0f, 1.0f));
-		surface->set_shading_mode(StandardMaterial3D::SHADING_MODE_UNSHADED);
-		surface->set_cull_mode(StandardMaterial3D::CULL_DISABLED);
-		BoneAttachment3D *attachment = memnew(BoneAttachment3D);
-		attachment->set_name("RibbonBone" + String::num_int64(i));
-		skeleton->add_child(attachment);
-		attachment->set_bone_idx(ribbon.bone);
-		Node3D *anchor = memnew(Node3D);
-		anchor->set_position(wow_to_godot(ribbon.position) - wow_to_godot(model.bones[ribbon.bone].pivot));
-		attachment->add_child(anchor);
-		WowRibbon *trail = memnew(WowRibbon);
-		trail->set_name("Ribbon" + String::num_int64(i));
-		trail->set_material_override(surface);
-		trail->set_above(std::max(track_value(ribbon.heightAboveTrack, 0.5f), 0.01f));
-		trail->set_below(std::max(track_value(ribbon.heightBelowTrack, 0.5f), 0.01f));
-		trail->set_lifetime(ribbon.edgeLifetime);
-		trail->set_edges_per_second(ribbon.edgesPerSecond);
-		trail->set_gravity(ribbon.gravity);
-		const Color color = track_color(ribbon.colorTrack, Color(1.0f, 1.0f, 1.0f, 1.0f));
-		trail->set_tint(Color(color.r, color.g, color.b, track_value(ribbon.alphaTrack, 1.0f)));
-		anchor->add_child(trail);
 	}
 }
 
@@ -967,6 +930,70 @@ Node3D *WowLoader::build_static_models(const Array &placements) {
 	return root;
 }
 
+// Vanilla WMOs carry no LiquidType.dbc id, so the low bits of the group's type pick the material.
+int wmo_liquid_material(const WMOGroup &group) {
+	const uint32_t basic = group.liquidType & 3;
+	if (basic == 0) {
+		return group.flags & WMO_GROUP_OCEAN ? 1 : 0;
+	}
+	return static_cast<int>(basic);
+}
+
+// MLIQ: a grid of heights over the group, laid out like the terrain's own liquid tiles.
+void WowLoader::add_wmo_liquid(Node3D *root, const WMOGroup &group, size_t index) {
+	const WMOLiquid &liquid = group.liquid;
+	if (!liquid.hasLiquid() || liquid.heights.size() < liquid.xVerts * liquid.yVerts) {
+		return;
+	}
+	const int material = wmo_liquid_material(group);
+	if (material >= liquid_materials.size()) {
+		return;
+	}
+	auto corner = [&](uint32_t col, uint32_t row) {
+		return wow_to_godot(glm::vec3(
+				liquid.basePosition.x + col * WMO_LIQUID_TILE,
+				liquid.basePosition.y + row * WMO_LIQUID_TILE,
+				liquid.heights[row * liquid.xVerts + col]));
+	};
+	PackedVector3Array faces;
+	AABB volume;
+	bool started = false;
+	for (uint32_t row = 0; row < liquid.yTiles; row++) {
+		for (uint32_t col = 0; col < liquid.xTiles; col++) {
+			const size_t tile = row * liquid.xTiles + col;
+			if (tile < liquid.flags.size() && (liquid.flags[tile] & WMO_LIQUID_TILE_HIDDEN)) {
+				continue;
+			}
+			const Vector3 a = corner(col, row), b = corner(col + 1, row);
+			const Vector3 d = corner(col, row + 1), e = corner(col + 1, row + 1);
+			faces.append_array(PackedVector3Array({ a, b, e, a, e, d }));
+			for (const Vector3 &corner_point : { a, b, d, e }) {
+				volume = started ? volume.expand(corner_point) : AABB(corner_point, Vector3());
+				started = true;
+			}
+		}
+	}
+	if (faces.is_empty()) {
+		return;
+	}
+	Ref<ArrayMesh> mesh;
+	mesh.instantiate();
+	Array arrays;
+	arrays.resize(Mesh::ARRAY_MAX);
+	arrays[Mesh::ARRAY_VERTEX] = faces;
+	mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, arrays);
+	mesh->surface_set_material(0, liquid_materials[material]);
+	MeshInstance3D *instance = memnew(MeshInstance3D);
+	instance->set_name("Liquid" + String::num_int64(index));
+	instance->set_mesh(mesh);
+	// Model space, so the placement transform still has to be applied; the top is the surface.
+	const float floor_y = std::min(wow_to_godot(group.boundingBoxMin).y, volume.position.y);
+	volume.size.y += volume.position.y - floor_y;
+	volume.position.y = floor_y;
+	instance->set_meta("liquid_volume", volume);
+	root->add_child(instance);
+}
+
 Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 	ERR_FAIL_COND_V(archive.is_null(), nullptr);
 	std::vector<uint8_t> data;
@@ -1042,6 +1069,7 @@ Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 		instance->set_name(group.name.empty() ? "Group" + String::num_int64(g) : String(group.name.c_str()));
 		instance->set_mesh(mesh);
 		root->add_child(instance);
+		add_wmo_liquid(root, group, g);
 
 		PackedVector3Array faces;
 		for (size_t t = 0; t + 2 < group.indices.size(); t += 3) {

@@ -14,7 +14,7 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Area | Working |
 | --- | --- |
 | Login | Account login, realm list, character select, create and delete, loading screen, glue music. |
-| World | Streaming terrain, WMOs and doodads, water, sky with day and night from Light.dbc, weather, zone music and ambience. |
+| World | Streaming terrain, WMOs and doodads, water on the terrain and inside buildings, sky with day and night from Light.dbc, weather, zone music and ambience. |
 | Characters | Skin compositing, hair and facial hair, equipment on the model, sheathing, mounts, 3D portraits. |
 | Movement | Movement relays, jumping, falling, swimming, flights on taxi splines, dead reckoning for other players. Server speed changes, roots, knockbacks and water walking are applied and acknowledged. |
 | Zoning | Continents, dungeons and portals, with the loading screen and a clean sweep of the old map's objects. |
@@ -91,7 +91,8 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `emote_check`, `channel_check` | Slash emotes and chat channels. |
 | `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting with the corpse marked on both maps. |
 | `sheath_check`, `sky_check` | Sheathing, sky, light and weather. |
-| `ribbon_check` | M2 ribbon emitters read in the vanilla layout, and the trail grows behind a moving bone. No server needed. The trail's look has not been matched against the stock client. |
+| `ribbon_check` | M2 ribbon emitters read in the vanilla layout. No server needed. They are parsed but not yet drawn: the trail's look was not right, so the drawing was taken back out. |
+| `wmo_liquid_check` | A building's own water: Stormwind's canals answer the liquid height, only from inside, and the player swims in them. |
 | `audio_check`, `effects_check` | Audio; scrolling textures and particle emitters, both with no server needed. |
 | `spell_target_check`, `visual_check` | Self-only buffs cast on the caster; the spell visual chain resolves. Neither needs a server. |
 | `effect_check` | A fireball crosses to its target and a lootable corpse sparkles. |
@@ -114,7 +115,7 @@ In the order they are planned:
 
 | Milestone | Work |
 | --- | --- |
-| M6 visuals | WMO liquids, transports, and matching the ribbon trail's look to the stock client. |
+| M6 visuals | Transports, and drawing the ribbon trails the parser now reads. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 

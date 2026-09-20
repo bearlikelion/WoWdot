@@ -24,7 +24,7 @@ func _ready() -> void:
 	view.show()
 	for path: String in args.get("show", "").split(",", false):
 		(view.get_node(NodePath(path)) as CanvasItem).show()
-	for i: int in SETTLE_FRAMES:
+	for i: int in int(args.get("settle", str(SETTLE_FRAMES))):
 		await get_tree().process_frame
 	var out: String = args.get("out", "user://ui_view.png")
 	get_viewport().get_texture().get_image().save_png(out)

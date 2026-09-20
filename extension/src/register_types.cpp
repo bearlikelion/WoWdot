@@ -4,7 +4,6 @@
 #include "wow_loader.h"
 #include "wow_session.h"
 #include "wow_streamer.h"
-#include "wow_ribbon.h"
 #include "wow_texture.h"
 
 #include <gdextension_interface.h>
@@ -29,7 +28,6 @@ static void initialize_wowgd_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_CLASS(WowStreamer);
 	GDREGISTER_CLASS(WowSession);
 	GDREGISTER_CLASS(WowTexture);
-	GDREGISTER_CLASS(WowRibbon);
 	GDREGISTER_ABSTRACT_CLASS(WowCoords);
 }
 
