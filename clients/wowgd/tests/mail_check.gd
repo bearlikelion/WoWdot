@@ -13,6 +13,7 @@ const SUBJECT: String = "Checkmail"
 const BODY: String = "A letter from the check."
 # Another character on the test account, since the server refuses mail to yourself.
 const RECEIVER: String = "Mogue"
+const POSTAGE_PURSE: int = 10000
 
 var _failures: PackedStringArray = []
 var _main: Main
@@ -73,6 +74,9 @@ func _run() -> void:
 func _send_a_letter(inbox: MailFrame) -> void:
 	var sent: PackedStringArray = []
 	inbox.message_added.connect(func(text: String) -> void: sent.append(text))
+	# Postage costs copper, so the check pays for its own letter.
+	WowClient.session.send_chat(WowSession.CHAT_SAY, ".modify money %d" % POSTAGE_PURSE)
+	await get_tree().create_timer(1.0).timeout
 	inbox.show_tab(MailFrame.Tab.SEND)
 	await _frames(10)
 	(inbox.find_child("SendMailNameEditBox", true, false) as LineEdit).text = RECEIVER
