@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/character_frame.tscn" id="2_character"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/wow/auction_frame.tscn" id="20_auction"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/guild_registrar_frame.tscn" id="27_registrar"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/petition_frame.tscn" id="28_petition"]
+[ext_resource type="PackedScene" path="res://game/ui/wow/tabard_frame.tscn" id="29_tabard"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/trade_frame.tscn" id="21_trade"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/friends_frame.tscn" id="22_friends"]
 [ext_resource type="PackedScene" path="res://game/ui/wow/world_map_frame.tscn" id="14_map"]
@@ -98,6 +99,11 @@ visible = false
 layout_mode = 1
 
 [node name="PetitionFrame" parent="." instance=ExtResource("28_petition")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="TabardFrame" parent="." instance=ExtResource("29_tabard")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

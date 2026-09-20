@@ -28,7 +28,7 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | World objects | Chests, doors, levers, chairs, herb and mining nodes answer a click. |
 | Mail | Inbox from a mailbox, reading letters, taking money and attachments, deleting, and writing letters with money. |
 | Groups | Party invites, party frames, loot window, group loot rolls, ready check, quest sharing. |
-| Social | Trade, duels, friends and ignore, the guild window with its roster, message of the day and invites, and guild charters from a registrar. |
+| Social | Trade, duels, friends and ignore, the guild window with its roster, message of the day and invites, guild charters from a registrar and crests from a designer. |
 | Pets | The pet frame with happiness, the pet action bar with autocast, the pet spellbook tab, naming a tamed pet, and the stable master. |
 | Effects | M2 particles and scrolling textures, spell visuals from SpellVisual.dbc with flying missiles, and the sparkle over lootable corpses. |
 
@@ -104,6 +104,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `item_move_check` | Items move between the bags, the bank and the character, and split and destroy. |
 | `gameobject_check` | Using a game object: a chair seats the player. |
 | `auction_bid_check.sh` | A second character lists an item and this one bids on it. Proving the money moves needs `wowgd2` at GM level, and the check says so and skips that leg when it is not. |
+| `tabard_check` | The guild crest designer: cycling the icon changes the preview, and saving it puts the choice on the guild. The character is made a guild leader first, which `petition_check.sh` undoes again. |
 | `petition_check.sh` | Buying a guild charter from a registrar, a second character signing it, and handing it back. It leaves the guild the character was in first, which `guild_check` makes again. Nine signatures from nine accounts are needed to found a guild, so the check asserts the refusal rather than the guild. |
 
 ## Still to do
@@ -112,7 +113,6 @@ In the order they are planned:
 
 | Milestone | Work |
 | --- | --- |
-| M3 leftovers | Tabard. |
 | M6 visuals | M2 ribbons, WMO liquids, transports. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.

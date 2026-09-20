@@ -23,6 +23,7 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"AuctionFrame": [Area.LEFT, 0],
 	&"GuildRegistrarFrame": [Area.LEFT, 0],
 	&"PetitionFrame": [Area.LEFT, 0],
+	&"TabardFrame": [Area.LEFT, 0],
 	&"TradeFrame": [Area.CENTER, 0],
 	&"FriendsFrame": [Area.LEFT, 0],
 	&"OpenMailFrame": [Area.CENTER, 0],

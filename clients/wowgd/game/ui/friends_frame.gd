@@ -18,6 +18,8 @@ enum GuildResult { OK, INTERNAL, ALREADY_IN_GUILD, ALREADY_IN_GUILD_S, INVITED, 
 
 const ROWS: int = 10
 const GUILD_ROWS: int = 13
+# SMSG_GUILD_QUERY_RESPONSE always carries ten rank names, whatever the guild uses.
+const GUILD_RANKS: int = 10
 # SMSG_FRIEND_STATUS results, as SocialMgr's FriendsResult numbers them.
 enum Result { DB_ERROR, LIST_FULL, ONLINE, OFFLINE, NOT_FOUND, REMOVED, ADDED_ONLINE,
 	ADDED_OFFLINE, ALREADY, SELF, ENEMY, IGNORE_FULL, IGNORE_SELF, IGNORE_NOT_FOUND,
@@ -67,6 +69,7 @@ var _selected: int = -1
 var _awaiting_name: Dictionary[int, String] = {}
 var _members: Array[Dictionary] = []
 var _guild_name: String = ""
+var _emblem: PackedInt32Array = []
 
 
 func _ready() -> void:
@@ -210,6 +213,11 @@ func _remove_selected() -> void:
 	)
 
 
+# What the guild's tabard is set to, empty until its query has answered.
+func emblem() -> PackedInt32Array:
+	return _emblem
+
+
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	var reader: PacketReader = PacketReader.new(payload)
 	match opcode:
@@ -238,6 +246,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		"SMSG_GUILD_QUERY_RESPONSE":
 			reader.u32()
 			_guild_name = reader.cstring()
+			_read_emblem(reader)
 			if _tab == Tab.GUILD:
 				_refresh_guild()
 		"SMSG_GUILD_INVITE":
@@ -303,6 +312,15 @@ func _query_guild() -> void:
 	payload.resize(4)
 	payload.encode_u32(0, guild_id)
 	session.send_packet("CMSG_GUILD_QUERY", payload)
+
+
+# The ten rank names come before the five numbers a tabard vendor saved on the guild.
+func _read_emblem(reader: PacketReader) -> void:
+	for rank: int in GUILD_RANKS:
+		reader.cstring()
+	_emblem = PackedInt32Array()
+	for part: int in TabardFrame.Part.size():
+		_emblem.append(reader.u32())
 
 
 func _on_guild_event(reader: PacketReader) -> void:

@@ -66,6 +66,7 @@ var _chat_hover_time: float = 0.0
 @onready var _auction: AuctionFrame = _panels.get_node("%AuctionFrame")
 @onready var _registrar: GuildRegistrarFrame = _panels.get_node("%GuildRegistrarFrame")
 @onready var _petition: PetitionFrame = _panels.get_node("%PetitionFrame")
+@onready var _tabard: TabardFrame = _panels.get_node("%TabardFrame")
 @onready var _trade: TradeFrame = _panels.get_node("%TradeFrame")
 @onready var _friends: FriendsFrame = _panels.get_node("%FriendsFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
@@ -118,7 +119,7 @@ func _ready() -> void:
 	_open_mail.delete_requested.connect(_mail.delete)
 	_auction.open_requested.connect(_panels.show_panel.bind(_auction))
 	_auction.error_raised.connect(show_error)
-	for frame: Control in [_registrar, _petition]:
+	for frame: Control in [_registrar, _petition, _tabard]:
 		frame.open_requested.connect(_panels.show_panel.bind(frame))
 		frame.error_raised.connect(show_error)
 		frame.message_added.connect(show_notice)

@@ -350,6 +350,11 @@
    "frame": "PetitionFrame",
    "out": "game/ui/wow/petition_frame.tscn",
    "script": "res://game/ui/petition_frame.gd"
+  },
+  {
+   "frame": "TabardFrame",
+   "out": "game/ui/wow/tabard_frame.tscn",
+   "script": "res://game/ui/tabard_frame.gd"
   }
  ],
  "graft": {
