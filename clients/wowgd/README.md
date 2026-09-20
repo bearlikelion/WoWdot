@@ -107,6 +107,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `gameobject_check` | Using a game object: a chair seats the player. |
 | `auction_bid_check.sh` | A second character lists an item and this one bids on it. Proving the money moves needs `wowgd2` at GM level, and the check says so and skips that leg when it is not. |
 | `tabard_check` | The guild crest designer: cycling the icon changes the preview, and saving it puts the choice on the guild. The character is made a guild leader first, which `petition_check.sh` undoes again. |
+| `profession_check` | Learning Blacksmithing and its first recipe, reading the recipe out of the DBCs with its reagents and product, counting the bags against what it needs, and casting it to make the item. It uses `.learn` and `.additem`. |
 | `raid_check.sh` | Two accounts: converting a party to a raid, moving the partner into another subgroup, making them an assistant, marking them with the skull and asking for the whole icon list back. |
 | `area_trigger_check` | Walking into the Deadmines portal reports the trigger and the server opens the instance. Landing inside a trigger is adopted rather than fired, or a portal bounces the player between the two maps forever. |
 | `battleground_check` | The Warsong Gulch queue round trip: a battlemaster lists its battleground, joining takes a place in the queue and giving it up clears the slot. It needs `.character level` (the account must be a developer-level GM), since the starting character is below the level Warsong Gulch asks for, and it leaves the character at level 20. Entering a match needs four players a side, so nothing past the queue is proven. |
@@ -122,7 +123,7 @@ In the order they are planned:
 | M6 visuals | Drawing the ribbon trails the parser now reads. |
 | M6 transports | Riding a ferry across the boundary between two continents. The route keeps the far legs and the boat hides while it sails them, but nothing yet checks that the server carries a passenger over with it. |
 | PvP | The battleground queue works; what is left is the window to drive it from, the invite popup, the scoreboard from `MSG_PVP_LOG_DATA` and the world state readout. None of it can be proven here: a match needs four players a side. |
-| Professions | No tradeskill window, so crafting cannot be driven from the client. |
+| Professions | Recipes resolve and crafting works, but there is no tradeskill window to drive it from. 1.12 has no tradeskill opcodes at all, so the window is pure client work: `Blizzard_TradeSkillUI` is an addon rather than core FrameXML, so the converter needs pointing at it. |
 | Raid | The protocol is in: converting, subgroups, assistants and target icons all work. What is missing is the 40 slot raid window to drive them from, and drawing the target marks over the units wearing them. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.

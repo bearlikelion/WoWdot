@@ -252,7 +252,10 @@
  },
  "SkillLineAbility": {
   "SkillLineID": 1,
-  "SpellID": 2
+  "SpellID": 2,
+  "MinRank": 7,
+  "TrivialRankHigh": 10,
+  "TrivialRankLow": 11
  },
  "SkillLineCategory": {
   "ID": 0,
@@ -270,6 +273,25 @@
  "Spell": {
   "ID": 0,
   "SchoolEnum": 1,
+  "Reagent0": 42,
+  "Reagent1": 43,
+  "Reagent2": 44,
+  "Reagent3": 45,
+  "Reagent4": 46,
+  "Reagent5": 47,
+  "Reagent6": 48,
+  "Reagent7": 49,
+  "ReagentCount0": 50,
+  "ReagentCount1": 51,
+  "ReagentCount2": 52,
+  "ReagentCount3": 53,
+  "ReagentCount4": 54,
+  "ReagentCount5": 55,
+  "ReagentCount6": 56,
+  "ReagentCount7": 57,
+  "EffectItemType0": 103,
+  "EffectItemType1": 104,
+  "EffectItemType2": 105,
   "Category": 2,
   "DispelType": 4,
   "Mechanic": 5,
