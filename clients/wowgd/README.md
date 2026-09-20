@@ -20,10 +20,11 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Zoning | Continents, dungeons and portals, with the loading screen and a clean sweep of the old map's objects. |
 | Death | Release, corpse location and reclaim, resurrect offers from other players, and the spirit healer. |
 | Combat | Targeting, auto attack, spell casts with cooldowns and the GCD, buffs and debuffs, floating combat text, combat log. |
-| HUD | Action bars with pages and side bars, player and target frames, cast bar, minimap, tooltips, chat with whispers and links. |
+| HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap, tooltips, reputation watch bar. |
+| Chat | Say, yell, party, guild and whispers, channels with /join and numbered commands, emotes such as /dance. |
 | Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video and sound options. |
 | NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters. |
-| Groups | Party invites, party frames, loot window. |
+| Groups | Party invites, party frames, loot window, quest sharing. |
 
 ## Requirements
 
@@ -72,6 +73,8 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `loot_check`, `party_check.sh` | Loot and parties. |
 | `remote_motion_check`, `remote_movement_check.sh` | Other players' movement. |
 | `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming. |
+| `stance_check`, `target_of_target_check` | The stance bar and the target of target frame. |
+| `emote_check`, `channel_check` | Slash emotes and chat channels. |
 | `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting. |
 | `sheath_check`, `sky_check` | Sheathing, sky, light and weather. |
 | `audio_check` | Audio, with no server needed. |
@@ -82,9 +85,8 @@ In the order they are planned:
 
 | Milestone | Work |
 | --- | --- |
-| M2 quick wins | Stance bar, target of target, reputation watch bar, quest sharing, emotes such as `/dance`, chat channels (`/join`, `/1`). |
 | M3 NPC services | Bank, mailbox, auction house, then stable, petition and tabard. |
-| M4 social | Trade, duel, group loot rolls, ready check, friends and ignore, guild, the stock dropdown menu. |
+| M4 social | Trade, duel, group loot rolls, ready check, friends and ignore, guild, the stock dropdown menu, chat tabs and bubbles. |
 | M5 pets | Pet frame, pet action bar, pet spellbook, hunter and warlock pets. |
 | M6 visuals | M2 particles, ribbons and texture animation, spell visuals and projectiles, WMO liquids, transports. |
 | M7 polish | Key binding UI, interface options, starting outfit on the create preview, race and class tooltips, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the corpse marker on the map and minimap, the breath meter underwater. |
