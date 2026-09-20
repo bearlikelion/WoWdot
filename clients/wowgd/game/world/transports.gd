@@ -29,7 +29,8 @@ func watch(entities: Entities) -> void:
 	session.game_object_info_received.connect(_on_info_received)
 
 
-func _process(delta: float) -> void:
+# On the physics step, since what moves is a body the player stands on.
+func _physics_process(delta: float) -> void:
 	for guid: int in _routes:
 		var node: Node3D = _entities.unit_node(guid)
 		if node == null:
@@ -50,9 +51,29 @@ func _place(node: Node3D, route: Dictionary) -> void:
 			continue
 		var from: Vector3 = points[i]
 		var to: Vector3 = points[i + 1]
-		node.global_position = from.lerp(to, left / maxf(lengths[i], 0.001))
-		node.rotation.y = atan2(-(to.x - from.x), -(to.z - from.z))
+		var heading: Basis = Basis(Vector3.UP, atan2(-(to.x - from.x), -(to.z - from.z)))
+		node.global_transform = Transform3D(
+			heading.scaled(node.scale), from.lerp(to, left / maxf(lengths[i], 0.001))
+		)
 		return
+
+
+# The server places a transport once and never again, so the only sync point is that first position.
+func _travelled(points: PackedVector3Array, lengths: PackedFloat32Array, at: Vector3) -> float:
+	var best: float = INF
+	var found: float = 0.0
+	var walked: float = 0.0
+	for i: int in lengths.size():
+		var leg: Vector3 = points[i + 1] - points[i]
+		var along: float = clampf(
+			(at - points[i]).dot(leg) / maxf(leg.length_squared(), 0.001), 0.0, 1.0
+		)
+		var away: float = at.distance_to(points[i] + leg * along)
+		if away < best:
+			best = away
+			found = walked + lengths[i] * along
+		walked += lengths[i]
+	return found
 
 
 func _on_object_created(guid: int, type_id: int) -> void:
@@ -99,8 +120,12 @@ func _register(guid: int, info: Dictionary) -> void:
 		lengths.append(points[i].distance_to(points[i + 1]))
 		total += lengths[i]
 	var speed: float = maxf(fields[Data.SPEED], 1.0)
+	var here: Vector3 = WowCoords.to_godot(WowClient.session.get_object_position(guid))
 	# ponytail: constant speed with no acceleration ramp, so the phase drifts against the server's.
 	_routes[guid] = {
 		"points": points, "lengths": lengths, "speed": speed, "period": total / speed,
-		"phase": 0.0,
+		"phase": _travelled(points, lengths, here) / speed,
 	}
+	var node: Node3D = _entities.unit_node(guid)
+	if node:
+		node.set_meta(Player.TRANSPORT_META, guid)

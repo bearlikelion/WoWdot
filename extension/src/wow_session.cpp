@@ -107,13 +107,20 @@ Vector3 wow_vector(float x, float y, float z) {
 }
 
 // Vanilla MovementInfo; the game code already uses vanilla flag bits, which the vendored writer would remap.
-void write_movement_info(network::Packet &packet, uint32_t flags, const Vector3 &position, float orientation, float pitch, uint32_t fall_time, const Vector3 &jump_velocity) {
+void write_movement_info(network::Packet &packet, uint32_t flags, const Vector3 &position, float orientation, float pitch, uint32_t fall_time, const Vector3 &jump_velocity, uint64_t transport_guid, const Vector3 &transport_offset, float transport_orientation) {
 	packet.writeUInt32(flags);
 	packet.writeUInt32(static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec()));
 	packet.writeFloat(position.x);
 	packet.writeFloat(position.y);
 	packet.writeFloat(position.z);
 	packet.writeFloat(orientation);
+	if (flags & MOVEFLAG_ONTRANSPORT) {
+		packet.writeUInt64(transport_guid);
+		packet.writeFloat(transport_offset.x);
+		packet.writeFloat(transport_offset.y);
+		packet.writeFloat(transport_offset.z);
+		packet.writeFloat(transport_orientation);
+	}
 	if (flags & MOVEFLAG_SWIMMING) {
 		packet.writeFloat(pitch);
 	}
@@ -285,7 +292,7 @@ void WowSession::logout() {
 
 // jump_velocity is in WoW space; its horizontal part gives the jump direction and speed.
 // An ack_counter of 0 or more answers a server movement change: guid and counter first, ack_tail last.
-void WowSession::send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec, const Vector3 &jump_velocity, double pitch, int64_t ack_counter, const PackedByteArray &ack_tail) {
+void WowSession::send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec, const Vector3 &jump_velocity, double pitch, int64_t ack_counter, const PackedByteArray &ack_tail, int64_t transport_guid, const Vector3 &transport_offset, double transport_orientation) {
 	ERR_FAIL_COND(!world || state != STATE_IN_WORLD);
 	const auto op = game::OpcodeTable::nameToLogical(opcode.utf8().get_data());
 	ERR_FAIL_COND_MSG(!op, "WowSession: unknown opcode " + opcode);
@@ -294,7 +301,7 @@ void WowSession::send_movement(const String &opcode, const Vector3 &position, do
 		packet.writeUInt64(player_guid);
 		packet.writeUInt32(static_cast<uint32_t>(ack_counter));
 	}
-	write_movement_info(packet, static_cast<uint32_t>(flags), position, static_cast<float>(orientation), static_cast<float>(pitch), static_cast<uint32_t>(fall_time_msec), jump_velocity);
+	write_movement_info(packet, static_cast<uint32_t>(flags), position, static_cast<float>(orientation), static_cast<float>(pitch), static_cast<uint32_t>(fall_time_msec), jump_velocity, static_cast<uint64_t>(transport_guid), transport_offset, static_cast<float>(transport_orientation));
 	packet.writeBytes(ack_tail.ptr(), static_cast<size_t>(ack_tail.size()));
 	world->send(packet);
 	if (auto it = objects.find(player_guid); it != objects.end()) {
@@ -1757,7 +1764,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("delete_character", "guid"), &WowSession::delete_character);
 	ClassDB::bind_method(D_METHOD("enter_world", "guid"), &WowSession::enter_world);
 	ClassDB::bind_method(D_METHOD("logout"), &WowSession::logout);
-	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags", "fall_time_msec", "jump_velocity", "pitch", "ack_counter", "ack_tail"), &WowSession::send_movement, DEFVAL(0), DEFVAL(Vector3()), DEFVAL(0.0), DEFVAL(-1), DEFVAL(PackedByteArray()));
+	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags", "fall_time_msec", "jump_velocity", "pitch", "ack_counter", "ack_tail", "transport_guid", "transport_offset", "transport_orientation"), &WowSession::send_movement, DEFVAL(0), DEFVAL(Vector3()), DEFVAL(0.0), DEFVAL(-1), DEFVAL(PackedByteArray()), DEFVAL(0), DEFVAL(Vector3()), DEFVAL(0.0));
 	ClassDB::bind_method(D_METHOD("send_packet", "opcode", "payload"), &WowSession::send_packet);
 	ClassDB::bind_method(D_METHOD("send_chat", "type", "message", "target"), &WowSession::send_chat, DEFVAL(String()));
 	ClassDB::bind_method(D_METHOD("set_selection", "guid"), &WowSession::set_selection);

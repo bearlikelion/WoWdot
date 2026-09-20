@@ -24,6 +24,7 @@ enum MoveFlag {
 	JUMPING = 0x2000,
 	FALLING_FAR = 0x4000,
 	SWIMMING = 0x200000,
+	ONTRANSPORT = 0x2000000,
 	WATERWALKING = 0x10000000,
 	SAFE_FALL = 0x20000000,
 	HOVER = 0x40000000,
@@ -53,6 +54,8 @@ const SWIM_ENTER: float = 1.5
 const SWIM_EXIT: float = 1.3
 # How far the shoulders stay under while swimming at the surface.
 const SWIM_SURFACE: float = 1.4
+# Transports.watch marks their nodes with this, so a foot on one can name it.
+const TRANSPORT_META: StringName = &"transport_guid"
 const FLOAT_SPEED: float = 1.0
 const MIN_PITCH: float = -1.3
 const MAX_PITCH: float = 0.6
@@ -104,6 +107,9 @@ var _model: Node3D
 var _auto_run: bool = false
 # The liquid surface over the player, set by the world each frame, NAN where there is none.
 var _water_surface: float = NAN
+var _transport: Node3D
+var _transport_guid: int = 0
+var _transport_offset: Vector3 = Vector3.ZERO
 
 @onready var _collision: CollisionShape3D = $Collision
 @onready var _model_slot: Node3D = $Model
@@ -170,6 +176,7 @@ func _physics_process(delta: float) -> void:
 	if not _path.is_empty():
 		_ride(delta)
 		return
+	_ride_transport()
 	var flags: int = _input_flags()
 	if flags & MoveFlag.TURN_LEFT:
 		rotation.y += _speeds[SpeedKind.TURN_RATE] * delta
@@ -185,6 +192,7 @@ func _physics_process(delta: float) -> void:
 		_fly(flags, delta)
 	else:
 		_walk(flags)
+	_hold_transport()
 	_send_periodic(delta)
 	_animate(_flags)
 
@@ -202,6 +210,48 @@ func follow_path(
 	_path_duration = maxf(duration_msec / 1000.0, 0.001)
 	_flags = MoveFlag.NONE
 	velocity = Vector3.ZERO
+
+
+# The transport the player stands on, and where on it, which the server needs with every move.
+func transport_guid() -> int:
+	return _transport_guid
+
+
+func transport_offset() -> Vector3:
+	return _transport_offset
+
+
+func transport_orientation() -> float:
+	return rotation.y - _transport.rotation.y if _transport else 0.0
+
+
+# The transport carries the player before the keys do, which is what standing on a deck means.
+func _ride_transport() -> void:
+	if _transport == null:
+		return
+	if not is_instance_valid(_transport):
+		_transport = null
+		_transport_guid = 0
+		return
+	global_position = _transport.global_transform * _transport_offset
+
+
+# Whatever the feet came down on this frame decides the transport, and the offset follows from it.
+func _hold_transport() -> void:
+	var found: Node3D = null
+	for i: int in get_slide_collision_count():
+		var node: Node = get_slide_collision(i).get_collider() as Node
+		while node:
+			if node.has_meta(TRANSPORT_META):
+				found = node as Node3D
+				break
+			node = node.get_parent()
+		if found:
+			break
+	_transport = found
+	_transport_guid = found.get_meta(TRANSPORT_META) if found else 0
+	if found:
+		_transport_offset = found.global_transform.affine_inverse() * global_position
 
 
 func set_water_surface(surface: float) -> void:
@@ -389,6 +439,8 @@ func _input_flags() -> int:
 	var flags: int = _key_flags()
 	if _persistent & MoveFlag.ROOT:
 		flags &= TURN
+	if _transport:
+		flags |= MoveFlag.ONTRANSPORT
 	return flags | _persistent
 
 

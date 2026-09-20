@@ -280,7 +280,8 @@ func _on_player_movement_changed(
 	WowClient.session.send_movement(
 		opcode, WowCoords.from_godot(godot_position), orientation, flags,
 		fall_time_msec, WowCoords.from_godot(jump_velocity), _player.pitch(),
-		ack_counter, ack_tail,
+		ack_counter, ack_tail, _player.transport_guid(),
+		WowCoords.from_godot(_player.transport_offset()), _player.transport_orientation(),
 	)
 
 

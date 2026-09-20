@@ -168,7 +168,7 @@ public:
 	void delete_character(int64_t guid);
 	void enter_world(int64_t guid);
 	void logout();
-	void send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec = 0, const Vector3 &jump_velocity = Vector3(), double pitch = 0.0, int64_t ack_counter = -1, const PackedByteArray &ack_tail = PackedByteArray());
+	void send_movement(const String &opcode, const Vector3 &position, double orientation, int64_t flags, int64_t fall_time_msec = 0, const Vector3 &jump_velocity = Vector3(), double pitch = 0.0, int64_t ack_counter = -1, const PackedByteArray &ack_tail = PackedByteArray(), int64_t transport_guid = 0, const Vector3 &transport_offset = Vector3(), double transport_orientation = 0.0);
 	void send_packet(const String &opcode, const PackedByteArray &payload);
 	void send_chat(ChatType type, const String &message, const String &target = String());
 	void cast_spell(int spell_id, int64_t target_guid = 0);

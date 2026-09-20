@@ -10,6 +10,10 @@ const TOWER: Vector3 = Vector3(-12326.9, 1460.6, 30.0)
 const HOME: Vector3 = Vector3(-6248.77, 317.339, 382.778)
 # How long to watch it sail before asking whether it moved.
 const SAIL_FRAMES: int = 300
+# How far above the deck to stand, and how far above the hull the ray starts.
+const STAND: float = 0.2
+const PROBE: float = 40.0
+const BOARD_FRAMES: int = 240
 
 var _failures: PackedStringArray = []
 var _main: Main
@@ -68,8 +72,52 @@ func _run() -> void:
 		var moved: float = was.distance_to(node.global_position)
 		print("it moved %.1f yards in %d frames" % [moved, SAIL_FRAMES])
 		_check(moved > 1.0, "and sails along the path")
+		await _ride(node)
 	await _teleport(HOME)
 	_finish("")
+
+
+# Dropped onto the deck, the player should travel with it while their place on it holds still.
+func _ride(node: Node3D) -> void:
+	var player: Player = _main.world.player()
+	# A .go round trip cannot catch a hull doing 30 yards a second, so the deck is found by ray.
+	var aboard: bool = false
+	for attempt: int in BOARD_FRAMES:
+		var deck: Vector3 = _deck_under(node)
+		if deck != Vector3.INF:
+			player.global_position = deck + Vector3(0.0, STAND, 0.0)
+		await get_tree().physics_frame
+		aboard = player.transport_guid() != 0
+		if aboard:
+			break
+	_check(aboard, "standing on the deck names the transport")
+	if not aboard:
+		printerr("deck ray: ", _deck_under(node), " node at ", node.global_position)
+		return
+	var seat: Vector3 = player.transport_offset()
+	var was: Vector3 = player.global_position
+	await _frames(SAIL_FRAMES)
+	var carried: float = was.distance_to(player.global_position)
+	var drift: float = seat.distance_to(player.transport_offset())
+	print("carried %.1f yards, seat drifted %.2f" % [carried, drift])
+	_check(carried > 1.0, "and the deck carries them along with it")
+	_check(drift < 2.0, "while their place on it stays put")
+	_check(
+		WowClient.session.get_state() == WowSession.STATE_IN_WORLD,
+		"and the server takes the movement it is told",
+	)
+
+
+# The topmost surface of the transport itself, or INF when it carries no collision to stand on.
+func _deck_under(node: Node3D) -> Vector3:
+	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
+		node.global_position + Vector3(0.0, PROBE, 0.0),
+		node.global_position - Vector3(0.0, PROBE, 0.0),
+	)
+	var hit: Dictionary = node.get_world_3d().direct_space_state.intersect_ray(query)
+	if hit.is_empty() or not node.is_ancestor_of(hit["collider"]):
+		return Vector3.INF
+	return hit["position"]
 
 
 func _object_with_entry(entry: int) -> int:
