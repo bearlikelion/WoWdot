@@ -4,6 +4,7 @@ extends Control
 signal close_requested
 signal abandon_requested(slot: int, title: String)
 signal watch_toggled(quest_id: int)
+signal share_answered(text: String)
 
 const QUESTS_DISPLAYED: int = 6
 const QUESTLOG_QUEST_HEIGHT: float = 16.0
@@ -22,6 +23,13 @@ const HEADER: Color = Color(0.7, 0.7, 0.7)
 const OBJECTIVE_DONE: Color = Color(0.2, 0.2, 0.2)
 const OBJECTIVE_OPEN: Color = Color(0.0, 0.0, 0.0)
 const NOT_ENOUGH_MONEY: Color = Color(1.0, 0.1, 0.1)
+const SHARE_MESSAGES: Dictionary[int, String] = {
+	0: "ERR_QUEST_PUSH_SUCCESS_S", 1: "ERR_QUEST_PUSH_INVALID_S",
+	2: "ERR_QUEST_PUSH_ACCEPTED_S", 3: "ERR_QUEST_PUSH_DECLINED_S",
+	4: "ERR_QUEST_PUSH_TOO_FAR_S", 5: "ERR_QUEST_PUSH_BUSY_S",
+	6: "ERR_QUEST_PUSH_LOG_FULL_S", 7: "ERR_QUEST_PUSH_ONQUEST_S",
+	8: "ERR_QUEST_PUSH_ALREADY_DONE_S",
+}
 const TRACKING_OFF: Color = Color(1.0, 0.0, 0.0)
 const TRACKING_ON: Color = Color(0.0, 1.0, 0.0)
 # QuestLogTitleButton's check sits this far past the end of the title.
@@ -55,8 +63,8 @@ func _ready() -> void:
 	%QuestLogFrameCloseButton.pressed.connect(close_requested.emit)
 	%QuestFrameExitButton.pressed.connect(close_requested.emit)
 	%QuestLogFrameAbandonButton.pressed.connect(_on_abandon_pressed)
-	# Sharing waits on parties.
-	%QuestFramePushQuestButton.disabled = true
+	%QuestFramePushQuestButton.pressed.connect(_on_push_pressed)
+	WowClient.session.packet_received.connect(_on_packet_received)
 	%QuestLogTrackTracking.self_modulate = TRACKING_OFF
 	%QuestLogSpacerFrame.hide()
 	for label_name: String in ["QuestLogObjectivesText", "QuestLogQuestDescription"]:
@@ -113,6 +121,29 @@ func set_watched(quest_ids: Array[int]) -> void:
 		_update_list()
 
 
+# The sharer hears how each party member answered, as QUEST_PARTY_MSG names them.
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode != "MSG_QUEST_PUSH_RESULT":
+		return
+	var reader: PacketReader = PacketReader.new(payload)
+	var guid: int = reader.u64()
+	var key: String = SHARE_MESSAGES.get(reader.u8(), "")
+	if key.is_empty():
+		return
+	share_answered.emit(WowStrings.get_text(key, "%s") % WowClient.session.get_object_name(guid))
+
+
+# QuestFramePushQuestButton: share the selected quest with the party.
+func _on_push_pressed() -> void:
+	var quest_id: int = QuestLog.quest_id(_selected_slot) if _selected_slot >= 0 else 0
+	if quest_id == 0:
+		return
+	var payload: PackedByteArray = []
+	payload.resize(4)
+	payload.encode_u32(0, quest_id)
+	WowClient.session.send_packet("CMSG_PUSHQUESTTOPARTY", payload)
+
+
 func abandon(slot: int) -> void:
 	WowClient.session.send_packet("CMSG_QUESTLOG_REMOVE_QUEST", PackedByteArray([slot]))
 
@@ -156,6 +187,7 @@ func _update_list() -> void:
 	var has_quests: bool = not _entries.is_empty()
 	%EmptyQuestLogFrame.visible = not has_quests
 	%QuestLogFrameAbandonButton.disabled = not has_quests
+	%QuestFramePushQuestButton.disabled = not has_quests or not PartyFrame.in_party()
 	_detail_scroll.visible = has_quests
 	%QuestLogExpandButtonFrame.visible = has_quests
 	_update_count()

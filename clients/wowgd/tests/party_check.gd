@@ -1,6 +1,8 @@
 class_name PartyCheck
 extends Node
 
+# Kobold Camp Cleanup, given in Coldridge Valley.
+const SHARED_QUEST: int = 179
 const MAIN: PackedScene = preload("res://game/main.tscn")
 const TIMEOUT_MSEC: int = 60000
 const HOST: String = "127.0.0.1"
@@ -80,9 +82,46 @@ func _run() -> void:
 	_partner.send_packet("CMSG_GROUP_ACCEPT", PackedByteArray())
 	_check(await _until(PartyFrame.in_party, 5000), "the partner accepting forms the party")
 	_check(PartyFrame.is_leader(), "the inviter leads the party")
+	await _share_a_quest(hud)
 	chat.call("_on_text_submitted", "/uninvite " + PARTNER)
 	_check(await _until(_alone, 5000), "/uninvite removes the partner")
 	_finish("")
+
+
+# Sharing tells the sharer how the party answered, even when the partner is too far to take it.
+func _share_a_quest(hud: Hud) -> void:
+	var session: WowSession = WowClient.session
+	session.send_chat(WowSession.CHAT_SAY, ".quest add %d" % SHARED_QUEST)
+	if not await _until(func() -> bool: return QuestLog.slots().has(0), 5000):
+		return _check(false, "the quest to share was added")
+	var quest_log: QuestLogFrame = hud.find_child("QuestLogFrame", true, false)
+	var answers: PackedStringArray = []
+	quest_log.share_answered.connect(func(text: String) -> void: answers.append(text))
+	await _press(KEY_L)
+	await _frames(20)
+	if not quest_log.is_visible_in_tree():
+		return _check(false, "the quest log opens")
+	if not await _until(func() -> bool: return quest_log._selected_slot >= 0, 5000):
+		return _check(false, "the quest log selects the quest")
+	var push: BaseButton = quest_log.get_node("%QuestFramePushQuestButton")
+	_check(not push.disabled, "the share button works in a party")
+	push.pressed.emit()
+	var answered: bool = await _until(func() -> bool: return not answers.is_empty(), 5000)
+	_check(answered, "sharing a quest is answered")
+	if answered:
+		print("share answer: ", answers[0])
+	await _press(KEY_L)
+	session.send_chat(WowSession.CHAT_SAY, ".quest remove %d" % SHARED_QUEST)
+
+
+func _press(key: Key) -> void:
+	for pressed: bool in [true, false]:
+		var event: InputEventKey = InputEventKey.new()
+		event.physical_keycode = key
+		event.keycode = key
+		event.pressed = pressed
+		Input.parse_input_event(event)
+		await _frames(3)
 
 
 func _alone() -> bool:

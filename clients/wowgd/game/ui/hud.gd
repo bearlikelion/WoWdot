@@ -81,6 +81,7 @@ func _ready() -> void:
 	_quest_log.abandon_requested.connect(_on_abandon_requested)
 	_character.unlearn_requested.connect(_on_unlearn_requested)
 	_character.watched_changed.connect(_main_menu_bar.show_reputation)
+	_quest_log.share_answered.connect(show_notice)
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
 	_quest_frame.open_requested.connect(_panels.show_panel.bind(_quest_frame))
 	_quest_frame.error_raised.connect(show_error)

@@ -7,6 +7,8 @@ signal error_raised(text: String)
 
 enum Page { GREETING, DETAIL, PROGRESS, REWARD }
 
+const SHARE_ACCEPTED: int = 2
+const SHARE_DECLINED: int = 3
 const MAX_NUM_QUESTS: int = 32
 const MAX_REQUIRED_ITEMS: int = 6
 const QUEST_DESCRIPTION_GRADIENT_CPS: float = 40.0
@@ -68,7 +70,7 @@ func _ready() -> void:
 	%QuestSpacerFrame.hide()
 	# The name frame sits above the panel art, which the scene order would draw over it.
 	move_child(%QuestNpcNameFrame, get_child_count() - 1)
-	_accept.pressed.connect(_send.bind("CMSG_QUESTGIVER_ACCEPT_QUEST"))
+	_accept.pressed.connect(_on_accept_pressed)
 	%QuestFrameCompleteButton.pressed.connect(_send.bind("CMSG_QUESTGIVER_REQUEST_REWARD"))
 	%QuestFrameCompleteQuestButton.pressed.connect(_on_complete_pressed)
 	for decline: BaseButton in [
@@ -264,6 +266,11 @@ func _fit_alpha_frame() -> void:
 	_alpha_frame.size = Vector2(_alpha_frame.get_parent_control().size.x, bottom)
 
 
+func _on_accept_pressed() -> void:
+	_answer_share(SHARE_ACCEPTED)
+	_send("CMSG_QUESTGIVER_ACCEPT_QUEST")
+
+
 func _send(opcode: String) -> void:
 	NpcDialog.send(opcode, _guid, [_quest_id])
 
@@ -296,8 +303,20 @@ func _on_complete_pressed() -> void:
 
 
 func _decline() -> void:
+	_answer_share(SHARE_DECLINED)
 	WowClient.session.send_packet("CMSG_QUESTGIVER_CANCEL", PackedByteArray())
 	close_requested.emit()
+
+
+# A quest offered by another player is a share, and its sharer waits to hear the answer.
+func _answer_share(message: int) -> void:
+	if not WowClient.session.get_object_type(_guid) == Entities.ObjectType.PLAYER:
+		return
+	var payload: PackedByteArray = []
+	payload.resize(9)
+	payload.encode_u64(0, _guid)
+	payload.encode_u8(8, message)
+	WowClient.session.send_packet("MSG_QUEST_PUSH_RESULT", payload)
 
 
 func _on_reward_entered(item: BaseButton, index: int) -> void:
