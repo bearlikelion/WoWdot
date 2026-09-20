@@ -69,6 +69,9 @@ func _run() -> void:
 		print("auction answer: ", listed[0])
 		var mine: bool = await _until(func() -> bool: return _own_auctions(house) > 0)
 		_check(mine, "the auction shows under my auctions")
+		await _check_bidding(house)
+		house.show_tab(AuctionFrame.Tab.AUCTIONS)
+		await _until(func() -> bool: return _own_auctions(house) > 0)
 		if mine:
 			(house.find_child("AuctionsButton1", true, false) as BaseButton).pressed.emit()
 			await _frames(5)
@@ -82,6 +85,50 @@ func _run() -> void:
 	_check(not house.visible, "the close button shuts the auction house")
 	await _teleport(HOME)
 	_finish("")
+
+
+# The server refuses a bid on your own auction, and says so only when the price was worth reading.
+func _check_bidding(house: AuctionFrame) -> void:
+	var refused: PackedStringArray = []
+	var listener: Callable = func(text: String) -> void: refused.append(text)
+	house.error_raised.connect(listener)
+	house.show_tab(AuctionFrame.Tab.BROWSE)
+	var row: int = -1
+	for attempt: int in 5:
+		await _frames(60)
+		row = _row_of(house, LINEN_CLOTH)
+		if row >= 0:
+			break
+		house.search()
+	_check(row >= 0, "the auction is on the browse list")
+	if row < 0:
+		house.error_raised.disconnect(listener)
+		return
+	var price: MoneyFrame = house.find_child("BrowseButton%dMoneyFrame" % (row + 1), true, false)
+	_check(price != null and price.visible, "the row shows what it costs")
+	(house.find_child("BrowseButton%d" % (row + 1), true, false) as BaseButton).pressed.emit()
+	await _frames(5)
+	(house.find_child("BrowseBidButton", true, false) as BaseButton).pressed.emit()
+	var answered: bool = await _until(func() -> bool: return not refused.is_empty())
+	house.error_raised.disconnect(listener)
+	_check(answered, "bidding on your own auction is refused")
+	if not answered:
+		return
+	print("bid answer: ", refused[0])
+	_check(
+		refused[0] == WowStrings.get_text("ERR_AUCTION_BID_OWN"),
+		"and refused for the right reason, not a price the server could not read",
+	)
+	house.show_tab(AuctionFrame.Tab.BID)
+	await _frames(20)
+	_check(WowClient.session.get_state() == WowSession.STATE_IN_WORLD, "the bid tab lists safely")
+
+
+func _row_of(house: AuctionFrame, entry: int) -> int:
+	for i: int in mini(house._listings.size(), AuctionFrame.ROWS):
+		if house._listings[i]["item_entry"] == entry:
+			return i
+	return -1
 
 
 func _own_auctions(house: AuctionFrame) -> int:

@@ -13,9 +13,26 @@ enum Duration { SHORT = 120, MEDIUM = 480, LONG = 1440 }
 
 const ROWS: int = 8
 const AUCTION_OK: int = 0
+const NO_FILTER: int = 0xFFFFFFFF
 # SMSG_AUCTION_COMMAND_RESULT actions.
 const ACTION_SOLD: int = 0
 const ACTION_CANCELLED: int = 1
+const ACTION_BID_PLACED: int = 2
+# Its error codes, by the global string that names each one.
+const AUCTION_ERRORS: Dictionary[int, String] = {
+	1: "ERR_INVENTORY_FULL", 2: "ERR_AUCTION_DATABASE_ERROR", 3: "ERR_NOT_ENOUGH_MONEY",
+	4: "ERR_ITEM_NOT_FOUND", 5: "ERR_AUCTION_HIGHER_BID", 7: "ERR_AUCTION_BID_INCREMENT",
+	10: "ERR_AUCTION_BID_OWN", 13: "ERR_AUCTION_DATABASE_ERROR",
+}
+const ERROR_HIGHER_BID: int = 5
+const ERROR_INVENTORY: int = 1
+# Each tab names its rows and its current bid frame differently.
+const ROW_PREFIX: Dictionary[Tab, String] = {
+	Tab.BROWSE: "Browse", Tab.BID: "Bid", Tab.AUCTIONS: "Auctions",
+}
+const BID_FRAME: Dictionary[Tab, String] = {
+	Tab.BROWSE: "MoneyFrame", Tab.BID: "CurrentBidMoneyFrame", Tab.AUCTIONS: "MoneyFrame",
+}
 
 var _guid: int = 0
 var _tab: Tab = Tab.BROWSE
@@ -27,10 +44,9 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	for i: int in ROWS:
-		var row: BaseButton = get_node("%%BrowseButton%d" % (i + 1))
-		row.pressed.connect(_on_row_pressed.bind(i))
-		var mine: BaseButton = get_node("%%AuctionsButton%d" % (i + 1))
-		mine.pressed.connect(_on_row_pressed.bind(i))
+		for prefix: String in ROW_PREFIX.values():
+			var row: BaseButton = get_node("%%%sButton%d" % [prefix, i + 1])
+			row.pressed.connect(_on_row_pressed.bind(i))
 	%AuctionFrameCloseButton.pressed.connect(close_requested.emit)
 	%AuctionFrameTab1.pressed.connect(show_tab.bind(Tab.BROWSE))
 	%AuctionFrameTab2.pressed.connect(show_tab.bind(Tab.BID))
@@ -38,6 +54,7 @@ func _ready() -> void:
 	%BrowseSearchButton.pressed.connect(search)
 	%BrowseBidButton.pressed.connect(_bid)
 	%BrowseBuyoutButton.pressed.connect(_buyout)
+	%BidBidButton.pressed.connect(_bid)
 	%AuctionsCancelAuctionButton.pressed.connect(_cancel)
 	%AuctionsCreateAuctionButton.pressed.connect(_create)
 	WowClient.session.packet_received.connect(_on_packet_received)
@@ -70,10 +87,18 @@ func show_tab(tab: Tab) -> void:
 	%AuctionFrameBrowse.visible = tab == Tab.BROWSE
 	%AuctionFrameBid.visible = tab == Tab.BID
 	%AuctionFrameAuctions.visible = tab == Tab.AUCTIONS
-	if tab == Tab.BROWSE:
-		search()
-	elif tab == Tab.AUCTIONS:
-		_list_own()
+	_refresh_tab()
+
+
+# The server drops a list request while another is still in flight, so only one goes out at a time.
+func _refresh_tab() -> void:
+	match _tab:
+		Tab.BROWSE:
+			search()
+		Tab.BID:
+			_list_bids()
+		Tab.AUCTIONS:
+			_list_own()
 
 
 # CMSG_AUCTION_LIST_ITEMS: the search box and no filters, which lists everything on sale.
@@ -89,15 +114,16 @@ func search() -> void:
 	filters.resize(19)
 	filters.encode_u8(0, 0)
 	filters.encode_u8(1, 0)
+	# Slot, class, subclass and quality unset are 0xFFFFFFFF; zero would filter to item class 0.
 	for offset: int in [2, 6, 10, 14]:
-		filters.encode_u32(offset, 0)
+		filters.encode_u32(offset, NO_FILTER)
 	filters.encode_u8(18, 0)
 	payload.append_array(filters)
 	WowClient.session.send_packet("CMSG_AUCTION_LIST_ITEMS", payload)
 
 
 func refresh() -> void:
-	var prefix: String = "Browse" if _tab == Tab.BROWSE else "Auctions"
+	var prefix: String = ROW_PREFIX[_tab]
 	for i: int in ROWS:
 		var listing: Dictionary = _listings[i] if i < _listings.size() else {}
 		var row: Control = get_node("%%%sButton%d" % [prefix, i + 1])
@@ -105,11 +131,25 @@ func refresh() -> void:
 		if listing.is_empty():
 			continue
 		var entry: int = listing["item_entry"]
-		(get_node("%%%sButton%dName" % [prefix, i + 1]) as Label).text = \
-			WowClient.session.get_item_info(entry).get("name", "")
+		var name_label: Label = get_node_or_null("%%%sButton%dName" % [prefix, i + 1])
+		if name_label:
+			name_label.text = WowClient.session.get_item_info(entry).get("name", "")
 		(get_node("%%%sButton%dItemIconTexture" % [prefix, i + 1]) as TextureRect).texture = \
 			Inventory.icon(entry)
+		_set_row_money(prefix, i, BID_FRAME[_tab], listing["bid"])
+		_set_row_money(prefix, i, "BuyoutMoneyFrame", listing["buyout"])
+		var bidder: Label = get_node_or_null("%%%sButton%dHighBidder" % [prefix, i + 1])
+		if bidder:
+			bidder.text = WowClient.session.get_object_name(listing["bidder"]) \
+			if listing["bidder"] != 0 else ""
 	(%BrowseSearchCountText as Label).text = str(_listings.size())
+
+
+# A row with no bid on it shows the starting price, as the stock list does.
+func _set_row_money(prefix: String, row: int, frame_name: String, copper: int) -> void:
+	var frame: MoneyFrame = get_node_or_null("%%%sButton%d%s" % [prefix, row + 1, frame_name])
+	if frame:
+		frame.set_money(copper)
 
 
 # The stock slot shows the item as the button's own art, with its name under it.
@@ -131,10 +171,14 @@ func _on_row_pressed(index: int) -> void:
 	%BrowseScrollFrame.set_meta(&"selected", index)
 
 
+# AuctionFrameBid_OnClick: the first bid is the starting price, later ones clear the increment.
 func _bid() -> void:
 	var listing: Dictionary = _selected()
-	if not listing.is_empty():
-		_place_bid(listing["id"], listing["bid"] + listing["increment"])
+	if listing.is_empty():
+		return
+	var price: int = listing["start_bid"] if listing["bid"] == 0 \
+	else listing["bid"] + listing["increment"]
+	_place_bid(listing["id"], price)
 
 
 func _buyout() -> void:
@@ -185,6 +229,16 @@ func _typed_money(box: String) -> int:
 	return gold * MoneyFrame.COPPER_PER_GOLD + silver * MoneyFrame.COPPER_PER_SILVER + copper
 
 
+# CMSG_AUCTION_LIST_BIDDER_ITEMS with no ids listed asks for everything the player has bid on.
+func _list_bids() -> void:
+	var payload: PackedByteArray = []
+	payload.resize(16)
+	payload.encode_u64(0, _guid)
+	payload.encode_u32(8, 0)
+	payload.encode_u32(12, 0)
+	WowClient.session.send_packet("CMSG_AUCTION_LIST_BIDDER_ITEMS", payload)
+
+
 func _list_own() -> void:
 	var payload: PackedByteArray = []
 	payload.resize(12)
@@ -200,7 +254,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_guid = reader.u64()
 			show_tab(Tab.BROWSE)
 			open_requested.emit()
-		"SMSG_AUCTION_LIST_RESULT", "SMSG_AUCTION_OWNER_LIST_RESULT":
+		"SMSG_AUCTION_LIST_RESULT", "SMSG_AUCTION_OWNER_LIST_RESULT", \
+		"SMSG_AUCTION_BIDDER_LIST_RESULT":
 			_listings = _read_listings(reader)
 			refresh()
 		"SMSG_AUCTION_COMMAND_RESULT":
@@ -212,7 +267,8 @@ func _on_command_result(reader: PacketReader) -> void:
 	var action: int = reader.u32()
 	var result: int = reader.u32()
 	if result != AUCTION_OK:
-		error_raised.emit(WowStrings.get_text("ERR_AUCTION_DATABASE_ERROR", ""))
+		var key: String = AUCTION_ERRORS.get(result, "ERR_AUCTION_DATABASE_ERROR")
+		error_raised.emit(WowStrings.get_text(key, ""))
 		return
 	if action == ACTION_SOLD:
 		_selling = 0
@@ -220,8 +276,9 @@ func _on_command_result(reader: PacketReader) -> void:
 		message_added.emit(WowStrings.get_text("ERR_AUCTION_STARTED", "Auction created."))
 	elif action == ACTION_CANCELLED:
 		message_added.emit(WowStrings.get_text("ERR_AUCTION_REMOVED", "Auction cancelled."))
-	if _tab == Tab.AUCTIONS:
-		_list_own()
+	elif action == ACTION_BID_PLACED:
+		message_added.emit(WowStrings.get_text("ERR_AUCTION_BID_PLACED", "Bid accepted."))
+	_refresh_tab()
 
 
 func _read_listings(reader: PacketReader) -> Array[Dictionary]:

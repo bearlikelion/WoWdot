@@ -23,7 +23,9 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap with the corpse marked, tooltips, reputation watch bar, breath and fatigue timers. |
 | Chat | Say, yell, party, guild and whispers, channels with /join and numbered commands, emotes such as /dance, speech bubbles over the speaker. |
 | Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video, sound and interface options, key bindings. |
-| NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag slot purchases, auctioneers. |
+| NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag and bag slot purchases, auctioneers with bidding and buyout. |
+| Items | Dragging between the bags, the bank, its bags and the character, splitting a stack and destroying one, with the server's refusal shown. |
+| World objects | Chests, doors, levers, chairs, herb and mining nodes answer a click. |
 | Mail | Inbox from a mailbox, reading letters, taking money and attachments, deleting, and writing letters with money. |
 | Groups | Party invites, party frames, loot window, group loot rolls, ready check, quest sharing. |
 | Social | Trade, duels, friends and ignore, and the guild window with its roster, message of the day and invites. |
@@ -97,6 +99,11 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `realm_list_check` | A realm list longer than the frame scrolls; no server needed. |
 | `interface_options_check` | The options this client answers can be ticked, the rest are greyed; no server needed. |
 | `key_binding_check` | The key binding window lists the bindings and a press rebinds one; no server needed. |
+| `footstep_check`, `map_poi_check` | The ground texture under a unit names its footstep; the map's landmarks follow their option. Neither needs a server. |
+| `gear_check` | Show Helm and Show Cloak reach the server, and Show Own Name is answered here. |
+| `item_move_check` | Items move between the bags, the bank and the character, and split and destroy. |
+| `gameobject_check` | Using a game object: a chair seats the player. |
+| `auction_bid_check.sh` | A second character lists an item and this one bids on it. Proving the money moves needs `wowgd2` at GM level, and the check says so and skips that leg when it is not. |
 
 ## Still to do
 
@@ -104,9 +111,8 @@ In the order they are planned:
 
 | Milestone | Work |
 | --- | --- |
-| M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
+| M3 leftovers | Petition and tabard. |
 | M6 visuals | M2 ribbons, WMO liquids, transports. |
-| M7 polish | The interface options this client cannot answer yet, per-character key bindings, doodad LOD per instance, footstep sounds by terrain. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 
