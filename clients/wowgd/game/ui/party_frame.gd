@@ -6,7 +6,10 @@ signal message_added(text: String)
 signal error_raised(text: String)
 signal unit_selected(guid: int)
 signal unit_menu_requested(guid: int)
+signal ready_check_started
 
+const READY_YES: String = "%s is ready."
+const READY_NO: String = "%s is not ready."
 const MAX_MEMBERS: int = 4
 const OPERATION_INVITE: int = 0
 # SMSG_PARTY_COMMAND_RESULT codes after 0; those ending in _S name the player.
@@ -70,6 +73,15 @@ static func decline() -> void:
 
 
 # LeaveParty: the server calls it disbanding, even for one member walking out.
+# An empty MSG_RAID_READY_CHECK asks the party, and one with a state answers it.
+static func start_ready_check() -> void:
+	WowClient.session.send_packet("MSG_RAID_READY_CHECK", PackedByteArray())
+
+
+static func answer_ready_check(ready: bool) -> void:
+	WowClient.session.send_packet("MSG_RAID_READY_CHECK", PackedByteArray([1 if ready else 0]))
+
+
 static func leave() -> void:
 	WowClient.session.send_packet("CMSG_GROUP_DISBAND", PackedByteArray())
 
@@ -96,6 +108,19 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_say("ERR_NEW_LEADER_S", _string_at(payload, 0))
 		"SMSG_PARTY_COMMAND_RESULT":
 			_on_result_received(payload)
+		"MSG_RAID_READY_CHECK":
+			_on_ready_check(payload)
+
+
+func _on_ready_check(payload: PackedByteArray) -> void:
+	if payload.is_empty():
+		ready_check_started.emit()
+		return
+	var reader: PacketReader = PacketReader.new(payload)
+	var member: String = WowClient.session.get_object_name(reader.u64())
+	var ready: bool = reader.u8() != 0
+	# 1.12 has no ready check of its own, so these lines carry their own words.
+	message_added.emit((READY_YES if ready else READY_NO) % member)
 
 
 # Deferred so each frame has dropped a destroyed member before it is shown again by name.

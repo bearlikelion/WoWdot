@@ -16,6 +16,7 @@ var _main: Main
 var _partner: WowSession = WowSession.new()
 var _partner_in_world: bool = false
 var _partner_invited: bool = false
+var _partner_asked: bool = false
 
 
 func _ready() -> void:
@@ -82,10 +83,29 @@ func _run() -> void:
 	_partner.send_packet("CMSG_GROUP_ACCEPT", PackedByteArray())
 	_check(await _until(PartyFrame.in_party, 5000), "the partner accepting forms the party")
 	_check(PartyFrame.is_leader(), "the inviter leads the party")
+	await _ready_check(hud, chat)
 	await _share_a_quest(hud)
 	chat.call("_on_text_submitted", "/uninvite " + PARTNER)
 	_check(await _until(_alone, 5000), "/uninvite removes the partner")
 	_finish("")
+
+
+# The leader asks, the partner answers, and the answer comes back as a line in the chat.
+func _ready_check(hud: Hud, chat: ChatFrame) -> void:
+	var lines: PackedStringArray = []
+	var party: PartyFrame = hud.get_node("%PartyFrame")
+	party.message_added.connect(func(text: String) -> void: lines.append(text))
+	_partner_asked = false
+	chat.call("_on_text_submitted", "/readycheck")
+	var asked: bool = await _until(func() -> bool: return _partner_asked, 5000)
+	_check(asked, "a ready check reaches the party")
+	if not asked:
+		return
+	_partner.send_packet("MSG_RAID_READY_CHECK", PackedByteArray([1]))
+	var answered: bool = await _until(func() -> bool: return not lines.is_empty(), 5000)
+	_check(answered, "the partner's answer comes back")
+	if answered:
+		print("ready check answer: ", lines[0])
 
 
 # Sharing tells the sharer how the party answered, even when the partner is too far to take it.
@@ -141,6 +161,8 @@ func _log_partner_in() -> bool:
 	_partner.packet_received.connect(func(opcode: String, _payload: PackedByteArray) -> void:
 		if opcode == "SMSG_GROUP_INVITE":
 			_partner_invited = true
+		elif opcode == "MSG_RAID_READY_CHECK":
+			_partner_asked = true
 	)
 	_partner.login(HOST, PORT, PARTNER_ACCOUNT, PARTNER_ACCOUNT)
 	return await _until(func() -> bool: return _partner_in_world)

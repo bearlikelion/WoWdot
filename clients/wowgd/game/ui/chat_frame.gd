@@ -224,6 +224,8 @@ func _run_party_command(message: String) -> bool:
 		PartyFrame.uninvite(player_name)
 	elif command == "/leave":
 		PartyFrame.leave()
+	elif command in ["/readycheck", "/rc"]:
+		PartyFrame.start_ready_check()
 	else:
 		return false
 	return true

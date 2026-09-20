@@ -30,6 +30,8 @@ const OUT_OF_POWER: Array[String] = [
 ]
 # CHAT_TAB_SHOW_DELAY: the dock's tabs wait for the mouse to rest over the chat this long.
 const CHAT_TAB_SHOW_DELAY: float = 0.2
+# 1.12 has no ready check, so its question is ours rather than a GlobalStrings line.
+const READY_CHECK_QUESTION: String = "Are you ready?"
 
 var _area: int = 0
 var _menu_name: String = ""
@@ -155,6 +157,7 @@ func _ready() -> void:
 	_party.invited.connect(_on_party_invited)
 	_party.message_added.connect(add_system_line)
 	_party.error_raised.connect(show_error)
+	_party.ready_check_started.connect(_on_ready_check_started)
 	_player_frame.unit_menu_requested.connect(_show_unit_menu)
 	_target_frame.unit_menu_requested.connect(_show_unit_menu)
 	_party.unit_menu_requested.connect(_show_unit_menu)
@@ -397,6 +400,14 @@ func _on_friend_name_requested(add_friend: bool) -> void:
 	add_system_line(WowStrings.get_text(
 		"FRIEND_ADDED" if add_friend else "IGNORE_ADDED", player_name
 	))
+
+
+func _on_ready_check_started() -> void:
+	_popup.ask(
+		READY_CHECK_QUESTION,
+		PartyFrame.answer_ready_check.bind(true), "YES", "NO",
+		PartyFrame.answer_ready_check.bind(false),
+	)
 
 
 func _on_duel_challenged(challenger: String) -> void:
