@@ -19,6 +19,8 @@ const POPULATION_MEDIUM: float = 1.0
 
 var _realms: Array = []
 var _selected: int = -1
+# The first realm on show, when there are more of them than rows.
+var _offset: int = 0
 var _rows: Array[BaseButton] = []
 
 @onready var _highlight: Control = %RealmListHighlight
@@ -36,7 +38,7 @@ func _ready() -> void:
 	# vMaNGOS reports one realm category, so the tabs stay hidden as RealmList_UpdateTabs does.
 	for i: int in TABS:
 		(get_node("%%RealmListTab%d" % (i + 1)) as CanvasItem).hide()
-	%RealmListScrollFrame.hide()
+	(%RealmListScrollFrame as WowScrollFrame).scrolled.connect(_on_scrolled)
 	_ok.pressed.connect(_accept)
 	%RealmListCancelButton.pressed.connect(_cancel)
 	%RealmListCloseButton.pressed.connect(_cancel)
@@ -53,25 +55,35 @@ func _unhandled_input(event: InputEvent) -> void:
 		_accept()
 
 
-# ponytail: the first 18 realms only; wire up the scroll frame when a list grows past that.
 func open(realms: Array, current_name: String) -> void:
 	_realms = realms
 	_selected = -1
+	_offset = 0
 	for i: int in realms.size():
 		if realms[i]["name"] == current_name:
 			_selected = i
+	# RealmList_Update: the scroll bar counts realms, not pixels, and hides for a short list.
+	var scroll: WowScrollFrame = %RealmListScrollFrame
+	scroll.visible = realms.size() > ROWS
+	scroll.set_range(maxf(realms.size() - ROWS, 0.0))
+	scroll.scroll_to(maxf(mini(_selected, realms.size() - ROWS), 0.0))
 	_update()
 	show()
+
+
+func _on_scrolled(value: float) -> void:
+	_offset = roundi(value)
+	_update()
 
 
 func _update() -> void:
 	for i: int in ROWS:
 		var row: BaseButton = _rows[i]
-		row.visible = i < _realms.size()
+		row.visible = i + _offset < _realms.size()
 		if not row.visible:
 			continue
-		var realm: Dictionary = _realms[i]
-		var selected: bool = i == _selected
+		var realm: Dictionary = _realms[i + _offset]
+		var selected: bool = i + _offset == _selected
 		var offline: bool = realm["flags"] & REALM_FLAG_OFFLINE != 0
 		var characters: int = realm["characters"]
 		var name_label: Label = _row_label(row, "NormalText")
@@ -117,9 +129,9 @@ func _update() -> void:
 		row.disabled = offline
 	var usable: bool = _selected >= 0 and _realms[_selected]["flags"] & REALM_FLAG_OFFLINE == 0
 	_ok.disabled = not usable
-	_highlight.visible = usable
-	if usable:
-		_highlight.position = _rows[_selected].position
+	_highlight.visible = usable and _selected - _offset in range(ROWS)
+	if _highlight.visible:
+		_highlight.position = _rows[_selected - _offset].position
 		%RealmListHighlightTexture.self_modulate = HIGHLIGHT_WITH_CHARACTERS \
 		if _realms[_selected]["characters"] > 0 else HIGHLIGHT_WITHOUT
 
@@ -129,7 +141,7 @@ func _row_label(row: BaseButton, column: String) -> Label:
 
 
 func _select(index: int) -> void:
-	_selected = index
+	_selected = index + _offset
 	_update()
 
 

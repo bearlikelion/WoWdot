@@ -94,6 +94,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `effect_check` | A fireball crosses to its target and a lootable corpse sparkles. |
 | `chase_check` | A pulled creature closes to melee, trades blows and follows a running player. |
 | `outfit_check` | The create screen's preview wears what CharStartOutfit.dbc gives it; no server needed. |
+| `realm_list_check` | A realm list longer than the frame scrolls; no server needed. |
 
 ## Still to do
 
@@ -103,7 +104,7 @@ In the order they are planned:
 | --- | --- |
 | M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
 | M6 visuals | M2 ribbons, WMO liquids, transports. |
-| M7 polish | Key binding UI, interface options, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain. |
+| M7 polish | Key binding UI, interface options, doodad LOD, footstep sounds by terrain. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 
