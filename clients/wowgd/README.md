@@ -107,6 +107,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `gameobject_check` | Using a game object: a chair seats the player. |
 | `auction_bid_check.sh` | A second character lists an item and this one bids on it. Proving the money moves needs `wowgd2` at GM level, and the check says so and skips that leg when it is not. |
 | `tabard_check` | The guild crest designer: cycling the icon changes the preview, and saving it puts the choice on the guild. The character is made a guild leader first, which `petition_check.sh` undoes again. |
+| `area_trigger_check` | Walking into the Deadmines portal reports the trigger and the server opens the instance. Landing inside a trigger is adopted rather than fired, or a portal bounces the player between the two maps forever. |
 | `battleground_check` | The Warsong Gulch queue round trip: a battlemaster lists its battleground, joining takes a place in the queue and giving it up clears the slot. It needs `.character level` (the account must be a developer-level GM), since the starting character is below the level Warsong Gulch asks for, and it leaves the character at level 20. Entering a match needs four players a side, so nothing past the queue is proven. |
 | `transport_check` | A zeppelin sails the taxi path its game object names, and standing on its deck carries the player while their place on it holds still. A Thunder Bluff mesa lift runs its `TransportAnimation` loop and carries them up its shaft without claiming a transport on the wire. The Menethil ferry's path keeps the legs on both continents. |
 | `petition_check.sh` | Buying a guild charter from a registrar, a second character signing it, and handing it back. It leaves the guild the character was in first, which `guild_check` makes again. Nine signatures from nine accounts are needed to found a guild, so the check asserts the refusal rather than the guild. |
@@ -120,7 +121,6 @@ In the order they are planned:
 | M6 visuals | Drawing the ribbon trails the parser now reads. |
 | M6 transports | Riding a ferry across the boundary between two continents. The route keeps the far legs and the boat hides while it sails them, but nothing yet checks that the server carries a passenger over with it. |
 | PvP | The battleground queue works; what is left is the window to drive it from, the invite popup, the scoreboard from `MSG_PVP_LOG_DATA` and the world state readout. None of it can be proven here: a match needs four players a side. |
-| World | Area triggers. `CMSG_AREATRIGGER` is never sent, so instance portals and trigger-based quest objectives do not fire. |
 | Professions | No tradeskill window, so crafting cannot be driven from the client. |
 | Raid | No raid frames, sub-group management or raid target icons. |
 

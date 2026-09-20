@@ -68,6 +68,7 @@ var _ghost: bool = false
 @onready var _entities: Entities = $Entities
 @onready var _effects: SpellEffects = $SpellEffects
 @onready var _transports: Transports = $Transports
+@onready var _area_triggers: AreaTriggers = $AreaTriggers
 @onready var _selection: SelectionCircle = $SelectionCircle
 @onready var _sun: DirectionalLight3D = $Sun
 @onready var _hud: Hud = %Hud
@@ -97,6 +98,7 @@ func _ready() -> void:
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
 	_effects.watch(_entities, _player)
 	_transports.watch(_entities)
+	_area_triggers.watch(_player)
 	UnitVoice.map = _map
 	WowAssets.interface.changed.connect(_on_interface_changed)
 	_death = Death.new(WowClient.session)
@@ -238,6 +240,7 @@ func enter(map_id: int, wow_position: Vector3, orientation: float) -> void:
 	_map.map_name = WowClient.map_name(map_id)
 	_sky.map_id = map_id
 	_transports.map_id = map_id
+	_area_triggers.map_id = map_id
 	_player.place(WowCoords.to_godot(wow_position), orientation)
 	var guid: int = WowClient.session.get_player_guid()
 	if WowClient.session.has_object(guid):
@@ -638,6 +641,7 @@ func _follow_server_path() -> void:
 
 func _on_player_teleported(wow_position: Vector3, orientation: float) -> void:
 	_player.place(WowCoords.to_godot(wow_position), orientation)
+	_area_triggers.settle()
 
 
 func _on_object_created(guid: int, _type_id: int) -> void:

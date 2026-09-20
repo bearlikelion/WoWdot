@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://game/world/world.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://game/world/floating_combat_text.gd" id="9_floating_text"]
 [ext_resource type="PackedScene" path="res://game/world/selection_circle.tscn" id="10_selection"]
 [ext_resource type="Script" path="res://game/ui/chat_bubbles.gd" id="11_bubbles"]
+[ext_resource type="Script" path="res://game/world/area_triggers.gd" id="13_triggers"]
 
 [sub_resource type="FastNoiseLite" id="Noise_clouds"]
 frequency = 0.008
@@ -84,6 +85,9 @@ target = NodePath("../Player")
 
 [node name="Entities" type="Node3D" parent="."]
 script = ExtResource("4_entities")
+
+[node name="AreaTriggers" type="Node" parent="."]
+script = ExtResource("13_triggers")
 
 [node name="Transports" type="Node" parent="."]
 script = ExtResource("12_transports")
