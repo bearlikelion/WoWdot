@@ -107,6 +107,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `gameobject_check` | Using a game object: a chair seats the player. |
 | `auction_bid_check.sh` | A second character lists an item and this one bids on it. Proving the money moves needs `wowgd2` at GM level, and the check says so and skips that leg when it is not. |
 | `tabard_check` | The guild crest designer: cycling the icon changes the preview, and saving it puts the choice on the guild. The character is made a guild leader first, which `petition_check.sh` undoes again. |
+| `raid_check.sh` | Two accounts: converting a party to a raid, moving the partner into another subgroup, making them an assistant, marking them with the skull and asking for the whole icon list back. |
 | `area_trigger_check` | Walking into the Deadmines portal reports the trigger and the server opens the instance. Landing inside a trigger is adopted rather than fired, or a portal bounces the player between the two maps forever. |
 | `battleground_check` | The Warsong Gulch queue round trip: a battlemaster lists its battleground, joining takes a place in the queue and giving it up clears the slot. It needs `.character level` (the account must be a developer-level GM), since the starting character is below the level Warsong Gulch asks for, and it leaves the character at level 20. Entering a match needs four players a side, so nothing past the queue is proven. |
 | `transport_check` | A zeppelin sails the taxi path its game object names, and standing on its deck carries the player while their place on it holds still. A Thunder Bluff mesa lift runs its `TransportAnimation` loop and carries them up its shaft without claiming a transport on the wire. The Menethil ferry's path keeps the legs on both continents. |
@@ -122,7 +123,7 @@ In the order they are planned:
 | M6 transports | Riding a ferry across the boundary between two continents. The route keeps the far legs and the boat hides while it sails them, but nothing yet checks that the server carries a passenger over with it. |
 | PvP | The battleground queue works; what is left is the window to drive it from, the invite popup, the scoreboard from `MSG_PVP_LOG_DATA` and the world state readout. None of it can be proven here: a match needs four players a side. |
 | Professions | No tradeskill window, so crafting cannot be driven from the client. |
-| Raid | No raid frames, sub-group management or raid target icons. |
+| Raid | The protocol is in: converting, subgroups, assistants and target icons all work. What is missing is the 40 slot raid window to drive them from, and drawing the target marks over the units wearing them. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 

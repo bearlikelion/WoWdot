@@ -7,12 +7,22 @@ signal error_raised(text: String)
 signal unit_selected(guid: int)
 signal unit_menu_requested(guid: int)
 signal ready_check_started
+signal raid_changed
+signal target_icons_changed
 
 enum LootMethod { FREE_FOR_ALL, ROUND_ROBIN, MASTER_LOOT, GROUP_LOOT, NEED_BEFORE_GREED }
+# The eight marks a raid leader can hang on a target, in the order the wire numbers them.
+enum TargetIcon { STAR, CIRCLE, DIAMOND, TRIANGLE, MOON, SQUARE, CROSS, SKULL }
 
 const READY_YES: String = "%s is ready."
 const READY_NO: String = "%s is not ready."
 const MAX_MEMBERS: int = 4
+const MAX_RAID_MEMBERS: int = 40
+# A member's subgroup sits in the low bits of its flag byte, with assistant in the top one.
+const SUBGROUP_MASK: int = 0x0F
+const ASSISTANT_FLAG: int = 0x80
+# MSG_RAID_TARGET_UPDATE: this icon asks for the whole list instead of setting one.
+const ICON_REQUEST: int = 0xFF
 const OPERATION_INVITE: int = 0
 # SMSG_PARTY_COMMAND_RESULT codes after 0; those ending in _S name the player.
 const RESULTS: Dictionary[int, String] = {
@@ -21,9 +31,15 @@ const RESULTS: Dictionary[int, String] = {
 	7: "ERR_PLAYER_WRONG_FACTION", 8: "ERR_IGNORING_YOU_S",
 }
 
-# The other members, each a name, guid and online flag, as SMSG_GROUP_LIST last sent them.
+# The other members, each a name, guid, online flag, subgroup and assistant flag.
 static var members: Array[Dictionary] = []
 static var leader: int = 0
+## Set once the party has been made a raid, which is what allows subgroups and target icons.
+static var is_raid: bool = false
+## The player's own subgroup, counted from zero as the wire does.
+static var own_subgroup: int = 0
+## Marked targets: icon index 0 to 7 against the guid wearing it.
+static var target_icons: Dictionary[int, int] = {}
 
 var _frames: Array[PartyMemberFrame] = []
 
@@ -40,6 +56,8 @@ func _ready() -> void:
 	session.objects_destroyed.connect(_on_objects_changed.unbind(1))
 	members.clear()
 	leader = 0
+	is_raid = false
+	target_icons.clear()
 	_refresh()
 
 
@@ -98,6 +116,68 @@ static func leave() -> void:
 	WowClient.session.send_packet("CMSG_GROUP_DISBAND", PackedByteArray())
 
 
+static func convert_to_raid() -> void:
+	WowClient.session.send_packet("CMSG_GROUP_RAID_CONVERT", PackedByteArray())
+
+
+# Subgroups are counted from zero on the wire, though the stock UI calls the first one group 1.
+static func move_to_subgroup(player_name: String, subgroup: int) -> void:
+	var payload: PackedByteArray = player_name.to_utf8_buffer()
+	payload.append(0)
+	payload.append(subgroup)
+	WowClient.session.send_packet("CMSG_GROUP_CHANGE_SUB_GROUP", payload)
+
+
+static func swap_subgroups(first_name: String, second_name: String) -> void:
+	var payload: PackedByteArray = first_name.to_utf8_buffer()
+	payload.append(0)
+	payload.append_array(second_name.to_utf8_buffer())
+	payload.append(0)
+	WowClient.session.send_packet("CMSG_GROUP_SWAP_SUB_GROUP", payload)
+
+
+# 1.12 names the member by guid here, where the earlier builds sent the name.
+static func set_assistant(guid: int, assisting: bool) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(9)
+	payload.encode_u64(0, guid)
+	payload.encode_u8(8, int(assisting))
+	WowClient.session.send_packet("CMSG_GROUP_ASSISTANT_LEADER", payload)
+
+
+static func set_leader(guid: int) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, guid)
+	WowClient.session.send_packet("CMSG_GROUP_SET_LEADER", payload)
+
+
+static func set_target_icon(icon: TargetIcon, guid: int) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(9)
+	payload.encode_u8(0, icon)
+	payload.encode_u64(1, guid)
+	WowClient.session.send_packet("MSG_RAID_TARGET_UPDATE", payload)
+
+
+static func request_target_icons() -> void:
+	WowClient.session.send_packet("MSG_RAID_TARGET_UPDATE", PackedByteArray([ICON_REQUEST]))
+
+
+static func subgroup_of(guid: int) -> int:
+	for member: Dictionary in members:
+		if member["guid"] == guid:
+			return member["subgroup"]
+	return own_subgroup if guid == WowClient.session.get_player_guid() else -1
+
+
+static func is_assistant(guid: int) -> bool:
+	for member: Dictionary in members:
+		if member["guid"] == guid:
+			return member["assistant"]
+	return false
+
+
 static func _send_name(opcode: String, player_name: String) -> void:
 	var payload: PackedByteArray = player_name.to_utf8_buffer()
 	payload.append(0)
@@ -122,6 +202,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_on_result_received(payload)
 		"MSG_RAID_READY_CHECK":
 			_on_ready_check(payload)
+		"MSG_RAID_TARGET_UPDATE":
+			_on_target_icons(payload)
 
 
 func _on_ready_check(payload: PackedByteArray) -> void:
@@ -142,20 +224,52 @@ func _on_objects_changed() -> void:
 
 func _on_list_received(payload: PackedByteArray) -> void:
 	var before: Array[Dictionary] = members.duplicate()
+	var was_raid: bool = is_raid
 	members.clear()
+	is_raid = payload.decode_u8(0) & 1 != 0
+	own_subgroup = payload.decode_u8(1) & SUBGROUP_MASK
 	var offset: int = 6
 	for i: int in payload.decode_u32(2):
 		var member_name: String = _string_at(payload, offset)
 		offset += member_name.to_utf8_buffer().size() + 1
+		var flags: int = payload.decode_u8(offset + 9)
 		members.append({
 			"name": member_name,
 			"guid": payload.decode_u64(offset),
 			"online": payload.decode_u8(offset + 8) & 1 != 0,
+			"subgroup": flags & SUBGROUP_MASK,
+			"assistant": flags & ASSISTANT_FLAG != 0,
 		})
 		offset += 10
 	leader = payload.decode_u64(offset) if offset + 8 <= payload.size() else 0
+	if members.is_empty():
+		is_raid = false
+		target_icons.clear()
+	if is_raid != was_raid:
+		raid_changed.emit()
 	_announce_changes(before)
 	_refresh()
+
+
+# Mode 0 carries one changed mark, mode 1 the whole set after a request or a group list reset.
+func _on_target_icons(payload: PackedByteArray) -> void:
+	var reader: PacketReader = PacketReader.new(payload)
+	if reader.u8() == 0:
+		var icon: int = reader.u8()
+		var guid: int = reader.u64()
+		if guid == 0:
+			target_icons.erase(icon)
+		else:
+			target_icons[icon] = guid
+	else:
+		target_icons.clear()
+		while true:
+			var icon: int = reader.u8()
+			var guid: int = reader.u64()
+			if guid == 0:
+				break
+			target_icons[icon] = guid
+	target_icons_changed.emit()
 
 
 func _announce_changes(before: Array[Dictionary]) -> void:
