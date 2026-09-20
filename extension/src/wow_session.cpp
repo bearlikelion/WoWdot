@@ -1433,6 +1433,12 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			info["entry"] = static_cast<int64_t>(data.entry);
 			info["name"] = String::utf8(data.name.c_str());
 			info["type"] = static_cast<int64_t>(data.type);
+			// data[0] is the taxi path a transport sails and data[1] its speed, among other uses.
+			PackedInt32Array fields;
+			for (const uint32_t field : data.data) {
+				fields.push_back(static_cast<int32_t>(field));
+			}
+			info["data"] = fields;
 			game_object_info[data.entry] = info;
 			game_object_queries.erase(data.entry);
 			emit_signal("game_object_info_received", static_cast<int64_t>(data.entry));

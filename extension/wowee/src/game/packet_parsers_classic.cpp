@@ -1354,7 +1354,7 @@ bool ClassicPacketParsers::parseGuildQueryResponse(network::Packet& packet, Guil
 }
 
 // ============================================================================
-// GameObject Query — Classic has no extra strings before data[]
+// GameObject Query: 1.12.1 writes the icon before data[], and no castBarCaption
 // WotLK has iconName + castBarCaption + unk1 between names and data[].
 // Vanilla: entry, type, displayId, name[4], data[24]
 // ============================================================================
@@ -1388,8 +1388,10 @@ bool ClassicPacketParsers::parseGameObjectQueryResponse(network::Packet& packet,
     packet.readString();
     packet.readString();
     packet.readString();
+    // 1.12.1 writes the icon after the names, where earlier builds wrote nothing.
+    packet.readString();
 
-    // Classic: data[24] comes immediately after names (no extra strings)
+    // data[24] follows, with no castBarCaption or unk1 the way WotLK has
     size_t remaining = packet.getRemainingSize();
     if (remaining >= 24 * 4) {
         for (int i = 0; i < 24; i++) {

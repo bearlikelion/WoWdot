@@ -9,6 +9,7 @@ static var known_mask: PackedInt64Array = []
 static var _nodes: WowDBC
 static var _paths: WowDBC
 static var _continents: WowDBC
+static var _path_nodes: WowDBC
 # Direct routes out of each node: destination node id to [path id, cost].
 static var _edges: Dictionary[int, Dictionary] = {}
 
@@ -89,6 +90,26 @@ static func map_point(node: int) -> Vector2:
 
 
 # The cheapest chain of known nodes from one to the other, both ends included, or empty.
+# The points a path runs through on one map, in Godot space and node order, for a transport to sail.
+static func path_points(path_id: int, map_id: int) -> PackedVector3Array:
+	_open()
+	var ordered: Array[Array] = []
+	for row: int in _path_nodes.row_count():
+		if _path_nodes.get_uint(row, "PathID") != path_id \
+		or _path_nodes.get_uint(row, "MapID") != map_id:
+			continue
+		ordered.append([_path_nodes.get_uint(row, "NodeIndex"), WowCoords.to_godot(Vector3(
+			_path_nodes.get_float(row, "X"),
+			_path_nodes.get_float(row, "Y"),
+			_path_nodes.get_float(row, "Z"),
+		))])
+	ordered.sort_custom(func(a: Array, b: Array) -> bool: return a[0] < b[0])
+	var points: PackedVector3Array = []
+	for entry: Array in ordered:
+		points.append(entry[1])
+	return points
+
+
 static func route(from: int, to: int) -> Array[int]:
 	_open()
 	var costs: Dictionary[int, int] = {from: 0}
@@ -138,6 +159,7 @@ static func _open() -> void:
 	_nodes = WowDBC.open(archive, "TaxiNodes")
 	_paths = WowDBC.open(archive, "TaxiPath")
 	_continents = WowDBC.open(archive, "WorldMapContinent")
+	_path_nodes = WowDBC.open(archive, "TaxiPathNode")
 	for row: int in _paths.row_count():
 		var from: int = _paths.get_uint(row, "FromNode")
 		if not _edges.has(from):

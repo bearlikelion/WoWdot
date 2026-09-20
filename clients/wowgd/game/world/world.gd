@@ -67,6 +67,7 @@ var _ghost: bool = false
 @onready var _player: Player = $Player
 @onready var _entities: Entities = $Entities
 @onready var _effects: SpellEffects = $SpellEffects
+@onready var _transports: Transports = $Transports
 @onready var _selection: SelectionCircle = $SelectionCircle
 @onready var _sun: DirectionalLight3D = $Sun
 @onready var _hud: Hud = %Hud
@@ -95,6 +96,7 @@ func _ready() -> void:
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
 	_effects.watch(_entities, _player)
+	_transports.watch(_entities)
 	UnitVoice.map = _map
 	WowAssets.interface.changed.connect(_on_interface_changed)
 	_death = Death.new(WowClient.session)
@@ -235,6 +237,7 @@ func enter(map_id: int, wow_position: Vector3, orientation: float) -> void:
 	_player.active = false
 	_map.map_name = WowClient.map_name(map_id)
 	_sky.map_id = map_id
+	_transports.map_id = map_id
 	_player.place(WowCoords.to_godot(wow_position), orientation)
 	var guid: int = WowClient.session.get_player_guid()
 	if WowClient.session.has_object(guid):
