@@ -93,6 +93,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `spell_target_check`, `visual_check` | Self-only buffs cast on the caster; the spell visual chain resolves. Neither needs a server. |
 | `effect_check` | A fireball crosses to its target and a lootable corpse sparkles. |
 | `chase_check` | A pulled creature closes to melee, trades blows and follows a running player. |
+| `outfit_check` | The create screen's preview wears what CharStartOutfit.dbc gives it; no server needed. |
 
 ## Still to do
 
@@ -102,7 +103,7 @@ In the order they are planned:
 | --- | --- |
 | M3 leftovers | Bags in the bank bag slots, auction bidding from the browse tab (written but unproven), then stable, petition and tabard. |
 | M6 visuals | M2 ribbons, WMO liquids, transports. |
-| M7 polish | Key binding UI, interface options, starting outfit on the create preview, race and class tooltips, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the corpse marker on the map and minimap, the breath meter underwater. |
+| M7 polish | Key binding UI, interface options, race and class tooltips, realm list scrolling past 18 realms, doodad LOD, footstep sounds by terrain, the corpse marker on the map and minimap, the breath meter underwater. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 

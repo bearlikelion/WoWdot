@@ -171,6 +171,7 @@ func _choose_class(index: int) -> void:
 	_set_tex_coords(%CharacterCreateClassIcon, CLASS_ICON_RECTS[class_file])
 	%CharacterCreateClassLabel.text = CharacterOptions.class_label(_class_id)
 	%CharacterCreateClassText.text = WowStrings.get_text("CLASS_" + class_file)
+	_show_character()
 	_stack_texts()
 
 
@@ -218,7 +219,11 @@ func _randomize_look() -> void:
 
 
 func _show_character() -> void:
-	_model.show_character(CharacterOptions.character_model(_look))
+	var look: Dictionary = _look.duplicate()
+	look["class"] = _class_id
+	_model.show_character(
+		CharacterOptions.character_model(CharacterModels.starting_look(look))
+	)
 
 
 func _accept() -> void:

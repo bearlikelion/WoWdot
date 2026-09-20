@@ -36,6 +36,17 @@ const VISIBLE_ITEM_STRIDE: int = 12
 const WEAPON_SLOTS: Array[int] = [15, 16, 17]
 const BACK_SLOT: int = 14
 const CAPES: String = "Item\\ObjectComponents\\Cape\\"
+# CharStartOutfit.dbc packs race, class and gender into one key and holds twelve slots.
+const OUTFIT_KEY_COLUMN: int = 1
+const OUTFIT_DISPLAY_COLUMN: int = 14
+const OUTFIT_TYPE_COLUMN: int = 26
+const OUTFIT_SLOTS: int = 12
+const OUTFIT_EQUIPMENT_SLOTS: int = 19
+# An item's inventory type and the equipment slot it fills.
+const OUTFIT_SLOT_OF: Dictionary[int, int] = {
+	1: 0, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 7, 9: 8, 10: 9, 13: 15, 14: 16, 15: 17,
+	16: 14, 17: 15, 19: 18, 20: 4, 21: 15, 22: 16, 23: 16, 25: 17, 26: 17,
+}
 # Later slots paint over earlier ones on the body skin.
 const ITEM_DRAW_ORDER: Array[EquipSlot] = [
 	EquipSlot.SHIRT, EquipSlot.LEGS, EquipSlot.FEET, EquipSlot.CHEST, EquipSlot.WAIST,
@@ -65,6 +76,7 @@ var _sections: WowDBC
 var _hair_geosets: WowDBC
 var _facial_hair: WowDBC
 var _item_displays: WowDBC
+static var _outfits: WowDBC
 var _helmet_vis: WowDBC
 var _section_rows: Dictionary[int, Array] = {}
 var _skins: Dictionary[String, ImageTexture] = {}
@@ -208,6 +220,28 @@ static func listed_look(character: Dictionary) -> Dictionary:
 	look["weapons"] = weapons
 	look["cape"] = displays[BACK_SLOT] if BACK_SLOT < displays.size() else 0
 	return look
+
+
+# The gear CharStartOutfit.dbc creates a character in, for the preview on the create screen.
+static func starting_look(look: Dictionary) -> Dictionary:
+	if _outfits == null:
+		_outfits = WowDBC.open(WowAssets.archive, "CharStartOutfit")
+	var wanted: int = int(look.get("race", 0)) \
+	| (int(look.get("class", 0)) << 8) | (int(look.get("gender", 0)) << 16)
+	var displays: PackedInt32Array = []
+	displays.resize(OUTFIT_EQUIPMENT_SLOTS)
+	for row: int in _outfits.row_count():
+		if _outfits.get_uint(row, OUTFIT_KEY_COLUMN) & 0xFFFFFF != wanted:
+			continue
+		for slot: int in OUTFIT_SLOTS:
+			var kind: int = _outfits.get_int(row, OUTFIT_TYPE_COLUMN + slot)
+			var display: int = _outfits.get_int(row, OUTFIT_DISPLAY_COLUMN + slot)
+			if display > 0 and OUTFIT_SLOT_OF.has(kind):
+				displays[OUTFIT_SLOT_OF[kind]] = display
+		break
+	var dressed: Dictionary = look.duplicate()
+	dressed["equipment"] = displays
+	return listed_look(dressed)
 
 
 # Item entries per inventory slot, from the PLAYER_VISIBLE_ITEM_n_0 fields.
