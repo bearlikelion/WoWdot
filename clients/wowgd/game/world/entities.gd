@@ -274,7 +274,9 @@ func add_nameplate(guid: int, node: Node3D) -> void:
 	for mesh: MeshInstance3D in node.find_children("*", "MeshInstance3D", true, false):
 		var box: AABB = node_space * mesh.global_transform * mesh.get_aabb()
 		bounds = bounds.merge(box) if bounds.has_volume() else box
-	_bounds[guid] = bounds
+	# Only tracked entities go in _bounds; the player's own model is not one, and picking walks it.
+	if _nodes.has(guid):
+		_bounds[guid] = bounds
 	var plate: Label3D = NAMEPLATE.instantiate()
 	plate.position.y = bounds.end.y + NAMEPLATE_GAP / node.scale.y
 	plate.scale = Vector3.ONE / node.scale
