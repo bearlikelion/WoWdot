@@ -1,7 +1,7 @@
-class_name TextureAnimationCheck
+class_name EffectsCheck
 extends Node
 
-# Water, fire and portals scroll their UVs, so a sample of them should carry the animation.
+# Water, fire and portals scroll their UVs and throw particles, so a sample should show both.
 const SAMPLES: int = 40
 const MASKS: PackedStringArray = [
 	"*portal*.m2", "*lava*.m2", "*falls*.m2", "*fire*.m2", "*moonwell*.m2", "*water*.m2",
@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func _run() -> void:
 	var animated: PackedStringArray = []
+	var emitting: PackedStringArray = []
 	var looked_at: int = 0
 	for mask: String in MASKS:
 		for path: String in WowAssets.archive.find(mask).slice(0, SAMPLES):
@@ -28,12 +29,20 @@ func _run() -> void:
 				animated.append("%s (%d tracks)" % [
 					path.get_file(), player.get_animation("Textures").get_track_count(),
 				])
+			var emitters: int = model.find_children("Particles*", "GPUParticles3D", true, false).size()
+			if emitters > 0:
+				emitting.append("%s (%d emitters)" % [path.get_file(), emitters])
 			model.queue_free()
-	print("models read: %d, with scrolling textures: %d" % [looked_at, animated.size()])
-	for name: String in animated.slice(0, 5):
-		print("  ", name)
+	print("models read: %d, scrolling: %d, emitting: %d" % [
+		looked_at, animated.size(), emitting.size(),
+	])
+	for name: String in animated.slice(0, 3):
+		print("  scrolls ", name)
+	for name: String in emitting.slice(0, 3):
+		print("  emits ", name)
 	_check(looked_at > 0, "the archive holds models to read")
 	_check(not animated.is_empty(), "some of them scroll their textures")
+	_check(not emitting.is_empty(), "some of them throw particles")
 	_finish()
 
 
@@ -46,5 +55,5 @@ func _finish() -> void:
 	for failure: String in _failures:
 		printerr("FAIL: ", failure)
 	var result: String = "OK" if _failures.is_empty() else "%d failed" % _failures.size()
-	print("texture_animation_check: ", result)
+	print("effects_check: ", result)
 	get_tree().quit(0 if _failures.is_empty() else 1)

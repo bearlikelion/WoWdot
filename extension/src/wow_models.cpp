@@ -7,6 +7,14 @@
 
 #include <godot_cpp/classes/animation.hpp>
 #include <godot_cpp/classes/animation_player.hpp>
+#include <godot_cpp/classes/bone_attachment3d.hpp>
+#include <godot_cpp/classes/curve.hpp>
+#include <godot_cpp/classes/curve_texture.hpp>
+#include <godot_cpp/classes/gpu_particles3d.hpp>
+#include <godot_cpp/classes/gradient.hpp>
+#include <godot_cpp/classes/gradient_texture1_d.hpp>
+#include <godot_cpp/classes/particle_process_material.hpp>
+#include <godot_cpp/classes/quad_mesh.hpp>
 #include <godot_cpp/classes/collision_shape3d.hpp>
 #include <godot_cpp/classes/concave_polygon_shape3d.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
@@ -158,6 +166,60 @@ Color batch_tint(const M2Model &model, const M2Batch &batch) {
 		rgb = model.colorRGBs[batch.colorIndex];
 	}
 	return Color(rgb.r, rgb.g, rgb.b, alpha);
+}
+
+// Emitter tracks hold one value per sequence; the first is what the model rests at.
+float track_value(const M2AnimationTrack &track, float fallback) {
+	for (const M2AnimationTrack::SequenceKeys &keys : track.sequences) {
+		if (!keys.floatValues.empty()) {
+			return keys.floatValues[0];
+		}
+	}
+	return fallback;
+}
+
+// An FBlock is a small curve over a particle's life, which Godot takes as a ramp texture.
+Ref<GradientTexture1D> particle_colors(const M2ParticleEmitter &emitter) {
+	Ref<Gradient> gradient;
+	gradient.instantiate();
+	PackedFloat32Array offsets;
+	PackedColorArray colors;
+	const size_t count = std::min(emitter.particleColor.vec3Values.size(), emitter.particleAlpha.floatValues.size());
+	for (size_t i = 0; i < count; i++) {
+		const glm::vec3 rgb = emitter.particleColor.vec3Values[i];
+		offsets.push_back(i < emitter.particleColor.timestamps.size() ? emitter.particleColor.timestamps[i] : float(i) / count);
+		colors.push_back(Color(rgb.r / 255.0f, rgb.g / 255.0f, rgb.b / 255.0f, emitter.particleAlpha.floatValues[i]));
+	}
+	if (colors.is_empty()) {
+		return Ref<GradientTexture1D>();
+	}
+	gradient->set_offsets(offsets);
+	gradient->set_colors(colors);
+	Ref<GradientTexture1D> ramp;
+	ramp.instantiate();
+	ramp->set_gradient(gradient);
+	return ramp;
+}
+
+Ref<CurveTexture> particle_sizes(const M2ParticleEmitter &emitter, float &largest) {
+	Ref<Curve> curve;
+	curve.instantiate();
+	const std::vector<float> &sizes = emitter.particleScale.floatValues;
+	largest = 0.0f;
+	for (const float size : sizes) {
+		largest = std::max(largest, size);
+	}
+	if (sizes.empty() || largest <= 0.0f) {
+		return Ref<CurveTexture>();
+	}
+	for (size_t i = 0; i < sizes.size(); i++) {
+		const float at = i < emitter.particleScale.timestamps.size() ? emitter.particleScale.timestamps[i] : float(i) / sizes.size();
+		curve->add_point(Vector2(std::clamp(at, 0.0f, 1.0f), sizes[i] / largest));
+	}
+	Ref<CurveTexture> texture;
+	texture.instantiate();
+	texture->set_curve(curve);
+	return texture;
 }
 
 // The batches a mesh keeps, in surface order, so animation can find the material of each one.
@@ -479,6 +541,7 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 	add_texture_animation(root, mesh, data->model, geosets);
 	if (data->bone_rests.empty()) {
 		root->add_child(mesh);
+		add_particles(root, nullptr, data->model);
 		return root;
 	}
 	Skeleton3D *skeleton = memnew(Skeleton3D);
@@ -510,6 +573,7 @@ Node3D *WowLoader::load_m2(const String &path, const Dictionary &skins, const Pa
 	if (animations->has_animation("Stand")) {
 		player->set_autoplay("Stand");
 	}
+	add_particles(root, skeleton, data->model);
 	return root;
 }
 
@@ -535,6 +599,74 @@ void WowLoader::add_texture_animation(Node3D *root, MeshInstance3D *mesh, const 
 	player->add_animation_library("", library);
 	root->add_child(player);
 	player->set_autoplay("Textures");
+}
+
+// M2 emitters become GPUParticles3D, driven by the values the model rests at.
+void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model &model) {
+	for (size_t i = 0; i < model.particleEmitters.size(); i++) {
+		const M2ParticleEmitter &emitter = model.particleEmitters[i];
+		if (!emitter.enabled || track_value(emitter.emissionRate, 0.0f) <= 0.0f) {
+			continue;
+		}
+		const float lifespan = std::max(track_value(emitter.lifespan, 1.0f), 0.05f);
+		const float rate = track_value(emitter.emissionRate, 0.0f);
+		float largest = 1.0f;
+		const Ref<CurveTexture> sizes = particle_sizes(emitter, largest);
+		Ref<ParticleProcessMaterial> process;
+		process.instantiate();
+		process->set_direction(Vector3(0.0f, 1.0f, 0.0f));
+		process->set_spread(Math::rad_to_deg(track_value(emitter.verticalRange, 0.0f)));
+		const float speed = track_value(emitter.emissionSpeed, 0.0f);
+		const float spread = track_value(emitter.speedVariation, 0.0f) * speed;
+		process->set_param_min(ParticleProcessMaterial::PARAM_INITIAL_LINEAR_VELOCITY, std::max(speed - spread, 0.0f));
+		process->set_param_max(ParticleProcessMaterial::PARAM_INITIAL_LINEAR_VELOCITY, speed + spread);
+		process->set_gravity(Vector3(0.0f, -track_value(emitter.gravity, 0.0f), 0.0f));
+		process->set_param_min(ParticleProcessMaterial::PARAM_SCALE, largest);
+		process->set_param_max(ParticleProcessMaterial::PARAM_SCALE, largest);
+		if (sizes.is_valid()) {
+			process->set_param_texture(ParticleProcessMaterial::PARAM_SCALE, sizes);
+		}
+		if (const Ref<GradientTexture1D> ramp = particle_colors(emitter); ramp.is_valid()) {
+			process->set_color_ramp(ramp);
+		}
+		const float length = track_value(emitter.emissionAreaLength, 0.0f);
+		const float width = track_value(emitter.emissionAreaWidth, 0.0f);
+		if (emitter.emitterType == 2 && length > 0.0f) {
+			process->set_emission_shape(ParticleProcessMaterial::EMISSION_SHAPE_SPHERE);
+			process->set_emission_sphere_radius(length);
+		} else if (length > 0.0f || width > 0.0f) {
+			process->set_emission_shape(ParticleProcessMaterial::EMISSION_SHAPE_BOX);
+			process->set_emission_box_extents(Vector3(width * 0.5f, 0.0f, length * 0.5f));
+		}
+		GPUParticles3D *particles = memnew(GPUParticles3D);
+		particles->set_name("Particles" + String::num_int64(i));
+		particles->set_process_material(process);
+		particles->set_lifetime(lifespan);
+		particles->set_amount(std::clamp(static_cast<int>(rate * lifespan) + 1, 1, 512));
+		Ref<QuadMesh> quad;
+		quad.instantiate();
+		quad->set_size(Vector2(1.0f, 1.0f));
+		String texture;
+		if (emitter.texture < model.textures.size()) {
+			texture = String(model.textures[emitter.texture].filename.c_str());
+		}
+		Ref<StandardMaterial3D> material = get_material(texture, emitter.blendingType, 0, false, false, Color(1, 1, 1, 1));
+		material = material->duplicate();
+		material->set_billboard_mode(StandardMaterial3D::BILLBOARD_ENABLED);
+		material->set_flag(StandardMaterial3D::FLAG_PARTICLE_TRAILS_MODE, false);
+		quad->set_material(material);
+		particles->set_draw_pass_mesh(0, quad);
+		Node3D *holder = root;
+		if (skeleton && emitter.bone < static_cast<uint16_t>(skeleton->get_bone_count())) {
+			BoneAttachment3D *attachment = memnew(BoneAttachment3D);
+			attachment->set_name("ParticleBone" + String::num_int64(i));
+			skeleton->add_child(attachment);
+			attachment->set_bone_idx(emitter.bone);
+			holder = attachment;
+		}
+		holder->add_child(particles);
+		particles->set_position(wow_to_godot(emitter.position));
+	}
 }
 
 Dictionary WowLoader::get_m2_info(const String &path) {
