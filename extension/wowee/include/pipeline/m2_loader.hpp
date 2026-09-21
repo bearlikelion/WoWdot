@@ -142,6 +142,19 @@ struct M2Camera {
     glm::vec3 targetBase{0.0f};  // the point the camera looks at
 };
 
+// Authored light, at-rest values only
+struct M2Light {
+    uint16_t type = 0;     // 0 directional, 1 point
+    int16_t bone = -1;
+    glm::vec3 position{0.0f};
+    glm::vec3 ambientColor{0.0f};
+    float ambientIntensity = 0.0f;
+    glm::vec3 diffuseColor{0.0f};
+    float diffuseIntensity = 0.0f;
+    float attenuationStart = 0.0f;
+    float attenuationEnd = 0.0f;
+};
+
 // FBlock: particle lifetime curve (color/alpha/scale over particle life)
 struct M2FBlock {
     std::vector<float> timestamps;      // Normalized 0..1
@@ -262,6 +275,7 @@ struct M2Model {
     // Attachment points (for weapon/effect anchoring)
     std::vector<M2Attachment> attachments;
     std::vector<M2Camera> cameras;
+    std::vector<M2Light> lights;
     std::vector<uint16_t> attachmentLookup; // attachment ID → index
 
     // Particle emitters

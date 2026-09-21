@@ -1,0 +1,59 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="1"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\TutorialFrame\\TutorialFrameAlert.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0, 0, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(37, 0, 23, 44)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4"]
+blend_mode = 1
+
+[node name="TutorialFrameAlertButtonTemplate" type="TextureButton"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -17
+offset_top = -92
+offset_right = 17
+offset_bottom = -50
+grow_horizontal = 2
+grow_vertical = 0
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 34
+offset_bottom = 42
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -21
+offset_right = 10.5
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")

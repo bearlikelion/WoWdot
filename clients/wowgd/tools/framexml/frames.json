@@ -332,6 +332,16 @@
    "script": "res://game/ui/pet_stable_frame.gd"
   },
   {
+   "frame": "TutorialFrame",
+   "out": "ui/tutorial_frame.tscn",
+   "script": "res://game/ui/tutorial_frame.gd"
+  },
+  {
+   "frame": "TutorialFrameAlertButtonTemplate",
+   "template": true,
+   "out": "ui/tutorial_alert_button.tscn"
+  },
+  {
    "frame": "MirrorTimer1",
    "out": "ui/mirror_timer.tscn",
    "script": "res://game/ui/mirror_timer.gd"

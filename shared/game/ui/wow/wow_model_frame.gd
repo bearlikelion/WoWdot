@@ -2,6 +2,8 @@
 class_name WowModelFrame
 extends TextureRect
 
+enum LightType { DIRECTIONAL, POINT }
+
 # The glue scenes mark where the character stands with attachment 0.
 const STAND_ATTACHMENT: int = 0
 # PlayerModel frames without a scene show the whole character, a little clear of the edges.
@@ -15,6 +17,9 @@ const CHARACTER_MARGIN: float = 1.15
 		model_file = value
 		if is_node_ready():
 			_load_scene()
+# The stock falloff is 1 / (0.7 d + 0.03 d * d) with no cutoff; this range and curve sit close to it.
+const POINT_REACH: float = 4.0
+const POINT_FALLOFF: float = 1.0
 # GlueParent.lua's SetLighting passes 0.3 where a screen names no glow of its own.
 const DEFAULT_GLOW: float = 0.3
 
@@ -43,6 +48,7 @@ var _diagonal_fov: float = 0.0
 @onready var _camera: Camera3D = %Camera
 @onready var _environment: Environment = (%Environment as WorldEnvironment).environment
 @onready var _slot: Node3D = %Scene
+@onready var _default_light: DirectionalLight3D = %Light
 
 
 func _ready() -> void:
@@ -104,18 +110,19 @@ func _load_scene() -> void:
 	if _scene:
 		_scene.queue_free()
 		_scene = null
+	_default_light.show()
 	if model_file.is_empty():
 		return
 	_scene = WowAssets.loader.load_m2(model_file)
 	if _scene == null:
 		return
 	_slot.add_child(_scene)
-	_paint_scene(_scene)
 	# The scene's own sequence drives the sky, the snow and the wyrm's flight past the citadel.
 	var player: AnimationPlayer = _scene.get_node_or_null("AnimationPlayer")
 	if player != null and not player.get_animation_list().is_empty():
 		player.play(player.get_animation_list()[0])
 	var info: Dictionary = WowAssets.loader.get_m2_info(model_file)
+	_light_scene(info.get("lights", []))
 	var cameras: Array = info.get("cameras", [])
 	if cameras.is_empty():
 		return
@@ -130,22 +137,43 @@ func _load_scene() -> void:
 	_turn_character()
 
 
-# A glue scene is painted art: its textures carry their own light, so draw it flat.
-func _paint_scene(root: Node3D) -> void:
-	for mesh: MeshInstance3D in root.find_children("*", "MeshInstance3D", true, false):
-		if mesh.mesh == null:
+# The scene's authored lights replace the frame's own, as the stock glue screens are lit.
+func _light_scene(lights: Array) -> void:
+	if lights.is_empty():
+		return
+	_default_light.hide()
+	var skeleton: Skeleton3D = _scene.find_children("*", "Skeleton3D", true, false).pop_front()
+	var ambient: Color = Color.BLACK
+	for light: Dictionary in lights:
+		ambient += light["ambient"]
+		var diffuse: Color = light["diffuse"]
+		var peak: float = maxf(diffuse.r, maxf(diffuse.g, diffuse.b))
+		if peak <= 0.0:
 			continue
-		for surface: int in mesh.mesh.get_surface_count():
-			# A scrolling surface already carries an override the texture track writes to, so
-			# dress that one rather than replacing it and leaving the track on a stale material.
-			var material: BaseMaterial3D = mesh.get_surface_override_material(surface)
-			if material == null:
-				material = mesh.mesh.surface_get_material(surface)
-				if material == null:
-					continue
-				material = material.duplicate()
-				mesh.set_surface_override_material(surface, material)
-			material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		var lamp: Light3D = OmniLight3D.new() if light["type"] == LightType.POINT \
+		else DirectionalLight3D.new()
+		lamp.light_color = Color(diffuse.r / peak, diffuse.g / peak, diffuse.b / peak)
+		# The stock client sums light in gamma space, so an over-bright colour scales as a power.
+		lamp.light_energy = pow(peak, 2.2)
+		lamp.light_specular = 0.0
+		var mount: Node3D = _scene
+		var origin: Vector3 = Vector3.ZERO
+		if skeleton and light["bone"] >= 0 and light["bone"] < skeleton.get_bone_count():
+			var attachment: BoneAttachment3D = BoneAttachment3D.new()
+			attachment.bone_idx = light["bone"]
+			skeleton.add_child(attachment)
+			mount = attachment
+			# An M2 light's position is model space, like the bone's pivot.
+			origin = skeleton.get_bone_global_rest(light["bone"]).origin
+		mount.add_child(lamp)
+		if lamp is OmniLight3D:
+			lamp.position = light["position"] - origin
+			lamp.omni_range = light["attenuation_end"] * POINT_REACH
+			lamp.omni_attenuation = POINT_FALLOFF
+		else:
+			# A directional M2 light shines down its bone's up axis.
+			lamp.basis = Basis(Vector3.RIGHT, -PI / 2.0)
+	_environment.ambient_light_color = Color(ambient, 1.0)
 
 
 # An M2 camera keeps a diagonal FOV; the client divides it down for the frame it draws into.

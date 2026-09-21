@@ -1473,6 +1473,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			handle_compressed_moves(packet);
 			return;
 		case LogicalOpcode::SMSG_PONG:
+			latency_msec = static_cast<int>(Time::get_singleton()->get_ticks_msec() - last_ping_msec);
 			return;
 		case LogicalOpcode::SMSG_MESSAGECHAT:
 			handle_chat(packet);
@@ -1995,6 +1996,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_field", "guid", "field"), &WowSession::get_field);
 	ClassDB::bind_method(D_METHOD("get_field_float", "guid", "field"), &WowSession::get_field_float);
 	ClassDB::bind_method(D_METHOD("get_field_guid", "guid", "field"), &WowSession::get_field_guid);
+	ClassDB::bind_method(D_METHOD("get_latency"), &WowSession::get_latency);
 	ClassDB::bind_method(D_METHOD("field_index", "name"), &WowSession::field_index);
 
 	ADD_SIGNAL(MethodInfo("state_changed", PropertyInfo(Variant::INT, "state"), PropertyInfo(Variant::STRING, "message")));

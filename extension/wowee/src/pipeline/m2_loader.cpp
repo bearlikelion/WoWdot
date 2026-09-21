@@ -1407,6 +1407,50 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
         core::Logger::getInstance().debug("  Cameras: ", model.cameras.size());
     }
 
+    // Lights: vanilla layout only (212 bytes), at-rest values.
+    // ponytail: light tracks are not animated, add per-frame evaluation if a scene's lights visibly pulse.
+    constexpr size_t kLightSize = 16 + 7 * sizeof(M2TrackDiskVanilla);
+    if (header.version < 264 && header.nLights > 0 && header.ofsLights > 0) {
+        const uint32_t lightCount = capCount(header.nLights, kMaxM2Cameras, "nLights");
+        for (uint32_t li = 0; li < lightCount; li++) {
+            const size_t base = header.ofsLights + li * kLightSize;
+            if (base + kLightSize > m2Data.size()) {
+                break;
+            }
+            M2Light light;
+            light.type = readValue<uint16_t>(m2Data, base);
+            light.bone = readValue<int16_t>(m2Data, base + 2);
+            light.position = readValue<glm::vec3>(m2Data, base + 4);
+            auto restVec3 = [&](int index) {
+                M2AnimationTrack track;
+                parseAnimTrackVanilla(m2Data, readValue<M2TrackDiskVanilla>(m2Data, base + 16 + index * sizeof(M2TrackDiskVanilla)), track, TrackType::VEC3);
+                for (const auto& seq : track.sequences) {
+                    if (!seq.vec3Values.empty()) {
+                        return seq.vec3Values[0];
+                    }
+                }
+                return glm::vec3(0.0f);
+            };
+            auto restFloat = [&](int index) {
+                M2AnimationTrack track;
+                parseAnimTrackVanilla(m2Data, readValue<M2TrackDiskVanilla>(m2Data, base + 16 + index * sizeof(M2TrackDiskVanilla)), track, TrackType::FLOAT);
+                for (const auto& seq : track.sequences) {
+                    if (!seq.floatValues.empty()) {
+                        return seq.floatValues[0];
+                    }
+                }
+                return 0.0f;
+            };
+            light.ambientColor = restVec3(0);
+            light.ambientIntensity = restFloat(1);
+            light.diffuseColor = restVec3(2);
+            light.diffuseIntensity = restFloat(3);
+            light.attenuationStart = restFloat(4);
+            light.attenuationEnd = restFloat(5);
+            model.lights.push_back(light);
+        }
+    }
+
     // Parse particle emitters — struct size differs between versions:
     //   WotLK (version >= 264): M2ParticleOld = 0x1DC (476) bytes, M2TrackDisk (20 bytes), FBlocks
     //   Vanilla (version < 264): 0x1F8 (504) bytes, M2TrackDiskVanilla (28 bytes), static lifecycle arrays

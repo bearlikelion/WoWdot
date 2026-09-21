@@ -92,6 +92,9 @@ Ref<ImageTexture> alpha_texture(const pipeline::ChunkMesh &chunk) {
 			out[i * 4 + layer - 1] = alpha[i];
 		}
 	}
+	for (size_t i = 0; i < chunk.shadowMap.size() * 8 && i < 64 * 64; i++) {
+		out[i * 4 + 3] = (chunk.shadowMap[i / 8] >> (i % 8)) & 1 ? 255 : 0;
+	}
 	return ImageTexture::create_from_image(Image::create_from_data(64, 64, false, Image::FORMAT_RGBA8, pixels));
 }
 

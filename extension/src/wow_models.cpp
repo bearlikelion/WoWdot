@@ -208,13 +208,12 @@ Color track_color(const M2AnimationTrack &track, const Color &fallback) {
 	return fallback;
 }
 
-// ponytail: additive emitters stack to white at rest; matching the stock client's blend is the fix.
-constexpr float ADDITIVE_DAMPING = 0.35f;
+// The stock client adds in gamma space, so a faint additive alpha is far fainter in linear light.
+constexpr float GAMMA = 2.2f;
 
 // An FBlock is a small curve over a particle's life, which Godot takes as a ramp texture.
 Ref<GradientTexture1D> particle_colors(const M2ParticleEmitter &emitter) {
 	const bool additive = emitter.blendingType == M2_ADD || emitter.blendingType == M2_NO_ALPHA_ADD;
-	const float damping = additive ? ADDITIVE_DAMPING : 1.0f;
 	Ref<Gradient> gradient;
 	gradient.instantiate();
 	PackedFloat32Array offsets;
@@ -223,7 +222,8 @@ Ref<GradientTexture1D> particle_colors(const M2ParticleEmitter &emitter) {
 	for (size_t i = 0; i < count; i++) {
 		const glm::vec3 rgb = emitter.particleColor.vec3Values[i];
 		offsets.push_back(i < emitter.particleColor.timestamps.size() ? emitter.particleColor.timestamps[i] : float(i) / count);
-		colors.push_back(Color(rgb.r, rgb.g, rgb.b, emitter.particleAlpha.floatValues[i] * damping));
+		const float alpha = emitter.particleAlpha.floatValues[i];
+		colors.push_back(Color(rgb.r, rgb.g, rgb.b, additive ? std::pow(alpha, GAMMA) : alpha));
 	}
 	if (colors.is_empty()) {
 		return Ref<GradientTexture1D>();
@@ -886,6 +886,7 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 		material->set_specular(0.0f);
 		// The emitter's colour and alpha arrive as the particle's vertex colour.
 		material->set_flag(StandardMaterial3D::FLAG_ALBEDO_FROM_VERTEX_COLOR, true);
+		material->set_flag(StandardMaterial3D::FLAG_SRGB_VERTEX_COLOR, true);
 		// Only BILLBOARD_PARTICLES keeps the particle's scale and walks the texture's tiles.
 		material->set_billboard_mode(StandardMaterial3D::BILLBOARD_PARTICLES);
 		material->set_particles_anim_h_frames(emitter.textureCols);
@@ -1049,6 +1050,19 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 		attachments.push_back(a);
 	}
 	info["attachments"] = attachments;
+	Array lights;
+	for (const M2Light &light : model.lights) {
+		Dictionary l;
+		l["type"] = light.type;
+		l["bone"] = light.bone;
+		l["position"] = wow_to_godot(light.position);
+		l["ambient"] = Color(light.ambientColor.r, light.ambientColor.g, light.ambientColor.b) * light.ambientIntensity;
+		l["diffuse"] = Color(light.diffuseColor.r, light.diffuseColor.g, light.diffuseColor.b) * light.diffuseIntensity;
+		l["attenuation_start"] = light.attenuationStart;
+		l["attenuation_end"] = light.attenuationEnd;
+		lights.push_back(l);
+	}
+	info["lights"] = lights;
 	return info;
 }
 

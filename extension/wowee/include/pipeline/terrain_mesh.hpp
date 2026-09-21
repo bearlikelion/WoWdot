@@ -54,6 +54,7 @@ struct ChunkMesh {
         std::vector<uint8_t> alphaData;  // 64x64 alpha map
     };
     std::vector<LayerInfo> layers;
+    std::vector<uint8_t> shadowMap;  // MCSH bits, empty when the chunk has none
 
     bool isValid() const { return !vertices.empty() && !indices.empty(); }
     size_t getVertexCount() const { return vertices.size(); }

@@ -123,6 +123,7 @@ private:
 	std::unordered_map<uint64_t, std::map<uint8_t, wowee::game::AuraSlot>> auras;
 	uint32_t ping_sequence = 0;
 	uint64_t last_ping_msec = 0;
+	int latency_msec = 0;
 	std::unordered_map<uint64_t, std::string> player_names;
 	std::unordered_map<uint32_t, Dictionary> creature_info;
 	std::unordered_set<uint64_t> player_queries;
@@ -219,6 +220,7 @@ public:
 	int64_t get_field(int64_t guid, const Variant &field) const;
 	double get_field_float(int64_t guid, const Variant &field) const;
 	int64_t get_field_guid(int64_t guid, const Variant &field) const;
+	int get_latency() const { return latency_msec; }
 	int field_index(const String &name) const;
 };
 

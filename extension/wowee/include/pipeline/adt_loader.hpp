@@ -54,6 +54,7 @@ struct MapChunk {
     HeightMap heightMap;
     std::vector<TextureLayer> layers;
     std::vector<uint8_t> alphaMap;  // Alpha blend maps for layers
+    std::vector<uint8_t> shadowMap; // MCSH: 64x64 bits, LSB first, set where shadowed
 
     // Normals (compressed)
     std::array<int8_t, 145 * 3> normals;  // X, Y, Z per vertex

@@ -39,6 +39,7 @@ unique_name_in_owner = true
 environment = SubResource("Environment_frame")
 
 [node name="Light" type="DirectionalLight3D" parent="Viewport" unique_id=541863683]
+unique_name_in_owner = true
 transform = Transform3D(0.70710677, -0.40824828, 0.57735026, 0, 0.8164966, 0.57735026, -0.70710677, -0.40824828, 0.57735026, 0, 0, 0)
 
 [node name="Camera" type="Camera3D" parent="Viewport" unique_id=543118129]

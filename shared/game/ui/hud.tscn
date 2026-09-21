@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" path="res://game/ui/combat_text.tscn" id="19_combat_text"]
 [ext_resource type="Script" path="res://game/ui/loot_rolls.gd" id="23_rolls"]
 [ext_resource type="PackedScene" path="res://ui/drop_down_list.tscn" id="24_menu"]
+[ext_resource type="PackedScene" path="res://ui/tutorial_frame.tscn" id="32_tutorial"]
 
 [node name="Hud" type="Control" unique_id=2063934219]
 layout_mode = 3
@@ -176,6 +177,18 @@ offset_bottom = 148.0
 layout_mode = 1
 offset_top = 148.0
 offset_bottom = 174.0
+
+[node name="TutorialAlerts" type="Control" parent="UIParent"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="TutorialFrame" parent="UIParent" node_paths=PackedStringArray("alerts") instance=ExtResource("32_tutorial")]
+layout_mode = 1
+alerts = NodePath("../TutorialAlerts")
 
 [node name="QuestWatchFrame" parent="UIParent" unique_id=1274227025 instance=ExtResource("16_watch")]
 unique_name_in_owner = true

@@ -11,7 +11,7 @@ const OPTIONS: Array[StringName] = [&"windowed", &"maximized", &"vsync", &"shado
 var windowed: bool = true
 var maximized: bool = false
 var vsync: bool = false
-var shadows: bool = true
+var shadows: bool = false
 
 
 # Starts from the saved choices, or from the window as the project opened it when none are saved.
@@ -34,7 +34,7 @@ static func defaults() -> Dictionary:
 		&"windowed": mode != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN,
 		&"maximized": mode == DisplayServer.WINDOW_MODE_FULLSCREEN,
 		&"vsync": ProjectSettings.get_setting("display/window/vsync/vsync_mode", 0) != 0,
-		&"shadows": true,
+		&"shadows": false,
 	}
 
 

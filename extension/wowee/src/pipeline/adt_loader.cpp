@@ -365,6 +365,13 @@ void ADTLoader::parseMCNK(const uint8_t* data, size_t size, int chunkIndex, ADTT
         parseMCAL(data + ofsAlpha + skip, sizeAlpha - skip, chunk);
     }
 
+    // Baked shadow (MCSH) - 512 bytes, present when flag 0x1 is set
+    uint32_t ofsShadow = readUInt32(data, 44);
+    if ((chunk.flags & 0x1) && ofsShadow > 0 && ofsShadow + 8 + 512 <= size) {
+        uint32_t skip = (readUInt32(data, ofsShadow) == MCSH) ? 8 : 0;
+        chunk.shadowMap.assign(data + ofsShadow + skip, data + ofsShadow + skip + 512);
+    }
+
     // Liquid (MCLQ) - vanilla/TBC per-chunk water (no MH2O in these expansions)
     // ofsLiquid at MCNK header offset 0x60, sizeLiquid at 0x64
     uint32_t ofsLiquid = readUInt32(data, 0x60);

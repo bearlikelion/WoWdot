@@ -41,6 +41,10 @@ const PANEL_TIPS: Dictionary[GamePanel, Array] = {
 	GamePanel.BAGS: ["BACKPACK_TOOLTIP", "", "toggle_bags"],
 }
 # MicroButtonPortrait's SetTexCoord in CharacterMicroButton_SetNormal and _SetPushed.
+# MainMenuBar.lua: green up to 300 ms, yellow up to 600, then red, checked every ten seconds.
+const LOW_LATENCY: int = 300
+const MEDIUM_LATENCY: int = 600
+const LATENCY_INTERVAL: float = 10.0
 const PORTRAIT_NORMAL: Rect2 = Rect2(0.2, 0.0666, 0.6, 0.8334)
 const PORTRAIT_PUSHED: Rect2 = Rect2(0.2666, 0.0, 0.6, 0.8333)
 
@@ -66,6 +70,8 @@ var _portrait: AtlasTexture = AtlasTexture.new()
 @onready var _reputation_bar: Control = %ReputationWatchBar
 @onready var _reputation_status: TextureProgressBar = %ReputationWatchStatusBar
 @onready var _reputation_text: Label = %ReputationWatchStatusBarText
+@onready var _performance_bar: TextureRect = %MainMenuBarPerformanceBar
+@onready var _performance_button: BaseButton = %MainMenuBarPerformanceBarFrameButton
 @onready var _micro_buttons: Dictionary[BaseButton, GamePanel] = {
 	%CharacterMicroButton: GamePanel.CHARACTER,
 	%SpellbookMicroButton: GamePanel.SPELLBOOK,
@@ -108,6 +114,11 @@ func _ready() -> void:
 	WowClient.session.object_updated.connect(_on_object_updated)
 	# The player's own create block brings the stance, and it can land after the bar is built.
 	WowClient.session.object_created.connect(_on_object_created)
+	_performance_button.mouse_entered.connect(_on_performance_bar_hovered)
+	_performance_button.mouse_exited.connect(_on_micro_button_left.bind(_performance_button))
+	var latency_check: Tween = create_tween().set_loops()
+	latency_check.tween_callback(_update_latency)
+	latency_check.tween_interval(LATENCY_INTERVAL)
 	_reputation_bar.hide()
 	_assign_slots()
 	_update_xp()
@@ -256,6 +267,29 @@ func _on_micro_button_hovered(button: BaseButton) -> void:
 	var newbie: String = WowStrings.get_text(tip[1]) if not String(tip[1]).is_empty() else ""
 	var binding: String = "(%s)" % hotkey if not hotkey.is_empty() else ""
 	GameTooltip.current.set_text(button, WowStrings.get_text(tip[0]), newbie, binding)
+
+
+func _update_latency() -> void:
+	var latency: int = WowClient.session.get_latency()
+	if latency > MEDIUM_LATENCY:
+		_performance_bar.modulate = Color.RED
+	elif latency > LOW_LATENCY:
+		_performance_bar.modulate = Color.YELLOW
+	else:
+		_performance_bar.modulate = Color.GREEN
+
+
+func _on_performance_bar_hovered() -> void:
+	if GameTooltip.current == null:
+		return
+	var title: String = "%s %d %s" % [
+		WowStrings.get_text("MAINMENUBAR_LATENCY_LABEL"),
+		WowClient.session.get_latency(),
+		WowStrings.get_text("MILLISECONDS_ABBR"),
+	]
+	GameTooltip.current.set_text(
+		_performance_button, title, WowStrings.get_text("NEWBIE_TOOLTIP_LATENCY")
+	)
 
 
 func _on_micro_button_left(button: BaseButton) -> void:
