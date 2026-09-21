@@ -7,6 +7,8 @@ const FALLBACK_SECONDS: float = 1.5
 const INSTANT_SPEED: float = 0.0
 const UNIT_DYNFLAG_LOOTABLE: int = 0x1
 
+@export var shake: CameraShake
+
 var _entities: Entities
 var _player: Player
 # Caster guid to the precast effects hanging on them until the cast ends.
@@ -109,6 +111,9 @@ func _play(guid: int, clip: String) -> void:
 # Hangs a stage's models on the unit, giving them back so a precast can be taken down again.
 func _hang(guid: int, spell_id: int, kit: SpellVisuals.Kit, seconds: float) -> Array:
 	var hung: Array = []
+	var shaken: Node3D = _model_of(guid)
+	if shaken and shake:
+		shake.add_group(WowAssets.spell_visuals.shake_group(spell_id, kit), shaken.global_position)
 	for effect: Dictionary in WowAssets.spell_visuals.effects(spell_id, kit):
 		var model: Node3D = _mount(guid, effect["path"], effect["points"])
 		if model == null:

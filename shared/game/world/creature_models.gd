@@ -80,6 +80,13 @@ func _equipment(extra: int) -> PackedInt32Array:
 	return displays
 
 
+# The CameraShakes preset a dying body of this display thumps the camera with, or 0.
+func death_thud(display_id: int) -> int:
+	var row: int = _display_info.find(display_id)
+	var model_row: int = _model_data.find(_display_info.get_uint(row, "ModelID")) if row >= 0 else -1
+	return _model_data.get_uint(model_row, CameraShake.DEATH_THUD_COLUMN) if model_row >= 0 else 0
+
+
 func _scaled(model: Node3D, row: int) -> Node3D:
 	if model:
 		var scale: float = _display_info.get_float(row, "Scale")

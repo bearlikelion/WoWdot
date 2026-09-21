@@ -21,6 +21,8 @@ const GROUND_PROBE_DOWN: float = 4.0
 # SMSG_ATTACKERSTATEUPDATE victim state for a blow that landed.
 const VICTIM_STATE_HIT: int = 1
 
+@export var shake: CameraShake
+
 var _nodes: Dictionary[int, Node3D] = {}
 # Model-space bounds of units and players, used for picking.
 var _bounds: Dictionary[int, AABB] = {}
@@ -359,6 +361,9 @@ func _on_object_updated(guid: int) -> void:
 		_arm(guid)
 	var alive: bool = WowClient.session.get_field(guid, "UNIT_FIELD_HEALTH") > 0
 	if not alive:
+		if not UnitAnimations.is_dead(node) and shake:
+			var display: int = WowClient.session.get_field(guid, "UNIT_FIELD_DISPLAYID")
+			shake.add_preset(WowAssets.creatures.death_thud(display), node.global_position)
 		UnitAnimations.die(node)
 	elif UnitAnimations.is_dead(node):
 		UnitAnimations.revive(node)

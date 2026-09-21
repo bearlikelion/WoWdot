@@ -4,6 +4,7 @@ extends RefCounted
 # SpellVisual.dbc holds a kit per stage of a cast.
 enum Kit { PRECAST, CAST, IMPACT }
 
+const KIT_SHAKE_COLUMN: int = 14
 const KIT_COLUMNS: Dictionary[Kit, String] = {
 	Kit.PRECAST: "PrecastKit", Kit.CAST: "CastKit", Kit.IMPACT: "ImpactKit",
 }
@@ -85,6 +86,12 @@ func missile_speed(spell_id: int) -> float:
 
 func loot_sparkle() -> String:
 	return _model(LOOT_EFFECT)
+
+
+# The SpellEffectCameraShakes group a kit jolts the camera with, or 0.
+func shake_group(spell_id: int, kit: Kit) -> int:
+	var row: int = _kit_row(spell_id, kit)
+	return _kits.get_uint(row, KIT_SHAKE_COLUMN) if row >= 0 else 0
 
 
 func _kit_row(spell_id: int, kit: Kit) -> int:
