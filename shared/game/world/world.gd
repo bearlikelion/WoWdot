@@ -7,6 +7,8 @@ signal player_ready
 const TAB_RANGE: float = 40.0
 const UNIT_FLAG_NON_ATTACKABLE: int = 0x2
 const UNIT_FLAG_NOT_SELECTABLE: int = 0x2000000
+const WALKING_FLAGS: int = Player.MoveFlag.FORWARD | Player.MoveFlag.BACKWARD \
+| Player.MoveFlag.STRAFE_LEFT | Player.MoveFlag.STRAFE_RIGHT
 const PLAYER_FLAG_GHOST: int = 0x10
 const HIDDEN_GEAR_FLAGS: int = CharacterModels.PLAYER_FLAG_HIDE_HELM \
 		| CharacterModels.PLAYER_FLAG_HIDE_CLOAK
@@ -294,6 +296,8 @@ func _on_player_movement_changed(
 	opcode: String, godot_position: Vector3, orientation: float, flags: int,
 	fall_time_msec: int, jump_velocity: Vector3, ack_counter: int, ack_tail: PackedByteArray,
 ) -> void:
+	if flags & WALKING_FLAGS:
+		WowClient.tutorials.moved()
 	WowClient.session.send_movement(
 		opcode, WowCoords.from_godot(godot_position), orientation, flags,
 		fall_time_msec, WowCoords.from_godot(jump_velocity), _player.pitch(),

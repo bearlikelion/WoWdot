@@ -23,6 +23,7 @@ const PULSE_HALF_PERIOD: float = 0.5
 
 func _ready() -> void:
 	_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_text.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_enabled.checked = true
 	_okay.pressed.connect(hide)
 	_enabled.pressed.connect(func() -> void: _enabled.checked = not _enabled.checked)
@@ -65,7 +66,8 @@ func _open(id: Tutorials.Id) -> void:
 
 # Deferred so the label has wrapped its new text before its height is read.
 func _fit() -> void:
-	offset_top = offset_bottom - _text.get_minimum_size().y - FRAME_PADDING
+	_text.size.y = _text.get_minimum_size().y
+	offset_top = offset_bottom - _text.size.y - FRAME_PADDING
 
 
 func _on_visibility_changed() -> void:
