@@ -9,6 +9,7 @@ const TILE_PATH: String = "Interface\\WorldMap\\%s\\%s%d.blp"
 const WORLD: String = "World"
 const ARROW_PATH: String = "Interface\\Minimap\\MinimapArrow.blp"
 const ARROW_SIZE: float = 32.0
+const POSITION_SECONDS: float = 2.0
 const MARKER: PackedScene = preload("res://game/ui/world_map_marker.tscn")
 const EXPLORED_WORDS: int = 64
 const ALLIANCE_RACES: Array[int] = [1, 3, 4, 7]
@@ -36,6 +37,7 @@ var _pois: WowDBC
 var _maps: WowDBC
 var _overlay_pieces: Array[TextureRect] = []
 var _markers: Array[Control] = []
+var _position_wait: float = 0.0
 var _labels: Array[Label] = []
 var _arrow: TextureRect
 
@@ -72,11 +74,16 @@ func _ready() -> void:
 	%WorldMapFrameCloseButton.pressed.connect(close_requested.emit)
 	visibility_changed.connect(_on_visibility_changed)
 	WowAssets.interface.changed.connect(_update_markers)
+	WowClient.battlegrounds.positions_changed.connect(_update_markers)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if not visible:
 		return
+	_position_wait -= delta
+	if _position_wait <= 0.0 and WowClient.battlegrounds.in_battle():
+		_position_wait = POSITION_SECONDS
+		WowClient.battlegrounds.request_positions()
 	var point: Vector2 = _map_point(_player_map, _player_position)
 	_arrow.visible = point.x >= 0.0 and point.x <= 1.0 and point.y >= 0.0 and point.y <= 1.0
 	_arrow.position = point * _button.size - _arrow.size / 2.0
@@ -193,6 +200,16 @@ func _update_markers() -> void:
 			WowStrings.get_text("CORPSE_TOOLTIP", "Your corpse"), "",
 		)
 	var session: WowSession = WowClient.session
+	var battlegrounds: Battlegrounds = WowClient.battlegrounds
+	if map_id == _player_map and battlegrounds.in_battle():
+		for guid: int in battlegrounds.positions:
+			var at: Vector2 = battlegrounds.positions[guid]
+			var carrier: bool = guid == battlegrounds.flag_carrier
+			_add_marker(
+				map_id, Vector3(at.x, at.y, 0.0),
+				WorldMapMarker.Kind.FLAG_CARRIER if carrier else WorldMapMarker.Kind.TEAM_MATE,
+				session.get_object_name(guid), "",
+			)
 	if map_id == _player_map:
 		for guid: int in NpcDialog.quest_givers_offering():
 			_add_marker(

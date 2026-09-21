@@ -1,17 +1,19 @@
 class_name WorldMapMarker
 extends Control
 
-enum Kind { POI, MAJOR_POI, FLIGHT_KNOWN, FLIGHT_UNKNOWN, QUEST, CORPSE }
+enum Kind { POI, MAJOR_POI, FLIGHT_KNOWN, FLIGHT_UNKNOWN, QUEST, CORPSE, TEAM_MATE, FLAG_CARRIER }
 
 # mWoW's map markers: gold landmarks, flight point diamonds, quest givers cyan ringed in gold.
 const POI_COLOR: Color = Color("#FFD700")
 const FLIGHT_UNKNOWN_COLOR: Color = Color("#46C85A")
 const QUEST_COLOR: Color = Color("#00D2FF")
 const CORPSE_COLOR: Color = Color("#E8E8E8")
+const TEAM_COLOR: Color = Color("#4C8CFF")
+const FLAG_COLOR: Color = Color("#FF3B30")
 const OUTLINE: Color = Color(0.1, 0.08, 0.02)
 const SIZES: Dictionary[Kind, float] = {
 	Kind.POI: 8.0, Kind.MAJOR_POI: 16.0, Kind.FLIGHT_KNOWN: 12.0, Kind.FLIGHT_UNKNOWN: 12.0,
-	Kind.QUEST: 10.0, Kind.CORPSE: 14.0,
+	Kind.QUEST: 10.0, Kind.CORPSE: 14.0, Kind.TEAM_MATE: 8.0, Kind.FLAG_CARRIER: 12.0,
 }
 
 var kind: Kind = Kind.POI:
@@ -37,6 +39,9 @@ func _draw() -> void:
 			draw_colored_polygon(diamond, fill)
 			diamond.append(diamond[0])
 			draw_polyline(diamond, OUTLINE, 1.5, true)
+		Kind.TEAM_MATE, Kind.FLAG_CARRIER:
+			draw_circle(center, radius, OUTLINE)
+			draw_circle(center, radius - 1.0, TEAM_COLOR if kind == Kind.TEAM_MATE else FLAG_COLOR)
 		Kind.QUEST:
 			draw_circle(center, radius, POI_COLOR)
 			draw_circle(center, radius - 2.0, QUEST_COLOR)

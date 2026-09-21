@@ -59,6 +59,19 @@ func _run() -> void:
 	_check(board.scores.size() == 1 and board.scores[0]["killing_blows"] == 4, "score row decodes")
 	_check(board.scores[0]["stats"] == PackedInt32Array([3, 0]), "score row keeps its stat columns")
 
+	var places: PackedByteArray = []
+	places.resize(4 + 16 + 1 + 16)
+	places.encode_u32(0, 1)
+	places.encode_u64(4, OTHER)
+	places.encode_float(12, 1000.0)
+	places.encode_u8(20, 1)
+	places.encode_u64(21, OTHER + 1)
+	places.encode_float(33, -50.0)
+	session.packet_received.emit("MSG_BATTLEGROUND_PLAYER_POSITIONS", places)
+	_check(board.positions.get(OTHER, Vector2.ZERO).x == 1000.0, "team mate positions decode")
+	_check(board.flag_carrier == OTHER + 1, "the flag carrier is named")
+	_check(board.positions.get(OTHER + 1, Vector2.ZERO).y == -50.0, "and placed")
+
 	var item_cooldown: PackedByteArray = []
 	item_cooldown.resize(12)
 	item_cooldown.encode_u32(8, FROSTBOLT)
