@@ -361,9 +361,9 @@ network::Packet CharCreatePacket::build(const CharCreateData& data) {
     packet.writeUInt8(data.facialHair);
     // outfitId is dead weight in WotLK, so mWoW carries the secondary class in it.
     packet.writeUInt8(data.secondaryClass);
-    // Turtle WoW / 1.12.1 clients send 4 extra zero bytes after outfitId.
-    // Servers may validate packet length and silently drop undersized packets.
-    packet.writeUInt32(0);
+    if (data.challengeMask) {
+        packet.writeUInt32(0);  // no challenge mode
+    }
 
     LOG_DEBUG("Built CMSG_CHAR_CREATE: name=", data.name,
               " race=", static_cast<int>(data.race),

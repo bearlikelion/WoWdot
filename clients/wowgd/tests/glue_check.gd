@@ -17,6 +17,7 @@ var _dialog: GlueDialog
 var _select: CharacterSelect
 var _create: CharacterCreate
 var _characters: Array = []
+var _create_code: int = -1
 
 
 # Walks the glue screens against the server: login, create, delete, enter world.
@@ -29,6 +30,9 @@ func _ready() -> void:
 	_create = _glue.get_node("%CharacterCreate")
 	WowClient.session.characters_received.connect(
 		func(characters: Array) -> void: _characters = characters
+	)
+	WowClient.session.character_created.connect(
+		func(_success: bool, code: int) -> void: _create_code = code
 	)
 	_run.call_deferred()
 
@@ -56,6 +60,9 @@ func _run() -> void:
 	(_create.get_node("%CharCreateOkayButton") as BaseButton).pressed.emit()
 	if not await _until(func() -> bool: return _select_ready() and _names().has(THROWAWAY),
 			"%s is created" % THROWAWAY):
+		printerr("the server answered the create with %d, and lists %d characters" % [
+			_create_code, _names().size(),
+		])
 		_capture("user://glue_create_failed.png")
 		return _finish()
 	_check(_selected_name() == THROWAWAY, "the new character is selected")
@@ -137,6 +144,8 @@ func _frames(count: int) -> void:
 
 
 func _capture(path: String) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
 	get_viewport().get_texture().get_image().save_png(path)
 	print("wrote ", ProjectSettings.globalize_path(path))
 

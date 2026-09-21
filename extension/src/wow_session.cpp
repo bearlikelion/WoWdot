@@ -321,6 +321,8 @@ void WowSession::create_character(const Dictionary &character) {
 	data.hairStyle = static_cast<int>(character.get("hair_style", 0));
 	data.hairColor = static_cast<int>(character.get("hair_color", 0));
 	data.facialHair = static_cast<int>(character.get("facial_hair", 0));
+	// A client folder that reports its own build belongs to a server that wants its create shape.
+	data.challengeMask = advertised_version().build != wow_profile().build;
 	world->send(game::CharCreatePacket::build(data));
 }
 
@@ -1282,9 +1284,9 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				return;
 			}
 			const uint32_t client_seed = std::random_device()();
-			world->send(game::AuthSessionPacket::build(advertised_version().build, username, client_seed, session_key, challenge.serverSeed, realm_id));
+			// Only the login server sees the advertised build: mangosd, Turtle-derived ones too, takes 5875 alone.
+			world->send(game::AuthSessionPacket::build(wow_profile().build, username, client_seed, session_key, challenge.serverSeed, realm_id));
 			// The server encrypts from its next packet on, so the cipher starts right after AUTH_SESSION.
-			// It follows the protocol this client speaks, not the build it announces.
 			world->initEncryption(session_key, wow_profile().build);
 			return;
 		}

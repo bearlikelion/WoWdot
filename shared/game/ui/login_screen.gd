@@ -28,7 +28,7 @@ func _ready() -> void:
 		ProjectSettings.get_setting("application/config/name", ""), "",
 	]
 	%AccountLoginVersion.text = (
-		WowStrings.get_text("VERSION_TEMPLATE") % build_info
+		WowStrings.format(WowStrings.get_text("VERSION_TEMPLATE"), build_info)
 	).strip_edges()
 	var background: WowModelFrame = get_node_or_null("%AccountLoginModel") as WowModelFrame
 	if background != null and background.model_file.is_empty():

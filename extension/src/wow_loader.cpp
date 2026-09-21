@@ -72,6 +72,14 @@ Ref<WowLoader> shared_loader;
 } // namespace
 
 String WowLoader::client_data_dir() {
+	// --data= picks the client for one run, so one build can play on servers with different data.
+	PackedStringArray args = OS::get_singleton()->get_cmdline_args();
+	args.append_array(OS::get_singleton()->get_cmdline_user_args());
+	for (const String &arg : args) {
+		if (arg.begins_with("--data=")) {
+			return arg.trim_prefix("--data=").trim_suffix("/");
+		}
+	}
 	// An exported build sits in the player's client folder, next to its Data.
 	if (OS::get_singleton()->has_feature("template")) {
 		return OS::get_singleton()->get_executable_path().get_base_dir().path_join("Data");

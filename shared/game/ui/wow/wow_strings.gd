@@ -17,6 +17,11 @@ static func get_text(key: String, fallback: String = "") -> String:
 	return _strings.get(key, fallback if not fallback.is_empty() else key)
 
 
+# A server's own strings can drop placeholders, and Lua ignores the arguments left over.
+static func format(template: String, args: Array) -> String:
+	return template % args.slice(0, template.count("%s"))
+
+
 # Drops the |cAARRGGBB and |r colour escapes for text shown in a plain label.
 static func strip_colors(text: String) -> String:
 	return RegEx.create_from_string("\\|c[0-9a-fA-F]{8}|\\|r").sub(text, "", true)
