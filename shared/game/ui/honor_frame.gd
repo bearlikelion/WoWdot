@@ -47,11 +47,11 @@ func refresh() -> void:
 	var alliance: bool = CharacterOptions.faction(race) == CharacterOptions.Faction.ALLIANCE
 	var rank: int = (session.get_field(guid, "PLAYER_BYTES_3") >> 24) & 0xFF
 	var highest: int = (session.get_field(guid, "PLAYER_FIELD_BYTES") >> 24) & 0xFF
-	%HonorFrameLifeTimeRankValue.text = _rank_name(highest, alliance)
-	%HonorFrameCurrentPVPTitle.text = _rank_name(rank, alliance)
+	%HonorFrameLifeTimeRankValue.text = rank_name(highest, alliance)
+	%HonorFrameCurrentPVPTitle.text = rank_name(rank, alliance)
 	var number: int = maxi(rank - RANK_OFFSET, 0)
 	%HonorFrameCurrentPVPRank.text = "(%s %d)" % [WowStrings.get_text("RANK"), number]
-	_center_rank.call_deferred()
+	center_rank.call_deferred(%HonorFrameCurrentPVPTitle, %HonorFrameCurrentPVPRank, size.x)
 	var badge: TextureRect = %HonorFramePvPIcon
 	badge.visible = number > 0
 	if number > 0:
@@ -65,19 +65,17 @@ func refresh() -> void:
 
 
 # HonorFrame_Update recentres the pair: the title, then its rank in brackets right after it.
-func _center_rank() -> void:
-	var title: Label = %HonorFrameCurrentPVPTitle
-	var rank: Label = %HonorFrameCurrentPVPRank
+static func center_rank(title: Label, rank: Label, width: float) -> void:
 	var title_width: float = title.get_minimum_size().x
 	var rank_width: float = rank.get_minimum_size().x
 	title.size.x = title_width
 	rank.size.x = rank_width
-	title.position.x = (size.x - title_width - rank_width - RANK_GAP) / 2.0
+	title.position.x = (width - title_width - rank_width - RANK_GAP) / 2.0
 	rank.position = Vector2(title.position.x + title_width + RANK_GAP, title.position.y)
 
 
 # The rank strings end in 1 for the Alliance's titles and 0 for the Horde's.
-func _rank_name(rank: int, alliance: bool) -> String:
+static func rank_name(rank: int, alliance: bool) -> String:
 	if rank == 0:
 		return WowStrings.get_text("NONE")
 	return WowStrings.get_text("PVP_RANK_%d_%d" % [rank, 1 if alliance else 0])

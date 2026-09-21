@@ -33,8 +33,8 @@ func _ready() -> void:
 	# The paper doll's art is declared after these and would draw over them.
 	for above: Control in [%InspectNameFrame, %InspectFrameCloseButton]:
 		move_child(above, -1)
-	# ponytail: the honor tab needs MSG_INSPECT_HONOR_STATS; hidden until that is parsed.
-	%InspectFrameTab2.hide()
+	%InspectFrameTab1.pressed.connect(_show_honor.bind(false))
+	%InspectFrameTab2.pressed.connect(_show_honor.bind(true))
 	%InspectHonorFrame.hide()
 	_portrait = PORTRAIT.instantiate()
 	add_child(_portrait)
@@ -46,6 +46,7 @@ func _ready() -> void:
 	session.object_updated.connect(_on_object_updated)
 	session.item_info_received.connect(func(_entry: int) -> void: _refresh(true))
 	session.objects_destroyed.connect(_on_objects_destroyed)
+	session.packet_received.connect(_on_packet_received)
 
 
 func _process(delta: float) -> void:
@@ -64,7 +65,19 @@ func inspect(guid: int) -> void:
 	payload.encode_u64(0, guid)
 	WowClient.session.send_packet("CMSG_INSPECT", payload)
 	open_requested.emit()
+	_show_honor(false)
 	_refresh(true)
+
+
+# The honor numbers are private fields, so the server is asked for them each time the tab opens.
+func _show_honor(honor: bool) -> void:
+	%InspectPaperDollFrame.visible = not honor
+	%InspectHonorFrame.visible = honor
+	if honor:
+		var payload: PackedByteArray = PackedByteArray()
+		payload.resize(8)
+		payload.encode_u64(0, _guid)
+		WowClient.session.send_packet("MSG_INSPECT_HONOR_STATS", payload)
 
 
 func _refresh(redress: bool) -> void:
@@ -91,6 +104,47 @@ func _refresh(redress: bool) -> void:
 	var display: int = session.get_field(_guid, "UNIT_FIELD_DISPLAYID")
 	var look: Dictionary = CharacterModels.player_look(session, _guid)
 	_model.frame_character(WowAssets.creatures.instantiate(display, look))
+
+
+# Each sixteen bit kill count is followed by a dead word the 1.12 client skips.
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode != "MSG_INSPECT_HONOR_STATS":
+		return
+	var reader: PacketReader = PacketReader.new(payload)
+	if reader.u64() != _guid:
+		return
+	var session: WowSession = WowClient.session
+	var race: int = session.get_field(_guid, "UNIT_FIELD_BYTES_0") & 0xFF
+	var alliance: bool = CharacterOptions.faction(race) == CharacterOptions.Faction.ALLIANCE
+	%InspectHonorFrameLifeTimeRankValue.text = HonorFrame.rank_name(reader.u8(), alliance)
+	var today: int = reader.u32()
+	%InspectHonorFrameCurrentHKValue.text = str(today & 0xFFFF)
+	%InspectHonorFrameCurrentDKValue.text = str((today >> 16) & 0xFFFF)
+	for label: String in ["Yesterday", "LastWeek", "ThisWeek"]:
+		(get_node("%%InspectHonorFrame%sHKValue" % label) as Label).text = str(reader.u16())
+		reader.u16()
+	%InspectHonorFrameLifeTimeHKValue.text = str(reader.u32())
+	%InspectHonorFrameLifeTimeDKValue.text = str(reader.u32())
+	for label: String in ["Yesterday", "LastWeek", "ThisWeek"]:
+		(get_node("%%InspectHonorFrame%sContributionValue" % label) as Label).text = str(reader.u32())
+	%InspectHonorFrameLastWeekStandingValue.text = str(reader.u32())
+	var bar: TextureProgressBar = %InspectHonorFrameProgressBar
+	bar.max_value = 255.0
+	bar.value = reader.u8()
+	bar.tint_progress = HonorFrame.ALLIANCE_BAR if alliance else HonorFrame.HORDE_BAR
+	var rank: int = (session.get_field(_guid, "PLAYER_BYTES_3") >> 24) & 0xFF
+	var number: int = maxi(rank - HonorFrame.RANK_OFFSET, 0)
+	%InspectHonorFrameCurrentPVPTitle.text = HonorFrame.rank_name(rank, alliance)
+	%InspectHonorFrameCurrentPVPRank.text = "(%s %d)" % [WowStrings.get_text("RANK"), number]
+	HonorFrame.center_rank.call_deferred(
+		%InspectHonorFrameCurrentPVPTitle, %InspectHonorFrameCurrentPVPRank, size.x
+	)
+	var badge: TextureRect = %InspectHonorFramePvPIcon
+	badge.visible = number > 0
+	if number > 0:
+		var texture: WowTexture = WowTexture.new()
+		texture.file = HonorFrame.RANK_BADGE % number
+		badge.texture = texture
 
 
 func _on_slot_hovered(slot: Inventory.Slot) -> void:

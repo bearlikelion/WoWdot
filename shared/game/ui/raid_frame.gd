@@ -23,6 +23,10 @@ func _ready() -> void:
 			(i % 2) * (group.size.x + COLUMN_GAP), (i / 2) * (group.size.y + ROW_GAP)
 		)
 		(group.get_node("Label/Text") as Label).text = "%s %d" % [WowStrings.get_text("GROUP"), i + 1]
+		group.set_drag_forwarding(Callable(), _can_drop_member, _drop_member.bind(i))
+		for slot: Node in group.get_children():
+			if slot is Control:
+				(slot as Control).set_drag_forwarding(Callable(), _can_drop_member, _drop_member.bind(i))
 		_groups.append(group)
 	(%RaidFrameRaidDescription as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	%RaidFrameConvertToRaidButton.pressed.connect(PartyFrame.convert_to_raid)
@@ -36,7 +40,7 @@ func _ready() -> void:
 	WowClient.session.packet_received.connect(_on_packet_received)
 
 
-# ponytail: a roster only; dragging members between groups and pulled-out frames come later.
+# ponytail: the pulled-out on-screen raid frames are not ported.
 func refresh() -> void:
 	if not is_visible_in_tree():
 		return
@@ -71,6 +75,22 @@ func refresh() -> void:
 		_add_member(member, slot)
 
 
+# Only the leader and assistants may shuffle the groups, which the server enforces as well.
+func _drag_member(_at_position: Vector2, member_name: String, button: Control) -> Variant:
+	var preview: Label = Label.new()
+	preview.text = member_name
+	button.set_drag_preview(preview)
+	return {"raid_member": member_name}
+
+
+func _can_drop_member(_at_position: Vector2, data: Variant) -> bool:
+	return data is Dictionary and data.has("raid_member")
+
+
+func _drop_member(_at_position: Vector2, data: Variant, group_index: int) -> void:
+	PartyFrame.move_to_subgroup(data["raid_member"], group_index)
+
+
 func member_count() -> int:
 	return _buttons.size()
 
@@ -95,6 +115,7 @@ func _add_member(member: Dictionary, slot: Control) -> void:
 	class_text.text = CharacterOptions.class_label(class_id) if class_id else ""
 	class_text.self_modulate = color
 	(button.get_node("Rank") as Label).text = ""
+	button.set_drag_forwarding(_drag_member.bind(member["name"], button), Callable(), Callable())
 	(slot.get_node("FontString") as Label).hide()
 
 
