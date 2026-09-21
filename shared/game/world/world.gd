@@ -71,6 +71,7 @@ var _ghost: bool = false
 @onready var _player: Player = $Player
 @onready var _entities: Entities = $Entities
 @onready var _effects: SpellEffects = $SpellEffects
+@onready var _name_plates: NamePlates = %NamePlates
 @onready var _transports: Transports = $Transports
 @onready var _area_triggers: AreaTriggers = $AreaTriggers
 @onready var _selection: SelectionCircle = $SelectionCircle
@@ -89,6 +90,7 @@ func _ready() -> void:
 	_hud.action_used.connect(_on_action_used)
 	_hud.spell_used.connect(_use_spell)
 	_hud.unit_selected.connect(select)
+	_name_plates.unit_clicked.connect(select)
 	_hud.ticket_requested.connect(func(text: String) -> void:
 		var here: Vector3 = WowCoords.from_godot(_player.global_position)
 		ServerNotices.open_ticket(text, _sky.map_id, here)
@@ -285,6 +287,7 @@ func select(guid: int) -> void:
 	WowClient.session.set_selection(guid)
 	_hud.show_target(guid)
 	_selection.target = guid
+	_name_plates.target = guid
 
 
 func _on_player_movement_changed(

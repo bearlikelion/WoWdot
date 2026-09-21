@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://game/world/floating_combat_text.gd" id="9_floating_text"]
 [ext_resource type="PackedScene" path="res://game/world/selection_circle.tscn" id="10_selection"]
 [ext_resource type="Script" path="res://game/ui/chat_bubbles.gd" id="11_bubbles"]
+[ext_resource type="Script" path="res://game/ui/name_plates.gd" id="12_plates"]
 [ext_resource type="Script" path="res://game/world/area_triggers.gd" id="13_triggers"]
 
 [sub_resource type="FastNoiseLite" id="Noise_clouds"]
@@ -107,6 +108,16 @@ entities = NodePath("../Entities")
 
 [node name="ChatBubbles" type="Control" parent="HudLayer" node_paths=PackedStringArray("entities", "player")]
 script = ExtResource("11_bubbles")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+entities = NodePath("../../Entities")
+player = NodePath("../../Player")
+
+[node name="NamePlates" type="Control" parent="HudLayer" node_paths=PackedStringArray("entities", "player")]
+unique_name_in_owner = true
+script = ExtResource("12_plates")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

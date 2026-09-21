@@ -19,6 +19,8 @@ const DEFAULTS: Dictionary[String, String] = {
 	"toggle_bag_2": "F10",
 	"toggle_bag_3": "F9",
 	"toggle_bag_4": "F8",
+	"name_plates": "V",
+	"friendly_name_plates": "Shift+V",
 }
 
 static var _listed: Array[Dictionary] = []

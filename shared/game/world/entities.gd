@@ -24,6 +24,8 @@ var _nodes: Dictionary[int, Node3D] = {}
 # Model-space bounds of units and players, used for picking.
 var _bounds: Dictionary[int, AABB] = {}
 var _nameplates: Dictionary[int, Label3D] = {}
+# Units whose health bar plate is up, which stands in for the floating name.
+var _plated: Dictionary[int, bool] = {}
 # Units auto-attacking, by the guid they attack; like the stock client they turn to face it.
 var _victims: Dictionary[int, int] = {}
 # Players' visible item entries, and those whose gear still waits on item queries.
@@ -181,6 +183,14 @@ func nameplate(guid: int) -> Label3D:
 	return _nameplates.get(guid)
 
 
+func set_plated(guid: int, plated: bool) -> void:
+	if plated:
+		_plated[guid] = true
+	else:
+		_plated.erase(guid)
+	_show_name(guid)
+
+
 func unit_node(guid: int) -> Node3D:
 	return _nodes.get(guid)
 
@@ -271,7 +281,7 @@ func _show_name(guid: int) -> void:
 	if guid != session.get_player_guid():
 		option = &"show_player_names" if session.get_object_type(guid) == ObjectType.PLAYER \
 		else &"show_npc_names"
-	_nameplates[guid].visible = WowAssets.interface.is_on(option)
+	_nameplates[guid].visible = WowAssets.interface.is_on(option) and not _plated.has(guid)
 
 
 # The name, and under it the creature's title such as <Paladin Trainer>.

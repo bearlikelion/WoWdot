@@ -1,0 +1,65 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/name_plate.gd" id="1_plate"]
+[ext_resource type="Theme" path="res://ui/fonts.tres" id="2_fonts"]
+
+[sub_resource type="WowTexture" id="WowTexture_border"]
+file = "Interface\\Tooltips\\Nameplate-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_bar"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[node name="NamePlate" type="Button"]
+offset_right = 128.0
+offset_bottom = 32.0
+pivot_offset = Vector2(64, 0)
+theme = ExtResource("2_fonts")
+flat = true
+script = ExtResource("1_plate")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 19.0
+offset_right = 107.0
+offset_bottom = 28.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_bar")
+
+[node name="Border" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource("WowTexture_border")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -36.0
+offset_top = 2.0
+offset_right = 146.0
+offset_bottom = 16.0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 105.0
+offset_top = 16.0
+offset_right = 127.0
+offset_bottom = 30.0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
