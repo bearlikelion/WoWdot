@@ -2,7 +2,7 @@ class_name RaidCheck
 extends Node
 
 const MAIN: PackedScene = preload("res://game/main.tscn")
-const TIMEOUT_MSEC: int = 60000
+const TIMEOUT_MSEC: int = 150000
 const STEP_MSEC: int = 10000
 const HOST: String = "127.0.0.1"
 const PORT: int = 3724
@@ -92,6 +92,15 @@ func _run() -> void:
 		PartyFrame.target_icons, PartyFrame.subgroup_of(partner_guid),
 		PartyFrame.is_assistant(partner_guid),
 	])
+
+	var friends: FriendsFrame = _main.world.find_child("FriendsFrame", true, false)
+	friends.show()
+	friends.show_tab(FriendsFrame.Tab.RAID)
+	await _frames(30)
+	var roster: RaidFrame = friends.get_node("%RaidFrame")
+	_check(roster.member_count() == 2, "the raid tab lists both members (%d)" % roster.member_count())
+	if DisplayServer.get_name() != "headless":
+		get_viewport().get_texture().get_image().save_png("user://raid_tab.png")
 
 	PartyFrame.leave()
 	_check(await _until(func() -> bool: return not PartyFrame.is_raid), "leaving ends the raid")

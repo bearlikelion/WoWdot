@@ -1,0 +1,132 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="1"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\RaidFrame\\UI-RaidFrame-GroupButton.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0, 0, 164, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0, 15, 164, 14)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4"]
+blend_mode = 1
+
+[node name="RaidGroupButtonTemplate" type="TextureButton"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = -0
+offset_right = 156
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 1
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="Rank" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1
+offset_top = -5
+offset_right = 19
+offset_bottom = 3
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 21
+offset_top = -5
+offset_right = 81
+offset_bottom = 3
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="Level" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 86
+offset_top = -5
+offset_right = 108
+offset_bottom = 3
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Class" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1")
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 110
+offset_top = -5
+offset_right = 160
+offset_bottom = 3
+ignore_texture_size = true
+
+[node name="Text" type="Label" parent="Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 50
+offset_bottom = 8
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2

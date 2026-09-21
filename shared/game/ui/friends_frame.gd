@@ -7,7 +7,7 @@ signal name_requested(tab: Tab)
 signal message_added(text: String)
 signal guild_invited(inviter: String, guild_name: String)
 
-enum Tab { FRIENDS, IGNORE, GUILD }
+enum Tab { FRIENDS, IGNORE, GUILD, RAID }
 # SMSG_GUILD_EVENT, as GuildEvents numbers them.
 enum GuildEvent { PROMOTION, DEMOTION, MOTD, JOINED, LEFT, REMOVED, LEADER_IS, LEADER_CHANGED,
 	DISBANDED, TABARD_CHANGED, RANK_RENAMED, ROSTER_UPDATE, SIGNED_ON, SIGNED_OFF }
@@ -79,9 +79,12 @@ func _ready() -> void:
 		var row: BaseButton = get_node("%%FriendsFrameFriendButton%d" % (i + 1))
 		row.pressed.connect(_on_row_pressed.bind(i))
 	%FriendsFrameCloseButton.pressed.connect(close_requested.emit)
+	# The right-click menu's anchor frame, which the stock client never draws.
+	%FriendsDropDown.hide()
 	%FriendsFrameTab1.pressed.connect(show_tab.bind(Tab.FRIENDS))
 	%FriendsFrameTab2.pressed.connect(show_tab.bind(Tab.IGNORE))
 	%FriendsFrameTab3.pressed.connect(show_tab.bind(Tab.GUILD))
+	%FriendsFrameTab4.pressed.connect(show_tab.bind(Tab.RAID))
 	%FriendsFrameAddFriendButton.pressed.connect(
 		func() -> void: name_requested.emit(_tab)
 	)
@@ -98,11 +101,12 @@ func _ready() -> void:
 func show_tab(tab: Tab) -> void:
 	_tab = tab
 	_selected = -1
-	%FriendsListFrame.visible = tab != Tab.GUILD
+	%FriendsListFrame.visible = tab in [Tab.FRIENDS, Tab.IGNORE]
 	%GuildFrame.visible = tab == Tab.GUILD
+	%RaidFrame.visible = tab == Tab.RAID
 	if tab == Tab.GUILD:
 		request_roster()
-	else:
+	elif tab != Tab.RAID:
 		request_lists()
 	refresh()
 
@@ -144,6 +148,10 @@ func add(player_name: String) -> void:
 func refresh() -> void:
 	if _tab == Tab.GUILD:
 		_refresh_guild()
+		return
+	if _tab == Tab.RAID:
+		%FriendsFrameTitleText.text = WowStrings.get_text("RAID")
+		(%RaidFrame as RaidFrame).refresh()
 		return
 	%FriendsFrameTitleText.text = WowStrings.get_text(
 		"FRIENDS_LIST" if _tab == Tab.FRIENDS else "IGNORE_LIST"

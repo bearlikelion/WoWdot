@@ -357,6 +357,16 @@
    "script": "res://game/ui/macro_popup_frame.gd"
   },
   {
+   "frame": "RaidGroupTemplate",
+   "template": true,
+   "out": "ui/raid_group.tscn"
+  },
+  {
+   "frame": "RaidGroupButtonTemplate",
+   "template": true,
+   "out": "ui/raid_group_button.tscn"
+  },
+  {
    "frame": "TutorialFrame",
    "out": "ui/tutorial_frame.tscn",
    "script": "res://game/ui/tutorial_frame.gd"
@@ -411,6 +421,7 @@
   "Minimap": "res://game/ui/minimap_view.gd",
   "SkillFrame": "res://game/ui/skill_frame.gd",
   "HonorFrame": "res://game/ui/honor_frame.gd",
+  "RaidFrame": "res://game/ui/raid_frame.gd",
   "ReputationFrame": "res://game/ui/reputation_frame.gd",
   "ShapeshiftBarFrame": "res://game/ui/stance_bar.gd",
   "TargetofTargetFrame": "res://game/ui/target_of_target_frame.gd",

@@ -231,7 +231,13 @@ func _on_item_clicked(index: int, right_click: bool) -> void:
 		_buy_back(index)
 		return
 	var item_index: int = _page * MERCHANT_ITEMS_PER_PAGE + index
-	if not right_click or item_index >= _items.size():
+	if item_index >= _items.size():
+		return
+	# MerchantItemButton_OnClick: a Ctrl click tries the item on in the dressing room.
+	if not right_click and Input.is_key_pressed(KEY_CTRL) and ItemButton.dress_up.is_valid():
+		ItemButton.dress_up.call(_items[item_index]["entry"])
+		return
+	if not right_click:
 		return
 	var payload: PackedByteArray = PackedByteArray()
 	payload.resize(14)

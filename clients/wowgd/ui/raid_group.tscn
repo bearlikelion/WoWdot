@@ -1,0 +1,230 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="1"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\RaidFrame\\UI-RaidFrame-GroupOutline.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0, 0, 170, 80)
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\RaidFrame\\UI-RaidFrame-GroupButton.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_3")
+region = Rect2(0, 15, 164, 14)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5"]
+blend_mode = 1
+
+[node name="RaidGroupTemplate" type="Control"]
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = -0
+offset_right = 162
+offset_bottom = 80
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 162
+offset_bottom = 80
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="Label" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78
+offset_top = -14
+offset_right = 78
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="Text" type="Label" parent="Label"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 156
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1")
+offset_left = 3
+offset_top = 3
+offset_right = 159
+offset_bottom = 17
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="Slot1"]
+offset_left = 78
+offset_top = 2
+offset_right = 78
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDarkGraySmall"
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Slot1"]
+offset_left = 0
+offset_top = 0
+offset_right = 156
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="Slot2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1")
+offset_left = 3
+offset_top = 18
+offset_right = 159
+offset_bottom = 32
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="Slot2"]
+offset_left = 78
+offset_top = 2
+offset_right = 78
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDarkGraySmall"
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Slot2"]
+offset_left = 0
+offset_top = 0
+offset_right = 156
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="Slot3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1")
+offset_left = 3
+offset_top = 33
+offset_right = 159
+offset_bottom = 47
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="Slot3"]
+offset_left = 78
+offset_top = 2
+offset_right = 78
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDarkGraySmall"
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Slot3"]
+offset_left = 0
+offset_top = 0
+offset_right = 156
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="Slot4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1")
+offset_left = 3
+offset_top = 48
+offset_right = 159
+offset_bottom = 62
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="Slot4"]
+offset_left = 78
+offset_top = 2
+offset_right = 78
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDarkGraySmall"
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Slot4"]
+offset_left = 0
+offset_top = 0
+offset_right = 156
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="Slot5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1")
+offset_left = 3
+offset_top = 63
+offset_right = 159
+offset_bottom = 77
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="Slot5"]
+offset_left = 78
+offset_top = 2
+offset_right = 78
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDarkGraySmall"
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Slot5"]
+offset_left = 0
+offset_top = 0
+offset_right = 156
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
