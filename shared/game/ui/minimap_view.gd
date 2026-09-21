@@ -20,6 +20,9 @@ const CORPSE_SIZE: float = 10.0
 # A corpse beyond the edge rides the rim, as it does in the stock minimap.
 const CORPSE_MARGIN: float = 6.0
 const PING_SECONDS: float = 5.0
+const POI_RADIUS: float = 4.0
+# A guard's directions are dropped once the player walks this close, in yards.
+const POI_ARRIVAL: float = 10.0
 const PING_COLOR: Color = Color(1.0, 0.82, 0.0)
 const PING_SOUND: String = "MapPing"
 
@@ -29,6 +32,7 @@ var _corpse: Vector3 = Vector3.ZERO
 var _corpse_map: int = -1
 var _ping: Vector3 = Vector3.ZERO
 var _ping_left: float = 0.0
+var _poi: Vector2 = Vector2.INF
 
 @onready var _arrow: TextureRect = %MinimapArrow
 
@@ -96,6 +100,8 @@ func _draw() -> void:
 			draw_texture_rect(image, Rect2(corner, Vector2(tile_pixels, tile_pixels)), false)
 	if _corpse_map >= 0:
 		_draw_corpse(center, tile_pixels)
+	if _poi.is_finite():
+		_draw_poi(center, tile_pixels)
 	if _ping_left > 0.0:
 		var tile: Vector2 = Vector2(32.0 - _ping.y / TILE_YARDS, 32.0 - _ping.x / TILE_YARDS)
 		var pulse: float = 4.0 + 6.0 * fmod(_ping_left, 1.0)
@@ -118,6 +124,19 @@ func _draw_corpse(center: Vector2, tile_pixels: float) -> void:
 		draw_rect(bar, CORPSE_COLOR)
 
 
+func _draw_poi(center: Vector2, tile_pixels: float) -> void:
+	if _poi.distance_to(Vector2(_position.x, _position.y)) < POI_ARRIVAL:
+		_poi = Vector2.INF
+		return
+	var tile: Vector2 = Vector2(32.0 - _poi.y / TILE_YARDS, 32.0 - _poi.x / TILE_YARDS)
+	var away: Vector2 = (tile - center) * tile_pixels
+	var rim: float = size.x / 2.0 - CORPSE_MARGIN
+	if away.length() > rim:
+		away = away.normalized() * rim
+	draw_circle(size / 2.0 + away, POI_RADIUS + 1.0, CORPSE_OUTLINE)
+	draw_circle(size / 2.0 + away, POI_RADIUS, PING_COLOR)
+
+
 func _show_ping(wow_position: Vector3) -> void:
 	_ping = wow_position
 	_ping_left = PING_SECONDS
@@ -127,3 +146,6 @@ func _show_ping(wow_position: Vector3) -> void:
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "MSG_MINIMAP_PING":
 		_show_ping(Vector3(payload.decode_float(8), payload.decode_float(12), 0.0))
+	elif opcode == "SMSG_GOSSIP_POI" and payload.size() >= 12:
+		_poi = Vector2(payload.decode_float(4), payload.decode_float(8))
+		queue_redraw()
