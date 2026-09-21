@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://game/ui/loot_rolls.gd" id="23_rolls"]
 [ext_resource type="PackedScene" path="res://ui/drop_down_list.tscn" id="24_menu"]
 [ext_resource type="PackedScene" path="res://ui/tutorial_frame.tscn" id="32_tutorial"]
+[ext_resource type="PackedScene" path="res://game/ui/world_state_header.tscn" id="33_world_state"]
 
 [node name="Hud" type="Control" unique_id=2063934219]
 layout_mode = 3
@@ -177,6 +178,10 @@ offset_bottom = 148.0
 layout_mode = 1
 offset_top = 148.0
 offset_bottom = 174.0
+
+[node name="WorldStateHeader" parent="UIParent" instance=ExtResource("33_world_state")]
+unique_name_in_owner = true
+layout_mode = 1
 
 [node name="TutorialAlerts" type="Control" parent="UIParent"]
 unique_name_in_owner = true

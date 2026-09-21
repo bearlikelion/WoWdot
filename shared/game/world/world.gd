@@ -144,7 +144,7 @@ func _process(_delta: float) -> void:
 		_area = area
 		var session: WowSession = WowClient.session
 		var race: int = session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_0") & 0xFF
-		_hud.show_area(area, race)
+		_hud.show_area(area, race, _sky.map_id)
 		WowAssets.audio.play_zone(area)
 		var zone: int = AreaInfo.zone_of(area)
 		Channels.enter_zone(AreaInfo.area_name(zone), AreaInfo.flags(zone))
