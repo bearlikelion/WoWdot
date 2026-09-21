@@ -22,8 +22,7 @@ const ARATHI_BASIN: int = 529
 # A character stands in at most three queues at once.
 const QUEUE_SLOTS: int = 3
 
-## One row per player: "guid", "rank", "killing_blows", "honorable_kills", "deaths",
-## "honor" and "stats", the battleground's own columns.
+## One row per player; "stats" holds the battleground's own columns.
 var scores: Array[Dictionary] = []
 var winner: Winner = Winner.NONE
 ## Team mates by guid, in WoW map yards, and the flag carrier when the server names one.
