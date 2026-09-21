@@ -4,7 +4,7 @@ extends Control
 
 signal open_requested
 signal close_requested
-signal trade_offered(player_name: String)
+signal trade_offered(player_name: String, player_guid: int)
 signal message_added(text: String)
 signal error_raised(text: String)
 
@@ -154,7 +154,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	match status:
 		Status.BEGIN:
 			_pending = reader.u64()
-			trade_offered.emit(WowClient.session.get_object_name(_pending))
+			trade_offered.emit(WowClient.session.get_object_name(_pending), _pending)
 		Status.OPEN_WINDOW:
 			_open(_pending)
 		Status.COMPLETE:

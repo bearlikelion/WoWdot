@@ -95,6 +95,7 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming and the breath timer. |
 | `stance_check`, `target_of_target_check` | The stance bar and the target of target frame. |
 | `emote_check`, `channel_check` | Slash emotes and chat channels. |
+| `read_check` | A GM-made book opens in the reading window and turns its page. |
 | `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting with the corpse marked on both maps. |
 | `sheath_check`, `sky_check` | Sheathing, sky, light and weather. |
 | `ribbon_check` | M2 ribbon emitters read in the vanilla layout. No server needed. They are parsed but not yet drawn: the trail's look was not right, so the drawing was taken back out. |
@@ -142,9 +143,9 @@ These parts of 1.12 have not been started at all:
 | Fishing | The bobber game object, `SMSG_GAMEOBJECT_CUSTOM_ANIM` and `SMSG_GAMEOBJECT_DESPAWN_ANIM`, feeding the loot flow the client already has. |
 | Macros | A macro window, its icon picker, and running one from an action button. Pure client work, no opcodes. |
 | Readable objects | Books and letters in the bags open in the reading window; plaques and other game objects that carry page text do not yet. |
-| Looking for group | The 1.12 browser over `MSG_LOOKING_FOR_GROUP` and the meeting stone queue. |
+| Looking for group | Clicking a meeting stone joins its queue and a second click leaves it; the minimap button and the 1.12 browser over `MSG_LOOKING_FOR_GROUP` are missing. |
 | Cinematics | `SMSG_TRIGGER_CINEMATIC` is acknowledged so the server moves on, but the camera flyover is not drawn. |
-| Odds and ends | `SMSG_ITEM_PUSH_RESULT` for the toast over the bags, and the GM ticket window. |
+| Odds and ends | `SMSG_ITEM_PUSH_RESULT` for the toast over the bags, and the GM ticket window (`/ticket <text>`, `/ticket` and `/ticket delete` stand in for it). |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 

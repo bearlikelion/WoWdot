@@ -587,7 +587,14 @@ func _on_duel_challenged(challenger: String) -> void:
 	)
 
 
-func _on_trade_offered(player_name: String) -> void:
+# CMSG_IGNORE_TRADE and CMSG_BUSY_TRADE turn an offer away without asking.
+func _on_trade_offered(player_name: String, player_guid: int) -> void:
+	if _friends.is_ignored(player_guid):
+		WowClient.session.send_packet("CMSG_IGNORE_TRADE", PackedByteArray())
+		return
+	if _popup.visible:
+		WowClient.session.send_packet("CMSG_BUSY_TRADE", PackedByteArray())
+		return
 	_popup.ask(
 		WowStrings.get_text("TRADE_WITH_QUESTION", "Trade with %s?") % player_name,
 		_trade.accept_offer, "ACCEPT", "DECLINE", _trade.decline_offer,

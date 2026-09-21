@@ -167,6 +167,10 @@ func refresh() -> void:
 			info.text = ""
 
 
+func is_ignored(guid: int) -> bool:
+	return guid in _ignored
+
+
 func _refresh_guild() -> void:
 	%FriendsFrameTitleText.text = _guild_name
 	var online: int = _members.reduce(
