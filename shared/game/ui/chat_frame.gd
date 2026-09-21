@@ -13,6 +13,10 @@ const TYPE_KEYS: Dictionary[WowSession.ChatType, String] = {
 	WowSession.CHAT_MONSTER_SAY: "MONSTER_SAY", WowSession.CHAT_MONSTER_YELL: "MONSTER_YELL",
 	WowSession.CHAT_MONSTER_WHISPER: "MONSTER_WHISPER",
 	WowSession.CHAT_RAID_BOSS_WHISPER: "MONSTER_WHISPER", WowSession.CHAT_CHANNEL: "CHANNEL",
+	WowSession.CHAT_AFK: "AFK", WowSession.CHAT_DND: "DND",
+	WowSession.CHAT_RAID_LEADER: "RAID_LEADER", WowSession.CHAT_RAID_WARNING: "RAID_WARNING",
+	WowSession.CHAT_BATTLEGROUND: "BATTLEGROUND",
+	WowSession.CHAT_BATTLEGROUND_LEADER: "BATTLEGROUND_LEADER",
 }
 # ChatTypeInfo colours from the stock chat configuration.
 const COLORS: Dictionary[WowSession.ChatType, Color] = {
@@ -34,12 +38,20 @@ const COLORS: Dictionary[WowSession.ChatType, Color] = {
 	WowSession.CHAT_RAID_BOSS_WHISPER: Color(1.0, 0.5, 1.0),
 	WowSession.CHAT_RAID_BOSS_EMOTE: Color(1.0, 0.5, 0.25),
 	WowSession.CHAT_CHANNEL: Color(1.0, 0.75, 0.75),
+	WowSession.CHAT_AFK: Color(1.0, 0.5, 1.0),
+	WowSession.CHAT_DND: Color(1.0, 0.5, 1.0),
+	WowSession.CHAT_RAID_LEADER: Color(1.0, 0.28, 0.04),
+	WowSession.CHAT_RAID_WARNING: Color(1.0, 0.28, 0.0),
+	WowSession.CHAT_BATTLEGROUND: Color(1.0, 0.5, 0.0),
+	WowSession.CHAT_BATTLEGROUND_LEADER: Color(1.0, 0.86, 0.72),
 }
 # Player names in these lines are shown as [Name] links, as ChatFrame_OnEvent writes them.
 const PLAYER_TYPES: Array[WowSession.ChatType] = [
 	WowSession.CHAT_SAY, WowSession.CHAT_PARTY, WowSession.CHAT_RAID, WowSession.CHAT_GUILD,
 	WowSession.CHAT_OFFICER, WowSession.CHAT_YELL, WowSession.CHAT_WHISPER,
-	WowSession.CHAT_WHISPER_INFORM, WowSession.CHAT_CHANNEL,
+	WowSession.CHAT_WHISPER_INFORM, WowSession.CHAT_CHANNEL, WowSession.CHAT_AFK,
+	WowSession.CHAT_DND, WowSession.CHAT_RAID_LEADER, WowSession.CHAT_RAID_WARNING,
+	WowSession.CHAT_BATTLEGROUND, WowSession.CHAT_BATTLEGROUND_LEADER,
 ]
 const COMMANDS: Dictionary[String, WowSession.ChatType] = {
 	"/s": WowSession.CHAT_SAY, "/say": WowSession.CHAT_SAY,
@@ -52,6 +64,8 @@ const COMMANDS: Dictionary[String, WowSession.ChatType] = {
 	"/ra": WowSession.CHAT_RAID, "/raid": WowSession.CHAT_RAID,
 	"/w": WowSession.CHAT_WHISPER, "/whisper": WowSession.CHAT_WHISPER,
 	"/t": WowSession.CHAT_WHISPER, "/tell": WowSession.CHAT_WHISPER,
+	"/rw": WowSession.CHAT_RAID_WARNING, "/bg": WowSession.CHAT_BATTLEGROUND,
+	"/afk": WowSession.CHAT_AFK, "/dnd": WowSession.CHAT_DND,
 }
 
 const GUILD_COMMANDS: Dictionary[String, String] = {
@@ -264,6 +278,10 @@ func _on_text_submitted(text: String) -> void:
 	var chat_type: WowSession.ChatType = _chat_type
 	var target: String = _whisper_target
 	close()
+	# A bare /afk or /dnd toggles the state with the server's default message.
+	if message.to_lower() in ["/afk", "/dnd"]:
+		WowClient.session.send_chat(COMMANDS[message.to_lower()], "")
+		return
 	if message.is_empty():
 		return
 	_history.append(text.strip_edges())

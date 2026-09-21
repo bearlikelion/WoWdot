@@ -71,6 +71,14 @@ func _run() -> void:
 	edit_box.text_submitted.emit(edit_box.text)
 	_check(await _until(func() -> bool: return _line_with("typed aloud")), "typed /s says it")
 
+	_lines.clear()
+	chat.call("_on_text_submitted", "/afk")
+	var session: WowSession = WowClient.session
+	var away: bool = await _until(func() -> bool:
+		return session.get_field(session.get_player_guid(), "PLAYER_FLAGS") & 0x02 != 0)
+	_check(away, "/afk raises the AFK player flag")
+	chat.call("_on_text_submitted", "/afk")
+
 	chat.call("_on_text_submitted", "/leave %d" % number)
 	var left: bool = await _until(func() -> bool: return Channels.number_of(CHANNEL) == 0)
 	_check(left, "leaving by number drops the channel")

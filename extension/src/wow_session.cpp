@@ -55,7 +55,7 @@ bool is_player_guid(uint64_t guid) {
 }
 
 // WotLK's wire number for each chat type the session knows, which vanilla sends as it is.
-constexpr std::array<std::pair<uint8_t, uint8_t>, 18> WOTLK_CHAT_TYPES = { {
+constexpr std::array<std::pair<uint8_t, uint8_t>, 24> WOTLK_CHAT_TYPES = { {
 	{ WowSession::CHAT_SYSTEM, 0x00 }, { WowSession::CHAT_SAY, 0x01 },
 	{ WowSession::CHAT_PARTY, 0x02 }, { WowSession::CHAT_RAID, 0x03 },
 	{ WowSession::CHAT_GUILD, 0x04 }, { WowSession::CHAT_OFFICER, 0x05 },
@@ -65,6 +65,9 @@ constexpr std::array<std::pair<uint8_t, uint8_t>, 18> WOTLK_CHAT_TYPES = { {
 	{ WowSession::CHAT_MONSTER_YELL, 0x0E }, { WowSession::CHAT_MONSTER_WHISPER, 0x0F },
 	{ WowSession::CHAT_MONSTER_EMOTE, 0x10 }, { WowSession::CHAT_CHANNEL, 0x11 },
 	{ WowSession::CHAT_RAID_BOSS_EMOTE, 0x29 }, { WowSession::CHAT_RAID_BOSS_WHISPER, 0x2A },
+	{ WowSession::CHAT_AFK, 0x17 }, { WowSession::CHAT_DND, 0x18 },
+	{ WowSession::CHAT_RAID_LEADER, 0x27 }, { WowSession::CHAT_RAID_WARNING, 0x28 },
+	{ WowSession::CHAT_BATTLEGROUND, 0x2C }, { WowSession::CHAT_BATTLEGROUND_LEADER, 0x2D },
 } };
 
 uint32_t chat_to_wire(uint8_t type) {
@@ -2087,6 +2090,12 @@ void WowSession::_bind_methods() {
 	BIND_ENUM_CONSTANT(CHAT_MONSTER_WHISPER);
 	BIND_ENUM_CONSTANT(CHAT_RAID_BOSS_WHISPER);
 	BIND_ENUM_CONSTANT(CHAT_RAID_BOSS_EMOTE);
+	BIND_ENUM_CONSTANT(CHAT_AFK);
+	BIND_ENUM_CONSTANT(CHAT_DND);
+	BIND_ENUM_CONSTANT(CHAT_RAID_LEADER);
+	BIND_ENUM_CONSTANT(CHAT_RAID_WARNING);
+	BIND_ENUM_CONSTANT(CHAT_BATTLEGROUND);
+	BIND_ENUM_CONSTANT(CHAT_BATTLEGROUND_LEADER);
 }
 
 } // namespace godot
