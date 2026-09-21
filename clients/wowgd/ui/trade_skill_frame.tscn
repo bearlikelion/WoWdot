@@ -1,0 +1,2507 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/trade_skill_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\TradeSkillFrame\\UI-TradeSkill-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\TradeSkillFrame\\UI-TradeSkill-SkillBorder.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_5")
+region = Rect2(0, 0, 256, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_5")
+region = Rect2(0, 8, 28, 8)
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-HorizontalBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 256, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 16, 75, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ExpandTab-Left.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Middle.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Right.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-MinusButton-UP.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-PlusButton-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-PlusButton-Hilight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_19"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-Listbox-Highlight2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(0, 3, 30, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(34, 4, 30, 124)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_32")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34"]
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
+atlas = SubResource("WowTexture_43")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46"]
+atlas = SubResource("WowTexture_45")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_47"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
+atlas = SubResource("WowTexture_47")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(0, 0, 30, 123)
+
+[sub_resource type="WowTexture" id="WowTexture_52"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-DetailHeaderLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_53"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-DetailHeaderRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_54"]
+file = "Interface\\QuestFrame\\UI-QuestItemNameFrame.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_55"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56"]
+atlas = SubResource("WowTexture_55")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_57"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58"]
+atlas = SubResource("WowTexture_57")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_59"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60"]
+atlas = SubResource("WowTexture_59")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_61"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62"]
+atlas = SubResource("WowTexture_61")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_63"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_64"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_65"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_66"]
+file = "Interface\\Common\\Common-Input-Border.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67"]
+atlas = SubResource("WowTexture_66")
+region = Rect2(0, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68"]
+atlas = SubResource("WowTexture_66")
+region = Rect2(120, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_69"]
+atlas = SubResource("WowTexture_66")
+region = Rect2(8, 0, 112, 20)
+
+[sub_resource type="WowTexture" id="WowTexture_70"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_71"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_72"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_73"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_74"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_75"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[node name="TradeSkillFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 384
+offset_bottom = 616
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="TradeSkillFramePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -256
+offset_right = 256
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -256
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="TradeSkillFrameTitleText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 17
+offset_right = 0
+offset_bottom = 29
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Trade Skills"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TradeSkillSkillBorderLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 63
+offset_top = 50
+offset_right = 319
+offset_bottom = 58
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="Texture5" type="TextureRect" parent="."]
+offset_left = 319
+offset_top = 50
+offset_right = 347
+offset_bottom = 58
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="TradeSkillHorizontalBarLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 221
+offset_right = 271
+offset_bottom = 237
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="Texture6" type="TextureRect" parent="."]
+offset_left = 271
+offset_top = 221
+offset_right = 346
+offset_bottom = 237
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="TradeSkillRankFrame" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 37
+offset_right = 341
+offset_bottom = 52
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_11")
+nine_patch_stretch = true
+tint_progress = Color(0.25, 0.25, 0.75, 1)
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="TradeSkillRankFrameBackground" type="ColorRect" parent="TradeSkillRankFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 268
+offset_bottom = 15
+show_behind_parent = true
+mouse_filter = 2
+color = Color(1, 1, 1, 0.2)
+
+[node name="TradeSkillRankFrameSkillName" type="Label" parent="TradeSkillRankFrame"]
+unique_name_in_owner = true
+offset_left = 6
+offset_top = 1.5
+offset_right = 6
+offset_bottom = 11.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TradeSkillRankFrameSkillRank" type="Label" parent="TradeSkillRankFrame"]
+unique_name_in_owner = true
+offset_left = 19
+offset_top = 1.5
+offset_right = 147
+offset_bottom = 11.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="TradeSkillRankFrameBorder" type="TextureButton" parent="TradeSkillRankFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -5
+offset_top = -8.5
+offset_right = 276
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillRankFrame/TradeSkillRankFrameBorder"]
+offset_left = 0
+offset_top = 0
+offset_right = 281
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="TradeSkillExpandButtonFrame" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 71
+offset_right = 69
+offset_bottom = 103
+mouse_filter = 2
+
+[node name="TradeSkillExpandTabLeft" type="TextureRect" parent="TradeSkillExpandButtonFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 8
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="TradeSkillExpandTabMiddle" type="TextureRect" parent="TradeSkillExpandButtonFrame"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = -6
+offset_right = 46
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="TradeSkillExpandTabRight" type="TextureRect" parent="TradeSkillExpandButtonFrame"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -6
+offset_right = 54
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="TradeSkillCollapseAllButton" type="TextureButton" parent="TradeSkillExpandButtonFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 8
+offset_top = 2
+offset_right = 48
+offset_bottom = 24
+ignore_texture_size = true
+
+[node name="TradeSkillCollapseAllButtonSubText" type="Label" parent="TradeSkillExpandButtonFrame/TradeSkillCollapseAllButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillExpandButtonFrame/TradeSkillCollapseAllButton"]
+offset_left = 3
+offset_top = 3
+offset_right = 19
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillExpandButtonFrame/TradeSkillCollapseAllButton"]
+offset_left = 3
+offset_top = 3
+offset_right = 19
+offset_bottom = 19
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillCollapseAllButtonText" type="Label" parent="TradeSkillExpandButtonFrame/TradeSkillCollapseAllButton"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 3.5
+offset_right = 21
+offset_bottom = 16.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillExpandButtonFrame/TradeSkillCollapseAllButton"]
+offset_left = 3
+offset_top = 3
+offset_right = 19
+offset_bottom = 19
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillInvSlotDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -65
+offset_top = 66
+offset_right = -25
+offset_bottom = 98
+mouse_filter = 2
+
+[node name="TradeSkillInvSlotDropDownLeft" type="TextureRect" parent="TradeSkillInvSlotDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_21")
+expand_mode = 1
+
+[node name="TradeSkillInvSlotDropDownMiddle" type="TextureRect" parent="TradeSkillInvSlotDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="TradeSkillInvSlotDropDownRight" type="TextureRect" parent="TradeSkillInvSlotDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="TradeSkillInvSlotDropDownText" type="Label" parent="TradeSkillInvSlotDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TradeSkillInvSlotDropDownButton" type="TextureButton" parent="TradeSkillInvSlotDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillInvSlotDropDown/TradeSkillInvSlotDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillInvSlotDropDown/TradeSkillInvSlotDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_25")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillInvSlotDropDown/TradeSkillInvSlotDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_26")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillInvSlotDropDown/TradeSkillInvSlotDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillSubClassDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -70
+offset_top = 66
+offset_right = -30
+offset_bottom = 98
+mouse_filter = 2
+
+[node name="TradeSkillSubClassDropDownLeft" type="TextureRect" parent="TradeSkillSubClassDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_21")
+expand_mode = 1
+
+[node name="TradeSkillSubClassDropDownMiddle" type="TextureRect" parent="TradeSkillSubClassDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="TradeSkillSubClassDropDownRight" type="TextureRect" parent="TradeSkillSubClassDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="TradeSkillSubClassDropDownText" type="Label" parent="TradeSkillSubClassDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TradeSkillSubClassDropDownButton" type="TextureButton" parent="TradeSkillSubClassDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSubClassDropDown/TradeSkillSubClassDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillSubClassDropDown/TradeSkillSubClassDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_25")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSubClassDropDown/TradeSkillSubClassDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_26")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSubClassDropDown/TradeSkillSubClassDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillHighlightFrame" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+
+[node name="TradeSkillHighlight" type="TextureRect" parent="TradeSkillHighlightFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="TradeSkillSkill1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 96
+offset_right = 315
+offset_bottom = 112
+ignore_texture_size = true
+
+[node name="TradeSkillSkill1SubText" type="Label" parent="TradeSkillSkill1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSkill1"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill1"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillSkill1Text" type="Label" parent="TradeSkillSkill1"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill1"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillSkill2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 112
+offset_right = 315
+offset_bottom = 128
+ignore_texture_size = true
+
+[node name="TradeSkillSkill2SubText" type="Label" parent="TradeSkillSkill2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSkill2"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill2"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillSkill2Text" type="Label" parent="TradeSkillSkill2"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill2"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillSkill3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 128
+offset_right = 315
+offset_bottom = 144
+ignore_texture_size = true
+
+[node name="TradeSkillSkill3SubText" type="Label" parent="TradeSkillSkill3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSkill3"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill3"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillSkill3Text" type="Label" parent="TradeSkillSkill3"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill3"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillSkill4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 144
+offset_right = 315
+offset_bottom = 160
+ignore_texture_size = true
+
+[node name="TradeSkillSkill4SubText" type="Label" parent="TradeSkillSkill4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSkill4"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill4"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillSkill4Text" type="Label" parent="TradeSkillSkill4"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill4"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillSkill5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 160
+offset_right = 315
+offset_bottom = 176
+ignore_texture_size = true
+
+[node name="TradeSkillSkill5SubText" type="Label" parent="TradeSkillSkill5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSkill5"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill5"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillSkill5Text" type="Label" parent="TradeSkillSkill5"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill5"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillSkill6" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 176
+offset_right = 315
+offset_bottom = 192
+ignore_texture_size = true
+
+[node name="TradeSkillSkill6SubText" type="Label" parent="TradeSkillSkill6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSkill6"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill6"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillSkill6Text" type="Label" parent="TradeSkillSkill6"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill6"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillSkill7" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 192
+offset_right = 315
+offset_bottom = 208
+ignore_texture_size = true
+
+[node name="TradeSkillSkill7SubText" type="Label" parent="TradeSkillSkill7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSkill7"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill7"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillSkill7Text" type="Label" parent="TradeSkillSkill7"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill7"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillSkill8" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 208
+offset_right = 315
+offset_bottom = 224
+ignore_texture_size = true
+
+[node name="TradeSkillSkill8SubText" type="Label" parent="TradeSkillSkill8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillSkill8"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill8"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="TradeSkillSkill8Text" type="Label" parent="TradeSkillSkill8"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill8"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillListScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -363
+offset_top = 96
+offset_right = -67
+offset_bottom = 226
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="TradeSkillListScrollFrame"]
+offset_left = 293
+offset_top = -2
+offset_right = 323
+offset_bottom = 118
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="TradeSkillListScrollFrame"]
+offset_left = 293
+offset_top = 9
+offset_right = 323
+offset_bottom = 132
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="TradeSkillListScrollFrameScrollBar" type="VSlider" parent="TradeSkillListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 302
+offset_top = 16
+offset_right = 318
+offset_bottom = 114
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_33")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_33")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_34")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_34")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_34")
+max_value = 0.0
+step = 0.0
+
+[node name="TradeSkillListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 98
+offset_right = 16
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_46")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillListScrollFrameClip" type="Control" parent="TradeSkillListScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="TradeSkillListScrollFrameScrollChildFrame" type="Control" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="TradeSkillDetailScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 20
+offset_top = 234
+offset_right = 317
+offset_bottom = 410
+mouse_filter = 0
+
+[node name="TradeSkillDetailScrollFrameTop" type="TextureRect" parent="TradeSkillDetailScrollFrame"]
+unique_name_in_owner = true
+offset_left = 295
+offset_top = -5
+offset_right = 325
+offset_bottom = 118
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="TradeSkillDetailScrollFrameBottom" type="TextureRect" parent="TradeSkillDetailScrollFrame"]
+unique_name_in_owner = true
+offset_left = 295
+offset_top = 54
+offset_right = 325
+offset_bottom = 177
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="TradeSkillDetailScrollFrameScrollBar" type="VSlider" parent="TradeSkillDetailScrollFrame"]
+unique_name_in_owner = true
+offset_left = 303
+offset_top = 16
+offset_right = 319
+offset_bottom = 160
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_33")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_33")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_34")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_34")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_34")
+max_value = 0.0
+step = 0.0
+
+[node name="TradeSkillDetailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillDetailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 144
+offset_right = 16
+offset_bottom = 160
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_46")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillDetailScrollFrameClip" type="Control" parent="TradeSkillDetailScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="TradeSkillDetailScrollChildFrame" type="Control" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 297
+offset_bottom = 150
+mouse_filter = 2
+
+[node name="TradeSkillSkillName" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 5
+offset_right = 294
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Skill Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="TradeSkillRequirementLabel" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 17
+offset_right = 50
+offset_bottom = 27
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Requires:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TradeSkillRequirementText" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 17
+offset_right = 234
+offset_bottom = 27
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="TradeSkillSkillCooldown" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 27
+offset_right = 50
+offset_bottom = 37
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontRedSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TradeSkillDetailHeaderLeft" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -3
+offset_right = 256
+offset_bottom = 61
+mouse_filter = 2
+texture = SubResource("WowTexture_52")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+offset_left = 256
+offset_top = -3
+offset_right = 320
+offset_bottom = 61
+mouse_filter = 2
+texture = SubResource("WowTexture_53")
+expand_mode = 1
+
+[node name="TradeSkillReagentLabel" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = 47
+offset_right = 8
+offset_bottom = 57
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Reagents: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TradeSkillSkillIcon" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 8
+offset_top = 3
+offset_right = 45
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="TradeSkillSkillIconCount" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillSkillIcon"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillReagent1" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 60
+offset_right = 150
+offset_bottom = 101
+ignore_texture_size = true
+
+[node name="TradeSkillReagent1IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TradeSkillReagent1NameFrame" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent1"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="TradeSkillReagent1Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent1"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="TradeSkillReagent1Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent1"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillReagent2" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 150
+offset_top = 60
+offset_right = 297
+offset_bottom = 101
+ignore_texture_size = true
+
+[node name="TradeSkillReagent2IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TradeSkillReagent2NameFrame" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent2"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="TradeSkillReagent2Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent2"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="TradeSkillReagent2Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent2"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillReagent3" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 103
+offset_right = 150
+offset_bottom = 144
+ignore_texture_size = true
+
+[node name="TradeSkillReagent3IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TradeSkillReagent3NameFrame" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent3"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="TradeSkillReagent3Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent3"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="TradeSkillReagent3Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent3"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillReagent4" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 150
+offset_top = 103
+offset_right = 297
+offset_bottom = 144
+ignore_texture_size = true
+
+[node name="TradeSkillReagent4IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TradeSkillReagent4NameFrame" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent4"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="TradeSkillReagent4Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent4"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="TradeSkillReagent4Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent4"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillReagent5" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 146
+offset_right = 150
+offset_bottom = 187
+ignore_texture_size = true
+
+[node name="TradeSkillReagent5IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TradeSkillReagent5NameFrame" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent5"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="TradeSkillReagent5Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent5"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="TradeSkillReagent5Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent5"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillReagent6" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 150
+offset_top = 146
+offset_right = 297
+offset_bottom = 187
+ignore_texture_size = true
+
+[node name="TradeSkillReagent6IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TradeSkillReagent6NameFrame" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent6"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="TradeSkillReagent6Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent6"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="TradeSkillReagent6Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent6"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillReagent7" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 150
+offset_top = 189
+offset_right = 297
+offset_bottom = 230
+ignore_texture_size = true
+
+[node name="TradeSkillReagent7IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TradeSkillReagent7NameFrame" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent7"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="TradeSkillReagent7Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent7"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="TradeSkillReagent7Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent7"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillReagent8" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 297
+offset_top = 189
+offset_right = 444
+offset_bottom = 230
+ignore_texture_size = true
+
+[node name="TradeSkillReagent8IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TradeSkillReagent8NameFrame" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent8"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="TradeSkillReagent8Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent8"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="TradeSkillReagent8Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent8"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TradeSkillCreateButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 184
+offset_top = 411
+offset_right = 264
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillCreateButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillCreateButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_58")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillCreateButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_60")
+expand_mode = 1
+
+[node name="TradeSkillCreateButtonText" type="Label" parent="TradeSkillCreateButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Create"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillCreateButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_62")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillCancelButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 265
+offset_top = 411
+offset_right = 345
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_58")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_60")
+expand_mode = 1
+
+[node name="TradeSkillCancelButtonText" type="Label" parent="TradeSkillCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_62")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillCreateAllButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 18
+offset_top = 411
+offset_right = 98
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillCreateAllButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillCreateAllButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_58")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillCreateAllButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_60")
+expand_mode = 1
+
+[node name="TradeSkillCreateAllButtonText" type="Label" parent="TradeSkillCreateAllButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Create All"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillCreateAllButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_62")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillDecrementButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 101
+offset_top = 411
+offset_right = 124
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillDecrementButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 23
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("WowTexture_63")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillDecrementButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 23
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_64")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillDecrementButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 23
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_65")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillDecrementButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 23
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillInputBox" type="LineEdit" parent="."]
+unique_name_in_owner = true
+offset_left = 128
+offset_top = 412
+offset_right = 158
+offset_bottom = 432
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+max_length = 3
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_34")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_34")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_34")
+
+[node name="TradeSkillInputBoxLeft" type="TextureRect" parent="TradeSkillInputBox"]
+unique_name_in_owner = true
+offset_left = -5
+offset_top = 0
+offset_right = 3
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_67")
+expand_mode = 1
+
+[node name="TradeSkillInputBoxRight" type="TextureRect" parent="TradeSkillInputBox"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 0
+offset_right = 30
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_68")
+expand_mode = 1
+
+[node name="TradeSkillInputBoxMiddle" type="TextureRect" parent="TradeSkillInputBox"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 22
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_69")
+expand_mode = 1
+
+[node name="TradeSkillIncrementButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 158
+offset_top = 411
+offset_right = 181
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillIncrementButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 23
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("WowTexture_70")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillIncrementButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 23
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TradeSkillIncrementButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 23
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_72")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillIncrementButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 23
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="TradeSkillFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -61
+offset_top = 8
+offset_right = -29
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_73")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_74")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_75")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")

@@ -3,6 +3,7 @@ extends RefCounted
 
 const QUESTION_MARK_ICON: String = "Interface\\Icons\\INV_Misc_QuestionMark"
 const GENERAL_TAB_ICON: String = "Interface\\Icons\\INV_Misc_Book_09"
+const EFFECT_TRADE_SKILL: int = 47
 const SKILL_CATEGORY_CLASS: int = 7
 const SPELL_ATTR_DO_NOT_DISPLAY: int = 0x80
 
@@ -162,6 +163,14 @@ func _load_skill_lines() -> void:
 func taught_spell(spell_id: int) -> int:
 	var taught: int = _uint(spell_id, "EffectTriggerSpell0")
 	return taught if taught else spell_id
+
+
+# A profession's own spell only opens its window, through SPELL_EFFECT_TRADE_SKILL.
+func opens_trade_skill(spell_id: int) -> bool:
+	for i: int in 3:
+		if _uint(spell_id, "Effect%d" % i) == EFFECT_TRADE_SKILL:
+			return true
+	return false
 
 
 func skill_line(spell_id: int) -> int:

@@ -30,6 +30,7 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"OpenMailFrame": [Area.CENTER, 0],
 	&"ItemTextFrame": [Area.LEFT, 0],
 	&"ClassTrainerFrame": [Area.LEFT, 0],
+	&"TradeSkillFrame": [Area.LEFT, 0],
 	&"TaxiFrame": [Area.LEFT, 0],
 	&"LootFrame": [Area.LEFT, 0],
 	&"WorldMapFrame": [Area.FULL, 0],

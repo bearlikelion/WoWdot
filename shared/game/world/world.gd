@@ -412,6 +412,8 @@ func _on_action_used(slot: int) -> void:
 # Attack toggles auto-attack on the target; every other spell is cast at it.
 func _use_spell(spell: int) -> void:
 	var session: WowSession = WowClient.session
+	if _hud.open_trade_skill(spell):
+		return
 	if spell != ActionButton.SPELL_ATTACK:
 		if WowAssets.spells.uses_ranged_slot(spell):
 			_sheathe(ItemModels.SheathState.RANGED)

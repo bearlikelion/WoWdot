@@ -95,6 +95,7 @@ var _chat_hover_time: float = 0.0
 @onready var _quest_watch: QuestWatchFrame = %QuestWatchFrame
 @onready var _merchant: MerchantFrame = _panels.get_node("%MerchantFrame")
 @onready var _trainer: ClassTrainerFrame = _panels.get_node("%ClassTrainerFrame")
+@onready var _trade_skill: TradeSkillFrame = _panels.get_node("%TradeSkillFrame")
 @onready var _taxi: TaxiFrame = _panels.get_node("%TaxiFrame")
 @onready var _loot: LootFrame = _panels.get_node("%LootFrame")
 @onready var _world_map: WorldMapFrame = _panels.get_node("%WorldMapFrame")
@@ -170,6 +171,7 @@ func _ready() -> void:
 	_merchant.backpack_requested.connect(_panels.set_backpack_open)
 	_merchant.error_raised.connect(show_error)
 	_trainer.open_requested.connect(_panels.show_panel.bind(_trainer))
+	_trade_skill.open_requested.connect(_panels.show_panel.bind(_trade_skill))
 	_taxi.open_requested.connect(_panels.show_panel.bind(_taxi))
 	_taxi.error_raised.connect(show_error)
 	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
@@ -190,6 +192,7 @@ func _ready() -> void:
 	_on_bottom_bars_toggled(_main_menu_bar.get_node("%MultiBarBottomLeft").visible)
 	_player_frame.unit_selected.connect(unit_selected.emit)
 	_main_menu_bar.set_portrait(_player_frame.portrait_texture())
+	_trade_skill.set_portrait(_player_frame.portrait_texture())
 	_party.unit_selected.connect(unit_selected.emit)
 	_party.invited.connect(_on_party_invited)
 	_party.message_added.connect(add_system_line)
@@ -259,6 +262,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_viewport().set_input_as_handled()
 		return
 	get_viewport().set_input_as_handled()
+
+
+# False when the spell is not a profession's, and should be cast as usual.
+func open_trade_skill(spell_id: int) -> bool:
+	return WowAssets.spells.opens_trade_skill(spell_id) and _trade_skill.open_for_spell(spell_id)
 
 
 func show_player(guid: int) -> void:

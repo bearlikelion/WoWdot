@@ -62,7 +62,8 @@ const FLOAT_SPEED: float = 1.0
 const MIN_PITCH: float = -1.3
 const MAX_PITCH: float = 0.6
 const MIN_ZOOM: float = 1.5
-const MAX_ZOOM: float = 30.0
+# The stock default; its Max Camera Distance slider doubles this at most.
+const MAX_ZOOM: float = 15.0
 const ZOOM_STEP: float = 1.2
 const CLICK_SLOP: float = 4.0
 const LONGITUDINAL: int = MoveFlag.FORWARD | MoveFlag.BACKWARD

@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" path="res://ui/video_options_frame.tscn" id="16_video"]
 [ext_resource type="PackedScene" path="res://ui/ui_options_frame.tscn" id="30_uiopt"]
 [ext_resource type="PackedScene" path="res://ui/key_binding_frame.tscn" id="31_keys"]
+[ext_resource type="PackedScene" path="res://ui/trade_skill_frame.tscn" id="32_trade_skill"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -121,6 +122,11 @@ layout_mode = 1
 [node name="ClassTrainerFrame" parent="." instance=ExtResource("12_trainer")]
 unique_name_in_owner = true
 visible = false
+
+[node name="TradeSkillFrame" parent="." instance=ExtResource("32_trade_skill")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="TaxiFrame" parent="." instance=ExtResource("13_taxi")]
 unique_name_in_owner = true
