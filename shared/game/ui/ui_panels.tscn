@@ -30,6 +30,8 @@
 [ext_resource type="PackedScene" path="res://ui/ui_options_frame.tscn" id="30_uiopt"]
 [ext_resource type="PackedScene" path="res://ui/key_binding_frame.tscn" id="31_keys"]
 [ext_resource type="PackedScene" path="res://ui/trade_skill_frame.tscn" id="32_trade_skill"]
+[ext_resource type="PackedScene" path="res://ui/dress_up_frame.tscn" id="33_dress_up"]
+[ext_resource type="PackedScene" path="res://ui/inspect_frame.tscn" id="34_inspect"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -124,6 +126,16 @@ unique_name_in_owner = true
 visible = false
 
 [node name="TradeSkillFrame" parent="." instance=ExtResource("32_trade_skill")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="DressUpFrame" parent="." instance=ExtResource("33_dress_up")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="InspectFrame" parent="." instance=ExtResource("34_inspect")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

@@ -7,7 +7,9 @@ signal unit_selected(guid: int)
 signal ticket_requested(text: String)
 
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
-enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE, DUEL, RESET_INSTANCES, PET_DISMISS, PET_ABANDON }
+enum UnitMenuItem {
+	INVITE, UNINVITE, LEAVE, TRADE, DUEL, RESET_INSTANCES, PET_DISMISS, PET_ABANDON, INSPECT,
+}
 
 const UI_HEIGHT: float = 768.0
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
@@ -96,6 +98,8 @@ var _chat_hover_time: float = 0.0
 @onready var _merchant: MerchantFrame = _panels.get_node("%MerchantFrame")
 @onready var _trainer: ClassTrainerFrame = _panels.get_node("%ClassTrainerFrame")
 @onready var _trade_skill: TradeSkillFrame = _panels.get_node("%TradeSkillFrame")
+@onready var _dress_up: DressUpFrame = _panels.get_node("%DressUpFrame")
+@onready var _inspect: InspectFrame = _panels.get_node("%InspectFrame")
 @onready var _taxi: TaxiFrame = _panels.get_node("%TaxiFrame")
 @onready var _loot: LootFrame = _panels.get_node("%LootFrame")
 @onready var _world_map: WorldMapFrame = _panels.get_node("%WorldMapFrame")
@@ -172,6 +176,9 @@ func _ready() -> void:
 	_merchant.error_raised.connect(show_error)
 	_trainer.open_requested.connect(_panels.show_panel.bind(_trainer))
 	_trade_skill.open_requested.connect(_panels.show_panel.bind(_trade_skill))
+	_dress_up.open_requested.connect(_panels.show_panel.bind(_dress_up))
+	ItemButton.dress_up = _dress_up.try_on
+	_inspect.open_requested.connect(_panels.show_panel.bind(_inspect))
 	_taxi.open_requested.connect(_panels.show_panel.bind(_taxi))
 	_taxi.error_raised.connect(show_error)
 	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
@@ -193,6 +200,7 @@ func _ready() -> void:
 	_player_frame.unit_selected.connect(unit_selected.emit)
 	_main_menu_bar.set_portrait(_player_frame.portrait_texture())
 	_trade_skill.set_portrait(_player_frame.portrait_texture())
+	_dress_up.set_portrait(_player_frame.portrait_texture())
 	_party.unit_selected.connect(unit_selected.emit)
 	_party.invited.connect(_on_party_invited)
 	_party.message_added.connect(add_system_line)
@@ -827,6 +835,7 @@ func _show_unit_menu(guid: int) -> void:
 	elif is_player and may_change:
 		entries.append({"text": WowStrings.get_text("PARTY_INVITE"), "id": UnitMenuItem.INVITE})
 	if guid != session.get_player_guid() and is_player:
+		entries.append({"text": WowStrings.get_text("INSPECT"), "id": UnitMenuItem.INSPECT})
 		entries.append({"text": WowStrings.get_text("TRADE", "Trade"), "id": UnitMenuItem.TRADE})
 		entries.append({"text": WowStrings.get_text("DUEL", "Duel"), "id": UnitMenuItem.DUEL})
 		_menu_guid = guid
@@ -859,6 +868,8 @@ func _on_unit_menu_pressed(id: int) -> void:
 			PartyFrame.uninvite(_menu_name)
 		UnitMenuItem.LEAVE:
 			PartyFrame.leave()
+		UnitMenuItem.INSPECT:
+			_inspect.inspect(_menu_guid)
 		UnitMenuItem.TRADE:
 			_trade.start(_menu_guid)
 		UnitMenuItem.DUEL:

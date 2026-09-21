@@ -9,6 +9,8 @@ var address: Vector2i = -Vector2i.ONE
 
 ## Asked how many to move when a stack is dropped with Shift held; unset, the whole stack moves.
 static var split_prompt: Callable
+## Shown an item's entry when it is Ctrl clicked, which is the dressing room's cue.
+static var dress_up: Callable
 
 @onready var _icon: TextureRect = %IconTexture
 @onready var _count: Label = %Count
@@ -21,6 +23,10 @@ func _gui_input(event: InputEvent) -> void:
 	if click and click.pressed and click.button_index == MOUSE_BUTTON_RIGHT:
 		accept_event()
 		right_clicked.emit()
+	elif click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT and click.ctrl_pressed \
+	and dress_up.is_valid() and address.x >= 0 and Inventory.item_at(address) != 0:
+		accept_event()
+		dress_up.call(Inventory.entry(Inventory.item_at(address)))
 
 
 # PickupContainerItem: dragging lifts the item, and dropping swaps it with what is there.

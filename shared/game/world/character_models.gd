@@ -131,6 +131,22 @@ func instantiate(model_path: String, look: Dictionary) -> Node3D:
 
 
 # "pending" is true while item queries for the gear are still out; ask again on item_info_received.
+# DressUpModel's TryOn: the item takes the place of whatever the look wears in its slot.
+static func try_on(look: Dictionary, info: Dictionary) -> void:
+	var slot: int = OUTFIT_SLOT_OF.get(info.get("inventory_type", 0), -1)
+	var display: int = info.get("display_id", 0)
+	if slot < 0 or display == 0:
+		return
+	if INVENTORY_SLOTS.has(slot):
+		look["equipment"][INVENTORY_SLOTS[slot]] = display
+	elif slot == BACK_SLOT:
+		look["cape"] = display
+	elif WEAPON_SLOTS.has(slot):
+		look["weapons"][WEAPON_SLOTS.find(slot)] = ItemModels.Weapon.new(
+			display, info.get("sheath", 0), info.get("subclass", 0)
+		)
+
+
 static func player_look(session: WowSession, guid: int) -> Dictionary:
 	var bytes_0: int = session.get_field(guid, "UNIT_FIELD_BYTES_0")
 	var player_bytes: int = session.get_field(guid, "PLAYER_BYTES")
