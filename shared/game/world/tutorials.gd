@@ -61,7 +61,7 @@ func _init(session: WowSession) -> void:
 
 
 func trigger(id: Id) -> void:
-	if _fired.is_empty() or _bit(_fired, id):
+	if _fired.is_empty() or _bit(_fired, id) or not WowAssets.interface.is_on(&"show_tutorials"):
 		return
 	_set_bit(_fired, id)
 	queue.append(id)

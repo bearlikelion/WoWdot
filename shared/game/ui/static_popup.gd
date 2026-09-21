@@ -8,6 +8,10 @@ const BUTTON_GAP: float = 13.0
 const BUTTON_OFFSET: Vector2 = Vector2(-6.0, 8.0)
 const BORDER_PADDING: float = 16.0
 
+# The format and seconds left of a popup that counts down, as the CAMP dialog does.
+var _countdown_text: String = ""
+var _time_left: float = 0.0
+
 var _on_accept: Callable
 var _on_cancel: Callable
 
@@ -28,6 +32,17 @@ func _ready() -> void:
 	_cancel.pressed.connect(cancel)
 
 
+func _process(delta: float) -> void:
+	if _countdown_text.is_empty() or not visible:
+		return
+	_time_left -= delta
+	if _time_left <= 0.0:
+		_countdown_text = ""
+		hide()
+		return
+	_text.text = _countdown_text % _seconds_text()
+
+
 # StaticPopup_Show for a two button question, sized to its text as StaticPopup_Resize does.
 func ask(
 	text: String, on_accept: Callable, accept_key: String = "YES", cancel_key: String = "NO",
@@ -35,6 +50,22 @@ func ask(
 ) -> void:
 	_edit.hide()
 	_lay_out(text, on_accept, accept_key, cancel_key, on_cancel, 0.0)
+
+
+# A timed popup with one button that calls it off, such as the twenty seconds before a logout.
+func count_down(text: String, seconds: float, on_cancel: Callable) -> void:
+	_edit.hide()
+	_countdown_text = text
+	_time_left = seconds
+	_lay_out(text % _seconds_text(), on_cancel, "CANCEL", "CANCEL", on_cancel, 0.0)
+	_cancel.hide()
+	_accept.position.x = (size.x - _accept.size.x) / 2.0
+
+
+func stop_count_down() -> void:
+	if not _countdown_text.is_empty():
+		_countdown_text = ""
+		hide()
 
 
 # The same popup with an edit box under the question, as naming a pet needs.
@@ -54,6 +85,7 @@ func _lay_out(
 ) -> void:
 	_on_accept = on_accept
 	_on_cancel = on_cancel
+	_cancel.show()
 	_text.text = text
 	_set_button(_accept, WowStrings.get_text(accept_key))
 	_set_button(_cancel, WowStrings.get_text(cancel_key))
@@ -78,6 +110,11 @@ func cancel() -> bool:
 	if _on_cancel.is_valid():
 		_on_cancel.call()
 	return true
+
+
+func _seconds_text() -> Array:
+	var left: int = ceili(_time_left)
+	return [left, WowStrings.get_text("SECONDS" if left == 1 else "SECONDS_P1")]
 
 
 func _set_button(button: BaseButton, text: String) -> void:

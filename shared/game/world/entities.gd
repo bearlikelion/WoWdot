@@ -4,6 +4,7 @@ extends Node3D
 enum ObjectType { UNIT = 3, PLAYER = 4, GAMEOBJECT = 5 }
 
 const NAMEPLATE: PackedScene = preload("res://game/world/nameplate.tscn")
+const BLOB_SHADOW: PackedScene = preload("res://game/world/blob_shadow.tscn")
 # Server paths faster than this (yards per second) play the run animation.
 const RUN_SPEED_THRESHOLD: float = 4.0
 const NAMEPLATE_GAP: float = 0.3
@@ -331,6 +332,9 @@ func add_nameplate(guid: int, node: Node3D) -> void:
 	# Only tracked entities go in _bounds; the player's own model is not one, and picking walks it.
 	if _nodes.has(guid):
 		_bounds[guid] = bounds
+	var shadow: BlobShadow = BLOB_SHADOW.instantiate()
+	node.add_child(shadow)
+	shadow.fit(bounds)
 	var plate: Label3D = NAMEPLATE.instantiate()
 	plate.position.y = bounds.end.y + NAMEPLATE_GAP / node.scale.y
 	plate.scale = Vector3.ONE / node.scale

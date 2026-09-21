@@ -23,6 +23,8 @@ const OPTIONS: Dictionary[StringName, bool] = {
 	&"multi_bar_2": true,
 	&"multi_bar_3": true,
 	&"multi_bar_4": true,
+	&"show_tutorials": true,
+	&"show_game_tips": true,
 	# This client's own option, which the stock window has no check button for.
 	&"show_map_pois": true,
 }
@@ -56,6 +58,8 @@ func restore_defaults() -> void:
 
 func save() -> void:
 	var saved: ConfigFile = ConfigFile.new()
+	# Other sections of the file belong to the name plates and the tip of the day.
+	saved.load(SETTINGS_PATH)
 	for option: StringName in OPTIONS:
 		saved.set_value(SECTION, option, is_on(option))
 	saved.save(SETTINGS_PATH)

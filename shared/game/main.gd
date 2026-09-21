@@ -18,6 +18,7 @@ var world: World
 
 func _ready() -> void:
 	WowAssets.video.apply()
+	WowCursor.show(WowCursor.Kind.POINT)
 	_read_command_line()
 	WowClient.session.world_entered.connect(_on_world_entered)
 	WowClient.session.state_changed.connect(_on_state_changed)

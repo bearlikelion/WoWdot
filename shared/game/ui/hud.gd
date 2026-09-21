@@ -19,6 +19,7 @@ const ITEM_TYPES: Array[int] = [1, 2]
 const CASTING_BAR_LIFT: float = 40.0
 # The one reason SMSG_INVENTORY_CHANGE_FAILURE follows with a level.
 const EQUIP_ERR_LEVEL: int = 1
+const LOGOUT_SECONDS: float = 20.0
 const SWING_ERRORS: Dictionary[WowSession.AttackError, String] = {
 	WowSession.ATTACK_ERROR_NOT_IN_RANGE: "ERR_BADATTACKPOS",
 	WowSession.ATTACK_ERROR_BAD_FACING: "ERR_BADATTACKFACING",
@@ -300,6 +301,12 @@ func _chat_refusal(opcode: String, reader: PacketReader) -> String:
 
 # SMSG_TEXT_EMOTE: the client writes the line itself, from EmotesText and EmotesTextData.
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "SMSG_LOGOUT_RESPONSE":
+		_on_logout_response(PacketReader.new(payload))
+		return
+	if opcode == "SMSG_LOGOUT_CANCEL_ACK":
+		_popup.stop_count_down()
+		return
 	if opcode == "SMSG_CHANNEL_NOTIFY":
 		var notice: String = Channels.notice(payload)
 		if not notice.is_empty():
@@ -357,6 +364,17 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	)
 	if not line.is_empty():
 		add_chat_line(line, EMOTE_COLOR)
+
+
+# A refusal code first, then whether the logout is instant, as it is in an inn or a city.
+func _on_logout_response(reader: PacketReader) -> void:
+	if reader.u32() != 0:
+		show_error(WowStrings.get_text("ERR_LOGOUT_FAILED"))
+	elif reader.u8() == 0:
+		_popup.count_down(
+			WowStrings.get_text("CAMP_TIMER"), LOGOUT_SECONDS,
+			WowClient.session.send_packet.bind("CMSG_LOGOUT_CANCEL", PackedByteArray()),
+		)
 
 
 func _ask_bind(innkeeper: int) -> void:

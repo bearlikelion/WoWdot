@@ -38,7 +38,8 @@ func _aim(model: Node3D, model_path: String) -> void:
 		var portrait: Dictionary = cameras[0]
 		var eye: Vector3 = model.transform * (portrait["position"] as Vector3)
 		var target: Vector3 = model.transform * (portrait["target"] as Vector3)
-		_camera.fov = rad_to_deg(portrait["fov"])
+		# An M2 camera keeps a diagonal FOV, and the portrait is square.
+		_camera.fov = rad_to_deg(portrait["fov"] / sqrt(2.0))
 		_camera.look_at_from_position(eye, target)
 		return
 	var bounds: AABB = AABB()

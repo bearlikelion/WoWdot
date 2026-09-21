@@ -7,6 +7,11 @@ signal player_ready
 const TAB_RANGE: float = 40.0
 const UNIT_FLAG_NON_ATTACKABLE: int = 0x2
 const UNIT_FLAG_NOT_SELECTABLE: int = 0x2000000
+const NPC_FLAG_VENDOR: int = 0x4
+const NPC_FLAG_FLIGHTMASTER: int = 0x8
+const NPC_FLAG_TRAINER: int = 0x10
+# Beyond this the stock cursor greys out, as the thing is too far to use.
+const INTERACT_DISTANCE: float = 5.0
 const WALKING_FLAGS: int = Player.MoveFlag.FORWARD | Player.MoveFlag.BACKWARD \
 | Player.MoveFlag.STRAFE_LEFT | Player.MoveFlag.STRAFE_RIGHT
 const PLAYER_FLAG_GHOST: int = 0x10
@@ -580,6 +585,7 @@ func _update_hover(screen_position: Vector2) -> void:
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	var from: Vector3 = camera.project_ray_origin(screen_position)
 	var guid: int = _entities.pick(from, camera.project_ray_normal(screen_position))
+	_update_cursor(guid)
 	if guid == _hovered or GameTooltip.current == null:
 		return
 	_hovered = guid
@@ -587,6 +593,39 @@ func _update_hover(screen_position: Vector2) -> void:
 		GameTooltip.current.set_unit(self, guid)
 	else:
 		GameTooltip.current.hide_for(self)
+
+
+func _update_cursor(guid: int) -> void:
+	var session: WowSession = WowClient.session
+	if guid == 0 or not session.has_object(guid):
+		WowCursor.show(WowCursor.Kind.POINT)
+		return
+	var node: Node3D = _entities.unit_node(guid)
+	var in_reach: bool = node != null \
+	and node.global_position.distance_to(_player.global_position) <= INTERACT_DISTANCE
+	var kind: WowCursor.Kind = WowCursor.Kind.POINT
+	var flags: int = session.get_field(guid, "UNIT_NPC_FLAGS")
+	if session.get_object_type(guid) == Entities.ObjectType.GAMEOBJECT:
+		var info: Dictionary = session.get_game_object_info(
+			session.get_field(guid, "OBJECT_FIELD_ENTRY")
+		)
+		kind = WowCursor.Kind.MAIL if info.get("type", 0) == GAMEOBJECT_TYPE_MAILBOX \
+		else WowCursor.Kind.INTERACT
+	elif _is_lootable(guid):
+		kind = WowCursor.Kind.PICKUP
+	elif session.get_field(guid, "UNIT_FIELD_HEALTH") > 0 and UnitReaction.between(
+		session, session.get_player_guid(), guid
+	) == UnitReaction.Reaction.HOSTILE:
+		kind = WowCursor.Kind.ATTACK
+	elif flags & NPC_FLAG_VENDOR:
+		kind = WowCursor.Kind.BUY
+	elif flags & NPC_FLAG_FLIGHTMASTER:
+		kind = WowCursor.Kind.TAXI
+	elif flags & NPC_FLAG_TRAINER:
+		kind = WowCursor.Kind.TRAINER
+	elif flags != 0:
+		kind = WowCursor.Kind.SPEAK
+	WowCursor.show(kind, in_reach)
 
 
 func _on_player_clicked(screen_position: Vector2) -> void:
