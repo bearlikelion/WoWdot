@@ -4,6 +4,7 @@ extends Control
 signal action_used(slot: int)
 signal spell_used(spell_id: int)
 signal unit_selected(guid: int)
+signal ticket_requested(text: String)
 
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
 enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE, DUEL, RESET_INSTANCES, PET_DISMISS, PET_ABANDON }
@@ -157,6 +158,7 @@ func _ready() -> void:
 	_duel.finished.connect(add_system_line)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
+	_chat.ticket_requested.connect(ticket_requested.emit)
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
 	_quest_frame.open_requested.connect(_panels.show_panel.bind(_quest_frame))
 	_quest_frame.error_raised.connect(show_error)

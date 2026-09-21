@@ -84,6 +84,11 @@ func _run() -> void:
 	_lines.clear()
 	chat.call("_on_text_submitted", "/random 10")
 	_check(await _until(func() -> bool: return _line_with("(1-10)")), "/random rolls: %s" % _lines)
+	chat.call("_on_text_submitted", "/ticket delete")
+	chat.call("_on_text_submitted", "/ticket the channel check was here")
+	_check(await _until(func() -> bool: return _line_with("open ticket")),
+			"/ticket opens a GM ticket: %s" % _lines)
+	chat.call("_on_text_submitted", "/ticket delete")
 	chat.call("_on_text_submitted", "/raidinfo")
 	_check(await _until(func() -> bool: return _line_with("saved")), "/raidinfo is answered: %s" % _lines)
 

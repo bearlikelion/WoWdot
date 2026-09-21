@@ -3,6 +3,7 @@ class_name ChatFrame
 extends DockedChatFrame
 
 signal emote_requested(text_emote: int)
+signal ticket_requested(text: String)
 
 # GlobalStrings key stem per chat type: CHAT_<stem>_GET formats lines, CHAT_<stem>_SEND the header.
 const TYPE_KEYS: Dictionary[WowSession.ChatType, String] = {
@@ -320,6 +321,15 @@ func _run_channel_command(text: String) -> bool:
 		bounds.encode_u32(0, rest[0].to_int() if rest.size() > 1 else 1)
 		bounds.encode_u32(4, rest[rest.size() - 1].to_int() if not rest.is_empty() else 100)
 		WowClient.session.send_packet("MSG_RANDOM_ROLL", bounds)
+		return true
+	# ponytail: GM tickets by command, until the Help window is converted.
+	if command == "ticket":
+		if rest.is_empty():
+			WowClient.session.send_packet("CMSG_GMTICKET_GETTICKET", PackedByteArray())
+		elif rest[0].to_lower() == "delete":
+			WowClient.session.send_packet("CMSG_GMTICKET_DELETETICKET", PackedByteArray())
+		else:
+			ticket_requested.emit(" ".join(rest))
 		return true
 	if command == "raidinfo":
 		WowClient.session.send_packet("CMSG_REQUEST_RAID_INFO", PackedByteArray())

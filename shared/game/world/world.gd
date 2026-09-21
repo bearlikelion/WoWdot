@@ -17,6 +17,7 @@ const UNIT_DYNFLAG_LOOTABLE: int = 0x1
 const LEVEL_UP_EFFECT: String = "Spells\\LevelUp\\LevelUp.m2"
 const LEVEL_UP_SECONDS: float = 3.0
 const GAMEOBJECT_TYPE_MAILBOX: int = 19
+const GAMEOBJECT_TYPE_MEETING_STONE: int = 23
 const NPC_FLAG_AUCTIONEER: int = 0x1000
 const NPC_FLAG_STABLEMASTER: int = 0x4000
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
@@ -88,6 +89,10 @@ func _ready() -> void:
 	_hud.action_used.connect(_on_action_used)
 	_hud.spell_used.connect(_use_spell)
 	_hud.unit_selected.connect(select)
+	_hud.ticket_requested.connect(func(text: String) -> void:
+		var here: Vector3 = WowCoords.from_godot(_player.global_position)
+		ServerNotices.open_ticket(text, _sky.map_id, here)
+	)
 	WowClient.session.attack_started.connect(_on_attack_changed.bind(true))
 	WowClient.session.attack_stopped.connect(_on_attack_changed.bind(false))
 	WowClient.session.melee_swing.connect(_on_melee_swing)
@@ -631,6 +636,13 @@ func _use_game_object(guid: int) -> void:
 	var payload: PackedByteArray = []
 	payload.resize(8)
 	payload.encode_u64(0, guid)
+	if info.get("type", 0) == GAMEOBJECT_TYPE_MEETING_STONE:
+		# A second click on a stone leaves the queue the first one joined.
+		if ServerNotices.meeting_stone_area != 0:
+			session.send_packet("CMSG_MEETINGSTONE_LEAVE", PackedByteArray())
+		else:
+			session.send_packet("CMSG_MEETINGSTONE_JOIN", payload)
+		return
 	session.send_packet("CMSG_GAMEOBJ_USE", payload)
 
 

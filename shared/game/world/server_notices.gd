@@ -21,6 +21,23 @@ const PET_TAME_FAILURES: Dictionary[int, String] = {
 	7: "PETTAME_NOPETAVAILABLE", 8: "PETTAME_INTERNALERROR", 9: "PETTAME_TOOHIGHLEVEL",
 	10: "PETTAME_DEAD", 11: "PETTAME_NOTDEAD",
 }
+# SMSG_MEETINGSTONE_SETQUEUE statuses and SMSG_MEETINGSTONE_JOINFAILED codes.
+const MEETING_STONE_STATUS: Dictionary[int, String] = {
+	0: "ERR_MEETING_STONE_LEFT_QUEUE_S", 1: "ERR_MEETING_STONE_IN_QUEUE_S",
+	2: "ERR_MEETING_STONE_OTHER_MEMBER_LEFT", 3: "ERR_MEETING_STONE_PARTY_KICKED_FROM_QUEUE",
+	4: "ERR_MEETING_STONE_MEMBER_STILL_IN_QUEUE",
+}
+const MEETING_STONE_FAILURES: Dictionary[int, String] = {
+	1: "ERR_MEETING_STONE_MUST_BE_LEADER", 2: "ERR_MEETING_STONE_GROUP_FULL",
+	3: "ERR_MEETING_STONE_NO_RAID_GROUP",
+}
+# SMSG_GMTICKET_CREATE, _UPDATETEXT and _DELETETICKET answers.
+const TICKET_ANSWERS: Dictionary[int, String] = {
+	1: "ERR_TICKET_ALREADY_EXISTS", 2: "TICKET_STATUS1", 3: "ERR_TICKET_CREATE_ERROR",
+	5: "ERR_TICKET_UPDATE_ERROR", 7: "ERR_TICKET_DB_ERROR",
+}
+const TICKET_HAS_TEXT: int = 6
+const TICKET_CATEGORY_GAMEPLAY: int = 1
 # SMSG_RAID_INSTANCE_MESSAGE types.
 const RAID_MESSAGES: Dictionary[int, String] = {
 	1: "RAID_INSTANCE_WARNING_HOURS", 2: "RAID_INSTANCE_WARNING_MIN",
@@ -28,6 +45,8 @@ const RAID_MESSAGES: Dictionary[int, String] = {
 }
 
 static var _maps: WowDBC
+# The area queued for at a meeting stone, or 0.
+static var meeting_stone_area: int = 0
 
 
 # The chat line a server message prints, or nothing when the opcode is not one of these.
@@ -79,6 +98,28 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 			return WowStrings.format(WowStrings.get_text("AREA_SPIRIT_HEAL"), [seconds])
 		"SMSG_RECEIVED_MAIL":
 			return WowStrings.get_text("HAVE_MAIL", "You have unread mail")
+		"SMSG_MEETINGSTONE_SETQUEUE":
+			var area: int = reader.u32()
+			var status: int = reader.u8()
+			meeting_stone_area = 0 if status in [0, 3] else area
+			var key: String = MEETING_STONE_STATUS.get(status, "")
+			return WowStrings.format(WowStrings.get_text(key), [AreaInfo.area_name(area)]) if key else ""
+		"SMSG_MEETINGSTONE_COMPLETE":
+			meeting_stone_area = 0
+			return WowStrings.get_text("ERR_MEETING_STONE_SUCCESS")
+		"SMSG_MEETINGSTONE_IN_PROGRESS":
+			return WowStrings.get_text("ERR_MEETING_STONE_IN_PROGRESS")
+		"SMSG_MEETINGSTONE_MEMBER_ADDED":
+			var added: String = WowClient.session.get_object_name(reader.u64())
+			return WowStrings.format(WowStrings.get_text("ERR_MEETING_STONE_MEMBER_ADDED_S"), [added])
+		"SMSG_GMTICKET_CREATE", "SMSG_GMTICKET_UPDATETEXT":
+			return WowStrings.get_text(TICKET_ANSWERS.get(reader.u32(), "ERR_TICKET_CREATE_ERROR"))
+		"SMSG_GMTICKET_DELETETICKET":
+			return WowStrings.get_text("GM_TICKET_DELETED", "Your GM ticket was deleted.")
+		"SMSG_GMTICKET_GETTICKET":
+			if reader.u32() != TICKET_HAS_TEXT:
+				return WowStrings.get_text("GM_TICKET_NONE", "You have no open GM ticket.")
+			return "%s %s" % [WowStrings.get_text("TICKET_STATUS1"), reader.cstring()]
 		"SMSG_INSTANCE_RESET":
 			var text: String = WowStrings.get_text("INSTANCE_RESET_SUCCESS")
 			return WowStrings.format(text, [map_name(reader.u32())])
@@ -123,6 +164,8 @@ static func error(opcode: String, payload: PackedByteArray) -> String:
 			return WowStrings.get_text(PET_TAME_FAILURES.get(reader.u8(), "PETTAME_UNKNOWNERROR"))
 		"SMSG_PET_BROKEN":
 			return WowStrings.get_text("ERR_PET_BROKEN")
+		"SMSG_MEETINGSTONE_JOINFAILED":
+			return WowStrings.get_text(MEETING_STONE_FAILURES.get(reader.u8(), "ERR_MEETING_STONE_INVALID_LEVEL"))
 		"SMSG_RAID_GROUP_ONLY":
 			return WowStrings.get_text("ERR_RAID_GROUP_ONLY")
 		"SMSG_FISH_ESCAPED":
@@ -192,6 +235,20 @@ static func who_lines(payload: PackedByteArray) -> PackedStringArray:
 		lines.append(WowStrings.format(WowStrings.get_text(key), args))
 	lines.append(WowStrings.format(WowStrings.get_text("WHO_NUM_RESULTS"), [total]))
 	return lines
+
+
+# CMSG_GMTICKET_CREATE: category, map, position, the text and a reserved string.
+static func open_ticket(text: String, map_id: int, wow_position: Vector3) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(17)
+	payload.encode_u8(0, TICKET_CATEGORY_GAMEPLAY)
+	payload.encode_u32(1, map_id)
+	payload.encode_float(5, wow_position.x)
+	payload.encode_float(9, wow_position.y)
+	payload.encode_float(13, wow_position.z)
+	payload.append_array(text.to_utf8_buffer())
+	payload.append_array([0, 0])
+	WowClient.session.send_packet("CMSG_GMTICKET_CREATE", payload)
 
 
 # CMSG_WHO: any level, race and class, no zones, and the words to match names, guilds and zones by.
