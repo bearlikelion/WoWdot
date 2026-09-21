@@ -1029,6 +1029,10 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 		r["gravity"] = ribbon.gravity;
 		r["above"] = track_value(ribbon.heightAboveTrack, 1.0f);
 		r["below"] = track_value(ribbon.heightBelowTrack, 1.0f);
+		Color tint = track_color(ribbon.colorTrack, Color(1.0f, 1.0f, 1.0f, 1.0f));
+		tint.a = track_value(ribbon.alphaTrack, 1.0f);
+		r["color"] = tint;
+		r["blend"] = ribbon.materialIndex < model.materials.size() ? static_cast<int64_t>(model.materials[ribbon.materialIndex].blendMode) : static_cast<int64_t>(M2_ADD);
 		ribbons.push_back(r);
 	}
 	info["ribbons"] = ribbons;

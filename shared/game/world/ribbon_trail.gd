@@ -1,12 +1,17 @@
 class_name RibbonTrail
 extends MeshInstance3D
 
+# M2 blend modes from 3 up add their colour to the scene; the lower ones mix over it.
+const BLEND_NO_ALPHA_ADD: int = 3
+const BLEND_ADD: int = 4
+
 # The emitter's M2 values: how often an edge is laid down, how long it lives, and its half widths.
 var edges_per_second: float = 30.0
 var lifetime: float = 0.5
 var above: float = 0.1
 var below: float = 0.1
 var gravity: float = 0.0
+var tint: Color = Color.WHITE
 
 var _edges: Array[Edge] = []
 var _since_edge: float = 0.0
@@ -51,10 +56,10 @@ func _draw(source: Node3D) -> void:
 		var age: float = 0.0 if i == last else _edges[i].age
 		var fall: Vector3 = Vector3.ZERO if i == last else Vector3.DOWN * _edges[i].fall
 		var along: float = clampf(age / lifetime, 0.0, 1.0)
-		_strip.surface_set_color(Color(1.0, 1.0, 1.0, 1.0 - along))
+		_strip.surface_set_color(Color(tint, tint.a * (1.0 - along)))
 		_strip.surface_set_uv(Vector2(along, 0.0))
 		_strip.surface_add_vertex(center + fall + up * above)
-		_strip.surface_set_color(Color(1.0, 1.0, 1.0, 1.0 - along))
+		_strip.surface_set_color(Color(tint, tint.a * (1.0 - along)))
 		_strip.surface_set_uv(Vector2(along, 1.0))
 		_strip.surface_add_vertex(center + fall - up * below)
 	_strip.surface_end()
@@ -75,7 +80,8 @@ static func attach(model: Node3D, m2_path: String) -> void:
 		trail.above = ribbon["above"]
 		trail.below = ribbon["below"]
 		trail.gravity = ribbon["gravity"]
-		trail.material_override = _material(ribbon["texture"])
+		trail.tint = ribbon.get("color", Color.WHITE)
+		trail.material_override = _material(ribbon["texture"], ribbon.get("blend", BLEND_ADD))
 		var mount: Node3D = model
 		var offset: Vector3 = ribbon["position"]
 		if skeleton and ribbon["bone"] >= 0 and ribbon["bone"] < skeleton.get_bone_count():
@@ -91,13 +97,14 @@ static func attach(model: Node3D, m2_path: String) -> void:
 		anchor.add_child(trail)
 
 
-# ponytail: ribbons draw white and additive; their colour and blend tracks are not read yet.
-static func _material(texture_path: String) -> StandardMaterial3D:
+# ponytail: the colour and opacity are the tracks' rest values, not animated over the clip.
+static func _material(texture_path: String, blend: int) -> StandardMaterial3D:
 	var material: StandardMaterial3D = StandardMaterial3D.new()
 	material.albedo_texture = WowAssets.loader.load_texture(texture_path)
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
+	material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD if blend >= BLEND_NO_ALPHA_ADD \
+	else BaseMaterial3D.BLEND_MODE_MIX
 	material.cull_mode = BaseMaterial3D.CULL_DISABLED
 	material.vertex_color_use_as_albedo = true
 	material.vertex_color_is_srgb = true

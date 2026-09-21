@@ -11,6 +11,8 @@ const POPUP_OVERLAP: float = 30.0
 @export var popup: MacroPopupFrame
 
 var _selected: int = 0
+# Whether the character's own macros are on show, the second tab, and not the account's.
+var _of_character: bool = false
 
 @onready var _body: TextEdit = %MacroFrameText
 
@@ -20,9 +22,8 @@ func _ready() -> void:
 		var button: WowButton = _button(slot)
 		button.pressed.connect(_on_macro_pressed.bind(slot))
 		button.set_drag_forwarding(_drag_macro.bind(slot), Callable(), Callable())
-	# ponytail: one shared set of macros, so the per-character tab has nothing to show.
-	%MacroFrameTab1.hide()
-	%MacroFrameTab2.hide()
+	%MacroFrameTab1.pressed.connect(_show_set.bind(false))
+	%MacroFrameTab2.pressed.connect(_show_set.bind(true))
 	%MacroNewButton.pressed.connect(_on_new_pressed)
 	%MacroEditButton.pressed.connect(_on_edit_pressed)
 	%MacroDeleteButton.pressed.connect(_on_delete_pressed)
@@ -48,7 +49,11 @@ func refresh() -> void:
 		popup.hide()
 		return
 	var macros: Macros = WowClient.macros
-	var ids: Array[int] = macros.ids()
+	var session: WowSession = WowClient.session
+	%MacroFrameTab1Text.text = WowStrings.get_text("GENERAL_MACROS")
+	%MacroFrameTab2Text.text = WowStrings.get_text("CHARACTER_SPECIFIC_MACROS") \
+	% session.get_object_name(session.get_player_guid())
+	var ids: Array[int] = macros.ids(_of_character)
 	if not ids.has(_selected):
 		_selected = ids[0] if not ids.is_empty() else 0
 	for slot: int in Macros.MAX_MACROS:
@@ -78,6 +83,13 @@ func refresh() -> void:
 	_update_limit()
 
 
+func _show_set(of_character: bool) -> void:
+	_of_character = of_character
+	_selected = 0
+	popup.hide()
+	refresh()
+
+
 func _update_limit() -> void:
 	%MacroFrameCharLimitText.text = WowStrings.get_text("MACROFRAME_CHAR_LIMIT") % _body.text.length()
 
@@ -93,7 +105,7 @@ func _button(slot: int) -> WowButton:
 
 
 func _id_at(slot: int) -> int:
-	var ids: Array[int] = WowClient.macros.ids()
+	var ids: Array[int] = WowClient.macros.ids(_of_character)
 	return ids[slot] if slot < ids.size() else 0
 
 
@@ -137,7 +149,7 @@ func _on_delete_pressed() -> void:
 
 func _on_popup_confirmed(id: int, macro_name: String, icon: String) -> void:
 	if id == 0:
-		_selected = WowClient.macros.create(macro_name, icon)
+		_selected = WowClient.macros.create(macro_name, icon, _of_character)
 		_body.grab_focus.call_deferred()
 	else:
 		WowClient.macros.edit(id, macro_name, icon)

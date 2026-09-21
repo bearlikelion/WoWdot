@@ -13,24 +13,40 @@ const CAST_COMMANDS: PackedStringArray = ["/cast", "/spell"]
 var _session: WowSession
 # Slot to {"name", "icon", "body"}; the slot is the id an action button stores.
 var _macros: Dictionary[int, Dictionary] = {}
+var _character: String = ""
 
 
-# ponytail: one account-wide set; the stock per-character tab waits on a second file.
 func _init(session: WowSession) -> void:
 	_session = session
+	session.world_entered.connect(func(_map: int, _at: Vector3, _facing: float) -> void: _load())
+	_load()
+
+
+# Ids 1 to 18 belong to the account; 19 to 36 are the character's, filed under its guid.
+func _load() -> void:
+	_macros.clear()
+	# The name is not known yet at world entry, and the guid always is.
+	_character = str(_session.get_player_guid())
 	var saved: ConfigFile = ConfigFile.new()
 	if saved.load(SETTINGS_PATH) != OK:
 		return
 	for section: String in saved.get_sections():
-		_macros[section.to_int()] = {
+		var owner: String = section.get_slice("/", 0) if section.contains("/") else ""
+		if not owner.is_empty() and owner != _character:
+			continue
+		_macros[section.get_slice("/", section.get_slice_count("/") - 1).to_int()] = {
 			"name": saved.get_value(section, "name", ""),
 			"icon": saved.get_value(section, "icon", ""),
 			"body": saved.get_value(section, "body", ""),
 		}
+	changed.emit()
 
 
-func ids() -> Array[int]:
-	var found: Array[int] = _macros.keys()
+func ids(of_character: bool) -> Array[int]:
+	var found: Array[int] = []
+	for id: int in _macros:
+		if (id > MAX_MACROS) == of_character:
+			found.append(id)
 	found.sort()
 	return found
 
@@ -40,8 +56,9 @@ func info(id: int) -> Dictionary:
 
 
 # The new macro's id, or 0 when all eighteen slots are taken.
-func create(macro_name: String, icon: String) -> int:
-	for id: int in range(1, MAX_MACROS + 1):
+func create(macro_name: String, icon: String, of_character: bool) -> int:
+	var first: int = MAX_MACROS + 1 if of_character else 1
+	for id: int in range(first, first + MAX_MACROS):
 		if not _macros.has(id):
 			_macros[id] = {"name": macro_name, "icon": icon, "body": ""}
 			_save()
@@ -101,8 +118,14 @@ func _known_spell(wanted: String) -> int:
 
 func _save() -> void:
 	var saved: ConfigFile = ConfigFile.new()
+	saved.load(SETTINGS_PATH)
+	# Other characters' sections stay as they are; this one's and the account's are rewritten.
+	for section: String in saved.get_sections():
+		if not section.contains("/") or section.begins_with(_character + "/"):
+			saved.erase_section(section)
 	for id: int in _macros:
+		var section: String = str(id) if id <= MAX_MACROS else "%s/%d" % [_character, id]
 		for key: String in _macros[id]:
-			saved.set_value(str(id), key, _macros[id][key])
+			saved.set_value(section, key, _macros[id][key])
 	saved.save(SETTINGS_PATH)
 	changed.emit()
