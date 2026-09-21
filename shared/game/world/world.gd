@@ -100,9 +100,9 @@ func _ready() -> void:
 	_hud.spell_used.connect(_use_spell)
 	_hud.unit_selected.connect(select)
 	_name_plates.unit_clicked.connect(select)
-	_hud.ticket_requested.connect(func(text: String) -> void:
+	_hud.ticket_requested.connect(func(text: String, category: int) -> void:
 		var here: Vector3 = WowCoords.from_godot(_player.global_position)
-		ServerNotices.open_ticket(text, _sky.map_id, here)
+		ServerNotices.open_ticket(text, category, _sky.map_id, here)
 	)
 	WowClient.session.attack_started.connect(_on_attack_changed.bind(true))
 	WowClient.session.attack_stopped.connect(_on_attack_changed.bind(false))

@@ -37,7 +37,6 @@ const TICKET_ANSWERS: Dictionary[int, String] = {
 	5: "ERR_TICKET_UPDATE_ERROR", 7: "ERR_TICKET_DB_ERROR",
 }
 const TICKET_HAS_TEXT: int = 6
-const TICKET_CATEGORY_GAMEPLAY: int = 1
 # SMSG_RAID_INSTANCE_MESSAGE types.
 const RAID_MESSAGES: Dictionary[int, String] = {
 	1: "RAID_INSTANCE_WARNING_HOURS", 2: "RAID_INSTANCE_WARNING_MIN",
@@ -291,10 +290,10 @@ static func who_lines(payload: PackedByteArray) -> PackedStringArray:
 
 
 # CMSG_GMTICKET_CREATE: category, map, position, the text and a reserved string.
-static func open_ticket(text: String, map_id: int, wow_position: Vector3) -> void:
+static func open_ticket(text: String, category: int, map_id: int, wow_position: Vector3) -> void:
 	var payload: PackedByteArray = []
 	payload.resize(17)
-	payload.encode_u8(0, TICKET_CATEGORY_GAMEPLAY)
+	payload.encode_u8(0, category)
 	payload.encode_u32(1, map_id)
 	payload.encode_float(5, wow_position.x)
 	payload.encode_float(9, wow_position.y)

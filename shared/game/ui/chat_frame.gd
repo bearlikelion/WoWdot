@@ -323,7 +323,6 @@ func _run_channel_command(text: String) -> bool:
 		bounds.encode_u32(4, rest[rest.size() - 1].to_int() if not rest.is_empty() else 100)
 		WowClient.session.send_packet("MSG_RANDOM_ROLL", bounds)
 		return true
-	# ponytail: GM tickets by command, until the Help window is converted.
 	if command == "ticket":
 		if rest.is_empty():
 			WowClient.session.send_packet("CMSG_GMTICKET_GETTICKET", PackedByteArray())

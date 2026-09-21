@@ -1,0 +1,3503 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/help_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\HelpFrame\\HelpFrame-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\HelpFrame\\HelpFrame-Top.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\HelpFrame\\HelpFrame-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\HelpFrame\\HelpFrame-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\HelpFrame\\HelpFrame-Bottom.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\HelpFrame\\HelpFrame-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_11"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(68, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(12, 0, 56, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_19")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\QuestFrame\\UI-Quest-BulletPoint.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\HelpFrame\\HelpFrameButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(0, 0, 256, 37)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(0, 0, 31, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(33, 0, 31, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(0, 192, 31, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_30")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_32"]
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_33")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
+atlas = SubResource("WowTexture_43")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46"]
+atlas = SubResource("WowTexture_45")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_47"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
+atlas = SubResource("WowTexture_47")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\HelpFrame\\HelpFrameDivider.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(0, 0, 256, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(0, 20, 256, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(0, 40, 65, 20)
+
+[node name="HelpFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320
+offset_top = -256
+offset_right = 320
+offset_bottom = 256
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+offset_left = 256
+offset_top = 0
+offset_right = 512
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -256
+offset_right = 256
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="Texture5" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 256
+offset_top = -256
+offset_right = 512
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="Texture6" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -256
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="HelpFrameHeader" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180
+offset_top = -12
+offset_right = 156
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -12
+offset_top = 2
+offset_right = -12
+offset_bottom = 14
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "WoW Customer Support"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -74
+offset_top = 3
+offset_right = -42
+offset_bottom = 35
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameHome" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="HelpFrameHomeTitle" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 65
+offset_right = 575
+offset_bottom = 81
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLarge"
+text = "Petition a Game Master"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomeText1" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 84
+offset_right = 575
+offset_bottom = 96
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Game Masters are normally available to assist 24 hours a day. Game Masters will be able to assist you no matter which character you are currently playing on.  Keep in mind that there are some issues that Game Masters will |cffffd200NOT|r be able to assist you with.  They include, but are |cffffd200NOT|r limited to the following:"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomeIssue1Header" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 106
+offset_right = 575
+offset_bottom = 118
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Game Hints"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomeIssue1" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 118
+offset_right = 575
+offset_bottom = 128
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "When it comes to quests, Non-Player Characters (NPCs), item information, location information, or anything that would provide information about something that the player could possibly find out through exploration and/or interaction with the world, including interaction with other players."
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomeIssue2Header" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 138
+offset_right = 575
+offset_bottom = 150
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Meta-Game Hints"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomeIssue2" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 150
+offset_right = 575
+offset_bottom = 160
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "This includes information about:  an upcoming patch (what, when, how), upcoming content additions, game play changes, and future rule changes."
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomeIssue3Header" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 170
+offset_right = 575
+offset_bottom = 182
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "PvP"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomeIssue3" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 182
+offset_right = 575
+offset_bottom = 192
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Most PVP issues can be resolved through the PVP game mechanics. GM's will not be able to assist in many cases.  The exceptions to this rule are any behaviors that fall under the World of Warcraft Harassment Policy.  For special rules designated for PvP activity, please go to:"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomePvpPolicyUrl" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 202
+offset_right = 580
+offset_bottom = 197
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "|cffffd200http://www.worldofwarcraft.com/policy/pvp.shtml|r"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HelpFrameHomeText2" type="Label" parent="HelpFrameHome"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 222
+offset_right = 580
+offset_bottom = 234
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Additionally, we encourage all players to first utilize the forums and the website to pursue information about their respective issues at |cffffd200www.worldofwarcraft.com|r , and request that specific attention be paid to our game policies at |cffffd200www.worldofwarcraft.com/policy/|r ."
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameHomeIssues" type="TextureButton" parent="HelpFrameHome"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 180
+offset_top = 274
+offset_right = 430
+offset_bottom = 296
+ignore_texture_size = true
+
+[node name="HelpFrameHomeIssuesLeft" type="TextureRect" parent="HelpFrameHome/HelpFrameHomeIssues"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="HelpFrameHomeIssuesRight" type="TextureRect" parent="HelpFrameHome/HelpFrameHomeIssues"]
+unique_name_in_owner = true
+offset_left = 238
+offset_top = 0
+offset_right = 250
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="HelpFrameHomeIssuesMiddle" type="TextureRect" parent="HelpFrameHome/HelpFrameHomeIssues"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 238
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="HelpFrameHomeIssuesText" type="Label" parent="HelpFrameHome/HelpFrameHomeIssues"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 250
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Issues that GMs can assist with"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameHome/HelpFrameHomeIssues"]
+offset_left = 0
+offset_top = 0
+offset_right = 250
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameHomeCancel" type="TextureButton" parent="HelpFrameHome"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -197
+offset_top = -42
+offset_right = -53
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameHome/HelpFrameHomeCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameHome/HelpFrameHomeCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameHome/HelpFrameHomeCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameHomeCancelText" type="Label" parent="HelpFrameHome/HelpFrameHomeCancel"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameHome/HelpFrameHomeCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGM" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="HelpFrameGM"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 60
+offset_right = 0
+offset_bottom = 70
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "The following are the types of issues that a GM can assist with:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton1" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 80
+offset_right = 588
+offset_bottom = 117
+ignore_texture_size = true
+
+[node name="HelpFrameButton1Text" type="Label" parent="HelpFrameGM/HelpFrameButton1"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton1Description" type="Label" parent="HelpFrameGM/HelpFrameButton1"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton1"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton2" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 117
+offset_right = 588
+offset_bottom = 154
+ignore_texture_size = true
+
+[node name="HelpFrameButton2Text" type="Label" parent="HelpFrameGM/HelpFrameButton2"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton2Description" type="Label" parent="HelpFrameGM/HelpFrameButton2"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton2"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton3" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 154
+offset_right = 588
+offset_bottom = 191
+ignore_texture_size = true
+
+[node name="HelpFrameButton3Text" type="Label" parent="HelpFrameGM/HelpFrameButton3"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton3Description" type="Label" parent="HelpFrameGM/HelpFrameButton3"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton3"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton4" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 191
+offset_right = 588
+offset_bottom = 228
+ignore_texture_size = true
+
+[node name="HelpFrameButton4Text" type="Label" parent="HelpFrameGM/HelpFrameButton4"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton4Description" type="Label" parent="HelpFrameGM/HelpFrameButton4"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton4"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton5" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 228
+offset_right = 588
+offset_bottom = 265
+ignore_texture_size = true
+
+[node name="HelpFrameButton5Text" type="Label" parent="HelpFrameGM/HelpFrameButton5"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton5Description" type="Label" parent="HelpFrameGM/HelpFrameButton5"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton5"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton6" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 265
+offset_right = 588
+offset_bottom = 302
+ignore_texture_size = true
+
+[node name="HelpFrameButton6Text" type="Label" parent="HelpFrameGM/HelpFrameButton6"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton6Description" type="Label" parent="HelpFrameGM/HelpFrameButton6"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton6"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton7" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 302
+offset_right = 588
+offset_bottom = 339
+ignore_texture_size = true
+
+[node name="HelpFrameButton7Text" type="Label" parent="HelpFrameGM/HelpFrameButton7"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton7Description" type="Label" parent="HelpFrameGM/HelpFrameButton7"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton7"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton8" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 339
+offset_right = 588
+offset_bottom = 376
+ignore_texture_size = true
+
+[node name="HelpFrameButton8Text" type="Label" parent="HelpFrameGM/HelpFrameButton8"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton8Description" type="Label" parent="HelpFrameGM/HelpFrameButton8"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton8"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton9" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 376
+offset_right = 588
+offset_bottom = 413
+ignore_texture_size = true
+
+[node name="HelpFrameButton9Text" type="Label" parent="HelpFrameGM/HelpFrameButton9"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton9Description" type="Label" parent="HelpFrameGM/HelpFrameButton9"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton9"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameButton10" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 413
+offset_right = 588
+offset_bottom = 450
+ignore_texture_size = true
+
+[node name="HelpFrameButton10Text" type="Label" parent="HelpFrameGM/HelpFrameButton10"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 4
+offset_right = 22
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameButton10Description" type="Label" parent="HelpFrameGM/HelpFrameButton10"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 18
+offset_right = 22
+offset_bottom = 28
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton10"]
+offset_left = 0
+offset_top = 2
+offset_right = 16
+offset_bottom = 18
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameButton10"]
+offset_left = 0
+offset_top = 0
+offset_right = 568
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGMScrollFrame" type="Control" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -620
+offset_top = 54
+offset_right = -80
+offset_bottom = 464
+mouse_filter = 0
+
+[node name="HelpFrameGMScrollFrameScrollBarTop" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame"]
+unique_name_in_owner = true
+offset_left = 538
+offset_top = -5
+offset_right = 569
+offset_bottom = 251
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="HelpFrameGMScrollFrameScrollBarBottom" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame"]
+unique_name_in_owner = true
+offset_left = 538
+offset_top = 306
+offset_right = 569
+offset_bottom = 412
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="HelpFrameGMScrollFrameScrollBarMiddle" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame"]
+unique_name_in_owner = true
+offset_left = 538
+offset_top = 251
+offset_right = 569
+offset_bottom = 306
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="HelpFrameGMScrollFrameScrollBar" type="VSlider" parent="HelpFrameGM/HelpFrameGMScrollFrame"]
+unique_name_in_owner = true
+offset_left = 546
+offset_top = 16
+offset_right = 562
+offset_bottom = 394
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_31")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_31")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_32")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_32")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_32")
+max_value = 0.0
+step = 0.0
+
+[node name="HelpFrameGMScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar/HelpFrameGMScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar/HelpFrameGMScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar/HelpFrameGMScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar/HelpFrameGMScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGMScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 378
+offset_right = 16
+offset_bottom = 394
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar/HelpFrameGMScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar/HelpFrameGMScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar/HelpFrameGMScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_46")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameScrollBar/HelpFrameGMScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGMScrollFrameClip" type="Control" parent="HelpFrameGM/HelpFrameGMScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="HelpFrameGMScrollFrameScrollChildFrame" type="Control" parent="HelpFrameGM/HelpFrameGMScrollFrame/HelpFrameGMScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="HelpFrameGMCancel" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -197
+offset_top = -42
+offset_right = -53
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameGMCancelText" type="Label" parent="HelpFrameGM/HelpFrameGMCancel"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGMBack" type="TextureButton" parent="HelpFrameGM"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -341
+offset_top = -42
+offset_right = -197
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameGMBackText" type="Label" parent="HelpFrameGM/HelpFrameGMBack"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGM/HelpFrameGMBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameOpenTicket" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="HelpFrameOpenTicketLabel" type="Label" parent="HelpFrameOpenTicket"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 58
+offset_right = 25
+offset_bottom = 70
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Describe Your Question:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameOpenTicketDivider" type="Control" parent="HelpFrameOpenTicket"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 72
+offset_right = 589
+offset_bottom = 91
+mouse_filter = 2
+
+[node name="HelpFrameOpenTicketDividerLeft" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketDivider"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="HelpFrameOpenTicketDividerMiddle" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketDivider"]
+unique_name_in_owner = true
+offset_left = 256
+offset_top = -1
+offset_right = 512
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="HelpFrameOpenTicketDividerRight" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketDivider"]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = -1
+offset_right = 577
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="HelpFrameOpenTicketScrollFrame" type="Control" parent="HelpFrameOpenTicket"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 20
+offset_top = 87
+offset_right = 560
+offset_bottom = 465
+mouse_filter = 0
+
+[node name="HelpFrameOpenTicketScrollFrameScrollBarTop" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame"]
+unique_name_in_owner = true
+offset_left = 538
+offset_top = -5
+offset_right = 569
+offset_bottom = 251
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="HelpFrameOpenTicketScrollFrameScrollBarBottom" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame"]
+unique_name_in_owner = true
+offset_left = 538
+offset_top = 274
+offset_right = 569
+offset_bottom = 380
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="HelpFrameOpenTicketScrollFrameScrollBarMiddle" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame"]
+unique_name_in_owner = true
+offset_left = 538
+offset_top = 251
+offset_right = 569
+offset_bottom = 274
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="HelpFrameOpenTicketScrollFrameScrollBar" type="VSlider" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame"]
+unique_name_in_owner = true
+offset_left = 546
+offset_top = 16
+offset_right = 562
+offset_bottom = 362
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_31")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_31")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_32")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_32")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_32")
+max_value = 0.0
+step = 0.0
+
+[node name="HelpFrameOpenTicketScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar/HelpFrameOpenTicketScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar/HelpFrameOpenTicketScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar/HelpFrameOpenTicketScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar/HelpFrameOpenTicketScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameOpenTicketScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 346
+offset_right = 16
+offset_bottom = 362
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar/HelpFrameOpenTicketScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar/HelpFrameOpenTicketScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar/HelpFrameOpenTicketScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_46")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameScrollBar/HelpFrameOpenTicketScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameOpenTicketScrollFrameClip" type="Control" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="HelpFrameOpenTicketText" type="TextEdit" parent="HelpFrameOpenTicket/HelpFrameOpenTicketScrollFrame/HelpFrameOpenTicketScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 541
+offset_bottom = 357
+mouse_filter = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_32")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_32")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_32")
+wrap_mode = 1
+caret_blink = true
+scroll_fit_content_height = true
+
+[node name="HelpFrameOpenTicketCancel" type="TextureButton" parent="HelpFrameOpenTicket"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -197
+offset_top = -42
+offset_right = -53
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameOpenTicketCancelText" type="Label" parent="HelpFrameOpenTicket/HelpFrameOpenTicketCancel"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameOpenTicketSubmit" type="TextureButton" parent="HelpFrameOpenTicket"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -341
+offset_top = -42
+offset_right = -197
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketSubmit"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketSubmit"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketSubmit"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameOpenTicketSubmitText" type="Label" parent="HelpFrameOpenTicket/HelpFrameOpenTicketSubmit"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Submit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameOpenTicket/HelpFrameOpenTicketSubmit"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGeneral" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="HelpFrameGeneralTitle" type="Label" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 65
+offset_right = 575
+offset_bottom = 81
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralTitleText" type="Label" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 84
+offset_right = 575
+offset_bottom = 96
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralTitleText2" type="Label" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 84
+offset_right = 575
+offset_bottom = 96
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameBulletTitle1" type="Label" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 106
+offset_right = 575
+offset_bottom = 118
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameBulletTitle2" type="Label" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 550
+offset_bottom = 12
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameEndText" type="Label" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 550
+offset_bottom = 10
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet1" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 123
+offset_right = 580
+offset_bottom = 135
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet1"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet1Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet1"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet2" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 140
+offset_right = 580
+offset_bottom = 152
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet2"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet2Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet2"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet3" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 157
+offset_right = 580
+offset_bottom = 169
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet3"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet3Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet3"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet4" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 174
+offset_right = 580
+offset_bottom = 186
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet4"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet4Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet4"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet5" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 191
+offset_right = 580
+offset_bottom = 203
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet5"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet5Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet5"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet6" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 208
+offset_right = 580
+offset_bottom = 220
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet6"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet6Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet6"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet7" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 225
+offset_right = 580
+offset_bottom = 237
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet7"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet7Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet7"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet8" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 242
+offset_right = 580
+offset_bottom = 254
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet8"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet8Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet8"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet9" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 259
+offset_right = 580
+offset_bottom = 271
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet9"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet9Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet9"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralBullet10" type="Control" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 276
+offset_right = 580
+offset_bottom = 288
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBullet10"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBullet10Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBullet10"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameGeneralButton" type="TextureButton" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20
+offset_top = -15
+offset_right = 20
+offset_bottom = 7
+ignore_texture_size = true
+
+[node name="HelpFrameGeneralButtonLeft" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="HelpFrameGeneralButtonRight" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralButton"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="HelpFrameGeneralButtonMiddle" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 28
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="HelpFrameGeneralButtonText" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGeneralButton2" type="TextureButton" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20
+offset_top = -15
+offset_right = 20
+offset_bottom = 7
+ignore_texture_size = true
+
+[node name="HelpFrameGeneralButton2Left" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="HelpFrameGeneralButton2Right" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralButton2"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="HelpFrameGeneralButton2Middle" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralButton2"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 28
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="HelpFrameGeneralButton2Text" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGeneralCancel" type="TextureButton" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -197
+offset_top = -42
+offset_right = -53
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameGeneralCancelText" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralCancel"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameGeneralBack" type="TextureButton" parent="HelpFrameGeneral"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -341
+offset_top = -42
+offset_right = -197
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameGeneralBackText" type="Label" parent="HelpFrameGeneral/HelpFrameGeneralBack"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameGeneral/HelpFrameGeneralBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameHarassment" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="HelpFrameHarassmentText" type="Label" parent="HelpFrameHarassment"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 60
+offset_right = 0
+offset_bottom = 72
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Please select one of the following options:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HelpFrameVerbalHarassment" type="Control" parent="HelpFrameHarassment"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 86
+offset_right = 584
+offset_bottom = 251
+mouse_filter = 2
+
+[node name="HelpFrameVerbalHarassmentText" type="Label" parent="HelpFrameHarassment/HelpFrameVerbalHarassment"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 5
+offset_right = 565
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Verbal Harassment"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameVerbalHarassmentDescription" type="Label" parent="HelpFrameHarassment/HelpFrameVerbalHarassment"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 19
+offset_right = 565
+offset_bottom = 29
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Verbal abuse from one player to another."
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameVerbalHarassmentTipText" type="Label" parent="HelpFrameHarassment/HelpFrameVerbalHarassment"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 44
+offset_right = 565
+offset_bottom = 54
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Below are some tips to deal with verbal harassment:"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="VerbalAbuseTip1" type="Control" parent="HelpFrameHarassment/HelpFrameVerbalHarassment"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 59
+offset_right = 552
+offset_bottom = 71
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/VerbalAbuseTip1"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="VerbalAbuseTip1Text" type="Label" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/VerbalAbuseTip1"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="VerbalAbuseTip2" type="Control" parent="HelpFrameHarassment/HelpFrameVerbalHarassment"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 76
+offset_right = 552
+offset_bottom = 88
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/VerbalAbuseTip2"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="VerbalAbuseTip2Text" type="Label" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/VerbalAbuseTip2"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="VerbalAbuseTip3" type="Control" parent="HelpFrameHarassment/HelpFrameVerbalHarassment"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 93
+offset_right = 552
+offset_bottom = 105
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/VerbalAbuseTip3"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="VerbalAbuseTip3Text" type="Label" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/VerbalAbuseTip3"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameVerbalHarassmentButton" type="TextureButton" parent="HelpFrameHarassment/HelpFrameVerbalHarassment"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 182
+offset_top = 128
+offset_right = 382
+offset_bottom = 150
+ignore_texture_size = true
+
+[node name="HelpFrameVerbalHarassmentButtonLeft" type="TextureRect" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/HelpFrameVerbalHarassmentButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="HelpFrameVerbalHarassmentButtonRight" type="TextureRect" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/HelpFrameVerbalHarassmentButton"]
+unique_name_in_owner = true
+offset_left = 188
+offset_top = 0
+offset_right = 200
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="HelpFrameVerbalHarassmentButtonMiddle" type="TextureRect" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/HelpFrameVerbalHarassmentButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 188
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="HelpFrameVerbalHarassmentButtonText" type="Label" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/HelpFrameVerbalHarassmentButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Report Verbal Harassment"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameVerbalHarassment/HelpFrameVerbalHarassmentButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameHarassmentDivider2" type="Control" parent="HelpFrameHarassment"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 238
+offset_right = 588
+offset_bottom = 257
+mouse_filter = 2
+
+[node name="HelpFrameHarassmentDivider2Left" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentDivider2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="HelpFrameHarassmentDivider2Middle" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentDivider2"]
+unique_name_in_owner = true
+offset_left = 256
+offset_top = -1
+offset_right = 512
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="HelpFrameHarassmentDivider2Right" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentDivider2"]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = -1
+offset_right = 577
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="HelpFramePhysicalHarassment" type="Control" parent="HelpFrameHarassment"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 252
+offset_right = 588
+offset_bottom = 472
+mouse_filter = 2
+
+[node name="HelpFramePhysicalHarassmentText" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 5
+offset_right = 569
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Physical Harassment"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFramePhysicalHarassmentDescription" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 19
+offset_right = 569
+offset_bottom = 29
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "If the sole purpose or intent of any action is to continually upset, aggravate, or otherwise annoy another player, that action may be considered physical harassment or �grief play�.  Before reporting physical harassment, make sure that the situation that is being petitioned falls outside the realm of the PvP policy (www.worldofwarcraft.com/policy/pvp.shtml). "
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFramePhysicalHarassmentTipText" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 44
+offset_right = 569
+offset_bottom = 54
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "The following are NOT considered physical harassment:"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PhysicalAbuseTip1" type="Control" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 59
+offset_right = 552
+offset_bottom = 71
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip1"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="PhysicalAbuseTip1Text" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip1"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PhysicalAbuseTip2" type="Control" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 76
+offset_right = 552
+offset_bottom = 88
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip2"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="PhysicalAbuseTip2Text" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip2"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PhysicalAbuseTip3" type="Control" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 93
+offset_right = 552
+offset_bottom = 105
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip3"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="PhysicalAbuseTip3Text" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip3"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PhysicalAbuseTip4" type="Control" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 110
+offset_right = 552
+offset_bottom = 122
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip4"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="PhysicalAbuseTip4Text" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip4"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PhysicalAbuseTip5" type="Control" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 127
+offset_right = 552
+offset_bottom = 139
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip5"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="PhysicalAbuseTip5Text" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/PhysicalAbuseTip5"]
+unique_name_in_owner = true
+offset_left = 17
+offset_top = 3
+offset_right = 565
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFramePhysicalHarassmentButton" type="TextureButton" parent="HelpFrameHarassment/HelpFramePhysicalHarassment"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 184
+offset_top = 183
+offset_right = 384
+offset_bottom = 205
+ignore_texture_size = true
+
+[node name="HelpFramePhysicalHarassmentButtonLeft" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/HelpFramePhysicalHarassmentButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="HelpFramePhysicalHarassmentButtonRight" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/HelpFramePhysicalHarassmentButton"]
+unique_name_in_owner = true
+offset_left = 188
+offset_top = 0
+offset_right = 200
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="HelpFramePhysicalHarassmentButtonMiddle" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/HelpFramePhysicalHarassmentButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 188
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="HelpFramePhysicalHarassmentButtonText" type="Label" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/HelpFramePhysicalHarassmentButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Report Physical Harassment"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFramePhysicalHarassment/HelpFramePhysicalHarassmentButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 200
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameHarassmentCancel" type="TextureButton" parent="HelpFrameHarassment"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -197
+offset_top = -42
+offset_right = -53
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameHarassmentCancelText" type="Label" parent="HelpFrameHarassment/HelpFrameHarassmentCancel"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameHarassmentBack" type="TextureButton" parent="HelpFrameHarassment"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -341
+offset_top = -42
+offset_right = -197
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameHarassmentBackText" type="Label" parent="HelpFrameHarassment/HelpFrameHarassmentBack"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameHarassmentDivider" type="Control" parent="HelpFrameHarassment"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 70
+offset_right = 589
+offset_bottom = 89
+mouse_filter = 2
+
+[node name="HelpFrameHarassmentDividerLeft" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentDivider"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="HelpFrameHarassmentDividerMiddle" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentDivider"]
+unique_name_in_owner = true
+offset_left = 256
+offset_top = -1
+offset_right = 512
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="HelpFrameHarassmentDividerRight" type="TextureRect" parent="HelpFrameHarassment/HelpFrameHarassmentDivider"]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = -1
+offset_right = 577
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="HelpFrameStuck" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="HelpFrameStuckTitle" type="Label" parent="HelpFrameStuck"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 65
+offset_right = 575
+offset_bottom = 81
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLarge"
+text = "Stuck Option"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameStuckText1" type="Label" parent="HelpFrameStuck"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 84
+offset_right = 575
+offset_bottom = 96
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "If you find yourself stuck and unable to move, please try the auto-unstuck feature prior to petitioning a GM. In most cases, this should solve the problem. Activating the auto-unstuck command will first attempt to use your hearthstone to port you back to your inn. If this is not possible, it will attempt to nudge your character out of position.\n\nPlease note this option can only be used every 5 minutes. Using the auto-unstuck option will log your character and location so that we can verify and fix the location in the future."
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HelpFrameStuckStuck" type="TextureButton" parent="HelpFrameStuck"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 280
+offset_top = 121
+offset_right = 320
+offset_bottom = 143
+ignore_texture_size = true
+
+[node name="HelpFrameStuckStuckLeft" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckStuck"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="HelpFrameStuckStuckRight" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckStuck"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="HelpFrameStuckStuckMiddle" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckStuck"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 28
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="HelpFrameStuckStuckText" type="Label" parent="HelpFrameStuck/HelpFrameStuckStuck"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Auto-Unstuck"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckStuck"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameStuckCancel" type="TextureButton" parent="HelpFrameStuck"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -197
+offset_top = -42
+offset_right = -53
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameStuckCancelText" type="Label" parent="HelpFrameStuck/HelpFrameStuckCancel"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckCancel"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameStuckBack" type="TextureButton" parent="HelpFrameStuck"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -341
+offset_top = -42
+offset_right = -197
+offset_bottom = -21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="HelpFrameStuckBackText" type="Label" parent="HelpFrameStuck/HelpFrameStuckBack"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="HelpFrameStuck/HelpFrameStuckBack"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="HelpFrameBug" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="HelpFrameBugDivider" type="Control" parent="HelpFrameBug"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 223
+offset_right = 589
+offset_bottom = 242
+mouse_filter = 2
+
+[node name="HelpFrameBugDividerLeft" type="TextureRect" parent="HelpFrameBug/HelpFrameBugDivider"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="HelpFrameBugDividerMiddle" type="TextureRect" parent="HelpFrameBug/HelpFrameBugDivider"]
+unique_name_in_owner = true
+offset_left = 256
+offset_top = -1
+offset_right = 512
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="HelpFrameBugDividerRight" type="TextureRect" parent="HelpFrameBug/HelpFrameBugDivider"]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = -1
+offset_right = 577
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1

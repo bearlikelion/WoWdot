@@ -4,7 +4,7 @@ extends Control
 signal action_used(slot: int)
 signal spell_used(spell_id: int)
 signal unit_selected(guid: int)
-signal ticket_requested(text: String)
+signal ticket_requested(text: String, category: int)
 
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
 enum UnitMenuItem {
@@ -165,7 +165,8 @@ func _ready() -> void:
 	_duel.finished.connect(add_system_line)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
-	_chat.ticket_requested.connect(ticket_requested.emit)
+	(_panels.get_node("%HelpFrame") as HelpFrame).ticket_requested.connect(ticket_requested.emit)
+	_chat.ticket_requested.connect(ticket_requested.emit.bind(HelpFrame.DEFAULT_CATEGORY))
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
 	_quest_frame.open_requested.connect(_panels.show_panel.bind(_quest_frame))
 	_quest_frame.error_raised.connect(show_error)
@@ -607,6 +608,8 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 			_panels.toggle_panel(_world_map)
 		MainMenuBar.GamePanel.BAGS:
 			_panels.toggle_backpack()
+		MainMenuBar.GamePanel.HELP:
+			_panels.toggle_panel(_panels.get_node("%HelpFrame"))
 		MainMenuBar.GamePanel.GAME_MENU:
 			if _game_menu.visible:
 				_panels.hide_panel(_game_menu)
