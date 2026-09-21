@@ -128,25 +128,17 @@ In the order they are planned:
 
 | Milestone | Work |
 | --- | --- |
-| M6 visuals | Drawing the ribbon trails the parser now reads. |
-| M6 transports | Riding a ferry across the boundary between two continents. The route keeps the far legs and the boat hides while it sails them, but nothing yet checks that the server carries a passenger over with it. |
-| PvP | The battleground queue works; what is left is the window to drive it from, the invite popup, the scoreboard from `MSG_PVP_LOG_DATA` and the world state readout. None of it can be proven here: a match needs four players a side. |
-| Professions | Recipes resolve and crafting works, but there is no tradeskill window to drive it from. 1.12 has no tradeskill opcodes at all, so the window is pure client work: `Blizzard_TradeSkillUI` is an addon rather than core FrameXML, so the converter needs pointing at it. |
-| Raid | The protocol is in: converting, subgroups, assistants and target icons all work. What is missing is the 40 slot raid window to drive them from, and drawing the target marks over the units wearing them. |
+| M6 transports | Riding a ferry across the boundary between two continents. The route keeps the far legs and the boat hides while it sails them, but nothing yet checks that the server carries a passenger over with it. Other players and creatures riding a transport are not attached to it, so `SMSG_MONSTER_MOVE_TRANSPORT` is ignored. |
+| PvP | The queue, the scoreboard window (Shift+Space in a match, and on its own when the match ends) and the team blips on the world map are in. None of the match itself can be proven here: it needs four players a side. |
+| Raid | The 40 slot window, the raid info window and the target icons work. What is missing is drawing the marks over the units wearing them and the pulled out raid frames. |
 
 These parts of 1.12 have not been started at all:
 
 | Feature | Work |
 | --- | --- |
-| Who window | `/who` prints its results in chat; the converted `friends_frame.tscn` already carries the WhoFrame's widgets and its column tabs, and `friends_frame.gd` never wires them. |
-| Inspect | `CMSG_INSPECT`, then reading the target's `PLAYER_VISIBLE_ITEM` fields into a second paper doll. |
-| Honor and PvP rank | The PvP flag toggle, `MSG_INSPECT_HONOR_STATS`, `SMSG_PVP_CREDIT`, and the character sheet's honor tab with its rank and kill counts. |
-| Fishing | The bobber game object, `SMSG_GAMEOBJECT_CUSTOM_ANIM` and `SMSG_GAMEOBJECT_DESPAWN_ANIM`, feeding the loot flow the client already has. |
-| Macros | A macro window, its icon picker, and running one from an action button. Pure client work, no opcodes. |
-| Readable objects | Books and letters in the bags open in the reading window; plaques and other game objects that carry page text do not yet. |
 | Looking for group | Clicking a meeting stone joins its queue and a second click leaves it; the minimap button and the 1.12 browser over `MSG_LOOKING_FOR_GROUP` are missing. |
-| Cinematics | `SMSG_TRIGGER_CINEMATIC` is acknowledged so the server moves on, but the camera flyover is not drawn. |
-| Odds and ends | `SMSG_ITEM_PUSH_RESULT` for the toast over the bags, and the GM ticket window (`/ticket <text>`, `/ticket` and `/ticket delete` stand in for it). |
+| Auto shot | The client keeps no auto repeat state, so `SMSG_CANCEL_AUTO_REPEAT` has nothing to stop. |
+| Other riders | Only the player's own mount is drawn, so `SMSG_MOUNTSPECIAL_ANIM` and other players' mounts are not shown. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 
