@@ -96,6 +96,18 @@ static func format(event: CombatEvents.CombatEvent) -> String:
 				return WowStrings.get_text("COMBATLOG_XPGAIN_FIRSTPERSON_UNNAMED") % event.amount
 			var text: String = WowStrings.get_text("COMBATLOG_XPGAIN_FIRSTPERSON")
 			return text % [_name(event.target), event.amount]
+		CombatEvents.Kind.DISPEL:
+			var aura: String = WowAssets.spells.spell_name(event.spell)
+			if event.target == WowClient.session.get_player_guid():
+				return WowStrings.get_text("AURADISPELSELF") % aura
+			return WowStrings.get_text("AURADISPELOTHER") % [_name(event.target), aura]
+		CombatEvents.Kind.INSTAKILL:
+			var killer: String = WowAssets.spells.spell_name(event.spell)
+			if event.target == WowClient.session.get_player_guid():
+				return WowStrings.get_text("INSTAKILLSELF") % killer
+			return WowStrings.get_text("INSTAKILLOTHER") % [_name(event.target), killer]
+		CombatEvents.Kind.ENCHANT:
+			return _enchant_line(event)
 	return ""
 
 
@@ -123,6 +135,23 @@ static func _line(stem: String, slots: Array[Slot], event: CombatEvents.CombatEv
 				args.append(WowStrings.get_text(POWER_NAMES[clampi(event.power, 0, 4)]))
 	var key: String = stem + ("SELF" if from_me else "OTHER") + ("SELF" if to_me else "OTHER")
 	return WowStrings.get_text(key) % args
+
+
+# A zero caster means the enchant faded rather than landed.
+static func _enchant_line(event: CombatEvents.CombatEvent) -> String:
+	var me: int = WowClient.session.get_player_guid()
+	var mine: bool = event.target == me
+	var item_name: String = WowClient.session.get_item_info(event.item).get("name", "")
+	var args: Array = [WowAssets.spells.spell_name(event.spell)]
+	if not mine:
+		args.append(_name(event.target))
+	args.append(item_name)
+	if event.source == 0:
+		return WowStrings.get_text("ITEMENCHANTMENTREMOVE" + ("SELF" if mine else "OTHER")) % args
+	if event.source != me:
+		args.push_front(_name(event.source))
+	var key: String = "ITEMENCHANTMENTADD" + ("SELF" if event.source == me else "OTHER")
+	return WowStrings.get_text(key + ("SELF" if mine else "OTHER")) % args
 
 
 static func _crit(event: CombatEvents.CombatEvent) -> String:

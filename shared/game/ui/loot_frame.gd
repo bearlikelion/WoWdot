@@ -33,6 +33,8 @@ var _candidates: PackedInt64Array = []
 var _items: Dictionary[int, Dictionary] = {}
 var _page: int = 0
 var _released: bool = true
+# Item pushes whose name the server had not told us yet, by entry.
+var _unnamed_pushes: Dictionary[int, PackedByteArray] = {}
 
 
 func _ready() -> void:
@@ -47,7 +49,7 @@ func _ready() -> void:
 	%LootFrameDownButton.pressed.connect(_turn_page.bind(1))
 	var session: WowSession = WowClient.session
 	session.packet_received.connect(_on_packet_received)
-	session.item_info_received.connect(func(_entry: int) -> void: _refresh())
+	session.item_info_received.connect(_on_item_named)
 	visibility_changed.connect(_on_visibility_changed)
 
 
@@ -87,9 +89,51 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			var entry: int = payload.decode_u32(12)
 			var item_name: String = WowClient.session.get_item_info(entry).get("name", "")
 			message_added.emit(WowStrings.format(WowStrings.get_text("LOOT_ROLL_ALL_PASSED"), [item_name]))
+		"SMSG_ITEM_PUSH_RESULT":
+			_on_item_pushed(payload)
 		"SMSG_LOOT_MONEY_NOTIFY":
 			var text: String = WowStrings.get_text("YOU_LOOT_MONEY")
 			message_added.emit(text % _money_text(payload.decode_u32(0)))
+
+
+# The chat line for SMSG_ITEM_PUSH_RESULT, or "" when the server asks for none.
+static func push_text(payload: PackedByteArray, item_name: String, me: int) -> String:
+	var reader: PacketReader = PacketReader.new(payload)
+	var receiver: int = reader.u64()
+	var from_npc: bool = reader.u32() != 0
+	var created: bool = reader.u32() != 0
+	if reader.u32() == 0:
+		return ""
+	reader.skip(17)
+	var count: int = reader.u32()
+	var args: Array = [item_name, count]
+	var key: String = "LOOT_ITEM"
+	if receiver == me:
+		key += "_CREATED_SELF" if created else "_PUSHED_SELF" if from_npc else "_SELF"
+	else:
+		args.push_front(WowClient.session.get_object_name(receiver))
+	if count > 1:
+		key += "_MULTIPLE"
+	return WowStrings.format(WowStrings.get_text(key), args)
+
+
+func _on_item_pushed(payload: PackedByteArray) -> void:
+	var entry: int = payload.decode_u32(25) if payload.size() >= 41 else 0
+	var item_name: String = WowClient.session.get_item_info(entry).get("name", "")
+	if item_name.is_empty():
+		_unnamed_pushes[entry] = payload
+		return
+	var text: String = push_text(payload, item_name, WowClient.session.get_player_guid())
+	if not text.is_empty():
+		message_added.emit(text)
+
+
+func _on_item_named(entry: int) -> void:
+	_refresh()
+	if _unnamed_pushes.has(entry):
+		var payload: PackedByteArray = _unnamed_pushes[entry]
+		_unnamed_pushes.erase(entry)
+		_on_item_pushed(payload)
 
 
 func _on_loot_received(payload: PackedByteArray) -> void:

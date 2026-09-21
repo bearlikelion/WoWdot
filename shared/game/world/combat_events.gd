@@ -5,7 +5,7 @@ signal logged(event: CombatEvent)
 
 enum Kind {
 	MELEE, SPELL, PERIODIC, HEAL, PERIODIC_HEAL, ENERGIZE, PERIODIC_ENERGIZE, DAMAGE_SHIELD,
-	ENVIRONMENT, KILL, XP,
+	ENVIRONMENT, KILL, XP, DISPEL, INSTAKILL, ENCHANT,
 }
 # How an attack or spell landed, as UNIT_COMBAT and the combat log name it.
 enum Outcome { HIT, MISS, DODGE, PARRY, BLOCK, EVADE, IMMUNE, DEFLECT, RESIST, ABSORB, REFLECT }
@@ -67,6 +67,20 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			xp.target = reader.u64()
 			xp.amount = reader.u32()
 			logged.emit(xp)
+		"SMSG_SPELLDISPELLOG":
+			_read_dispel(reader)
+		"SMSG_SPELLINSTAKILLLOG":
+			var death: CombatEvent = CombatEvent.new(Kind.INSTAKILL)
+			death.target = reader.u64()
+			death.spell = reader.u32()
+			logged.emit(death)
+		"SMSG_ENCHANTMENTLOG":
+			var enchant: CombatEvent = CombatEvent.new(Kind.ENCHANT)
+			enchant.source = reader.u64()
+			enchant.target = reader.u64()
+			enchant.item = reader.u32()
+			enchant.spell = reader.u32()
+			logged.emit(enchant)
 
 
 func _read_melee(reader: PacketReader) -> void:
@@ -198,6 +212,17 @@ func _read_damage_shield(reader: PacketReader) -> void:
 	logged.emit(event)
 
 
+func _read_dispel(reader: PacketReader) -> void:
+	var target: int = reader.packed_guid()
+	var source: int = reader.packed_guid()
+	for i: int in reader.u32():
+		var event: CombatEvent = CombatEvent.new(Kind.DISPEL)
+		event.target = target
+		event.source = source
+		event.spell = reader.u32()
+		logged.emit(event)
+
+
 func _read_environment(reader: PacketReader) -> void:
 	var event: CombatEvent = CombatEvent.new(Kind.ENVIRONMENT)
 	event.target = reader.u64()
@@ -227,6 +252,7 @@ class CombatEvent:
 	var source: int = 0
 	var target: int = 0
 	var spell: int = 0
+	var item: int = 0
 	var amount: int = 0
 	var school: int = 0
 	var power: int = 0
