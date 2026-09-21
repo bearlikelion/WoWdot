@@ -47,15 +47,14 @@ func effects(spell_id: int, kit: Kit) -> Array[Dictionary]:
 	var key: int = spell_id * KIT_COLUMNS.size() + int(kit)
 	if _kit_cache.has(key):
 		return _kit_cache[key]
-	var found: Array[Dictionary] = []
-	var kit_row: int = _kit_row(spell_id, kit)
-	if kit_row >= 0:
-		for slot: String in SLOT_POINTS:
-			var path: String = _model(_kits.get_uint(kit_row, slot))
-			if not path.is_empty():
-				found.append({"path": path, "points": SLOT_POINTS[slot]})
+	var found: Array[Dictionary] = _row_effects(_kit_row(spell_id, kit))
 	_kit_cache[key] = found
 	return found
+
+
+# The same for a SpellVisualKit id named outright, as SMSG_PLAY_SPELL_VISUAL does.
+func kit_effects(kit_id: int) -> Array[Dictionary]:
+	return _row_effects(_kits.find(kit_id))
 
 
 # The clip the unit plays for a stage, such as ReadySpellDirected while a fireball is cast.
@@ -92,6 +91,16 @@ func loot_sparkle() -> String:
 func shake_group(spell_id: int, kit: Kit) -> int:
 	var row: int = _kit_row(spell_id, kit)
 	return _kits.get_uint(row, KIT_SHAKE_COLUMN) if row >= 0 else 0
+
+
+func _row_effects(kit_row: int) -> Array[Dictionary]:
+	var found: Array[Dictionary] = []
+	if kit_row >= 0:
+		for slot: String in SLOT_POINTS:
+			var path: String = _model(_kits.get_uint(kit_row, slot))
+			if not path.is_empty():
+				found.append({"path": path, "points": SLOT_POINTS[slot]})
+	return found
 
 
 func _kit_row(spell_id: int, kit: Kit) -> int:

@@ -26,6 +26,7 @@ func _ready() -> void:
 	session.spell_cast_failed.connect(_on_cast_failed)
 	session.object_updated.connect(_on_object_updated)
 	session.objects_destroyed.connect(_on_objects_destroyed)
+	session.packet_received.connect(_on_packet_received)
 
 
 func _process(delta: float) -> void:
@@ -41,6 +42,12 @@ func _process(delta: float) -> void:
 func watch(entities: Entities, player: Player) -> void:
 	_entities = entities
 	_player = player
+
+
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "SMSG_PLAY_SPELL_VISUAL" and payload.size() >= 12:
+		var effects: Array[Dictionary] = WowAssets.spell_visuals.kit_effects(payload.decode_u32(8))
+		_hang_effects(payload.decode_u64(0), effects, FALLBACK_SECONDS)
 
 
 func _on_cast_started(caster: int, spell_id: int, _cast_time_msec: int) -> void:
@@ -110,11 +117,15 @@ func _play(guid: int, clip: String) -> void:
 
 # Hangs a stage's models on the unit, giving them back so a precast can be taken down again.
 func _hang(guid: int, spell_id: int, kit: SpellVisuals.Kit, seconds: float) -> Array:
-	var hung: Array = []
 	var shaken: Node3D = _model_of(guid)
 	if shaken and shake:
 		shake.add_group(WowAssets.spell_visuals.shake_group(spell_id, kit), shaken.global_position)
-	for effect: Dictionary in WowAssets.spell_visuals.effects(spell_id, kit):
+	return _hang_effects(guid, WowAssets.spell_visuals.effects(spell_id, kit), seconds)
+
+
+func _hang_effects(guid: int, effects: Array[Dictionary], seconds: float) -> Array:
+	var hung: Array = []
+	for effect: Dictionary in effects:
 		var model: Node3D = _mount(guid, effect["path"], effect["points"])
 		if model == null:
 			continue

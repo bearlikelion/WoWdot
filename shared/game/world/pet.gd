@@ -114,9 +114,15 @@ func state_of(packed: int) -> ActionState:
 
 # SMSG_PET_SPELLS: the pet, its stance, the ten bar slots, then the spells it knows.
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	var reader: PacketReader = PacketReader.new(payload)
+	if opcode == "SMSG_PET_MODE":
+		if reader.u64() == guid:
+			react = reader.u8()
+			command = reader.u8()
+			changed.emit()
+		return
 	if opcode != "SMSG_PET_SPELLS":
 		return
-	var reader: PacketReader = PacketReader.new(payload)
 	guid = reader.u64()
 	actions.clear()
 	spells.clear()

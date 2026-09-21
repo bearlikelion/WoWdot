@@ -310,6 +310,15 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		_swimmers[PacketReader.new(payload).packed_guid()] = true
 	elif opcode == "SMSG_SPLINE_MOVE_STOP_SWIM":
 		_swimmers.erase(PacketReader.new(payload).packed_guid())
+	elif opcode == "SMSG_GAMEOBJECT_CUSTOM_ANIM" and payload.size() >= 12:
+		_play_object_clip(payload.decode_u64(0), "Custom%d" % payload.decode_u32(8))
+	elif opcode == "SMSG_GAMEOBJECT_DESPAWN_ANIM" and payload.size() >= 8:
+		_play_object_clip(payload.decode_u64(0), "Despawn")
+
+
+func _play_object_clip(guid: int, clip: String) -> void:
+	if _nodes.has(guid):
+		UnitAnimations.play_once(_nodes[guid], [clip])
 
 
 func _on_objects_destroyed(guids: PackedInt64Array) -> void:

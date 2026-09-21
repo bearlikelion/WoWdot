@@ -52,6 +52,10 @@ const MOUNT_FAILURES: Array[String] = [
 const DISMOUNT_FAILURES: Array[String] = [
 	"ERR_DISMOUNT_NOPET", "ERR_DISMOUNT_NOTMOUNTED", "ERR_DISMOUNT_NOTYOURPET",
 ]
+# SMSG_PET_ACTION_FEEDBACK reasons; "no path" has no string in 1.12 and stays silent.
+const PET_FEEDBACK: Dictionary[int, String] = {
+	1: "ERR_PET_SPELL_DEAD", 2: "ERR_NO_ATTACK_TARGET", 3: "ERR_INVALID_ATTACK_TARGET",
+}
 const DUEL_FORFEIT_SECONDS: int = 10
 
 static var _maps: WowDBC
@@ -182,6 +186,9 @@ static func error(opcode: String, payload: PackedByteArray) -> String:
 			return reader.text(reader.u32())
 		"SMSG_QUESTLOG_FULL":
 			return WowStrings.get_text("ERR_QUEST_LOG_FULL")
+		"SMSG_PET_ACTION_FEEDBACK":
+			var reason: int = reader.u8()
+			return WowStrings.get_text(PET_FEEDBACK[reason]) if PET_FEEDBACK.has(reason) else ""
 		"SMSG_QUESTGIVER_QUEST_INVALID":
 			return WowStrings.get_text(QUEST_FAILURES.get(reader.u32(), "ERR_QUEST_FAILED_LOW_LEVEL"))
 		"SMSG_QUESTGIVER_QUEST_FAILED":
