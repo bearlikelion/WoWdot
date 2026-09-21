@@ -1,0 +1,128 @@
+class_name ServerNotices
+extends RefCounted
+
+# SMSG_QUESTGIVER_QUEST_FAILED and SMSG_QUESTGIVER_QUEST_INVALID reasons.
+const QUEST_FAILURES: Dictionary[int, String] = {
+	4: "ERR_QUEST_FAILED_INVENTORY_FULL", 16: "ERR_QUEST_FAILED_DUPLICATE_ITEM",
+	17: "ERR_QUEST_FAILED_DUPLICATE_ITEM", 1: "ERR_QUEST_FAILED_LOW_LEVEL",
+	6: "ERR_QUEST_FAILED_WRONG_RACE", 7: "ERR_QUEST_ALREADY_DONE",
+	13: "ERR_QUEST_ALREADY_ON", 12: "ERR_QUEST_ONLY_ONE_TIMED",
+	21: "ERR_QUEST_FAILED_NOT_ENOUGH_MONEY", 0: "ERR_QUEST_FAILED_MISSING_ITEMS",
+}
+# SMSG_INSTANCE_RESET_FAILED reasons.
+const RESET_FAILURES: Dictionary[int, String] = {
+	0: "INSTANCE_RESET_FAILED", 1: "INSTANCE_RESET_FAILED_OFFLINE",
+	2: "INSTANCE_RESET_FAILED_ZONING",
+}
+# SMSG_RAID_INSTANCE_MESSAGE types.
+const RAID_MESSAGES: Dictionary[int, String] = {
+	1: "RAID_INSTANCE_WARNING_HOURS", 2: "RAID_INSTANCE_WARNING_MIN",
+	3: "RAID_INSTANCE_WARNING_MIN_SOON", 4: "RAID_INSTANCE_WELCOME",
+}
+
+static var _maps: WowDBC
+
+
+# The chat line a server message prints, or nothing when the opcode is not one of these.
+static func line(opcode: String, payload: PackedByteArray) -> String:
+	var reader: PacketReader = PacketReader.new(payload)
+	match opcode:
+		"SMSG_ZONE_UNDER_ATTACK":
+			var text: String = WowStrings.get_text("ZONE_UNDER_ATTACK")
+			return WowStrings.format(text, [AreaInfo.area_name(reader.u32())])
+		"SMSG_DEFENSE_MESSAGE":
+			reader.u32()
+			return reader.text(reader.u32())
+		"SMSG_EXPLORATION_EXPERIENCE":
+			var area: String = AreaInfo.area_name(reader.u32())
+			var xp: int = reader.u32()
+			var key: String = "ERR_ZONE_EXPLORED_XP" if xp > 0 else "ERR_ZONE_EXPLORED"
+			return WowStrings.format(WowStrings.get_text(key), [area, xp])
+		"SMSG_PLAYERBOUND":
+			reader.u64()
+			var home: String = AreaInfo.area_name(reader.u32())
+			return WowStrings.format(WowStrings.get_text("ERR_DEATHBIND_SUCCESS_S"), [home])
+		"SMSG_INSTANCE_RESET":
+			var text: String = WowStrings.get_text("INSTANCE_RESET_SUCCESS")
+			return WowStrings.format(text, [map_name(reader.u32())])
+		"SMSG_INSTANCE_RESET_FAILED":
+			var key: String = RESET_FAILURES.get(reader.u32(), "INSTANCE_RESET_FAILED")
+			return WowStrings.format(WowStrings.get_text(key), [map_name(reader.u32())])
+		"SMSG_RAID_INSTANCE_MESSAGE":
+			var key: String = RAID_MESSAGES.get(reader.u32(), "")
+			var map: String = map_name(reader.u32())
+			var seconds: int = reader.u32()
+			if key == "RAID_INSTANCE_WELCOME":
+				@warning_ignore("integer_division")
+				var left: Array = [map, seconds / 86400, seconds / 3600 % 24, seconds / 60 % 60]
+				return WowStrings.format(WowStrings.get_text(key), left)
+			@warning_ignore("integer_division")
+			var amount: int = seconds / 3600 if key.ends_with("HOURS") else seconds / 60
+			return WowStrings.format(WowStrings.get_text(key), [map, amount]) if key else ""
+	return ""
+
+
+# The red error line a server message raises, or nothing.
+static func error(opcode: String, payload: PackedByteArray) -> String:
+	var reader: PacketReader = PacketReader.new(payload)
+	match opcode:
+		"SMSG_AREA_TRIGGER_MESSAGE":
+			return reader.text(reader.u32())
+		"SMSG_QUESTLOG_FULL":
+			return WowStrings.get_text("ERR_QUEST_LOG_FULL")
+		"SMSG_QUESTGIVER_QUEST_INVALID":
+			return WowStrings.get_text(QUEST_FAILURES.get(reader.u32(), "ERR_QUEST_FAILED_LOW_LEVEL"))
+		"SMSG_QUESTGIVER_QUEST_FAILED":
+			reader.u32()
+			return WowStrings.get_text(QUEST_FAILURES.get(reader.u32(), "ERR_QUEST_FAILED_INVENTORY_FULL"))
+		"SMSG_RAID_GROUP_ONLY":
+			return WowStrings.get_text("ERR_RAID_GROUP_ONLY")
+		"SMSG_FISH_ESCAPED":
+			return WowStrings.get_text("ERR_FISH_ESCAPED")
+		"SMSG_FISH_NOT_HOOKED":
+			return WowStrings.get_text("ERR_FISH_NOT_HOOKED")
+	return ""
+
+
+static func map_name(map_id: int) -> String:
+	if _maps == null:
+		_maps = WowDBC.open(WowAssets.archive, "Map")
+	var row: int = _maps.find(map_id)
+	return _maps.get_string(row, "MapName") if row >= 0 else ""
+
+
+# SMSG_WHO: shown and matched counts, then name, guild, level, class, race and zone per player.
+static func who_lines(payload: PackedByteArray) -> PackedStringArray:
+	var reader: PacketReader = PacketReader.new(payload)
+	var shown: int = reader.u32()
+	var total: int = reader.u32()
+	var lines: PackedStringArray = []
+	for i: int in shown:
+		var player: String = reader.cstring()
+		var guild: String = reader.cstring()
+		var level: int = reader.u32()
+		var player_class: String = CharacterOptions.class_label(reader.u32())
+		var race: String = CharacterOptions.race_name(reader.u32())
+		var zone: String = AreaInfo.area_name(reader.u32())
+		var args: Array = [player, player, level, race, player_class, zone]
+		if not guild.is_empty():
+			args.insert(5, guild)
+		var key: String = "WHO_LIST_FORMAT" if guild.is_empty() else "WHO_LIST_GUILD_FORMAT"
+		lines.append(WowStrings.format(WowStrings.get_text(key), args))
+	lines.append(WowStrings.format(WowStrings.get_text("WHO_NUM_RESULTS"), [total]))
+	return lines
+
+
+# CMSG_WHO: any level, race and class, no zones, and the words to match names, guilds and zones by.
+static func ask_who(words: PackedStringArray) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u32(4, 100)
+	payload.append_array([0, 0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0, 0, 0, 0])
+	var count: PackedByteArray = [0, 0, 0, 0]
+	count.encode_u32(0, words.size())
+	payload.append_array(count)
+	for word: String in words:
+		payload.append_array(word.to_utf8_buffer())
+		payload.append(0)
+	WowClient.session.send_packet("CMSG_WHO", payload)

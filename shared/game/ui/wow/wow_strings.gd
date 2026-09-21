@@ -17,9 +17,18 @@ static func get_text(key: String, fallback: String = "") -> String:
 	return _strings.get(key, fallback if not fallback.is_empty() else key)
 
 
-# A server's own strings can drop placeholders, and Lua ignores the arguments left over.
+# Lua's string.format: %s and %d in order, %2$s by position, arguments left over ignored.
 static func format(template: String, args: Array) -> String:
-	return template % args.slice(0, template.count("%s"))
+	var out: String = ""
+	var next: int = 0
+	var from: int = 0
+	for found: RegExMatch in RegEx.create_from_string("%(?:(\\d+)\\$)?[sd]").search_all(template):
+		var at: int = found.get_string(1).to_int() - 1 if not found.get_string(1).is_empty() else next
+		next += 1
+		out += template.substr(from, found.get_start() - from)
+		out += str(args[at]) if at < args.size() else ""
+		from = found.get_end()
+	return out + template.substr(from)
 
 
 # Drops the |cAARRGGBB and |r colour escapes for text shown in a plain label.

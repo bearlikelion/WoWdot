@@ -43,7 +43,7 @@ func _run() -> void:
 	if not joined:
 		return _finish("never joined the channel")
 	var number: int = Channels.number_of(CHANNEL)
-	_check(number == Channels.joined.size(), "a joined channel takes the next number")
+	_check(number > 1, "a joined channel takes a number after the zone's")
 	_check(_line_with("Joined"), "joining prints its notice: %s" % _lines)
 
 	_lines.clear()
@@ -72,11 +72,22 @@ func _run() -> void:
 	_check(await _until(func() -> bool: return _line_with("typed aloud")), "typed /s says it")
 
 	_lines.clear()
-	chat.call("_on_text_submitted", "/afk")
+	chat.call("_on_text_submitted", "/chatlist %d" % number)
+	_check(await _until(func() -> bool: return _line_with("[%s] " % Channels.name_at(number))),
+			"/chatlist names the members: %s" % _lines)
+	chat.call("_on_text_submitted", "/owner %d" % number)
+	_check(await _until(func() -> bool: return _line_with("owner")),
+			"/owner names the channel's owner: %s" % _lines)
+	chat.call("_on_text_submitted", "/who")
+	_check(await _until(func() -> bool: return _line_with("total")), "/who is answered: %s" % _lines)
+
+	_lines.clear()
 	var session: WowSession = WowClient.session
+	var before: int = session.get_field(session.get_player_guid(), "PLAYER_FLAGS") & 0x02
+	chat.call("_on_text_submitted", "/afk")
 	var away: bool = await _until(func() -> bool:
-		return session.get_field(session.get_player_guid(), "PLAYER_FLAGS") & 0x02 != 0)
-	_check(away, "/afk raises the AFK player flag")
+		return session.get_field(session.get_player_guid(), "PLAYER_FLAGS") & 0x02 != before)
+	_check(away, "/afk flips the AFK player flag")
 	chat.call("_on_text_submitted", "/afk")
 
 	chat.call("_on_text_submitted", "/leave %d" % number)

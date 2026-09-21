@@ -314,6 +314,11 @@ func _run_channel_command(text: String) -> bool:
 	if command in ["join", "j", "chat"] and not rest.is_empty():
 		Channels.join(rest[0], rest[1] if rest.size() > 1 else "")
 		return true
+	if command == "who":
+		ServerNotices.ask_who(rest)
+		return true
+	if Channels.run_command(command, rest):
+		return true
 	# A bare /leave still leaves the party, so this only takes the ones naming a channel.
 	if command in ["leave", "chatleave", "chatexit"] and not rest.is_empty():
 		var leaving: String = Channels.name_at(rest[0].to_int()) if rest[0].is_valid_int() \

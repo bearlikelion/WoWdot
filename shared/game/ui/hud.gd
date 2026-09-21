@@ -32,6 +32,7 @@ const OUT_OF_POWER: Array[String] = [
 # CHAT_TAB_SHOW_DELAY: the dock's tabs wait for the mouse to rest over the chat this long.
 const CHAT_TAB_SHOW_DELAY: float = 0.2
 # 1.12 has no ready check, so its question is ours rather than a GlobalStrings line.
+const CHANNEL_LIST_WAIT: float = 1.0
 const READY_CHECK_QUESTION: String = "Are you ready?"
 const SERVER_MESSAGE_KEYS: Dictionary[int, String] = {
 	1: "SERVER_MESSAGE_SHUTDOWN_TIME", 2: "SERVER_MESSAGE_RESTART_TIME",
@@ -289,6 +290,21 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		if not notice.is_empty():
 			add_system_line(notice)
 		return
+	if opcode == "SMSG_WHO":
+		for who: String in ServerNotices.who_lines(payload):
+			add_system_line(who)
+		return
+	if opcode == "SMSG_CHANNEL_LIST":
+		_list_channel(Channels.members(payload))
+		return
+	var server_line: String = ServerNotices.line(opcode, payload)
+	if not server_line.is_empty():
+		add_system_line(server_line)
+		return
+	var server_error: String = ServerNotices.error(opcode, payload)
+	if not server_error.is_empty():
+		show_error(server_error)
+		return
 	var refusal: String = _chat_refusal(opcode, PacketReader.new(payload))
 	if not refusal.is_empty():
 		add_system_line(refusal)
@@ -311,6 +327,18 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	)
 	if not line.is_empty():
 		add_chat_line(line, EMOTE_COLOR)
+
+
+# Names arrive by query, so the list waits a moment for the ones not met before.
+func _list_channel(list: Dictionary) -> void:
+	var session: WowSession = WowClient.session
+	for member: int in list["guids"]:
+		session.get_object_name(member)
+	await get_tree().create_timer(CHANNEL_LIST_WAIT).timeout
+	var names: PackedStringArray = []
+	for member: int in list["guids"]:
+		names.append(session.get_object_name(member))
+	add_system_line("[%s] %s" % [list["channel"], ", ".join(names)])
 
 
 func add_chat_line(text: String, color: Color = Color.WHITE) -> void:
