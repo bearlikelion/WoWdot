@@ -103,6 +103,10 @@ func delete(mail_id: int) -> void:
 	_send("CMSG_MAIL_DELETE", mail_id)
 
 
+func return_to_sender(mail_id: int) -> void:
+	_send("CMSG_MAIL_RETURN_TO_SENDER", mail_id)
+
+
 func refresh() -> void:
 	if _tab == Tab.SEND:
 		return
@@ -185,6 +189,7 @@ func _read_mails(payload: PackedByteArray) -> Array[Dictionary]:
 	for i: int in reader.u8():
 		var mail: Dictionary = {"id": reader.u32()}
 		var type: Sender = reader.u8() as Sender
+		mail["from_player"] = type == Sender.NORMAL
 		mail["sender"] = _sender_name(type, reader)
 		mail["subject"] = reader.cstring()
 		mail["text_id"] = reader.u32()

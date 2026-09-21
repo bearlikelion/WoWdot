@@ -6,7 +6,7 @@ signal spell_used(spell_id: int)
 signal unit_selected(guid: int)
 
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
-enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE, DUEL, RESET_INSTANCES }
+enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE, DUEL, RESET_INSTANCES, PET_DISMISS, PET_ABANDON }
 
 const UI_HEIGHT: float = 768.0
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
@@ -130,6 +130,7 @@ func _ready() -> void:
 	_open_mail.take_money_requested.connect(_mail.take_money)
 	_open_mail.take_item_requested.connect(_mail.take_item)
 	_open_mail.delete_requested.connect(_mail.delete)
+	_open_mail.return_requested.connect(_mail.return_to_sender)
 	_auction.open_requested.connect(_panels.show_panel.bind(_auction))
 	_auction.error_raised.connect(show_error)
 	for frame: Control in [_registrar, _petition, _tabard]:
@@ -424,10 +425,10 @@ func show_area(area_id: int, player_race: int) -> void:
 	_minimap.show_area(area_id, player_race)
 
 
-func ask_release(on_release: Callable) -> void:
+func ask_release(on_release: Callable, on_self_resurrect: Callable = Callable()) -> void:
 	_popup.ask(
-		WowStrings.get_text("DEATH_RELEASE", "You have died."), on_release,
-		"RELEASE_SPIRIT", "CANCEL",
+		WowStrings.get_text("DEATH_RELEASE", "You have died."), on_release, "RELEASE_SPIRIT",
+		"USE_SOULSTONE" if on_self_resurrect.is_valid() else "CANCEL", on_self_resurrect,
 	)
 
 
@@ -762,7 +763,13 @@ func _show_unit_menu(guid: int) -> void:
 	var is_player: bool = session.get_object_type(guid) == Entities.ObjectType.PLAYER
 	var may_change: bool = not PartyFrame.in_party() or PartyFrame.is_leader()
 	var entries: Array[Dictionary] = []
-	if guid == session.get_player_guid():
+	if guid == WowClient.pet.guid and guid != 0:
+		var hunter: bool = WowClient.pet.is_hunter_pet()
+		entries.append({
+			"text": WowStrings.get_text("PET_ABANDON" if hunter else "PET_DISMISS"),
+			"id": UnitMenuItem.PET_ABANDON if hunter else UnitMenuItem.PET_DISMISS,
+		})
+	elif guid == session.get_player_guid():
 		if PartyFrame.in_party():
 			entries.append({"text": WowStrings.get_text("PARTY_LEAVE"), "id": UnitMenuItem.LEAVE})
 		if may_change:
@@ -813,5 +820,9 @@ func _on_unit_menu_pressed(id: int) -> void:
 			_trade.start(_menu_guid)
 		UnitMenuItem.DUEL:
 			_duel.challenge(_menu_guid)
+		UnitMenuItem.PET_DISMISS:
+			WowClient.pet.dismiss()
+		UnitMenuItem.PET_ABANDON:
+			_popup.ask(WowStrings.get_text("PET_ABANDON_CONFIRM", "Abandon your pet?"), WowClient.pet.abandon)
 		UnitMenuItem.RESET_INSTANCES:
 			WowClient.session.send_packet("CMSG_RESET_INSTANCES", PackedByteArray())

@@ -29,6 +29,15 @@ func release() -> void:
 
 
 # The corpse may not exist yet when the spirit is released, so this is asked again until it does.
+# A soulstone or Reincarnation leaves its spell in PLAYER_SELF_RES_SPELL while it can be used.
+func can_self_resurrect() -> bool:
+	return _session.get_field(_session.get_player_guid(), "PLAYER_SELF_RES_SPELL") != 0
+
+
+func self_resurrect() -> void:
+	_session.send_packet("CMSG_SELF_RES", PackedByteArray())
+
+
 func query_corpse() -> void:
 	if Time.get_ticks_msec() < _query_at_msec:
 		return

@@ -55,6 +55,14 @@ func dismiss() -> void:
 	send_action((ActionState.COMMAND << 24) | Command.DISMISS)
 
 
+# CMSG_PET_ABANDON releases a hunter's pet for good.
+func abandon() -> void:
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, guid)
+	_session.send_packet("CMSG_PET_ABANDON", payload)
+
+
 func set_autocast(spell: int, enabled: bool) -> void:
 	if guid == 0:
 		return

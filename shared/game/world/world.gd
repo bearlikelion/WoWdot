@@ -306,7 +306,8 @@ func _follow_death(dead: bool, ghost: bool) -> void:
 	_ghost = ghost
 	if not ghost and not _release_offered:
 		_release_offered = true
-		_hud.ask_release(_death.release)
+		var revive: Callable = _death.self_resurrect if _death.can_self_resurrect() else Callable()
+		_hud.ask_release(_death.release, revive)
 
 
 func _offer_reclaim() -> void:

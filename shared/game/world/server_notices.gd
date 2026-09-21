@@ -14,6 +14,13 @@ const RESET_FAILURES: Dictionary[int, String] = {
 	0: "INSTANCE_RESET_FAILED", 1: "INSTANCE_RESET_FAILED_OFFLINE",
 	2: "INSTANCE_RESET_FAILED_ZONING",
 }
+# SMSG_PET_TAME_FAILURE reasons.
+const PET_TAME_FAILURES: Dictionary[int, String] = {
+	1: "PETTAME_INVALIDCREATURE", 2: "PETTAME_TOOMANY", 3: "PETTAME_CREATUREALREADYOWNED",
+	4: "PETTAME_NOTTAMEABLE", 5: "PETTAME_ANOTHERSUMMONACTIVE", 6: "PETTAME_UNITSCANTTAME",
+	7: "PETTAME_NOPETAVAILABLE", 8: "PETTAME_INTERNALERROR", 9: "PETTAME_TOOHIGHLEVEL",
+	10: "PETTAME_DEAD", 11: "PETTAME_NOTDEAD",
+}
 # SMSG_RAID_INSTANCE_MESSAGE types.
 const RAID_MESSAGES: Dictionary[int, String] = {
 	1: "RAID_INSTANCE_WARNING_HOURS", 2: "RAID_INSTANCE_WARNING_MIN",
@@ -61,6 +68,17 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 			var roll: int = reader.u32()
 			var roller: String = WowClient.session.get_object_name(reader.u64())
 			return WowStrings.format(WowStrings.get_text("RANDOM_ROLL_RESULT"), [roller, roll, low, high])
+		"SMSG_QUESTUPDATE_ADD_ITEM":
+			var entry: int = reader.u32()
+			var item: String = WowClient.session.get_item_info(entry).get("name", "")
+			return WowStrings.format(WowStrings.get_text("ERR_QUEST_ADD_ITEM_SII", "%s: +%d"), [item, reader.u32()])
+		"SMSG_AREA_SPIRIT_HEALER_TIME":
+			reader.u64()
+			@warning_ignore("integer_division")
+			var seconds: int = reader.u32() / 1000
+			return WowStrings.format(WowStrings.get_text("AREA_SPIRIT_HEAL"), [seconds])
+		"SMSG_RECEIVED_MAIL":
+			return WowStrings.get_text("HAVE_MAIL", "You have unread mail")
 		"SMSG_INSTANCE_RESET":
 			var text: String = WowStrings.get_text("INSTANCE_RESET_SUCCESS")
 			return WowStrings.format(text, [map_name(reader.u32())])
@@ -94,6 +112,17 @@ static func error(opcode: String, payload: PackedByteArray) -> String:
 		"SMSG_QUESTGIVER_QUEST_FAILED":
 			reader.u32()
 			return WowStrings.get_text(QUEST_FAILURES.get(reader.u32(), "ERR_QUEST_FAILED_INVENTORY_FULL"))
+		"SMSG_QUESTUPDATE_FAILED", "SMSG_QUESTUPDATE_FAILEDTIMER":
+			var title: String = WowClient.session.get_quest_info(reader.u32()).get("title", "")
+			return WowStrings.format(WowStrings.get_text("ERR_QUEST_FAILED_S"), [title])
+		"SMSG_FEIGN_DEATH_RESISTED":
+			return WowStrings.get_text("ERR_FEIGN_DEATH_RESISTED")
+		"SMSG_DISPEL_FAILED":
+			return WowStrings.get_text("ERR_DISPEL_FAILED", "Dispel failed")
+		"SMSG_PET_TAME_FAILURE":
+			return WowStrings.get_text(PET_TAME_FAILURES.get(reader.u8(), "PETTAME_UNKNOWNERROR"))
+		"SMSG_PET_BROKEN":
+			return WowStrings.get_text("ERR_PET_BROKEN")
 		"SMSG_RAID_GROUP_ONLY":
 			return WowStrings.get_text("ERR_RAID_GROUP_ONLY")
 		"SMSG_FISH_ESCAPED":
