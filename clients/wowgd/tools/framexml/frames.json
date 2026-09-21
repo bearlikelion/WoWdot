@@ -372,6 +372,11 @@
    "script": "res://game/ui/battlefield_frame.gd"
   },
   {
+   "frame": "WorldStateScoreFrame",
+   "out": "ui/world_state_score_frame.tscn",
+   "script": "res://game/ui/world_state_score_frame.gd"
+  },
+  {
    "frame": "TutorialFrame",
    "out": "ui/tutorial_frame.tscn",
    "script": "res://game/ui/tutorial_frame.gd"

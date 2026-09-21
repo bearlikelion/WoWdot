@@ -125,6 +125,8 @@ private:
 	uint64_t last_ping_msec = 0;
 	int latency_msec = 0;
 	std::unordered_map<uint64_t, std::string> player_names;
+	// Race in the low byte, class in the next, from the name query.
+	std::unordered_map<uint64_t, uint16_t> player_kinds;
 	std::unordered_map<uint32_t, Dictionary> creature_info;
 	std::unordered_set<uint64_t> player_queries;
 	std::unordered_map<uint32_t, std::vector<uint64_t>> creature_queries;
@@ -197,6 +199,8 @@ public:
 	void set_action_button(int slot, int packed);
 	void set_selection(int64_t guid);
 	String get_object_name(int64_t guid);
+	int get_player_race(int64_t guid) const;
+	int get_player_class(int64_t guid) const;
 	Dictionary get_item_info(int entry);
 	Dictionary get_creature_info(int64_t guid);
 	Dictionary get_creature_template(int entry);

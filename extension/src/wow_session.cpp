@@ -620,6 +620,16 @@ void WowSession::set_selection(int64_t guid) {
 }
 
 // Empty until the server answers the query this sends; name_received follows.
+int WowSession::get_player_race(int64_t guid) const {
+	const auto it = player_kinds.find(static_cast<uint64_t>(guid));
+	return it != player_kinds.end() ? it->second & 0xFF : 0;
+}
+
+int WowSession::get_player_class(int64_t guid) const {
+	const auto it = player_kinds.find(static_cast<uint64_t>(guid));
+	return it != player_kinds.end() ? it->second >> 8 : 0;
+}
+
 String WowSession::get_object_name(int64_t guid) {
 	const WorldObject *object = find(guid);
 	if (!world) {
@@ -1493,6 +1503,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			}
 			const String name = String::utf8(data.name.c_str());
 			player_names[data.guid] = data.name;
+			player_kinds[data.guid] = static_cast<uint16_t>(data.race | (data.classId << 8));
 			player_queries.erase(data.guid);
 			emit_signal("name_received", static_cast<int64_t>(data.guid), name);
 			if (const auto waiting = chat_waiting.find(data.guid); waiting != chat_waiting.end()) {
@@ -1991,6 +2002,8 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_faction_standings"), &WowSession::get_faction_standings);
 	ClassDB::bind_method(D_METHOD("set_action_button", "slot", "packed"), &WowSession::set_action_button);
 	ClassDB::bind_method(D_METHOD("get_object_name", "guid"), &WowSession::get_object_name);
+	ClassDB::bind_method(D_METHOD("get_player_race", "guid"), &WowSession::get_player_race);
+	ClassDB::bind_method(D_METHOD("get_player_class", "guid"), &WowSession::get_player_class);
 	ClassDB::bind_method(D_METHOD("get_item_info", "entry"), &WowSession::get_item_info);
 	ClassDB::bind_method(D_METHOD("get_creature_info", "guid"), &WowSession::get_creature_info);
 	ClassDB::bind_method(D_METHOD("get_creature_template", "entry"), &WowSession::get_creature_template);

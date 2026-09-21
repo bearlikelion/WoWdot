@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://game/ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://ui/character_frame.tscn" id="2_character"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" path="res://ui/macro_frame.tscn" id="35_macro"]
 [ext_resource type="PackedScene" path="res://ui/macro_popup_frame.tscn" id="36_macro_popup"]
 [ext_resource type="PackedScene" path="res://ui/battlefield_frame.tscn" id="37_battlefield"]
+[ext_resource type="PackedScene" path="res://ui/world_state_score_frame.tscn" id="38_score"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -155,6 +156,11 @@ visible = false
 layout_mode = 1
 
 [node name="BattlefieldFrame" parent="." instance=ExtResource("37_battlefield")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="WorldStateScoreFrame" parent="." instance=ExtResource("38_score")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

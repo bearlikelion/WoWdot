@@ -5,7 +5,11 @@ signal listed(map_id: int, instances: PackedInt32Array)
 signal queue_changed(slot: int, status: Status, map_id: int)
 signal refused(reason: int)
 signal world_state_changed(field: int, value: int)
+signal scores_changed
+signal positions_changed
 
+# MSG_PVP_LOG_DATA's winner byte once the battle has ended.
+enum Winner { HORDE, ALLIANCE, NONE }
 # SMSG_BATTLEFIELD_STATUS's statusId.
 enum Status { NONE, WAIT_QUEUE, WAIT_JOIN, IN_PROGRESS, WAIT_LEAVE }
 # CMSG_BATTLEFIELD_PORT's action byte.
@@ -18,6 +22,13 @@ const ARATHI_BASIN: int = 529
 # A character stands in at most three queues at once.
 const QUEUE_SLOTS: int = 3
 
+## One row per player: "guid", "rank", "killing_blows", "honorable_kills", "deaths",
+## "honor" and "stats", the battleground's own columns.
+var scores: Array[Dictionary] = []
+var winner: Winner = Winner.NONE
+## Team mates by guid, in WoW map yards, and the flag carrier when the server names one.
+var positions: Dictionary[int, Vector2] = {}
+var flag_carrier: int = 0
 ## The battlemaster whose list arrived last, which a join has to name.
 var battlemaster: int = 0
 
@@ -81,6 +92,20 @@ func slot_of(map_id: int) -> int:
 	return -1
 
 
+func in_battle() -> bool:
+	return _queues.any(func(entry: Dictionary) -> bool:
+		return entry.get("status", Status.NONE) == Status.IN_PROGRESS
+	)
+
+
+func request_scores() -> void:
+	_session.send_packet("MSG_PVP_LOG_DATA", PackedByteArray())
+
+
+func request_positions() -> void:
+	_session.send_packet("MSG_BATTLEGROUND_PLAYER_POSITIONS", PackedByteArray())
+
+
 func world_state(field: int) -> int:
 	return _states.get(field, 0)
 
@@ -114,6 +139,10 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			var count: int = reader.u16()
 			for i: int in count:
 				_set_state(reader.u32(), reader.u32())
+		"MSG_PVP_LOG_DATA":
+			_read_scores(reader)
+		"MSG_BATTLEGROUND_PLAYER_POSITIONS":
+			_read_positions(reader)
 		"SMSG_UPDATE_WORLD_STATE":
 			_set_state(reader.u32(), reader.u32())
 
@@ -140,6 +169,35 @@ func _read_status(reader: PacketReader) -> void:
 		entry["time_two"] = reader.u32()
 	_queues[slot] = entry
 	queue_changed.emit(slot, status, map_id)
+
+
+func _read_scores(reader: PacketReader) -> void:
+	var ended: bool = reader.u8() != 0
+	winner = (reader.u8() as Winner) if ended else Winner.NONE
+	scores.clear()
+	for i: int in reader.u32():
+		var row: Dictionary = {
+			"guid": reader.u64(), "rank": reader.u32(), "killing_blows": reader.u32(),
+			"honorable_kills": reader.u32(), "deaths": reader.u32(), "honor": reader.u32(),
+		}
+		var stats: PackedInt32Array = []
+		for stat: int in reader.u32():
+			stats.append(reader.u32())
+		row["stats"] = stats
+		scores.append(row)
+	scores_changed.emit()
+
+
+func _read_positions(reader: PacketReader) -> void:
+	positions.clear()
+	for i: int in reader.u32():
+		var guid: int = reader.u64()
+		positions[guid] = Vector2(reader.f32(), reader.f32())
+	flag_carrier = 0
+	if reader.u8() != 0:
+		flag_carrier = reader.u64()
+		positions[flag_carrier] = Vector2(reader.f32(), reader.f32())
+	positions_changed.emit()
 
 
 func _set_state(field: int, value: int) -> void:

@@ -44,6 +44,21 @@ func _run() -> void:
 	push.encode_u32(16, 0)
 	_check(LootFrame.push_text(push, "Linen Cloth", ME).is_empty(), "silent item push prints nothing")
 
+	var scores: PackedByteArray = []
+	scores.resize(6 + 32 + 8)
+	scores.encode_u8(0, 1)
+	scores.encode_u8(1, Battlegrounds.Winner.ALLIANCE)
+	scores.encode_u32(2, 1)
+	scores.encode_u64(6, OTHER)
+	scores.encode_u32(18, 4)
+	scores.encode_u32(34, 2)
+	scores.encode_u32(38, 3)
+	session.packet_received.emit("MSG_PVP_LOG_DATA", scores)
+	var board: Battlegrounds = WowClient.battlegrounds
+	_check(board.winner == Battlegrounds.Winner.ALLIANCE, "score data names the winner")
+	_check(board.scores.size() == 1 and board.scores[0]["killing_blows"] == 4, "score row decodes")
+	_check(board.scores[0]["stats"] == PackedInt32Array([3, 0]), "score row keeps its stat columns")
+
 	var item_cooldown: PackedByteArray = []
 	item_cooldown.resize(12)
 	item_cooldown.encode_u32(8, FROSTBOLT)

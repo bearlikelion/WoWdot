@@ -261,6 +261,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_panels.toggle_panel(_talents)
 	elif _exact(event, "toggle_quest_log"):
 		_panels.toggle_panel(_quest_log)
+	elif _exact(event, "toggle_scores") and WowClient.battlegrounds.in_battle():
+		_panels.toggle_panel(_panels.get_node("%WorldStateScoreFrame"))
 	elif _exact(event, "toggle_world_map"):
 		_panels.toggle_panel(_world_map)
 	elif _exact(event, "toggle_bags"):
@@ -498,6 +500,7 @@ func show_corpse(wow_position: Vector3, map_id: int) -> void:
 func show_area(area_id: int, player_race: int, map_id: int) -> void:
 	_area = area_id
 	(%WorldStateHeader as WorldStateHeader).show_place(map_id, area_id)
+	(_panels.get_node("%WorldStateScoreFrame") as WorldStateScoreFrame).show_map(map_id)
 	_minimap.show_area(area_id, player_race)
 
 
