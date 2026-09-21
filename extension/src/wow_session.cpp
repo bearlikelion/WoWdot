@@ -1446,6 +1446,14 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				move["orientation"] = data.facingAngle;
 			}
 			constexpr uint32_t SPLINE_FLYING = 0x200;
+			if (!(data.splineFlags & SPLINE_FLYING) && data.hasDest && !data.waypoints.empty()) {
+				PackedVector3Array corners;
+				for (const auto &point : data.waypoints) {
+					corners.push_back(wow_vector(point.x, point.y, point.z));
+				}
+				corners.push_back(wow_vector(data.destX, data.destY, data.destZ));
+				move["corners"] = corners;
+			}
 			if (data.splineFlags & SPLINE_FLYING) {
 				PackedVector3Array points;
 				for (const auto &point : data.waypoints) {

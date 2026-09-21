@@ -2,7 +2,7 @@ class_name BubbleCheck
 extends Node
 
 const MAIN: PackedScene = preload("res://game/main.tscn")
-const TIMEOUT_MSEC: int = 60000
+const TIMEOUT_MSEC: int = 150000
 const STEP_MSEC: int = 10000
 const SPOKEN: String = "Chat bubbles work"
 

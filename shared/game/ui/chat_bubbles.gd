@@ -8,6 +8,8 @@ const FADE_TIME: float = 1.0
 const MAX_WIDTH: float = 300.0
 const PADDING: Vector2 = Vector2(18.0, 12.0)
 const HEAD_GAP: float = 24.0
+# The tail hangs from the bubble's bottom edge, tucked under the border by this much.
+const TAIL_OVERLAP: float = 5.0
 const BUBBLE_TYPES: Array[WowSession.ChatType] = [
 	WowSession.CHAT_SAY, WowSession.CHAT_YELL,
 	WowSession.CHAT_MONSTER_SAY, WowSession.CHAT_MONSTER_YELL,
@@ -33,7 +35,9 @@ func _process(_delta: float) -> void:
 		bubble.visible = head != Vector3.ZERO and not camera.is_position_behind(head)
 		if bubble.visible:
 			var at: Vector2 = camera.unproject_position(head)
-			bubble.position = at - Vector2(bubble.size.x * 0.5, bubble.size.y + HEAD_GAP)
+			var tail: Control = bubble.get_node("%Tail")
+			var drop: float = tail.size.y - TAIL_OVERLAP
+			bubble.position = at - Vector2(bubble.size.x * 0.5, bubble.size.y + HEAD_GAP + drop)
 
 
 # The player's own model is not one of the entities, so their head comes from the body.
@@ -70,7 +74,7 @@ func _add_bubble(guid: int, text: String) -> Control:
 	bubble.size = wrapped + PADDING * 2.0
 	var tail: TextureRect = bubble.get_node("%Tail")
 	tail.size = tail.texture.get_size()
-	tail.position = Vector2((bubble.size.x - tail.size.x) * 0.5, bubble.size.y - tail.size.y * 0.5)
+	tail.position = Vector2((bubble.size.x - tail.size.x) * 0.5, bubble.size.y - TAIL_OVERLAP)
 	bubble.hide()
 	var fade: Tween = bubble.create_tween()
 	fade.tween_property(bubble, "modulate:a", 0.0, FADE_TIME).set_delay(DURATION - FADE_TIME)

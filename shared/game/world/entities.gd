@@ -18,6 +18,8 @@ const NAMEPLATE_LINE_HEIGHT: float = 0.3
 # How far above and below a move's straight line the ground is looked for.
 const GROUND_PROBE_UP: float = 2.0
 const GROUND_PROBE_DOWN: float = 4.0
+# How far ahead along a cornered move a unit looks to face the way it is walking.
+const LOOK_AHEAD: float = 0.02
 # SMSG_ATTACKERSTATEUPDATE victim state for a blow that landed.
 const VICTIM_STATE_HIT: int = 1
 
@@ -81,8 +83,12 @@ func _process(delta: float) -> void:
 			continue
 		path.elapsed += delta
 		var weight: float = clampf(path.elapsed / path.duration, 0.0, 1.0)
-		node.global_position = _grounded(path.from.lerp(path.to, weight), space) if path.grounded \
-		else path.from.lerp(path.to, weight)
+		var along: Vector3 = path.at(weight)
+		node.global_position = _grounded(along, space) if path.grounded else along
+		if path.corners.size() > 1 and weight < 1.0:
+			var ahead: Vector3 = path.at(minf(weight + LOOK_AHEAD, 1.0))
+			if Vector2(ahead.x - along.x, ahead.z - along.z).length() > 0.01:
+				node.rotation.y = _heading(along, ahead)
 		if weight >= 1.0:
 			_paths.erase(guid)
 			if not is_nan(path.facing):
@@ -153,6 +159,9 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 		path.duration = duration
 		path.facing = movement.get("orientation", NAN)
 		path.grounded = not movement.has("points") and not _swimmers.has(guid)
+		for corner: Vector3 in movement.get("corners", PackedVector3Array()):
+			path.corners.append(WowCoords.to_godot(corner))
+		path.measure()
 		_paths[guid] = path
 		node.rotation.y = _heading(path.from, to)
 		var stride: String = "Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk"
@@ -465,7 +474,6 @@ func _face(node: Node3D, target: int) -> void:
 		node.rotation.y = _heading(node.global_position, at)
 
 
-# ponytail: only a move's two ends arrive, so corners are still cut; pass the waypoints through.
 func _grounded(point: Vector3, space: PhysicsDirectSpaceState3D) -> Vector3:
 	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
 		point + Vector3.UP * GROUND_PROBE_UP, point + Vector3.DOWN * GROUND_PROBE_DOWN
@@ -518,3 +526,31 @@ class Path:
 	var elapsed: float = 0.0
 	var facing: float = NAN
 	var grounded: bool = true
+	# The server's waypoints and the destination, when the move turns corners on its way.
+	var corners: PackedVector3Array = []
+	var _lengths: PackedFloat32Array = []
+	var _total: float = 0.0
+
+
+	func measure() -> void:
+		var last: Vector3 = from
+		for corner: Vector3 in corners:
+			_total += last.distance_to(corner)
+			_lengths.append(_total)
+			last = corner
+
+
+	# Where the unit stands this far through the move, at a steady pace along every leg.
+	func at(weight: float) -> Vector3:
+		if corners.size() < 2 or _total <= 0.0:
+			return from.lerp(to, weight)
+		var travelled: float = weight * _total
+		var last: Vector3 = from
+		var before: float = 0.0
+		for i: int in corners.size():
+			if travelled <= _lengths[i]:
+				var leg: float = _lengths[i] - before
+				return last.lerp(corners[i], (travelled - before) / leg if leg > 0.0 else 1.0)
+			last = corners[i]
+			before = _lengths[i]
+		return to
