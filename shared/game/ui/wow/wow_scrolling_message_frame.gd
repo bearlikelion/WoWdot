@@ -16,6 +16,11 @@ var _scrolled: int = 0
 @onready var _lines: VBoxContainer = %MessageLines
 
 
+# Stock message frames stack their lines with no gap between messages.
+func _ready() -> void:
+	_lines.theme_type_variation = &"MessageLines"
+
+
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return

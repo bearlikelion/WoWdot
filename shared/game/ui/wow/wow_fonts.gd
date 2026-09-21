@@ -41,6 +41,8 @@ static func _add_rich_variation(theme: Theme, variation: String) -> void:
 	var rich: StringName = StringName(variation + "Rich")
 	theme.set_type_variation(rich, &"RichTextLabel")
 	theme.set_font("normal_font", rich, theme.get_font("font", variation))
+	# The default box pads every label, which shows as a gap between stacked chat messages.
+	theme.set_stylebox("normal", rich, StyleBoxEmpty.new())
 	if theme.has_font_size("font_size", variation):
 		theme.set_font_size("normal_font_size", rich, theme.get_font_size("font_size", variation))
 	for colors: PackedStringArray in [

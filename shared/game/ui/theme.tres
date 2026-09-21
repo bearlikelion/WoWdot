@@ -39,4 +39,6 @@ HudPanel/styles/panel = SubResource("StyleBox_hud_panel")
 PanelContainer/styles/panel = SubResource("StyleBox_panel")
 RichTextLabel/colors/font_outline_color = Color(0.16, 0.16, 0.18, 1)
 RichTextLabel/constants/outline_size = 4
+MessageLines/base_type = &"VBoxContainer"
+MessageLines/constants/separation = 0
 VBoxContainer/constants/separation = 8

@@ -12,6 +12,7 @@ enum UnitMenuItem {
 }
 
 const UI_HEIGHT: float = 768.0
+const MIN_STOCK_SCALE: float = 0.9
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
 const ERROR_COLOR: Color = Color(1.0, 0.1, 0.1)
 const NOTICE_COLOR: Color = Color(1.0, 0.82, 0.0)
@@ -738,7 +739,9 @@ func _select_chat_frame(selected: DockedChatFrame) -> void:
 
 
 func _fit_ui_parent() -> void:
-	var ui_scale: float = size.y / UI_HEIGHT
+	# With Use UI Scale off, the stock client shrinks the UI to 0.9 on windows taller than 853 pixels.
+	var stock_scale: float = clampf(UI_HEIGHT / get_window().size.y, MIN_STOCK_SCALE, 1.0)
+	var ui_scale: float = size.y / UI_HEIGHT * stock_scale
 	_ui_parent.scale = Vector2(ui_scale, ui_scale)
 	_ui_parent.size = size / ui_scale
 
