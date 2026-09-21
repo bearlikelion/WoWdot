@@ -14,6 +14,7 @@ var _main: Main
 # Attacking a creature makes it target the player, which the target of target frame shows.
 func _ready() -> void:
 	_main = MAIN.instantiate()
+	_main.auto_realmlist = "127.0.0.1"
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
 	add_child(_main)

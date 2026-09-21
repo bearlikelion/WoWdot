@@ -17,6 +17,7 @@ var _main: Main
 # A warrior's stances fill the bar, switch the form and move the action bar to its bonus page.
 func _ready() -> void:
 	_main = MAIN.instantiate()
+	_main.auto_realmlist = "127.0.0.1"
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
 	add_child(_main)

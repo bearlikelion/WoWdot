@@ -1,7 +1,7 @@
 class_name WowCursor
 extends RefCounted
 
-enum Kind { POINT, ATTACK, SPEAK, BUY, TAXI, TRAINER, PICKUP, INTERACT, MAIL }
+enum Kind { POINT, ATTACK, SPEAK, BUY, TAXI, TRAINER, PICKUP, INTERACT, MAIL, CAST }
 
 const FILES: Dictionary[Kind, String] = {
 	Kind.POINT: "Point",
@@ -13,6 +13,7 @@ const FILES: Dictionary[Kind, String] = {
 	Kind.PICKUP: "Pickup",
 	Kind.INTERACT: "Interact",
 	Kind.MAIL: "Mail",
+	Kind.CAST: "Cast",
 }
 const PATH: String = "Interface\\Cursor\\%s%s.blp"
 

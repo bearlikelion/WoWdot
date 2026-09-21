@@ -3,10 +3,14 @@ extends RefCounted
 
 enum Difficulty { TRIVIAL, EASY, MEDIUM, OPTIMAL }
 
-# SkillLine.dbc puts the nine gathering and crafting professions in this category.
+# SkillLine.dbc puts the nine primary gathering and crafting professions in this category.
 const PROFESSION_CATEGORY: int = 11
+# Cooking, first aid and fishing sit in their own category.
+const SECONDARY_CATEGORY: int = 9
 # A recipe makes its item through this spell effect.
 const EFFECT_CREATE_ITEM: int = 24
+# Enchanting's recipes make nothing; they put a lasting or a timed enchant on an item instead.
+const ENCHANT_EFFECTS: Array[int] = [53, 54]
 const REAGENT_SLOTS: int = 8
 const EFFECT_SLOTS: int = 3
 const MAX_SKILLS: int = 128
@@ -27,7 +31,9 @@ static func professions() -> Array[Dictionary]:
 	for i: int in MAX_SKILLS:
 		var id: int = session.get_field(guid, first + i * SKILL_FIELDS) & 0xFFFF
 		var row: int = _skill_lines.find(id) if id else -1
-		if row < 0 or _skill_lines.get_uint(row, "Category") != PROFESSION_CATEGORY:
+		if row < 0 or _skill_lines.get_uint(row, "Category") not in [
+			PROFESSION_CATEGORY, SECONDARY_CATEGORY,
+		]:
 			continue
 		var ranks: int = session.get_field(guid, first + i * SKILL_FIELDS + 1)
 		found.append({
@@ -103,7 +109,10 @@ static func can_make(recipe: Dictionary) -> bool:
 
 # Crafting is an ordinary cast in 1.12, since the protocol has no tradeskill opcodes at all.
 static func make(recipe: Dictionary) -> void:
-	WowClient.session.cast_spell(recipe["spell"])
+	if WowAssets.spells.targets_item(recipe["spell"]):
+		WowClient.targeting.begin_spell(recipe["spell"])
+	else:
+		WowClient.session.cast_spell(recipe["spell"])
 
 
 static func _recipe(spell_id: int) -> Dictionary:
@@ -118,7 +127,10 @@ static func _recipe(spell_id: int) -> Dictionary:
 		product = _spells.get_uint(row, "EffectItemType%d" % i)
 		made = maxi(_spells.get_uint(row, "EffectBasePoints%d" % i) + 1, 1)
 		break
-	if product == 0:
+	var enchants: bool = false
+	for i: int in EFFECT_SLOTS:
+		enchants = enchants or _spells.get_uint(row, "Effect%d" % i) in ENCHANT_EFFECTS
+	if product == 0 and not enchants:
 		return {}
 	var reagents: Array[Dictionary] = []
 	for i: int in REAGENT_SLOTS:

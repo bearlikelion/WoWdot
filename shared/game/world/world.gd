@@ -96,6 +96,7 @@ func _ready() -> void:
 	_player.interacted.connect(_on_player_interacted)
 	_hud.action_used.connect(_on_action_used)
 	WowClient.macros.cast_requested.connect(_use_spell)
+	WowClient.targeting.changed.connect(_on_targeting_changed)
 	_hud.spell_used.connect(_use_spell)
 	_hud.unit_selected.connect(select)
 	_name_plates.unit_clicked.connect(select)
@@ -416,6 +417,9 @@ func _use_spell(spell: int) -> void:
 	var session: WowSession = WowClient.session
 	if _hud.open_trade_skill(spell):
 		return
+	if WowAssets.spells.targets_item(spell):
+		WowClient.targeting.begin_spell(spell)
+		return
 	if spell != ActionButton.SPELL_ATTACK:
 		if WowAssets.spells.uses_ranged_slot(spell):
 			_sheathe(ItemModels.SheathState.RANGED)
@@ -599,8 +603,15 @@ func _update_hover(screen_position: Vector2) -> void:
 		GameTooltip.current.hide_for(self)
 
 
+func _on_targeting_changed() -> void:
+	_update_cursor(_hovered)
+
+
 func _update_cursor(guid: int) -> void:
 	var session: WowSession = WowClient.session
+	if WowClient.targeting.is_active():
+		WowCursor.show(WowCursor.Kind.CAST)
+		return
 	if guid == 0 or not session.has_object(guid):
 		WowCursor.show(WowCursor.Kind.POINT)
 		return

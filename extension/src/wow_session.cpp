@@ -1527,6 +1527,13 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			info["item_level"] = static_cast<int64_t>(data.itemLevel);
 			info["required_level"] = static_cast<int64_t>(data.requiredLevel);
 			info["sheath"] = static_cast<int64_t>(data.sheath);
+			PackedInt32Array use_spells;
+			for (const auto &spell : data.spells) {
+				if (spell.spellId != 0 && spell.spellTrigger == 0) {
+					use_spells.push_back(static_cast<int32_t>(spell.spellId));
+				}
+			}
+			info["use_spells"] = use_spells;
 			item_info[data.entry] = info;
 			item_queries.erase(data.entry);
 			emit_signal("item_info_received", static_cast<int64_t>(data.entry));

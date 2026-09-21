@@ -165,6 +165,11 @@ func taught_spell(spell_id: int) -> int:
 	return taught if taught else spell_id
 
 
+# Enchants, poisons and sharpening stones are aimed at an item, not a unit.
+func targets_item(spell_id: int) -> bool:
+	return _uint(spell_id, "Targets") & ItemTargeting.TARGET_FLAG_ITEM != 0
+
+
 # A profession's own spell only opens its window, through SPELL_EFFECT_TRADE_SKILL.
 func opens_trade_skill(spell_id: int) -> bool:
 	for i: int in 3:

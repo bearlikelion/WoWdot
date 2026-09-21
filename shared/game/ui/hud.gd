@@ -508,7 +508,9 @@ func _exact(event: InputEvent, action: String) -> bool:
 
 # ToggleGameMenu: each Escape does the first of these that applies.
 func _escape() -> void:
-	if _popup.cancel():
+	if WowClient.targeting.cancel():
+		pass
+	elif _popup.cancel():
 		pass
 	elif _game_menu.visible:
 		_panels.hide_panel(_game_menu)
@@ -674,6 +676,10 @@ func use_container_item(bag: int, slot: int) -> void:
 	if _item_text and readable.get("page_text", 0) != 0:
 		_item_text.read(readable.get("name", ""), readable["page_text"])
 		return
+	for use_spell: int in readable.get("use_spells", PackedInt32Array()):
+		if WowAssets.spells.targets_item(use_spell):
+			WowClient.targeting.begin_item(address)
+			return
 	if session.get_item_info(item_entry).get("inventory_type", 0) != 0:
 		session.send_packet("CMSG_AUTOEQUIP_ITEM", PackedByteArray([address.x, address.y]))
 	else:

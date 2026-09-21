@@ -20,6 +20,7 @@ var _sent: PackedStringArray = []
 # Plays the real game flow in a window: login, walk with the input actions, then check the server.
 func _ready() -> void:
 	_main = MAIN.instantiate()
+	_main.auto_realmlist = "127.0.0.1"
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
 	add_child(_main)

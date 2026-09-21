@@ -15,6 +15,7 @@ var _lines: PackedStringArray = []
 # A slash emote reaches the server, comes back as a chat line and plays its animation.
 func _ready() -> void:
 	_main = MAIN.instantiate()
+	_main.auto_realmlist = "127.0.0.1"
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
 	add_child(_main)

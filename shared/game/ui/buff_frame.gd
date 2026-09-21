@@ -7,6 +7,8 @@ const HARMFUL_BUTTONS: int = 8
 const WARNING_MSEC: int = 31000
 const FLASH_SECONDS: float = 0.75
 const MIN_ALPHA: float = 0.3
+# How long past its timer an aura may linger before the bar drops it without the server's word.
+const EXPIRY_GRACE_MSEC: int = 2000
 
 var _buttons: Array[WowButton] = []
 var _icons: Array[TextureRect] = []
@@ -16,6 +18,8 @@ var _borders: Array[TextureRect] = []
 var _shown: Array[Dictionary] = []
 # Aura slot to the tick (msec) it runs out; only the player's own auras get durations.
 var _ends: Dictionary[int, int] = {}
+# Aura slot to the spell the bar gave up on, until the server puts something new in the slot.
+var _expired: Dictionary[int, int] = {}
 
 
 func _ready() -> void:
@@ -46,6 +50,10 @@ func _process(_delta: float) -> void:
 			continue
 		var end: int = _ends.get(_shown[i]["slot"], 0)
 		var left: int = end - now
+		if end > 0 and left < -EXPIRY_GRACE_MSEC:
+			_expired[_shown[i]["slot"]] = _shown[i]["spell"]
+			refresh.call_deferred()
+			continue
 		_durations[i].visible = end > 0 and left > 0 \
 		and WowAssets.interface.is_on(&"show_buff_durations")
 		if _durations[i].visible:
@@ -59,6 +67,9 @@ func refresh() -> void:
 	var helpful: Array[Dictionary] = []
 	var harmful: Array[Dictionary] = []
 	for aura: Dictionary in auras:
+		if _expired.get(aura["slot"], 0) == aura["spell"]:
+			continue
+		_expired.erase(aura["slot"])
 		(harmful if aura["harmful"] else helpful).append(aura)
 	_shown.clear()
 	for i: int in HELPFUL_BUTTONS + HARMFUL_BUTTONS:
@@ -101,6 +112,7 @@ func _on_object_updated(guid: int) -> void:
 
 
 func _on_aura_duration(slot: int, duration_msec: int) -> void:
+	_expired.erase(slot)
 	_ends[slot] = Time.get_ticks_msec() + duration_msec if duration_msec > 0 else 0
 
 

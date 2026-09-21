@@ -20,7 +20,11 @@ func _gui_input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
 		return
 	var click: InputEventMouseButton = event as InputEventMouseButton
-	if click and click.pressed and click.button_index == MOUSE_BUTTON_RIGHT:
+	if click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT \
+	and WowClient.targeting.is_active() and address.x >= 0 and Inventory.item_at(address) != 0:
+		accept_event()
+		WowClient.targeting.apply(Inventory.item_at(address))
+	elif click and click.pressed and click.button_index == MOUSE_BUTTON_RIGHT:
 		accept_event()
 		right_clicked.emit()
 	elif click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT and click.ctrl_pressed \

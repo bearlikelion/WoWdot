@@ -134,7 +134,9 @@ func _update_details() -> void:
 	%TradeSkillRequirementLabel.hide()
 	%TradeSkillRequirementText.hide()
 	%TradeSkillSkillCooldown.hide()
-	(%TradeSkillSkillIcon as TextureButton).texture_normal = Inventory.icon(recipe["product"])
+	# ponytail: stock gives enchanting its own CraftFrame; here its recipes share this window.
+	(%TradeSkillSkillIcon as TextureButton).texture_normal = Inventory.icon(recipe["product"]) \
+	if recipe["product"] != 0 else WowAssets.spells.icon(recipe["spell"])
 	var made: Label = %TradeSkillSkillIconCount
 	made.visible = recipe["made"] > 1
 	made.text = str(recipe["made"])

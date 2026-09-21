@@ -21,6 +21,7 @@ var _pending: Array[int] = []
 # Zones to another continent, into an instance and back, watching the loading screen each time.
 func _ready() -> void:
 	_main = MAIN.instantiate()
+	_main.auto_realmlist = "127.0.0.1"
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
 	add_child(_main)

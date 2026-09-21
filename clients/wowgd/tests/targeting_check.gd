@@ -11,6 +11,7 @@ var _main: Main
 # Presses the stock targeting keys in the world: Tab, Shift+Tab, F1, G and Escape.
 func _ready() -> void:
 	_main = MAIN.instantiate()
+	_main.auto_realmlist = "127.0.0.1"
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
 	add_child(_main)

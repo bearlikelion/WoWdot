@@ -21,6 +21,7 @@ var _map_id: int = 0
 # Walking into an area trigger is the client's job to report, and instance portals hang on it.
 func _ready() -> void:
 	_main = MAIN.instantiate()
+	_main.auto_realmlist = "127.0.0.1"
 	_main.auto_account = "wowgd"
 	_main.auto_password = "wowgd"
 	add_child(_main)
