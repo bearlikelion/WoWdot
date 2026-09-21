@@ -3,6 +3,9 @@ extends RefCounted
 
 signal changed
 
+# SMSG_ITEM_COOLDOWN carries no duration; the stock client hardcodes this one.
+const ITEM_COOLDOWN_MSEC: int = 30000
+
 var _spells: SpellInfo
 # Start and duration in msec, per spell and per global cooldown category.
 var _by_spell: Dictionary[int, Vector2i] = {}
@@ -12,6 +15,7 @@ var _by_category: Dictionary[int, Vector2i] = {}
 func _init(session: WowSession, spells: SpellInfo) -> void:
 	_spells = spells
 	session.spell_cooldown.connect(_on_spell_cooldown)
+	session.packet_received.connect(_on_packet_received)
 	session.spell_cast_started.connect(_on_player_cast.bind(session))
 	session.spell_cast_finished.connect(_on_player_cast_finished.bind(session))
 
@@ -21,6 +25,11 @@ func get_cooldown(spell_id: int) -> Vector2i:
 	var own: Vector2i = _by_spell.get(spell_id, Vector2i.ZERO)
 	var shared: Vector2i = _by_category.get(_spells.global_cooldown_category(spell_id), Vector2i.ZERO)
 	return own if own.x + own.y >= shared.x + shared.y else shared
+
+
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "SMSG_ITEM_COOLDOWN" and payload.size() >= 12:
+		_on_spell_cooldown(payload.decode_u32(8), ITEM_COOLDOWN_MSEC)
 
 
 func _on_spell_cooldown(spell_id: int, cooldown_msec: int) -> void:

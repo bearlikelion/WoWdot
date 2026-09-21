@@ -43,6 +43,16 @@ const RAID_MESSAGES: Dictionary[int, String] = {
 	1: "RAID_INSTANCE_WARNING_HOURS", 2: "RAID_INSTANCE_WARNING_MIN",
 	3: "RAID_INSTANCE_WARNING_MIN_SOON", 4: "RAID_INSTANCE_WELCOME",
 }
+# SMSG_MOUNTRESULT and SMSG_DISMOUNTRESULT codes; the last of each is success.
+const MOUNT_FAILURES: Array[String] = [
+	"ERR_MOUNT_INVALIDMOUNTEE", "ERR_MOUNT_TOOFARAWAY", "ERR_MOUNT_ALREADYMOUNTED",
+	"ERR_MOUNT_NOTMOUNTABLE", "ERR_MOUNT_NOTYOURPET", "ERR_MOUNT_OTHER", "ERR_MOUNT_LOOTING",
+	"ERR_MOUNT_RACECANTMOUNT", "ERR_MOUNT_SHAPESHIFTED", "ERR_MOUNT_FORCEDDISMOUNT",
+]
+const DISMOUNT_FAILURES: Array[String] = [
+	"ERR_DISMOUNT_NOPET", "ERR_DISMOUNT_NOTMOUNTED", "ERR_DISMOUNT_NOTYOURPET",
+]
+const DUEL_FORFEIT_SECONDS: int = 10
 
 static var _maps: WowDBC
 # The area queued for at a meeting stone, or 0.
@@ -68,6 +78,30 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 			reader.u64()
 			var home: String = AreaInfo.area_name(reader.u32())
 			return WowStrings.format(WowStrings.get_text("ERR_DEATHBIND_SUCCESS_S"), [home])
+		"SMSG_DURABILITY_DAMAGE_DEATH":
+			return WowStrings.get_text("DURABILITYDAMAGE_DEATH").replace("%%", "%")
+		"SMSG_PLAYED_TIME":
+			var total: String = WowStrings.get_text("TIME_PLAYED_TOTAL") % _played(reader.u32())
+			return total + "\n" + WowStrings.get_text("TIME_PLAYED_LEVEL") % _played(reader.u32())
+		"SMSG_PVP_CREDIT":
+			var honor: int = reader.i32()
+			var victim: int = reader.u64()
+			var race: int = WowClient.session.get_field(victim, "UNIT_FIELD_BYTES_0") & 0xFF
+			var alliance: bool = CharacterOptions.faction(race) == CharacterOptions.Faction.ALLIANCE
+			var rank: String = HonorFrame.rank_name(reader.i32(), alliance)
+			var fallen: String = WowClient.session.get_object_name(victim)
+			return WowStrings.format(WowStrings.get_text("COMBATLOG_HONORGAIN"), [fallen, rank, honor])
+		"SMSG_MOUNTRESULT":
+			var code: int = reader.u32()
+			return WowStrings.get_text(MOUNT_FAILURES[code]) if code < MOUNT_FAILURES.size() else ""
+		"SMSG_DISMOUNTRESULT":
+			var code: int = reader.u32()
+			if code >= DISMOUNT_FAILURES.size():
+				return ""
+			return WowStrings.get_text(DISMOUNT_FAILURES[code])
+		"SMSG_DUEL_OUTOFBOUNDS":
+			var seconds: String = WowStrings.get_text("SECONDS_ABBR_P1")
+			return WowStrings.get_text("DUEL_OUTOFBOUNDS_TIMER") % [DUEL_FORFEIT_SECONDS, seconds]
 		"SMSG_AUCTION_BIDDER_NOTIFICATION":
 			reader.skip(16)
 			var won: bool = reader.u32() == 0
@@ -276,6 +310,12 @@ static func ask_who(words: PackedStringArray) -> void:
 		payload.append_array(word.to_utf8_buffer())
 		payload.append(0)
 	WowClient.session.send_packet("CMSG_WHO", payload)
+
+
+static func _played(seconds: int) -> String:
+	@warning_ignore("integer_division")
+	var parts: Array = [seconds / 86400, seconds / 3600 % 24, seconds / 60 % 60, seconds % 60]
+	return WowStrings.format(WowStrings.get_text("TIME_DAYHOURMINUTESECOND"), parts)
 
 
 static func _item_line(key: String, entry: int) -> String:

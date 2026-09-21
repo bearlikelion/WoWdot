@@ -44,6 +44,24 @@ func _run() -> void:
 	push.encode_u32(16, 0)
 	_check(LootFrame.push_text(push, "Linen Cloth", ME).is_empty(), "silent item push prints nothing")
 
+	var item_cooldown: PackedByteArray = []
+	item_cooldown.resize(12)
+	item_cooldown.encode_u32(8, FROSTBOLT)
+	session.packet_received.emit("SMSG_ITEM_COOLDOWN", item_cooldown)
+	var timer: Vector2i = WowClient.cooldowns.get_cooldown(FROSTBOLT)
+	_check(timer.y == Cooldowns.ITEM_COOLDOWN_MSEC, "item cooldown starts the use spell's timer")
+
+	var played: PackedByteArray = []
+	played.resize(8)
+	played.encode_u32(0, 90061)
+	var total: String = ServerNotices.line("SMSG_PLAYED_TIME", played).get_slice("\n", 0)
+	_check(total.contains("1 days, 1 hours, 1 minutes, 1 seconds"), "played time splits into parts")
+	var mount: PackedByteArray = [2, 0, 0, 0]
+	var mounted: String = WowStrings.get_text("ERR_MOUNT_ALREADYMOUNTED")
+	_check(ServerNotices.line("SMSG_MOUNTRESULT", mount) == mounted, "mount result names its error")
+	mount[0] = 10
+	_check(ServerNotices.line("SMSG_MOUNTRESULT", mount).is_empty(), "a good mount prints nothing")
+
 	if _failures.is_empty():
 		print("protocol_gaps_check: OK")
 	else:
