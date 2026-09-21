@@ -101,6 +101,7 @@ func _ready() -> void:
 		var slot: WowButton = _bag_button(bag)
 		slot.pressed.connect(bag_toggled.emit.bind(bag))
 		_empty_bag_icons.append(_bag_icon(bag).texture)
+	%KeyRingButton.pressed.connect(bag_toggled.emit.bind(Inventory.KEYRING))
 	%ActionBarUpButton.pressed.connect(func() -> void: page += 1)
 	%ActionBarDownButton.pressed.connect(func() -> void: page -= 1)
 	_xp_bar.mouse_filter = Control.MOUSE_FILTER_PASS
@@ -306,3 +307,12 @@ func _on_object_updated(guid: int) -> void:
 		_update_xp()
 		_assign_slots()
 		_update_bags()
+		%KeyRingButton.visible = _has_key()
+
+
+# MainMenuBar_UpdateKeyRing: the button only appears once a key sits on the ring.
+func _has_key() -> bool:
+	for slot: int in Inventory.container_size(Inventory.KEYRING):
+		if Inventory.container_item(Inventory.KEYRING, slot) != 0:
+			return true
+	return false

@@ -25,6 +25,7 @@ const BOTTOM_HEIGHT: float = 10.0
 const BACKPACK_BACKGROUND: String = "Interface\\ContainerFrame\\UI-BackpackBackground.blp"
 const BAG_BACKGROUND: String = "Interface\\ContainerFrame\\UI-Bag-Components.blp"
 const BACKPACK_ICON: String = "Interface\\Buttons\\Button-Backpack-Up.blp"
+const KEYRING_ICON: String = "Interface\\ContainerFrame\\KeyRing-Bag-Icon.blp"
 const PORTRAIT_SHADER: Shader = preload("res://game/ui/portrait.gdshader")
 
 var bag: int = -1
@@ -160,14 +161,16 @@ func _set_texture(rect: TextureRect, file: String, top: float, bottom: float) ->
 func _bag_name() -> String:
 	if bag == Inventory.BACKPACK:
 		return WowStrings.get_text("BACKPACK_TOOLTIP")
+	if bag == Inventory.KEYRING:
+		return WowStrings.get_text("KEYRING")
 	var info: Dictionary = WowClient.session.get_item_info(_bag_entry())
 	return info.get("name", "")
 
 
 func _bag_icon() -> Texture2D:
-	if bag == Inventory.BACKPACK:
+	if bag in [Inventory.BACKPACK, Inventory.KEYRING]:
 		var icon: WowTexture = WowTexture.new()
-		icon.file = BACKPACK_ICON
+		icon.file = BACKPACK_ICON if bag == Inventory.BACKPACK else KEYRING_ICON
 		return icon
 	return Inventory.icon(_bag_entry())
 

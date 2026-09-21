@@ -9,6 +9,9 @@ enum Slot {
 
 # Container ids as the stock UI numbers them: the backpack is 0 and the bag slots 1 to 4.
 const BACKPACK: int = 0
+# KEYRING_CONTAINER in the stock UI; its slots follow the vendor buyback in the inventory array.
+const KEYRING: int = -2
+const WIRE_KEYRING_SLOT_START: int = 81
 const BAG_COUNT: int = 4
 # Bank bags carry on the numbering the stock UI gives the worn ones.
 const BANK_BAG_FIRST: int = 5
@@ -47,13 +50,26 @@ static func container_of(bag: int) -> int:
 static func container_size(bag: int) -> int:
 	if bag == BACKPACK:
 		return BACKPACK_SLOTS
+	if bag == KEYRING:
+		return keyring_size(WowClient.session.get_field(
+			WowClient.session.get_player_guid(), "UNIT_FIELD_LEVEL",
+		))
 	var container: int = container_of(bag)
 	return WowClient.session.get_field(container, "CONTAINER_FIELD_NUM_SLOTS") if container else 0
+
+
+# GetKeyRingSize, the same ladder the server enforces.
+static func keyring_size(level: int) -> int:
+	if level >= 50:
+		return 12
+	return 8 if level >= 40 else 4
 
 
 # The item in a container slot, counted from 0, or 0 when it is empty.
 static func container_item(bag: int, slot: int) -> int:
 	var session: WowSession = WowClient.session
+	if bag == KEYRING:
+		return item_at(wire_address(bag, slot))
 	if bag == BACKPACK:
 		return _guid(
 			session.get_player_guid(), session.field_index("PLAYER_FIELD_PACK_SLOT_1") + slot * 2
@@ -68,6 +84,8 @@ static func container_item(bag: int, slot: int) -> int:
 static func wire_address(bag: int, slot: int) -> Vector2i:
 	if bag == BACKPACK:
 		return Vector2i(WIRE_BACKPACK, WIRE_PACK_SLOT_START + slot)
+	if bag == KEYRING:
+		return Vector2i(WIRE_BACKPACK, WIRE_KEYRING_SLOT_START + slot)
 	if bag >= BANK_BAG_FIRST:
 		return Vector2i(WIRE_BANK_BAG_START + bag - BANK_BAG_FIRST, slot)
 	return Vector2i(Slot.BAG_1 + bag - 1, slot)

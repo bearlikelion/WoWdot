@@ -80,6 +80,11 @@ func _run() -> void:
 	_check(skills.can_use(0, 3), "consumables are never gated")
 	_check(not skills.subclass_name(2, 7).is_empty(), "weapon subclasses have names")
 
+	_check(Inventory.keyring_size(39) == 4 and Inventory.keyring_size(40) == 8, "keyring grows at 40")
+	_check(Inventory.keyring_size(60) == 12, "and again at 50")
+	var key_slot: Vector2i = Inventory.wire_address(Inventory.KEYRING, 2)
+	_check(key_slot == Vector2i(255, 83), "keyring slots follow the buyback in the inventory array")
+
 	var item_cooldown: PackedByteArray = []
 	item_cooldown.resize(12)
 	item_cooldown.encode_u32(8, FROSTBOLT)
