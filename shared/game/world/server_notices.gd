@@ -223,10 +223,6 @@ static func play(opcode: String, payload: PackedByteArray) -> bool:
 			WowAssets.audio.play_entry(reader.u32())
 		"SMSG_PLAY_MUSIC":
 			WowAssets.audio.play_music_entry(reader.u32())
-		"SMSG_TRIGGER_CINEMATIC":
-			# ponytail: the flyover is not drawn, only acknowledged so the server moves on.
-			WowClient.session.send_packet("CMSG_NEXT_CINEMATIC_CAMERA", [])
-			WowClient.session.send_packet("CMSG_COMPLETE_CINEMATIC", [])
 		_:
 			return false
 	return true

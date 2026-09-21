@@ -140,6 +140,10 @@ struct M2Camera {
     float nearClip = 0.0f;
     glm::vec3 positionBase{0.0f};
     glm::vec3 targetBase{0.0f};  // the point the camera looks at
+    // Spline tracks, vanilla only; values are offsets from the bases.
+    M2AnimationTrack positionTrack;
+    M2AnimationTrack targetTrack;
+    M2AnimationTrack rollTrack;
 };
 
 // Authored light, at-rest values only

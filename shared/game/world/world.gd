@@ -87,6 +87,7 @@ var _ghost: bool = false
 @onready var _sun: DirectionalLight3D = $Sun
 @onready var _hud: Hud = %Hud
 @onready var _sky: WorldSky = $WorldSky
+@onready var _cinematic: CinematicCamera = $CinematicCamera
 @onready var _weather: WorldWeather = $WorldWeather
 
 
@@ -115,6 +116,7 @@ func _ready() -> void:
 	WowClient.session.player_teleported.connect(_on_player_teleported)
 	WowClient.session.object_moved.connect(_on_object_moved)
 	WowClient.session.packet_received.connect(_on_packet_received)
+	_cinematic.finished.connect(_on_cinematic_finished)
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
 	WowClient.session.leveled_up.connect(_on_leveled_up)
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
@@ -378,6 +380,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_EMOTE":
 		return _play_emote(payload)
 	var me: int = WowClient.session.get_player_guid()
+	if opcode == "SMSG_TRIGGER_CINEMATIC":
+		_play_cinematic(payload.decode_u32(0) if payload.size() >= 4 else 0)
+		return
 	if opcode == "SMSG_CANCEL_COMBAT":
 		WowClient.session.attack_stopped.emit(me, 0)
 		return
@@ -404,6 +409,23 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		var z_speed: float = reader.f32()
 		var wow_velocity: Vector3 = Vector3(cos_angle * xy_speed, sin_angle * xy_speed, z_speed)
 		_player.knock_back(WowCoords.to_godot(wow_velocity), counter)
+
+
+# The server waits on CMSG_COMPLETE_CINEMATIC, so a sequence this client cannot draw ends at once.
+func _play_cinematic(sequence_id: int) -> void:
+	WowClient.session.send_packet("CMSG_NEXT_CINEMATIC_CAMERA", [])
+	if _cinematic.play(sequence_id):
+		_hud.hide()
+		_map.target = _cinematic
+	else:
+		_on_cinematic_finished()
+
+
+func _on_cinematic_finished() -> void:
+	_hud.show()
+	_map.target = _player
+	_player.get_node("CameraPivot/SpringArm3D/Camera3D").make_current()
+	WowClient.session.send_packet("CMSG_COMPLETE_CINEMATIC", [])
 
 
 func _on_action_used(slot: int) -> void:

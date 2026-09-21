@@ -575,7 +575,7 @@ std::shared_ptr<const WowLoader::M2Data> WowLoader::get_m2_data(const String &pa
 		}
 	}
 	// A spell effect is often nothing but emitters, so geometry alone does not decide.
-	if (!data->model.isValid() && data->model.particleEmitters.empty() && data->model.ribbonEmitters.empty()) {
+	if (!data->model.isValid() && data->model.particleEmitters.empty() && data->model.ribbonEmitters.empty() && data->model.cameras.empty()) {
 		if (!data->model.vertices.empty()) {
 			UtilityFunctions::push_warning("WowLoader: bad model ", path);
 		}
@@ -915,6 +915,22 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 	}
 }
 
+// Timestamps in msec paired with points, as the first sequence of a camera spline gives them.
+static Array spline_keys(const M2AnimationTrack &track, const glm::vec3 &base) {
+	Array keys;
+	if (track.sequences.empty()) {
+		return keys;
+	}
+	const auto &sequence = track.sequences[0];
+	for (size_t i = 0; i < sequence.vec3Values.size() && i < sequence.timestamps.size(); i++) {
+		Dictionary key;
+		key["msec"] = static_cast<int64_t>(sequence.timestamps[i]);
+		key["point"] = wow_to_godot(base + sequence.vec3Values[i]);
+		keys.push_back(key);
+	}
+	return keys;
+}
+
 Dictionary WowLoader::get_m2_info(const String &path) {
 	ERR_FAIL_COND_V(archive.is_null(), Dictionary());
 	const std::shared_ptr<const M2Data> data = get_m2_data(path);
@@ -1042,6 +1058,13 @@ Dictionary WowLoader::get_m2_info(const String &path) {
 		c["position"] = wow_to_godot(camera.positionBase);
 		c["target"] = wow_to_godot(camera.targetBase);
 		c["fov"] = camera.fov;
+		c["position_keys"] = spline_keys(camera.positionTrack, camera.positionBase);
+		c["target_keys"] = spline_keys(camera.targetTrack, camera.targetBase);
+		PackedFloat32Array roll;
+		if (!camera.rollTrack.sequences.empty()) {
+			for (const float value : camera.rollTrack.sequences[0].floatValues) roll.push_back(value);
+		}
+		c["roll_keys"] = roll;
 		cameras.push_back(c);
 	}
 	info["cameras"] = cameras;

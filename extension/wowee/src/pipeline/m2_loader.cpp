@@ -456,7 +456,7 @@ std::string readString(const std::vector<uint8_t>& data, uint32_t offset, uint32
     return std::string(reinterpret_cast<const char*>(&data[offset]), actualLen);
 }
 
-enum class TrackType { VEC3, QUAT_COMPRESSED, FLOAT, FIXED16 };
+enum class TrackType { VEC3, QUAT_COMPRESSED, FLOAT, FIXED16, SPLINE3, SPLINE1 };
 
 // M2 sequence flag: when set, keyframe data is embedded in the M2 file.
 // When clear, data lives in an external .anim file and the M2 offsets are
@@ -594,6 +594,8 @@ void parseAnimTrackVanilla(const std::vector<uint8_t>& data,
     if (type == TrackType::FLOAT) keySize = sizeof(float);
     else if (type == TrackType::FIXED16) keySize = sizeof(int16_t);
     else if (type == TrackType::VEC3) keySize = sizeof(float) * 3;
+    else if (type == TrackType::SPLINE3) keySize = sizeof(float) * 9;
+    else if (type == TrackType::SPLINE1) keySize = sizeof(float) * 3;
     else keySize = compressedQuat ? sizeof(int16_t) * 4 : sizeof(float) * 4;
     if (disk.ofsKeys + disk.nKeys * keySize > data.size()) return;
 
@@ -629,6 +631,13 @@ void parseAnimTrackVanilla(const std::vector<uint8_t>& data,
         }
     } else if (type == TrackType::VEC3) {
         allVec3Keys = readArray<Vec3Disk>(data, disk.ofsKeys, disk.nKeys);
+    } else if (type == TrackType::SPLINE3) {
+        // Spline keys carry value, in tangent and out tangent; only the value is kept.
+        struct Spline3Disk { Vec3Disk value, in, out; };
+        for (const auto& key : readArray<Spline3Disk>(data, disk.ofsKeys, disk.nKeys)) allVec3Keys.push_back(key.value);
+    } else if (type == TrackType::SPLINE1) {
+        struct Spline1Disk { float value, in, out; };
+        for (const auto& key : readArray<Spline1Disk>(data, disk.ofsKeys, disk.nKeys)) allFloatKeys.push_back(key.value);
     } else if (compressedQuat) {
         allCompQuatKeys = readArray<CompressedQuat>(data, disk.ofsKeys, disk.nKeys);
     } else {
@@ -656,10 +665,10 @@ void parseAnimTrackVanilla(const std::vector<uint8_t>& data,
         uint32_t keyEnd = std::min(end, disk.nKeys);
         uint32_t keyCount = keyEnd - start;
 
-        if (type == TrackType::FLOAT || type == TrackType::FIXED16) {
+        if (type == TrackType::FLOAT || type == TrackType::FIXED16 || type == TrackType::SPLINE1) {
             track.sequences[i].floatValues.assign(
                 allFloatKeys.begin() + start, allFloatKeys.begin() + start + keyCount);
-        } else if (type == TrackType::VEC3) {
+        } else if (type == TrackType::VEC3 || type == TrackType::SPLINE3) {
             track.sequences[i].vec3Values.reserve(keyCount);
             for (uint32_t k = start; k < start + keyCount; k++) {
                 track.sequences[i].vec3Values.emplace_back(
@@ -1397,8 +1406,17 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
         };
         if (header.version < 264) {
             auto disk = readArray<M2CameraDiskVanilla>(m2Data, header.ofsCameras, cameraCount);
-            for (const auto& dc : disk)
+            for (const auto& dc : disk) {
                 pushCamera(dc.type, dc.fov, dc.farClip, dc.nearClip, dc.positionBase, dc.targetBase);
+                M2Camera& cam = model.cameras.back();
+                M2TrackDiskVanilla trackDisk;
+                std::memcpy(&trackDisk, dc.positionTrack, sizeof(trackDisk));
+                parseAnimTrackVanilla(m2Data, trackDisk, cam.positionTrack, TrackType::SPLINE3);
+                std::memcpy(&trackDisk, dc.targetTrack, sizeof(trackDisk));
+                parseAnimTrackVanilla(m2Data, trackDisk, cam.targetTrack, TrackType::SPLINE3);
+                std::memcpy(&trackDisk, dc.rollTrack, sizeof(trackDisk));
+                parseAnimTrackVanilla(m2Data, trackDisk, cam.rollTrack, TrackType::SPLINE1);
+            }
         } else {
             auto disk = readArray<M2CameraDisk>(m2Data, header.ofsCameras, cameraCount);
             for (const auto& dc : disk)
