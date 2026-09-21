@@ -1,0 +1,320 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/stack_split_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\MoneyFrame\\UI-MoneyFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0, 0, 172, 96)
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\MoneyFrame\\Arrow-Left-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\MoneyFrame\\Arrow-Left-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\MoneyFrame\\Arrow-Left-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\MoneyFrame\\Arrow-Right-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\MoneyFrame\\Arrow-Right-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\MoneyFrame\\Arrow-Right-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_17"]
+blend_mode = 1
+
+[node name="StackSplitFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = -0
+offset_right = 172
+offset_bottom = 96
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="StackSplitText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 0.5
+anchor_right = 1
+anchor_bottom = 0.5
+offset_left = -50
+offset_top = -24
+offset_right = -50
+offset_bottom = -12
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StackSplitLeftButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75
+offset_top = -26
+offset_right = -59
+offset_bottom = -10
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="StackSplitLeftButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="StackSplitLeftButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="StackSplitLeftButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="StackSplitRightButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 64
+offset_top = -26
+offset_right = 80
+offset_bottom = -10
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="StackSplitRightButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="StackSplitRightButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="StackSplitRightButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="StackSplitOkayButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -67
+offset_top = -44
+offset_right = -3
+offset_bottom = -20
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="StackSplitOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="StackSplitOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="StackSplitOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="StackSplitOkayButtonText" type="Label" parent="StackSplitOkayButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="StackSplitOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_17")
+
+[node name="StackSplitCancelButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 5
+offset_top = -44
+offset_right = 69
+offset_bottom = -20
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="StackSplitCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="StackSplitCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="StackSplitCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="StackSplitCancelButtonText" type="Label" parent="StackSplitCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="StackSplitCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_17")

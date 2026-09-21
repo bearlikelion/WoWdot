@@ -382,6 +382,11 @@
    "script": "res://game/ui/help_frame.gd"
   },
   {
+   "frame": "StackSplitFrame",
+   "out": "ui/stack_split_frame.tscn",
+   "script": "res://game/ui/stack_split_frame.gd"
+  },
+  {
    "frame": "TutorialFrame",
    "out": "ui/tutorial_frame.tscn",
    "script": "res://game/ui/tutorial_frame.gd"

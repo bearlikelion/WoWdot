@@ -823,12 +823,14 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	)
 
 
-# ponytail: a typed count, where the stock client drags a slider in StackSplitFrame.
 func _ask_split(from: Vector2i, to: Vector2i, stack: int) -> void:
-	_popup.ask_name(
-		"Split how many of %d?" % stack,
-		func(text: String) -> void: Inventory.split(from, to, clampi(text.to_int(), 1, stack - 1)),
+	var splitter: StackSplitFrame = _panels.get_node("%StackSplitFrame")
+	for taken: Dictionary in splitter.accepted.get_connections():
+		splitter.accepted.disconnect(taken["callable"])
+	splitter.accepted.connect(
+		func(count: int) -> void: Inventory.split(from, to, count), CONNECT_ONE_SHOT,
 	)
+	splitter.open(stack, get_global_mouse_position())
 
 
 # Anything past the table shows as a full bag, as the stock client does.
