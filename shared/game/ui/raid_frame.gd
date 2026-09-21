@@ -10,6 +10,8 @@ const FIRST_GROUP: Vector2 = Vector2(16.0, 70.0)
 const COLUMN_GAP: float = 3.0
 const ROW_GAP: float = 14.0
 const OFFLINE_COLOR: Color = Color(0.5, 0.5, 0.5)
+const RAID_INFOS: int = 10
+const RESET_UNITS: PackedStringArray = ["DAYS_ABBR", "HOURS_ABBR", "MINUTES_ABBR"]
 
 var _groups: Array[Control] = []
 var _buttons: Array[Control] = []
@@ -33,8 +35,8 @@ func _ready() -> void:
 	%RaidFrameReadyCheckButton.pressed.connect(PartyFrame.start_ready_check)
 	# ponytail: adding by name needs the name popup; /invite does the same meanwhile.
 	%RaidFrameAddMemberButton.hide()
-	# ponytail: saved instances (SMSG_RAID_INSTANCE_INFO) print to chat; the info window waits.
-	%RaidFrameRaidInfoButton.hide()
+	%RaidFrameRaidInfoButton.pressed.connect(_toggle_raid_info)
+	%RaidInfoCloseButton.pressed.connect(%RaidInfoFrame.hide)
 	%RaidInfoFrame.hide()
 	visibility_changed.connect(refresh)
 	WowClient.session.packet_received.connect(_on_packet_received)
@@ -120,6 +122,45 @@ func _add_member(member: Dictionary, slot: Control) -> void:
 
 
 # Deferred so the party frame, which hears the same packet, has the new roster first.
-func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_GROUP_LIST":
 		refresh.call_deferred()
+	elif opcode == "SMSG_RAID_INSTANCE_INFO":
+		_show_raid_info(payload)
+
+
+func _toggle_raid_info() -> void:
+	if %RaidInfoFrame.visible:
+		%RaidInfoFrame.hide()
+	else:
+		WowClient.session.send_packet("CMSG_REQUEST_RAID_INFO", PackedByteArray())
+
+
+# RaidInfoFrame_Update, with the wire's map, seconds until reset and instance id per row.
+func _show_raid_info(payload: PackedByteArray) -> void:
+	var reader: PacketReader = PacketReader.new(payload)
+	var count: int = reader.u32()
+	for i: int in RAID_INFOS:
+		var row: Control = get_node("%%RaidInfoInstance%d" % (i + 1))
+		row.visible = i < count
+		if not row.visible:
+			continue
+		var map_name: String = ServerNotices.map_name(reader.u32())
+		var seconds: int = reader.u32()
+		var instance: int = reader.u32()
+		(get_node("%%RaidInfoInstance%dName" % (i + 1)) as Label).text = map_name
+		(get_node("%%RaidInfoInstance%dID" % (i + 1)) as Label).text = str(instance)
+		var left: Label = get_node("%%RaidInfoInstance%dReset" % (i + 1))
+		left.text = "%s %s" % [WowStrings.get_text("RESETS_IN"), _reset_text(seconds)]
+	if is_visible_in_tree() and count > 0:
+		%RaidInfoFrame.show()
+
+
+static func _reset_text(seconds: int) -> String:
+	@warning_ignore("integer_division")
+	var parts: Array[int] = [seconds / 86400, seconds / 3600 % 24, seconds / 60 % 60]
+	var words: PackedStringArray = []
+	for i: int in parts.size():
+		if parts[i] > 0:
+			words.append("%d %s" % [parts[i], WowStrings.get_text(RESET_UNITS[i])])
+	return " ".join(words)

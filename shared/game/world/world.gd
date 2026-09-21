@@ -25,6 +25,8 @@ const LEVEL_UP_EFFECT: String = "Spells\\LevelUp\\LevelUp.m2"
 const LEVEL_UP_SECONDS: float = 3.0
 const GAMEOBJECT_TYPE_MAILBOX: int = 19
 const GAMEOBJECT_TYPE_MEETING_STONE: int = 23
+# Which data field of a readable game object's template holds its first page, by type.
+const GAMEOBJECT_PAGE_FIELDS: Dictionary[int, int] = {9: 0, 10: 7}
 const NPC_FLAG_AUCTIONEER: int = 0x1000
 const NPC_FLAG_STABLEMASTER: int = 0x4000
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
@@ -714,6 +716,10 @@ func _use_game_object(guid: int) -> void:
 			session.send_packet("CMSG_MEETINGSTONE_JOIN", payload)
 		return
 	session.send_packet("CMSG_GAMEOBJ_USE", payload)
+	var fields: PackedInt32Array = info.get("data", PackedInt32Array())
+	var page_field: int = GAMEOBJECT_PAGE_FIELDS.get(info.get("type", 0), -1)
+	if page_field >= 0 and page_field < fields.size() and fields[page_field] != 0:
+		_hud.read_page(info.get("name", ""), fields[page_field])
 
 
 func _on_game_object_info_received(entry: int) -> void:

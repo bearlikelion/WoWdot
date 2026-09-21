@@ -85,6 +85,22 @@ func _run() -> void:
 	var key_slot: Vector2i = Inventory.wire_address(Inventory.KEYRING, 2)
 	_check(key_slot == Vector2i(255, 83), "keyring slots follow the buyback in the inventory array")
 
+	var friends: Control = load("res://ui/friends_frame.tscn").instantiate()
+	add_child(friends)
+	var saved: PackedByteArray = []
+	saved.resize(4 + 24)
+	saved.encode_u32(0, 2)
+	saved.encode_u32(4, 409)
+	saved.encode_u32(8, 90000)
+	saved.encode_u32(12, 7)
+	saved.encode_u32(16, 469)
+	session.packet_received.emit("SMSG_RAID_INSTANCE_INFO", saved)
+	var raid_name: Label = friends.get_node("%RaidInfoInstance1Name")
+	_check(raid_name.text == "Molten Core", "raid info names the saved map")
+	var reset: Label = friends.get_node("%RaidInfoInstance1Reset")
+	_check(reset.text.contains("1 Day 1 Hr"), "and counts down to its reset")
+	_check(not (friends.get_node("%RaidInfoInstance3") as Control).visible, "unused rows hide")
+
 	var item_cooldown: PackedByteArray = []
 	item_cooldown.resize(12)
 	item_cooldown.encode_u32(8, FROSTBOLT)
