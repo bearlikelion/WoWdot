@@ -62,7 +62,10 @@ func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 		var skin: String = _display_info.get_string(row, column)
 		if not skin.is_empty():
 			skins[SKIN_COLUMNS[column]] = path.get_base_dir().path_join(skin + ".blp")
-	return _scaled(_loader.load_m2(path, skins), row)
+	var model: Node3D = _loader.load_m2(path, skins)
+	if model:
+		RibbonTrail.attach(model, path)
+	return _scaled(model, row)
 
 
 static func mark_unit(model: Node3D) -> void:

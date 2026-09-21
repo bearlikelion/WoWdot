@@ -127,6 +127,7 @@ func _mount(guid: int, path: String, points: Array) -> Node3D:
 	var model: Node3D = WowAssets.loader.load_m2(path)
 	if model == null:
 		return null
+	RibbonTrail.attach(model, path)
 	CreatureModels.mark_unit(model)
 	UnitAnimations.set_base(model, ["Birth", "Stand"])
 	var point: Dictionary = _point(host, points)
@@ -154,6 +155,7 @@ func _launch(caster: int, target: int, spell_id: int) -> void:
 	if missile == null:
 		_impact(target, spell_id)
 		return
+	RibbonTrail.attach(missile, visuals.missile(spell_id))
 	CreatureModels.mark_unit(missile)
 	UnitAnimations.set_base(missile, ["Stand"])
 	add_child(missile)
