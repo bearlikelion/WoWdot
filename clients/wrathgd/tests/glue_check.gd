@@ -152,6 +152,8 @@ func _frames(count: int) -> void:
 
 # Written only when a window is up, since a headless viewport has no texture.
 func _capture(path: String) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
 	if get_viewport().get_texture() == null:
 		return
 	# A locked screen never asks for a frame, so draw one instead of saving the last one from before.

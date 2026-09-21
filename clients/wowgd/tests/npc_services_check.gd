@@ -219,6 +219,8 @@ func _frames(count: int) -> void:
 
 
 func _capture(path: String) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
 	get_viewport().get_texture().get_image().save_png(path)
 	print("wrote ", ProjectSettings.globalize_path(path))
 

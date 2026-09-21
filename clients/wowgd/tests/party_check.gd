@@ -57,6 +57,9 @@ func _run() -> void:
 		PartyFrame.members, PartyFrame.is_leader(), first.get("_name_label").text,
 	])
 	_check(first.visible and first.member_name == PARTNER, "the partner has a party frame")
+	var bar: TextureProgressBar = first.get_node("HealthBar")
+	_check(await _until(func() -> bool: return bar.value > 0.0, 5000),
+			"the partner's health shows, in sight or not")
 	_capture("user://party_frame.png")
 
 	var menu: DropDownList = hud.get_node("%UnitMenu")
@@ -263,6 +266,8 @@ func _frames(count: int) -> void:
 
 
 func _capture(path: String) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
 	get_viewport().get_texture().get_image().save_png(path)
 	print("wrote ", ProjectSettings.globalize_path(path))
 

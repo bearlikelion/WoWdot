@@ -6,6 +6,7 @@ const OFFLINE_TINT: Color = Color(0.5, 0.5, 0.5)
 
 var member_name: String = ""
 var online: bool = true
+var remote_stats: Dictionary = {}
 
 # The converter keeps a name unique only once, and the pet frame repeats these.
 @onready var _member_label: Label = $Frame/Frame/Name
@@ -36,7 +37,7 @@ func show_member(member: Dictionary, is_leader: bool) -> void:
 	show_unit(member.get("guid", 0))
 
 
-# A member out of sight has no object to read, so only the name shows.
+# A member out of sight has no object to read, so the bars come from the server's reports.
 func refresh() -> void:
 	super()
 	if member_name.is_empty() or visible:
@@ -44,8 +45,12 @@ func refresh() -> void:
 		return
 	show()
 	_name_label.text = member_name
-	_health_bar.value = 0.0
-	_power_bar.value = 0.0
+	_health_bar.max_value = maxi(remote_stats.get("max_health", 1), 1)
+	_health_bar.value = remote_stats.get("health", 0)
+	_power_bar.max_value = maxi(remote_stats.get("max_power", 1), 1)
+	_power_bar.value = remote_stats.get("power", 0)
+	var power_type: PowerType = remote_stats.get("power_type", PowerType.MANA) as PowerType
+	_power_bar.tint_progress = POWER_COLORS.get(power_type, POWER_COLORS[PowerType.MANA])
 	_update_status()
 
 

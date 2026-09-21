@@ -31,7 +31,7 @@ func _run() -> void:
 		_characters = list
 		_fresh = true
 	)
-	_session.login(HOST, PORT, args.get("account", ACCOUNT), args.get("password", PASSWORD))
+	_session.login(args.get("realm", HOST), PORT, args.get("account", ACCOUNT), args.get("password", PASSWORD))
 	if not await _until(func() -> bool: return not _realms.is_empty()):
 		return _done("no realm list")
 	_session.select_realm(0)

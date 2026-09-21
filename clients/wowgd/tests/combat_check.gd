@@ -146,5 +146,7 @@ func _finish(fatal: String) -> void:
 
 # A headless run has no window texture to save, and failing here would hide the check's verdict.
 func _capture(path: String) -> void:
+	if DisplayServer.get_name() == "headless":
+		return
 	if get_viewport().get_texture() != null:
 		get_viewport().get_texture().get_image().save_png(path)

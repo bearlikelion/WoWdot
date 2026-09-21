@@ -17,6 +17,11 @@ enum TargetIcon { STAR, CIRCLE, DIAMOND, TRIANGLE, MOON, SQUARE, CROSS, SKULL }
 const READY_YES: String = "%s is ready."
 const READY_NO: String = "%s is not ready."
 const MAX_MEMBERS: int = 4
+# GROUP_UPDATE_FLAG bits in order, as far as the bars need them.
+const STAT_FIELDS: PackedStringArray = [
+	"status", "health", "max_health", "power_type", "power", "max_power",
+]
+const BYTE_STATS: PackedStringArray = ["status", "power_type"]
 const MAX_RAID_MEMBERS: int = 40
 # A member's subgroup sits in the low bits of its flag byte, with assistant in the top one.
 const SUBGROUP_MASK: int = 0x0F
@@ -42,6 +47,7 @@ static var own_subgroup: int = 0
 static var target_icons: Dictionary[int, int] = {}
 
 var _frames: Array[PartyMemberFrame] = []
+var _remote_stats: Dictionary[int, Dictionary] = {}
 
 
 func _ready() -> void:
@@ -204,6 +210,19 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_on_ready_check(payload)
 		"MSG_RAID_TARGET_UPDATE":
 			_on_target_icons(payload)
+		"SMSG_PARTY_MEMBER_STATS", "SMSG_PARTY_MEMBER_STATS_FULL":
+			_on_member_stats(PacketReader.new(payload))
+
+
+# Members out of sight have no object, so the server reports their bars; the mask picks the fields.
+func _on_member_stats(reader: PacketReader) -> void:
+	var member: int = reader.packed_guid()
+	var mask: int = reader.u32()
+	var stats: Dictionary = _remote_stats.get_or_add(member, {})
+	for i: int in STAT_FIELDS.size():
+		if mask & (1 << i):
+			stats[STAT_FIELDS[i]] = reader.u8() if STAT_FIELDS[i] in BYTE_STATS else reader.u16()
+	_refresh()
 
 
 func _on_ready_check(payload: PackedByteArray) -> void:
@@ -248,6 +267,11 @@ func _on_list_received(payload: PackedByteArray) -> void:
 	if is_raid != was_raid:
 		raid_changed.emit()
 	_announce_changes(before)
+	for member: Dictionary in members:
+		var ask: PackedByteArray = []
+		ask.resize(8)
+		ask.encode_u64(0, member["guid"])
+		WowClient.session.send_packet("CMSG_REQUEST_PARTY_MEMBER_STATS", ask)
 	_refresh()
 
 
@@ -300,6 +324,7 @@ func _on_result_received(payload: PackedByteArray) -> void:
 func _refresh() -> void:
 	for i: int in MAX_MEMBERS:
 		var member: Dictionary = members[i] if i < members.size() else {}
+		_frames[i].remote_stats = _remote_stats.get(member.get("guid", 0), {})
 		_frames[i].show_member(member, not member.is_empty() and member["guid"] == leader)
 
 
