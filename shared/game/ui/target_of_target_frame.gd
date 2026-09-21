@@ -11,4 +11,10 @@ func _ready() -> void:
 	_health_bar = %TargetofTargetHealthBar
 	_power_bar = %TargetofTargetManaBar
 	_portrait_rect = %TargetofTargetPortrait
+	# The stock frame level puts the border art and its text over the bars.
+	move_child(%TargetofTargetTextureFrame, -1)
 	super()
+
+
+func _update_unit() -> void:
+	%TargetofTargetDeadText.visible = WowClient.session.get_field(guid, "UNIT_FIELD_HEALTH") == 0

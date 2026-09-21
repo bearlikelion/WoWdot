@@ -54,6 +54,23 @@ func _run() -> void:
 		print("channel line: ", _lines[_lines.size() - 1])
 		_check(_line_with("%d. " % number), "the line carries the channel number")
 
+	_lines.clear()
+	chat.open()
+	var edit_box: LineEdit = chat.get_node("%ChatFrameEditBox")
+	for typed: String in ["/%d " % number, "typed on the channel"]:
+		edit_box.text += typed
+		edit_box.text_changed.emit(edit_box.text)
+	edit_box.text_submitted.emit(edit_box.text)
+	var typed_through: bool = await _until(func() -> bool: return _line_with("typed on the channel"))
+	_check(typed_through, "typing the number then the message sends it: %s" % _lines)
+	_lines.clear()
+	chat.open()
+	for typed: String in ["/s ", "typed aloud"]:
+		edit_box.text += typed
+		edit_box.text_changed.emit(edit_box.text)
+	edit_box.text_submitted.emit(edit_box.text)
+	_check(await _until(func() -> bool: return _line_with("typed aloud")), "typed /s says it")
+
 	chat.call("_on_text_submitted", "/leave %d" % number)
 	var left: bool = await _until(func() -> bool: return Channels.number_of(CHANNEL) == 0)
 	_check(left, "leaving by number drops the channel")

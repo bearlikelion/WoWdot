@@ -33,6 +33,13 @@ const OUT_OF_POWER: Array[String] = [
 const CHAT_TAB_SHOW_DELAY: float = 0.2
 # 1.12 has no ready check, so its question is ours rather than a GlobalStrings line.
 const READY_CHECK_QUESTION: String = "Are you ready?"
+const SERVER_MESSAGE_KEYS: Dictionary[int, String] = {
+	1: "SERVER_MESSAGE_SHUTDOWN_TIME", 2: "SERVER_MESSAGE_RESTART_TIME",
+	4: "SERVER_MESSAGE_SHUTDOWN_CANCELLED", 5: "SERVER_MESSAGE_RESTART_CANCELLED",
+}
+const CHAT_RESTRICTED_KEYS: Dictionary[int, String] = {
+	0: "ERR_CHAT_RESTRICTED", 1: "ERR_CHAT_THROTTLED", 2: "ERR_USER_SQUELCHED",
+}
 
 var _area: int = 0
 var _menu_name: String = ""
@@ -258,12 +265,33 @@ func _on_emote_requested(text_emote: int) -> void:
 	WowClient.session.send_packet("CMSG_TEXT_EMOTE", payload)
 
 
+# What the server says instead of delivering a chat line.
+func _chat_refusal(opcode: String, reader: PacketReader) -> String:
+	match opcode:
+		"SMSG_NOTIFICATION":
+			return reader.cstring()
+		"SMSG_SERVER_MESSAGE":
+			var key: String = SERVER_MESSAGE_KEYS.get(reader.u32(), "")
+			return WowStrings.get_text(key, "%s").replace("%s", reader.cstring())
+		"SMSG_CHAT_RESTRICTED":
+			return WowStrings.get_text(CHAT_RESTRICTED_KEYS.get(reader.u8(), "ERR_CHAT_RESTRICTED"))
+		"SMSG_CHAT_PLAYER_NOT_FOUND":
+			return WowStrings.get_text("ERR_CHAT_PLAYER_NOT_FOUND_S").replace("%s", reader.cstring())
+		"SMSG_CHAT_WRONG_FACTION":
+			return WowStrings.get_text("ERR_CHAT_WRONG_FACTION")
+	return ""
+
+
 # SMSG_TEXT_EMOTE: the client writes the line itself, from EmotesText and EmotesTextData.
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_CHANNEL_NOTIFY":
 		var notice: String = Channels.notice(payload)
 		if not notice.is_empty():
 			add_system_line(notice)
+		return
+	var refusal: String = _chat_refusal(opcode, PacketReader.new(payload))
+	if not refusal.is_empty():
+		add_system_line(refusal)
 		return
 	if opcode == "SMSG_INVENTORY_CHANGE_FAILURE":
 		_show_equip_error(PacketReader.new(payload))
