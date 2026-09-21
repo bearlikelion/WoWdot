@@ -218,11 +218,10 @@ void WowSession::begin_auth() {
 	auth = std::make_unique<auth::AuthHandler>();
 	const WowProfile &profile = wow_profile();
 	auth::ClientInfo info;
-	const AdvertisedVersion &told = advertised_version();
-	info.majorVersion = told.major;
-	info.minorVersion = told.minor;
-	info.patchVersion = told.patch;
-	info.build = told.build;
+	info.majorVersion = profile.major;
+	info.minorVersion = profile.minor;
+	info.patchVersion = profile.patch;
+	info.build = profile.build;
 	// vMaNGOS answers protocol 8 while older MaNGOS cores only take 3, so a protocol failure retries once.
 	info.protocolVersion = auth_attempt == 0 ? AUTH_PROTOCOL : AUTH_PROTOCOL_LEGACY;
 	info.legacyVanillaRealmList = profile.legacy_realm_list;
@@ -321,8 +320,6 @@ void WowSession::create_character(const Dictionary &character) {
 	data.hairStyle = static_cast<int>(character.get("hair_style", 0));
 	data.hairColor = static_cast<int>(character.get("hair_color", 0));
 	data.facialHair = static_cast<int>(character.get("facial_hair", 0));
-	// A client folder that reports its own build belongs to a server that wants its create shape.
-	data.challengeMask = advertised_version().build != wow_profile().build;
 	world->send(game::CharCreatePacket::build(data));
 }
 
@@ -1284,8 +1281,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				return;
 			}
 			const uint32_t client_seed = std::random_device()();
-			// Only the login server sees the advertised build: mangosd, Turtle-derived ones too, takes 5875 alone.
-			world->send(game::AuthSessionPacket::build(wow_profile().build, username, client_seed, session_key, challenge.serverSeed, realm_id));
+					world->send(game::AuthSessionPacket::build(wow_profile().build, username, client_seed, session_key, challenge.serverSeed, realm_id));
 			// The server encrypts from its next packet on, so the cipher starts right after AUTH_SESSION.
 			world->initEncryption(session_key, wow_profile().build);
 			return;

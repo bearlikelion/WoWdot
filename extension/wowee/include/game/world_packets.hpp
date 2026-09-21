@@ -249,7 +249,6 @@ struct CharCreateData {
     uint8_t facialHair = 0;
     uint8_t secondaryClass = 0;   // rides in outfitId, which WotLK never uses
     bool useFemaleModel = false;  // For nonbinary: choose body type
-    bool challengeMask = false;   // Turtle-derived cores need the trailing u32; stock vMaNGOS rejects it
 };
 
 class CharCreatePacket {

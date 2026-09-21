@@ -37,10 +37,8 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 - Godot 4.7 and the `wowdot` extension built from [`extension/`](../../extension) (see the [top-level README](../../README.md#building)).
   `shared/wowdot/wowdot.gdextension` has `reloadable = true`, which needs an editor with the extension instance-binding fix; on a stock editor set it to `false`.
 - A 1.12.1 (build 5875) client folder with its `Data` directory.
-  WoWGD ships no Blizzard files; it reads the MPQs in `Data` and, from the executable beside that folder, only the two build strings `GetBuildInfo` returns.
-  Servers that ship their own client patch those strings and turn every other build away: OctoWoW's `WoW.exe` reports version 1.18.1, build 7272.
-  So WoWGD announces whatever the executable next to its data reports, in the login challenge, and 1.12.1 build 5875 when there is none; the world server is still told 5875, the only build mangosd takes, and a folder reporting its own build also gets the trailing challenge-mode field Turtle-derived cores want in `CMSG_CHAR_CREATE` (stock vMaNGOS rejects it).
-  Those clients also carry their own `patch-1.mpq`, which WoWGD reads between `patch.mpq` and `patch-2.mpq`.
+  WoWGD ships no Blizzard files; it reads the MPQs in `Data`.
+  Only stock servers are supported: ones that ship their own patched client (another build number, extra `patch-N.mpq` content, changed packets) are left to forks.
 
 ## Server setup
 
@@ -61,7 +59,7 @@ Open this folder in Godot, set **Project Settings > wowgd > client_data_dir** to
 `game/` is a symlink to [`shared/game`](../../shared/game), the GDScript both clients load, so `res://game/...` paths are the same here and in WrathGD.
 The login screen starts on `127.0.0.1`; whatever you log in with is saved for next time.
 Command-line options after `--` fill the login screen for one run without saving: `--realm=<address>`, `--account=`, `--password=` and `--character=` (logs straight in; without `--character` it enters the first character).
-`--data=<path to a Data folder>` picks the client data for one run, so one build can play on servers that ship their own patches.
+`--data=<path to a Data folder>` picks the client data for one run.
 
 ## Exporting
 
