@@ -66,9 +66,9 @@ func _run() -> void:
 		await tree.process_frame
 		if not captured and _swings.size() >= 2:
 			captured = true
-			get_viewport().get_texture().get_image().save_png("user://combat.png")
+			_capture("user://combat.png")
 	await _frames(90)
-	get_viewport().get_texture().get_image().save_png("user://combat_end.png")
+	_capture("user://combat_end.png")
 	print("swings: ", _swings, " clips: ", _clips, " facing: ", rad_to_deg(_worst_facing))
 	_check(_swings.get("player", 0) > 0, "the player swings at the wolf")
 	var attacked: bool = _clips.keys().any(
@@ -142,3 +142,9 @@ func _finish(fatal: String) -> void:
 		printerr("FAIL: ", failure)
 	print("combat_check: ", "OK" if _failures.is_empty() else "%d failed" % _failures.size())
 	get_tree().quit(0 if _failures.is_empty() else 1)
+
+
+# A headless run has no window texture to save, and failing here would hide the check's verdict.
+func _capture(path: String) -> void:
+	if get_viewport().get_texture() != null:
+		get_viewport().get_texture().get_image().save_png(path)

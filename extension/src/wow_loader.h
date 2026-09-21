@@ -32,6 +32,18 @@ struct WMOGroup;
 namespace godot {
 
 // Turns archive files into Godot resources and nodes; safe to call from worker threads.
+// What the servers are told this client is. A server that ships its own client patches the build
+// strings GetBuildInfo returns and turns every other build away, so these come from the executable
+// beside the data folder, falling back to the profile's.
+struct AdvertisedVersion {
+	uint8_t major = 0;
+	uint8_t minor = 0;
+	uint8_t patch = 0;
+	uint16_t build = 0;
+};
+
+const AdvertisedVersion &advertised_version();
+
 class WowLoader : public RefCounted {
 	GDCLASS(WowLoader, RefCounted)
 

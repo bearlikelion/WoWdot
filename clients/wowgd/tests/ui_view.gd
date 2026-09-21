@@ -22,11 +22,20 @@ func _ready() -> void:
 	var view: Control = scene.instantiate()
 	_root.add_child(view)
 	view.show()
+	# A frame the game sizes at runtime, such as a chat bubble, needs one given here.
+	if args.has("size"):
+		var wide: PackedStringArray = String(args["size"]).split("x")
+		view.size = Vector2(float(wide[0]), float(wide[1]))
+	var label: Label = view.get_node_or_null("%Text") as Label
+	if label != null and args.has("text"):
+		label.text = args["text"]
 	for path: String in args.get("show", "").split(",", false):
 		(view.get_node(NodePath(path)) as CanvasItem).show()
 	for i: int in int(args.get("settle", str(SETTLE_FRAMES))):
 		await get_tree().process_frame
 	var out: String = args.get("out", "user://ui_view.png")
+	# A locked screen never asks for a frame, so draw one rather than save the last one from before.
+	RenderingServer.force_draw(false)
 	get_viewport().get_texture().get_image().save_png(out)
 	print("wrote ", ProjectSettings.globalize_path(out))
 	get_tree().quit()

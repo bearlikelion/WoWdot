@@ -13,6 +13,9 @@ const HIDDEN_GEAR_FLAGS: int = CharacterModels.PLAYER_FLAG_HIDE_HELM \
 const STAND_STATE_STAND: int = 0
 const STAND_STATE_SIT: int = 1
 const UNIT_DYNFLAG_LOOTABLE: int = 0x1
+# The golden rings the stock client plays on the player when they gain a level.
+const LEVEL_UP_EFFECT: String = "Spells\\LevelUp\\LevelUp.m2"
+const LEVEL_UP_SECONDS: float = 3.0
 const GAMEOBJECT_TYPE_MAILBOX: int = 19
 const NPC_FLAG_AUCTIONEER: int = 0x1000
 const NPC_FLAG_STABLEMASTER: int = 0x4000
@@ -95,6 +98,7 @@ func _ready() -> void:
 	WowClient.session.object_moved.connect(_on_object_moved)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
+	WowClient.session.leveled_up.connect(_on_leveled_up)
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
 	_effects.watch(_entities, _player)
 	_transports.watch(_entities)
@@ -406,6 +410,25 @@ func _face(guid: int) -> void:
 	var node: Node3D = _entities.unit_node(guid) if guid != 0 else null
 	if node:
 		_player.face(node.global_position)
+
+
+# PLAYER_LEVEL_UP: the chime, the notice over the screen and the gains in the chat.
+func _on_leveled_up(level: int, health: int, mana: int, stats: PackedInt32Array) -> void:
+	WowAssets.audio.play_sound("LEVELUP")
+	_effects.flourish(WowClient.session.get_player_guid(), LEVEL_UP_EFFECT, LEVEL_UP_SECONDS)
+	_hud.show_notice(WowStrings.get_text("LEVEL_UP") % level)
+	var lines: PackedStringArray = []
+	if health > 0 and mana > 0:
+		lines.append(WowStrings.get_text("LEVEL_UP_HEALTH_MANA") % [health, mana])
+	elif health > 0:
+		lines.append(WowStrings.get_text("LEVEL_UP_HEALTH") % health)
+	for stat: int in stats.size():
+		if stats[stat] > 0:
+			lines.append(WowStrings.get_text("LEVEL_UP_STAT") % [
+				WowStrings.get_text("SPELL_STAT%d_NAME" % (stat + 1)), stats[stat],
+			])
+	for line: String in lines:
+		_hud.add_system_line(line)
 
 
 func _on_attack_changed(attacker: int, _victim: int, attacking: bool) -> void:

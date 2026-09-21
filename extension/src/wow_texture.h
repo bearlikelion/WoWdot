@@ -11,7 +11,10 @@ class WowTexture : public Texture2D {
 	GDCLASS(WowTexture, Texture2D)
 
 	String file;
-	Ref<ImageTexture> texture;
+	// Loaded on first use, since a scene can be built before the archive is open.
+	mutable Ref<ImageTexture> texture;
+
+	void load() const;
 
 protected:
 	static void _bind_methods();

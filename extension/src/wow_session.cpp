@@ -1,5 +1,6 @@
 #include "wow_session.h"
 
+#include "wow_loader.h"
 #include "wow_profile.h"
 
 #include "auth/auth_handler.hpp"
@@ -217,10 +218,11 @@ void WowSession::begin_auth() {
 	auth = std::make_unique<auth::AuthHandler>();
 	const WowProfile &profile = wow_profile();
 	auth::ClientInfo info;
-	info.majorVersion = profile.major;
-	info.minorVersion = profile.minor;
-	info.patchVersion = profile.patch;
-	info.build = profile.build;
+	const AdvertisedVersion &told = advertised_version();
+	info.majorVersion = told.major;
+	info.minorVersion = told.minor;
+	info.patchVersion = told.patch;
+	info.build = told.build;
 	// vMaNGOS answers protocol 8 while older MaNGOS cores only take 3, so a protocol failure retries once.
 	info.protocolVersion = auth_attempt == 0 ? AUTH_PROTOCOL : AUTH_PROTOCOL_LEGACY;
 	info.legacyVanillaRealmList = profile.legacy_realm_list;
@@ -1280,8 +1282,9 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				return;
 			}
 			const uint32_t client_seed = std::random_device()();
-			world->send(game::AuthSessionPacket::build(wow_profile().build, username, client_seed, session_key, challenge.serverSeed, realm_id));
+			world->send(game::AuthSessionPacket::build(advertised_version().build, username, client_seed, session_key, challenge.serverSeed, realm_id));
 			// The server encrypts from its next packet on, so the cipher starts right after AUTH_SESSION.
+			// It follows the protocol this client speaks, not the build it announces.
 			world->initEncryption(session_key, wow_profile().build);
 			return;
 		}
@@ -1637,6 +1640,21 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			ack.writeUInt32(static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec()));
 			world->send(ack);
 			emit_signal("player_teleported", wow_vector(x, y, z), orientation);
+			return;
+		}
+		case LogicalOpcode::SMSG_LEVELUP_INFO: {
+			const int level = static_cast<int>(packet.readUInt32());
+			const int health = static_cast<int>(packet.readUInt32());
+			// Five powers, of which mana is the first, then the five stats.
+			const int mana = static_cast<int>(packet.readUInt32());
+			for (int i = 0; i < 4; i++) {
+				packet.readUInt32();
+			}
+			PackedInt32Array stats;
+			for (int i = 0; i < 5 && packet.hasRemaining(4); i++) {
+				stats.push_back(static_cast<int32_t>(packet.readUInt32()));
+			}
+			emit_signal("leveled_up", level, health, mana, stats);
 			return;
 		}
 		case LogicalOpcode::SMSG_TIME_SYNC_REQ: {
@@ -2004,6 +2022,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("spell_cooldown", PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cooldown_msec")));
 	ADD_SIGNAL(MethodInfo("aura_duration", PropertyInfo(Variant::INT, "slot"), PropertyInfo(Variant::INT, "duration_msec")));
 	ADD_SIGNAL(MethodInfo("auras_changed", PropertyInfo(Variant::INT, "guid")));
+	ADD_SIGNAL(MethodInfo("leveled_up", PropertyInfo(Variant::INT, "level"), PropertyInfo(Variant::INT, "health"), PropertyInfo(Variant::INT, "mana"), PropertyInfo(Variant::PACKED_INT32_ARRAY, "stats")));
 	ADD_SIGNAL(MethodInfo("attack_swing_error", PropertyInfo(Variant::INT, "error")));
 	ADD_SIGNAL(MethodInfo("melee_swing", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim"), PropertyInfo(Variant::INT, "damage"), PropertyInfo(Variant::INT, "hit_info"), PropertyInfo(Variant::INT, "victim_state")));
 	ADD_SIGNAL(MethodInfo("attack_started", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim")));

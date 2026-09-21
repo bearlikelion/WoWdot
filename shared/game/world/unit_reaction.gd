@@ -20,10 +20,17 @@ static var _templates: WowDBC
 
 # FactionTemplate rules: explicit enemy or friend factions first, then the group masks.
 static func between(session: WowSession, from_guid: int, to_guid: int) -> Reaction:
+	return between_templates(
+		session.get_field(from_guid, "UNIT_FIELD_FACTIONTEMPLATE"),
+		session.get_field(to_guid, "UNIT_FIELD_FACTIONTEMPLATE"),
+	)
+
+
+static func between_templates(from_template: int, to_template: int) -> Reaction:
 	if _templates == null:
 		_templates = WowDBC.open(WowAssets.archive, "FactionTemplate")
-	var ours: int = _templates.find(session.get_field(from_guid, "UNIT_FIELD_FACTIONTEMPLATE"))
-	var theirs: int = _templates.find(session.get_field(to_guid, "UNIT_FIELD_FACTIONTEMPLATE"))
+	var ours: int = _templates.find(from_template)
+	var theirs: int = _templates.find(to_template)
 	if ours < 0 or theirs < 0:
 		return Reaction.NEUTRAL
 	if _hostile(theirs, ours) or _hostile(ours, theirs):

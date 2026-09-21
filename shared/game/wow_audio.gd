@@ -111,6 +111,10 @@ func play_zone(area_id: int) -> void:
 		_ambient.stop()
 
 
+func has_sound(sound_name: String) -> bool:
+	return _sound_rows.has(sound_name.to_lower())
+
+
 # Takes a SoundEntries name, as FrameXML's PlaySound does.
 func play_sound(sound_name: String) -> void:
 	var row: int = _sound_rows.get(sound_name.to_lower(), -1)

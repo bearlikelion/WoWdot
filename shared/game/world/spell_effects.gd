@@ -85,6 +85,14 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_casting.erase(guid)
 
 
+# A model played once on the unit and taken down when its sequence ends, such as the level up glow.
+func flourish(guid: int, path: String, seconds: float) -> Node3D:
+	var model: Node3D = _mount(guid, path, [])
+	if model != null:
+		_expire(model, maxf(seconds, _length(model)))
+	return model
+
+
 # What landing on the target looks like: the kit's effects and the flinch it names.
 func _impact(target: int, spell_id: int) -> void:
 	_hang(target, spell_id, SpellVisuals.Kit.IMPACT, FALLBACK_SECONDS)

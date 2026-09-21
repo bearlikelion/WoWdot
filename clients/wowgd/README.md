@@ -20,7 +20,7 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Zoning | Continents, dungeons and portals, with the loading screen and a clean sweep of the old map's objects. |
 | Death | Release, corpse location and reclaim, resurrect offers from other players, and the spirit healer. |
 | Combat | Targeting, auto attack, spell casts with cooldowns and the GCD, buffs and debuffs, floating combat text, combat log. |
-| HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap with the corpse marked, tooltips, reputation watch bar, breath and fatigue timers. |
+| HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap with the corpse marked, tooltips, reputation watch bar, breath and fatigue timers, nameplates in their reaction colour, and the level up chime, notice, gains and golden rings. |
 | Chat | Say, yell, party, guild and whispers, channels with /join and numbered commands, emotes such as /dance, speech bubbles over the speaker. |
 | Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video, sound and interface options, key bindings. |
 | NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag and bag slot purchases, auctioneers with bidding and buyout. |
@@ -37,7 +37,10 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 - Godot 4.7 and the `wowdot` extension built from [`extension/`](../../extension) (see the [top-level README](../../README.md#building)).
   `shared/wowdot/wowdot.gdextension` has `reloadable = true`, which needs an editor with the extension instance-binding fix; on a stock editor set it to `false`.
 - A 1.12.1 (build 5875) client folder with its `Data` directory.
-  WoWGD ships no Blizzard files and reads none of the stock client's binaries; it only reads the MPQs in `Data`.
+  WoWGD ships no Blizzard files; it reads the MPQs in `Data` and, from the executable beside that folder, only the two build strings `GetBuildInfo` returns.
+  Servers that ship their own client patch those strings and turn every other build away: OctoWoW's `WoW.exe` reports version 1.18.1, build 7272.
+  So WoWGD announces whatever the executable next to its data reports, in the login challenge and in `CMSG_AUTH_SESSION`, and 1.12.1 build 5875 when there is none; the header cipher stays the one 5875 uses, since that follows the protocol rather than the number.
+  Those clients also carry their own `patch-1.mpq`, which WoWGD reads between `patch.mpq` and `patch-2.mpq`.
 
 ## Server setup
 
@@ -86,7 +89,8 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `mail_check`, `auction_check` | The mailbox and the auction house. |
 | `loot_check`, `party_check.sh` | Loot and parties. |
 | `trade_check.sh`, `friends_check`, `guild_check` | Trading, the friends and ignore lists, the guild window. |
-| `bubble_check`, `pet_check.sh` | Speech bubbles; a warlock's imp, its frame, bar and spellbook. |
+| `bubble_check`, `pet_check.sh` | Speech bubbles with their backdrop loaded; a warlock's imp, its frame, bar and spellbook. |
+| `level_check` | A GM level up: the chime, the notice, the health and stat gains, the rings on the player, and nameplates coloured by reaction, with the Defias Brotherhood reading hostile. |
 | `hunter_check.sh` | Taming, naming, happiness and the stable, with a throwaway hunter. It leans on the GM commands `.npc tame` and `.stable`, and needs a quiet machine: a busy one can take minutes to reach the world. |
 | `remote_motion_check`, `remote_movement_check.sh` | Other players' movement. |
 | `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming and the breath timer. |

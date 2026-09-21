@@ -13,6 +13,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 
@@ -88,13 +89,67 @@ Dictionary WowLoader::data_table(const String &name) {
 	return parsed.get_type() == Variant::DICTIONARY ? Dictionary(parsed) : Dictionary();
 }
 
+namespace {
+// The build strings sit just before this in every client from 1.12 to 3.3.5.
+constexpr char BUILD_MARKER[] = "RELEASE_BUILD";
+
+// The string that ends at `end`, past the padding before it, and where it starts.
+std::string string_before(const PackedByteArray &bytes, int64_t end, int64_t &start) {
+	while (end > 0 && bytes[end - 1] == 0) {
+		end--;
+	}
+	start = end;
+	while (start > 0 && bytes[start - 1] != 0) {
+		start--;
+	}
+	return std::string(reinterpret_cast<const char *>(bytes.ptr()) + start, end - start);
+}
+
+AdvertisedVersion read_advertised_version() {
+	const WowProfile &profile = wow_profile();
+	AdvertisedVersion version{ profile.major, profile.minor, profile.patch, profile.build };
+	const String folder = WowLoader::client_data_dir().get_base_dir();
+	for (const char *name : { "WoW.exe", "Wow.exe" }) {
+		const PackedByteArray bytes = FileAccess::get_file_as_bytes(folder.path_join(name));
+		const uint8_t *data = bytes.ptr();
+		const uint8_t *found = std::search(data, data + bytes.size(), BUILD_MARKER, BUILD_MARKER + sizeof(BUILD_MARKER) - 1);
+		if (bytes.is_empty() || found == data + bytes.size()) {
+			continue;
+		}
+		int64_t version_at = 0;
+		int64_t build_at = 0;
+		const std::string text = string_before(bytes, found - data, version_at);
+		const std::string build = string_before(bytes, version_at, build_at);
+		unsigned major = 0;
+		unsigned minor = 0;
+		unsigned patch = 0;
+		const unsigned long number = std::strtoul(build.c_str(), nullptr, 10);
+		if (std::sscanf(text.c_str(), "%u.%u.%u", &major, &minor, &patch) != 3 || major != profile.major || number == 0 || number > 0xFFFF) {
+			continue;
+		}
+		version = { static_cast<uint8_t>(major), static_cast<uint8_t>(minor), static_cast<uint8_t>(patch), static_cast<uint16_t>(number) };
+		if (version.build != profile.build) {
+			UtilityFunctions::print("WowLoader: ", folder.path_join(name), " reports ", text.c_str(), " build ", build.c_str(), ", which is what the servers will be told");
+		}
+		break;
+	}
+	return version;
+}
+} // namespace
+
+const AdvertisedVersion &advertised_version() {
+	static const AdvertisedVersion version = read_advertised_version();
+	return version;
+}
+
 // What the game code shows and branches on: the expansion, its version string and its build.
 Dictionary WowLoader::profile() {
 	const WowProfile &active = wow_profile();
+	const AdvertisedVersion &told = advertised_version();
 	Dictionary out;
 	out["id"] = String(active.id);
-	out["version"] = String(active.version);
-	out["build"] = active.build;
+	out["version"] = vformat("%d.%d.%d", told.major, told.minor, told.patch);
+	out["build"] = told.build;
 	return out;
 }
 

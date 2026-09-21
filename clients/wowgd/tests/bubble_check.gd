@@ -33,6 +33,10 @@ func _run() -> void:
 	if raised:
 		var bubble: Control = _bubble(bubbles)
 		_check(bubble.size.x > 0.0 and bubble.size.y > 0.0, "the bubble is sized to its text")
+		# An unloaded texture draws as a plain white rectangle.
+		var backdrop: WowBackdrop = bubble.get_node("Backdrop")
+		_check(backdrop.background.get_rid().is_valid() and backdrop.edge.get_rid().is_valid(),
+				"the bubble's backdrop textures loaded")
 		var shown: bool = await _until(func() -> bool: return bubble.visible)
 		_check(shown, "the bubble follows the speaker on screen")
 		await _frames(5)

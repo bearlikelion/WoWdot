@@ -7,6 +7,8 @@ const NAMEPLATE: PackedScene = preload("res://game/world/nameplate.tscn")
 # Server paths faster than this (yards per second) play the run animation.
 const RUN_SPEED_THRESHOLD: float = 4.0
 const NAMEPLATE_GAP: float = 0.3
+# The gold the stock client draws your own name in.
+const OWN_NAME_COLOR: Color = Color(1.0, 0.9, 0.55)
 # The quest marker floats this far over the top line of the nameplate.
 const MARKER_GAP: float = 0.3
 const NAMEPLATE_LINE_HEIGHT: float = 0.3
@@ -165,6 +167,10 @@ func shown_guids() -> PackedInt64Array:
 	return PackedInt64Array(_nodes.keys())
 
 
+func nameplate(guid: int) -> Label3D:
+	return _nameplates.get(guid)
+
+
 func unit_node(guid: int) -> Node3D:
 	return _nodes.get(guid)
 
@@ -225,7 +231,21 @@ func _arm(guid: int) -> void:
 func _on_name_received(guid: int, _unit_name: String) -> void:
 	if _nameplates.has(guid):
 		_nameplates[guid].text = _plate_text(guid)
+		_color_name(guid)
 		_place_marker(guid)
+
+
+# FACTION_BAR_COLORS: a unit's name reads red, yellow or green by how it feels about the player.
+func _color_name(guid: int) -> void:
+	if not _nameplates.has(guid):
+		return
+	var session: WowSession = WowClient.session
+	if guid == session.get_player_guid():
+		return
+	var reaction: UnitReaction.Reaction = UnitReaction.between(
+		session, session.get_player_guid(), guid
+	)
+	_nameplates[guid].modulate = UnitReaction.COLORS.get(reaction, OWN_NAME_COLOR)
 
 
 # The stock options hide your own name, other players' and creatures' separately.
@@ -283,6 +303,7 @@ func add_nameplate(guid: int, node: Node3D) -> void:
 	plate.text = _plate_text(guid)
 	node.add_child(plate)
 	_nameplates[guid] = plate
+	_color_name(guid)
 	_show_name(guid)
 
 

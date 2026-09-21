@@ -37,10 +37,11 @@ func _notification(what: int) -> void:
 		queue_redraw()
 
 
+# A texture that did not load has no rid, and drawing with it would fill a plain white rectangle.
 func _draw() -> void:
-	if background:
+	if background != null and background.get_rid().is_valid():
 		_draw_background()
-	if edge:
+	if edge != null and edge.get_rid().is_valid():
 		_draw_edge()
 
 

@@ -29,7 +29,8 @@ std::vector<std::string> classic_sequence() {
 		"model.mpq", "sound.mpq", "speech.mpq", "terrain.mpq", "texture.mpq", "wmo.mpq",
 		"patch.mpq",
 	};
-	for (char c = '2'; c <= '9'; c++) {
+	// The stock client stops short of patch-1, but servers that ship their own content use it.
+	for (char c = '1'; c <= '9'; c++) {
 		names.push_back(std::string("patch-") + c + ".mpq");
 	}
 	for (char c = 'a'; c <= 'z'; c++) {
