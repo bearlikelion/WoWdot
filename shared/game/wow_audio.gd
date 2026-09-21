@@ -129,6 +129,24 @@ func play_sound(sound_name: String) -> void:
 	)
 
 
+# SMSG_PLAY_SOUND and SMSG_PLAY_OBJECT_SOUND name a SoundEntries row.
+func play_entry(sound_id: int) -> void:
+	var stream: AudioStream = entry_stream(sound_id)
+	if stream == null:
+		return
+	if not _effects.playing:
+		_effects.play()
+	var playback: AudioStreamPlaybackPolyphonic = _effects.get_stream_playback()
+	playback.play_stream(stream, 0.0, linear_to_db(entry_volume(sound_id)))
+
+
+# SMSG_PLAY_MUSIC, which holds until the zone changes its own track.
+func play_music_entry(sound_id: int) -> void:
+	var path: String = _random_file(_sounds.find(sound_id))
+	if not path.is_empty():
+		play_music(path)
+
+
 # A random one of the SoundEntries row's files.
 func entry_stream(sound_id: int) -> AudioStream:
 	return _load(_random_file(_sounds.find(sound_id))) if sound_id > 0 else null

@@ -84,6 +84,23 @@ static func error(opcode: String, payload: PackedByteArray) -> String:
 	return ""
 
 
+# Sounds, music and cinematics the server starts; true when the opcode was one of them.
+static func play(opcode: String, payload: PackedByteArray) -> bool:
+	var reader: PacketReader = PacketReader.new(payload)
+	match opcode:
+		"SMSG_PLAY_SOUND", "SMSG_PLAY_OBJECT_SOUND":
+			WowAssets.audio.play_entry(reader.u32())
+		"SMSG_PLAY_MUSIC":
+			WowAssets.audio.play_music_entry(reader.u32())
+		"SMSG_TRIGGER_CINEMATIC":
+			# ponytail: the flyover is not drawn, only acknowledged so the server moves on.
+			WowClient.session.send_packet("CMSG_NEXT_CINEMATIC_CAMERA", [])
+			WowClient.session.send_packet("CMSG_COMPLETE_CINEMATIC", [])
+		_:
+			return false
+	return true
+
+
 static func map_name(map_id: int) -> String:
 	if _maps == null:
 		_maps = WowDBC.open(WowAssets.archive, "Map")

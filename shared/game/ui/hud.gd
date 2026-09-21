@@ -31,8 +31,10 @@ const OUT_OF_POWER: Array[String] = [
 ]
 # CHAT_TAB_SHOW_DELAY: the dock's tabs wait for the mouse to rest over the chat this long.
 const CHAT_TAB_SHOW_DELAY: float = 0.2
-# 1.12 has no ready check, so its question is ours rather than a GlobalStrings line.
+const PLAYER_FLAG_AFK: int = 0x02
+const PLAYER_FLAG_DND: int = 0x04
 const CHANNEL_LIST_WAIT: float = 1.0
+# 1.12 has no ready check, so its question is ours rather than a GlobalStrings line.
 const READY_CHECK_QUESTION: String = "Are you ready?"
 const SERVER_MESSAGE_KEYS: Dictionary[int, String] = {
 	1: "SERVER_MESSAGE_SHUTDOWN_TIME", 2: "SERVER_MESSAGE_RESTART_TIME",
@@ -43,6 +45,7 @@ const CHAT_RESTRICTED_KEYS: Dictionary[int, String] = {
 }
 
 var _area: int = 0
+var _away: int = 0
 var _menu_name: String = ""
 var _menu_guid: int = 0
 var _duel: Duel
@@ -297,6 +300,14 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_CHANNEL_LIST":
 		_list_channel(Channels.members(payload))
 		return
+	if ServerNotices.play(opcode, payload):
+		return
+	if opcode == "SMSG_BINDER_CONFIRM":
+		_ask_bind(PacketReader.new(payload).u64())
+		return
+	if opcode == "SMSG_QUEST_CONFIRM_ACCEPT":
+		_ask_shared_quest(PacketReader.new(payload))
+		return
 	var server_line: String = ServerNotices.line(opcode, payload)
 	if not server_line.is_empty():
 		add_system_line(server_line)
@@ -327,6 +338,30 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	)
 	if not line.is_empty():
 		add_chat_line(line, EMOTE_COLOR)
+
+
+func _ask_bind(innkeeper: int) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, innkeeper)
+	var here: String = AreaInfo.area_name(_area)
+	_popup.ask(
+		WowStrings.format(WowStrings.get_text("CONFIRM_BINDER"), [here]),
+		WowClient.session.send_packet.bind("CMSG_BINDER_ACTIVATE", payload), "ACCEPT", "CANCEL",
+	)
+
+
+# A party member starting an escort quest asks the rest whether they are in.
+func _ask_shared_quest(reader: PacketReader) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(4)
+	payload.encode_u32(0, reader.u32())
+	var title: String = reader.cstring()
+	var starter: String = WowClient.session.get_object_name(reader.u64())
+	_popup.ask(
+		WowStrings.format(WowStrings.get_text("QUEST_ACCEPT"), [starter, title]),
+		WowClient.session.send_packet.bind("CMSG_QUEST_CONFIRM_ACCEPT", payload), "YES", "NO",
+	)
 
 
 # Names arrive by query, so the list waits a moment for the ones not met before.
@@ -597,6 +632,20 @@ func _on_object_updated(guid: int) -> void:
 		_on_pet_changed()
 	if guid == session.get_player_guid() or session.get_object_type(guid) in ITEM_TYPES:
 		_panels.refresh_bags()
+	if guid == session.get_player_guid():
+		_note_away(session.get_field(guid, "PLAYER_FLAGS") & (PLAYER_FLAG_AFK | PLAYER_FLAG_DND))
+
+
+func _note_away(away: int) -> void:
+	var changed: int = away ^ _away
+	_away = away
+	var default_message: String = WowStrings.get_text("DEFAULT_AFK_MESSAGE", "Away")
+	if changed & PLAYER_FLAG_AFK:
+		add_system_line(WowStrings.format(WowStrings.get_text("MARKED_AFK_MESSAGE"), [default_message])
+				if away & PLAYER_FLAG_AFK else WowStrings.get_text("CLEARED_AFK"))
+	if changed & PLAYER_FLAG_DND:
+		add_system_line(WowStrings.format(WowStrings.get_text("MARKED_DND"), [default_message])
+				if away & PLAYER_FLAG_DND else WowStrings.get_text("CLEARED_DND"))
 
 
 func _on_bottom_bars_toggled(shown: bool) -> void:

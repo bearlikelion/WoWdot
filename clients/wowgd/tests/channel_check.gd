@@ -88,6 +88,7 @@ func _run() -> void:
 	var away: bool = await _until(func() -> bool:
 		return session.get_field(session.get_player_guid(), "PLAYER_FLAGS") & 0x02 != before)
 	_check(away, "/afk flips the AFK player flag")
+	_check(await _until(func() -> bool: return _line_with("AFK")), "and says so: %s" % _lines)
 	chat.call("_on_text_submitted", "/afk")
 
 	chat.call("_on_text_submitted", "/leave %d" % number)
