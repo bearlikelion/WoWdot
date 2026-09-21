@@ -296,6 +296,11 @@
    "script": "res://game/ui/open_mail_frame.gd"
   },
   {
+   "frame": "ItemTextFrame",
+   "out": "ui/item_text_frame.tscn",
+   "script": "res://game/ui/item_text_frame.gd"
+  },
+  {
    "frame": "AuctionFrame",
    "out": "ui/auction_frame.tscn",
    "script": "res://game/ui/auction_frame.gd"

@@ -141,7 +141,7 @@ These parts of 1.12 have not been started at all:
 | Honor and PvP rank | The PvP flag toggle, `MSG_INSPECT_HONOR_STATS`, `SMSG_PVP_CREDIT`, and the character sheet's honor tab with its rank and kill counts. |
 | Fishing | The bobber game object, `SMSG_GAMEOBJECT_CUSTOM_ANIM` and `SMSG_GAMEOBJECT_DESPAWN_ANIM`, feeding the loot flow the client already has. |
 | Macros | A macro window, its icon picker, and running one from an action button. Pure client work, no opcodes. |
-| Readable items | `CMSG_ITEM_TEXT_QUERY` for books, plaques and the letters quests hand out. |
+| Readable objects | Books and letters in the bags open in the reading window; plaques and other game objects that carry page text do not yet. |
 | Looking for group | The 1.12 browser over `MSG_LOOKING_FOR_GROUP` and the meeting stone queue. |
 | Cinematics | `SMSG_TRIGGER_CINEMATIC` is acknowledged so the server moves on, but the camera flyover is not drawn. |
 | Odds and ends | `SMSG_ITEM_PUSH_RESULT` for the toast over the bags, and the GM ticket window. |

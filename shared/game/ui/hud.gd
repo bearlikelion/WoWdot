@@ -83,6 +83,7 @@ var _chat_hover_time: float = 0.0
 @onready var _trade: TradeFrame = _panels.get_node("%TradeFrame")
 @onready var _friends: FriendsFrame = _panels.get_node("%FriendsFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
+@onready var _item_text: ItemTextFrame = _panels.get_node_or_null("%ItemTextFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
 @onready var _spell_book: SpellBook = _panels.get_node("%SpellBookFrame")
 @onready var _talents: TalentFrame = _panels.get_node("%TalentFrame")
@@ -131,6 +132,9 @@ func _ready() -> void:
 	_open_mail.take_item_requested.connect(_mail.take_item)
 	_open_mail.delete_requested.connect(_mail.delete)
 	_open_mail.return_requested.connect(_mail.return_to_sender)
+	_open_mail.letter_requested.connect(_mail.keep_letter)
+	if _item_text:
+		_item_text.open_requested.connect(_panels.show_panel.bind(_item_text))
 	_auction.open_requested.connect(_panels.show_panel.bind(_auction))
 	_auction.error_raised.connect(show_error)
 	for frame: Control in [_registrar, _petition, _tabard]:
@@ -622,6 +626,10 @@ func use_container_item(bag: int, slot: int) -> void:
 		return
 	var address: Vector2i = Inventory.wire_address(bag, slot)
 	var session: WowSession = WowClient.session
+	var readable: Dictionary = session.get_item_info(item_entry)
+	if _item_text and readable.get("page_text", 0) != 0:
+		_item_text.read(readable.get("name", ""), readable["page_text"])
+		return
 	if session.get_item_info(item_entry).get("inventory_type", 0) != 0:
 		session.send_packet("CMSG_AUTOEQUIP_ITEM", PackedByteArray([address.x, address.y]))
 	else:

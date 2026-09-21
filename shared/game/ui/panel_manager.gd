@@ -9,6 +9,7 @@ enum Area { LEFT, CENTER, FULL }
 const LEFT_POSITION: Vector2 = Vector2(0.0, 104.0)
 const CENTER_POSITION: Vector2 = Vector2(384.0, 104.0)
 # UIPanelWindows: where each panel opens and how readily it moves aside for another.
+const ITEM_TEXT_SCENE: String = "res://ui/item_text_frame.tscn"
 const PANELS: Dictionary[StringName, Array] = {
 	&"CharacterFrame": [Area.LEFT, 2],
 	&"SpellBookFrame": [Area.LEFT, 0],
@@ -27,6 +28,7 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"TradeFrame": [Area.CENTER, 0],
 	&"FriendsFrame": [Area.LEFT, 0],
 	&"OpenMailFrame": [Area.CENTER, 0],
+	&"ItemTextFrame": [Area.LEFT, 0],
 	&"ClassTrainerFrame": [Area.LEFT, 0],
 	&"TaxiFrame": [Area.LEFT, 0],
 	&"LootFrame": [Area.LEFT, 0],
@@ -58,8 +60,16 @@ var _bag_stack: Array[ContainerFrame] = []
 
 func _ready() -> void:
 	resized.connect(_place_bags)
+	# A client that has not converted this window yet goes without it.
+	if ResourceLoader.exists(ITEM_TEXT_SCENE):
+		var reader: Control = (load(ITEM_TEXT_SCENE) as PackedScene).instantiate()
+		add_child(reader)
+		reader.owner = self
+		reader.unique_name_in_owner = true
 	for panel: StringName in PANELS:
-		var frame: Control = get_node("%" + panel)
+		var frame: Control = get_node_or_null("%" + panel)
+		if frame == null:
+			continue
 		frame.close_requested.connect(hide_panel.bind(frame))
 	%GameMenuFrame.sound_options_requested.connect(show_panel.bind(%SoundOptionsFrame))
 	%SoundOptionsFrame.close_requested.connect(show_panel.bind(%GameMenuFrame))

@@ -1510,6 +1510,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			info["display_id"] = static_cast<int64_t>(data.displayInfoId);
 			info["quality"] = static_cast<int64_t>(data.quality);
 			info["inventory_type"] = static_cast<int64_t>(data.inventoryType);
+			info["page_text"] = static_cast<int64_t>(data.pageTextId);
 			info["max_stack"] = data.maxStack;
 			info["container_slots"] = static_cast<int64_t>(data.containerSlots);
 			info["damage_min"] = data.damageMin;

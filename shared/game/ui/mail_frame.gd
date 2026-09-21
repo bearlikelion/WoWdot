@@ -103,6 +103,11 @@ func delete(mail_id: int) -> void:
 	_send("CMSG_MAIL_DELETE", mail_id)
 
 
+# CMSG_MAIL_CREATE_TEXT_ITEM: a copy of the letter to keep in the bags.
+func keep_letter(mail_id: int) -> void:
+	_send("CMSG_MAIL_CREATE_TEXT_ITEM", mail_id)
+
+
 func return_to_sender(mail_id: int) -> void:
 	_send("CMSG_MAIL_RETURN_TO_SENDER", mail_id)
 
