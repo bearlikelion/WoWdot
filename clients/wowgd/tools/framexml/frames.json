@@ -347,6 +347,11 @@
    "script": "res://game/ui/inspect_frame.gd"
   },
   {
+   "frame": "MacroFrame",
+   "out": "ui/macro_frame.tscn",
+   "script": "res://game/ui/macro_frame.gd"
+  },
+  {
    "frame": "TutorialFrame",
    "out": "ui/tutorial_frame.tscn",
    "script": "res://game/ui/tutorial_frame.gd"

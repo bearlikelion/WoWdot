@@ -35,7 +35,8 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 ## Requirements
 
 - Godot 4.7 and the `wowdot` extension built from [`extension/`](../../extension) (see the [top-level README](../../README.md#building)).
-  `shared/wowdot/wowdot.gdextension` has `reloadable = true`, which needs an editor with the extension instance-binding fix; on a stock editor set it to `false`.
+  `shared/wowdot/wowdot.gdextension` has `reloadable = false`, so a stock editor opens the project safely.
+  Hot reloading the extension (`reloadable = true`) needs an editor with the extension instance-binding fix, or the streamer's worker threads corrupt the heap.
 - A 1.12.1 (build 5875) client folder with its `Data` directory.
   WoWGD ships no Blizzard files; it reads the MPQs in `Data`.
   Only stock servers are supported: ones that ship their own patched client (another build number, extra `patch-N.mpq` content, changed packets) are left to forks.
