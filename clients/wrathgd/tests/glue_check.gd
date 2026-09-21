@@ -49,6 +49,8 @@ func _run() -> void:
 		return _finish()
 	await _frames(30)
 	_capture("user://wotlk_characters.png")
+	if not await _survey_races():
+		return _finish()
 	if not _names().has(CHARACTER) and not await _make_character():
 		return _finish()
 	_select.select(_names().find(CHARACTER))
@@ -66,6 +68,35 @@ func _run() -> void:
 	_check(WowClient.session.get_state() == WowSession.STATE_IN_WORLD,
 			"the session reports being in the world")
 	_finish()
+
+
+# Every race 3.3.5 offers, its classes out of CharBaseInfo and the scene behind it.
+func _survey_races() -> bool:
+	(_select.get_node("%CharSelectCreateCharacterButton") as BaseButton).pressed.emit()
+	if not await _until(func() -> bool: return _create.visible, "the create screen opens"):
+		return false
+	var order: Array[int] = CharacterOptions.race_order()
+	_check(order.size() == 10, "the create screen offers ten races")
+	for index: int in order.size():
+		var race: int = order[index]
+		(_create.get_node("%%CharacterCreateRaceButton%d" % (index + 1)) as BaseButton) \
+				.pressed.emit()
+		await _frames(2)
+		var classes: Array[int] = CharacterOptions.classes_for(race)
+		var label: String = (_create.get_node("%CharacterCreateRaceLabel") as Label).text
+		_check(label == CharacterOptions.race_name(race),
+				"the screen names race %d, showing '%s'" % [race, label])
+		_check(not classes.is_empty(), "race %d offers a class" % race)
+		var blurb: String = (_create.get_node("%CharacterCreateRaceText") as Label).text
+		_check(not blurb.contains("|n"), "race %d reads its blurb with real line breaks" % race)
+		var names: PackedStringArray = []
+		for class_id: int in classes:
+			names.append(CharacterOptions.class_label(class_id))
+		print("  %-12s %s" % [CharacterOptions.race_name(race), ", ".join(names)])
+	await _frames(10)
+	_capture("user://wotlk_create.png")
+	(_create.get_node("%CharCreateBackButton") as BaseButton).pressed.emit()
+	return await _until(_select_ready, "the character screen comes back")
 
 
 func _make_character() -> bool:

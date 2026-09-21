@@ -206,9 +206,10 @@ class Widget:
         if anchors is not None:
             self.anchors = []
             for a in anchors:
+                # 1.12 nests the offset; 3.3.5 writes it as x and y on the anchor itself.
+                offset = dimension(child(a, "Offset")) or dimension(a) or (0.0, 0.0)
                 self.anchors.append((a.get("point", "TOPLEFT"), a.get("relativeTo"),
-                                     a.get("relativePoint") or a.get("point", "TOPLEFT"),
-                                     dimension(child(a, "Offset")) or (0.0, 0.0)))
+                                     a.get("relativePoint") or a.get("point", "TOPLEFT"), offset))
         coords = child(node, "TexCoords")
         if coords is not None:
             self.tex_coords = (fnum(coords.get("left")), fnum(coords.get("right"), 1.0),

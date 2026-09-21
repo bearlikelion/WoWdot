@@ -47,7 +47,21 @@ func _ready() -> void:
 	%AccountLoginSoundOptionsButton.pressed.connect(sound_options_requested.emit)
 	%AccountLoginVideoOptionsButton.pressed.connect(video_options_requested.emit)
 	_remember.pressed.connect(func() -> void: _remember.checked = not _remember.checked)
+	_fit_remember.call_deferred()
 	visibility_changed.connect(_on_visibility_changed)
+
+
+# A FontString with no size of its own converts to a label of no width, and the tick anchored to
+# its left edge would land inside the glyphs, so give the label the width its text needs.
+func _fit_remember() -> void:
+	# 1.12 draws the tick's caption from the button itself and has no label of its own.
+	var label: Label = get_node_or_null("%AccountLoginSaveAccountNameText") as Label
+	if label == null or label.size.x >= 1.0:
+		return
+	var width: float = label.get_minimum_size().x
+	label.position.x -= width / 2.0
+	label.size.x = width
+	_remember.global_position.x = label.global_position.x - _remember.size.x
 
 
 func _unhandled_input(event: InputEvent) -> void:

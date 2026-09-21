@@ -16,8 +16,13 @@ const DISPEL_COLORS: Dictionary[DispelType, Color] = {
 
 
 # Each aura the unit shows as slot, spell and stack count; slots 32 and up are harmful.
+# 3.3.5 dropped the aura fields for SMSG_AURA_UPDATE, which the session tracks per unit instead.
 static func read(session: WowSession, guid: int) -> Array[Dictionary]:
 	var first: int = session.field_index("UNIT_FIELD_AURAS")
+	if first < 0:
+		var tracked: Array[Dictionary] = []
+		tracked.assign(session.get_auras(guid))
+		return tracked
 	var applications: int = session.field_index("UNIT_FIELD_AURAAPPLICATIONS")
 	var auras: Array[Dictionary] = []
 	for slot: int in SLOTS:

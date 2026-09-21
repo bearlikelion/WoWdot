@@ -4,8 +4,6 @@ extends Control
 signal create_requested(character: Dictionary)
 signal back_requested
 
-const RACE_BUTTONS: int = 8
-const CLASS_BUTTONS: int = 8
 const CUSTOMIZATIONS: Array[CharacterModels.Option] = [
 	CharacterModels.Option.SKIN,
 	CharacterModels.Option.FACE,
@@ -20,13 +18,14 @@ const OPTION_KEYS: Dictionary[CharacterModels.Option, String] = {
 	CharacterModels.Option.HAIR_COLOR: "hair_color",
 	CharacterModels.Option.FACIAL_HAIR: "facial_hair",
 }
-# RACE_ICON_TCOORDS as cells of the 4x4 race icon sheet; female icons sit two rows lower.
+# RACE_ICON_TCOORDS as cells of the race icon sheet; female icons sit two rows lower.
 const RACE_ICON_CELLS: Dictionary[String, Vector2i] = {
 	"Human": Vector2i(0, 0), "Dwarf": Vector2i(1, 0), "Gnome": Vector2i(2, 0),
-	"NightElf": Vector2i(3, 0), "Tauren": Vector2i(0, 1), "Scourge": Vector2i(1, 1),
-	"Troll": Vector2i(2, 1), "Orc": Vector2i(3, 1),
+	"NightElf": Vector2i(3, 0), "Draenei": Vector2i(4, 0), "Tauren": Vector2i(0, 1),
+	"Scourge": Vector2i(1, 1), "Troll": Vector2i(2, 1), "Orc": Vector2i(3, 1),
+	"BloodElf": Vector2i(4, 1),
 }
-const RACE_ICON_CELL: float = 0.25
+const RACE_ICON_ROW: float = 0.25
 # CLASS_ICON_TCOORDS as left, top, width and height.
 const CLASS_ICON_RECTS: Dictionary[String, Rect2] = {
 	"WARRIOR": Rect2(0.0, 0.0, 0.25, 0.25),
@@ -38,6 +37,7 @@ const CLASS_ICON_RECTS: Dictionary[String, Rect2] = {
 	"PRIEST": Rect2(0.49609375, 0.25, 0.24609375, 0.25),
 	"WARLOCK": Rect2(0.7421875, 0.25, 0.24609375, 0.25),
 	"PALADIN": Rect2(0.0, 0.5, 0.25, 0.25),
+	"DEATHKNIGHT": Rect2(0.25, 0.5, 0.24609375, 0.25),
 }
 const GENDER_ICON_RECTS: Array[Rect2] = [Rect2(0.0, 0.0, 0.5, 1.0), Rect2(0.5, 0.0, 0.5, 1.0)]
 const FACTION_ICON_RECTS: Array[Rect2] = [Rect2(0.0, 0.0, 0.5, 1.0), Rect2(0.5, 0.0, 0.5, 1.0)]
@@ -58,6 +58,8 @@ var _race_buttons: Array[WowButton] = []
 var _class_buttons: Array[WowButton] = []
 var _gender_buttons: Array[WowButton] = []
 
+# 3.3.5 dropped the faction info panel for headings over the two race columns.
+@onready var _faction_panel: Control = get_node_or_null("%CharacterCreateCharacterFaction")
 @onready var _model: WowModelFrame = %CharacterCreateModel
 @onready var _name_edit: LineEdit = %CharacterCreateNameEdit
 @onready var _rotate_left: BaseButton = %CharacterCreateRotateLeft
@@ -65,19 +67,20 @@ var _gender_buttons: Array[WowButton] = []
 
 
 func _ready() -> void:
-	for i: int in RACE_BUTTONS:
+	var order: Array[int] = CharacterOptions.race_order()
+	for i: int in order.size():
 		var button: WowButton = get_node("%%CharacterCreateRaceButton%d" % (i + 1))
 		_race_buttons.append(button)
-		button.pressed.connect(_choose_race.bind(CharacterOptions.RACE_ORDER[i]))
-		_name_on_hover(button, func() -> String:
-			return CharacterOptions.race_name(CharacterOptions.RACE_ORDER[i])
-		)
-	for i: int in CLASS_BUTTONS:
-		var button: WowButton = get_node("%%CharacterCreateClassButton%d" % (i + 1))
+		button.pressed.connect(_choose_race.bind(order[i]))
+		_name_on_hover(button, func() -> String: return CharacterOptions.race_name(order[i]))
+	# The screen carries a button per class the expansion has, and shows the race's own.
+	while get_node_or_null("%%CharacterCreateClassButton%d" % (_class_buttons.size() + 1)) != null:
+		var index: int = _class_buttons.size()
+		var button: WowButton = get_node("%%CharacterCreateClassButton%d" % (index + 1))
 		_class_buttons.append(button)
-		button.pressed.connect(_choose_class.bind(i))
+		button.pressed.connect(_choose_class.bind(index))
 		_name_on_hover(button, func() -> String:
-			return CharacterOptions.class_label(_classes[i]) if i < _classes.size() else ""
+			return CharacterOptions.class_label(_classes[index]) if index < _classes.size() else ""
 		)
 	_gender_buttons.assign([%CharacterCreateGenderButtonMale, %CharacterCreateGenderButtonFemale])
 	for gender: int in _gender_buttons.size():
@@ -137,7 +140,7 @@ func _on_visibility_changed() -> void:
 		return
 	_look = {"gender": randi_range(0, 1)}
 	_name_edit.text = ""
-	_choose_race(CharacterOptions.RACE_ORDER.pick_random())
+	_choose_race(CharacterOptions.race_order().pick_random())
 	_name_edit.grab_focus.call_deferred()
 
 
@@ -145,9 +148,12 @@ func _choose_race(race: int) -> void:
 	_look["race"] = race
 	_randomize_look()
 	var faction: CharacterOptions.Faction = CharacterOptions.faction(race)
-	_set_tex_coords(%CharacterCreateFactionIcon, FACTION_ICON_RECTS[faction])
-	%CharacterCreateFactionLabel.text = WowStrings.get_text(FACTION_KEYS[faction])
-	%CharacterCreateFactionText.text = WowStrings.get_text("FACTION_INFO_" + FACTION_KEYS[faction])
+	if _faction_panel != null:
+		_set_tex_coords(%CharacterCreateFactionIcon, FACTION_ICON_RECTS[faction])
+		%CharacterCreateFactionLabel.text = WowStrings.get_text(FACTION_KEYS[faction])
+		%CharacterCreateFactionText.text = WowStrings.get_text(
+			"FACTION_INFO_" + FACTION_KEYS[faction]
+		)
 	var file: String = CharacterOptions.race_file(race).to_upper()
 	%CharacterCreateRaceLabel.text = CharacterOptions.race_name(race)
 	%CharacterCreateRaceText.text = WowStrings.get_text("RACE_INFO_" + file)
@@ -155,15 +161,11 @@ func _choose_race(race: int) -> void:
 	while WowStrings.get_text("ABILITY_INFO_%s%d" % [file, abilities.size() + 1], "-") != "-":
 		abilities.append(WowStrings.get_text("ABILITY_INFO_%s%d" % [file, abilities.size() + 1]))
 	%CharacterCreateRaceAbilityText.text = "\n\n".join(abilities)
-	for panel: Control in [
-		%CharacterCreateCharacterRace,
-		%CharacterCreateCharacterClass,
-		%CharacterCreateCharacterFaction,
-	]:
+	for panel: Control in _panels():
 		(panel.get_node("Backdrop") as WowBackdrop).background_color = FACTION_BACKGROUNDS[faction]
 	CharacterOptions.apply_scene(_model, race)
 	_classes = CharacterOptions.classes_for(race)
-	for i: int in CLASS_BUTTONS:
+	for i: int in _class_buttons.size():
 		_class_buttons[i].visible = i < _classes.size()
 		if _class_buttons[i].visible:
 			var icon: TextureRect = _class_buttons[i].get_node("NormalTexture")
@@ -196,8 +198,9 @@ func _choose_gender(gender: int) -> void:
 func _refresh_gender() -> void:
 	var race: int = _look["race"]
 	var gender: CharacterOptions.Gender = _look["gender"]
-	for i: int in RACE_BUTTONS:
-		var shown_race: int = CharacterOptions.RACE_ORDER[i]
+	var order: Array[int] = CharacterOptions.race_order()
+	for i: int in _race_buttons.size():
+		var shown_race: int = order[i]
 		_set_tex_coords(_race_buttons[i].get_node("NormalTexture"), _race_icon(shown_race, gender))
 		_mark(_race_buttons[i], shown_race == race, CharacterOptions.race_name(race))
 	for i: int in _gender_buttons.size():
@@ -247,7 +250,16 @@ func _accept() -> void:
 func _race_icon(race: int, gender: CharacterOptions.Gender) -> Rect2:
 	var cell: Vector2i = RACE_ICON_CELLS[CharacterOptions.race_file(race)]
 	var row: int = cell.y + (2 if gender == CharacterOptions.Gender.FEMALE else 0)
-	return Rect2(Vector2(cell.x, row) * RACE_ICON_CELL, Vector2.ONE * RACE_ICON_CELL)
+	var column: float = CharacterOptions.race_icon_column()
+	return Rect2(Vector2(cell.x * column, row * RACE_ICON_ROW), Vector2(column, RACE_ICON_ROW))
+
+
+# The screen's info panels, of which 3.3.5 keeps the race and class ones.
+func _panels() -> Array[Control]:
+	var panels: Array[Control] = [%CharacterCreateCharacterRace, %CharacterCreateCharacterClass]
+	if _faction_panel != null:
+		panels.append(_faction_panel)
+	return panels
 
 
 # SetChecked and LockHighlight on the chosen button, with its name shown under it.
@@ -278,19 +290,22 @@ func _mark(button: WowButton, chosen: bool, label: String) -> void:
 
 # The info texts anchor to the bottom of the text above, which only exists once they are wrapped.
 func _stack_texts() -> void:
-	for column: Array in [
-		[%CharacterCreateFactionLabel, %CharacterCreateFactionText],
+	var columns: Array[Array] = [
 		[%CharacterCreateRaceLabel, %CharacterCreateRaceText, %CharacterCreateRaceAbilityText],
 		[%CharacterCreateClassLabel, %CharacterCreateClassText],
-	]:
+	]
+	var scrolls: Array[WowScrollFrame] = [
+		%CharacterCreateRaceScrollFrame, %CharacterCreateClassScrollFrame,
+	]
+	if _faction_panel != null:
+		columns.append([%CharacterCreateFactionLabel, %CharacterCreateFactionText])
+		scrolls.append(%CharacterCreateFactionScrollFrame)
+	for column: Array in columns:
 		for i: int in range(1, column.size()):
 			var above: Label = column[i - 1]
 			var below: Label = column[i]
 			below.position.y = above.position.y + above.get_minimum_size().y + TEXT_GAP
-	for scroll: WowScrollFrame in [
-		%CharacterCreateFactionScrollFrame, %CharacterCreateRaceScrollFrame,
-		%CharacterCreateClassScrollFrame,
-	]:
+	for scroll: WowScrollFrame in scrolls:
 		scroll.refresh()
 
 

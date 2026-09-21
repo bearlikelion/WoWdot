@@ -6,6 +6,10 @@ enum Gender { MALE, FEMALE }
 
 # GetAvailableRaces order: the Alliance column of buttons, then the Horde one.
 const RACE_ORDER: Array[int] = [1, 3, 4, 7, 2, 5, 6, 8]
+# 3.3.5 adds Draenei to the Alliance column and Blood Elves to the Horde one.
+const RACE_ORDER_WOTLK: Array[int] = [1, 3, 4, 7, 11, 2, 5, 6, 8, 10]
+# The race icon sheet holds four columns in 1.12 and eight from Burning Crusade on.
+const RACE_ICON_COLUMNS: Dictionary[String, float] = {"classic": 0.25, "wotlk": 0.125}
 const LANGUAGE_COMMON: int = 7
 const SCENE_PATH: String = "Interface\\Glues\\Models\\UI_%s\\UI_%s.m2"
 # SetBackgroundModel: gnomes and trolls have no scene of their own.
@@ -25,6 +29,14 @@ const DBC_HEADER_SIZE: int = 20
 static var _races: WowDBC
 static var _classes: WowDBC
 static var _race_classes: Dictionary[int, Array] = {}
+
+
+static func race_order() -> Array[int]:
+	return RACE_ORDER_WOTLK if String(WowLoader.profile()["id"]) == "wotlk" else RACE_ORDER
+
+
+static func race_icon_column() -> float:
+	return RACE_ICON_COLUMNS.get(String(WowLoader.profile()["id"]), 0.25)
 
 
 static func race_name(race: int) -> String:

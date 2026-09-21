@@ -259,17 +259,17 @@ unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
-offset_left = -256
+offset_left = -265
 offset_top = 0
-offset_right = 0
+offset_right = -9
 offset_bottom = 128
 mouse_filter = 2
 
 [node name="CharacterCreateLogo" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateWoWLogo"]
 unique_name_in_owner = true
-offset_left = -128
+offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 256
 offset_bottom = 128
 mouse_filter = 2
 texture = SubResource("WowTexture_1")
@@ -280,10 +280,10 @@ unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
-offset_left = -261.5
-offset_top = 128
-offset_right = 5.5
-offset_bottom = 415
+offset_left = -275.5
+offset_top = 123
+offset_right = -8.5
+offset_bottom = 410
 mouse_filter = 2
 
 [node name="Backdrop" type="Control" parent="CharacterCreateFrame/CharacterCreateCharacterRace"]
@@ -301,10 +301,10 @@ insets = Vector4(12, 3, 20, 6)
 
 [node name="CharacterCreateRaceIcon" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateCharacterRace"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 48
-offset_bottom = 48
+offset_left = 4
+offset_top = 4
+offset_right = 52
+offset_bottom = 52
 mouse_filter = 2
 texture = SubResource("AtlasTexture_4")
 expand_mode = 1
@@ -320,10 +320,10 @@ expand_mode = 1
 
 [node name="CharacterCreateRaceLabel" type="Label" parent="CharacterCreateFrame/CharacterCreateCharacterRace"]
 unique_name_in_owner = true
-offset_left = 23.5
-offset_top = 0
-offset_right = 243.5
-offset_bottom = 18
+offset_left = 63.5
+offset_top = 10
+offset_right = 283.5
+offset_bottom = 28
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -335,10 +335,10 @@ vertical_alignment = 1
 [node name="CharacterCreateRaceScrollFrame" type="Control" parent="CharacterCreateFrame/CharacterCreateCharacterRace"]
 unique_name_in_owner = true
 script = ExtResource("4")
-offset_left = 0
-offset_top = 0
-offset_right = 220
-offset_bottom = 220
+offset_left = 20
+offset_top = 55
+offset_right = 240
+offset_bottom = 275
 mouse_filter = 0
 
 [node name="CharacterCreateRaceScrollFrameScrollBar" type="VSlider" parent="CharacterCreateFrame/CharacterCreateCharacterRace/CharacterCreateRaceScrollFrame"]
@@ -486,9 +486,9 @@ vertical_alignment = 1
 [node name="CharacterCreateRaceText" type="Label" parent="CharacterCreateFrame/CharacterCreateCharacterRace/CharacterCreateRaceScrollFrame/CharacterCreateRaceScrollFrameClip/CharacterCreateRaceScrollChild"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = 12
+offset_top = 14
 offset_right = 220
-offset_bottom = 24
+offset_bottom = 26
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
@@ -501,9 +501,9 @@ unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
-offset_left = -261.5
+offset_left = -280.5
 offset_top = 415
-offset_right = 5.5
+offset_right = -13.5
 offset_bottom = 702
 mouse_filter = 2
 
@@ -522,10 +522,10 @@ insets = Vector4(12, 3, 20, 6)
 
 [node name="CharacterCreateClassIcon" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateCharacterClass"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 48
-offset_bottom = 48
+offset_left = 4
+offset_top = 4
+offset_right = 52
+offset_bottom = 52
 mouse_filter = 2
 texture = SubResource("AtlasTexture_28")
 expand_mode = 1
@@ -541,10 +541,10 @@ expand_mode = 1
 
 [node name="CharacterCreateClassLabel" type="Label" parent="CharacterCreateFrame/CharacterCreateCharacterClass"]
 unique_name_in_owner = true
-offset_left = 23.5
-offset_top = 0
-offset_right = 243.5
-offset_bottom = 18
+offset_left = 63.5
+offset_top = 10
+offset_right = 283.5
+offset_bottom = 28
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -556,10 +556,10 @@ vertical_alignment = 1
 [node name="CharacterCreateClassScrollFrame" type="Control" parent="CharacterCreateFrame/CharacterCreateCharacterClass"]
 unique_name_in_owner = true
 script = ExtResource("4")
-offset_left = 0
-offset_top = 0
-offset_right = 220
-offset_bottom = 220
+offset_left = 20
+offset_top = 55
+offset_right = 240
+offset_bottom = 275
 mouse_filter = 0
 
 [node name="CharacterCreateClassScrollFrameScrollBar" type="VSlider" parent="CharacterCreateFrame/CharacterCreateCharacterClass/CharacterCreateClassScrollFrame"]
@@ -707,9 +707,9 @@ vertical_alignment = 1
 [node name="CharacterCreateClassText" type="Label" parent="CharacterCreateFrame/CharacterCreateCharacterClass/CharacterCreateClassScrollFrame/CharacterCreateClassScrollFrameClip/CharacterCreateClassScrollChild"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = 12
+offset_top = 14
 offset_right = 220
-offset_bottom = 24
+offset_bottom = 26
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
@@ -719,18 +719,18 @@ vertical_alignment = 1
 
 [node name="CharacterCreateConfigurationFrame" type="Control" parent="CharacterCreateFrame"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 256
-offset_bottom = 758
+offset_left = 9
+offset_top = 5
+offset_right = 265
+offset_bottom = 763
 mouse_filter = 2
 
 [node name="CharacterCreateConfigurationBackground" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 256
-offset_bottom = 758
+offset_left = 10
+offset_top = 8
+offset_right = 246
+offset_bottom = 750
 mouse_filter = 2
 texture = SubResource("WowTexture_2")
 expand_mode = 1
@@ -738,9 +738,9 @@ expand_mode = 1
 [node name="CharacterCreateBanners" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = 0
+offset_top = 5
 offset_right = 256
-offset_bottom = 512
+offset_bottom = 517
 mouse_filter = 2
 texture = SubResource("WowTexture_29")
 expand_mode = 1
@@ -778,10 +778,10 @@ expand_mode = 1
 
 [node name="CharacterCreateAllianceLabel" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
-offset_left = 128
-offset_top = 0
-offset_right = 128
-offset_bottom = 18
+offset_left = 78
+offset_top = 20
+offset_right = 78
+offset_bottom = 38
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -792,10 +792,10 @@ vertical_alignment = 1
 
 [node name="CharacterCreateHordeLabel" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
-offset_left = 128
-offset_top = 0
-offset_right = 128
-offset_bottom = 18
+offset_left = 178
+offset_top = 20
+offset_right = 178
+offset_bottom = 38
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -807,9 +807,9 @@ vertical_alignment = 1
 [node name="CharacterCreateGender" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 offset_left = 128
-offset_top = -15
+offset_top = 373
 offset_right = 128
-offset_bottom = 0
+offset_bottom = 388
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -820,9 +820,9 @@ vertical_alignment = 1
 [node name="CharacterCreateClassName" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 offset_left = 128
-offset_top = -15
+offset_top = 441
 offset_right = 128
-offset_bottom = 0
+offset_bottom = 456
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -833,10 +833,10 @@ vertical_alignment = 1
 [node name="CharacterCreateRaceButton1" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 0
-offset_right = 147
-offset_bottom = 38
+offset_left = 59
+offset_top = 61
+offset_right = 97
+offset_bottom = 99
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton1Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton1"]
@@ -860,10 +860,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton1"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -872,9 +872,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton1Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton1"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -927,10 +927,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton2" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 38
-offset_right = 147
-offset_bottom = 76
+offset_left = 59
+offset_top = 120
+offset_right = 97
+offset_bottom = 158
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton2Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton2"]
@@ -954,10 +954,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton2"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -966,9 +966,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton2Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton2"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1021,10 +1021,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton3" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 76
-offset_right = 147
-offset_bottom = 114
+offset_left = 59
+offset_top = 179
+offset_right = 97
+offset_bottom = 217
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton3Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton3"]
@@ -1048,10 +1048,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton3"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -1060,9 +1060,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton3Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton3"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1115,10 +1115,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton4" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 114
-offset_right = 147
-offset_bottom = 152
+offset_left = 59
+offset_top = 238
+offset_right = 97
+offset_bottom = 276
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton4Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton4"]
@@ -1142,10 +1142,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton4"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -1154,9 +1154,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton4Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton4"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1209,10 +1209,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton5" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 152
-offset_right = 147
-offset_bottom = 190
+offset_left = 59
+offset_top = 297
+offset_right = 97
+offset_bottom = 335
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton5Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton5"]
@@ -1236,10 +1236,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton5"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -1248,9 +1248,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton5Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton5"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1303,10 +1303,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton6" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 0
-offset_right = 147
-offset_bottom = 38
+offset_left = 159
+offset_top = 61
+offset_right = 197
+offset_bottom = 99
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton6Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton6"]
@@ -1330,10 +1330,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton6"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -1342,9 +1342,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton6Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton6"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1397,10 +1397,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton7" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 38
-offset_right = 147
-offset_bottom = 76
+offset_left = 159
+offset_top = 120
+offset_right = 197
+offset_bottom = 158
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton7Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton7"]
@@ -1424,10 +1424,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton7"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -1436,9 +1436,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton7Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton7"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1491,10 +1491,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton8" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 76
-offset_right = 147
-offset_bottom = 114
+offset_left = 159
+offset_top = 179
+offset_right = 197
+offset_bottom = 217
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton8Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton8"]
@@ -1518,10 +1518,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton8"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -1530,9 +1530,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton8Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton8"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1585,10 +1585,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton9" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 114
-offset_right = 147
-offset_bottom = 152
+offset_left = 159
+offset_top = 238
+offset_right = 197
+offset_bottom = 276
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton9Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton9"]
@@ -1612,10 +1612,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton9"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -1624,9 +1624,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton9Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton9"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1679,10 +1679,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateRaceButton10" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 152
-offset_right = 147
-offset_bottom = 190
+offset_left = 159
+offset_top = 297
+offset_right = 197
+offset_bottom = 335
 ignore_texture_size = true
 
 [node name="CharacterCreateRaceButton10Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton10"]
@@ -1706,10 +1706,10 @@ texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton10"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_34")
@@ -1718,9 +1718,9 @@ expand_mode = 1
 [node name="CharacterCreateRaceButton10Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateRaceButton10"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = -12
+offset_top = -14
 offset_right = 19
-offset_bottom = 0
+offset_bottom = -2
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -1773,10 +1773,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateGenderButtonMale" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 0
-offset_right = 147
-offset_bottom = 38
+offset_left = 89
+offset_top = 392
+offset_right = 127
+offset_bottom = 430
 ignore_texture_size = true
 
 [node name="CharacterCreateGenderButtonMaleShadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateGenderButtonMale"]
@@ -1800,10 +1800,10 @@ texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateGenderButtonMale"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_39")
@@ -1854,10 +1854,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateGenderButtonFemale" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 0
-offset_right = 147
-offset_bottom = 38
+offset_left = 129
+offset_top = 392
+offset_right = 167
+offset_bottom = 430
 ignore_texture_size = true
 
 [node name="CharacterCreateGenderButtonFemaleShadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateGenderButtonFemale"]
@@ -1881,10 +1881,10 @@ texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateGenderButtonFemale"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_39")
@@ -1935,10 +1935,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton1" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 0
-offset_right = 147
-offset_bottom = 38
+offset_left = 19
+offset_top = 463
+offset_right = 57
+offset_bottom = 501
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton1Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton1"]
@@ -1962,10 +1962,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton1"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2016,10 +2016,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton2" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 147
-offset_top = 0
-offset_right = 185
-offset_bottom = 38
+offset_left = 63
+offset_top = 463
+offset_right = 101
+offset_bottom = 501
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton2Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton2"]
@@ -2043,10 +2043,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton2"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2097,10 +2097,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton3" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 185
-offset_top = 0
-offset_right = 223
-offset_bottom = 38
+offset_left = 107
+offset_top = 463
+offset_right = 145
+offset_bottom = 501
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton3Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton3"]
@@ -2124,10 +2124,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton3"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2178,10 +2178,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton4" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 223
-offset_top = 0
-offset_right = 261
-offset_bottom = 38
+offset_left = 151
+offset_top = 463
+offset_right = 189
+offset_bottom = 501
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton4Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton4"]
@@ -2205,10 +2205,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton4"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2259,10 +2259,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton5" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 261
-offset_top = 0
-offset_right = 299
-offset_bottom = 38
+offset_left = 195
+offset_top = 463
+offset_right = 233
+offset_bottom = 501
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton5Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton5"]
@@ -2286,10 +2286,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton5"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2340,10 +2340,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton6" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 109
-offset_top = 38
-offset_right = 147
-offset_bottom = 76
+offset_left = 19
+offset_top = 507
+offset_right = 57
+offset_bottom = 545
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton6Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton6"]
@@ -2367,10 +2367,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton6"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2421,10 +2421,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton7" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 147
-offset_top = 38
-offset_right = 185
-offset_bottom = 76
+offset_left = 63
+offset_top = 507
+offset_right = 101
+offset_bottom = 545
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton7Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton7"]
@@ -2448,10 +2448,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton7"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2502,10 +2502,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton8" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 185
-offset_top = 38
-offset_right = 223
-offset_bottom = 76
+offset_left = 107
+offset_top = 507
+offset_right = 145
+offset_bottom = 545
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton8Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton8"]
@@ -2529,10 +2529,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton8"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2583,10 +2583,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton9" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 223
-offset_top = 38
-offset_right = 261
-offset_bottom = 76
+offset_left = 151
+offset_top = 507
+offset_right = 189
+offset_bottom = 545
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton9Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton9"]
@@ -2610,10 +2610,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton9"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2664,10 +2664,10 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCreateClassButton10" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 261
-offset_top = 38
-offset_right = 299
-offset_bottom = 76
+offset_left = 195
+offset_top = 507
+offset_right = 233
+offset_bottom = 545
 ignore_texture_size = true
 
 [node name="CharacterCreateClassButton10Shadow" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton10"]
@@ -2691,10 +2691,10 @@ texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCreateClassButton10"]
-offset_left = 0
-offset_top = 0
-offset_right = 38
-offset_bottom = 38
+offset_left = 2
+offset_top = 2
+offset_right = 40
+offset_bottom = 40
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_40")
@@ -2746,9 +2746,9 @@ material = SubResource("CanvasItemMaterial_18")
 unique_name_in_owner = true
 script = ExtResource("5")
 offset_left = 55
-offset_top = 728
+offset_top = 718
 offset_right = 201
-offset_bottom = 758
+offset_bottom = 748
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharCreateRandomizeButton"]
@@ -2806,17 +2806,17 @@ material = SubResource("CanvasItemMaterial_18")
 
 [node name="CharacterCustomizationButtonFrame5" type="Control" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
-offset_left = 13
-offset_top = 696
-offset_right = 243
-offset_bottom = 728
+offset_left = 7
+offset_top = 683
+offset_right = 237
+offset_bottom = 715
 mouse_filter = 2
 
 [node name="CharacterCustomizationButtonFrame5Left" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame5"]
 unique_name_in_owner = true
-offset_left = 0
+offset_left = -5
 offset_top = -16
-offset_right = 25
+offset_right = 20
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_50")
@@ -2824,9 +2824,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame5Right" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame5"]
 unique_name_in_owner = true
-offset_left = 205
+offset_left = 161
 offset_top = -16
-offset_right = 230
+offset_right = 186
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_51")
@@ -2834,9 +2834,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame5Middle" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame5"]
 unique_name_in_owner = true
-offset_left = 25
+offset_left = 20
 offset_top = -16
-offset_right = 205
+offset_right = 161
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_52")
@@ -2844,10 +2844,10 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame5Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame5"]
 unique_name_in_owner = true
-offset_left = 115
-offset_top = 10
-offset_right = 115
-offset_bottom = 22
+offset_left = 90.5
+offset_top = 8
+offset_right = 90.5
+offset_bottom = 20
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2897,9 +2897,9 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCustomizationButtonFrame5LeftButton" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame5"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 166
+offset_left = 169
 offset_top = 0
-offset_right = 198
+offset_right = 201
 offset_bottom = 32
 ignore_texture_size = true
 
@@ -2935,17 +2935,17 @@ material = SubResource("CanvasItemMaterial_18")
 
 [node name="CharacterCustomizationButtonFrame4" type="Control" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
-offset_left = 13
-offset_top = 664
-offset_right = 243
-offset_bottom = 696
+offset_left = 7
+offset_top = 651
+offset_right = 237
+offset_bottom = 683
 mouse_filter = 2
 
 [node name="CharacterCustomizationButtonFrame4Left" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame4"]
 unique_name_in_owner = true
-offset_left = 0
+offset_left = -5
 offset_top = -16
-offset_right = 25
+offset_right = 20
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_50")
@@ -2953,9 +2953,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame4Right" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame4"]
 unique_name_in_owner = true
-offset_left = 205
+offset_left = 161
 offset_top = -16
-offset_right = 230
+offset_right = 186
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_51")
@@ -2963,9 +2963,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame4Middle" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame4"]
 unique_name_in_owner = true
-offset_left = 25
+offset_left = 20
 offset_top = -16
-offset_right = 205
+offset_right = 161
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_52")
@@ -2973,10 +2973,10 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame4Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame4"]
 unique_name_in_owner = true
-offset_left = 115
-offset_top = 10
-offset_right = 115
-offset_bottom = 22
+offset_left = 90.5
+offset_top = 8
+offset_right = 90.5
+offset_bottom = 20
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -3026,9 +3026,9 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCustomizationButtonFrame4LeftButton" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame4"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 166
+offset_left = 169
 offset_top = 0
-offset_right = 198
+offset_right = 201
 offset_bottom = 32
 ignore_texture_size = true
 
@@ -3064,17 +3064,17 @@ material = SubResource("CanvasItemMaterial_18")
 
 [node name="CharacterCustomizationButtonFrame3" type="Control" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
-offset_left = 13
-offset_top = 632
-offset_right = 243
-offset_bottom = 664
+offset_left = 7
+offset_top = 619
+offset_right = 237
+offset_bottom = 651
 mouse_filter = 2
 
 [node name="CharacterCustomizationButtonFrame3Left" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame3"]
 unique_name_in_owner = true
-offset_left = 0
+offset_left = -5
 offset_top = -16
-offset_right = 25
+offset_right = 20
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_50")
@@ -3082,9 +3082,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame3Right" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame3"]
 unique_name_in_owner = true
-offset_left = 205
+offset_left = 161
 offset_top = -16
-offset_right = 230
+offset_right = 186
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_51")
@@ -3092,9 +3092,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame3Middle" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame3"]
 unique_name_in_owner = true
-offset_left = 25
+offset_left = 20
 offset_top = -16
-offset_right = 205
+offset_right = 161
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_52")
@@ -3102,10 +3102,10 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame3Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame3"]
 unique_name_in_owner = true
-offset_left = 115
-offset_top = 10
-offset_right = 115
-offset_bottom = 22
+offset_left = 90.5
+offset_top = 8
+offset_right = 90.5
+offset_bottom = 20
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -3155,9 +3155,9 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCustomizationButtonFrame3LeftButton" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame3"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 166
+offset_left = 169
 offset_top = 0
-offset_right = 198
+offset_right = 201
 offset_bottom = 32
 ignore_texture_size = true
 
@@ -3193,17 +3193,17 @@ material = SubResource("CanvasItemMaterial_18")
 
 [node name="CharacterCustomizationButtonFrame2" type="Control" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
-offset_left = 13
-offset_top = 600
-offset_right = 243
-offset_bottom = 632
+offset_left = 7
+offset_top = 587
+offset_right = 237
+offset_bottom = 619
 mouse_filter = 2
 
 [node name="CharacterCustomizationButtonFrame2Left" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame2"]
 unique_name_in_owner = true
-offset_left = 0
+offset_left = -5
 offset_top = -16
-offset_right = 25
+offset_right = 20
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_50")
@@ -3211,9 +3211,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame2Right" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame2"]
 unique_name_in_owner = true
-offset_left = 205
+offset_left = 161
 offset_top = -16
-offset_right = 230
+offset_right = 186
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_51")
@@ -3221,9 +3221,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame2Middle" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame2"]
 unique_name_in_owner = true
-offset_left = 25
+offset_left = 20
 offset_top = -16
-offset_right = 205
+offset_right = 161
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_52")
@@ -3231,10 +3231,10 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame2Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame2"]
 unique_name_in_owner = true
-offset_left = 115
-offset_top = 10
-offset_right = 115
-offset_bottom = 22
+offset_left = 90.5
+offset_top = 8
+offset_right = 90.5
+offset_bottom = 20
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -3284,9 +3284,9 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCustomizationButtonFrame2LeftButton" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame2"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 166
+offset_left = 169
 offset_top = 0
-offset_right = 198
+offset_right = 201
 offset_bottom = 32
 ignore_texture_size = true
 
@@ -3322,17 +3322,17 @@ material = SubResource("CanvasItemMaterial_18")
 
 [node name="CharacterCustomizationButtonFrame1" type="Control" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame"]
 unique_name_in_owner = true
-offset_left = 13
-offset_top = 568
-offset_right = 243
-offset_bottom = 600
+offset_left = 7
+offset_top = 555
+offset_right = 237
+offset_bottom = 587
 mouse_filter = 2
 
 [node name="CharacterCustomizationButtonFrame1Left" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame1"]
 unique_name_in_owner = true
-offset_left = 0
+offset_left = -5
 offset_top = -16
-offset_right = 25
+offset_right = 20
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_50")
@@ -3340,9 +3340,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame1Right" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame1"]
 unique_name_in_owner = true
-offset_left = 205
+offset_left = 161
 offset_top = -16
-offset_right = 230
+offset_right = 186
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_51")
@@ -3350,9 +3350,9 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame1Middle" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame1"]
 unique_name_in_owner = true
-offset_left = 25
+offset_left = 20
 offset_top = -16
-offset_right = 205
+offset_right = 161
 offset_bottom = 48
 mouse_filter = 2
 texture = SubResource("AtlasTexture_52")
@@ -3360,10 +3360,10 @@ expand_mode = 1
 
 [node name="CharacterCustomizationButtonFrame1Text" type="Label" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame1"]
 unique_name_in_owner = true
-offset_left = 115
-offset_top = 10
-offset_right = 115
-offset_bottom = 22
+offset_left = 90.5
+offset_top = 8
+offset_right = 90.5
+offset_bottom = 20
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -3413,9 +3413,9 @@ material = SubResource("CanvasItemMaterial_18")
 [node name="CharacterCustomizationButtonFrame1LeftButton" type="TextureButton" parent="CharacterCreateFrame/CharacterCreateConfigurationFrame/CharacterCustomizationButtonFrame1"]
 unique_name_in_owner = true
 script = ExtResource("5")
-offset_left = 166
+offset_left = 169
 offset_top = 0
-offset_right = 198
+offset_right = 201
 offset_bottom = 32
 ignore_texture_size = true
 
@@ -3457,9 +3457,9 @@ anchor_top = 1
 anchor_right = 0.5
 anchor_bottom = 1
 offset_left = -78
-offset_top = -40
+offset_top = -95
 offset_right = 78
-offset_bottom = 0
+offset_bottom = -55
 mouse_filter = 0
 theme_type_variation = &"GlueEditBoxFont"
 max_length = 12
@@ -3485,9 +3485,9 @@ insets = Vector4(10, 5, 4, 9)
 
 [node name="FontString" type="Label" parent="CharacterCreateFrame/CharacterCreateNameEdit"]
 offset_left = -50
-offset_top = -64
+offset_top = -41
 offset_right = 206
-offset_bottom = 0
+offset_bottom = 23
 show_behind_parent = true
 mouse_filter = 2
 theme_type_variation = &"GlueFontNormalLarge"
@@ -3505,10 +3505,10 @@ anchor_left = 0.5
 anchor_top = 1
 anchor_right = 0.5
 anchor_bottom = 1
-offset_left = -25
-offset_top = -50
-offset_right = 25
-offset_bottom = 0
+offset_left = -41
+offset_top = -45
+offset_right = 9
+offset_bottom = 5
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateRotateLeft"]
@@ -3551,10 +3551,10 @@ anchor_left = 0.5
 anchor_top = 1
 anchor_right = 0.5
 anchor_bottom = 1
-offset_left = -25
-offset_top = -50
-offset_right = 25
-offset_bottom = 0
+offset_left = -9
+offset_top = -45
+offset_right = 41
+offset_bottom = 5
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="CharacterCreateFrame/CharacterCreateRotateRight"]
@@ -3593,10 +3593,10 @@ script = ExtResource("5")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
-offset_left = -208
-offset_top = 702
-offset_right = -48
-offset_bottom = 737
+offset_left = -223
+offset_top = 705
+offset_right = -63
+offset_bottom = 740
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="CharacterCreateFrame/CharCreateOkayButton"]
@@ -3658,9 +3658,9 @@ script = ExtResource("5")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
-offset_left = -188
+offset_left = -199
 offset_top = 737
-offset_right = -68
+offset_right = -79
 offset_bottom = 767
 ignore_texture_size = true
 

@@ -12,6 +12,9 @@ const STEP_METRES: float = 0.5
 const STEP_SECONDS: float = 0.1
 const TELEPORT_METRES: float = 20.0
 const COPPER: int = 1000
+# Arcane Intellect, a buff with a duration, and Curse of Weakness for the debuff side.
+const BUFF_SPELL: int = 1459
+const DEBUFF_SPELL: int = 702
 
 # Wire values, which WotLK shares with vanilla for these two.
 enum MoveFlag { NONE = 0, FORWARD = 1 }
@@ -28,6 +31,7 @@ var _position: Vector3 = Vector3.ZERO
 var _teleports: int = 0
 var _walked_from_teleport: Vector3 = Vector3.ZERO
 var _chat: Array[Dictionary] = []
+var _time_syncs: int = 0
 var _failures: PackedStringArray = []
 
 
@@ -38,6 +42,7 @@ func _ready() -> void:
 	_session.character_deleted.connect(_on_character_deleted)
 	_session.world_entered.connect(_on_world_entered)
 	_session.player_teleported.connect(_on_player_teleported)
+	_session.packet_received.connect(_on_packet_received)
 	_session.chat_received.connect(_on_chat_received)
 	_run.call_deferred()
 
@@ -65,13 +70,48 @@ func _run() -> void:
 	print("came back at %v" % _position)
 	_check(_position.distance_to(walked) < 1.0, "the server kept the walk's last position")
 	_check(_position.distance_to(start) > 3.0, "the kept position is not where the walk began")
+	await _auras(guid)
 	if await _gm_command() and await _teleport() and await _log_out() and await _enter(guid):
 		print("after the teleport and a second walk, came back at %v" % _position)
 		_check(_position.distance_to(_walked_from_teleport) < 1.0,
 				"the server took movement after the teleport was acknowledged")
+	_check(_time_syncs > 0, "the server asked for a time sync while in the world")
 	if await _log_out():
 		await _remove_character(guid)
 	_finish()
+
+
+# 3.3.5 sends a unit's auras as their own packets, so the buff bars read them off the session.
+func _auras(guid: int) -> void:
+	for spell: int in [BUFF_SPELL, DEBUFF_SPELL]:
+		_session.send_chat(WowSession.CHAT_SAY, ".aura %d" % spell)
+		if not await _until(func() -> bool: return _aura(guid, spell) != null,
+				"aura %d arrives" % spell):
+			return
+	var buff: Dictionary = _aura(guid, BUFF_SPELL)
+	var debuff: Dictionary = _aura(guid, DEBUFF_SPELL)
+	_check(not buff["harmful"], "Arcane Intellect reads as a buff")
+	_check(debuff["harmful"], "Curse of Weakness reads as a debuff")
+	_check(buff["max_duration_msec"] > 0, "the buff carries the duration the server sent")
+	print("auras: %d for %.0fs, %d for %.0fs" % [
+		BUFF_SPELL, buff["duration_msec"] / 1000.0,
+		DEBUFF_SPELL, debuff["duration_msec"] / 1000.0,
+	])
+	for spell: int in [BUFF_SPELL, DEBUFF_SPELL]:
+		_session.send_chat(WowSession.CHAT_SAY, ".unaura %d" % spell)
+		_check(await _until(func() -> bool: return _aura(guid, spell) == null,
+				"aura %d is taken off again" % spell), "aura %d goes away" % spell)
+	var left: PackedStringArray = []
+	for aura: Dictionary in UnitAuras.read(_session, guid):
+		left.append(str(aura["spell"]))
+	print("auras left on the player: %s" % ", ".join(left))
+
+
+func _aura(guid: int, spell: int) -> Variant:
+	for aura: Dictionary in UnitAuras.read(_session, guid):
+		if aura["spell"] == spell:
+			return aura
+	return null
 
 
 # GM commands travel as ordinary say, so this proves the chat types are renumbered
@@ -127,8 +167,11 @@ func _log_in() -> bool:
 func _make_character() -> int:
 	if not await _list_characters():
 		return 0
+	# A run that ends early leaves the character behind, and its state would skew these checks.
 	if _find(CHARACTER) != 0:
-		return _find(CHARACTER)
+		await _remove_character(_find(CHARACTER))
+		if not await _list_characters():
+			return 0
 	_session.create_character({ "name": CHARACTER, "race": 1, "class": 1, "gender": 0 })
 	if not await _until(func() -> bool: return _created >= 0, "the create answer arrives"):
 		return 0
@@ -142,6 +185,7 @@ func _make_character() -> int:
 
 
 func _remove_character(guid: int) -> void:
+	_deleted = -1
 	_session.delete_character(guid)
 	if await _until(func() -> bool: return _deleted >= 0, "the delete answer arrives"):
 		_check(_deleted == 1, "deleting %s is accepted (code %d)" % [CHARACTER, _deleted])
@@ -220,6 +264,11 @@ func _said(fragment: String) -> bool:
 
 func _on_chat_received(line: Dictionary) -> void:
 	_chat.append(line)
+
+
+func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
+	if opcode == "SMSG_TIME_SYNC_REQ":
+		_time_syncs += 1
 
 
 func _on_player_teleported(position: Vector3, _orientation: float) -> void:

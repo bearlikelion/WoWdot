@@ -38,6 +38,8 @@ func _dump(path: String) -> void:
 		print("  camera fov %.4f rad (%.1f deg) at %v looking at %v" % [
 			camera["fov"], rad_to_deg(camera["fov"]), camera["position"], camera["target"],
 		])
+	for attachment: Dictionary in info.get("attachments", []):
+		print("  attachment %d at %v" % [attachment["id"], attachment["position"]])
 	var stem: String = path.get_basename()
 	print("  files: %s" % [loader.get_archive().find(stem + "*")])
 	var textures: Array = info["textures"]

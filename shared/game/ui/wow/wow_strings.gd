@@ -80,7 +80,8 @@ static func _load() -> void:
 				_strings[found.get_string(1)] = _unescape(found.get_string(2))
 
 
-# Lua escapes the strings use: \" and \n, and decimal bytes such as \32 for a trailing space.
+# Lua escapes the strings use: \" and \n, decimal bytes such as \32 for a trailing space, and
+# WoW's own |n line break, which a plain label would otherwise show as text.
 static func _unescape(text: String) -> String:
 	var decimal: RegEx = RegEx.create_from_string("\\\\(\\d{1,3})")
 	var out: String = ""
@@ -89,4 +90,4 @@ static func _unescape(text: String) -> String:
 		out += text.substr(at, found.get_start() - at) + char(found.get_string(1).to_int())
 		at = found.get_end()
 	out += text.substr(at)
-	return out.replace('\\"', '"').replace("\\n", "\n")
+	return out.replace('\\"', '"').replace("\\n", "\n").replace("|n", "\n")

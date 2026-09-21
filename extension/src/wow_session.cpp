@@ -544,6 +544,30 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 			emit_signal("spell_cooldown", static_cast<int>(packet.readUInt32()), 0);
 			return true;
 		}
+		case LogicalOpcode::SMSG_AURA_UPDATE:
+		case LogicalOpcode::SMSG_AURA_UPDATE_ALL: {
+			const bool all = op == static_cast<uint16_t>(LogicalOpcode::SMSG_AURA_UPDATE_ALL);
+			game::AuraUpdateData data;
+			if (!parsers->parseAuraUpdate(packet, data, all)) {
+				return true;
+			}
+			std::map<uint8_t, wowee::game::AuraSlot> &slots = auras[data.guid];
+			if (all) {
+				slots.clear();
+			}
+			for (const auto &[slot, aura] : data.updates) {
+				if (aura.spellId == 0) {
+					slots.erase(slot);
+				} else {
+					slots[slot] = aura;
+				}
+			}
+			if (slots.empty()) {
+				auras.erase(data.guid);
+			}
+			emit_signal("auras_changed", static_cast<int64_t>(data.guid));
+			return true;
+		}
 		case LogicalOpcode::SMSG_UPDATE_AURA_DURATION: {
 			const int slot = packet.readUInt8();
 			emit_signal("aura_duration", slot, static_cast<int64_t>(packet.readUInt32()));
@@ -1397,6 +1421,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		case LogicalOpcode::SMSG_DESTROY_OBJECT: {
 			const uint64_t guid = packet.readUInt64();
 			objects.erase(guid);
+			auras.erase(guid);
 			PackedInt64Array guids;
 			guids.push_back(static_cast<int64_t>(guid));
 			emit_signal("objects_destroyed", guids);
@@ -1614,8 +1639,17 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			emit_signal("player_teleported", wow_vector(x, y, z), orientation);
 			return;
 		}
+		case LogicalOpcode::SMSG_TIME_SYNC_REQ: {
+			// The server measures the clock against this every ten seconds; the stock client answers.
+			network::Packet answer(game::wireOpcode(LogicalOpcode::CMSG_TIME_SYNC_RESP));
+			answer.writeUInt32(packet.readUInt32());
+			answer.writeUInt32(static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec()));
+			world->send(answer);
+			break;
+		}
 		case LogicalOpcode::SMSG_LOGOUT_COMPLETE:
 			objects.clear();
+			auras.clear();
 			player_guid = 0;
 			player_path = Dictionary();
 			set_state(STATE_CHARACTER_LIST);
@@ -1854,6 +1888,31 @@ int64_t WowSession::get_field_guid(int64_t guid, const Variant &field) const {
 	return static_cast<int64_t>(low | (high << 32));
 }
 
+// AuraFlags in 3.3.5: an aura the client draws as a buff rather than a debuff sets this.
+constexpr uint8_t AURA_POSITIVE = 0x10;
+
+// Slot order, as the buff bars draw them: the spell, how many are stacked and whether it harms.
+Array WowSession::get_auras(int64_t guid) const {
+	Array list;
+	const auto found = auras.find(static_cast<uint64_t>(guid));
+	if (found == auras.end()) {
+		return list;
+	}
+	for (const auto &[slot, aura] : found->second) {
+		Dictionary entry;
+		entry["slot"] = slot;
+		entry["spell"] = static_cast<int64_t>(aura.spellId);
+		entry["stacks"] = std::max<int>(aura.charges, 1);
+		entry["harmful"] = (aura.flags & AURA_POSITIVE) == 0;
+		entry["level"] = aura.level;
+		entry["caster"] = static_cast<int64_t>(aura.casterGuid);
+		entry["duration_msec"] = aura.durationMs;
+		entry["max_duration_msec"] = aura.maxDurationMs;
+		list.push_back(entry);
+	}
+	return list;
+}
+
 int64_t WowSession::get_field(int64_t guid, const Variant &field) const {
 	const WorldObject *object = find(guid);
 	const int index = field.get_type() == Variant::INT ? static_cast<int>(field) : field_index(field);
@@ -1889,6 +1948,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("attack", "target_guid"), &WowSession::attack);
 	ClassDB::bind_method(D_METHOD("stop_attack"), &WowSession::stop_attack);
 	ClassDB::bind_method(D_METHOD("cancel_aura", "spell_id"), &WowSession::cancel_aura);
+	ClassDB::bind_method(D_METHOD("get_auras", "guid"), &WowSession::get_auras);
 	ClassDB::bind_method(D_METHOD("get_known_spells"), &WowSession::get_known_spells);
 	ClassDB::bind_method(D_METHOD("get_action_buttons"), &WowSession::get_action_buttons);
 	ClassDB::bind_method(D_METHOD("get_faction_flags"), &WowSession::get_faction_flags);
@@ -1943,6 +2003,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("spell_channel_updated", PropertyInfo(Variant::INT, "remaining_msec")));
 	ADD_SIGNAL(MethodInfo("spell_cooldown", PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cooldown_msec")));
 	ADD_SIGNAL(MethodInfo("aura_duration", PropertyInfo(Variant::INT, "slot"), PropertyInfo(Variant::INT, "duration_msec")));
+	ADD_SIGNAL(MethodInfo("auras_changed", PropertyInfo(Variant::INT, "guid")));
 	ADD_SIGNAL(MethodInfo("attack_swing_error", PropertyInfo(Variant::INT, "error")));
 	ADD_SIGNAL(MethodInfo("melee_swing", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim"), PropertyInfo(Variant::INT, "damage"), PropertyInfo(Variant::INT, "hit_info"), PropertyInfo(Variant::INT, "victim_state")));
 	ADD_SIGNAL(MethodInfo("attack_started", PropertyInfo(Variant::INT, "attacker"), PropertyInfo(Variant::INT, "victim")));

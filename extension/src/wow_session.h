@@ -8,10 +8,13 @@
 #include <godot_cpp/variant/packed_int64_array.hpp>
 #include <godot_cpp/variant/vector3.hpp>
 
+#include "game/spell_defines.hpp"
+
 #include <array>
 #include <cstdint>
 #include <memory>
 #include <string>
+#include <map>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -110,6 +113,8 @@ private:
 	uint32_t realm_id = 1;
 	uint64_t player_guid = 0;
 	std::unordered_map<uint64_t, WorldObject> objects;
+	// 3.3.5 sends a unit's buffs and debuffs as their own packets rather than as update fields.
+	std::unordered_map<uint64_t, std::map<uint8_t, wowee::game::AuraSlot>> auras;
 	uint32_t ping_sequence = 0;
 	uint64_t last_ping_msec = 0;
 	std::unordered_map<uint64_t, std::string> player_names;
@@ -204,6 +209,7 @@ public:
 	double get_object_orientation(int64_t guid) const;
 	// Walk, run, run back, swim, swim back and turn rate.
 	PackedFloat32Array get_object_speeds(int64_t guid) const;
+	Array get_auras(int64_t guid) const;
 	int64_t get_field(int64_t guid, const Variant &field) const;
 	double get_field_float(int64_t guid, const Variant &field) const;
 	int64_t get_field_guid(int64_t guid, const Variant &field) const;

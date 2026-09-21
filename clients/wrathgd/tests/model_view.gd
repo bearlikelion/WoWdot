@@ -5,6 +5,8 @@ extends Node3D
 # godot --path . tests/model_view.tscn -- --m2=<path> --surfaces=0-14 --time=20 --out=<png>
 const SETTLE_FRAMES: int = 30
 
+var _path: String = ""
+
 @onready var _stage: Node3D = %Stage
 @onready var _camera: Camera3D = %Camera
 
@@ -12,7 +14,8 @@ const SETTLE_FRAMES: int = 30
 func _ready() -> void:
 	var args: Dictionary[String, String] = _parse_args()
 	var loader: WowLoader = WowLoader.get_shared()
-	var model: Node3D = loader.load_m2(args.get("m2", ""))
+	_path = args.get("m2", "")
+	var model: Node3D = loader.load_m2(_path)
 	if model == null:
 		printerr("model failed to load")
 		get_tree().quit(1)
@@ -122,6 +125,17 @@ func _report(model: Node3D, kept: PackedInt32Array, time: float) -> void:
 	var skeleton: Skeleton3D = model.find_child("Skeleton", true, false) as Skeleton3D
 	if mesh == null or mesh.mesh == null:
 		return
+	var loader: WowLoader = WowLoader.get_shared()
+	for attachment: Dictionary in loader.get_m2_info(_path).get("attachments", []):
+		var bone: int = attachment["bone"]
+		if skeleton == null or bone < 0 or bone >= skeleton.get_bone_count():
+			continue
+		var pose: Transform3D = skeleton.get_bone_global_pose(bone)
+		var forward: Vector3 = pose.basis * Vector3(0.0, 0.0, -1.0)
+		print("  attachment %d bone %d at %v, forward %v, yaw %.1f deg" % [
+			attachment["id"], bone, pose.origin, forward,
+			rad_to_deg(atan2(-forward.x, -forward.z)),
+		])
 	print("surfaces %d, bones %d, showing %s at %.1fs" % [
 		mesh.mesh.get_surface_count(), skeleton.get_bone_count() if skeleton else 0, kept, time,
 	])
