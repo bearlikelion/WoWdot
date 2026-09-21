@@ -72,6 +72,14 @@ func _run() -> void:
 	_check(board.flag_carrier == OTHER + 1, "the flag carrier is named")
 	_check(board.positions.get(OTHER + 1, Vector2.ZERO).y == -50.0, "and placed")
 
+	var weapons: PackedByteArray = [2, 0, 0, 0, 0]
+	weapons.encode_u32(1, 1 << 7)
+	session.packet_received.emit("SMSG_SET_PROFICIENCY", weapons)
+	var skills: Proficiencies = WowClient.proficiencies
+	_check(skills.can_use(2, 7) and not skills.can_use(2, 8), "proficiency gates weapon subclasses")
+	_check(skills.can_use(0, 3), "consumables are never gated")
+	_check(not skills.subclass_name(2, 7).is_empty(), "weapon subclasses have names")
+
 	var item_cooldown: PackedByteArray = []
 	item_cooldown.resize(12)
 	item_cooldown.encode_u32(8, FROSTBOLT)

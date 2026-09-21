@@ -156,7 +156,13 @@ func set_item(
 		add_line(WowStrings.get_text("ITEM_SOULBOUND"))
 	var inventory_type: int = info["inventory_type"]
 	if inventory_type < INVENTORY_TYPES.size() and not INVENTORY_TYPES[inventory_type].is_empty():
-		add_line(WowStrings.get_text(INVENTORY_TYPES[inventory_type]))
+		var skills: Proficiencies = WowClient.proficiencies
+		var usable: bool = skills.can_use(info["class"], info["subclass"])
+		add_double_line(
+			WowStrings.get_text(INVENTORY_TYPES[inventory_type]),
+			skills.subclass_name(info["class"], info["subclass"]),
+			HIGHLIGHT, HIGHLIGHT if usable else RED,
+		)
 	if info["armor"] > 0:
 		add_line(WowStrings.get_text("ARMOR_TEMPLATE") % info["armor"])
 	if info["damage_max"] > 0.0:

@@ -25,6 +25,8 @@ func _ready() -> void:
 	var indicator: AtlasTexture = AtlasTexture.new()
 	indicator.atlas = _game_time.texture
 	_game_time.texture = indicator
+	WowClient.session.packet_received.connect(_on_packet_received)
+	WowClient.session.send_packet("MSG_QUERY_NEXT_MAIL_TIME", PackedByteArray())
 
 
 # GameTimeFrame_Update: the day face is the left half of the texture, the night face the right.
@@ -52,6 +54,17 @@ func show_area(area_id: int, player_race: int) -> void:
 		_zone_text.self_modulate = FRIENDLY
 	else:
 		_zone_text.self_modulate = HOSTILE
+
+
+# The reply is seconds until mail arrives: zero or more means some waits, negative means none.
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	match opcode:
+		"MSG_QUERY_NEXT_MAIL_TIME":
+			%MiniMapMailFrame.visible = payload.size() >= 4 and payload.decode_float(0) >= 0.0
+		"SMSG_RECEIVED_MAIL":
+			%MiniMapMailFrame.show()
+		"SMSG_MAIL_LIST_RESULT":
+			WowClient.session.send_packet("MSG_QUERY_NEXT_MAIL_TIME", PackedByteArray())
 
 
 func _on_zoom_changed(zoom: int) -> void:

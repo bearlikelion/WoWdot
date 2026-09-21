@@ -10,6 +10,7 @@ var tutorials: Tutorials = Tutorials.new(session)
 var macros: Macros = Macros.new(session)
 var targeting: ItemTargeting = ItemTargeting.new(session)
 var battlegrounds: Battlegrounds = Battlegrounds.new(session)
+var proficiencies: Proficiencies = Proficiencies.new(session)
 
 
 func _ready() -> void:
