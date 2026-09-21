@@ -61,6 +61,10 @@ On Windows, clone with `git config core.symlinks true` (Developer Mode enabled),
 Open `clients/wowgd` in Godot, set **Project Settings > wowgd > client_data_dir** to your 1.12.1 client's `Data` folder, and run.
 Exported builds read the `Data` folder next to the executable instead.
 
+## Thanks
+
+[WoWee](https://github.com/Kelsidavis/WoWee), [wowdev.wiki](https://wowdev.wiki/Main_Page) and [benilla](https://github.com/samwhosung/benilla), a from-scratch 1.12.1 client in Rust and Bevy.
+
 ## License
 
 WoWdot will be MIT licensed, see [LICENSE](LICENSE), [NOTICE.md](NOTICE.md) and [CONTRIBUTING.md](CONTRIBUTING.md).

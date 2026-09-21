@@ -18,18 +18,18 @@ Playable: you can log in, create a character, quest, fight, loot, group, train a
 | Characters | Skin compositing, hair and facial hair, equipment on the model, sheathing, mounts, 3D portraits. |
 | Movement | Movement relays, jumping, falling, swimming, flights on taxi splines, dead reckoning for other players. Server speed changes, roots, knockbacks and water walking are applied and acknowledged. |
 | Zoning | Continents, dungeons and portals, with the loading screen and a clean sweep of the old map's objects. |
-| Death | Release, corpse location and reclaim, resurrect offers from other players, and the spirit healer. |
+| Death | Release, corpse location and reclaim, resurrect offers from other players, self resurrection, and the spirit healer. |
 | Combat | Targeting, auto attack, spell casts with cooldowns and the GCD, buffs and debuffs, floating combat text, combat log. |
 | HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap with the corpse marked, tooltips, reputation watch bar, breath and fatigue timers, nameplates in their reaction colour, and the level up chime, notice, gains and golden rings. |
-| Chat | Say, yell, party, guild and whispers, channels with /join and numbered commands, emotes such as /dance, speech bubbles over the speaker. |
+| Chat | Say, yell, party, guild and whispers, raid, raid warning and battleground chat, zone channels joined on entering a zone, channels with /join, numbered commands, member lists and moderation, /who, /afk and /dnd, /roll, emotes such as /dance, speech bubbles over the speaker, and the server's refusals shown. |
 | Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video, sound and interface options, key bindings. |
 | NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag and bag slot purchases, auctioneers with bidding and buyout. |
 | Items | Dragging between the bags, the bank, its bags and the character, splitting a stack and destroying one, with the server's refusal shown. |
 | World objects | Chests, doors, levers, chairs, herb and mining nodes answer a click. |
-| Mail | Inbox from a mailbox, reading letters, taking money and attachments, deleting, and writing letters with money. |
-| Groups | Party invites, party frames, loot window, group loot rolls, ready check, quest sharing. |
+| Mail | Inbox from a mailbox, reading letters, keeping a letter as an item, taking money and attachments, returning, deleting, and writing letters with money. |
+| Groups | Party invites, party frames with stats for members out of sight, loot window, group loot rolls, master loot, ready check, quest sharing, minimap pings, summon prompts, instance reset and raid info. |
 | Social | Trade, duels, friends and ignore, the guild window with its roster, message of the day and invites, guild charters from a registrar and crests from a designer. |
-| Pets | The pet frame with happiness, the pet action bar with autocast, the pet spellbook tab, naming a tamed pet, and the stable master. |
+| Pets | The pet frame with happiness, the pet action bar with autocast, the pet spellbook tab, naming a tamed pet, dismissing and abandoning one, and the stable master. |
 | Effects | M2 particles and scrolling textures, spell visuals from SpellVisual.dbc with flying missiles, and the sparkle over lootable corpses. Additive emitters are damped, since they stack brighter than the stock client's. |
 
 ## Requirements
