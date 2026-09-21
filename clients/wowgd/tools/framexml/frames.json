@@ -352,6 +352,11 @@
    "script": "res://game/ui/macro_frame.gd"
   },
   {
+   "frame": "MacroPopupFrame",
+   "out": "ui/macro_popup_frame.tscn",
+   "script": "res://game/ui/macro_popup_frame.gd"
+  },
+  {
    "frame": "TutorialFrame",
    "out": "ui/tutorial_frame.tscn",
    "script": "res://game/ui/tutorial_frame.gd"

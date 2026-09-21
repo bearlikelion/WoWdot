@@ -1,0 +1,1783 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/macro_popup_frame.gd" id="1"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="2"]
+[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\MacroFrame\\MacroPopup-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\MacroFrame\\MacroPopup-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\MacroFrame\\MacroPopup-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\MacroFrame\\MacroPopup-BotRight.blp"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5"]
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-FilterBorder.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(0, 0, 12, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(12, 0, 104, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(116, 0, 12, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 3, 30, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(34, 4, 30, 124)
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_19")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_23"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_30")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\Buttons\\UI-EmptySlot-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\CheckButtonHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(0, 0, 80, 22)
+
+[node name="MacroPopupFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = -40
+offset_top = 40
+offset_right = 257
+offset_bottom = 338
+grow_horizontal = 0
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+offset_left = 256
+offset_top = 0
+offset_right = 320
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 256
+offset_right = 256
+offset_bottom = 320
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+offset_left = 256
+offset_top = 256
+offset_right = 320
+offset_bottom = 320
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="."]
+offset_left = 24
+offset_top = 21
+offset_right = 24
+offset_bottom = 31
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Enter Macro Name (Max 16 Characters):"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FontString2" type="Label" parent="."]
+offset_left = 24
+offset_top = 69
+offset_right = 24
+offset_bottom = 79
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Choose an Icon:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MacroPopupEditBox" type="LineEdit" parent="."]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 35
+offset_right = 229
+offset_bottom = 55
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+max_length = 16
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_5")
+
+[node name="MacroPopupNameLeft" type="TextureRect" parent="MacroPopupEditBox"]
+unique_name_in_owner = true
+offset_left = -11
+offset_top = 0
+offset_right = 1
+offset_bottom = 29
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="MacroPopupNameMiddle" type="TextureRect" parent="MacroPopupEditBox"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 0
+offset_right = 176
+offset_bottom = 29
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+
+[node name="MacroPopupNameRight" type="TextureRect" parent="MacroPopupEditBox"]
+unique_name_in_owner = true
+offset_left = 176
+offset_top = 0
+offset_right = 188
+offset_bottom = 29
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="MacroPopupScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -335
+offset_top = 67
+offset_right = -39
+offset_bottom = 262
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="MacroPopupScrollFrame"]
+offset_left = 293
+offset_top = -2
+offset_right = 323
+offset_bottom = 118
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="MacroPopupScrollFrame"]
+offset_left = 293
+offset_top = 74
+offset_right = 323
+offset_bottom = 197
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="MacroPopupScrollFrameScrollBar" type="VSlider" parent="MacroPopupScrollFrame"]
+unique_name_in_owner = true
+offset_left = 302
+offset_top = 16
+offset_right = 318
+offset_bottom = 179
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_14")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_14")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_5")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_5")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_5")
+max_value = 0.0
+step = 0.0
+
+[node name="MacroPopupScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 163
+offset_right = 16
+offset_bottom = 179
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupScrollFrameClip" type="Control" parent="MacroPopupScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="MacroPopupScrollFrameScrollChildFrame" type="Control" parent="MacroPopupScrollFrame/MacroPopupScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="MacroPopupButton1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 85
+offset_right = 60
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton1"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton1"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton1Name" type="Label" parent="MacroPopupButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 70
+offset_top = 85
+offset_right = 106
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton2"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton2"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton2Name" type="Label" parent="MacroPopupButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 116
+offset_top = 85
+offset_right = 152
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton3"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton3"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton3Name" type="Label" parent="MacroPopupButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 162
+offset_top = 85
+offset_right = 198
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton4"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton4"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton4Name" type="Label" parent="MacroPopupButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 208
+offset_top = 85
+offset_right = 244
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton5"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton5"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton5Name" type="Label" parent="MacroPopupButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton6" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 129
+offset_right = 60
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton6"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton6"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton6Name" type="Label" parent="MacroPopupButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton7" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 70
+offset_top = 129
+offset_right = 106
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton7"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton7"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton7Name" type="Label" parent="MacroPopupButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton8" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 116
+offset_top = 129
+offset_right = 152
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton8"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton8"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton8Name" type="Label" parent="MacroPopupButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton9" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 162
+offset_top = 129
+offset_right = 198
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton9"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton9"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton9Name" type="Label" parent="MacroPopupButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton10" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 208
+offset_top = 129
+offset_right = 244
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton10"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton10"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton10Name" type="Label" parent="MacroPopupButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton10"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton10"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton11" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 173
+offset_right = 60
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton11"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton11"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton11Name" type="Label" parent="MacroPopupButton11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton12" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 70
+offset_top = 173
+offset_right = 106
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton12"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton12"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton12Name" type="Label" parent="MacroPopupButton12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton13" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 116
+offset_top = 173
+offset_right = 152
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton13"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton13"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton13Name" type="Label" parent="MacroPopupButton13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton14" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 162
+offset_top = 173
+offset_right = 198
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton14"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton14"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton14Name" type="Label" parent="MacroPopupButton14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton15" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 208
+offset_top = 173
+offset_right = 244
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton15"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton15"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton15Name" type="Label" parent="MacroPopupButton15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton16" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 24
+offset_top = 217
+offset_right = 60
+offset_bottom = 253
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton16"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton16"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton16Name" type="Label" parent="MacroPopupButton16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton16"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton16"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton17" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 70
+offset_top = 217
+offset_right = 106
+offset_bottom = 253
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton17"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton17"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton17Name" type="Label" parent="MacroPopupButton17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton17"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton17"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton18" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 116
+offset_top = 217
+offset_right = 152
+offset_bottom = 253
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton18"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton18"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton18Name" type="Label" parent="MacroPopupButton18"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton18"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton18"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton19" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 162
+offset_top = 217
+offset_right = 198
+offset_bottom = 253
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton19"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton19"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton19Name" type="Label" parent="MacroPopupButton19"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton19"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton19"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupButton20" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 208
+offset_top = 217
+offset_right = 244
+offset_bottom = 253
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="MacroPopupButton20"]
+offset_left = -14
+offset_top = -13
+offset_right = 50
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupButton20"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MacroPopupButton20Name" type="Label" parent="MacroPopupButton20"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="MacroPopupButton20"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupButton20"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupCancelButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -89
+offset_top = -35
+offset_right = -11
+offset_bottom = -13
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MacroPopupCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MacroPopupCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="MacroPopupCancelButtonText" type="Label" parent="MacroPopupCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="MacroPopupOkayButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -169
+offset_top = -35
+offset_right = -91
+offset_bottom = -13
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MacroPopupOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MacroPopupOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MacroPopupOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="MacroPopupOkayButtonText" type="Label" parent="MacroPopupOkayButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MacroPopupOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 78
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")

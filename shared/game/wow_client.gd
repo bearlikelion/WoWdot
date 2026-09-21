@@ -7,6 +7,7 @@ var weather: WeatherState = WeatherState.new(session)
 var combat: CombatEvents = CombatEvents.new(session)
 var pet: Pet = Pet.new(session)
 var tutorials: Tutorials = Tutorials.new(session)
+var macros: Macros = Macros.new(session)
 
 
 func _ready() -> void:

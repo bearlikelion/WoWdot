@@ -47,7 +47,7 @@ LAYOUT_STRETCH = 2.0
 SCREEN_SIZE = (1024.0, 768.0)
 FULL_RECT = [("layout_mode", "1"), ("anchors_preset", "15"), ("anchor_right", "1.0"), ("anchor_bottom", "1.0")]
 # Kinds that draw content of their own, which their BACKGROUND and BORDER layers must sit under.
-SELF_DRAWING = {"LineEdit", "TextureProgressBar"}
+SELF_DRAWING = {"LineEdit", "TextEdit", "TextureProgressBar"}
 
 
 def strip(tag):
@@ -743,7 +743,7 @@ class SceneWriter:
         if tag == "StatusBar":
             return "TextureProgressBar", None
         if tag == "EditBox":
-            return "LineEdit", None
+            return ("TextEdit" if w.attrs.get("multiLine") == "true" else "LineEdit"), None
         if tag == "ScrollFrame":
             return "Control", WOW_SCROLL_FRAME
         if tag == "Slider":
@@ -827,6 +827,10 @@ class SceneWriter:
             empty = self.sub_resource("StyleBoxEmpty", [])
             props += [(f"theme_override_styles/{style}", empty) for style in ("slider", "grabber_area", "grabber_area_highlight")]
             props += [("max_value", "0.0"), ("step", "0.0")]
+        elif kind == "TextEdit":
+            empty = self.sub_resource("StyleBoxEmpty", [])
+            props += [(f"theme_override_styles/{state}", empty) for state in ("normal", "focus", "read_only")]
+            props += [("wrap_mode", "1"), ("caret_blink", "true"), ("scroll_fit_content_height", "true")]
         elif kind == "LineEdit":
             line = w.special.get("FontString")
             if line is not None and line.get("inherits"):

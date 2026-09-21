@@ -95,6 +95,7 @@ func _ready() -> void:
 	_player.clicked.connect(_on_player_clicked)
 	_player.interacted.connect(_on_player_interacted)
 	_hud.action_used.connect(_on_action_used)
+	WowClient.macros.cast_requested.connect(_use_spell)
 	_hud.spell_used.connect(_use_spell)
 	_hud.unit_selected.connect(select)
 	_name_plates.unit_clicked.connect(select)
@@ -399,10 +400,11 @@ func _on_action_used(slot: int) -> void:
 	if slot < 0 or slot >= buttons.size() or buttons[slot] == 0:
 		return
 	var packed: int = buttons[slot]
-	# ponytail: macro actions do nothing until the macro frame exists.
 	match (packed >> 24) & 0xFF:
 		ActionButton.ActionType.SPELL:
 			_use_spell(packed & ActionButton.ACTION_MASK)
+		ActionButton.ActionType.MACRO:
+			WowClient.macros.run(packed & ActionButton.ACTION_MASK)
 		ActionButton.ActionType.ITEM:
 			var found: Vector2i = Inventory.find_item(packed & ActionButton.ACTION_MASK)
 			if found.x >= 0:

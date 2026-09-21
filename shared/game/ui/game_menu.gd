@@ -6,11 +6,11 @@ signal sound_options_requested
 signal video_options_requested
 signal interface_options_requested
 signal key_bindings_requested
+signal macros_requested
 
 
 func _ready() -> void:
-	# The macro window is not ported yet.
-	(%GameMenuButtonMacros as BaseButton).disabled = true
+	%GameMenuButtonMacros.pressed.connect(macros_requested.emit)
 	%GameMenuButtonUIOptions.pressed.connect(interface_options_requested.emit)
 	%GameMenuButtonKeybindings.pressed.connect(key_bindings_requested.emit)
 	%GameMenuButtonOptions.pressed.connect(video_options_requested.emit)

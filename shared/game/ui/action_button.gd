@@ -10,6 +10,8 @@ const ACTION_MASK: int = 0xFFFFFF
 const SPELL_ATTACK: int = 6603
 # ActionButton_UpdateUsable's tint for an item action with none left in the bags.
 const UNUSABLE_TINT: Color = Color(0.4, 0.4, 0.4)
+# A slot naming a macro this machine does not have, such as one made on another computer.
+const MISSING_MACRO_ICON: String = "Interface\\Icons\\INV_Misc_QuestionMark"
 
 var slot: int = -1:
 	set(value):
@@ -41,6 +43,7 @@ var _attacking: bool = false
 @onready var _icon: TextureRect = %Icon
 @onready var _count: Label = %Count
 @onready var _hotkey: Label = %HotKey
+@onready var _name: Label = %Name
 @onready var _normal: TextureRect = %NormalTexture
 @onready var _cooldown: WowCooldown = %Cooldown
 
@@ -62,6 +65,7 @@ func _ready() -> void:
 	session.item_info_received.connect(_on_inventory_changed)
 	session.object_updated.connect(_on_inventory_changed)
 	WowClient.cooldowns.changed.connect(_update_cooldown)
+	WowClient.macros.changed.connect(refresh)
 	_hotkey.text = hotkey
 	refresh()
 
@@ -69,24 +73,34 @@ func _ready() -> void:
 # PickupAction: dragging an action lifts it off the bar, and dropping it places it.
 func _get_drag_data(_at_position: Vector2) -> Variant:
 	var carried: int = spell()
-	if Engine.is_editor_hint() or carried == 0:
+	if Engine.is_editor_hint() or (carried == 0 and macro() == 0):
 		return null
 	var preview: TextureRect = TextureRect.new()
-	preview.texture = _action_icon(carried)
+	preview.texture = _icon.texture
 	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	preview.size = size
 	set_drag_preview(preview)
+	var lifted: Dictionary = {"spell": carried} if carried != 0 else {"macro": macro()}
 	WowClient.session.set_action_button(slot, 0)
-	return {"spell": carried}
+	return lifted
+
+
+func macro() -> int:
+	var packed: int = _packed()
+	return packed & ACTION_MASK if packed != 0 and _type(packed) == ActionType.MACRO else 0
 
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
-	return not Engine.is_editor_hint() and slot >= 0 and data is Dictionary and data.has("spell")
+	return not Engine.is_editor_hint() and slot >= 0 and data is Dictionary \
+	and (data.has("spell") or data.has("macro"))
 
 
 # A spell action packs the spell id with type 0 in the high byte.
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	WowClient.session.set_action_button(slot, data["spell"])
+	if data.has("macro"):
+		WowClient.session.set_action_button(slot, data["macro"] | ActionType.MACRO << 24)
+	else:
+		WowClient.session.set_action_button(slot, data["spell"])
 
 
 func spell() -> int:
@@ -104,6 +118,7 @@ func refresh() -> void:
 	var item_entry: int = _item()
 	_icon.self_modulate = Color.WHITE
 	_count.text = ""
+	_name.text = ""
 	if not command_icon.is_empty():
 		var icon: WowTexture = WowTexture.new()
 		icon.file = command_icon
@@ -112,6 +127,10 @@ func refresh() -> void:
 		_normal.self_modulate.a = 1.0
 	elif spell() != 0:
 		_icon.texture = _action_icon(spell())
+	elif macro() != 0:
+		var info: Dictionary = WowClient.macros.info(macro())
+		_icon.texture = WowAssets.spells.icon_texture(info.get("icon", MISSING_MACRO_ICON))
+		_name.text = info.get("name", "")
 	elif item_entry != 0:
 		var count: int = Inventory.item_count(item_entry)
 		_icon.texture = Inventory.icon(item_entry)

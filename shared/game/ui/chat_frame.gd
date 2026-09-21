@@ -104,6 +104,7 @@ func _ready() -> void:
 	super()
 	if Engine.is_editor_hint():
 		return
+	WowClient.macros.line_requested.connect(_on_text_submitted)
 	%ChatFrame1TabText.text = WowStrings.get_text("GENERAL")
 	%ChatFrameEditBoxLanguage.hide()
 	_edit_box.theme_type_variation = &"ChatEditBox"

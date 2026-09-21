@@ -1645,19 +1645,19 @@ anchor_bottom = 1.0
 mouse_filter = 2
 clip_contents = true
 
-[node name="MacroFrameText" type="LineEdit" parent="MacroFrameScrollFrame/MacroFrameScrollFrameClip"]
+[node name="MacroFrameText" type="TextEdit" parent="MacroFrameScrollFrame/MacroFrameScrollFrameClip"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 286
 offset_bottom = 85
 mouse_filter = 0
-theme_type_variation = &"GameFontHighlightSmall"
-max_length = 255
-caret_blink = true
 theme_override_styles/normal = SubResource("StyleBoxEmpty_16")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_16")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_16")
+wrap_mode = 1
+caret_blink = true
+scroll_fit_content_height = true
 
 [node name="MacroFrameTextButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
