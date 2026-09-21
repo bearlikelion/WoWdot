@@ -14,6 +14,9 @@ const UNIT_FLAG_PVP: int = 0x1000
 # The quest marker floats this far over the top line of the nameplate.
 const MARKER_GAP: float = 0.3
 const NAMEPLATE_LINE_HEIGHT: float = 0.3
+# How far above and below a move's straight line the ground is looked for.
+const GROUND_PROBE_UP: float = 2.0
+const GROUND_PROBE_DOWN: float = 4.0
 # SMSG_ATTACKERSTATEUPDATE victim state for a blow that landed.
 const VICTIM_STATE_HIT: int = 1
 
@@ -64,6 +67,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	for guid: int in _paths.keys():
 		var path: Path = _paths[guid]
 		var node: Node3D = _nodes.get(guid)
@@ -72,13 +76,13 @@ func _process(delta: float) -> void:
 			continue
 		path.elapsed += delta
 		var weight: float = clampf(path.elapsed / path.duration, 0.0, 1.0)
-		node.global_position = path.from.lerp(path.to, weight)
+		node.global_position = _grounded(path.from.lerp(path.to, weight), space) if path.grounded \
+		else path.from.lerp(path.to, weight)
 		if weight >= 1.0:
 			_paths.erase(guid)
 			if not is_nan(path.facing):
 				node.rotation.y = path.facing
 			_play_idle(guid, node)
-	var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	for guid: int in _motions:
 		var node: Node3D = _nodes.get(guid)
 		if node:
@@ -143,6 +147,7 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 		path.to = to
 		path.duration = duration
 		path.facing = movement.get("orientation", NAN)
+		path.grounded = not movement.has("points") and not _swimmers.has(guid)
 		_paths[guid] = path
 		node.rotation.y = _heading(path.from, to)
 		var stride: String = "Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk"
@@ -441,6 +446,15 @@ func _face(node: Node3D, target: int) -> void:
 		node.rotation.y = _heading(node.global_position, at)
 
 
+# ponytail: only a move's two ends arrive, so corners are still cut; pass the waypoints through.
+func _grounded(point: Vector3, space: PhysicsDirectSpaceState3D) -> Vector3:
+	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(
+		point + Vector3.UP * GROUND_PROBE_UP, point + Vector3.DOWN * GROUND_PROBE_DOWN
+	)
+	var hit: Dictionary = space.intersect_ray(query)
+	return hit["position"] if not hit.is_empty() else point
+
+
 # The WoW orientation, which is also rotation.y, of the ground direction between two points.
 func _heading(from: Vector3, to: Vector3) -> float:
 	var heading: Vector3 = WowCoords.from_godot(to) - WowCoords.from_godot(from)
@@ -484,3 +498,4 @@ class Path:
 	var duration: float
 	var elapsed: float = 0.0
 	var facing: float = NAN
+	var grounded: bool = true

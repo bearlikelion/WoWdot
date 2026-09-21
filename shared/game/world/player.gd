@@ -45,6 +45,8 @@ const FLAG_ACKS: Dictionary[MoveFlag, String] = {
 }
 const GRAVITY: float = 19.29
 const JUMP_VELOCITY: float = 7.95797334
+# The tallest lip walked over without a jump; tune against stock stairs and kerbs.
+const STEP_HEIGHT: float = 0.6
 const HEARTBEAT_SECONDS: float = 0.5
 const FACING_SECONDS: float = 0.2
 const MOUSE_TURN: float = 0.006
@@ -363,9 +365,32 @@ func _walk(flags: int) -> void:
 	if Input.is_action_just_pressed("jump") and not _typing():
 		_take_off(flags, Vector3(planar.x, JUMP_VELOCITY, planar.z))
 		_send("MSG_MOVE_JUMP", _flags)
+	_step_up(velocity)
 	move_and_slide()
 	if not is_on_floor() and not _flags & AIRBORNE:
 		_take_off(flags, velocity)
+
+
+# A capsule only slides over lips lower than its rounded foot, so taller ones are climbed by hand.
+func _step_up(planar: Vector3) -> void:
+	var motion: Vector3 = planar * get_physics_process_delta_time()
+	if motion.is_zero_approx() or not is_on_floor() or not test_move(global_transform, motion):
+		return
+	var lift: Vector3 = Vector3.UP * STEP_HEIGHT
+	if test_move(global_transform, lift):
+		return
+	var raised: Transform3D = global_transform.translated(lift)
+	# One frame's motion ends on the step's edge, so the tread is judged a foot's width further in.
+	var reach: Vector3 = motion.normalized() * (_collision.shape as CapsuleShape3D).radius
+	var tread: KinematicCollision3D = KinematicCollision3D.new()
+	if test_move(raised, reach) or not test_move(raised.translated(reach), -lift, tread):
+		return
+	if tread.get_normal().angle_to(Vector3.UP) > floor_max_angle:
+		return
+	var drop: KinematicCollision3D = KinematicCollision3D.new()
+	test_move(raised.translated(motion), -lift, drop)
+	# Only the height changes here; move_and_slide then carries the player onto the tread.
+	global_position += lift + drop.get_travel()
 
 
 func _swimming() -> bool:

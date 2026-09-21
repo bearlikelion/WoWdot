@@ -1512,6 +1512,14 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
                 parseTrackV(0xF8, em.emissionAreaLength);  // +28 = 0x114
                 parseTrackV(0x114, em.emissionAreaWidth);  // +28 = 0x130
                 parseTrackV(0x130, em.deceleration);       // +28 = 0x14C
+                // The last track is the uint8 enabledIn; a muzzle flash rests at 0 and only fires mid-attack.
+                // ponytail: rest value only, evaluate the track per sequence when attack flashes should show.
+                if (base + 0x1DC + sizeof(M2TrackDiskVanilla) <= m2Data.size()) {
+                    const M2TrackDiskVanilla on = readValue<M2TrackDiskVanilla>(m2Data, base + 0x1DC);
+                    if (on.nKeys > 0 && on.ofsKeys < m2Data.size()) {
+                        em.enabled = m2Data[on.ofsKeys] != 0;
+                    }
+                }
 
                 // Vanilla: NO FBlocks — color/alpha/scale are static inline values
                 // Layout (empirically confirmed from real vanilla M2 files):

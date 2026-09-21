@@ -146,15 +146,24 @@ func _light_scene(lights: Array) -> void:
 	var ambient: Color = Color.BLACK
 	for light: Dictionary in lights:
 		ambient += light["ambient"]
+	ambient = Color(ambient, 1.0).clamp()
+	for light: Dictionary in lights:
 		var diffuse: Color = light["diffuse"]
 		var peak: float = maxf(diffuse.r, maxf(diffuse.g, diffuse.b))
 		if peak <= 0.0:
 			continue
-		var lamp: Light3D = OmniLight3D.new() if light["type"] == LightType.POINT \
-		else DirectionalLight3D.new()
-		lamp.light_color = Color(diffuse.r / peak, diffuse.g / peak, diffuse.b / peak)
-		# The stock client sums light in gamma space, so an over-bright colour scales as a power.
-		lamp.light_energy = pow(peak, 2.2)
+		var lamp: Light3D
+		if light["type"] == LightType.POINT:
+			lamp = OmniLight3D.new()
+			lamp.light_color = Color(diffuse.r / peak, diffuse.g / peak, diffuse.b / peak)
+			# The stock client sums light in gamma space, so an over-bright colour scales as a power.
+			lamp.light_energy = pow(peak, 2.2)
+		else:
+			lamp = DirectionalLight3D.new()
+			# Stock clamps ambient plus diffuse to white, so an over-bright sun only fills what is left.
+			var lit: Color = (ambient + Color(diffuse, 0.0)).clamp()
+			var fill: Color = lit.srgb_to_linear() - ambient.srgb_to_linear()
+			lamp.light_color = Color(fill, 1.0).linear_to_srgb()
 		lamp.light_specular = 0.0
 		var mount: Node3D = _scene
 		var origin: Vector3 = Vector3.ZERO
@@ -173,7 +182,7 @@ func _light_scene(lights: Array) -> void:
 		else:
 			# A directional M2 light shines down its bone's up axis.
 			lamp.basis = Basis(Vector3.RIGHT, -PI / 2.0)
-	_environment.ambient_light_color = Color(ambient, 1.0)
+	_environment.ambient_light_color = ambient
 
 
 # An M2 camera keeps a diagonal FOV; the client divides it down for the frame it draws into.

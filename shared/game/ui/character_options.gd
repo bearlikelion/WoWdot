@@ -103,11 +103,12 @@ static func scene_name(race: int) -> String:
 	return SCENE_STAND_INS.get(file, file)
 
 
-static func apply_scene(frame: WowModelFrame, race: int) -> void:
+# The stock select screen draws its scene unfogged; only character creation keeps the fog.
+static func apply_scene(frame: WowModelFrame, race: int, fogged: bool = true) -> void:
 	var scene: String = scene_name(race)
 	frame.model_file = SCENE_PATH % [scene, scene]
 	var fog: Array = SCENE_FOG.get(scene, [Color.BLACK, 0.0])
-	frame.set_fog(fog[0], 0.0, fog[1])
+	frame.set_fog(fog[0], 0.0, fog[1] if fogged else 0.0)
 
 
 # Glue scene cameras frame the native model; the display scale (tauren 1.35) is for the world.

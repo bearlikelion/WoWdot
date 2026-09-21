@@ -61,11 +61,14 @@ func _compare_with_server(tile: Node3D) -> void:
 	for a: int in 129:
 		for b: int in 129:
 			var corner: float = ours[(2 * a) * HEIGHT_GRID + 2 * b] * HEIGHT_STEP
-			worst = max(worst, absf(corner - v9[a * 129 + b]))
+			if not is_nan(corner):
+				worst = max(worst, absf(corner - v9[a * 129 + b]))
 	for a: int in 128:
 		for b: int in 128:
 			var centre: float = ours[(2 * a + 1) * HEIGHT_GRID + 2 * b + 1] * HEIGHT_STEP
-			worst = max(worst, absf(centre - v8[a * 128 + b]))
+			# A NaN sample is a terrain hole, which the server map keeps a height for.
+			if not is_nan(centre):
+				worst = max(worst, absf(centre - v8[a * 128 + b]))
 	print("largest height difference against the server map: %.4f" % worst)
 	_check(worst < MAX_ERROR, "collision heights match the server map")
 

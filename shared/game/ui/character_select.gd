@@ -63,7 +63,7 @@ func _ready() -> void:
 	_delete_edit.text_submitted.connect(func(_text: String) -> void: _confirm_delete())
 	_delete_confirm.pressed.connect(_confirm_delete)
 	_delete_cancel.pressed.connect(_delete_dialog.hide)
-	CharacterOptions.apply_scene(_model, DEFAULT_RACE)
+	CharacterOptions.apply_scene(_model, DEFAULT_RACE, false)
 
 
 func _process(delta: float) -> void:
@@ -121,7 +121,7 @@ func select(index: int) -> void:
 		return
 	var character: Dictionary = _characters[index]
 	%CharSelectCharacterName.text = character["name"]
-	CharacterOptions.apply_scene(_model, character["race"])
+	CharacterOptions.apply_scene(_model, character["race"], false)
 	_model.facing = 0.0
 	_model.show_character(CharacterOptions.character_model(CharacterModels.listed_look(character)))
 

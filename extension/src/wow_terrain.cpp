@@ -155,6 +155,10 @@ PackedFloat32Array collision_heights(const pipeline::ADTTerrain &terrain) {
 					h = outer(row2 / 2, col2 / 2);
 				}
 				h += chunk.position[2];
+				// Jolt drops every cell touching a NaN sample, so the samples inside a hole block clear exactly its cells.
+				if (row2 % 4 != 0 && col2 % 4 != 0 && chunk.isHole(row2 / 2, col2 / 2)) {
+					h = NAN;
+				}
 			}
 			// HeightMapShape3D rows run along Godot +Z (WoW -X), columns along Godot +X (WoW -Y).
 			out[j * HEIGHT_GRID + i] = h / HEIGHT_STEP;
@@ -347,7 +351,6 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 		root->add_child(instance);
 	}
 
-	// ponytail: heightmap collision ignores MCNK holes (cave mouths); add hole-aware triangles when a cave needs walking into.
 	Ref<HeightMapShape3D> shape;
 	shape.instantiate();
 	shape->set_map_width(HEIGHT_GRID);
