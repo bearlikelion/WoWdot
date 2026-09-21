@@ -11,6 +11,7 @@ const OPTIONS: Dictionary[StringName, bool] = {
 	&"status_bar_text": false,
 	&"show_buff_durations": true,
 	&"auto_quest_watch": true,
+	&"instant_quest_text": false,
 	&"chat_bubbles": true,
 	&"party_chat_bubbles": false,
 	&"show_player_names": true,

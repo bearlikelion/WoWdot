@@ -100,6 +100,8 @@ func _process(delta: float) -> void:
 	if _written < 0.0:
 		return
 	_written += delta * QUEST_DESCRIPTION_GRADIENT_CPS
+	if WowAssets.interface.is_on(&"instant_quest_text"):
+		_written = INF
 	_description.visible_characters = int(_written)
 	if _written >= _description.get_total_character_count():
 		_written = -1.0

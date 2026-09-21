@@ -31,14 +31,19 @@ const CHECK_TEXTS: Dictionary[int, String] = {
 	# This client's own, so it names itself rather than a global string.
 	70: "Show Map Landmarks",
 }
-# The options this client answers; the rest stay on show but greyed out.
+# The options this client answers; the rest are hidden.
 const CHECK_OPTIONS: Dictionary[int, StringName] = {
 	1: &"invert_mouse", 2: &"status_bar_text", 20: &"show_helm", 21: &"show_player_names",
 	30: &"show_npc_names", 31: &"show_cloak", 33: &"multi_bar_1", 34: &"multi_bar_2",
 	35: &"multi_bar_3", 36: &"multi_bar_4", 37: &"chat_bubbles", 38: &"party_chat_bubbles",
-	39: &"show_buff_durations", 66: &"auto_quest_watch", 67: &"show_own_name",
+	39: &"show_buff_durations", 42: &"instant_quest_text", 66: &"auto_quest_watch", 67: &"show_own_name",
 	70: &"show_map_pois",
 }
+# Sliders and dropdowns, none of which this client answers yet.
+const UNANSWERED: PackedStringArray = [
+	"Slider1", "Slider2", "Slider3", "Slider4", "ClickCameraDropDown", "CameraDropDown",
+	"TargetofTargetDropDown", "CombatTextDropDown",
+]
 
 # What the options stood at when the window opened, so Cancel can put them back.
 var _opened: Dictionary[StringName, bool] = {}
@@ -56,7 +61,19 @@ func _ready() -> void:
 		if CHECK_OPTIONS.has(number):
 			check.pressed.connect(_on_check_pressed.bind(number))
 		else:
-			check.disabled = true
+			check.hide()
+	for control: String in UNANSWERED:
+		var unanswered: Control = find_child("UIOptionsFrame" + control, true, false)
+		if unanswered:
+			unanswered.hide()
+	for section: Node in $BasicOptions.get_children() + $AdvancedOptions.get_children():
+		if section is BaseButton:
+			continue
+		var buttons: Array[Node] = section.find_children("*", "BaseButton", false, false)
+		(section as Control).visible = buttons.any(func(button: Node) -> bool: return button.visible)
+	%UIOptionsFrameResetTutorials.pressed.connect(
+		WowClient.session.send_packet.bind("CMSG_TUTORIAL_RESET", PackedByteArray())
+	)
 	%UIOptionsFrameOkay.pressed.connect(_on_okay_pressed)
 	%UIOptionsFrameCancel.pressed.connect(close_requested.emit)
 	%UIOptionsFrameDefaults.pressed.connect(_on_defaults_pressed)
