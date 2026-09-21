@@ -37,7 +37,9 @@ func _ready() -> void:
 func refresh() -> void:
 	if not is_visible_in_tree():
 		return
-	var total_key: String = "WHO_FRAME_TOTAL_TEMPLATE" if _total == 1 else "WHO_FRAME_TOTAL_TEMPLATE_P1"
+	var total_key: String = "WHO_FRAME_TOTAL_TEMPLATE"
+	if _total != 1:
+		total_key += "_P1"
 	%WhoFrameTotals.text = WowStrings.format(WowStrings.get_text(total_key), [_total])
 	_scroll.set_range(maxi(_rows.size() - ROWS, 0))
 	for i: int in ROWS:
