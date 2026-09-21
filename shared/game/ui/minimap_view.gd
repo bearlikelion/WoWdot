@@ -19,11 +19,16 @@ const CORPSE_OUTLINE: Color = Color(0.1, 0.08, 0.02)
 const CORPSE_SIZE: float = 10.0
 # A corpse beyond the edge rides the rim, as it does in the stock minimap.
 const CORPSE_MARGIN: float = 6.0
+const PING_SECONDS: float = 5.0
+const PING_COLOR: Color = Color(1.0, 0.82, 0.0)
+const PING_SOUND: String = "MapPing"
 
 var _map_dir: String = ""
 var _position: Vector3 = Vector3.ZERO
 var _corpse: Vector3 = Vector3.ZERO
 var _corpse_map: int = -1
+var _ping: Vector3 = Vector3.ZERO
+var _ping_left: float = 0.0
 
 @onready var _arrow: TextureRect = %MinimapArrow
 
@@ -35,6 +40,27 @@ func _ready() -> void:
 	material = mask
 	resized.connect(func() -> void: mask.set_shader_parameter("size", size))
 	_arrow.pivot_offset = _arrow.size / 2.0
+	WowClient.session.packet_received.connect(_on_packet_received)
+
+
+func _process(delta: float) -> void:
+	if _ping_left > 0.0:
+		_ping_left -= delta
+		queue_redraw()
+
+
+# MSG_MINIMAP_PING: a click tells the party where, and the server passes it to everyone but the sender.
+func _gui_input(event: InputEvent) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click == null or not click.pressed or click.button_index != MOUSE_BUTTON_LEFT:
+		return
+	var yards: Vector2 = (click.position - size / 2.0) * ZOOM_DIAMETERS[zoom] / size.x
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_float(0, _position.x - yards.y)
+	payload.encode_float(4, _position.y - yards.x)
+	WowClient.session.send_packet("MSG_MINIMAP_PING", payload)
+	_show_ping(Vector3(_position.x - yards.y, _position.y - yards.x, 0.0))
 
 
 # WoW position (yards) and facing of the player on the named map directory, such as "Azeroth".
@@ -70,6 +96,10 @@ func _draw() -> void:
 			draw_texture_rect(image, Rect2(corner, Vector2(tile_pixels, tile_pixels)), false)
 	if _corpse_map >= 0:
 		_draw_corpse(center, tile_pixels)
+	if _ping_left > 0.0:
+		var tile: Vector2 = Vector2(32.0 - _ping.y / TILE_YARDS, 32.0 - _ping.x / TILE_YARDS)
+		var pulse: float = 4.0 + 6.0 * fmod(_ping_left, 1.0)
+		draw_arc(size / 2.0 + (tile - center) * tile_pixels, pulse, 0.0, TAU, 24, PING_COLOR, 2.0)
 
 
 func _draw_corpse(center: Vector2, tile_pixels: float) -> void:
@@ -86,3 +116,14 @@ func _draw_corpse(center: Vector2, tile_pixels: float) -> void:
 	]:
 		draw_rect(bar.grow(1.0), CORPSE_OUTLINE)
 		draw_rect(bar, CORPSE_COLOR)
+
+
+func _show_ping(wow_position: Vector3) -> void:
+	_ping = wow_position
+	_ping_left = PING_SECONDS
+	WowAssets.audio.play_sound(PING_SOUND)
+
+
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "MSG_MINIMAP_PING":
+		_show_ping(Vector3(payload.decode_float(8), payload.decode_float(12), 0.0))

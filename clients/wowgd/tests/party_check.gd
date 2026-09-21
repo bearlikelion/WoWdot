@@ -41,6 +41,10 @@ func _run() -> void:
 		return _finish("the partner never reached the world")
 	await _frames(60)
 	var session: WowSession = WowClient.session
+	# Other checks leave this character wherever they finished, and the unit menu needs the partner in sight.
+	session.send_chat(WowSession.CHAT_SAY, ".goname " + PARTNER)
+	await _until(func() -> bool: return _main.world.player().active, 20000)
+	await _frames(240)
 	var hud: Hud = _main.world.hud()
 	var me: String = session.get_object_name(session.get_player_guid())
 	var popup: StaticPopup = hud.get_node("%UIPanels").get_node("%StaticPopup1")
@@ -60,6 +64,12 @@ func _run() -> void:
 	var bar: TextureProgressBar = first.get_node("HealthBar")
 	_check(await _until(func() -> bool: return bar.value > 0.0, 5000),
 			"the partner's health shows, in sight or not")
+	var ping: PackedByteArray = []
+	ping.resize(8)
+	_partner.send_packet("MSG_MINIMAP_PING", ping)
+	var minimap: MinimapView = hud.get_node("%MinimapCluster").get_node("%Minimap")
+	_check(await _until(func() -> bool: return minimap.get("_ping_left") > 0.0, 5000),
+			"the partner's minimap ping shows")
 	_capture("user://party_frame.png")
 
 	var menu: DropDownList = hud.get_node("%UnitMenu")
