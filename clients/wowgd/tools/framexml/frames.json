@@ -367,6 +367,11 @@
    "out": "ui/raid_group_button.tscn"
   },
   {
+   "frame": "BattlefieldFrame",
+   "out": "ui/battlefield_frame.tscn",
+   "script": "res://game/ui/battlefield_frame.gd"
+  },
+  {
    "frame": "TutorialFrame",
    "out": "ui/tutorial_frame.tscn",
    "script": "res://game/ui/tutorial_frame.gd"

@@ -9,6 +9,7 @@ var pet: Pet = Pet.new(session)
 var tutorials: Tutorials = Tutorials.new(session)
 var macros: Macros = Macros.new(session)
 var targeting: ItemTargeting = ItemTargeting.new(session)
+var battlegrounds: Battlegrounds = Battlegrounds.new(session)
 
 
 func _ready() -> void:
@@ -17,6 +18,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	session.poll()
+
+
+# The name players see, such as Warsong Gulch, where map_name gives the folder the map loads from.
+func map_display_name(map_id: int) -> String:
+	var maps: WowDBC = WowDBC.open(WowAssets.archive, "Map")
+	var row: int = maps.find(map_id)
+	return maps.get_string(row, "MapName") if row >= 0 else ""
 
 
 func map_name(map_id: int) -> String:

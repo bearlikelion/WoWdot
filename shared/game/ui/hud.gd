@@ -180,6 +180,10 @@ func _ready() -> void:
 	_dress_up.open_requested.connect(_panels.show_panel.bind(_dress_up))
 	ItemButton.dress_up = _dress_up.try_on
 	_inspect.open_requested.connect(_panels.show_panel.bind(_inspect))
+	WowClient.battlegrounds.queue_changed.connect(_on_battlefield_status)
+	(_panels.get_node("%BattlefieldFrame") as BattlefieldFrame).set_portrait(
+		_player_frame.portrait_texture()
+	)
 	_taxi.open_requested.connect(_panels.show_panel.bind(_taxi))
 	_taxi.error_raised.connect(show_error)
 	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
@@ -391,6 +395,21 @@ func _on_logout_response(reader: PacketReader) -> void:
 		_popup.count_down(
 			WowStrings.get_text("CAMP_TIMER"), LOGOUT_SECONDS,
 			WowClient.session.send_packet.bind("CMSG_LOGOUT_CANCEL", PackedByteArray()),
+		)
+
+
+# A line in chat while waiting in a queue, and the stock entry prompt when a place opens.
+func _on_battlefield_status(_slot: int, status: Battlegrounds.Status, map_id: int) -> void:
+	var battleground: String = WowClient.map_display_name(map_id)
+	var battlegrounds: Battlegrounds = WowClient.battlegrounds
+	if status == Battlegrounds.Status.WAIT_QUEUE:
+		var waiting: String = WowStrings.get_text("BATTLEFIELD_IN_QUEUE").get_slice("\n", 0)
+		add_system_line(waiting % battleground)
+	elif status == Battlegrounds.Status.WAIT_JOIN:
+		_popup.ask(
+			WowStrings.get_text("CONFIRM_BATTLEFIELD_ENTRY") % battleground,
+			battlegrounds.enter.bind(map_id), "ENTER_BATTLE", "LEAVE_QUEUE",
+			battlegrounds.abandon.bind(map_id),
 		)
 
 

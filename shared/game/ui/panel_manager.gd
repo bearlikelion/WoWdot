@@ -34,6 +34,7 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"DressUpFrame": [Area.LEFT, 0],
 	&"InspectFrame": [Area.LEFT, 0],
 	&"MacroFrame": [Area.LEFT, 0],
+	&"BattlefieldFrame": [Area.LEFT, 0],
 	&"TaxiFrame": [Area.LEFT, 0],
 	&"LootFrame": [Area.LEFT, 0],
 	&"WorldMapFrame": [Area.FULL, 0],
@@ -84,6 +85,7 @@ func _ready() -> void:
 	%GameMenuFrame.key_bindings_requested.connect(show_panel.bind(%KeyBindingFrame))
 	%GameMenuFrame.macros_requested.connect(show_panel.bind(%MacroFrame))
 	%MacroFrame.open_requested.connect(show_panel.bind(%MacroFrame))
+	%BattlefieldFrame.open_requested.connect(show_panel.bind(%BattlefieldFrame))
 	%KeyBindingFrame.close_requested.connect(show_panel.bind(%GameMenuFrame))
 	for container: ContainerFrame in _containers:
 		container.closed.connect(_on_bag_closed.bind(container))

@@ -18,6 +18,9 @@ const ARATHI_BASIN: int = 529
 # A character stands in at most three queues at once.
 const QUEUE_SLOTS: int = 3
 
+## The battlemaster whose list arrived last, which a join has to name.
+var battlemaster: int = 0
+
 var _session: WowSession
 var _queues: Array[Dictionary] = []
 var _states: Dictionary[int, int] = {}
@@ -94,7 +97,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	var reader: PacketReader = PacketReader.new(payload)
 	match opcode:
 		"SMSG_BATTLEFIELD_LIST":
-			reader.u64()
+			battlemaster = reader.u64()
 			var map_id: int = reader.u32()
 			reader.u8()
 			var instances: PackedInt32Array = []

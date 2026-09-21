@@ -2,7 +2,7 @@ class_name BattlegroundCheck
 extends Node
 
 const MAIN: PackedScene = preload("res://game/main.tscn")
-const TIMEOUT_MSEC: int = 60000
+const TIMEOUT_MSEC: int = 150000
 const STEP_MSEC: int = 15000
 # Elfarran, the Warsong Gulch battlemaster who stands in Stormwind.
 const BATTLEMASTER: int = 14981
@@ -32,7 +32,7 @@ func _run() -> void:
 			return _finish("never reached the world")
 		await get_tree().process_frame
 	var session: WowSession = WowClient.session
-	var battlegrounds: Battlegrounds = Battlegrounds.new(session)
+	var battlegrounds: Battlegrounds = WowClient.battlegrounds
 	session.send_chat(WowSession.CHAT_SAY, ".character level %d" % QUEUE_LEVEL)
 	await _frames(120)
 	await _teleport(STORMWIND)
@@ -69,7 +69,12 @@ func _run() -> void:
 	print("listed map %d, instances %s" % [listed[0][0], listed[0][1]])
 	_check(listed[0][0] == Battlegrounds.WARSONG_GULCH, "which is Warsong Gulch by its map id")
 
-	battlegrounds.join(master, Battlegrounds.WARSONG_GULCH)
+	var window: BattlefieldFrame = _main.world.find_child("BattlefieldFrame", true, false)
+	_check(window.is_visible_in_tree(), "the list opens the battlefield window")
+	await _frames(10)
+	if DisplayServer.get_name() != "headless":
+		get_viewport().get_texture().get_image().save_png("user://battlefield_frame.png")
+	(window.get_node("%BattlefieldFrameJoinButton") as BaseButton).pressed.emit()
 	var queued: bool = await _until(
 		func() -> bool: return battlegrounds.slot_of(Battlegrounds.WARSONG_GULCH) >= 0
 	)

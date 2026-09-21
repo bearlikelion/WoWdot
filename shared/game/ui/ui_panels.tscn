@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" path="res://ui/inspect_frame.tscn" id="34_inspect"]
 [ext_resource type="PackedScene" path="res://ui/macro_frame.tscn" id="35_macro"]
 [ext_resource type="PackedScene" path="res://ui/macro_popup_frame.tscn" id="36_macro_popup"]
+[ext_resource type="PackedScene" path="res://ui/battlefield_frame.tscn" id="37_battlefield"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -149,6 +150,11 @@ layout_mode = 1
 popup = NodePath("../MacroPopupFrame")
 
 [node name="MacroPopupFrame" parent="." instance=ExtResource("36_macro_popup")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="BattlefieldFrame" parent="." instance=ExtResource("37_battlefield")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
