@@ -15,11 +15,6 @@ const CHARACTER_MARGIN: float = 1.15
 		model_file = value
 		if is_node_ready():
 			_load_scene()
-# render_priority is a signed byte, so a model with more batches than this keeps the tail flat.
-const MAX_PRIORITY: int = 127
-# A glue scene is only dressed for the view the stock client frames, and the WotLK login camera
-# asks for 120 degrees across the diagonal, which would see past the set to the sky bowl behind it.
-const MAX_SCENE_FOV: float = 60.0
 # GlueParent.lua's SetLighting passes 0.3 where a screen names no glow of its own.
 const DEFAULT_GLOW: float = 0.3
 
@@ -115,7 +110,7 @@ func _load_scene() -> void:
 	if _scene == null:
 		return
 	_slot.add_child(_scene)
-	_order_transparency(_scene)
+	_paint_scene(_scene)
 	# The scene's own sequence drives the sky, the snow and the wyrm's flight past the citadel.
 	var player: AnimationPlayer = _scene.get_node_or_null("AnimationPlayer")
 	if player != null and not player.get_animation_list().is_empty():
@@ -135,38 +130,30 @@ func _load_scene() -> void:
 	_turn_character()
 
 
-# M2 batches are authored back to front, and the viewport would otherwise sort them by distance,
-# which draws a sky dome centred on the camera over the scene inside it.
-func _order_transparency(root: Node3D) -> void:
-	var priority: int = 0
+# A glue scene is painted art: its textures carry their own light, so draw it flat.
+func _paint_scene(root: Node3D) -> void:
 	for mesh: MeshInstance3D in root.find_children("*", "MeshInstance3D", true, false):
 		if mesh.mesh == null:
 			continue
 		for surface: int in mesh.mesh.get_surface_count():
 			# A scrolling surface already carries an override the texture track writes to, so
-			# order that one rather than replacing it and leaving the track on a stale material.
+			# dress that one rather than replacing it and leaving the track on a stale material.
 			var material: BaseMaterial3D = mesh.get_surface_override_material(surface)
 			if material == null:
-				var shared: BaseMaterial3D = mesh.mesh.surface_get_material(surface)
-				if shared == null or shared.transparency != BaseMaterial3D.TRANSPARENCY_ALPHA:
+				material = mesh.mesh.surface_get_material(surface)
+				if material == null:
 					continue
-				material = shared.duplicate()
+				material = material.duplicate()
 				mesh.set_surface_override_material(surface, material)
-			elif material.transparency != BaseMaterial3D.TRANSPARENCY_ALPHA:
-				continue
-			material.render_priority = mini(priority, MAX_PRIORITY)
-			priority += 1
+			material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 
 
-# M2 cameras keep a diagonal FOV, so a wider frame sees a little more at the sides and less above.
+# An M2 camera keeps a diagonal FOV; the client divides it down for the frame it draws into.
 func _fit_fov() -> void:
 	if _diagonal_fov <= 0.0:
 		return
 	var aspect: float = float(_viewport.size.x) / _viewport.size.y
-	_camera.fov = minf(
-		rad_to_deg(2.0 * atan(tan(_diagonal_fov / 2.0) / sqrt(1.0 + aspect * aspect))),
-		MAX_SCENE_FOV,
-	)
+	_camera.fov = rad_to_deg(_diagonal_fov / sqrt(1.0 + aspect * aspect))
 
 
 func _turn_character() -> void:

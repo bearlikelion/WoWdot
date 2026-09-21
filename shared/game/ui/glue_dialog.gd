@@ -21,8 +21,11 @@ var kind: Kind = Kind.STATUS
 
 func _ready() -> void:
 	_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	%GlueDialogButton2.hide()
-	%GlueDialogEditBox.hide()
+	# The WotLK dialog carries a third button; neither client shows more than the first.
+	for spare: String in ["%GlueDialogButton2", "%GlueDialogButton3", "%GlueDialogEditBox"]:
+		var node: CanvasItem = get_node_or_null(spare) as CanvasItem
+		if node != null:
+			node.hide()
 	_button.pressed.connect(_on_button_pressed)
 
 

@@ -57,7 +57,7 @@ class WowLoader : public RefCounted {
 	Ref<ArrayMesh> get_m2_mesh(const String &path, const M2Data &data, const Dictionary &skins, const PackedInt32Array &geosets);
 	Ref<AnimationLibrary> get_m2_animations(const String &path, const M2Data &data);
 	Ref<AnimationLibrary> get_m2_global_animations(const String &path, const M2Data &data);
-	Ref<StandardMaterial3D> get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint);
+	Ref<StandardMaterial3D> get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint, const Variant &second = Variant(), int second_unit = -2);
 	String animation_name(uint32_t id, uint32_t variation);
 	void add_texture_animation(Node3D *root, MeshInstance3D *mesh, const wowee::pipeline::M2Model &model, const PackedInt32Array &geosets);
 	void add_particles(Node3D *root, Skeleton3D *skeleton, const wowee::pipeline::M2Model &model);

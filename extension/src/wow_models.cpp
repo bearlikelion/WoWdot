@@ -28,6 +28,7 @@
 #include <cmath>
 #include <cstdio>
 #include <optional>
+#include <set>
 #include <utility>
 #include <vector>
 
@@ -61,6 +62,10 @@ constexpr float DOODAD_FURTHEST_RANGE = 600.0f;
 
 // The first M2 version that keeps its geometry in .skin files.
 constexpr uint32_t M2_SKIN_VERSION = 264;
+
+// A texture unit that samples spherical reflection coordinates rather than a UV set.
+constexpr int M2_UNIT_ENV = -3;
+constexpr float ENV_SHEEN = 0.5f;
 
 constexpr uint32_t WMO_GROUP_HAS_VERTEX_COLORS = 0x4;
 constexpr uint32_t WMO_GROUP_OCEAN = 0x80000;
@@ -253,6 +258,59 @@ Ref<CurveTexture> particle_sizes(const M2ParticleEmitter &emitter, float &larges
 }
 
 // The batches a mesh keeps, in surface order, so animation can find the material of each one.
+// How long a track's keys run: a global sequence's own period, else what sequence 0 spans.
+uint32_t track_span(const M2Model &model, const M2AnimationTrack &track) {
+	uint32_t period = 0;
+	if (track.globalSequence >= 0 && static_cast<size_t>(track.globalSequence) < model.globalSequenceDurations.size()) {
+		period = model.globalSequenceDurations[static_cast<size_t>(track.globalSequence)];
+	}
+	uint32_t span = 0;
+	if (!track.sequences.empty()) {
+		for (const uint32_t stamp : track.sequences[0].timestamps) {
+			span = std::max(span, stamp);
+		}
+	}
+	return std::max({ period, span, 1u });
+}
+
+std::vector<std::pair<uint32_t, float>> float_keys(const M2Model &model, const M2AnimationTrack &track) {
+	const std::optional<size_t> sequence = track.globalSequence >= 0 ? std::nullopt : std::optional<size_t>(0);
+	return track_keys(model, track, sequence, track_span(model, track), &M2AnimationTrack::SequenceKeys::floatValues);
+}
+
+float float_at(const std::vector<std::pair<uint32_t, float>> &keys, uint32_t msec, float fallback) {
+	if (keys.empty()) {
+		return fallback;
+	}
+	if (msec <= keys.front().first) {
+		return keys.front().second;
+	}
+	for (size_t k = 1; k < keys.size(); k++) {
+		if (keys[k].first >= msec) {
+			const auto &[before, from] = keys[k - 1];
+			const auto &[after, to] = keys[k];
+			const float span = static_cast<float>(after - before);
+			return span > 0.0f ? from + (to - from) * (static_cast<float>(msec - before) / span) : to;
+		}
+	}
+	return keys.back().second;
+}
+
+// A batch that rests invisible can still fade in, so its keyed alpha keeps it in the mesh.
+bool batch_fades(const M2Model &model, const M2Batch &batch) {
+	if (batch.colorIndex < model.colorAlphaTracks.size()
+			&& float_keys(model, model.colorAlphaTracks[batch.colorIndex]).size() > 1) {
+		return true;
+	}
+	if (batch.transparencyIndex < model.textureWeightLookup.size()) {
+		const uint16_t slot = model.textureWeightLookup[batch.transparencyIndex];
+		if (slot < model.textureWeightTracks.size()) {
+			return float_keys(model, model.textureWeightTracks[slot]).size() > 1;
+		}
+	}
+	return false;
+}
+
 std::vector<uint32_t> visible_batches(const M2Model &model, const PackedInt32Array &geosets) {
 	std::vector<uint32_t> kept;
 	for (uint32_t b = 0; b < model.batches.size(); b++) {
@@ -263,7 +321,7 @@ std::vector<uint32_t> visible_batches(const M2Model &model, const PackedInt32Arr
 		if (!geosets.is_empty() && !geosets.has(batch.submeshId)) {
 			continue;
 		}
-		if (batch_tint(model, batch).a < 0.01f) {
+		if (batch_tint(model, batch).a < 0.01f && !batch_fades(model, batch)) {
 			continue;
 		}
 		kept.push_back(b);
@@ -274,6 +332,45 @@ std::vector<uint32_t> visible_batches(const M2Model &model, const PackedInt32Arr
 Animation::InterpolationType interpolation(const M2AnimationTrack &track) {
 	// ponytail: hermite and bezier keys play back as linear.
 	return track.interpolationType == 0 ? Animation::INTERPOLATION_NEAREST : Animation::INTERPOLATION_LINEAR;
+}
+
+// A batch fades through its colour slot and its texture weight multiplied together.
+void add_tint_tracks(const Ref<Animation> &anim, const M2Model &model, const std::vector<uint32_t> &batches, const String &mesh_path, double &length) {
+	for (size_t surface = 0; surface < batches.size(); surface++) {
+		const M2Batch &batch = model.batches[batches[surface]];
+		std::vector<std::pair<uint32_t, float>> colour;
+		if (batch.colorIndex < model.colorAlphaTracks.size()) {
+			colour = float_keys(model, model.colorAlphaTracks[batch.colorIndex]);
+		}
+		std::vector<std::pair<uint32_t, float>> weight;
+		if (batch.transparencyIndex < model.textureWeightLookup.size()) {
+			const uint16_t slot = model.textureWeightLookup[batch.transparencyIndex];
+			if (slot < model.textureWeightTracks.size()) {
+				weight = float_keys(model, model.textureWeightTracks[slot]);
+			}
+		}
+		if (colour.size() < 2 && weight.size() < 2) {
+			continue;
+		}
+		std::set<uint32_t> times;
+		for (const auto &[msec, value] : colour) {
+			times.insert(msec);
+		}
+		for (const auto &[msec, value] : weight) {
+			times.insert(msec);
+		}
+		const Color rest = batch_tint(model, batch);
+		const glm::vec3 rgb = batch.colorIndex < model.colorRGBs.size() ? model.colorRGBs[batch.colorIndex] : glm::vec3(1.0f);
+		const int track = anim->add_track(Animation::TYPE_VALUE);
+		const String property = String(":surface_material_override/") + String::num_int64(surface) + String(":albedo_color");
+		anim->track_set_path(track, NodePath(mesh_path + property));
+		anim->track_set_interpolation_type(track, Animation::INTERPOLATION_LINEAR);
+		for (const uint32_t msec : times) {
+			const float alpha = float_at(colour, msec, rest.a) * float_at(weight, msec, 1.0f);
+			anim->track_insert_key(track, msec / 1000.0, Color(rgb.r, rgb.g, rgb.b, alpha));
+			length = std::max(length, msec / 1000.0);
+		}
+	}
 }
 
 // Texture transforms scroll and spin a batch's UVs, which is how water, fire and portals move.
@@ -292,18 +389,8 @@ Ref<Animation> build_uv_animation(const M2Model &model, const std::vector<uint32
 			continue;
 		}
 		const M2AnimationTrack &track = model.textureTransforms[slot].translation;
-		const bool global = track.globalSequence >= 0;
-		const uint32_t period = global
-				&& static_cast<size_t>(track.globalSequence) < model.globalSequenceDurations.size()
-				? model.globalSequenceDurations[static_cast<size_t>(track.globalSequence)]
-				: 0;
-		uint32_t span = 0;
-		if (!track.sequences.empty()) {
-			for (const uint32_t stamp : track.sequences[0].timestamps) {
-				span = std::max(span, stamp);
-			}
-		}
-		const auto keys = track_keys(model, track, global ? std::nullopt : std::optional<size_t>(0), std::max({ period, span, 1u }), &M2AnimationTrack::SequenceKeys::vec3Values);
+		const std::optional<size_t> sequence = track.globalSequence >= 0 ? std::nullopt : std::optional<size_t>(0);
+		const auto keys = track_keys(model, track, sequence, track_span(model, track), &M2AnimationTrack::SequenceKeys::vec3Values);
 		if (keys.size() < 2) {
 			continue;
 		}
@@ -316,6 +403,7 @@ Ref<Animation> build_uv_animation(const M2Model &model, const std::vector<uint32
 			length = std::max(length, msec / 1000.0);
 		}
 	}
+	add_tint_tracks(anim, model, batches, mesh_path, length);
 	anim->set_length(std::max(length, 0.001));
 	return anim;
 }
@@ -372,10 +460,12 @@ String WowLoader::animation_name(uint32_t id, uint32_t variation) {
 }
 
 // The texture is an archive path or a ready Texture2D, such as a composited character skin.
-Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint) {
+Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint, const Variant &second, int second_unit) {
 	const Ref<Texture2D> ready = texture;
 	const String texture_key = ready.is_valid() ? "#" + String::num_int64(ready->get_instance_id()) : String(texture).to_lower();
-	const std::string key = std::string(texture_key.utf8().get_data()) + "|" + std::to_string(blend_mode) + "|" + std::to_string(flags) + "|" + std::to_string(vertex_color) + "|" + std::to_string(wmo) + "|" + std::to_string(tint.to_rgba32());
+	const Ref<Texture2D> second_ready = second;
+	const String second_key = second_ready.is_valid() ? "#" + String::num_int64(second_ready->get_instance_id()) : String(second).to_lower();
+	const std::string key = std::string(texture_key.utf8().get_data()) + "|" + std::to_string(blend_mode) + "|" + std::to_string(flags) + "|" + std::to_string(vertex_color) + "|" + std::to_string(wmo) + "|" + std::to_string(tint.to_rgba32()) + "|" + std::string(second_key.utf8().get_data()) + "|" + std::to_string(second_unit);
 	{
 		std::lock_guard<std::mutex> lock(cache_mutex);
 		auto it = materials.find(key);
@@ -416,6 +506,25 @@ Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t
 			mat->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
 			break;
 	}
+	Color paint = tint;
+	if (second_unit == M2_UNIT_ENV) {
+		// ponytail: a flat additive sheen stands in for spherical reflection until we write a shader.
+		mat->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
+		mat->set_blend_mode(BaseMaterial3D::BLEND_MODE_ADD);
+		mat->set_depth_draw_mode(BaseMaterial3D::DEPTH_DRAW_DISABLED);
+		paint = Color(tint.r * ENV_SHEEN, tint.g * ENV_SHEEN, tint.b * ENV_SHEEN, tint.a);
+	} else if (second_unit >= 0) {
+		Ref<Texture2D> layer = second_ready;
+		if (layer.is_null()) {
+			layer = load_texture(second);
+		}
+		if (layer.is_valid()) {
+			mat->set_feature(BaseMaterial3D::FEATURE_DETAIL, true);
+			mat->set_texture(BaseMaterial3D::TEXTURE_DETAIL_ALBEDO, layer);
+			mat->set_detail_blend_mode(BaseMaterial3D::BLEND_MODE_MUL);
+			mat->set_detail_uv(second_unit > 0 ? BaseMaterial3D::DETAIL_UV_2 : BaseMaterial3D::DETAIL_UV_1);
+		}
+	}
 	if (flags & UNLIT) {
 		mat->set_shading_mode(BaseMaterial3D::SHADING_MODE_UNSHADED);
 	}
@@ -428,8 +537,8 @@ Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t
 	if (vertex_color) {
 		mat->set_flag(BaseMaterial3D::FLAG_ALBEDO_FROM_VERTEX_COLOR, true);
 	}
-	if (tint != Color(1.0f, 1.0f, 1.0f, 1.0f)) {
-		mat->set_albedo(tint);
+	if (paint != Color(1.0f, 1.0f, 1.0f, 1.0f)) {
+		mat->set_albedo(paint);
 	}
 	if (tint.a < 1.0f) {
 		if (mat->get_transparency() == BaseMaterial3D::TRANSPARENCY_DISABLED && mat->get_blend_mode() == BaseMaterial3D::BLEND_MODE_MIX) {
@@ -510,11 +619,24 @@ Ref<ArrayMesh> WowLoader::get_m2_mesh(const String &path, const M2Data &data, co
 			const M2Texture &tex = model.textures[model.textureLookup[batch.textureIndex]];
 			texture = tex.type == 0 ? Variant(String(tex.filename.c_str())) : skins.get(static_cast<int64_t>(tex.type), String());
 		}
+		Variant second;
+		int second_unit = -1;
+		if (batch.textureCount > 1) {
+			const size_t unit = static_cast<size_t>(batch.textureUnit) + 1;
+			second_unit = unit < model.textureUnitLookup.size() ? static_cast<int>(model.textureUnitLookup[unit]) : 0;
+			if (second_unit == 0xFFFF) {
+				second_unit = M2_UNIT_ENV;
+			}
+			if (batch.textureIndex + 1 < model.textureLookup.size() && model.textureLookup[batch.textureIndex + 1] < model.textures.size()) {
+				const M2Texture &tex = model.textures[model.textureLookup[batch.textureIndex + 1]];
+				second = tex.type == 0 ? Variant(String(tex.filename.c_str())) : skins.get(static_cast<int64_t>(tex.type), String());
+			}
+		}
 		const M2Material material = batch.materialIndex < model.materials.size() ? model.materials[batch.materialIndex] : M2Material{ 0, 0 };
 		const int surface = mesh->get_surface_count();
 		mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, s.arrays());
 		mesh->surface_set_name(surface, "geoset_" + String::num_int64(batch.submeshId));
-		Ref<StandardMaterial3D> mat = get_material(texture, material.blendMode, material.flags, false, false, tint);
+		Ref<StandardMaterial3D> mat = get_material(texture, material.blendMode, material.flags, false, false, tint, second, second_unit);
 		if (batch.materialLayer > 0) {
 			mat = mat->duplicate();
 			mat->set_render_priority(batch.materialLayer);
@@ -674,10 +796,19 @@ void WowLoader::add_texture_animation(Node3D *root, MeshInstance3D *mesh, const 
 		return;
 	}
 	for (int t = 0; t < anim->get_track_count(); t++) {
-		const int surface = String(anim->track_get_path(t).get_subname(0)).get_slice("/", 1).to_int();
-		const Ref<Material> material = mesh->get_mesh()->surface_get_material(surface);
-		if (material.is_valid()) {
-			mesh->set_surface_override_material(surface, material->duplicate());
+		const NodePath path = anim->track_get_path(t);
+		const int surface = String(path.get_subname(0)).get_slice("/", 1).to_int();
+		Ref<BaseMaterial3D> material = mesh->get_surface_override_material(surface);
+		if (material.is_null()) {
+			material = mesh->get_mesh()->surface_get_material(surface);
+			if (material.is_null()) {
+				continue;
+			}
+			material = material->duplicate();
+			mesh->set_surface_override_material(surface, material);
+		}
+		if (String(path.get_subname(1)) == "albedo_color" && material->get_transparency() == BaseMaterial3D::TRANSPARENCY_DISABLED) {
+			material->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
 		}
 	}
 	Ref<AnimationLibrary> library;

@@ -32,12 +32,15 @@ func _ready() -> void:
 
 func _run() -> void:
 	var login: LoginScreen = _glue.get_node("%AccountLogin")
+	var dialog: GlueDialog = _glue.get_node("%GlueDialog")
+	_check(not (dialog.get_node("%GlueDialogButton3") as CanvasItem).visible,
+			"the WotLK dialog's third button stays hidden")
 	login.fill(REALMLIST, ACCOUNT, PASSWORD)
 	await _frames(30)
 	_capture("user://wotlk_login.png")
 	# WOWDOT_MOTION samples the glue scene's loop, which runs for over a minute.
 	if not OS.get_environment("WOWDOT_MOTION").is_empty():
-		for second: int in [4, 20, 35, 50, 62]:
+		for second: int in [4, 10, 18, 22, 26, 40, 62]:
 			await get_tree().create_timer(second - _elapsed).timeout
 			_elapsed = second
 			_capture("user://wotlk_login_%02d.png" % second)
@@ -118,11 +121,12 @@ func _frames(count: int) -> void:
 
 # Written only when a window is up, since a headless viewport has no texture.
 func _capture(path: String) -> void:
-	var image: Image = get_viewport().get_texture().get_image() if get_viewport().get_texture() \
-			else null
-	if image != null:
-		image.save_png(path)
-		print("wrote ", ProjectSettings.globalize_path(path))
+	if get_viewport().get_texture() == null:
+		return
+	# A locked screen never asks for a frame, so draw one instead of saving the last one from before.
+	RenderingServer.force_draw(false)
+	get_viewport().get_texture().get_image().save_png(path)
+	print("wrote ", ProjectSettings.globalize_path(path))
 
 
 func _check(condition: bool, what: String) -> bool:

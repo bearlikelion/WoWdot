@@ -29,6 +29,9 @@ func _dump(path: String) -> void:
 				print("  %s/%s: %.2fs, %d tracks, loop %d" % [
 					player.name, name, clip.length, clip.get_track_count(), clip.loop_mode,
 				])
+				if OS.get_environment("M2_DUMP_TRACKS") != "":
+					for track: int in clip.get_track_count():
+						print("    %s" % clip.track_get_path(track))
 			print("  %s autoplay '%s'" % [player.name, player.autoplay])
 		node.free()
 	for camera: Dictionary in info.get("cameras", []):
@@ -55,3 +58,4 @@ func _dump(path: String) -> void:
 			batch["geoset"], batch["blend"], batch["flags"], batch["texture_count"],
 			batch["texture_animation"], batch["tint"], texture,
 		])
+

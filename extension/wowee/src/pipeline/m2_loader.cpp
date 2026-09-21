@@ -1174,6 +1174,10 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
         model.textureLookup = readArray<uint16_t>(m2Data, header.ofsTexLookup, header.nTexLookup);
     }
 
+    if (header.nTexUnits > 0 && header.ofsTexUnits > 0) {
+        model.textureUnitLookup = readArray<uint16_t>(m2Data, header.ofsTexUnits, header.nTexUnits);
+    }
+
     // Parse color animation alpha tracks (M2Color: vec3 color track + fixed16 alpha track).
     // WotLK: two 20-byte M2TrackDisk headers (40 bytes/color).
     // Vanilla/TBC (<264): two 28-byte M2TrackDiskVanilla headers (56 bytes/color).
