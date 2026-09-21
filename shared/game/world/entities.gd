@@ -30,6 +30,7 @@ var _dressing: Dictionary[int, bool] = {}
 var _weapons: Dictionary[int, Array] = {}
 var _sheath_states: Dictionary[int, ItemModels.SheathState] = {}
 var _paths: Dictionary[int, Path] = {}
+var _swimmers: Dictionary[int, bool] = {}
 # Other players, carried forward between their relayed movement packets.
 var _motions: Dictionary[int, RemoteMotion] = {}
 var _game_object_displays: WowDBC
@@ -49,6 +50,7 @@ func _ready() -> void:
 	session.object_created.connect(_on_object_created)
 	session.object_moved.connect(_on_object_moved)
 	session.objects_destroyed.connect(_on_objects_destroyed)
+	session.packet_received.connect(_on_packet_received)
 	session.name_received.connect(_on_name_received)
 	session.object_updated.connect(_on_object_updated)
 	session.melee_swing.connect(_on_melee_swing)
@@ -143,7 +145,8 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 		path.facing = movement.get("orientation", NAN)
 		_paths[guid] = path
 		node.rotation.y = _heading(path.from, to)
-		UnitAnimations.set_base(node, ["Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk"])
+		var stride: String = "Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk"
+		UnitAnimations.set_base(node, ["Swim", stride] if _swimmers.has(guid) else [stride])
 		return
 	_paths.erase(guid)
 	if movement.has("flags"):
@@ -274,7 +277,17 @@ func _plate_text(guid: int) -> String:
 	return unit_name + ("\n<%s>" % title if not title.is_empty() else "")
 
 
+# SMSG_SPLINE_MOVE_START_SWIM and _STOP_SWIM: a server-moved unit takes to the water or leaves it.
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "SMSG_SPLINE_MOVE_START_SWIM":
+		_swimmers[PacketReader.new(payload).packed_guid()] = true
+	elif opcode == "SMSG_SPLINE_MOVE_STOP_SWIM":
+		_swimmers.erase(PacketReader.new(payload).packed_guid())
+
+
 func _on_objects_destroyed(guids: PackedInt64Array) -> void:
+	for gone: int in guids:
+		_swimmers.erase(gone)
 	for guid: int in guids:
 		_paths.erase(guid)
 		_motions.erase(guid)

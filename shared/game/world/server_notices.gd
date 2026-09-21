@@ -108,6 +108,22 @@ static func map_name(map_id: int) -> String:
 	return _maps.get_string(row, "MapName") if row >= 0 else ""
 
 
+# SMSG_RAID_INSTANCE_INFO: each saved raid's map, seconds until it resets, and instance id.
+static func raid_lockouts(payload: PackedByteArray) -> PackedStringArray:
+	var reader: PacketReader = PacketReader.new(payload)
+	var lines: PackedStringArray = []
+	for i: int in reader.u32():
+		var map: String = map_name(reader.u32())
+		var seconds: int = reader.u32()
+		var instance: int = reader.u32()
+		@warning_ignore("integer_division")
+		var left: String = "%dd %dh %dm" % [seconds / 86400, seconds / 3600 % 24, seconds / 60 % 60]
+		lines.append("%s (%d): %s" % [map, instance, left])
+	if lines.is_empty():
+		lines.append(WowStrings.get_text("NO_RAID_INSTANCES_SAVED", "You are not saved to any raids."))
+	return lines
+
+
 # SMSG_WHO: shown and matched counts, then name, guild, level, class, race and zone per player.
 static func who_lines(payload: PackedByteArray) -> PackedStringArray:
 	var reader: PacketReader = PacketReader.new(payload)

@@ -82,6 +82,10 @@ func _run() -> void:
 	_check(await _until(func() -> bool: return _line_with("total")), "/who is answered: %s" % _lines)
 
 	_lines.clear()
+	chat.call("_on_text_submitted", "/raidinfo")
+	_check(await _until(func() -> bool: return _line_with("saved")), "/raidinfo is answered: %s" % _lines)
+
+	_lines.clear()
 	var session: WowSession = WowClient.session
 	var before: int = session.get_field(session.get_player_guid(), "PLAYER_FLAGS") & 0x02
 	chat.call("_on_text_submitted", "/afk")

@@ -6,7 +6,7 @@ signal spell_used(spell_id: int)
 signal unit_selected(guid: int)
 
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
-enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE, DUEL }
+enum UnitMenuItem { INVITE, UNINVITE, LEAVE, TRADE, DUEL, RESET_INSTANCES }
 
 const UI_HEIGHT: float = 768.0
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
@@ -31,6 +31,8 @@ const OUT_OF_POWER: Array[String] = [
 ]
 # CHAT_TAB_SHOW_DELAY: the dock's tabs wait for the mouse to rest over the chat this long.
 const CHAT_TAB_SHOW_DELAY: float = 0.2
+# Unit menu ids from here up name a master loot candidate.
+const MASTER_LOOT_ID: int = 100
 const PLAYER_FLAG_AFK: int = 0x02
 const PLAYER_FLAG_DND: int = 0x04
 const CHANNEL_LIST_WAIT: float = 1.0
@@ -46,6 +48,8 @@ const CHAT_RESTRICTED_KEYS: Dictionary[int, String] = {
 
 var _area: int = 0
 var _away: int = 0
+var _loot_slot: int = 0
+var _loot_candidates: PackedInt64Array = []
 var _menu_name: String = ""
 var _menu_guid: int = 0
 var _duel: Duel
@@ -163,6 +167,7 @@ func _ready() -> void:
 	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
 	_loot.error_raised.connect(show_error)
 	_loot.message_added.connect(add_system_line)
+	_loot.master_loot_requested.connect(_show_master_loot_menu)
 	WowClient.session.taxi_path_discovered.connect(
 		func() -> void: show_notice(WowStrings.get_text("ERR_NEWTAXIPATH"))
 	)
@@ -296,6 +301,10 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_WHO":
 		for who: String in ServerNotices.who_lines(payload):
 			add_system_line(who)
+		return
+	if opcode == "SMSG_RAID_INSTANCE_INFO":
+		for lockout: String in ServerNotices.raid_lockouts(payload):
+			add_system_line(lockout)
 		return
 	if opcode == "SMSG_CHANNEL_LIST":
 		_list_channel(Channels.members(payload))
@@ -740,6 +749,10 @@ func _show_unit_menu(guid: int) -> void:
 	if guid == session.get_player_guid():
 		if PartyFrame.in_party():
 			entries.append({"text": WowStrings.get_text("PARTY_LEAVE"), "id": UnitMenuItem.LEAVE})
+		if may_change:
+			entries.append({
+				"text": WowStrings.get_text("RESET_INSTANCES"), "id": UnitMenuItem.RESET_INSTANCES,
+			})
 	elif PartyFrame.has_member(_menu_name):
 		if may_change:
 			entries.append({
@@ -758,7 +771,21 @@ func _show_unit_menu(guid: int) -> void:
 	_unit_menu.open(entries, get_viewport().get_mouse_position())
 
 
+func _show_master_loot_menu(slot: int, candidates: PackedInt64Array) -> void:
+	_loot_slot = slot
+	_loot_candidates = candidates
+	var entries: Array[Dictionary] = [{"text": WowStrings.get_text("GIVE_LOOT"), "title": true}]
+	for i: int in candidates.size():
+		var receiver: String = WowClient.session.get_object_name(candidates[i])
+		entries.append({"text": receiver, "id": MASTER_LOOT_ID + i})
+	entries.append({"text": WowStrings.get_text("CANCEL", "Cancel")})
+	_unit_menu.open(entries, get_viewport().get_mouse_position())
+
+
 func _on_unit_menu_pressed(id: int) -> void:
+	if id >= MASTER_LOOT_ID:
+		_loot.give(_loot_slot, _loot_candidates[id - MASTER_LOOT_ID])
+		return
 	match id as UnitMenuItem:
 		UnitMenuItem.INVITE:
 			PartyFrame.invite(_menu_name)
@@ -770,3 +797,5 @@ func _on_unit_menu_pressed(id: int) -> void:
 			_trade.start(_menu_guid)
 		UnitMenuItem.DUEL:
 			_duel.challenge(_menu_guid)
+		UnitMenuItem.RESET_INSTANCES:
+			WowClient.session.send_packet("CMSG_RESET_INSTANCES", PackedByteArray())

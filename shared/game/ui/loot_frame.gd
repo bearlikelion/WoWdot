@@ -5,6 +5,7 @@ signal close_requested
 signal open_requested
 signal error_raised(text: String)
 signal message_added(text: String)
+signal master_loot_requested(slot: int, candidates: PackedInt64Array)
 
 const BUTTON_COUNT: int = 4
 # SMSG_LOOT_RESPONSE with loot type 0 carries one of these instead of loot.
@@ -20,6 +21,7 @@ const COIN_ICONS: Array[String] = [
 ]
 const COIN_NAMES: PackedStringArray = ["COPPER", "SILVER", "GOLD"]
 const COIN_SLOT: int = -1
+const SLOT_TYPE_MASTER: int = 2
 const COIN_SOUND: String = "LOOTWINDOWCOINSOUND"
 const ITEM_SOUND: String = "INTERFACESOUND_CURSORDROPOBJECT"
 
@@ -27,6 +29,7 @@ var _guid: int = 0
 var _money: int = 0
 # Each is a wire slot, or COIN_SLOT for the money.
 var _slots: Array[int] = []
+var _candidates: PackedInt64Array = []
 var _items: Dictionary[int, Dictionary] = {}
 var _page: int = 0
 var _released: bool = true
@@ -53,6 +56,16 @@ static func loot(guid: int) -> void:
 	NpcDialog.send("CMSG_LOOT", guid)
 
 
+# CMSG_LOOT_MASTER_GIVE: the corpse, the slot and who gets it.
+func give(slot: int, receiver: int) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(17)
+	payload.encode_u64(0, _guid)
+	payload.encode_u8(8, slot)
+	payload.encode_u64(9, receiver)
+	WowClient.session.send_packet("CMSG_LOOT_MASTER_GIVE", payload)
+
+
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	match opcode:
 		"SMSG_LOOT_RESPONSE":
@@ -66,6 +79,14 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		"SMSG_LOOT_RELEASE_RESPONSE":
 			_released = true
 			close_requested.emit()
+		"SMSG_LOOT_MASTER_LIST":
+			_candidates.clear()
+			for i: int in payload.decode_u8(0):
+				_candidates.append(payload.decode_u64(1 + i * 8))
+		"SMSG_LOOT_ALL_PASSED":
+			var entry: int = payload.decode_u32(12)
+			var item_name: String = WowClient.session.get_item_info(entry).get("name", "")
+			message_added.emit(WowStrings.format(WowStrings.get_text("LOOT_ROLL_ALL_PASSED"), [item_name]))
 		"SMSG_LOOT_MONEY_NOTIFY":
 			var text: String = WowStrings.get_text("YOU_LOOT_MONEY")
 			message_added.emit(text % _money_text(payload.decode_u32(0)))
@@ -90,6 +111,7 @@ func _on_loot_received(payload: PackedByteArray) -> void:
 			"entry": payload.decode_u32(offset + 1),
 			"count": payload.decode_u32(offset + 5),
 			"display_id": payload.decode_u32(offset + 9),
+			"master": payload.decode_u8(offset + 21) == SLOT_TYPE_MASTER,
 		}
 		_slots.append(slot)
 		# Asking for the item's info fetches it, and its arrival redraws the rows.
@@ -158,6 +180,9 @@ func _on_button_pressed(index: int) -> void:
 	if slot == COIN_SLOT:
 		WowAssets.audio.play_sound(COIN_SOUND)
 		WowClient.session.send_packet("CMSG_LOOT_MONEY", PackedByteArray())
+		return
+	if _items[slot]["master"] and not _candidates.is_empty():
+		master_loot_requested.emit(slot, _candidates)
 		return
 	# ponytail: one sound for every item, where the stock client picks it by the item's material.
 	WowAssets.audio.play_sound(ITEM_SOUND)
