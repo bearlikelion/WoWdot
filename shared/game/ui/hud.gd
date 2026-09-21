@@ -352,6 +352,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_SUMMON_REQUEST":
 		_ask_summon(PacketReader.new(payload))
 		return
+	if opcode == "MSG_TALENT_WIPE_CONFIRM":
+		_ask_talent_wipe(PacketReader.new(payload))
+		return
 	if opcode == "SMSG_QUEST_CONFIRM_ACCEPT":
 		_ask_shared_quest(PacketReader.new(payload))
 		return
@@ -421,6 +424,18 @@ func _ask_bind(innkeeper: int) -> void:
 	_popup.ask(
 		WowStrings.format(WowStrings.get_text("CONFIRM_BINDER"), [here]),
 		WowClient.session.send_packet.bind("CMSG_BINDER_ACTIVATE", payload), "ACCEPT", "CANCEL",
+	)
+
+
+# Accepting echoes the opcode back with the trainer alone; declining sends nothing.
+func _ask_talent_wipe(reader: PacketReader) -> void:
+	var answer: PackedByteArray = []
+	answer.resize(8)
+	answer.encode_u64(0, reader.u64())
+	var cost: String = LootFrame.money_text(reader.u32())
+	_popup.ask(
+		WowStrings.get_text("CONFIRM_TALENT_WIPE") + "\n" + cost,
+		WowClient.session.send_packet.bind("MSG_TALENT_WIPE_CONFIRM", answer), "ACCEPT", "CANCEL",
 	)
 
 

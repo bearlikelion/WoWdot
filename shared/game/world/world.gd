@@ -375,6 +375,15 @@ func _on_transfer_aborted(reason: int) -> void:
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_EMOTE":
 		return _play_emote(payload)
+	var me: int = WowClient.session.get_player_guid()
+	if opcode == "SMSG_CANCEL_COMBAT":
+		WowClient.session.attack_stopped.emit(me, 0)
+		return
+	if opcode == "SMSG_CLIENT_CONTROL_UPDATE":
+		var control: PacketReader = PacketReader.new(payload)
+		if control.packed_guid() == me:
+			_player.controllable = control.u8() != 0
+		return
 	var knock_back: bool = opcode == "SMSG_MOVE_KNOCK_BACK"
 	if not (knock_back or SPEED_CHANGES.has(opcode) or FLAG_CHANGES.has(opcode)):
 		return

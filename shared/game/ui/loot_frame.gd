@@ -93,7 +93,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_on_item_pushed(payload)
 		"SMSG_LOOT_MONEY_NOTIFY":
 			var text: String = WowStrings.get_text("YOU_LOOT_MONEY")
-			message_added.emit(text % _money_text(payload.decode_u32(0)))
+			message_added.emit(text % money_text(payload.decode_u32(0)))
 
 
 # The chat line for SMSG_ITEM_PUSH_RESULT, or "" when the server asks for none.
@@ -186,7 +186,7 @@ func _refresh() -> void:
 		text.theme_type_variation = &"GameFontHighlight"
 		if _slots[index] == COIN_SLOT:
 			button.set_item(_coin_icon())
-			text.text = _money_text(_money)
+			text.text = money_text(_money)
 			text.self_modulate = Color.WHITE
 			continue
 		var item: Dictionary = _items[_slots[index]]
@@ -266,7 +266,7 @@ func _coin_icon() -> WowTexture:
 	return WowAssets.spells.icon_texture(COIN_ICONS[tier])
 
 
-func _money_text(copper: int) -> String:
+static func money_text(copper: int) -> String:
 	var parts: PackedStringArray = []
 	var amounts: Array[int] = [copper % 100, floori(copper / 100.0) % 100, floori(copper / 10000.0)]
 	for tier: int in [2, 1, 0]:

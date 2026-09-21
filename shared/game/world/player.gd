@@ -79,6 +79,8 @@ const STAND_STATE_ANIMATIONS: Dictionary[int, String] = {
 }
 
 var in_combat: bool = false
+# Cleared by SMSG_CLIENT_CONTROL_UPDATE while the server moves the player (fear, charm).
+var controllable: bool = true
 var stand_state: int = 0
 
 # Physics stays off until the ground under the player has loaded.
@@ -363,7 +365,7 @@ func _walk(flags: int) -> void:
 	velocity = Vector3(planar.x, 0.0, planar.z)
 	_send_changes(_flags, flags)
 	_flags = flags
-	if Input.is_action_just_pressed("jump") and not _typing():
+	if Input.is_action_just_pressed("jump") and controllable and not _typing():
 		_take_off(flags, Vector3(planar.x, JUMP_VELOCITY, planar.z))
 		_send("MSG_MOVE_JUMP", _flags)
 	_step_up(velocity)
@@ -480,6 +482,8 @@ func _input_flags() -> int:
 
 func _key_flags() -> int:
 	var flags: int = MoveFlag.NONE
+	if not controllable:
+		return flags
 	if _typing():
 		return MoveFlag.FORWARD if _auto_run else flags
 	# Autorun, and both mouse buttons held, run forward as in the stock client.
