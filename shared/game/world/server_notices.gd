@@ -216,24 +216,36 @@ static func raid_lockouts(payload: PackedByteArray) -> PackedStringArray:
 
 
 # SMSG_WHO: shown and matched counts, then name, guild, level, class, race and zone per player.
-static func who_lines(payload: PackedByteArray) -> PackedStringArray:
+static func who_rows(payload: PackedByteArray) -> Dictionary:
 	var reader: PacketReader = PacketReader.new(payload)
 	var shown: int = reader.u32()
 	var total: int = reader.u32()
-	var lines: PackedStringArray = []
+	var rows: Array[Dictionary] = []
 	for i: int in shown:
-		var player: String = reader.cstring()
-		var guild: String = reader.cstring()
-		var level: int = reader.u32()
-		var player_class: String = CharacterOptions.class_label(reader.u32())
-		var race: String = CharacterOptions.race_name(reader.u32())
-		var zone: String = AreaInfo.area_name(reader.u32())
-		var args: Array = [player, player, level, race, player_class, zone]
-		if not guild.is_empty():
-			args.insert(5, guild)
-		var key: String = "WHO_LIST_FORMAT" if guild.is_empty() else "WHO_LIST_GUILD_FORMAT"
+		rows.append({
+			"name": reader.cstring(),
+			"guild": reader.cstring(),
+			"level": reader.u32(),
+			"class": CharacterOptions.class_label(reader.u32()),
+			"race": CharacterOptions.race_name(reader.u32()),
+			"zone": AreaInfo.area_name(reader.u32()),
+		})
+	return {"rows": rows, "total": total}
+
+
+static func who_lines(payload: PackedByteArray) -> PackedStringArray:
+	var answer: Dictionary = who_rows(payload)
+	var lines: PackedStringArray = []
+	for found: Dictionary in answer["rows"]:
+		var args: Array = [
+			found["name"], found["name"], found["level"], found["race"], found["class"],
+			found["zone"],
+		]
+		if not found["guild"].is_empty():
+			args.insert(5, found["guild"])
+		var key: String = "WHO_LIST_FORMAT" if found["guild"].is_empty() else "WHO_LIST_GUILD_FORMAT"
 		lines.append(WowStrings.format(WowStrings.get_text(key), args))
-	lines.append(WowStrings.format(WowStrings.get_text("WHO_NUM_RESULTS"), [total]))
+	lines.append(WowStrings.format(WowStrings.get_text("WHO_NUM_RESULTS"), [answer["total"]]))
 	return lines
 
 

@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="3"]
 [ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="4"]
 [ext_resource type="Script" path="res://game/ui/raid_frame.gd" id="5"]
+[ext_resource type="Script" path="res://game/ui/who_frame.gd" id="6"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\FriendsFrame\\FriendsFrameScrollIcon.blp"
@@ -3084,6 +3085,7 @@ mouse_filter = 2
 
 [node name="WhoFrame" type="Control" parent="."]
 unique_name_in_owner = true
+script = ExtResource("6")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1

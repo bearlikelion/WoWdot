@@ -7,7 +7,7 @@ signal name_requested(tab: Tab)
 signal message_added(text: String)
 signal guild_invited(inviter: String, guild_name: String)
 
-enum Tab { FRIENDS, IGNORE, GUILD, RAID }
+enum Tab { FRIENDS, IGNORE, GUILD, RAID, WHO }
 # SMSG_GUILD_EVENT, as GuildEvents numbers them.
 enum GuildEvent { PROMOTION, DEMOTION, MOTD, JOINED, LEFT, REMOVED, LEADER_IS, LEADER_CHANGED,
 	DISBANDED, TABARD_CHANGED, RANK_RENAMED, ROSTER_UPDATE, SIGNED_ON, SIGNED_OFF }
@@ -82,7 +82,11 @@ func _ready() -> void:
 	# The right-click menu's anchor frame, which the stock client never draws.
 	%FriendsDropDown.hide()
 	%FriendsFrameTab1.pressed.connect(show_tab.bind(Tab.FRIENDS))
-	%FriendsFrameTab2.pressed.connect(show_tab.bind(Tab.IGNORE))
+	%FriendsFrameTab2.pressed.connect(show_tab.bind(Tab.WHO))
+	# The ignore list is the friends list's other face, reached by the toggle at its top.
+	%FriendsFrameToggleTab1.pressed.connect(show_tab.bind(Tab.FRIENDS))
+	%FriendsFrameToggleTab2.pressed.connect(show_tab.bind(Tab.IGNORE))
+	(%WhoFrame as WhoFrame).friend_requested.connect(_on_who_friend_requested)
 	%FriendsFrameTab3.pressed.connect(show_tab.bind(Tab.GUILD))
 	%FriendsFrameTab4.pressed.connect(show_tab.bind(Tab.RAID))
 	%FriendsFrameAddFriendButton.pressed.connect(
@@ -104,9 +108,10 @@ func show_tab(tab: Tab) -> void:
 	%FriendsListFrame.visible = tab in [Tab.FRIENDS, Tab.IGNORE]
 	%GuildFrame.visible = tab == Tab.GUILD
 	%RaidFrame.visible = tab == Tab.RAID
+	%WhoFrame.visible = tab == Tab.WHO
 	if tab == Tab.GUILD:
 		request_roster()
-	elif tab != Tab.RAID:
+	elif tab in [Tab.FRIENDS, Tab.IGNORE]:
 		request_lists()
 	refresh()
 
@@ -138,6 +143,10 @@ func request_lists() -> void:
 	WowClient.session.send_packet("CMSG_FRIEND_LIST", PackedByteArray())
 
 
+func _on_who_friend_requested(player_name: String) -> void:
+	send_command("CMSG_ADD_FRIEND", player_name)
+
+
 func add(player_name: String) -> void:
 	if _tab == Tab.GUILD:
 		send_command("CMSG_GUILD_INVITE", player_name)
@@ -152,6 +161,9 @@ func refresh() -> void:
 	if _tab == Tab.RAID:
 		%FriendsFrameTitleText.text = WowStrings.get_text("RAID")
 		(%RaidFrame as RaidFrame).refresh()
+		return
+	if _tab == Tab.WHO:
+		%FriendsFrameTitleText.text = WowStrings.get_text("WHO_LIST")
 		return
 	%FriendsFrameTitleText.text = WowStrings.get_text(
 		"FRIENDS_LIST" if _tab == Tab.FRIENDS else "IGNORE_LIST"
