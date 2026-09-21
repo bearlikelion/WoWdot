@@ -65,7 +65,7 @@ const GUILD_COMMANDS: Dictionary[String, String] = {
 # Chat types the edit box keeps between messages; whispers and emotes fall back to the last one.
 const STICKY: Array[WowSession.ChatType] = [
 	WowSession.CHAT_SAY, WowSession.CHAT_YELL, WowSession.CHAT_PARTY, WowSession.CHAT_GUILD,
-	WowSession.CHAT_OFFICER, WowSession.CHAT_RAID,
+	WowSession.CHAT_OFFICER, WowSession.CHAT_RAID, WowSession.CHAT_CHANNEL,
 ]
 const HISTORY_LINES: int = 32
 # ChatEdit_UpdateHeader: SetTextInsets(15 + header width, 13, 0, 0).
@@ -75,6 +75,7 @@ const INSET_RIGHT: float = 13.0
 var _chat_type: WowSession.ChatType = WowSession.CHAT_SAY
 var _sticky_type: WowSession.ChatType = WowSession.CHAT_SAY
 var _whisper_target: String = ""
+var _sticky_channel: String = ""
 var _last_whisperer: String = ""
 var _history: PackedStringArray = []
 var _history_index: int = -1
@@ -133,7 +134,7 @@ func _gui_input(event: InputEvent) -> void:
 
 func open(prefill: String = "") -> void:
 	_chat_type = _sticky_type
-	_whisper_target = ""
+	_whisper_target = _sticky_channel if _chat_type == WowSession.CHAT_CHANNEL else ""
 	_show_edit_box(prefill)
 
 
@@ -181,6 +182,8 @@ func _update_header() -> void:
 	var header: String = WowStrings.get_text("CHAT_%s_SEND" % TYPE_KEYS[_chat_type], "")
 	if _chat_type == WowSession.CHAT_WHISPER:
 		header = header.replace("%s", _whisper_target)
+	elif _chat_type == WowSession.CHAT_CHANNEL:
+		header = "[%d. %s]: " % [Channels.number_of(_whisper_target), _whisper_target]
 	elif _chat_type == WowSession.CHAT_EMOTE:
 		var session: WowSession = WowClient.session
 		header = header.replace("%s", session.get_object_name(session.get_player_guid()))
@@ -209,6 +212,11 @@ func _take_command(text: String) -> String:
 		return text
 	var parts: PackedStringArray = text.split(" ", true, 1)
 	var command: String = parts[0].to_lower()
+	var channel_name: String = Channels.name_at(command.substr(1).to_int())
+	if not channel_name.is_empty():
+		_chat_type = WowSession.CHAT_CHANNEL
+		_whisper_target = channel_name
+		return parts[1]
 	if not COMMANDS.has(command):
 		return text
 	var rest: String = parts[1]
@@ -274,10 +282,11 @@ func _on_text_submitted(text: String) -> void:
 		return
 	if chat_type in STICKY:
 		_sticky_type = chat_type
+		_sticky_channel = target
 	WowClient.session.send_chat(chat_type, message, target)
 
 
-# /join and /leave take a channel, and /1 to /9 talk on the channel with that number.
+# /join and /leave take a channel.
 func _run_channel_command(text: String) -> bool:
 	var parts: PackedStringArray = text.substr(1).split(" ", false)
 	if parts.is_empty():
@@ -295,14 +304,7 @@ func _run_channel_command(text: String) -> bool:
 			return false
 		Channels.leave(leaving)
 		return true
-	if not command.is_valid_int():
-		return false
-	var channel_name: String = Channels.name_at(command.to_int())
-	if channel_name.is_empty():
-		return false
-	if not rest.is_empty():
-		WowClient.session.send_chat(WowSession.CHAT_CHANNEL, " ".join(rest), channel_name)
-	return true
+	return false
 
 
 # Any EmotesText token works as its own slash command, as /dance and /wave do.

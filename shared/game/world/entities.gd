@@ -9,6 +9,8 @@ const RUN_SPEED_THRESHOLD: float = 4.0
 const NAMEPLATE_GAP: float = 0.3
 # The gold the stock client draws your own name in.
 const OWN_NAME_COLOR: Color = Color(1.0, 0.9, 0.55)
+const UNFLAGGED_PLAYER_COLOR: Color = Color(0.3, 0.3, 1.0)
+const UNIT_FLAG_PVP: int = 0x1000
 # The quest marker floats this far over the top line of the nameplate.
 const MARKER_GAP: float = 0.3
 const NAMEPLATE_LINE_HEIGHT: float = 0.3
@@ -245,7 +247,11 @@ func _color_name(guid: int) -> void:
 	var reaction: UnitReaction.Reaction = UnitReaction.between(
 		session, session.get_player_guid(), guid
 	)
-	_nameplates[guid].modulate = UnitReaction.COLORS.get(reaction, OWN_NAME_COLOR)
+	var color: Color = UnitReaction.COLORS.get(reaction, OWN_NAME_COLOR)
+	var flagged: bool = session.get_field(guid, "UNIT_FIELD_FLAGS") & UNIT_FLAG_PVP != 0
+	if session.get_object_type(guid) == ObjectType.PLAYER and not flagged:
+		color = UNFLAGGED_PLAYER_COLOR
+	_nameplates[guid].modulate = color
 
 
 # The stock options hide your own name, other players' and creatures' separately.
