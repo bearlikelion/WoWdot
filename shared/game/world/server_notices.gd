@@ -42,6 +42,25 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 			reader.u64()
 			var home: String = AreaInfo.area_name(reader.u32())
 			return WowStrings.format(WowStrings.get_text("ERR_DEATHBIND_SUCCESS_S"), [home])
+		"SMSG_AUCTION_BIDDER_NOTIFICATION":
+			reader.skip(16)
+			var won: bool = reader.u32() == 0
+			reader.u32()
+			return _item_line("ERR_AUCTION_WON_S" if won else "ERR_AUCTION_OUTBID_S", reader.u32())
+		"SMSG_AUCTION_OWNER_NOTIFICATION":
+			reader.u32()
+			var sold: bool = reader.u32() != 0
+			reader.skip(12)
+			return _item_line("ERR_AUCTION_SOLD_S" if sold else "ERR_AUCTION_EXPIRED_S", reader.u32())
+		"SMSG_AUCTION_REMOVED_NOTIFICATION":
+			reader.u32()
+			return _item_line("ERR_AUCTION_REMOVED_S", reader.u32())
+		"MSG_RANDOM_ROLL":
+			var low: int = reader.u32()
+			var high: int = reader.u32()
+			var roll: int = reader.u32()
+			var roller: String = WowClient.session.get_object_name(reader.u64())
+			return WowStrings.format(WowStrings.get_text("RANDOM_ROLL_RESULT"), [roller, roll, low, high])
 		"SMSG_INSTANCE_RESET":
 			var text: String = WowStrings.get_text("INSTANCE_RESET_SUCCESS")
 			return WowStrings.format(text, [map_name(reader.u32())])
@@ -159,3 +178,8 @@ static func ask_who(words: PackedStringArray) -> void:
 		payload.append_array(word.to_utf8_buffer())
 		payload.append(0)
 	WowClient.session.send_packet("CMSG_WHO", payload)
+
+
+static func _item_line(key: String, entry: int) -> String:
+	var item_name: String = WowClient.session.get_item_info(entry).get("name", "")
+	return WowStrings.format(WowStrings.get_text(key), [item_name])

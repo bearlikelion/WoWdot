@@ -27,6 +27,7 @@ const INACTIVE_HEADER: int = -1
 var _entries: Array[Dictionary] = []
 var _collapsed: Dictionary[int, bool] = {}
 var _selected: int = -1
+var _toggled: Dictionary[int, int] = {}
 var _offset: int = 0
 var _factions: WowDBC
 var _watched: int = -1
@@ -50,11 +51,12 @@ func _ready() -> void:
 		bar.mouse_exited.connect(_on_bar_hovered.bind(i, false))
 		_header(i).pressed.connect(_on_header_pressed.bind(i))
 	%ReputationDetailCloseButton.pressed.connect(_detail.hide)
-	# Toggling war and inactive waits on their packets.
-	for check: BaseButton in [
-		%ReputationDetailAtWarCheckBox, %ReputationDetailInactiveCheckBox,
-	]:
-		check.disabled = true
+	%ReputationDetailAtWarCheckBox.pressed.connect(
+		_on_flag_pressed.bind("CMSG_SET_FACTION_ATWAR", FLAG_AT_WAR)
+	)
+	%ReputationDetailInactiveCheckBox.pressed.connect(
+		_on_flag_pressed.bind("CMSG_SET_FACTION_INACTIVE", FLAG_INACTIVE)
+	)
 	%ReputationDetailMainScreenCheckBox.pressed.connect(_on_watch_pressed)
 	(%ReputationDetailFactionDescription as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_list_scroll.scrolled.connect(_on_list_scrolled)
@@ -127,6 +129,21 @@ func _show_faction(i: int, entry: Dictionary) -> void:
 		(%ReputationDetailInactiveCheckBox as WowButton).checked = entry["inactive"]
 
 
+# The server takes the change without answering, so the flag is flipped here until the next login.
+func _on_flag_pressed(opcode: String, flag: int) -> void:
+	if _selected < 0:
+		return
+	_toggled[_selected] = _toggled.get(_selected, 0) ^ flag
+	var flags_now: int = WowClient.session.get_faction_flags()[_selected] ^ _toggled[_selected]
+	var set_now: bool = flags_now & flag != 0
+	var payload: PackedByteArray = []
+	payload.resize(5)
+	payload.encode_u32(0, _selected)
+	payload.encode_u8(4, 1 if set_now else 0)
+	WowClient.session.send_packet(opcode, payload)
+	refresh()
+
+
 # The factions the server marked visible under their parent faction, with inactive ones last.
 func _build_entries() -> void:
 	var session: WowSession = WowClient.session
@@ -140,7 +157,7 @@ func _build_entries() -> void:
 		var index: int = _factions.get_int(row, "ReputationIndex")
 		if index < 0 or index >= flags.size():
 			continue
-		var faction_flags: int = flags[index]
+		var faction_flags: int = flags[index] ^ _toggled.get(index, 0)
 		if faction_flags & FLAG_VISIBLE == 0 or faction_flags & (FLAG_HIDDEN | FLAG_INVISIBLE_FORCED):
 			continue
 		var value: int = _base_reputation(row, race_bit, class_bit) + standings[index]

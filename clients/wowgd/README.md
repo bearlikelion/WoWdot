@@ -136,14 +136,15 @@ These parts of 1.12 have not been started at all:
 
 | Feature | Work |
 | --- | --- |
-| Who list | `CMSG_WHO` and its reply. The converted `friends_frame.tscn` already carries the WhoFrame's widgets and its column tabs, and `friends_frame.gd` never wires them. |
+| Who window | `/who` prints its results in chat; the converted `friends_frame.tscn` already carries the WhoFrame's widgets and its column tabs, and `friends_frame.gd` never wires them. |
 | Inspect | `CMSG_INSPECT`, then reading the target's `PLAYER_VISIBLE_ITEM` fields into a second paper doll. |
 | Honor and PvP rank | The PvP flag toggle, `MSG_INSPECT_HONOR_STATS`, `SMSG_PVP_CREDIT`, and the character sheet's honor tab with its rank and kill counts. |
 | Fishing | The bobber game object, `SMSG_GAMEOBJECT_CUSTOM_ANIM` and `SMSG_GAMEOBJECT_DESPAWN_ANIM`, feeding the loot flow the client already has. |
 | Macros | A macro window, its icon picker, and running one from an action button. Pure client work, no opcodes. |
 | Readable items | `CMSG_ITEM_TEXT_QUERY` for books, plaques and the letters quests hand out. |
-| Looking for group | The 1.12 browser over `MSG_LOOKING_FOR_GROUP`, and `SMSG_SUMMON_REQUEST` for a meeting stone's summon offer. |
-| Odds and ends | `MSG_RANDOM_ROLL` behind `/random`, `SMSG_ITEM_PUSH_RESULT` for the toast over the bags, `CMSG_REQUEST_RAID_INFO` for an instance's lockouts, and the GM ticket window. |
+| Looking for group | The 1.12 browser over `MSG_LOOKING_FOR_GROUP` and the meeting stone queue. |
+| Cinematics | `SMSG_TRIGGER_CINEMATIC` is acknowledged so the server moves on, but the camera flyover is not drawn. |
+| Odds and ends | `SMSG_ITEM_PUSH_RESULT` for the toast over the bags, and the GM ticket window. |
 
 After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
 

@@ -314,6 +314,13 @@ func _run_channel_command(text: String) -> bool:
 	if command in ["join", "j", "chat"] and not rest.is_empty():
 		Channels.join(rest[0], rest[1] if rest.size() > 1 else "")
 		return true
+	if command in ["random", "rand", "rnd", "roll"]:
+		var bounds: PackedByteArray = []
+		bounds.resize(8)
+		bounds.encode_u32(0, rest[0].to_int() if rest.size() > 1 else 1)
+		bounds.encode_u32(4, rest[rest.size() - 1].to_int() if not rest.is_empty() else 100)
+		WowClient.session.send_packet("MSG_RANDOM_ROLL", bounds)
+		return true
 	if command == "raidinfo":
 		WowClient.session.send_packet("CMSG_REQUEST_RAID_INFO", PackedByteArray())
 		return true

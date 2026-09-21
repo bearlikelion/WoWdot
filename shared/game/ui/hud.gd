@@ -314,6 +314,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_BINDER_CONFIRM":
 		_ask_bind(PacketReader.new(payload).u64())
 		return
+	if opcode == "SMSG_SUMMON_REQUEST":
+		_ask_summon(PacketReader.new(payload))
+		return
 	if opcode == "SMSG_QUEST_CONFIRM_ACCEPT":
 		_ask_shared_quest(PacketReader.new(payload))
 		return
@@ -357,6 +360,19 @@ func _ask_bind(innkeeper: int) -> void:
 	_popup.ask(
 		WowStrings.format(WowStrings.get_text("CONFIRM_BINDER"), [here]),
 		WowClient.session.send_packet.bind("CMSG_BINDER_ACTIVATE", payload), "ACCEPT", "CANCEL",
+	)
+
+
+func _ask_summon(reader: PacketReader) -> void:
+	var summoner: int = reader.u64()
+	var answer: PackedByteArray = []
+	answer.resize(8)
+	answer.encode_u64(0, summoner)
+	var place: String = AreaInfo.area_name(reader.u32())
+	var text: String = WowStrings.get_text("CONFIRM_SUMMON")
+	_popup.ask(
+		WowStrings.format(text, [WowClient.session.get_object_name(summoner), place]),
+		WowClient.session.send_packet.bind("CMSG_SUMMON_RESPONSE", answer), "ACCEPT", "CANCEL",
 	)
 
 
