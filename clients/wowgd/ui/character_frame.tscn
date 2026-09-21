@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="7"]
 [ext_resource type="Script" path="res://game/ui/reputation_frame.gd" id="8"]
 [ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="9"]
+[ext_resource type="Script" path="res://game/ui/honor_frame.gd" id="10"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
@@ -8597,6 +8598,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="HonorFrame" type="Control" parent="."]
 unique_name_in_owner = true
+script = ExtResource("10")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1

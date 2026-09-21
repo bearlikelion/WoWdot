@@ -102,12 +102,11 @@ func _ready() -> void:
 	%CharacterFramePortrait.material = mask
 	%CharacterFramePortrait.texture = _portrait.get_texture()
 	%CharacterModelFrame.gui_input.connect(_on_model_input)
-	# The pet and honor tabs wait on pets and the PvP data; the tabs after the pet tab close up.
+	# The pet tab waits on the pet paper doll; the tabs after it close up.
 	var gap: float = %CharacterFrameTab3.position.x - %CharacterFrameTab2.position.x
-	for tab: Control in [%CharacterFrameTab3, %CharacterFrameTab4]:
+	for tab: Control in [%CharacterFrameTab3, %CharacterFrameTab4, %CharacterFrameTab5]:
 		tab.position.x -= gap
 	%CharacterFrameTab2.hide()
-	%CharacterFrameTab5.hide()
 	visibility_changed.connect(refresh)
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)
@@ -149,7 +148,7 @@ func current_tab() -> Tab:
 
 
 func refresh() -> void:
-	if not is_visible_in_tree() or _tab != Tab.CHARACTER:
+	if not is_visible_in_tree():
 		return
 	var session: WowSession = WowClient.session
 	var guid: int = session.get_player_guid()
@@ -160,6 +159,11 @@ func refresh() -> void:
 		session.get_field(guid, "UNIT_FIELD_LEVEL"), CharacterOptions.race_name(race),
 		CharacterOptions.class_label(class_id),
 	]
+	# The header is shared by every tab, so a window opened on another tab still needs its portrait.
+	if _worn.is_empty():
+		_portrait.show_unit(guid)
+	if _tab != Tab.CHARACTER:
+		return
 	for slot: Inventory.Slot in _slot_buttons:
 		var item_entry: int = Inventory.entry(Inventory.equipped(slot))
 		var icon: Texture2D = Inventory.icon(item_entry) if item_entry else null
