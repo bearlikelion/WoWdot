@@ -17,12 +17,22 @@ const NOTICE_KEYS: Dictionary[Notice, String] = {
 	Notice.INVALID_NAME: "CHAT_INVALID_NAME_NOTICE",
 }
 
+# ChatChannels.dbc and AreaTable.dbc flags.
+enum ChannelFlag { INITIAL = 0x01, ZONE_DEPENDENT = 0x02, CITY_ONLY = 0x10 }
+const AREA_FLAG_CAPITAL: int = 0x100
+
 # Channel numbers are the client's own, counted in the order this character joined.
 static var joined: PackedStringArray = []
 
+static var _zone_channels: PackedStringArray = []
+
 
 static func join(channel_name: String, password: String = "") -> void:
-	var payload: PackedByteArray = channel_name.to_utf8_buffer()
+	var payload: PackedByteArray = []
+	# 3.3.5a leads with a channel id, a voice flag and a zone-update flag.
+	if String(WowLoader.profile()["id"]) == "wotlk":
+		payload.resize(6)
+	payload.append_array(channel_name.to_utf8_buffer())
 	payload.append(0)
 	payload.append_array(password.to_utf8_buffer())
 	payload.append(0)
@@ -33,6 +43,30 @@ static func leave(channel_name: String) -> void:
 	var payload: PackedByteArray = channel_name.to_utf8_buffer()
 	payload.append(0)
 	WowClient.session.send_packet("CMSG_LEAVE_CHANNEL", payload)
+
+
+# Swaps the zone's default channels, as the stock client does on its own.
+static func enter_zone(zone_name: String, area_flags: int) -> void:
+	var wanted: PackedStringArray = []
+	var channels: WowDBC = WowDBC.open(WowAssets.archive, "ChatChannels")
+	var capital: bool = area_flags & AREA_FLAG_CAPITAL != 0
+	for row: int in channels.row_count():
+		var flags: int = channels.get_uint(row, "Flags")
+		if flags & ChannelFlag.INITIAL == 0 or (flags & ChannelFlag.CITY_ONLY != 0 and not capital):
+			continue
+		var channel_name: String = channels.get_string(row, "Name")
+		if flags & ChannelFlag.ZONE_DEPENDENT != 0:
+			var place: String = WowStrings.get_text("CITY", "City") \
+					if flags & ChannelFlag.CITY_ONLY != 0 else zone_name
+			channel_name = channel_name.replace("%s", place)
+		wanted.append(channel_name)
+	for channel_name: String in _zone_channels:
+		if channel_name not in wanted:
+			leave(channel_name)
+	for channel_name: String in wanted:
+		if channel_name not in _zone_channels:
+			join(channel_name)
+	_zone_channels = wanted
 
 
 # The server capitalises channel names, so its spelling is the one kept.
@@ -68,3 +102,4 @@ static func notice(payload: PackedByteArray) -> String:
 
 static func forget() -> void:
 	joined.clear()
+	_zone_channels.clear()

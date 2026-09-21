@@ -25,6 +25,17 @@ static func faction_group(area_id: int) -> FactionGroup:
 	return FactionGroup.NONE
 
 
+static func zone_of(area_id: int) -> int:
+	var row: int = _row(area_id)
+	var parent: int = _areas.get_uint(row, "ParentAreaNum") if row >= 0 else 0
+	return zone_of(parent) if parent != 0 else area_id
+
+
+static func flags(area_id: int) -> int:
+	var row: int = _row(area_id)
+	return _areas.get_uint(row, "Flags") if row >= 0 else 0
+
+
 static func player_group(race: int) -> FactionGroup:
 	return FactionGroup.HORDE if race in HORDE_RACES else FactionGroup.ALLIANCE
 

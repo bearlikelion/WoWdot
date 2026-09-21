@@ -35,23 +35,26 @@ func _run() -> void:
 		if label:
 			_lines.append(label.get_parsed_text())
 	)
+	var zoned: bool = await _until(func() -> bool: return Channels.name_at(1).begins_with("General"))
+	_check(zoned, "the zone's General channel is joined unasked: %s" % Channels.joined)
 	chat.call("_on_text_submitted", "/join " + CHANNEL)
 	var joined: bool = await _until(func() -> bool: return Channels.number_of(CHANNEL) > 0)
 	_check(joined, "joining a channel adds it to the list")
 	if not joined:
 		return _finish("never joined the channel")
-	_check(Channels.number_of(CHANNEL) == 1, "the first channel joined is number 1")
+	var number: int = Channels.number_of(CHANNEL)
+	_check(number == Channels.joined.size(), "a joined channel takes the next number")
 	_check(_line_with("Joined"), "joining prints its notice: %s" % _lines)
 
 	_lines.clear()
-	chat.call("_on_text_submitted", "/1 " + GREETING)
+	chat.call("_on_text_submitted", "/%d " % number + GREETING)
 	var spoke: bool = await _until(func() -> bool: return _line_with(GREETING))
 	_check(spoke, "a message sent by number comes back on the channel")
 	if spoke:
 		print("channel line: ", _lines[_lines.size() - 1])
-		_check(_line_with("1. "), "the line carries the channel number")
+		_check(_line_with("%d. " % number), "the line carries the channel number")
 
-	chat.call("_on_text_submitted", "/leave 1")
+	chat.call("_on_text_submitted", "/leave %d" % number)
 	var left: bool = await _until(func() -> bool: return Channels.number_of(CHANNEL) == 0)
 	_check(left, "leaving by number drops the channel")
 	_finish("")
