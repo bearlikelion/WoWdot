@@ -89,6 +89,16 @@ static func unit_weapons(session: WowSession, guid: int) -> Array[Weapon]:
 	var displays: int = session.field_index("UNIT_VIRTUAL_ITEM_SLOT_DISPLAY")
 	var infos: int = session.field_index("UNIT_VIRTUAL_ITEM_INFO")
 	var weapons: Array[Weapon] = []
+	if displays < 0:
+		# 3.3.5 sends item entries instead, so the look comes from the item query.
+		var entries: int = session.field_index("UNIT_VIRTUAL_ITEM_SLOT_ID")
+		for i: int in WEAPON_SLOTS.size():
+			var entry: int = session.get_field(guid, entries + i)
+			var info: Dictionary = session.get_item_info(entry) if entry != 0 else {}
+			weapons.append(Weapon.new(
+				info.get("display_id", 0), info.get("sheath", 0), info.get("subclass", 0)
+			))
+		return weapons
 	for i: int in WEAPON_SLOTS.size():
 		var info: int = session.get_field(guid, infos + i * 2)
 		weapons.append(Weapon.new(
@@ -97,6 +107,17 @@ static func unit_weapons(session: WowSession, guid: int) -> Array[Weapon]:
 			(info >> 8) & 0xFF,
 		))
 	return weapons
+
+
+static func unit_weapons_pending(session: WowSession, guid: int) -> bool:
+	var entries: int = session.field_index("UNIT_VIRTUAL_ITEM_SLOT_ID")
+	if entries < 0:
+		return false
+	for i: int in WEAPON_SLOTS.size():
+		var entry: int = session.get_field(guid, entries + i)
+		if entry != 0 and session.get_item_info(entry).is_empty():
+			return true
+	return false
 
 
 static func sheath_state(session: WowSession, guid: int) -> SheathState:

@@ -57,14 +57,13 @@ Most of the WotLK protocol and format code is already in the vendored WoWee sour
 | Hand-parsed packets | `wow_session.cpp` still parses learned spells, cast failed, spell cooldown, quest query, quest giver status, gossip, vendor, trainer and taxi lists in the vanilla layout. |
 | Animations | Version 264 keeps most sequences in `.anim` files, hundreds per model, which want loading on demand. |
 | Data tables | `data/wotlk/` has no `ui_sounds.json`, `spell_failures.json` or `equip_failures.json` yet, so UI sounds are silent and refusals have no text. |
-| Spell.dbc | `dbc_layouts.json` names only the Spell columns asked for so far; reagents, cooldowns, effects and descriptions still want placing. |
-| Update fields | 93 names the game code reads were removed in WotLK (object positions, most of `PLAYER_VISIBLE_ITEM`, the aura arrays, game object bytes) and need new sources. |
+| Update fields | `tools/update_fields.py` reports 93 classic names WotLK removed; the game reads none of them now except the honor frame's weekly kill counts, which the 3.3.5 PvP frame replaces. |
 | Raw packets | 14 scripts in `shared/game` decode payloads in the vanilla layout: loot, merchant, party, taxi, talents, skills, combat events, NPC dialogs. |
 | Constants | Movement flags and fixed DBC column numbers (Spell, SoundEntries, Light). |
 | Character create | Death Knight is offered without the level 55 gate and without the blue button art. |
 | Interface | Every screen past the glue is still the 1.12 conversion; convert each from the 3.3.5a FrameXML with `python3 ../wowgd/tools/framexml/convert.py <dump> . tools/framexml/frames.json`. |
 
-The order: the update fields and Spell columns the HUD reads, then the packets still parsed as vanilla, then the 3.3.5a FrameXML.
+The order: the packets still parsed as vanilla, then the 3.3.5a FrameXML.
 
 ## Checks
 

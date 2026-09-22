@@ -43,6 +43,7 @@ EXTRA = {
     "PLAYER_FIELD_MOD_HEALING_DONE_POS",
     "PLAYER_SPELL_CRIT_PERCENTAGE1",
     "UNIT_FIELD_FLAGS_2",
+    "UNIT_VIRTUAL_ITEM_SLOT_ID",
 }
 
 ENTRY = re.compile(r"^\s*([A-Z][A-Z0-9_]+)\s*=\s*([^,]+),", re.MULTILINE)

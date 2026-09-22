@@ -126,6 +126,8 @@ func _on_object_created(guid: int, type_id: int) -> void:
 		ObjectType.UNIT:
 			node = WowAssets.creatures.instantiate(display)
 			_weapons[guid] = ItemModels.unit_weapons(session, guid)
+			if ItemModels.unit_weapons_pending(session, guid):
+				_dressing[guid] = true
 		ObjectType.PLAYER:
 			var look: Dictionary = CharacterModels.player_look(session, guid)
 			_worn[guid] = CharacterModels.visible_items(session, guid)
@@ -490,9 +492,16 @@ func _on_attack_changed(attacker: int, victim: int, attacking: bool) -> void:
 
 func _on_item_info_received(_entry: int) -> void:
 	for guid: int in _dressing.keys():
-		if not CharacterModels.player_look(WowClient.session, guid)["pending"]:
+		if not _look_pending(guid):
 			_dressing.erase(guid)
 			_respawn(guid)
+
+
+func _look_pending(guid: int) -> bool:
+	var session: WowSession = WowClient.session
+	if session.get_object_type(guid) == ObjectType.PLAYER:
+		return CharacterModels.player_look(session, guid)["pending"]
+	return ItemModels.unit_weapons_pending(session, guid)
 
 
 # Re-dressing keeps a running player's motion, so the new model keeps moving.

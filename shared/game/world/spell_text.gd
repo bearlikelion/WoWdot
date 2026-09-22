@@ -111,7 +111,9 @@ static func _value(spell_id: int, token: String, index: int, divisor: int) -> St
 	if row < 0:
 		return ""
 	var base: int = _spells.get_int(row, "EffectBasePoints%d" % index)
-	var dice: int = _spells.get_int(row, "EffectBaseDice%d" % index)
+	# 3.3.5 dropped the base dice column and always rolls one die.
+	var dice: int = 1 if String(WowLoader.profile()["id"]) == "wotlk" \
+			else _spells.get_int(row, "EffectBaseDice%d" % index)
 	var sides: int = _spells.get_int(row, "EffectDieSides%d" % index)
 	match token:
 		"s", "m":

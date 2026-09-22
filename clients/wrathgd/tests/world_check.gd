@@ -61,7 +61,7 @@ func _run() -> void:
 		return _finish()
 	var start: Vector3 = _position
 	print("entered map %d at %v" % [_map, start])
-	_check_update_fields(guid)
+	await _check_update_fields(guid)
 	var walked: Vector3 = await _walk()
 	if not await _log_out():
 		return _finish()
@@ -145,7 +145,8 @@ func _teleport() -> bool:
 
 # The update object that follows login, read through the WotLK field indices.
 func _check_update_fields(guid: int) -> void:
-	if not _check(_session.has_object(guid), "the player object arrives in an update"):
+	if not await _until(func() -> bool: return _session.has_object(guid),
+			"the player object arrives in an update"):
 		return
 	_check(_session.get_field(guid, "UNIT_FIELD_HEALTH") > 0, "the player's health reads")
 	_check(_session.get_field(guid, "UNIT_FIELD_LEVEL") == 1, "the player's level reads as 1")
@@ -193,6 +194,8 @@ func _remove_character(guid: int) -> void:
 
 func _list_characters() -> bool:
 	var seen: int = _enumerations
+	# AzerothCore's AntiDOS kicks a fourth CMSG_CHAR_ENUM within one second.
+	await get_tree().create_timer(1.0).timeout
 	_session.request_characters()
 	return await _until(func() -> bool: return _enumerations > seen,
 			"the character list arrives")
