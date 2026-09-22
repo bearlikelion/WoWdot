@@ -6,6 +6,8 @@
 
 Godot clients for classic World of Warcraft servers.
 
+https://bearlikelion.github.io/WoWdot/
+
 | Client | Game version | Server | Status |
 | --- | --- | --- | --- |
 | [WoWGD](clients/wowgd) | 1.12.1 (build 5875) | vMaNGOS | Playable |

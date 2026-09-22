@@ -4,33 +4,46 @@
 
 # WoWGD
 
-A Godot 4.7 client for World of Warcraft 1.12.1 (build 5875) that plays on [vMaNGOS](https://github.com/vmangos/core).
+A Godot 4.7 client for World of Warcraft 1.12.1 (build 5875) that plays on [vMaNGOS](https://github.com/vmangos/core), and is also tested with mangoszero.
 It reads the stock client's MPQs at runtime and ships no Blizzard data.
+
+Screenshots and downloads are on the [website](https://bearlikelion.github.io/WoWdot/); every build is on the [releases page](https://github.com/bearlikelion/WoWGD/releases/latest).
 
 ## Status
 
-Playable: log in, create a character, quest, fight, loot, group, train and fly on an unmodified vMaNGOS server.
+Playable: log in, create a character, quest, fight, loot, group, train and fly on an unmodified vMaNGOS or mangoszero server.
 
 | Area | Working |
 | --- | --- |
 | Login | Account, realm list, character select, create and delete, loading screen. |
-| World | Streaming terrain, buildings, water, sky and weather from Light.dbc, ground clutter, the distant horizon, zone music. |
-| Characters | Skin and hair, equipment on the model, sheathing, mounts, portraits, footprints. |
-| Movement | Run, jump, fall, swim with a wake, taxi flights, other players' movement, server speed changes, roots, knockbacks. |
+| World | Streaming terrain, buildings, water, sky and weather from Light.dbc, zone music. |
+| Characters | Skin and hair, equipment on the model, sheathing, mounts, portraits. |
+| Movement | Run, jump, fall, swim, taxi flights, boats and zeppelins between continents, other players moving and riding, server speed changes, roots, knockbacks. |
 | Zoning | Continents, dungeons and portals. |
 | Death | Release, corpse run, resurrect offers, spirit healer. |
 | Combat | Targeting, auto attack, casts, cooldowns, auras, floating text, combat log. |
 | HUD | Action bars, unit frames, cast bar, minimap, tooltips, nameplates, breath timers. |
-| Chat | All channels, /who, /roll, emotes, speech bubbles. |
+| Chat | Say, party, guild, raid, whisper, channels, /who, /roll, emotes, speech bubbles. |
 | Panels | Character, bags, keyring, spellbook, talents, quests, skills, reputation, world map, options, key bindings, macros, help. |
 | NPCs | Gossip, quests, vendors, trainers, flight masters, bankers, auctioneers. |
 | Items | Bags, bank, equipping, stack splitting, readable books and plaques. |
+| Objects | Chests, doors, levers, chairs, herbs, ore. |
 | Mail | Inbox, attachments, sending, returning. |
-| Groups | Invites, party frames with debuffs, loot rolls, master loot, ready check, raid window, raid info. |
+| Auction house | Browse, bid, buyout, post. |
+| Groups | Invites, party frames with debuffs, loot rolls, master loot, ready checks, minimap pings, raid window, raid info. |
 | Social | Trade, duels, friends, guild, charters, tabards, inspect, honor. |
 | PvP | Battleground queue, scoreboard, team blips on the map. |
 | Pets | Taming, pet bar, happiness, stable. |
 | Effects | Particles, ribbon trails, spell visuals, missiles, cinematic flyovers. |
+| Scenery | Ground clutter, footprints, wakes and splashes, the distant horizon. |
+
+## Installing a release
+
+1. Download the Windows or Linux zip from the [releases page](https://github.com/bearlikelion/WoWGD/releases/latest).
+2. Copy the zip's files into your own 1.12.1 client folder, next to its `Data` folder.
+3. Run `WoWGD.exe` or `WoWGD.x86_64`, enter your server's realmlist and log in.
+
+If the realm refuses the login, the server needs `StrictVersionCheck = 0` in `realmd.conf`: that check wants a hash of the stock game executable, which WoWGD does not ship.
 
 ## Requirements
 
@@ -74,11 +87,8 @@ Each prints `<name>: OK` or the number of failures.
 
 | Area | Work |
 | --- | --- |
-| Transports | Riding a ferry across a continent boundary; other units riding a transport are not attached to it. |
-| PvP | The match itself is unproven: it needs four players a side. |
-| Raid | Target marks over the units wearing them, and the pulled out raid frames. |
+| PvP | Battleground matches, which cannot be tested without four players a side. |
 | Looking for group | The minimap button and the browser over `MSG_LOOKING_FOR_GROUP`. |
-| Other riders | Only the player's own mount is drawn. |
 
 After that come the content tools: spells, creatures, items, quests and maps authored in Godot and exported to vMaNGOS.
 
