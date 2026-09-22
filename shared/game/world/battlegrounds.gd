@@ -35,6 +35,7 @@ var battlemaster: int = 0
 
 var _session: WowSession
 var _queues: Array[Dictionary] = []
+var _listed_type: int = 0
 var _states: Dictionary[int, int] = {}
 
 
@@ -58,7 +59,7 @@ func join(battlemaster_guid: int, map_id: int, instance_id: int = 0, as_group: b
 	var payload: PackedByteArray = []
 	payload.resize(17)
 	payload.encode_u64(0, battlemaster_guid)
-	payload.encode_u32(8, map_id)
+	payload.encode_u32(8, _listed_type if PacketReader.wotlk else map_id)
 	payload.encode_u32(12, instance_id)
 	payload.encode_u8(16, int(as_group))
 	_session.send_packet("CMSG_BATTLEMASTER_JOIN", payload)
@@ -75,12 +76,16 @@ func abandon(map_id: int) -> void:
 
 func leave(map_id: int) -> void:
 	var payload: PackedByteArray = []
-	payload.resize(4)
-	payload.encode_u32(0, map_id)
+	if PacketReader.wotlk:
+		payload.resize(8)
+		payload.encode_u64(0, queue(slot_of(map_id)).get("kind", 0))
+	else:
+		payload.resize(4)
+		payload.encode_u32(0, map_id)
 	_session.send_packet("CMSG_LEAVE_BATTLEFIELD", payload)
 
 
-# What a queue slot holds: "status", "map_id", "instance_id", "time_one", "time_two".
+# What a queue slot holds: "status", "map_id", "instance_id", "time_one", "time_two", 3.3.5 "kind".
 func queue(slot: int) -> Dictionary:
 	return _queues[slot] if slot >= 0 and slot < _queues.size() else {}
 
@@ -113,9 +118,14 @@ func world_state(field: int) -> int:
 
 func _port(map_id: int, action: Port) -> void:
 	var payload: PackedByteArray = []
-	payload.resize(5)
-	payload.encode_u32(0, map_id)
-	payload.encode_u8(4, action)
+	if PacketReader.wotlk:
+		payload.resize(9)
+		payload.encode_u64(0, queue(slot_of(map_id)).get("kind", 0))
+		payload.encode_u8(8, action)
+	else:
+		payload.resize(5)
+		payload.encode_u32(0, map_id)
+		payload.encode_u8(4, action)
 	_session.send_packet("CMSG_BATTLEFIELD_PORT", payload)
 
 
@@ -127,7 +137,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			var map_id: int = 0
 			if PacketReader.wotlk:
 				reader.u8()
-				map_id = BATTLEGROUND_MAPS.get(reader.u32(), 0)
+				_listed_type = reader.u32()
+				map_id = BATTLEGROUND_MAPS.get(_listed_type, 0)
 				reader.skip(15)
 				if reader.u8() != 0:
 					reader.skip(13)
@@ -198,7 +209,7 @@ func _read_status_wotlk(reader: PacketReader, slot: int) -> void:
 	var status: Status = reader.u32() as Status
 	var entry: Dictionary = {
 		"status": status, "map_id": map_id, "instance_id": instance_id,
-		"time_one": 0, "time_two": 0,
+		"time_one": 0, "time_two": 0, "kind": kind,
 	}
 	if status == Status.WAIT_QUEUE:
 		entry["time_one"] = reader.u32()

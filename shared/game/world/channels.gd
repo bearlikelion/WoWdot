@@ -62,7 +62,10 @@ static func join(channel_name: String, password: String = "") -> void:
 
 
 static func leave(channel_name: String) -> void:
-	var payload: PackedByteArray = channel_name.to_utf8_buffer()
+	var payload: PackedByteArray = []
+	if PacketReader.wotlk:
+		payload.resize(4)
+	payload.append_array(channel_name.to_utf8_buffer())
 	payload.append(0)
 	WowClient.session.send_packet("CMSG_LEAVE_CHANNEL", payload)
 

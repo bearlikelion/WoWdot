@@ -83,7 +83,8 @@ func vendor() -> int:
 # Right-clicking a bag item while the merchant is open sells it.
 func sell(item: int) -> void:
 	var payload: PackedByteArray = PackedByteArray()
-	payload.resize(17)
+	# A zero count sells the whole stack; 3.3.5 widens it to a u32.
+	payload.resize(20 if PacketReader.wotlk else 17)
 	payload.encode_u64(0, _guid)
 	payload.encode_u64(8, item)
 	WowAssets.audio.play_sound(COIN_SOUND)
@@ -244,6 +245,10 @@ func _on_item_clicked(index: int, right_click: bool) -> void:
 	payload.encode_u64(0, _guid)
 	payload.encode_u32(8, _items[item_index]["entry"])
 	payload.encode_u8(12, 1)
+	if PacketReader.wotlk:
+		payload.resize(21)
+		payload.encode_u32(12, _items[item_index]["slot"])
+		payload.encode_u32(16, 1)
 	WowAssets.audio.play_sound(COIN_SOUND)
 	WowClient.session.send_packet("CMSG_BUY_ITEM", payload)
 
@@ -261,7 +266,8 @@ func _buy_back(index: int) -> void:
 
 func _repair_all() -> void:
 	var payload: PackedByteArray = PackedByteArray()
-	payload.resize(16)
+	# 3.3.5 adds a trailing guild bank flag.
+	payload.resize(17 if PacketReader.wotlk else 16)
 	payload.encode_u64(0, _guid)
 	WowClient.session.send_packet("CMSG_REPAIR_ITEM", payload)
 

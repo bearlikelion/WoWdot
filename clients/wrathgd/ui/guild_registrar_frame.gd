@@ -20,6 +20,7 @@ const SIGN_ERRORS: Dictionary[Sign, String] = {
 
 var _guid: int = 0
 var _cost: int = 0
+var _charter_index: int = 1
 
 
 func _ready() -> void:
@@ -77,8 +78,12 @@ func _buy() -> void:
 	name_bytes.append(0)
 	payload.append_array(name_bytes)
 	var tail: PackedByteArray = []
-	tail.resize(51)
-	tail.encode_u32(43, 1)
+	if PacketReader.wotlk:
+		tail.resize(61)
+		tail.encode_u32(53, _charter_index)
+	else:
+		tail.resize(51)
+		tail.encode_u32(43, 1)
 	payload.append_array(tail)
 	WowClient.session.send_packet("CMSG_PETITION_BUY", payload)
 
@@ -111,7 +116,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 # Only the guild charter is offered in 1.12, and the server sends its cost with it.
 func _read_charters(reader: PacketReader) -> void:
 	for i: int in reader.u8():
-		reader.u32()
+		var index: int = reader.u32()
 		var entry: int = reader.u32()
 		reader.u32()
 		var cost: int = reader.u32()
@@ -119,6 +124,7 @@ func _read_charters(reader: PacketReader) -> void:
 		reader.u32()
 		if entry == CHARTER_ENTRY:
 			_cost = cost
+			_charter_index = index
 
 
 func _on_turn_in_result(result: Sign) -> void:

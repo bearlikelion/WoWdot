@@ -61,9 +61,10 @@ func _request() -> void:
 		error_raised.emit(WowStrings.get_text("ERR_BADATTACKPOS"))
 		return
 	var payload: PackedByteArray = []
-	payload.resize(16)
-	payload.encode_u64(0, _item)
-	payload.encode_u64(8, target)
+	var offset: int = 4 if PacketReader.wotlk else 0
+	payload.resize(offset + 16)
+	payload.encode_u64(offset, _item)
+	payload.encode_u64(offset + 8, target)
 	session.send_packet("CMSG_OFFER_PETITION", payload)
 	message_added.emit(
 		WowStrings.get_text("ERR_PETITION_OFFERED_S") % session.get_object_name(target)

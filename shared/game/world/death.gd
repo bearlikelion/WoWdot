@@ -25,7 +25,8 @@ func _init(session: WowSession) -> void:
 
 
 func release() -> void:
-	_session.send_packet("CMSG_REPOP_REQUEST", PackedByteArray())
+	var payload: PackedByteArray = PackedByteArray([0] if PacketReader.wotlk else [])
+	_session.send_packet("CMSG_REPOP_REQUEST", payload)
 
 
 # The corpse may not exist yet when the spirit is released, so this is asked again until it does.

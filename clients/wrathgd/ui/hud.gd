@@ -450,9 +450,16 @@ func _ask_summon(reader: PacketReader) -> void:
 	answer.encode_u64(0, summoner)
 	var place: String = AreaInfo.area_name(reader.u32())
 	var text: String = WowStrings.get_text("CONFIRM_SUMMON")
+	var decline: Callable = Callable()
+	if PacketReader.wotlk:
+		var refusal: PackedByteArray = answer.duplicate()
+		refusal.append(0)
+		answer.append(1)
+		decline = WowClient.session.send_packet.bind("CMSG_SUMMON_RESPONSE", refusal)
 	_popup.ask(
 		WowStrings.format(text, [WowClient.session.get_object_name(summoner), place]),
 		WowClient.session.send_packet.bind("CMSG_SUMMON_RESPONSE", answer), "ACCEPT", "CANCEL",
+		decline,
 	)
 
 

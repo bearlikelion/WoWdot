@@ -91,7 +91,11 @@ static func has_member(member_name: String) -> bool:
 
 
 static func invite(player_name: String) -> void:
-	_send_name("CMSG_GROUP_INVITE", player_name)
+	var payload: PackedByteArray = player_name.to_utf8_buffer()
+	payload.append(0)
+	if PacketReader.wotlk:
+		payload.resize(payload.size() + 4)
+	WowClient.session.send_packet("CMSG_GROUP_INVITE", payload)
 
 
 static func uninvite(player_name: String) -> void:
@@ -99,7 +103,10 @@ static func uninvite(player_name: String) -> void:
 
 
 static func accept() -> void:
-	WowClient.session.send_packet("CMSG_GROUP_ACCEPT", PackedByteArray())
+	var payload: PackedByteArray = []
+	if PacketReader.wotlk:
+		payload.resize(4)
+	WowClient.session.send_packet("CMSG_GROUP_ACCEPT", payload)
 
 
 static func decline() -> void:

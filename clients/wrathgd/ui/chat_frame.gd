@@ -335,7 +335,8 @@ func _run_channel_command(text: String) -> bool:
 		WowClient.session.send_packet("CMSG_REQUEST_RAID_INFO", PackedByteArray())
 		return true
 	if command == "played":
-		WowClient.session.send_packet("CMSG_PLAYED_TIME", PackedByteArray())
+		var payload: PackedByteArray = PackedByteArray([1] if PacketReader.wotlk else [])
+		WowClient.session.send_packet("CMSG_PLAYED_TIME", payload)
 		return true
 	if command == "who":
 		ServerNotices.ask_who(rest)

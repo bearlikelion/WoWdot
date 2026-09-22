@@ -139,11 +139,14 @@ func _on_button_pressed(index: int) -> void:
 	var guid: int = _gossip["guid"]
 	match row["kind"]:
 		Row.AVAILABLE:
-			NpcDialog.send("CMSG_QUESTGIVER_QUERY_QUEST", guid, [row["id"]])
+			NpcDialog.query_quest(guid, row["id"])
 		Row.ACTIVE:
 			NpcDialog.send("CMSG_QUESTGIVER_COMPLETE_QUEST", guid, [row["id"]])
 		Row.OPTION:
-			NpcDialog.send("CMSG_GOSSIP_SELECT_OPTION", guid, [row["id"]])
+			var values: Array[int] = [row["id"]]
+			if PacketReader.wotlk:
+				values.push_front(_gossip["menu_id"])
+			NpcDialog.send("CMSG_GOSSIP_SELECT_OPTION", guid, values)
 
 
 func _on_npc_text_received(text_id: int) -> void:

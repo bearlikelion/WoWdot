@@ -617,7 +617,7 @@ func _read_hidden_gear() -> bool:
 	return true
 
 
-# CMSG_SHOWING_HELM and CMSG_SHOWING_CLOAK carry nothing and toggle the flag they are named for.
+# In 1.12 CMSG_SHOWING_HELM and CMSG_SHOWING_CLOAK are empty toggles; 3.3.5 sends the new state.
 func _on_interface_changed() -> void:
 	if _wanted_gear < 0:
 		return
@@ -630,23 +630,28 @@ func _on_interface_changed() -> void:
 	var turned: int = wanted ^ _wanted_gear
 	_wanted_gear = wanted
 	if turned & CharacterModels.PLAYER_FLAG_HIDE_HELM:
-		WowClient.session.send_packet("CMSG_SHOWING_HELM", PackedByteArray())
+		WowClient.session.send_packet("CMSG_SHOWING_HELM", _shown(settings.is_on(&"show_helm")))
 	if turned & CharacterModels.PLAYER_FLAG_HIDE_CLOAK:
-		WowClient.session.send_packet("CMSG_SHOWING_CLOAK", PackedByteArray())
+		WowClient.session.send_packet("CMSG_SHOWING_CLOAK", _shown(settings.is_on(&"show_cloak")))
+
+
+func _shown(on: bool) -> PackedByteArray:
+	return PackedByteArray([int(on)]) if PacketReader.wotlk else PackedByteArray()
 
 
 func _apply_video() -> void:
 	_sun.shadow_enabled = WowAssets.video.shadows
 
 
-# CMSG_SETSHEATHED; the server's UNIT_FIELD_BYTES_2 update moves the weapons.
+# CMSG_SETSHEATHED (CMSG_SET_SHEATHED in 3.3.5); the server's UNIT_FIELD_BYTES_2 update moves the weapons.
 func _sheathe(state: ItemModels.SheathState) -> void:
 	if state == _sheath_state:
 		return
 	var payload: PackedByteArray = []
 	payload.resize(4)
 	payload.encode_u32(0, state)
-	WowClient.session.send_packet("CMSG_SETSHEATHED", payload)
+	var opcode: String = "CMSG_SET_SHEATHED" if PacketReader.wotlk else "CMSG_SETSHEATHED"
+	WowClient.session.send_packet(opcode, payload)
 
 
 # Units under the cursor get the default-anchored unit tooltip, like the stock mouseover.
@@ -758,7 +763,8 @@ func _use_game_object(guid: int) -> void:
 	var payload: PackedByteArray = []
 	payload.resize(8)
 	payload.encode_u64(0, guid)
-	if info.get("type", 0) == GAMEOBJECT_TYPE_MEETING_STONE:
+	# 3.3.5 dropped meeting stone queues for the dungeon finder.
+	if info.get("type", 0) == GAMEOBJECT_TYPE_MEETING_STONE and not PacketReader.wotlk:
 		# A second click on a stone leaves the queue the first one joined.
 		if ServerNotices.meeting_stone_area != 0:
 			session.send_packet("CMSG_MEETINGSTONE_LEAVE", PackedByteArray())

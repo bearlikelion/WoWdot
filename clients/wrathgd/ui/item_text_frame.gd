@@ -33,10 +33,15 @@ func read(title: String, first_page: int) -> void:
 
 
 # A letter's text comes whole, under the id its mail or item carries.
-func read_letter(title: String, text_id: int, mail_id: int) -> void:
+func read_letter(title: String, text_id: int, mail_id: int, item_guid: int = 0) -> void:
 	_title = title
 	_pages = []
 	var payload: PackedByteArray = []
+	if PacketReader.wotlk:
+		payload.resize(8)
+		payload.encode_u64(0, item_guid)
+		WowClient.session.send_packet("CMSG_ITEM_TEXT_QUERY", payload)
+		return
 	payload.resize(12)
 	payload.encode_u32(0, text_id)
 	payload.encode_u32(4, mail_id)

@@ -306,14 +306,20 @@ static func who_lines(payload: PackedByteArray) -> PackedStringArray:
 # CMSG_GMTICKET_CREATE: category, map, position, the text and a reserved string.
 static func open_ticket(text: String, category: int, map_id: int, wow_position: Vector3) -> void:
 	var payload: PackedByteArray = []
-	payload.resize(17)
-	payload.encode_u8(0, category)
-	payload.encode_u32(1, map_id)
-	payload.encode_float(5, wow_position.x)
-	payload.encode_float(9, wow_position.y)
-	payload.encode_float(13, wow_position.z)
+	if not PacketReader.wotlk:
+		payload.append(category)
+	var offset: int = payload.size()
+	payload.resize(offset + 16)
+	payload.encode_u32(offset, map_id)
+	payload.encode_float(offset + 4, wow_position.x)
+	payload.encode_float(offset + 8, wow_position.y)
+	payload.encode_float(offset + 12, wow_position.z)
 	payload.append_array(text.to_utf8_buffer())
-	payload.append_array([0, 0])
+	if PacketReader.wotlk:
+		# needResponse, needMoreHelp, chat log count and its decompressed size, all zero.
+		payload.resize(payload.size() + 14)
+	else:
+		payload.append_array([0, 0])
 	WowClient.session.send_packet("CMSG_GMTICKET_CREATE", payload)
 
 

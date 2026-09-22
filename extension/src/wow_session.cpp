@@ -1010,7 +1010,7 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 			Dictionary gossip;
 			gossip["guid"] = static_cast<int64_t>(packet.readUInt64());
 			if (wow_wotlk()) {
-				packet.readUInt32(); // Menu id.
+				gossip["menu_id"] = static_cast<int64_t>(packet.readUInt32());
 			}
 			gossip["text_id"] = static_cast<int64_t>(packet.readUInt32());
 			Array options;

@@ -26,6 +26,10 @@ const AUCTION_ERRORS: Dictionary[int, String] = {
 }
 const ERROR_HIGHER_BID: int = 5
 const ERROR_INVENTORY: int = 1
+# AzerothCore only accepts 12, 24 or 48 hour auctions.
+const WOTLK_MINUTES: Dictionary[Duration, int] = {
+	Duration.SHORT: 720, Duration.MEDIUM: 1440, Duration.LONG: 2880,
+}
 # Each tab names its rows and its current bid frame differently.
 const ROW_PREFIX: Dictionary[Tab, String] = {
 	Tab.BROWSE: "Browse", Tab.BID: "Bid", Tab.AUCTIONS: "Auctions",
@@ -119,6 +123,9 @@ func search() -> void:
 		filters.encode_u32(offset, NO_FILTER)
 	filters.encode_u8(18, 0)
 	payload.append_array(filters)
+	if PacketReader.wotlk:
+		# getAll off and no sort columns.
+		payload.append_array(PackedByteArray([0, 0]))
 	WowClient.session.send_packet("CMSG_AUCTION_LIST_ITEMS", payload)
 
 
@@ -219,6 +226,15 @@ func _create() -> void:
 	payload.encode_u32(16, _typed_money("StartPrice"))
 	payload.encode_u32(20, _typed_money("BuyoutPrice"))
 	payload.encode_u32(24, Duration.SHORT)
+	if PacketReader.wotlk:
+		# One item with its whole stack.
+		payload.resize(40)
+		payload.encode_u32(8, 1)
+		payload.encode_u64(12, _selling)
+		payload.encode_u32(20, Inventory.stack_count(_selling))
+		payload.encode_u32(24, _typed_money("StartPrice"))
+		payload.encode_u32(28, _typed_money("BuyoutPrice"))
+		payload.encode_u32(32, WOTLK_MINUTES[Duration.SHORT])
 	WowClient.session.send_packet("CMSG_AUCTION_SELL_ITEM", payload)
 
 

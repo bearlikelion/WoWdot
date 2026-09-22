@@ -109,15 +109,20 @@ static func move(from: Vector2i, to: Vector2i) -> void:
 		return
 	var session: WowSession = WowClient.session
 	if from.x == WIRE_BACKPACK and to.x == WIRE_BACKPACK:
-		session.send_packet("CMSG_SWAP_INV_ITEM", PackedByteArray([from.y, to.y]))
+		var slots: PackedByteArray = PackedByteArray(
+			[to.y, from.y] if PacketReader.wotlk else [from.y, to.y]
+		)
+		session.send_packet("CMSG_SWAP_INV_ITEM", slots)
 	else:
 		session.send_packet("CMSG_SWAP_ITEM", PackedByteArray([to.x, to.y, from.x, from.y]))
 
 
 static func split(from: Vector2i, to: Vector2i, count: int) -> void:
-	WowClient.session.send_packet(
-		"CMSG_SPLIT_ITEM", PackedByteArray([from.x, from.y, to.x, to.y, count])
-	)
+	var payload: PackedByteArray = [from.x, from.y, to.x, to.y, count]
+	if PacketReader.wotlk:
+		payload.resize(8)
+		payload.encode_u32(4, count)
+	WowClient.session.send_packet("CMSG_SPLIT_ITEM", payload)
 
 
 # The server reads three more bytes after the count and ignores them.

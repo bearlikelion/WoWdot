@@ -101,7 +101,9 @@ func _show_ticket(text: String) -> void:
 
 func _on_submit_pressed() -> void:
 	if _has_ticket:
-		var payload: PackedByteArray = [_category]
+		var payload: PackedByteArray = []
+		if not PacketReader.wotlk:
+			payload.append(_category)
 		payload.append_array(_text.text.to_utf8_buffer())
 		payload.append(0)
 		WowClient.session.send_packet("CMSG_GMTICKET_UPDATETEXT", payload)

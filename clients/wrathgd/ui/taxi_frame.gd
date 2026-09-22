@@ -143,12 +143,15 @@ func _on_node_pressed(node: int) -> void:
 		payload.encode_u32(12, node)
 		WowClient.session.send_packet("CMSG_ACTIVATETAXI", payload)
 		return
-	payload.resize(16 + chain.size() * 4)
+	# 3.3.5 dropped the total cost ahead of the node count.
+	var head: int = 12 if PacketReader.wotlk else 16
+	payload.resize(head + chain.size() * 4)
 	payload.encode_u64(0, _guid)
-	payload.encode_u32(8, TaxiNodes.route_cost(chain))
-	payload.encode_u32(12, chain.size())
+	if not PacketReader.wotlk:
+		payload.encode_u32(8, TaxiNodes.route_cost(chain))
+	payload.encode_u32(head - 4, chain.size())
 	for i: int in chain.size():
-		payload.encode_u32(16 + i * 4, chain[i])
+		payload.encode_u32(head + i * 4, chain[i])
 	WowClient.session.send_packet("CMSG_ACTIVATETAXIEXPRESS", payload)
 
 

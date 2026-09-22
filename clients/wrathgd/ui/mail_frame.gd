@@ -82,8 +82,15 @@ func send() -> void:
 	payload.append_array(_text_bytes((%SendMailNameEditBox as LineEdit).text))
 	payload.append_array(_text_bytes((%SendMailSubjectEditBox as LineEdit).text))
 	payload.append_array(_text_bytes((%SendMailBodyEditBox as LineEdit).text))
-	# Stationery, package, the attached item, money, cash on delivery, then the two the client pads with.
 	var tail: PackedByteArray = []
+	if PacketReader.wotlk:
+		tail.resize(26)
+		tail.encode_u32(0, DEFAULT_STATIONERY)
+		tail.encode_u32(9, _money_typed())
+		payload.append_array(tail)
+		WowClient.session.send_packet("CMSG_SEND_MAIL", payload)
+		return
+	# Stationery, package, the attached item, money, cash on delivery, then the two the client pads with.
 	tail.resize(33)
 	tail.encode_u32(0, DEFAULT_STATIONERY)
 	tail.encode_u32(4, 0)
@@ -99,11 +106,11 @@ func take_money(mail_id: int) -> void:
 
 
 func take_item(mail_id: int) -> void:
-	_send("CMSG_MAIL_TAKE_ITEM", mail_id)
+	_send("CMSG_MAIL_TAKE_ITEM", mail_id, _wotlk_tail(mail_id, "item_guid", 4))
 
 
 func delete(mail_id: int) -> void:
-	_send("CMSG_MAIL_DELETE", mail_id)
+	_send("CMSG_MAIL_DELETE", mail_id, _wotlk_tail(mail_id, "template_id", 4))
 
 
 # CMSG_MAIL_CREATE_TEXT_ITEM: a copy of the letter to keep in the bags.
@@ -112,7 +119,7 @@ func keep_letter(mail_id: int) -> void:
 
 
 func return_to_sender(mail_id: int) -> void:
-	_send("CMSG_MAIL_RETURN_TO_SENDER", mail_id)
+	_send("CMSG_MAIL_RETURN_TO_SENDER", mail_id, _wotlk_tail(mail_id, "sender_guid", 8))
 
 
 func refresh() -> void:
@@ -150,12 +157,30 @@ func _money_typed() -> int:
 	return gold * COPPER_PER_GOLD + silver * COPPER_PER_SILVER + copper
 
 
-func _send(opcode: String, mail_id: int) -> void:
+func _send(opcode: String, mail_id: int, tail: PackedByteArray = PackedByteArray()) -> void:
 	var payload: PackedByteArray = []
 	payload.resize(12)
 	payload.encode_u64(0, _guid)
 	payload.encode_u32(8, mail_id)
+	payload.append_array(tail)
 	WowClient.session.send_packet(opcode, payload)
+
+
+# The field of the listed mail that 3.3.5 appends to a mail request, nothing on 1.12.
+func _wotlk_tail(mail_id: int, key: String, size: int) -> PackedByteArray:
+	var tail: PackedByteArray = []
+	if not PacketReader.wotlk:
+		return tail
+	var value: int = 0
+	for mail: Dictionary in _mails:
+		if mail["id"] == mail_id:
+			value = mail.get(key, 0)
+	tail.resize(size)
+	if size == 8:
+		tail.encode_u64(0, value)
+	else:
+		tail.encode_u32(0, value)
+	return tail
 
 
 func _turn_page(by: int) -> void:
@@ -228,14 +253,16 @@ func _read_mails_wotlk(reader: PacketReader) -> Array[Dictionary]:
 		var mail: Dictionary = {"id": reader.u32()}
 		var type: SenderWotlk = reader.u8() as SenderWotlk
 		mail["from_player"] = type == SenderWotlk.NORMAL
-		mail["sender"] = _sender_name_wotlk(type, reader)
+		var sender: int = reader.u64() if type == SenderWotlk.NORMAL else reader.u32()
+		mail["sender_guid"] = sender if type == SenderWotlk.NORMAL else 0
+		mail["sender"] = _sender_name_wotlk(type, sender)
 		mail["cod"] = reader.u32()
 		reader.u32()
 		mail["stationery"] = reader.u32()
 		mail["money"] = reader.u32()
 		mail["read"] = reader.u32()
 		mail["days"] = ceili(reader.f32())
-		reader.u32()
+		mail["template_id"] = reader.u32()
 		mail["subject"] = reader.cstring()
 		mail["body"] = reader.cstring()
 		mail["text_id"] = 0
@@ -243,7 +270,7 @@ func _read_mails_wotlk(reader: PacketReader) -> Array[Dictionary]:
 		mail["stack"] = 0
 		for item: int in reader.u8():
 			reader.u8()
-			reader.u32()
+			var item_guid: int = reader.u32()
 			var entry: int = reader.u32()
 			for skipped: int in WOTLK_ITEM_WORDS:
 				reader.u32()
@@ -253,19 +280,19 @@ func _read_mails_wotlk(reader: PacketReader) -> Array[Dictionary]:
 			reader.u8()
 			if item == 0:
 				mail["item_entry"] = entry
+				mail["item_guid"] = item_guid
 				mail["stack"] = stack
 		mails.append(mail)
 	return mails
 
 
-func _sender_name_wotlk(type: SenderWotlk, reader: PacketReader) -> String:
+func _sender_name_wotlk(type: SenderWotlk, sender: int) -> String:
 	if type == SenderWotlk.NORMAL:
-		return WowClient.session.get_object_name(reader.u64())
-	var entry: int = reader.u32()
+		return WowClient.session.get_object_name(sender)
 	if type == SenderWotlk.AUCTION:
 		return WowStrings.get_text("AUCTION_HOUSE", AUCTION_SENDER)
 	if type == SenderWotlk.CREATURE:
-		return WowClient.session.get_creature_template(entry).get("name", "")
+		return WowClient.session.get_creature_template(sender).get("name", "")
 	return ""
 
 

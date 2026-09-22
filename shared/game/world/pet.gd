@@ -82,6 +82,9 @@ func rename(pet_name: String) -> void:
 	payload.encode_u64(0, guid)
 	payload.append_array(pet_name.to_utf8_buffer())
 	payload.append(0)
+	if PacketReader.wotlk:
+		# No declined names follow.
+		payload.append(0)
 	_session.send_packet("CMSG_PET_RENAME", payload)
 
 

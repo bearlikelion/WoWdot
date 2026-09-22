@@ -253,7 +253,10 @@ func _stack_titles(first: int, quests: Array[Dictionary], heading: Control) -> C
 
 func _on_accept_pressed() -> void:
 	_answer_share(SHARE_ACCEPTED)
-	_send("CMSG_QUESTGIVER_ACCEPT_QUEST")
+	var values: Array[int] = [_quest_id]
+	if PacketReader.wotlk:
+		values.append(0)
+	NpcDialog.send("CMSG_QUESTGIVER_ACCEPT_QUEST", _guid, values)
 
 
 func _send(opcode: String) -> void:
@@ -263,10 +266,10 @@ func _send(opcode: String) -> void:
 # QuestTitleButton_OnClick: quests in progress ask to complete, the rest ask for their details.
 func _on_title_pressed(index: int) -> void:
 	var quest: Dictionary = _greeting_quests[index]
-	var available: bool = quest["icon"] == NpcDialog.Status.AVAILABLE
-	var opcode: String = "CMSG_QUESTGIVER_QUERY_QUEST" if available \
-	else "CMSG_QUESTGIVER_COMPLETE_QUEST"
-	NpcDialog.send(opcode, _guid, [quest["id"]])
+	if quest["icon"] == NpcDialog.Status.AVAILABLE:
+		NpcDialog.query_quest(_guid, quest["id"])
+	else:
+		NpcDialog.send("CMSG_QUESTGIVER_COMPLETE_QUEST", _guid, [quest["id"]])
 
 
 # QuestInfoItem_OnClick: only choices can be picked.
@@ -298,6 +301,13 @@ func _answer_share(message: int) -> void:
 	if not WowClient.session.get_object_type(_guid) == Entities.ObjectType.PLAYER:
 		return
 	var payload: PackedByteArray = []
+	if PacketReader.wotlk:
+		payload.resize(13)
+		payload.encode_u64(0, _guid)
+		payload.encode_u32(8, _quest_id)
+		payload.encode_u8(12, message)
+		WowClient.session.send_packet("MSG_QUEST_PUSH_RESULT", payload)
+		return
 	payload.resize(9)
 	payload.encode_u64(0, _guid)
 	payload.encode_u8(8, message)

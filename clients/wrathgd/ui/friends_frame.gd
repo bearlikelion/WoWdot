@@ -151,7 +151,13 @@ static func send_command(opcode: String, text: String = "") -> void:
 
 # CMSG_FRIEND_LIST answers with both lists, so opening the window asks once.
 func request_lists() -> void:
-	WowClient.session.send_packet("CMSG_FRIEND_LIST", PackedByteArray())
+	if not PacketReader.wotlk:
+		WowClient.session.send_packet("CMSG_FRIEND_LIST", PackedByteArray())
+		return
+	var payload: PackedByteArray = []
+	payload.resize(4)
+	payload.encode_u32(0, CONTACT_FRIEND | CONTACT_IGNORED)
+	WowClient.session.send_packet("CMSG_CONTACT_LIST", payload)
 
 
 func _on_who_friend_requested(player_name: String) -> void:

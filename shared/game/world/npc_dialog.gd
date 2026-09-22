@@ -39,6 +39,19 @@ static func send(opcode: String, guid: int, values: Array[int] = []) -> void:
 	WowClient.session.send_packet(opcode, payload)
 
 
+# 3.3.5 follows the quest id with a byte AzerothCore ignores.
+static func query_quest(guid: int, quest_id: int) -> void:
+	if not PacketReader.wotlk:
+		send("CMSG_QUESTGIVER_QUERY_QUEST", guid, [quest_id])
+		return
+	var payload: PackedByteArray = PackedByteArray()
+	payload.resize(13)
+	payload.encode_u64(0, guid)
+	payload.encode_u32(8, quest_id)
+	payload.encode_u8(12, 1)
+	WowClient.session.send_packet("CMSG_QUESTGIVER_QUERY_QUEST", payload)
+
+
 static func is_quest_giver(guid: int) -> bool:
 	return WowClient.session.get_field(guid, "UNIT_NPC_FLAGS") & NPC_FLAG_QUESTGIVER != 0
 
