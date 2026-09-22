@@ -9,148 +9,80 @@ It reads the stock client's MPQs at runtime and ships no Blizzard data.
 
 ## Status
 
-Playable: you can log in, create a character, quest, fight, loot, group, train and fly on an unmodified vMaNGOS server.
+Playable: log in, create a character, quest, fight, loot, group, train and fly on an unmodified vMaNGOS server.
 
 | Area | Working |
 | --- | --- |
-| Login | Account login, realm list, character select, create and delete, loading screen, glue music. |
-| World | Streaming terrain, WMOs and doodads, water on the terrain and inside buildings, sky with day and night from Light.dbc, weather, zone music and ambience. |
-| Characters | Skin compositing, hair and facial hair, equipment on the model, sheathing, mounts, 3D portraits. |
-| Movement | Movement relays, jumping, falling, swimming, flights on taxi splines, dead reckoning for other players. Server speed changes, roots, knockbacks and water walking are applied and acknowledged. |
-| Zoning | Continents, dungeons and portals, with the loading screen and a clean sweep of the old map's objects. |
-| Death | Release, corpse location and reclaim, resurrect offers from other players, self resurrection, and the spirit healer. |
-| Combat | Targeting, auto attack, spell casts with cooldowns and the GCD, buffs and debuffs, floating combat text, combat log. |
-| HUD | Action bars with pages, side bars and the stance bar, player, target and target of target frames, cast bar, minimap with the corpse marked, tooltips, reputation watch bar, breath and fatigue timers, nameplates in their reaction colour, and the level up chime, notice, gains and golden rings. |
-| Chat | Say, yell, party, guild and whispers, raid, raid warning and battleground chat, zone channels joined on entering a zone, channels with /join, numbered commands, member lists and moderation, /who, /afk and /dnd, /roll, emotes such as /dance, speech bubbles over the speaker, and the server's refusals shown. |
-| Panels | Character sheet, bags, spellbook, talents, quest log and quest watch, skills, reputation, world map, game menu, video, sound and interface options, key bindings. |
-| NPCs | Gossip, quest dialogs and markers, vendors with buyback and repair, class trainers, flight masters, bankers with bag and bag slot purchases, auctioneers with bidding and buyout. |
-| Items | Dragging between the bags, the bank, its bags and the character, splitting a stack and destroying one, with the server's refusal shown. |
-| World objects | Chests, doors, levers, chairs, herb and mining nodes answer a click. |
-| Mail | Inbox from a mailbox, reading letters, keeping a letter as an item, taking money and attachments, returning, deleting, and writing letters with money. |
-| Groups | Party invites, party frames with stats for members out of sight, loot window, group loot rolls, master loot, ready check, quest sharing, minimap pings, summon prompts, instance reset and raid info. |
-| Social | Trade, duels, friends and ignore, the guild window with its roster, message of the day and invites, guild charters from a registrar and crests from a designer. |
-| Pets | The pet frame with happiness, the pet action bar with autocast, the pet spellbook tab, naming a tamed pet, dismissing and abandoning one, and the stable master. |
-| Effects | M2 particles and scrolling textures, spell visuals from SpellVisual.dbc with flying missiles, and the sparkle over lootable corpses. Additive emitters are damped, since they stack brighter than the stock client's. |
+| Login | Account, realm list, character select, create and delete, loading screen. |
+| World | Streaming terrain, buildings, water, sky and weather from Light.dbc, ground clutter, the distant horizon, zone music. |
+| Characters | Skin and hair, equipment on the model, sheathing, mounts, portraits, footprints. |
+| Movement | Run, jump, fall, swim with a wake, taxi flights, other players' movement, server speed changes, roots, knockbacks. |
+| Zoning | Continents, dungeons and portals. |
+| Death | Release, corpse run, resurrect offers, spirit healer. |
+| Combat | Targeting, auto attack, casts, cooldowns, auras, floating text, combat log. |
+| HUD | Action bars, unit frames, cast bar, minimap, tooltips, nameplates, breath timers. |
+| Chat | All channels, /who, /roll, emotes, speech bubbles. |
+| Panels | Character, bags, keyring, spellbook, talents, quests, skills, reputation, world map, options, key bindings, macros, help. |
+| NPCs | Gossip, quests, vendors, trainers, flight masters, bankers, auctioneers. |
+| Items | Bags, bank, equipping, stack splitting, readable books and plaques. |
+| Mail | Inbox, attachments, sending, returning. |
+| Groups | Invites, party frames with debuffs, loot rolls, master loot, ready check, raid window, raid info. |
+| Social | Trade, duels, friends, guild, charters, tabards, inspect, honor. |
+| PvP | Battleground queue, scoreboard, team blips on the map. |
+| Pets | Taming, pet bar, happiness, stable. |
+| Effects | Particles, ribbon trails, spell visuals, missiles, cinematic flyovers. |
 
 ## Requirements
 
-- Godot 4.7 and the `wowdot` extension built from [`extension/`](../../extension) (see the [top-level README](../../README.md#building)).
-  `shared/wowdot/wowdot.gdextension` has `reloadable = false`, so a stock editor opens the project safely.
-  Hot reloading the extension (`reloadable = true`) needs an editor with the extension instance-binding fix, or the streamer's worker threads corrupt the heap.
-- A 1.12.1 (build 5875) client folder with its `Data` directory.
-  WoWGD ships no Blizzard files; it reads the MPQs in `Data`.
-  Only stock servers are supported: ones that ship their own patched client (another build number, extra `patch-N.mpq` content, changed packets) are left to forks.
+- Godot 4.7 and the `wowdot` extension built from [`extension/`](../../extension); see the [top-level README](../../README.md#building).
+- A 1.12.1 client folder with its `Data` directory.
+  Only stock servers are supported; ones that ship a patched client are left to forks.
 
 ## Server setup
 
-WoWGD targets the latest vMaNGOS `development` commit with no source changes and the shipped defaults for anything the client can see.
+WoWGD targets the latest vMaNGOS `development` commit with no source changes.
 
-1. Build vMaNGOS with its default CMake options (`SUPPORTED_CLIENT_BUILD` defaults to 1.12.1).
-   Passing `-DSUPPORTED_CLIENT_BUILD=5875` also works, but CMake then rewrites the tracked `src/shared/Progression.h` and leaves the tree dirty.
-2. Create the `realmd`, `characters`, `mangos` and `logs` databases, load the schemas, the world database from [brotalnia/database](https://github.com/brotalnia/database) and the migrations, as vMaNGOS's install guide describes.
-3. Run vMaNGOS's `MapExtractor` from the client folder, and point `DataDir` in `mangosd.conf` at the extracted `dbc` and `maps` (vmaps and mmaps are optional).
-4. Copy `realmd.conf.dist` and `mangosd.conf.dist` and change the database connections and paths.
-   Set `StrictVersionCheck = 0` in `realmd.conf`: that check wants a hash of the stock client's executables, which WoWGD does not read or ship, so realmd refuses the login while it is on.
-5. Set the realm's address in `realmd.realmlist`, then create an account from the mangosd console: `account create wowgd wowgd`.
-6. For the checks in [`tests/`](tests), which use GM commands, run `account set gmlevel wowgd 6`.
+1. Build vMaNGOS with its default CMake options.
+2. Create the `realmd`, `characters`, `mangos` and `logs` databases and load the schemas, the world database from [brotalnia/database](https://github.com/brotalnia/database) and the migrations.
+3. Run `MapExtractor` from the client folder and point `DataDir` in `mangosd.conf` at the output.
+4. Copy the two `.conf.dist` files, fill in the database connections, and set `StrictVersionCheck = 0` in `realmd.conf` (that check wants a hash of the stock executable, which WoWGD does not ship).
+5. Set the realm's address in `realmd.realmlist` and create an account from the mangosd console: `account create wowgd wowgd`.
+6. For the checks, which use GM commands: `account set gmlevel wowgd 6`.
 
 ## Running
 
 Open this folder in Godot, set **Project Settings > wowgd > client_data_dir** to the client's `Data` folder, and run.
-`game/` is a symlink to [`shared/game`](../../shared/game), the GDScript both clients load, so `res://game/...` paths are the same here and in WrathGD.
-The login screen starts on `127.0.0.1`; whatever you log in with is saved for next time.
-Command-line options after `--` fill the login screen for one run without saving: `--realm=<address>`, `--account=`, `--password=` and `--character=` (logs straight in; without `--character` it enters the first character).
-`--data=<path to a Data folder>` picks the client data for one run.
+The login screen starts on `127.0.0.1` and remembers what you last logged in with.
+
+Options after `--` fill the login screen for one run: `--realm=<address>`, `--account=`, `--password=`, `--character=` (logs straight in) and `--data=<Data folder>`.
 
 ## Exporting
 
-`export_presets.cfg` has Linux and Windows presets that write to `export/wowgd/`.
-An exported build reads `Data` next to its executable, so players copy the export into their 1.12.1 folder.
-Build the extension's release libraries first: `scons target=template_release`, and `scons platform=windows target=template_release` (mingw-w64) for Windows.
-Both presets encrypt the pck, so the export needs the key in `export_credentials.cfg` or `GODOT_SCRIPT_ENCRYPTION_KEY`, and it needs export templates compiled with that same key.
-The official templates cannot load an encrypted pck, which is why releases are built here rather than in CI.
-After exporting both presets, `packaging/publish.sh <tag>` writes `WoWGD-linux.zip` and `WoWGD-windows.zip`, each holding the binary, the extension library, `packaging/wowgd/README.txt`, `LICENSE` and `NOTICE.md`, and attaches them to a GitHub release.
+`export_presets.cfg` has Linux and Windows presets writing to `export/wowgd/`.
+Build the release libraries first (`scons target=template_release`, and `platform=windows` for Windows).
+Both presets encrypt the pck, so the export needs the key and export templates compiled with it; this is why releases are built here, not in CI.
+`packaging/publish.sh <tag>` then zips both exports and attaches them to a GitHub release.
 
 ## Checks
 
-The checks in `tests/` log in as `wowgd` / `wowgd` and use the account's first character.
-They reach whatever `--realm=<address>` names, falling back to the realmlist the client saved last; the vMaNGOS server they run against here is `192.168.1.251`, since the local docker stack holds AzerothCore for [WrathGD](../wrathgd).
-Run one with `godot --headless --path . tests/glue_check.tscn -- --realm=192.168.1.251` (or without `--headless` for the ones that capture screenshots); each prints `<name>: OK` or the number of failures.
-The shell-driven checks pass no realm of their own, so they follow the saved realmlist.
-`party_check.sh` and `remote_movement_check.sh` also need a second account, `wowgd2` / `wowgd2`, and `death_check.sh` makes and removes its own character.
-A character left dead cannot use chat, which silently breaks the GM commands later checks rely on; revive it from the server with `bin/soap.sh "revive <name>"`.
-
-| Check | Covers |
-| --- | --- |
-| `glue_check` | Login, realm list, character create and delete. |
-| `play_check`, `targeting_check`, `combat_check`, `combat_log_check` | Entering the world, targeting and combat. |
-| `panels_check` | Every panel, quest add and abandon. |
-| `npc_check`, `npc_services_check.sh`, `bank_check` | Gossip, quests, vendor, trainer, flights, the bank. |
-| `mail_check`, `auction_check` | The mailbox and the auction house. |
-| `loot_check`, `party_check.sh` | Loot and parties. |
-| `trade_check.sh`, `friends_check`, `guild_check` | Trading, the friends and ignore lists, the guild window. |
-| `bubble_check`, `pet_check.sh` | Speech bubbles with their backdrop loaded; a warlock's imp, its frame, bar and spellbook. |
-| `level_check` | A GM level up: the chime, the notice, the health and stat gains, the rings on the player, and nameplates coloured by reaction, with the Defias Brotherhood reading hostile. |
-| `hunter_check.sh` | Taming, naming, happiness and the stable, with a throwaway hunter. It leans on the GM commands `.npc tame` and `.stable`, and needs a quiet machine: a busy one can take minutes to reach the world. |
-| `remote_motion_check`, `remote_movement_check.sh` | Other players' movement. |
-| `movement_check`, `swim_check` | Forced speed, root, water walk, feather fall and knockback; swimming and the breath timer. |
-| `stance_check`, `target_of_target_check` | The stance bar and the target of target frame. |
-| `emote_check`, `channel_check` | Slash emotes and chat channels. |
-| `read_check` | A GM-made book opens in the reading window and turns its page. |
-| `zoning_check`, `death_check.sh` | Zoning between maps; dying, releasing and resurrecting with the corpse marked on both maps. |
-| `sheath_check`, `sky_check` | Sheathing, sky, light and weather. |
-| `ribbon_check` | M2 ribbon emitters read in the vanilla layout. No server needed. They are parsed but not yet drawn: the trail's look was not right, so the drawing was taken back out. |
-| `wmo_liquid_check` | A building's own water: Stormwind's canals answer the liquid height, only from inside, and the player swims in them. |
-| `audio_check`, `effects_check` | Audio; scrolling textures and particle emitters, both with no server needed. |
-| `spell_target_check`, `visual_check` | Self-only buffs cast on the caster; the spell visual chain resolves. Neither needs a server. |
-| `effect_check` | A fireball crosses to its target and a lootable corpse sparkles. |
-| `chase_check` | A pulled creature closes to melee, trades blows and follows a running player. |
-| `outfit_check` | The create screen's preview wears what CharStartOutfit.dbc gives it; no server needed. |
-| `realm_list_check` | A realm list longer than the frame scrolls; no server needed. |
-| `interface_options_check` | The options this client answers can be ticked, the rest are greyed; no server needed. |
-| `key_binding_check` | The key binding window lists the bindings and a press rebinds one; no server needed. |
-| `footstep_check`, `map_poi_check` | The ground texture under a unit names its footstep; the map's landmarks follow their option. Neither needs a server. |
-| `gear_check` | Show Helm and Show Cloak reach the server, and Show Own Name is answered here. |
-| `item_move_check` | Items move between the bags, the bank and the character, and split and destroy. |
-| `gameobject_check` | Using a game object: a chair seats the player. |
-| `auction_bid_check.sh` | A second character lists an item and this one bids on it. Proving the money moves needs `wowgd2` at GM level, and the check says so and skips that leg when it is not. |
-| `tabard_check` | The guild crest designer: cycling the icon changes the preview, and saving it puts the choice on the guild. The character is made a guild leader first, which `petition_check.sh` undoes again. |
-| `profession_check` | Learning Blacksmithing and its first recipe, reading the recipe out of the DBCs with its reagents and product, counting the bags against what it needs, and casting it to make the item. It uses `.learn` and `.additem`. |
-| `raid_check.sh` | Two accounts: converting a party to a raid, moving the partner into another subgroup, making them an assistant, marking them with the skull and asking for the whole icon list back. |
-| `area_trigger_check` | Walking into the Deadmines portal reports the trigger and the server opens the instance. Landing inside a trigger is adopted rather than fired, or a portal bounces the player between the two maps forever. |
-| `battleground_check` | The Warsong Gulch queue round trip: a battlemaster lists its battleground, joining takes a place in the queue and giving it up clears the slot. It needs `.character level` (the account must be a developer-level GM), since the starting character is below the level Warsong Gulch asks for, and it leaves the character at level 20. Entering a match needs four players a side, so nothing past the queue is proven. |
-| `transport_check` | A zeppelin sails the taxi path its game object names, and standing on its deck carries the player while their place on it holds still. A Thunder Bluff mesa lift runs its `TransportAnimation` loop and carries them up its shaft without claiming a transport on the wire. The Menethil ferry's path keeps the legs on both continents. |
-| `petition_check.sh` | Buying a guild charter from a registrar, a second character signing it, and handing it back. It leaves the guild the character was in first, which `guild_check` makes again. Nine signatures from nine accounts are needed to found a guild, so the check asserts the refusal rather than the guild. |
-| `protocol_gaps_check` | Canned payloads through the newer handlers with no server: dispel, instant kill and item push log lines, played time, mount results, item cooldowns, proficiencies, the battleground scoreboard and positions, raid info rows and the keyring's sizing. |
-| `score_frame_check` | The battleground scoreboard fills its rows and per battleground columns from a canned `MSG_PVP_LOG_DATA`, with the fixed headers titled, and hides the rows it does not need. |
-| `help_check` | The GM ticket window opens on its home page, lists the categories from `GMTicketCategory.dbc`, files a ticket under the one picked, and turns Submit into Save Changes once a ticket is open. |
-| `stack_split_check` | The stack split window opens on one, its arrows stop one short of the stack, and Okay hands the count back. |
-| `cinematic_check` | The human intro's camera model plays from `CinematicSequences.dbc` without a server, moves along its track, and refuses an unknown sequence. |
-| `cinematic_flyover_check` | The server's `.debug play cinematic` takes the camera, hides the interface, and hands both back afterwards. |
-| `clutter_check` | Detail doodads scatter over the chunks in reach of the player from the ground effect tables, and walking leaves footprints behind. |
-| `horizon_check` | The map's WDL builds the low detail horizon mesh with the loaded tiles cut out of it. |
+The checks in `tests/` log in as `wowgd` / `wowgd` and drive the client against a live server.
+Run one with `godot --headless --path . tests/<name>.tscn -- --realm=<address>`; drop `--headless` for the ones that take screenshots.
+Each prints `<name>: OK` or the number of failures.
+[docs/checks.md](docs/checks.md) lists every check and what it covers.
 
 ## Still to do
 
-In the order they are planned:
-
-| Milestone | Work |
+| Area | Work |
 | --- | --- |
-| M6 transports | Riding a ferry across the boundary between two continents. The route keeps the far legs and the boat hides while it sails them, but nothing yet checks that the server carries a passenger over with it. Other players and creatures riding a transport are not attached to it, so `SMSG_MONSTER_MOVE_TRANSPORT` is ignored. |
-| PvP | The queue, the scoreboard window (Shift+Space in a match, and on its own when the match ends) and the team blips on the world map are in. None of the match itself can be proven here: it needs four players a side. |
-| Raid | The 40 slot window, the raid info window and the target icons work. What is missing is drawing the marks over the units wearing them and the pulled out raid frames. |
+| Transports | Riding a ferry across a continent boundary; other units riding a transport are not attached to it. |
+| PvP | The match itself is unproven: it needs four players a side. |
+| Raid | Target marks over the units wearing them, and the pulled out raid frames. |
+| Looking for group | The minimap button and the browser over `MSG_LOOKING_FOR_GROUP`. |
+| Other riders | Only the player's own mount is drawn. |
 
-These parts of 1.12 have not been started at all:
-
-| Feature | Work |
-| --- | --- |
-| Looking for group | Clicking a meeting stone joins its queue and a second click leaves it; the minimap button and the 1.12 browser over `MSG_LOOKING_FOR_GROUP` are missing. |
-| Auto shot | The client keeps no auto repeat state, so `SMSG_CANCEL_AUTO_REPEAT` has nothing to stop. |
-| Other riders | Only the player's own mount is drawn, so `SMSG_MOUNTSPECIAL_ANIM` and other players' mounts are not shown. |
-
-After that come the content tools: custom spells, creatures, items and quests as Godot Resources exported to the vMaNGOS database, and map editing in the Godot editor with an exporter to vMaNGOS `.map` files.
+After that come the content tools: spells, creatures, items, quests and maps authored in Godot and exported to vMaNGOS.
 
 ## References
 
-[wowdev.wiki](https://wowdev.wiki/Main_Page) documents the client's file formats and much of the protocol, mostly for 3.3.5a, so check each page's version notes before applying it to 1.12.1.
-For packet layouts the vMaNGOS source is the authority, since it is what the server sends.
+[wowdev.wiki](https://wowdev.wiki/Main_Page) documents the file formats and protocol, mostly for 3.3.5a, so check each page's version notes.
+For packet layouts the vMaNGOS source is the authority.

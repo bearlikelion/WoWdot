@@ -12,35 +12,28 @@ Godot clients for classic World of Warcraft servers.
 | [WrathGD](clients/wrathgd) | 3.3.5a (build 12340) | AzerothCore | Walks around |
 
 WoWdot ships no Blizzard data.
-Point the client at your own game install; each client reads the data for its own game version.
-
-`shared/game/` is one folder of GDScript symlinked in as `game/` by both clients, so `res://game/...` resolves the same in each while the data folder, the expansion setting and the client's own `Data` directory stay per client.
+Each client reads the MPQ archives from your own game install and talks to whatever server you point it at.
 
 ## Layout
 
 ```text
-extension/       C++ GDExtension: sessions, crypto, MPQ access and WoW file formats
-shared/wowdot/   Addon both clients load; the built libraries land in its bin/
-shared/game/     GDScript both clients load: the interface, world and gameplay
-clients/wowgd/   Vanilla client; game and addons/wowdot link into shared/
-clients/wrathgd/ WrathGD client; game and addons/wowdot link into shared/
+extension/       C++ GDExtension: login, network protocol, MPQ access and WoW file formats
+shared/wowdot/   The addon both clients load; built libraries land in its bin/
+shared/game/     GDScript both clients load: interface, world and gameplay
+clients/wowgd/   The 1.12.1 client
+clients/wrathgd/ The 3.3.5a client
 docs/            Provenance and license audit
-website/         Project site, built with website/build.sh into _site/
+website/         Project site, built by website/build.sh
 packaging/       Release zip contents and publish.sh
 ```
 
-The site is plain HTML in `website/`: what works, what is next, and the downloads.
-It carries no API reference, so the build is a file copy and needs neither Godot nor the extension.
-For the GDScript API locally, run `godot --headless --path clients/wowgd --script res://addons/gddocs/gddocs_cli.gd`, which writes `clients/wowgd/docs/api/index.html`.
-`.forgejo/workflows/pages.yml` builds the site on every push to `main`, pushes it to a `pages` branch here and to GitHub Pages.
-It reads `SITE_REPO` at the top of the workflow and a `SITE_TOKEN` secret.
-Releases are not built in CI: `packaging/publish.sh <tag>` zips the local export and attaches it to a GitHub release with `gh`.
-The presets encrypt the pck, and only export templates compiled with the key can load one, so the build has to come from the machine that has them.
+Both clients link `shared/game/` in as `game/`, so `res://game/...` is the same path in each.
+Each client keeps its own data tables, expansion setting and `Data` folder.
 
 ## Building
 
 Needs Godot 4.7, SCons and a C++20 compiler.
-Every library the extension uses is a submodule and is compiled in, so there are no system packages to install.
+Every library is a submodule compiled in, so there is nothing to install from the system.
 
 ```sh
 git clone --recursive <repo> WoWdot
@@ -48,18 +41,24 @@ cd WoWdot/extension
 scons -j"$(nproc)" target=template_debug
 ```
 
-Windows builds cross-compile with mingw-w64:
+For Windows, cross-compile with mingw-w64:
 
 ```sh
 scons -j"$(nproc)" platform=windows target=template_release
 ```
 
-On Windows, clone with `git config core.symlinks true` (Developer Mode enabled), or copy `shared/wowdot` over each `clients/*/addons/wowdot` link.
+On Windows, clone with `git config core.symlinks true` (Developer Mode on), or copy `shared/wowdot` over each `clients/*/addons/wowdot` link.
 
 ## Running
 
 Open `clients/wowgd` in Godot, set **Project Settings > wowgd > client_data_dir** to your 1.12.1 client's `Data` folder, and run.
-Exported builds read the `Data` folder next to the executable instead.
+Exported builds read the `Data` folder next to their executable.
+
+## Releases and the site
+
+`packaging/publish.sh <tag>` zips the local export and attaches it to a GitHub release.
+Releases are built locally because the export encrypts the pck, which only templates compiled with the key can load.
+The site in `website/` is plain HTML; `.forgejo/workflows/pages.yml` publishes it on every push to `main`.
 
 ## Thanks
 
