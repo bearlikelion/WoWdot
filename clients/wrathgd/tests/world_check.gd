@@ -20,6 +20,8 @@ const QUEST: int = 783
 const QUEST_TITLE: String = "A Threat Within"
 const DAMAGE: int = 5
 const DUMMY_CREATURE: int = 6
+const GEAR_SET: String = "Wrathset"
+const GEAR_ICON: String = "INV_Chest_Plate01"
 const UNIT_TYPE: int = 3
 
 # Wire values, which WotLK shares with vanilla for these two.
@@ -42,6 +44,7 @@ var _chat: Array[Dictionary] = []
 var _time_syncs: int = 0
 var _cast_failures: Array[int] = []
 var _combat: CombatEvents = CombatEvents.new(_session)
+var _gear_sets: EquipmentSets = EquipmentSets.new(_session)
 var _melee: Array[CombatEvents.CombatEvent] = []
 var _spawned: int = 0
 var _quest_givers: int = 0
@@ -95,10 +98,18 @@ func _run() -> void:
 	_check(_position.distance_to(start) > 3.0, "the kept position is not where the walk began")
 	await _auras(guid)
 	await _packets()
+	_gear_sets.save(GEAR_SET, GEAR_ICON)
+	await _until(func() -> bool: return _gear_sets.find(GEAR_SET)["guid"] != 0,
+			"the saved equipment set gets its guid")
 	if await _gm_command() and await _teleport() and await _log_out() and await _enter(guid):
 		print("after the teleport and a second walk, came back at %v" % _position)
 		_check(_position.distance_to(_walked_from_teleport) < 1.0,
 				"the server took movement after the teleport was acknowledged")
+		var gear_set: Dictionary = _gear_sets.find(GEAR_SET)
+		if _check(not gear_set.is_empty(), "the equipment set list names the saved set"):
+			_check(gear_set["icon"] == GEAR_ICON and gear_set["items"].size() == EquipmentSets.SLOTS,
+					"the listed set carries its icon and every slot")
+			_gear_sets.delete(gear_set)
 	_check(_time_syncs > 0, "the server asked for a time sync while in the world")
 	await _flight(guid)
 	if await _log_out():

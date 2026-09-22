@@ -106,6 +106,10 @@ func _ready() -> void:
 	%SkillFrame.close_requested.connect(close_requested.emit)
 	%SkillFrame.unlearn_requested.connect(unlearn_requested.emit)
 	%ReputationFrame.watched_changed.connect(watched_changed.emit)
+	%GearManagerToggleButton.show()
+	%GearManagerToggleButton.pressed.connect(
+		func() -> void: %GearManagerDialog.visible = not %GearManagerDialog.visible
+	)
 	# CharacterNameFrame raises its frame level on load so the name draws over the tab art.
 	move_child(%CharacterNameFrame, get_child_count() - 1)
 	_portrait = PORTRAIT.instantiate()

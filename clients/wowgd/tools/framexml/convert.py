@@ -281,12 +281,18 @@ class Converter:
             for k, row_name in enumerate(names):
                 row = ET.Element(ns + "Button", name=row_name, inherits=spec["template"])
                 anchor = ET.SubElement(ET.SubElement(row, ns + "Anchors"), ns + "Anchor", point="TOPLEFT")
+                offset = spec.get("offset", [0, 0])
+                gap = spec.get("gap", [0, 0])
                 if k and k % columns == 0:
                     anchor.set("relativeTo", names[k - columns])
                     anchor.set("relativePoint", "BOTTOMLEFT")
+                    offset = [0, -gap[1]]
                 elif k:
                     anchor.set("relativeTo", names[k - 1])
                     anchor.set("relativePoint", "TOPRIGHT")
+                    offset = [gap[0], 0]
+                if offset != [0, 0]:
+                    ET.SubElement(anchor, ns + "Offset", x=str(offset[0]), y=str(offset[1]))
                 rows.append(row)
         return rows
 
@@ -463,8 +469,12 @@ class Converter:
                 px = rect[0] + qx * rect[2] + offset[0]
                 py = rect[1] + qy * rect[3] - offset[1]
                 fx, fy = POINTS.get(point.upper(), (0, 0))
-                h["lo" if fx == 0 else "hi" if fx == 1 else "mid"] = px
-                v["lo" if fy == 0 else "hi" if fy == 1 else "mid"] = py
+                h_edge = "lo" if fx == 0 else "hi" if fx == 1 else "mid"
+                v_edge = "lo" if fy == 0 else "hi" if fy == 1 else "mid"
+                # A FontString's first anchor on an edge wins, as UIPanelDialogTemplate's title shows.
+                text_kept = w.tag == "FontString"
+                h[h_edge] = h[h_edge] if text_kept and h[h_edge] is not None else px
+                v[v_edge] = v[v_edge] if text_kept and v[v_edge] is not None else py
             x, width, auto_x = self._span(h, width)
             y, height, auto_y = self._span(v, height)
             w.rect = (x, y, width, height)

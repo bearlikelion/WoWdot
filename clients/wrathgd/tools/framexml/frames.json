@@ -496,7 +496,8 @@
   "TargetFrameToT": "res://ui/target_of_target_frame.gd",
   "RuneFrame": "res://ui/rune_frame.gd",
   "ComboFrame": "res://ui/combo_frame.gd",
-  "GlyphFrame": "res://ui/glyph_frame.gd"
+  "GlyphFrame": "res://ui/glyph_frame.gd",
+  "GearManagerDialog": "res://ui/gear_manager_dialog.gd"
  },
  "exclude": [
   "AccountLoginAccountEditFill",
@@ -562,6 +563,24 @@
    "name": "DropDownList1Button%d",
    "first": 9,
    "count": 24
+  },
+  {
+   "parent": "GearManagerDialog",
+   "template": "GearSetButtonTemplate",
+   "name": "GearSetButton%d",
+   "count": 10,
+   "columns": 5,
+   "offset": [16, -32],
+   "gap": [13, 10]
+  },
+  {
+   "parent": "GearManagerDialogPopup",
+   "template": "GearSetPopupButtonTemplate",
+   "name": "GearManagerDialogPopupButton%d",
+   "count": 15,
+   "columns": 5,
+   "offset": [24, -85],
+   "gap": [10, 8]
   }
  ]
 }

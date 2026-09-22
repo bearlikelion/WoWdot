@@ -1,6 +1,7 @@
 class_name GlueCheck
 extends Node
 
+const GEAR_SET: String = "Gluecheck"
 const GLYPH: int = 43397
 const GLYPH_LEVEL: int = 15
 # Glyph of Charge is minor, and the second socket is the first minor one.
@@ -77,7 +78,31 @@ func _run() -> void:
 	_capture("user://wotlk_world.png")
 	await _use_item()
 	await _glyph()
+	await _gear_manager()
 	_finish()
+
+
+# The paper doll's gear manager saves a set through its popup and lists it.
+func _gear_manager() -> void:
+	var character: CharacterFrame = get_tree().root.find_child("CharacterFrame", true, false)
+	var press: InputEventAction = InputEventAction.new()
+	press.action = "toggle_character"
+	press.pressed = true
+	Input.parse_input_event(press)
+	await _frames(5)
+	(character.get_node("%GearManagerToggleButton") as BaseButton).pressed.emit()
+	(character.get_node("%GearManagerDialogSaveSet") as BaseButton).pressed.emit()
+	(character.get_node("%GearManagerDialogPopupEditBox") as LineEdit).text = GEAR_SET
+	(character.get_node("%GearManagerDialogPopupButton1") as BaseButton).pressed.emit()
+	(character.get_node("%GearManagerDialogPopupOkay") as BaseButton).pressed.emit()
+	var sets: EquipmentSets = WowClient.equipment_sets
+	if await _until(func() -> bool: return sets.find(GEAR_SET).get("guid", 0) != 0,
+			"the gear manager's set is saved"):
+		_check((character.get_node("%GearSetButton1Name") as Label).text == GEAR_SET,
+				"the first gear set button names the saved set")
+		await _frames(30)
+		_capture("user://wotlk_gear_manager.png")
+		sets.delete(sets.find(GEAR_SET))
 
 
 # A glyph used through the socket path lands in PLAYER_FIELD_GLYPHS_1, and comes out again.

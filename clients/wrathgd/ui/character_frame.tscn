@@ -7,10 +7,11 @@
 [ext_resource type="PackedScene" path="res://ui/wow/wow_model_frame.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="6"]
 [ext_resource type="Script" path="res://ui/wow/wow_cooldown.gd" id="7"]
-[ext_resource type="Script" path="res://ui/skill_frame.gd" id="8"]
-[ext_resource type="Script" path="res://ui/reputation_frame.gd" id="9"]
-[ext_resource type="Script" path="res://ui/honor_frame.gd" id="10"]
-[ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="11"]
+[ext_resource type="Script" path="res://ui/gear_manager_dialog.gd" id="8"]
+[ext_resource type="Script" path="res://ui/skill_frame.gd" id="9"]
+[ext_resource type="Script" path="res://ui/reputation_frame.gd" id="10"]
+[ext_resource type="Script" path="res://ui/honor_frame.gd" id="11"]
+[ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="12"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
@@ -431,280 +432,287 @@ atlas = SubResource("WowTexture_116")
 region = Rect2(116, 0, 12, 32)
 
 [sub_resource type="WowTexture" id="WowTexture_120"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft.blp"
+file = "Interface\\Buttons\\UI-EmptySlot-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_121"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-General-TopRight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_121"]
+atlas = SubResource("WowTexture_120")
+region = Rect2(9, 9, 45, 45)
 
 [sub_resource type="WowTexture" id="WowTexture_122"]
-file = "Interface\\PetPaperDollFrame\\UI-PetPaperDollFrame-BotLeft.blp"
+file = "Interface\\Buttons\\CheckButtonHilight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_123"]
-file = "Interface\\PetPaperDollFrame\\UI-PetPaperDollFrame-BotRight.blp"
+file = "Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_124"]
-file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+file = "Interface\\PaperDollInfoFrame\\UI-Character-General-TopRight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_125"]
-file = "Interface\\MainMenuBar\\UI-MainMenuBar-Dwarf.blp"
+file = "Interface\\PetPaperDollFrame\\UI-PetPaperDollFrame-BotLeft.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_126"]
-atlas = SubResource("WowTexture_125")
-region = Rect2(52, 74, 154, 13)
+[sub_resource type="WowTexture" id="WowTexture_126"]
+file = "Interface\\PetPaperDollFrame\\UI-PetPaperDollFrame-BotRight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_127"]
-file = "Interface\\PetPaperDollFrame\\UI-PetHappiness.blp"
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_128"]
-atlas = SubResource("WowTexture_127")
-region = Rect2(0, 0, 24, 23)
+[sub_resource type="WowTexture" id="WowTexture_128"]
+file = "Interface\\MainMenuBar\\UI-MainMenuBar-Dwarf.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_129"]
-atlas = SubResource("WowTexture_55")
-region = Rect2(0, 0, 113.92, 78.08)
+atlas = SubResource("WowTexture_128")
+region = Rect2(52, 74, 154, 13)
 
 [sub_resource type="WowTexture" id="WowTexture_130"]
-file = "Interface\\PetPaperDollFrame\\UI-PetFrame-Slots.blp"
+file = "Interface\\PetPaperDollFrame\\UI-PetHappiness.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_131"]
 atlas = SubResource("WowTexture_130")
+region = Rect2(0, 0, 24, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_132"]
+atlas = SubResource("WowTexture_55")
+region = Rect2(0, 0, 113.92, 78.08)
+
+[sub_resource type="WowTexture" id="WowTexture_133"]
+file = "Interface\\PetPaperDollFrame\\UI-PetFrame-Slots.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_134"]
+atlas = SubResource("WowTexture_133")
 region = Rect2(5, 0, 333, 128)
 
-[sub_resource type="WowTexture" id="WowTexture_132"]
+[sub_resource type="WowTexture" id="WowTexture_135"]
 file = "Interface\\PetPaperDollFrame\\UI-PetFrame-Frame.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_133"]
-atlas = SubResource("WowTexture_132")
+[sub_resource type="AtlasTexture" id="AtlasTexture_136"]
+atlas = SubResource("WowTexture_135")
 region = Rect2(0, 0, 316, 228)
 
-[sub_resource type="WowTexture" id="WowTexture_134"]
+[sub_resource type="WowTexture" id="WowTexture_137"]
 file = "Interface\\PetPaperDollFrame\\UI-PetFrame-Slots-Mounts.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_135"]
-atlas = SubResource("WowTexture_134")
+[sub_resource type="AtlasTexture" id="AtlasTexture_138"]
+atlas = SubResource("WowTexture_137")
 region = Rect2(13, 13, 36, 35.804)
 
-[sub_resource type="WowTexture" id="WowTexture_136"]
-file = "Interface\\Buttons\\CheckButtonHilight.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_137"]
+[sub_resource type="WowTexture" id="WowTexture_139"]
 file = "Interface\\Buttons\\UI-Button-Outline.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_138"]
+[sub_resource type="WowTexture" id="WowTexture_140"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_139"]
+[sub_resource type="WowTexture" id="WowTexture_141"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_140"]
+[sub_resource type="WowTexture" id="WowTexture_142"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_141"]
+[sub_resource type="WowTexture" id="WowTexture_143"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_142"]
+[sub_resource type="WowTexture" id="WowTexture_144"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_143"]
+[sub_resource type="WowTexture" id="WowTexture_145"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_144"]
+[sub_resource type="WowTexture" id="WowTexture_146"]
 file = "Interface\\HelpFrame\\HelpFrameTab-Active.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_145"]
-atlas = SubResource("WowTexture_144")
+[sub_resource type="AtlasTexture" id="AtlasTexture_147"]
+atlas = SubResource("WowTexture_146")
 region = Rect2(0, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_146"]
-atlas = SubResource("WowTexture_144")
+[sub_resource type="AtlasTexture" id="AtlasTexture_148"]
+atlas = SubResource("WowTexture_146")
 region = Rect2(16, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_147"]
-atlas = SubResource("WowTexture_144")
-region = Rect2(48, 0, 16, 32)
-
-[sub_resource type="WowTexture" id="WowTexture_148"]
-file = "Interface\\HelpFrame\\HelpFrameTab-Inactive.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_149"]
-atlas = SubResource("WowTexture_148")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_150"]
-atlas = SubResource("WowTexture_148")
-region = Rect2(16, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_151"]
-atlas = SubResource("WowTexture_148")
+atlas = SubResource("WowTexture_146")
 region = Rect2(48, 0, 16, 32)
 
-[sub_resource type="WowTexture" id="WowTexture_152"]
-file = "Interface\\PaperDollInfoFrame\\SkillFrame-BotLeft.blp"
+[sub_resource type="WowTexture" id="WowTexture_150"]
+file = "Interface\\HelpFrame\\HelpFrameTab-Inactive.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_153"]
-file = "Interface\\PaperDollInfoFrame\\SkillFrame-BotRight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_151"]
+atlas = SubResource("WowTexture_150")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_152"]
+atlas = SubResource("WowTexture_150")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_153"]
+atlas = SubResource("WowTexture_150")
+region = Rect2(48, 0, 16, 32)
 
 [sub_resource type="WowTexture" id="WowTexture_154"]
+file = "Interface\\PaperDollInfoFrame\\SkillFrame-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_155"]
+file = "Interface\\PaperDollInfoFrame\\SkillFrame-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_156"]
 file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-HorizontalBar.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_155"]
-atlas = SubResource("WowTexture_154")
+[sub_resource type="AtlasTexture" id="AtlasTexture_157"]
+atlas = SubResource("WowTexture_156")
 region = Rect2(0, 0, 256, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_156"]
-atlas = SubResource("WowTexture_154")
+[sub_resource type="AtlasTexture" id="AtlasTexture_158"]
+atlas = SubResource("WowTexture_156")
 region = Rect2(0, 16, 75, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_157"]
+[sub_resource type="WowTexture" id="WowTexture_159"]
 file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Left.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_158"]
+[sub_resource type="WowTexture" id="WowTexture_160"]
 file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Right.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_159"]
+[sub_resource type="WowTexture" id="WowTexture_161"]
 file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Middle.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_160"]
+[sub_resource type="WowTexture" id="WowTexture_162"]
 file = "Interface\\Buttons\\UI-MinusButton-UP.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_161"]
+[sub_resource type="WowTexture" id="WowTexture_163"]
 file = "Interface\\Buttons\\UI-PlusButton-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_162"]
+[sub_resource type="WowTexture" id="WowTexture_164"]
 file = "Interface\\Buttons\\UI-PlusButton-Hilight.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_163"]
-atlas = SubResource("WowTexture_104")
-region = Rect2(0, 0, 30, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_164"]
-atlas = SubResource("WowTexture_104")
-region = Rect2(34, 0, 30, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_165"]
 atlas = SubResource("WowTexture_104")
-region = Rect2(0, 0, 30, 100)
+region = Rect2(0, 0, 30, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_166"]
 atlas = SubResource("WowTexture_104")
+region = Rect2(34, 0, 30, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_167"]
+atlas = SubResource("WowTexture_104")
+region = Rect2(0, 0, 30, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_168"]
+atlas = SubResource("WowTexture_104")
 region = Rect2(34, 28, 30, 100)
 
-[sub_resource type="WowTexture" id="WowTexture_167"]
+[sub_resource type="WowTexture" id="WowTexture_169"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_168"]
+[sub_resource type="WowTexture" id="WowTexture_170"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_169"]
+[sub_resource type="WowTexture" id="WowTexture_171"]
 file = "Interface\\Buttons\\CancelButton-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_170"]
+[sub_resource type="WowTexture" id="WowTexture_172"]
 file = "Interface\\Buttons\\CancelButton-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_171"]
+[sub_resource type="WowTexture" id="WowTexture_173"]
 file = "Interface\\Buttons\\CancelButton-Highlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_172"]
+[sub_resource type="WowTexture" id="WowTexture_174"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-BarBorderHighlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_173"]
+[sub_resource type="WowTexture" id="WowTexture_175"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-General-BottomLeft.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_174"]
+[sub_resource type="WowTexture" id="WowTexture_176"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-General-BottomRight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_175"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-ReputationLines.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_176"]
-atlas = SubResource("WowTexture_175")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="WowTexture" id="WowTexture_177"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-ReputationBar.blp"
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ReputationLines.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_178"]
 atlas = SubResource("WowTexture_177")
-region = Rect2(0, 0, 194, 21)
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_179"]
-atlas = SubResource("WowTexture_177")
-region = Rect2(176.896, 3.008, 79.104, 14.976)
+[sub_resource type="WowTexture" id="WowTexture_179"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ReputationBar.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_180"]
-atlas = SubResource("WowTexture_177")
-region = Rect2(0, 24.9984, 41.984, 15.0016)
+atlas = SubResource("WowTexture_179")
+region = Rect2(0, 0, 194, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_181"]
-atlas = SubResource("WowTexture_177")
-region = Rect2(0, 47, 103, 17)
+atlas = SubResource("WowTexture_179")
+region = Rect2(176.896, 3.008, 79.104, 14.976)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_182"]
-atlas = SubResource("WowTexture_177")
-region = Rect2(65, 24, 191, 17)
+atlas = SubResource("WowTexture_179")
+region = Rect2(0, 24.9984, 41.984, 15.0016)
 
-[sub_resource type="WowTexture" id="WowTexture_183"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-ReputationBar-Highlight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_183"]
+atlas = SubResource("WowTexture_179")
+region = Rect2(0, 47, 103, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_184"]
-atlas = SubResource("WowTexture_183")
-region = Rect2(0, 28, 17, 28)
+atlas = SubResource("WowTexture_179")
+region = Rect2(65, 24, 191, 17)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_185"]
-atlas = SubResource("WowTexture_183")
-region = Rect2(0, 0, 256, 28)
+[sub_resource type="WowTexture" id="WowTexture_185"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ReputationBar-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_186"]
+atlas = SubResource("WowTexture_185")
+region = Rect2(0, 28, 17, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_187"]
+atlas = SubResource("WowTexture_185")
+region = Rect2(0, 0, 256, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_188"]
 atlas = SubResource("WowTexture_30")
 region = Rect2(0, 0, 31, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_187"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_189"]
 atlas = SubResource("WowTexture_30")
 region = Rect2(33, 0, 31, 108)
 
-[sub_resource type="WowTexture" id="WowTexture_188"]
+[sub_resource type="WowTexture" id="WowTexture_190"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Reputation-DetailBackground.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_189"]
+[sub_resource type="WowTexture" id="WowTexture_191"]
 file = "Interface\\DialogFrame\\UI-DialogBox-Corner.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_190"]
+[sub_resource type="WowTexture" id="WowTexture_192"]
 file = "Interface\\DialogFrame\\UI-DialogBox-Divider.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_191"]
+[sub_resource type="WowTexture" id="WowTexture_193"]
 file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_192"]
+[sub_resource type="WowTexture" id="WowTexture_194"]
 file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_193"]
+[sub_resource type="WowTexture" id="WowTexture_195"]
 file = "Interface\\Buttons\\UI-CheckBox-SwordCheck.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_194"]
+[sub_resource type="WowTexture" id="WowTexture_196"]
 file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_195"]
+[sub_resource type="WowTexture" id="WowTexture_197"]
 file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_196"]
+[sub_resource type="WowTexture" id="WowTexture_198"]
 file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_197"]
+[sub_resource type="WowTexture" id="WowTexture_199"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-TopLeft.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_198"]
+[sub_resource type="WowTexture" id="WowTexture_200"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-TopRight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_199"]
+[sub_resource type="WowTexture" id="WowTexture_201"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-BottomLeft.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_200"]
+[sub_resource type="WowTexture" id="WowTexture_202"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-BottomRight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_201"]
+[sub_resource type="WowTexture" id="WowTexture_203"]
 file = "Interface\\TalentFrame\\UI-TalentFrame-BotLeft.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_202"]
+[sub_resource type="WowTexture" id="WowTexture_204"]
 file = "Interface\\TalentFrame\\UI-TalentFrame-BotRight.blp"
 
 [node name="CharacterFrame" type="Control"]
@@ -3046,6 +3054,7 @@ expand_mode = 1
 
 [node name="GearManagerDialog" type="Control" parent="PaperDollFrame"]
 unique_name_in_owner = true
+script = ExtResource("8")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -3158,9 +3167,9 @@ expand_mode = 1
 
 [node name="FontString" type="Label" parent="PaperDollFrame/GearManagerDialog"]
 offset_left = 12
-offset_top = 24
+offset_top = 8
 offset_right = 229
-offset_bottom = 36
+offset_bottom = 20
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
@@ -3789,6 +3798,1531 @@ texture = SubResource("AtlasTexture_97")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
+[node name="GearManagerDialogPopupButton1" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 24
+offset_top = 85
+offset_right = 60
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton1"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton1"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton1Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton2" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 70
+offset_top = 85
+offset_right = 106
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton2"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton2"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton2Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton3" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 116
+offset_top = 85
+offset_right = 152
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton3"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton3"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton3Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton4" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 162
+offset_top = 85
+offset_right = 198
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton4"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton4"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton4Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton5" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 208
+offset_top = 85
+offset_right = 244
+offset_bottom = 121
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton5"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton5"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton5Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton6" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 24
+offset_top = 129
+offset_right = 60
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton6"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton6"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton6Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton7" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 70
+offset_top = 129
+offset_right = 106
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton7"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton7"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton7Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton8" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 116
+offset_top = 129
+offset_right = 152
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton8"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton8"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton8Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton9" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 162
+offset_top = 129
+offset_right = 198
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton9"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton9"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton9Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton10" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 208
+offset_top = 129
+offset_right = 244
+offset_bottom = 165
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton10"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton10"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton10Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton10"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton10"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton11" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 24
+offset_top = 173
+offset_right = 60
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton11"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton11"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton11Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton11"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton12" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 70
+offset_top = 173
+offset_right = 106
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton12"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton12"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton12Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton12"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton13" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 116
+offset_top = 173
+offset_right = 152
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton13"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton13"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton13Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton13"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton14" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 162
+offset_top = 173
+offset_right = 198
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton14"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton14"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton14Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton14"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearManagerDialogPopupButton15" type="TextureButton" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 208
+offset_top = 173
+offset_right = 244
+offset_bottom = 209
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton15"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton15"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearManagerDialogPopupButton15Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearManagerDialogPopup/GearManagerDialogPopupButton15"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton1" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 16
+offset_top = 32
+offset_right = 52
+offset_bottom = 68
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton1"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton1"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton1Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton2" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 65
+offset_top = 32
+offset_right = 101
+offset_bottom = 68
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton2"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton2"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton2Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton3" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 114
+offset_top = 32
+offset_right = 150
+offset_bottom = 68
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton3"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton3"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton3Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton3"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton4" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 163
+offset_top = 32
+offset_right = 199
+offset_bottom = 68
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton4"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton4"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton4Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton4"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton5" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 212
+offset_top = 32
+offset_right = 248
+offset_bottom = 68
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton5"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton5"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton5Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton6" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 16
+offset_top = 78
+offset_right = 52
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton6"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton6"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton6Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton6"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton7" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 65
+offset_top = 78
+offset_right = 101
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton7"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton7"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton7Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton7"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton8" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 114
+offset_top = 78
+offset_right = 150
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton8"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton8"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton8Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton8"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton9" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 163
+offset_top = 78
+offset_right = 199
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton9"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton9"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton9Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton9"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="GearSetButton10" type="TextureButton" parent="PaperDollFrame/GearManagerDialog"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 212
+offset_top = 78
+offset_right = 248
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton10"]
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_121")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton10"]
+offset_left = 0
+offset_top = 1
+offset_right = 36
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GearSetButton10Name" type="Label" parent="PaperDollFrame/GearManagerDialog/GearSetButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 24
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallOutline"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CheckedTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton10"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_122")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="HighlightTexture" type="TextureRect" parent="PaperDollFrame/GearManagerDialog/GearSetButton10"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
 [node name="PetPaperDollFrame" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -3826,7 +5360,7 @@ offset_top = 1
 offset_right = 258
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_120")
+texture = SubResource("WowTexture_123")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="PetPaperDollFrame"]
@@ -3838,7 +5372,7 @@ offset_top = 1
 offset_right = 2
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_121")
+texture = SubResource("WowTexture_124")
 expand_mode = 1
 
 [node name="Texture3" type="TextureRect" parent="PetPaperDollFrame"]
@@ -3847,7 +5381,7 @@ offset_top = 257
 offset_right = 258
 offset_bottom = 513
 mouse_filter = 2
-texture = SubResource("WowTexture_122")
+texture = SubResource("WowTexture_125")
 expand_mode = 1
 
 [node name="Texture4" type="TextureRect" parent="PetPaperDollFrame"]
@@ -3856,7 +5390,7 @@ offset_top = 257
 offset_right = 386
 offset_bottom = 513
 mouse_filter = 2
-texture = SubResource("WowTexture_123")
+texture = SubResource("WowTexture_126")
 expand_mode = 1
 
 [node name="PetPaperDollFramePetFrame" type="Control" parent="PetPaperDollFrame"]
@@ -3899,7 +5433,7 @@ offset_top = -114
 offset_right = 342
 offset_bottom = -103
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_124")
+texture_progress = SubResource("WowTexture_127")
 nine_patch_stretch = true
 tint_progress = Color(0.58, 0, 0.55, 1)
 max_value = 1.0
@@ -3913,7 +5447,7 @@ offset_top = -2
 offset_right = 160
 offset_bottom = 11
 mouse_filter = 2
-texture = SubResource("AtlasTexture_126")
+texture = SubResource("AtlasTexture_129")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFramePetFrame/PetPaperDollFrameExpBar"]
@@ -3922,7 +5456,7 @@ offset_top = -2
 offset_right = 319
 offset_bottom = 11
 mouse_filter = 2
-texture = SubResource("AtlasTexture_126")
+texture = SubResource("AtlasTexture_129")
 expand_mode = 1
 
 [node name="PetPaperDollFrameExpBarText" type="Label" parent="PetPaperDollFrame/PetPaperDollFramePetFrame/PetPaperDollFrameExpBar"]
@@ -4046,7 +5580,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 23
 mouse_filter = 2
-texture = SubResource("AtlasTexture_128")
+texture = SubResource("AtlasTexture_131")
 expand_mode = 1
 
 [node name="PetPaperDollCloseButton" type="TextureButton" parent="PetPaperDollFrame/PetPaperDollFramePetFrame"]
@@ -4123,7 +5657,7 @@ offset_top = 0
 offset_right = 114
 offset_bottom = 78
 mouse_filter = 2
-texture = SubResource("AtlasTexture_129")
+texture = SubResource("AtlasTexture_132")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFramePetFrame/PetAttributesFrame"]
@@ -4132,7 +5666,7 @@ offset_top = 0
 offset_right = 229
 offset_bottom = 78
 mouse_filter = 2
-texture = SubResource("AtlasTexture_129")
+texture = SubResource("AtlasTexture_132")
 expand_mode = 1
 
 [node name="PetStatFrame1" type="Control" parent="PetPaperDollFrame/PetPaperDollFramePetFrame/PetAttributesFrame"]
@@ -4697,7 +6231,7 @@ offset_top = -207
 offset_right = 351
 offset_bottom = -79
 mouse_filter = 2
-texture = SubResource("AtlasTexture_131")
+texture = SubResource("AtlasTexture_134")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame"]
@@ -4711,7 +6245,7 @@ offset_top = -181.5
 offset_right = 152
 offset_bottom = 53.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_133")
+texture = SubResource("AtlasTexture_136")
 expand_mode = 1
 
 [node name="CompanionPageNumber" type="Label" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame"]
@@ -4925,7 +6459,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton1ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton1"]
@@ -4935,7 +6469,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4946,7 +6480,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4987,7 +6521,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton2ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton2"]
@@ -4997,7 +6531,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5008,7 +6542,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5049,7 +6583,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton3ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton3"]
@@ -5059,7 +6593,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5070,7 +6604,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5111,7 +6645,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton4ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton4"]
@@ -5121,7 +6655,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5132,7 +6666,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5173,7 +6707,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton5ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton5"]
@@ -5183,7 +6717,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5194,7 +6728,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5235,7 +6769,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton6ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton6"]
@@ -5245,7 +6779,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5256,7 +6790,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5297,7 +6831,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton7ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton7"]
@@ -5307,7 +6841,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5318,7 +6852,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5359,7 +6893,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton8ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton8"]
@@ -5369,7 +6903,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5380,7 +6914,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5421,7 +6955,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton9ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton9"]
@@ -5431,7 +6965,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5442,7 +6976,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5483,7 +7017,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton10ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton10"]
@@ -5493,7 +7027,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5504,7 +7038,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5545,7 +7079,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton11ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton11"]
@@ -5555,7 +7089,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5566,7 +7100,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5607,7 +7141,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_135")
+texture = SubResource("AtlasTexture_138")
 expand_mode = 1
 
 [node name="CompanionButton12ActiveTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionButton12"]
@@ -5617,7 +7151,7 @@ offset_top = 0
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("WowTexture_136")
+texture = SubResource("WowTexture_122")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5628,7 +7162,7 @@ offset_right = 51.5
 offset_bottom = 51.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_137")
+texture = SubResource("WowTexture_139")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -5671,7 +7205,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_138")
+texture = SubResource("WowTexture_140")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionPrevPageButton"]
@@ -5681,7 +7215,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_139")
+texture = SubResource("WowTexture_141")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionPrevPageButton"]
@@ -5691,7 +7225,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_140")
+texture = SubResource("WowTexture_142")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionPrevPageButton"]
@@ -5723,7 +7257,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_141")
+texture = SubResource("WowTexture_143")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionNextPageButton"]
@@ -5733,7 +7267,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_142")
+texture = SubResource("WowTexture_144")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionNextPageButton"]
@@ -5743,7 +7277,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_143")
+texture = SubResource("WowTexture_145")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameCompanionFrame/CompanionNextPageButton"]
@@ -5773,7 +7307,7 @@ offset_top = 3
 offset_right = 16
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_145")
+texture = SubResource("AtlasTexture_147")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab1MiddleDisabled" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab1"]
@@ -5783,7 +7317,7 @@ offset_top = 3
 offset_right = 48
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_146")
+texture = SubResource("AtlasTexture_148")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab1RightDisabled" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab1"]
@@ -5793,7 +7327,7 @@ offset_top = 3
 offset_right = 64
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_147")
+texture = SubResource("AtlasTexture_149")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab1Left" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab1"]
@@ -5803,7 +7337,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_149")
+texture = SubResource("AtlasTexture_151")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab1Middle" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab1"]
@@ -5813,7 +7347,7 @@ offset_top = 0
 offset_right = 48
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_150")
+texture = SubResource("AtlasTexture_152")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab1Right" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab1"]
@@ -5823,7 +7357,7 @@ offset_top = 0
 offset_right = 64
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_151")
+texture = SubResource("AtlasTexture_153")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab1Text" type="Label" parent="PetPaperDollFrame/PetPaperDollFrameTab1"]
@@ -5866,7 +7400,7 @@ offset_top = 3
 offset_right = 16
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_145")
+texture = SubResource("AtlasTexture_147")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab2MiddleDisabled" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab2"]
@@ -5876,7 +7410,7 @@ offset_top = 3
 offset_right = 48
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_146")
+texture = SubResource("AtlasTexture_148")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab2RightDisabled" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab2"]
@@ -5886,7 +7420,7 @@ offset_top = 3
 offset_right = 64
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_147")
+texture = SubResource("AtlasTexture_149")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab2Left" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab2"]
@@ -5896,7 +7430,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_149")
+texture = SubResource("AtlasTexture_151")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab2Middle" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab2"]
@@ -5906,7 +7440,7 @@ offset_top = 0
 offset_right = 48
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_150")
+texture = SubResource("AtlasTexture_152")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab2Right" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab2"]
@@ -5916,7 +7450,7 @@ offset_top = 0
 offset_right = 64
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_151")
+texture = SubResource("AtlasTexture_153")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab2Text" type="Label" parent="PetPaperDollFrame/PetPaperDollFrameTab2"]
@@ -5959,7 +7493,7 @@ offset_top = 3
 offset_right = 16
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_145")
+texture = SubResource("AtlasTexture_147")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab3MiddleDisabled" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab3"]
@@ -5969,7 +7503,7 @@ offset_top = 3
 offset_right = 48
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_146")
+texture = SubResource("AtlasTexture_148")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab3RightDisabled" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab3"]
@@ -5979,7 +7513,7 @@ offset_top = 3
 offset_right = 64
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("AtlasTexture_147")
+texture = SubResource("AtlasTexture_149")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab3Left" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab3"]
@@ -5989,7 +7523,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_149")
+texture = SubResource("AtlasTexture_151")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab3Middle" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab3"]
@@ -5999,7 +7533,7 @@ offset_top = 0
 offset_right = 48
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_150")
+texture = SubResource("AtlasTexture_152")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab3Right" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab3"]
@@ -6009,7 +7543,7 @@ offset_top = 0
 offset_right = 64
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_151")
+texture = SubResource("AtlasTexture_153")
 expand_mode = 1
 
 [node name="PetPaperDollFrameTab3Text" type="Label" parent="PetPaperDollFrame/PetPaperDollFrameTab3"]
@@ -6038,7 +7572,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="SkillFrame" type="Control" parent="."]
 unique_name_in_owner = true
-script = ExtResource("8")
+script = ExtResource("9")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1
@@ -6055,7 +7589,7 @@ offset_top = 1
 offset_right = 258
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_120")
+texture = SubResource("WowTexture_123")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="SkillFrame"]
@@ -6067,7 +7601,7 @@ offset_top = 1
 offset_right = 2
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_121")
+texture = SubResource("WowTexture_124")
 expand_mode = 1
 
 [node name="Texture3" type="TextureRect" parent="SkillFrame"]
@@ -6079,7 +7613,7 @@ offset_top = -255
 offset_right = 258
 offset_bottom = 1
 mouse_filter = 2
-texture = SubResource("WowTexture_152")
+texture = SubResource("WowTexture_154")
 expand_mode = 1
 
 [node name="Texture4" type="TextureRect" parent="SkillFrame"]
@@ -6093,7 +7627,7 @@ offset_top = -255
 offset_right = 2
 offset_bottom = 1
 mouse_filter = 2
-texture = SubResource("WowTexture_153")
+texture = SubResource("WowTexture_155")
 expand_mode = 1
 
 [node name="SkillFrameHorizontalBarLeft" type="TextureRect" parent="SkillFrame"]
@@ -6103,7 +7637,7 @@ offset_top = 290
 offset_right = 271
 offset_bottom = 306
 mouse_filter = 2
-texture = SubResource("AtlasTexture_155")
+texture = SubResource("AtlasTexture_157")
 expand_mode = 1
 
 [node name="Texture5" type="TextureRect" parent="SkillFrame"]
@@ -6112,7 +7646,7 @@ offset_top = 290
 offset_right = 346
 offset_bottom = 306
 mouse_filter = 2
-texture = SubResource("AtlasTexture_156")
+texture = SubResource("AtlasTexture_158")
 expand_mode = 1
 
 [node name="SkillFrameExpandButtonFrame" type="Control" parent="SkillFrame"]
@@ -6130,7 +7664,7 @@ offset_top = -6
 offset_right = 8
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_157")
+texture = SubResource("WowTexture_159")
 expand_mode = 1
 
 [node name="SkillFrameExpandTabRight" type="TextureRect" parent="SkillFrame/SkillFrameExpandButtonFrame"]
@@ -6140,7 +7674,7 @@ offset_top = -6
 offset_right = 54
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_158")
+texture = SubResource("WowTexture_160")
 expand_mode = 1
 
 [node name="SkillFrameExpandTabMiddle" type="TextureRect" parent="SkillFrame/SkillFrameExpandButtonFrame"]
@@ -6150,7 +7684,7 @@ offset_top = -6
 offset_right = 46
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_159")
+texture = SubResource("WowTexture_161")
 expand_mode = 1
 
 [node name="SkillFrameCollapseAllButton" type="TextureButton" parent="SkillFrame/SkillFrameExpandButtonFrame"]
@@ -6168,7 +7702,7 @@ offset_top = 3
 offset_right = 19
 offset_bottom = 19
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillFrameExpandButtonFrame/SkillFrameCollapseAllButton"]
@@ -6178,7 +7712,7 @@ offset_right = 19
 offset_bottom = 19
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillFrameCollapseAllButtonText" type="Label" parent="SkillFrame/SkillFrameExpandButtonFrame/SkillFrameCollapseAllButton"]
@@ -6200,7 +7734,7 @@ offset_right = 19
 offset_bottom = 19
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6279,7 +7813,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel1"]
@@ -6289,7 +7823,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel1Text" type="Label" parent="SkillFrame/SkillTypeLabel1"]
@@ -6311,7 +7845,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6330,7 +7864,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel2"]
@@ -6340,7 +7874,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel2Text" type="Label" parent="SkillFrame/SkillTypeLabel2"]
@@ -6362,7 +7896,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6381,7 +7915,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel3"]
@@ -6391,7 +7925,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel3Text" type="Label" parent="SkillFrame/SkillTypeLabel3"]
@@ -6413,7 +7947,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6432,7 +7966,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel4"]
@@ -6442,7 +7976,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel4Text" type="Label" parent="SkillFrame/SkillTypeLabel4"]
@@ -6464,7 +7998,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6483,7 +8017,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel5"]
@@ -6493,7 +8027,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel5Text" type="Label" parent="SkillFrame/SkillTypeLabel5"]
@@ -6515,7 +8049,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6534,7 +8068,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel6"]
@@ -6544,7 +8078,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel6Text" type="Label" parent="SkillFrame/SkillTypeLabel6"]
@@ -6566,7 +8100,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6585,7 +8119,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel7"]
@@ -6595,7 +8129,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel7Text" type="Label" parent="SkillFrame/SkillTypeLabel7"]
@@ -6617,7 +8151,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6636,7 +8170,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel8"]
@@ -6646,7 +8180,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel8Text" type="Label" parent="SkillFrame/SkillTypeLabel8"]
@@ -6668,7 +8202,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6687,7 +8221,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel9"]
@@ -6697,7 +8231,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel9Text" type="Label" parent="SkillFrame/SkillTypeLabel9"]
@@ -6719,7 +8253,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6738,7 +8272,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel10"]
@@ -6748,7 +8282,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel10Text" type="Label" parent="SkillFrame/SkillTypeLabel10"]
@@ -6770,7 +8304,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6789,7 +8323,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel11"]
@@ -6799,7 +8333,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel11Text" type="Label" parent="SkillFrame/SkillTypeLabel11"]
@@ -6821,7 +8355,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6840,7 +8374,7 @@ offset_top = -1
 offset_right = 19
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel12"]
@@ -6850,7 +8384,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_161")
+texture = SubResource("WowTexture_163")
 expand_mode = 1
 
 [node name="SkillTypeLabel12Text" type="Label" parent="SkillFrame/SkillTypeLabel12"]
@@ -6872,7 +8406,7 @@ offset_right = 19
 offset_bottom = 15
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -6894,7 +8428,7 @@ offset_top = -5
 offset_right = 323
 offset_bottom = 123
 mouse_filter = 2
-texture = SubResource("AtlasTexture_163")
+texture = SubResource("AtlasTexture_165")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="SkillFrame/SkillListScrollFrame"]
@@ -6903,7 +8437,7 @@ offset_top = 94
 offset_right = 323
 offset_bottom = 222
 mouse_filter = 2
-texture = SubResource("AtlasTexture_164")
+texture = SubResource("AtlasTexture_166")
 expand_mode = 1
 
 [node name="SkillListScrollFrameScrollBar" type="VSlider" parent="SkillFrame/SkillListScrollFrame"]
@@ -7053,7 +8587,7 @@ offset_top = -5
 offset_right = 323
 offset_bottom = 95
 mouse_filter = 2
-texture = SubResource("AtlasTexture_165")
+texture = SubResource("AtlasTexture_167")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame"]
@@ -7062,7 +8596,7 @@ offset_top = 9
 offset_right = 323
 offset_bottom = 109
 mouse_filter = 2
-texture = SubResource("AtlasTexture_166")
+texture = SubResource("AtlasTexture_168")
 expand_mode = 1
 
 [node name="SkillDetailScrollFrameScrollBar" type="VSlider" parent="SkillFrame/SkillDetailScrollFrame"]
@@ -7228,7 +8762,7 @@ offset_top = 12.5
 offset_right = 255.5
 offset_bottom = 27.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -7262,7 +8796,7 @@ offset_top = -8.5
 offset_right = 215
 offset_bottom = 23.5
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="SkillDetailStatusBarSkillName" type="Label" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar"]
@@ -7313,7 +8847,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_138")
+texture = SubResource("WowTexture_140")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar/SkillDetailStatusBarLeftArrow"]
@@ -7323,7 +8857,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_139")
+texture = SubResource("WowTexture_141")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar/SkillDetailStatusBarLeftArrow"]
@@ -7333,7 +8867,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_140")
+texture = SubResource("WowTexture_142")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar/SkillDetailStatusBarLeftArrow"]
@@ -7362,7 +8896,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_141")
+texture = SubResource("WowTexture_143")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar/SkillDetailStatusBarRightArrow"]
@@ -7372,7 +8906,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_142")
+texture = SubResource("WowTexture_144")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar/SkillDetailStatusBarRightArrow"]
@@ -7382,7 +8916,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_143")
+texture = SubResource("WowTexture_145")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar/SkillDetailStatusBarRightArrow"]
@@ -7411,7 +8945,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_169")
+texture = SubResource("WowTexture_171")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar/SkillDetailStatusBarUnlearnButton"]
@@ -7421,7 +8955,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_170")
+texture = SubResource("WowTexture_172")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar/SkillDetailStatusBarUnlearnButton"]
@@ -7431,7 +8965,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_171")
+texture = SubResource("WowTexture_173")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -7443,7 +8977,7 @@ offset_right = 309
 offset_bottom = 94
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -7509,7 +9043,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame1/SkillRankFrame1Border"]
@@ -7519,7 +9053,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame2" type="TextureProgressBar" parent="SkillFrame"]
@@ -7530,7 +9064,7 @@ offset_right = 309
 offset_bottom = 112
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -7596,7 +9130,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame2/SkillRankFrame2Border"]
@@ -7606,7 +9140,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame3" type="TextureProgressBar" parent="SkillFrame"]
@@ -7617,7 +9151,7 @@ offset_right = 309
 offset_bottom = 130
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -7683,7 +9217,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame3/SkillRankFrame3Border"]
@@ -7693,7 +9227,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame4" type="TextureProgressBar" parent="SkillFrame"]
@@ -7704,7 +9238,7 @@ offset_right = 309
 offset_bottom = 148
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -7770,7 +9304,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame4/SkillRankFrame4Border"]
@@ -7780,7 +9314,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame5" type="TextureProgressBar" parent="SkillFrame"]
@@ -7791,7 +9325,7 @@ offset_right = 309
 offset_bottom = 166
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -7857,7 +9391,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame5/SkillRankFrame5Border"]
@@ -7867,7 +9401,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame6" type="TextureProgressBar" parent="SkillFrame"]
@@ -7878,7 +9412,7 @@ offset_right = 309
 offset_bottom = 184
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -7944,7 +9478,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame6/SkillRankFrame6Border"]
@@ -7954,7 +9488,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame7" type="TextureProgressBar" parent="SkillFrame"]
@@ -7965,7 +9499,7 @@ offset_right = 309
 offset_bottom = 202
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -8031,7 +9565,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame7/SkillRankFrame7Border"]
@@ -8041,7 +9575,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame8" type="TextureProgressBar" parent="SkillFrame"]
@@ -8052,7 +9586,7 @@ offset_right = 309
 offset_bottom = 220
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -8118,7 +9652,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame8/SkillRankFrame8Border"]
@@ -8128,7 +9662,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame9" type="TextureProgressBar" parent="SkillFrame"]
@@ -8139,7 +9673,7 @@ offset_right = 309
 offset_bottom = 238
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -8205,7 +9739,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame9/SkillRankFrame9Border"]
@@ -8215,7 +9749,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame10" type="TextureProgressBar" parent="SkillFrame"]
@@ -8226,7 +9760,7 @@ offset_right = 309
 offset_bottom = 256
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -8292,7 +9826,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame10/SkillRankFrame10Border"]
@@ -8302,7 +9836,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame11" type="TextureProgressBar" parent="SkillFrame"]
@@ -8313,7 +9847,7 @@ offset_right = 309
 offset_bottom = 274
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -8379,7 +9913,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame11/SkillRankFrame11Border"]
@@ -8389,7 +9923,7 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="SkillRankFrame12" type="TextureProgressBar" parent="SkillFrame"]
@@ -8400,7 +9934,7 @@ offset_right = 309
 offset_bottom = 292
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -8466,7 +10000,7 @@ offset_top = 0
 offset_right = 281
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_168")
+texture = SubResource("WowTexture_170")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillRankFrame12/SkillRankFrame12Border"]
@@ -8476,12 +10010,12 @@ offset_right = 281
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_172")
+texture = SubResource("WowTexture_174")
 expand_mode = 1
 
 [node name="ReputationFrame" type="Control" parent="."]
 unique_name_in_owner = true
-script = ExtResource("9")
+script = ExtResource("10")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1
@@ -8498,7 +10032,7 @@ offset_top = 1
 offset_right = 258
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_120")
+texture = SubResource("WowTexture_123")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="ReputationFrame"]
@@ -8507,7 +10041,7 @@ offset_top = 1
 offset_right = 386
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_121")
+texture = SubResource("WowTexture_124")
 expand_mode = 1
 
 [node name="Texture3" type="TextureRect" parent="ReputationFrame"]
@@ -8516,7 +10050,7 @@ offset_top = 257
 offset_right = 258
 offset_bottom = 513
 mouse_filter = 2
-texture = SubResource("WowTexture_173")
+texture = SubResource("WowTexture_175")
 expand_mode = 1
 
 [node name="Texture4" type="TextureRect" parent="ReputationFrame"]
@@ -8525,7 +10059,7 @@ offset_top = 257
 offset_right = 386
 offset_bottom = 513
 mouse_filter = 2
-texture = SubResource("WowTexture_174")
+texture = SubResource("WowTexture_176")
 expand_mode = 1
 
 [node name="ReputationFrameFactionLabel" type="Label" parent="ReputationFrame"]
@@ -8564,7 +10098,7 @@ offset_right = 36
 offset_bottom = 80
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationFrameTopTreeTexture2" type="TextureRect" parent="ReputationFrame"]
@@ -8575,7 +10109,7 @@ offset_right = 54
 offset_bottom = 80
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar1" type="TextureButton" parent="ReputationFrame"]
@@ -8597,7 +10131,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar1LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar1"]
@@ -8608,7 +10142,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar1BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar1"]
@@ -8619,7 +10153,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar1FactionName" type="Label" parent="ReputationFrame/ReputationBar1"]
@@ -8650,7 +10184,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar1/ReputationBar1ExpandOrCollapseButton"]
@@ -8660,7 +10194,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8671,7 +10205,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -8685,7 +10219,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar1ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar1/ReputationBar1ReputationBar"]
@@ -8695,7 +10229,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar1ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar1/ReputationBar1ReputationBar"]
@@ -8720,7 +10254,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8732,7 +10266,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8744,7 +10278,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8756,7 +10290,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8779,7 +10313,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar2LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar2"]
@@ -8790,7 +10324,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar2BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar2"]
@@ -8801,7 +10335,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar2FactionName" type="Label" parent="ReputationFrame/ReputationBar2"]
@@ -8832,7 +10366,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar2/ReputationBar2ExpandOrCollapseButton"]
@@ -8842,7 +10376,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8853,7 +10387,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -8867,7 +10401,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar2ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar2/ReputationBar2ReputationBar"]
@@ -8877,7 +10411,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar2ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar2/ReputationBar2ReputationBar"]
@@ -8902,7 +10436,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8914,7 +10448,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8926,7 +10460,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8938,7 +10472,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -8961,7 +10495,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar3LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar3"]
@@ -8972,7 +10506,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar3BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar3"]
@@ -8983,7 +10517,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar3FactionName" type="Label" parent="ReputationFrame/ReputationBar3"]
@@ -9014,7 +10548,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar3/ReputationBar3ExpandOrCollapseButton"]
@@ -9024,7 +10558,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9035,7 +10569,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -9049,7 +10583,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar3ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar3/ReputationBar3ReputationBar"]
@@ -9059,7 +10593,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar3ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar3/ReputationBar3ReputationBar"]
@@ -9084,7 +10618,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9096,7 +10630,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9108,7 +10642,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9120,7 +10654,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9143,7 +10677,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar4LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar4"]
@@ -9154,7 +10688,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar4BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar4"]
@@ -9165,7 +10699,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar4FactionName" type="Label" parent="ReputationFrame/ReputationBar4"]
@@ -9196,7 +10730,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar4/ReputationBar4ExpandOrCollapseButton"]
@@ -9206,7 +10740,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9217,7 +10751,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -9231,7 +10765,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar4ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar4/ReputationBar4ReputationBar"]
@@ -9241,7 +10775,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar4ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar4/ReputationBar4ReputationBar"]
@@ -9266,7 +10800,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9278,7 +10812,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9290,7 +10824,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9302,7 +10836,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9325,7 +10859,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar5LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar5"]
@@ -9336,7 +10870,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar5BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar5"]
@@ -9347,7 +10881,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar5FactionName" type="Label" parent="ReputationFrame/ReputationBar5"]
@@ -9378,7 +10912,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar5/ReputationBar5ExpandOrCollapseButton"]
@@ -9388,7 +10922,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9399,7 +10933,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -9413,7 +10947,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar5ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar5/ReputationBar5ReputationBar"]
@@ -9423,7 +10957,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar5ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar5/ReputationBar5ReputationBar"]
@@ -9448,7 +10982,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9460,7 +10994,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9472,7 +11006,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9484,7 +11018,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9507,7 +11041,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar6LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar6"]
@@ -9518,7 +11052,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar6BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar6"]
@@ -9529,7 +11063,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar6FactionName" type="Label" parent="ReputationFrame/ReputationBar6"]
@@ -9560,7 +11094,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar6/ReputationBar6ExpandOrCollapseButton"]
@@ -9570,7 +11104,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9581,7 +11115,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -9595,7 +11129,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar6ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar6/ReputationBar6ReputationBar"]
@@ -9605,7 +11139,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar6ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar6/ReputationBar6ReputationBar"]
@@ -9630,7 +11164,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9642,7 +11176,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9654,7 +11188,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9666,7 +11200,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9689,7 +11223,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar7LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar7"]
@@ -9700,7 +11234,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar7BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar7"]
@@ -9711,7 +11245,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar7FactionName" type="Label" parent="ReputationFrame/ReputationBar7"]
@@ -9742,7 +11276,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar7/ReputationBar7ExpandOrCollapseButton"]
@@ -9752,7 +11286,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9763,7 +11297,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -9777,7 +11311,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar7ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar7/ReputationBar7ReputationBar"]
@@ -9787,7 +11321,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar7ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar7/ReputationBar7ReputationBar"]
@@ -9812,7 +11346,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9824,7 +11358,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9836,7 +11370,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9848,7 +11382,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9871,7 +11405,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar8LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar8"]
@@ -9882,7 +11416,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar8BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar8"]
@@ -9893,7 +11427,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar8FactionName" type="Label" parent="ReputationFrame/ReputationBar8"]
@@ -9924,7 +11458,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar8/ReputationBar8ExpandOrCollapseButton"]
@@ -9934,7 +11468,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -9945,7 +11479,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -9959,7 +11493,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar8ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar8/ReputationBar8ReputationBar"]
@@ -9969,7 +11503,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar8ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar8/ReputationBar8ReputationBar"]
@@ -9994,7 +11528,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10006,7 +11540,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10018,7 +11552,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10030,7 +11564,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10053,7 +11587,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar9LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar9"]
@@ -10064,7 +11598,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar9BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar9"]
@@ -10075,7 +11609,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar9FactionName" type="Label" parent="ReputationFrame/ReputationBar9"]
@@ -10106,7 +11640,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar9/ReputationBar9ExpandOrCollapseButton"]
@@ -10116,7 +11650,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10127,7 +11661,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -10141,7 +11675,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar9ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar9/ReputationBar9ReputationBar"]
@@ -10151,7 +11685,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar9ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar9/ReputationBar9ReputationBar"]
@@ -10176,7 +11710,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10188,7 +11722,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10200,7 +11734,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10212,7 +11746,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10235,7 +11769,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar10LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar10"]
@@ -10246,7 +11780,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar10BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar10"]
@@ -10257,7 +11791,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar10FactionName" type="Label" parent="ReputationFrame/ReputationBar10"]
@@ -10288,7 +11822,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar10/ReputationBar10ExpandOrCollapseButton"]
@@ -10298,7 +11832,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10309,7 +11843,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -10323,7 +11857,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar10ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar10/ReputationBar10ReputationBar"]
@@ -10333,7 +11867,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar10ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar10/ReputationBar10ReputationBar"]
@@ -10358,7 +11892,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10370,7 +11904,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10382,7 +11916,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10394,7 +11928,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10417,7 +11951,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar11LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar11"]
@@ -10428,7 +11962,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar11BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar11"]
@@ -10439,7 +11973,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar11FactionName" type="Label" parent="ReputationFrame/ReputationBar11"]
@@ -10470,7 +12004,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar11/ReputationBar11ExpandOrCollapseButton"]
@@ -10480,7 +12014,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10491,7 +12025,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -10505,7 +12039,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar11ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar11/ReputationBar11ReputationBar"]
@@ -10515,7 +12049,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar11ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar11/ReputationBar11ReputationBar"]
@@ -10540,7 +12074,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10552,7 +12086,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10564,7 +12098,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10576,7 +12110,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10599,7 +12133,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar12LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar12"]
@@ -10610,7 +12144,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar12BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar12"]
@@ -10621,7 +12155,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar12FactionName" type="Label" parent="ReputationFrame/ReputationBar12"]
@@ -10652,7 +12186,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar12/ReputationBar12ExpandOrCollapseButton"]
@@ -10662,7 +12196,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10673,7 +12207,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -10687,7 +12221,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar12ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar12/ReputationBar12ReputationBar"]
@@ -10697,7 +12231,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar12ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar12/ReputationBar12ReputationBar"]
@@ -10722,7 +12256,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10734,7 +12268,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10746,7 +12280,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10758,7 +12292,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10781,7 +12315,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar13LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar13"]
@@ -10792,7 +12326,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar13BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar13"]
@@ -10803,7 +12337,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar13FactionName" type="Label" parent="ReputationFrame/ReputationBar13"]
@@ -10834,7 +12368,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar13/ReputationBar13ExpandOrCollapseButton"]
@@ -10844,7 +12378,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10855,7 +12389,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -10869,7 +12403,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar13ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar13/ReputationBar13ReputationBar"]
@@ -10879,7 +12413,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar13ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar13/ReputationBar13ReputationBar"]
@@ -10904,7 +12438,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10916,7 +12450,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10928,7 +12462,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10940,7 +12474,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -10963,7 +12497,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar14LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar14"]
@@ -10974,7 +12508,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar14BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar14"]
@@ -10985,7 +12519,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar14FactionName" type="Label" parent="ReputationFrame/ReputationBar14"]
@@ -11016,7 +12550,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar14/ReputationBar14ExpandOrCollapseButton"]
@@ -11026,7 +12560,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11037,7 +12571,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -11051,7 +12585,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar14ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar14/ReputationBar14ReputationBar"]
@@ -11061,7 +12595,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar14ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar14/ReputationBar14ReputationBar"]
@@ -11086,7 +12620,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11098,7 +12632,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11110,7 +12644,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11122,7 +12656,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11145,7 +12679,7 @@ offset_top = -0.5
 offset_right = 0
 offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("AtlasTexture_178")
+texture = SubResource("AtlasTexture_180")
 expand_mode = 1
 
 [node name="ReputationBar15LeftLine" type="TextureRect" parent="ReputationFrame/ReputationBar15"]
@@ -11156,7 +12690,7 @@ offset_right = 295
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar15BottomLine" type="TextureRect" parent="ReputationFrame/ReputationBar15"]
@@ -11167,7 +12701,7 @@ offset_right = 148.5
 offset_bottom = 0
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_176")
+texture = SubResource("AtlasTexture_178")
 expand_mode = 1
 
 [node name="ReputationBar15FactionName" type="Label" parent="ReputationFrame/ReputationBar15"]
@@ -11198,7 +12732,7 @@ offset_top = -1.5
 offset_right = 19
 offset_bottom = 14.5
 mouse_filter = 2
-texture = SubResource("WowTexture_160")
+texture = SubResource("WowTexture_162")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar15/ReputationBar15ExpandOrCollapseButton"]
@@ -11208,7 +12742,7 @@ offset_right = 19
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_162")
+texture = SubResource("WowTexture_164")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11219,7 +12753,7 @@ offset_top = 3.5
 offset_right = 295
 offset_bottom = 16.5
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -11233,7 +12767,7 @@ offset_top = -4
 offset_right = 62
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_179")
+texture = SubResource("AtlasTexture_181")
 expand_mode = 1
 
 [node name="ReputationBar15ReputationBarRightTexture" type="TextureRect" parent="ReputationFrame/ReputationBar15/ReputationBar15ReputationBar"]
@@ -11243,7 +12777,7 @@ offset_top = -4
 offset_right = 104
 offset_bottom = 17
 mouse_filter = 2
-texture = SubResource("AtlasTexture_180")
+texture = SubResource("AtlasTexture_182")
 expand_mode = 1
 
 [node name="ReputationBar15ReputationBarFactionStanding" type="Label" parent="ReputationFrame/ReputationBar15/ReputationBar15ReputationBar"]
@@ -11268,7 +12802,7 @@ offset_right = 101
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_181")
+texture = SubResource("AtlasTexture_183")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11280,7 +12814,7 @@ offset_right = -2
 offset_bottom = 17
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_182")
+texture = SubResource("AtlasTexture_184")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11292,7 +12826,7 @@ offset_right = 105
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_184")
+texture = SubResource("AtlasTexture_186")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11304,7 +12838,7 @@ offset_right = 88
 offset_bottom = 20.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_185")
+texture = SubResource("AtlasTexture_187")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11326,7 +12860,7 @@ offset_top = -5
 offset_right = 325
 offset_bottom = 251
 mouse_filter = 2
-texture = SubResource("AtlasTexture_186")
+texture = SubResource("AtlasTexture_188")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="ReputationFrame/ReputationListScrollFrame"]
@@ -11335,7 +12869,7 @@ offset_top = 250
 offset_right = 325
 offset_bottom = 358
 mouse_filter = 2
-texture = SubResource("AtlasTexture_187")
+texture = SubResource("AtlasTexture_189")
 expand_mode = 1
 
 [node name="ReputationListScrollFrameScrollBar" type="VSlider" parent="ReputationFrame/ReputationListScrollFrame"]
@@ -11541,7 +13075,7 @@ offset_top = 11
 offset_right = 267
 offset_bottom = 139
 mouse_filter = 2
-texture = SubResource("WowTexture_188")
+texture = SubResource("WowTexture_190")
 expand_mode = 1
 
 [node name="ReputationDetailCorner" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame"]
@@ -11551,7 +13085,7 @@ offset_top = 7
 offset_right = 206
 offset_bottom = 39
 mouse_filter = 2
-texture = SubResource("WowTexture_189")
+texture = SubResource("WowTexture_191")
 expand_mode = 1
 
 [node name="ReputationDetailDivider" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame"]
@@ -11561,7 +13095,7 @@ offset_top = 131
 offset_right = 265
 offset_bottom = 163
 mouse_filter = 2
-texture = SubResource("WowTexture_190")
+texture = SubResource("WowTexture_192")
 expand_mode = 1
 
 [node name="ReputationDetailCloseButton" type="TextureButton" parent="ReputationFrame/ReputationDetailFrame"]
@@ -11618,7 +13152,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_191")
+texture = SubResource("WowTexture_193")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailAtWarCheckBox"]
@@ -11628,7 +13162,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_192")
+texture = SubResource("WowTexture_194")
 expand_mode = 1
 
 [node name="ReputationDetailAtWarCheckBoxText" type="Label" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailAtWarCheckBox"]
@@ -11651,7 +13185,7 @@ offset_right = 35
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_193")
+texture = SubResource("WowTexture_195")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailAtWarCheckBox"]
@@ -11661,7 +13195,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_194")
+texture = SubResource("WowTexture_196")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailAtWarCheckBox"]
@@ -11671,7 +13205,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_195")
+texture = SubResource("WowTexture_197")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11690,7 +13224,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_191")
+texture = SubResource("WowTexture_193")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailInactiveCheckBox"]
@@ -11700,7 +13234,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_192")
+texture = SubResource("WowTexture_194")
 expand_mode = 1
 
 [node name="ReputationDetailInactiveCheckBoxText" type="Label" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailInactiveCheckBox"]
@@ -11723,7 +13257,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_196")
+texture = SubResource("WowTexture_198")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailInactiveCheckBox"]
@@ -11733,7 +13267,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_194")
+texture = SubResource("WowTexture_196")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailInactiveCheckBox"]
@@ -11743,7 +13277,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_195")
+texture = SubResource("WowTexture_197")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -11762,7 +13296,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_191")
+texture = SubResource("WowTexture_193")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailMainScreenCheckBox"]
@@ -11772,7 +13306,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_192")
+texture = SubResource("WowTexture_194")
 expand_mode = 1
 
 [node name="ReputationDetailMainScreenCheckBoxText" type="Label" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailMainScreenCheckBox"]
@@ -11795,7 +13329,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_196")
+texture = SubResource("WowTexture_198")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailMainScreenCheckBox"]
@@ -11805,7 +13339,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_194")
+texture = SubResource("WowTexture_196")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame/ReputationDetailMainScreenCheckBox"]
@@ -11815,13 +13349,13 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_195")
+texture = SubResource("WowTexture_197")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
 [node name="HonorFrame" type="Control" parent="."]
 unique_name_in_owner = true
-script = ExtResource("10")
+script = ExtResource("11")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1
@@ -11838,7 +13372,7 @@ offset_top = 1
 offset_right = 258
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_120")
+texture = SubResource("WowTexture_123")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="HonorFrame"]
@@ -11847,7 +13381,7 @@ offset_top = 1
 offset_right = 386
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_121")
+texture = SubResource("WowTexture_124")
 expand_mode = 1
 
 [node name="Texture3" type="TextureRect" parent="HonorFrame"]
@@ -11856,7 +13390,7 @@ offset_top = 257
 offset_right = 258
 offset_bottom = 513
 mouse_filter = 2
-texture = SubResource("WowTexture_173")
+texture = SubResource("WowTexture_175")
 expand_mode = 1
 
 [node name="Texture4" type="TextureRect" parent="HonorFrame"]
@@ -11865,7 +13399,7 @@ offset_top = 257
 offset_right = 386
 offset_bottom = 513
 mouse_filter = 2
-texture = SubResource("WowTexture_174")
+texture = SubResource("WowTexture_176")
 expand_mode = 1
 
 [node name="HonorLevelText" type="Label" parent="HonorFrame"]
@@ -11911,7 +13445,7 @@ offset_top = 69
 offset_right = 278
 offset_bottom = 325
 mouse_filter = 2
-texture = SubResource("WowTexture_197")
+texture = SubResource("WowTexture_199")
 expand_mode = 1
 
 [node name="Texture6" type="TextureRect" parent="HonorFrame"]
@@ -11920,7 +13454,7 @@ offset_top = 69
 offset_right = 403
 offset_bottom = 325
 mouse_filter = 2
-texture = SubResource("WowTexture_198")
+texture = SubResource("WowTexture_200")
 expand_mode = 1
 
 [node name="Texture7" type="TextureRect" parent="HonorFrame"]
@@ -11929,7 +13463,7 @@ offset_top = 325
 offset_right = 278
 offset_bottom = 453
 mouse_filter = 2
-texture = SubResource("WowTexture_199")
+texture = SubResource("WowTexture_201")
 expand_mode = 1
 
 [node name="Texture8" type="TextureRect" parent="HonorFrame"]
@@ -11938,7 +13472,7 @@ offset_top = 325
 offset_right = 403
 offset_bottom = 453
 mouse_filter = 2
-texture = SubResource("WowTexture_200")
+texture = SubResource("WowTexture_202")
 expand_mode = 1
 
 [node name="HonorFrameCurrentPVPTitle" type="Label" parent="HonorFrame"]
@@ -12493,7 +14027,7 @@ offset_top = 77
 offset_right = 337
 offset_bottom = 106
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_167")
+texture_progress = SubResource("WowTexture_169")
 nine_patch_stretch = true
 max_value = 1.0
 step = 0.0
@@ -12525,7 +14059,7 @@ offset_top = 1
 offset_right = 258
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_120")
+texture = SubResource("WowTexture_123")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="TokenFrame"]
@@ -12537,7 +14071,7 @@ offset_top = 1
 offset_right = 2
 offset_bottom = 257
 mouse_filter = 2
-texture = SubResource("WowTexture_121")
+texture = SubResource("WowTexture_124")
 expand_mode = 1
 
 [node name="Texture3" type="TextureRect" parent="TokenFrame"]
@@ -12549,7 +14083,7 @@ offset_top = -255
 offset_right = 258
 offset_bottom = 1
 mouse_filter = 2
-texture = SubResource("WowTexture_201")
+texture = SubResource("WowTexture_203")
 expand_mode = 1
 
 [node name="Texture4" type="TextureRect" parent="TokenFrame"]
@@ -12563,7 +14097,7 @@ offset_top = -255
 offset_right = 2
 offset_bottom = 1
 mouse_filter = 2
-texture = SubResource("WowTexture_202")
+texture = SubResource("WowTexture_204")
 expand_mode = 1
 
 [node name="TokenFrameContainer" type="Control" parent="TokenFrame"]
@@ -12744,7 +14278,7 @@ offset_right = 299
 offset_bottom = 330
 mouse_filter = 2
 
-[node name="TokenFrameMoneyFrame" parent="TokenFrame" instance=ExtResource("11")]
+[node name="TokenFrameMoneyFrame" parent="TokenFrame" instance=ExtResource("12")]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 1
@@ -12904,7 +14438,7 @@ offset_top = 7
 offset_right = 199
 offset_bottom = 39
 mouse_filter = 2
-texture = SubResource("WowTexture_189")
+texture = SubResource("WowTexture_191")
 expand_mode = 1
 
 [node name="TokenFramePopupInactiveCheckBox" type="TextureButton" parent="TokenFrame/TokenFramePopup"]
@@ -12922,7 +14456,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_191")
+texture = SubResource("WowTexture_193")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TokenFrame/TokenFramePopup/TokenFramePopupInactiveCheckBox"]
@@ -12932,7 +14466,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_192")
+texture = SubResource("WowTexture_194")
 expand_mode = 1
 
 [node name="TokenFramePopupInactiveCheckBoxText" type="Label" parent="TokenFrame/TokenFramePopup/TokenFramePopupInactiveCheckBox"]
@@ -12955,7 +14489,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_196")
+texture = SubResource("WowTexture_198")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="TokenFrame/TokenFramePopup/TokenFramePopupInactiveCheckBox"]
@@ -12965,7 +14499,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_194")
+texture = SubResource("WowTexture_196")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFramePopup/TokenFramePopupInactiveCheckBox"]
@@ -12975,7 +14509,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_195")
+texture = SubResource("WowTexture_197")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -12994,7 +14528,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_191")
+texture = SubResource("WowTexture_193")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TokenFrame/TokenFramePopup/TokenFramePopupBackpackCheckBox"]
@@ -13004,7 +14538,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_192")
+texture = SubResource("WowTexture_194")
 expand_mode = 1
 
 [node name="TokenFramePopupBackpackCheckBoxText" type="Label" parent="TokenFrame/TokenFramePopup/TokenFramePopupBackpackCheckBox"]
@@ -13027,7 +14561,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_196")
+texture = SubResource("WowTexture_198")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="TokenFrame/TokenFramePopup/TokenFramePopupBackpackCheckBox"]
@@ -13037,7 +14571,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_194")
+texture = SubResource("WowTexture_196")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFramePopup/TokenFramePopupBackpackCheckBox"]
@@ -13047,7 +14581,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_195")
+texture = SubResource("WowTexture_197")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
