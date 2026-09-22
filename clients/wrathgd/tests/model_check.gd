@@ -4,6 +4,7 @@ extends Node
 const HUMAN_MALE: String = "Character\\Human\\Male\\HumanMale.m2"
 const RABBIT: String = "Creature\\Rabbit\\Rabbit.m2"
 const M2_VERSION: int = 264
+const SIDECAR_CLIPS: Dictionary[String, String] = {HUMAN_MALE: "EmoteWave", RABBIT: "Run"}
 
 var _failures: PackedStringArray = []
 
@@ -37,6 +38,13 @@ func _check_model(loader: WowLoader, path: String) -> void:
 	print("%s: version %d, %d batches, %d surfaces, %d vertices"
 			% [path, info["version"], (info["batches"] as Array).size(), surfaces, vertices])
 	_check(surfaces > 0 and vertices > 0, "%s has geometry to draw" % path)
+	# The clip keeps its keys in a .anim beside the model, so tracks prove the sidecar was read.
+	var clip: String = SIDECAR_CLIPS[path]
+	var player: AnimationPlayer = root.find_child("AnimationPlayer", true, false)
+	if _check(player != null and player.has_animation(clip), "%s carries a %s clip" % [path, clip]):
+		var tracks: int = player.get_animation(clip).get_track_count()
+		print("%s: %s has %d tracks" % [path, clip, tracks])
+		_check(tracks > 0, "%s reads %s from its .anim file" % [path, clip])
 	root.free()
 
 

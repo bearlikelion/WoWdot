@@ -54,12 +54,11 @@ Most of the WotLK protocol and format code is already in the vendored WoWee sour
 
 | Area | Work |
 | --- | --- |
-| Animations | Version 264 keeps most sequences in `.anim` files, hundreds per model, which want loading on demand. |
 | Update fields | `tools/update_fields.py` reports 93 classic names WotLK removed; the game reads none of them now except the honor frame's weekly kill counts, which the 3.3.5 PvP frame replaces. |
 | Constants | Movement flags and fixed DBC column numbers (Spell, SoundEntries, Light). |
 | Interface | Every screen is converted from the 3.3.5a FrameXML (`python3 ../wowgd/tools/framexml/convert.py <dump> . tools/framexml/frames.json`), with the rows and panels 3.3.5 builds from Lua declared under `rows` and `graft` in `frames.json`. Not yet wired: the options category lists, the honor frame (now the PvP frame), arena scoreboards, and the target aura buttons past what the server sends. |
 
-Next: the animations.
+Every `.anim` a model names is read when the model loads; loading them on demand is the open performance item.
 
 ## Checks
 
@@ -70,7 +69,7 @@ Run one with `godot --headless --path . tests/<name>.tscn`; each prints `<name>:
 | --- | --- |
 | `login_check` | SRP6 against the authserver, the realm list, the RC4 header cipher and the WotLK `CMSG_AUTH_SESSION`, through to `SMSG_CHAR_ENUM`. |
 | `world_check` | A throwaway character enters the world, walks, runs a GM command, takes a teleport, gains and loses an aura through `SMSG_AURA_UPDATE`, learns a spell, fails a cast, queries a quest, takes GM damage through the combat log, and logs out. |
-| `model_check` | A character and a creature model: version 264 geometry from the `.skin` beside the model. |
+| `model_check` | A character and a creature model: version 264 geometry from the `.skin` beside the model, and a clip whose keys come from a `.anim` beside it. |
 | `terrain_check` | An Azeroth and a Northrend tile with MH2O water. |
 | `glue_check` | The login screen, every race on the create screen, and the world loading round the new character. |
 

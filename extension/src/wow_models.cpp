@@ -62,6 +62,7 @@ constexpr float DOODAD_FURTHEST_RANGE = 600.0f;
 
 // The first M2 version that keeps its geometry in .skin files.
 constexpr uint32_t M2_SKIN_VERSION = 264;
+constexpr uint32_t M2_SEQUENCE_EMBEDDED = 0x20;
 
 // A texture unit that samples spherical reflection coordinates rather than a UV set.
 constexpr int M2_UNIT_ENV = -3;
@@ -575,6 +576,20 @@ std::shared_ptr<const WowLoader::M2Data> WowLoader::get_m2_data(const String &pa
 			M2Loader::loadSkin(skin, data->model);
 		} else {
 			UtilityFunctions::push_warning("WowLoader: missing skin for ", path);
+		}
+	}
+	// Sequences without the embedded flag keep their keys in <model><id>-<variation>.anim beside it.
+	if (data->model.version >= M2_SKIN_VERSION) {
+		for (size_t i = 0; i < data->model.sequences.size(); i++) {
+			const M2Sequence &sequence = data->model.sequences[i];
+			if (sequence.flags & M2_SEQUENCE_EMBEDDED) {
+				continue;
+			}
+			std::vector<uint8_t> anim;
+			const String file = path.get_basename() + vformat("%04d-%02d.anim", sequence.id, sequence.variationIndex);
+			if (archive->read_bytes(WowArchive::normalize(file), anim)) {
+				M2Loader::loadAnimFile(bytes, anim, static_cast<uint32_t>(i), data->model);
+			}
 		}
 	}
 	// A spell effect is often nothing but emitters, so geometry alone does not decide.
