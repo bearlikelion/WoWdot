@@ -1,6 +1,8 @@
 class_name Transports
 extends Node
 
+signal route_registered(guid: int, entry: int)
+
 # GameObject type 15 sails a taxi path; type 11 is a lift running a TransportAnimation loop.
 const TYPE_TRANSPORT: int = 11
 const TYPE_MO_TRANSPORT: int = 15
@@ -171,6 +173,7 @@ func _register_route(guid: int, info: Dictionary) -> void:
 	route["phase"] = _travelled(route, here) / speed
 	_routes[guid] = route
 	_tag(guid, guid)
+	route_registered.emit(guid, int(info.get("entry", 0)))
 
 
 # A lift loops offsets from where it was spawned, so that placement is the frame they sit in.

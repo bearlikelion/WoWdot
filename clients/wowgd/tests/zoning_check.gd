@@ -35,7 +35,7 @@ func _run() -> void:
 			return _finish("never reached the world")
 		await get_tree().process_frame
 	var session: WowSession = WowClient.session
-	session.transfer_pending.connect(func(map_id: int) -> void: _pending.append(map_id))
+	session.transfer_pending.connect(func(map_id: int, _entry: int) -> void: _pending.append(map_id))
 	session.world_entered.connect(
 		func(map_id: int, _position: Vector3, _orientation: float) -> void:
 			_entered.append(map_id)

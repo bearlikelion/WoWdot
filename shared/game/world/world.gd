@@ -71,6 +71,9 @@ var _sheath_state: ItemModels.SheathState = ItemModels.SheathState.UNARMED
 var _area: int = -1
 var _hovered: int = 0
 var _pending_object: int = 0
+var _pending_transport: int = 0
+var _boarding_offset: Vector3 = Vector3.ZERO
+var _boarding_facing: float = 0.0
 var _death: Death
 var _release_offered: bool = false
 var _reclaim_offered: bool = false
@@ -123,6 +126,7 @@ func _ready() -> void:
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)
 	_effects.watch(_entities, _player)
 	_transports.watch(_entities)
+	_transports.route_registered.connect(_on_route_registered)
 	_area_triggers.watch(_player)
 	UnitVoice.map = _map
 	WowAssets.interface.changed.connect(_on_interface_changed)
@@ -268,19 +272,29 @@ func enter(map_id: int, wow_position: Vector3, orientation: float) -> void:
 	_sky.map_id = map_id
 	_transports.map_id = map_id
 	_area_triggers.map_id = map_id
-	_player.place(WowCoords.to_godot(wow_position), orientation)
+	# A crossing sends the pose on the boat, which lands once the boat exists on this map.
+	if _pending_transport:
+		_boarding_offset = WowCoords.to_godot(wow_position)
+		_boarding_facing = orientation
+	else:
+		_player.place(WowCoords.to_godot(wow_position), orientation)
 	var guid: int = WowClient.session.get_player_guid()
 	if WowClient.session.has_object(guid):
 		_on_object_created(guid, WowClient.session.get_object_type(guid))
 
 
 # Physics stops until the new map's ground is under the player again.
-func begin_transfer() -> void:
+func begin_transfer(transport_entry: int = 0) -> void:
 	_player.active = false
+	_pending_transport = transport_entry
 
 
 func load_progress() -> float:
 	return _map.load_progress(_player.global_position)
+
+
+func intro_playing() -> bool:
+	return _cinematic.current
 
 
 func player() -> Player:
@@ -372,7 +386,15 @@ func _play_emote(payload: PackedByteArray) -> void:
 		UnitAnimations.play_once(node, [clip])
 
 
+func _on_route_registered(guid: int, entry: int) -> void:
+	if entry != _pending_transport:
+		return
+	_pending_transport = 0
+	_player.board(_entities.unit_node(guid), guid, _boarding_offset, _boarding_facing)
+
+
 func _on_transfer_aborted(reason: int) -> void:
+	_pending_transport = 0
 	_hud.show_error(WowStrings.get_text(TRANSFER_ABORTS.get(reason, ""), "Transfer aborted"))
 
 
@@ -424,6 +446,8 @@ func _play_cinematic(sequence_id: int) -> void:
 
 func _on_cinematic_finished() -> void:
 	_hud.show()
+	if _area > 0:
+		WowAssets.audio.play_zone(_area)
 	_map.target = _player
 	_player.get_node("CameraPivot/SpringArm3D/Camera3D").make_current()
 	WowClient.session.send_packet("CMSG_COMPLETE_CINEMATIC", [])
@@ -553,7 +577,7 @@ func _dress_player() -> void:
 	_mount_display = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
 	var mount: Node3D = WowAssets.creatures.instantiate(_mount_display) if _mount_display else null
 	if model and mount:
-		_seat(mount, model)
+		WowAssets.creatures.seat(_mount_display, mount, model)
 		model = mount
 	if model:
 		_player.set_model(model)
@@ -606,20 +630,6 @@ func _sheathe(state: ItemModels.SheathState) -> void:
 	payload.resize(4)
 	payload.encode_u32(0, state)
 	WowClient.session.send_packet("CMSG_SETSHEATHED", payload)
-
-
-# A mounted rider sits on the mount's first attachment, the saddle, playing Mount.
-func _seat(mount: Node3D, rider: Node3D) -> void:
-	var path: String = WowAssets.creatures.model_path(_mount_display)
-	var seat: Vector3 = Vector3.ZERO
-	for attachment: Dictionary in WowAssets.loader.get_m2_info(path).get("attachments", []):
-		if attachment["id"] == 0:
-			seat = attachment["position"]
-	mount.add_child(rider)
-	rider.position = seat
-	rider.scale = rider.scale / mount.scale
-	# The animation only takes once the mount, and so the rider, is in the tree.
-	UnitAnimations.set_base.call_deferred(rider, PackedStringArray(["Mount"]))
 
 
 # Units under the cursor get the default-anchored unit tooltip, like the stock mouseover.

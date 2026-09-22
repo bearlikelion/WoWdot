@@ -17,6 +17,11 @@ func _run() -> void:
 	add_child(camera)
 	camera.finished.connect(func() -> void: _finished = true)
 	_check(camera.play(HUMAN_INTRO), "the human intro has a readable camera")
+	for sequence: int in CinematicCamera.NARRATION:
+		_check(
+			WowAssets.audio.entry_stream(CinematicCamera.NARRATION[sequence]) != null,
+			"sequence %d has a readable narration" % sequence
+		)
 	var start: Vector3 = camera.global_position
 	for i: int in 30:
 		await get_tree().process_frame

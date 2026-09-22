@@ -31,7 +31,7 @@ const CHECK_TEXTS: Dictionary[int, String] = {
 	# This client's own, so it names itself rather than a global string.
 	70: "Show Map Landmarks",
 }
-# The options this client answers; the rest are hidden.
+# The options this client answers, which are the only check buttons the scene keeps.
 const CHECK_OPTIONS: Dictionary[int, StringName] = {
 	1: &"invert_mouse", 2: &"status_bar_text", 20: &"show_helm", 21: &"show_player_names",
 	28: &"show_tutorials", 30: &"show_npc_names", 31: &"show_cloak", 33: &"multi_bar_1",
@@ -41,11 +41,6 @@ const CHECK_OPTIONS: Dictionary[int, StringName] = {
 	44: &"show_game_tips", 66: &"auto_quest_watch", 67: &"show_own_name",
 	70: &"show_map_pois",
 }
-# Sliders and dropdowns, none of which this client answers yet.
-const UNANSWERED: PackedStringArray = [
-	"Slider1", "Slider2", "Slider3", "Slider4", "ClickCameraDropDown", "CameraDropDown",
-	"TargetofTargetDropDown", "CombatTextDropDown",
-]
 
 # What the options stood at when the window opened, so Cancel can put them back.
 var _opened: Dictionary[StringName, bool] = {}
@@ -57,22 +52,9 @@ func _ready() -> void:
 		var check: WowButton = get_node_or_null("%%UIOptionsFrameCheckButton%d" % number)
 		if check == null:
 			continue
-		var label: Label = check.get_node_or_null("UIOptionsFrameCheckButton%dText" % number)
-		if label:
-			label.text = WowStrings.get_text(CHECK_TEXTS[number])
-		if CHECK_OPTIONS.has(number):
-			check.pressed.connect(_on_check_pressed.bind(number))
-		else:
-			check.hide()
-	for control: String in UNANSWERED:
-		var unanswered: Control = find_child("UIOptionsFrame" + control, true, false)
-		if unanswered:
-			unanswered.hide()
-	for section: Node in $BasicOptions.get_children() + $AdvancedOptions.get_children():
-		if section is BaseButton:
-			continue
-		var buttons: Array[Node] = section.find_children("*", "BaseButton", false, false)
-		(section as Control).visible = buttons.any(func(button: Node) -> bool: return button.visible)
+		var label: Label = check.get_node("UIOptionsFrameCheckButton%dText" % number)
+		label.text = WowStrings.get_text(CHECK_TEXTS[number])
+		check.pressed.connect(_on_check_pressed.bind(number))
 	%UIOptionsFrameResetTutorials.pressed.connect(
 		WowClient.session.send_packet.bind("CMSG_TUTORIAL_RESET", PackedByteArray())
 	)

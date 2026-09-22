@@ -32,6 +32,21 @@ func model_path(display_id: int) -> String:
 	return _model_data.get_string(model_row, "ModelPath").replace("\\", "/") if model_row >= 0 else ""
 
 
+# The rider goes on attachment 0 and keeps its own scale against the mount's.
+func seat(mount_display: int, mount: Node3D, rider: Node3D) -> void:
+	var seat: Vector3 = Vector3.ZERO
+	for attachment: Dictionary in WowAssets.loader.get_m2_info(model_path(mount_display)).get(
+		"attachments", []
+	):
+		if attachment["id"] == 0:
+			seat = attachment["position"]
+	mount.add_child(rider)
+	rider.position = seat
+	rider.scale = rider.scale / mount.scale
+	# The animation only takes once the mount, and so the rider, is in the tree.
+	UnitAnimations.set_base.call_deferred(rider, PackedStringArray(["Mount"]))
+
+
 # Humanoid NPCs and players look like characters, so any look given here is applied as one.
 func instantiate(display_id: int, look: Dictionary = {}) -> Node3D:
 	var row: int = _display_info.find(display_id)

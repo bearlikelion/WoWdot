@@ -10,6 +10,8 @@ signal watched_changed(entry: Dictionary)
 
 enum Tab { CHARACTER = 1, PET, REPUTATION, SKILLS, HONOR }
 
+const TAB_PADDING: float = 0.0
+
 const TAB_FRAMES: Dictionary[Tab, String] = {
 	Tab.CHARACTER: "PaperDollFrame",
 	Tab.PET: "PetPaperDollFrame",
@@ -109,11 +111,18 @@ func _ready() -> void:
 	%CharacterFramePortrait.material = mask
 	%CharacterFramePortrait.texture = _portrait.get_texture()
 	%CharacterModelFrame.gui_input.connect(_on_model_input)
-	# The pet tab waits on the pet paper doll; the tabs after it close up.
-	var gap: float = %CharacterFrameTab3.position.x - %CharacterFrameTab2.position.x
-	for tab: Control in [%CharacterFrameTab3, %CharacterFrameTab4, %CharacterFrameTab5]:
-		tab.position.x -= gap
+	# The pet tab waits on the pet paper doll; the rest size to their text and close up.
 	%CharacterFrameTab2.hide()
+	var gap: float = %CharacterFrameTab2.position.x - %CharacterFrameTab1.position.x \
+			- %CharacterFrameTab1.size.x
+	var x: float = %CharacterFrameTab1.position.x
+	for tab: Tab in TAB_FRAMES:
+		var button: Control = get_node("%%CharacterFrameTab%d" % tab)
+		if not button.visible:
+			continue
+		PanelManager.resize_tab(button, TAB_PADDING)
+		button.position.x = x
+		x += button.size.x + gap
 	visibility_changed.connect(refresh)
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)

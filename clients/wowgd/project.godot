@@ -35,6 +35,15 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/ExportFullscreen/plugin.cfg", "res://addons/gddocs/plugin.cfg", "res://addons/wowgd_editor/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://game/": "yellow",
+"res://tests/": "blue",
+"res://tools/": "purple",
+"res://ui/": "green"
+}
+
 [gddocs]
 
 exclude=PackedStringArray("res://addons/", "res://tests/", "res://tools/")

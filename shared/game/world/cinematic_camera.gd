@@ -5,6 +5,10 @@ signal finished
 
 # CinematicSequences.dbc names the camera; CinematicCamera.dbc holds its model, origin and facing.
 const SEQUENCE_CAMERA_COLUMN: int = 2
+# 1.12's CinematicSequences names no sound, so each race's FlyByNarration row is listed here.
+const NARRATION: Dictionary[int, int] = {
+	2: 3358, 21: 3760, 41: 3740, 61: 3800, 81: 3840, 101: 3841, 121: 4080, 141: 4122,
+}
 const MODEL_COLUMN: int = 1
 const ORIGIN_COLUMNS: PackedInt32Array = [3, 4, 5]
 const FACING_COLUMN: int = 6
@@ -68,6 +72,7 @@ func play(sequence_id: int) -> bool:
 	_length_msec = maxi(_eye[-1]["msec"], _look[-1]["msec"] if not _look.is_empty() else 0)
 	_elapsed_msec = 0
 	_process(0.0)
+	WowAssets.audio.play_music_entry(NARRATION.get(sequence_id, 0))
 	make_current()
 	set_process(true)
 	return true

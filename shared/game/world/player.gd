@@ -279,6 +279,15 @@ func pitch() -> float:
 	return _pivot.rotation.x
 
 
+# Puts the player on a deck at the server's boat-local pose, as a crossing lands them.
+func board(transport: Node3D, wire_guid: int, offset: Vector3, facing: float) -> void:
+	_transport = transport
+	_transport_guid = wire_guid
+	_transport_offset = offset
+	global_position = transport.global_transform * offset
+	rotation.y = transport.rotation.y + facing
+
+
 func place(godot_position: Vector3, facing: float) -> void:
 	# Being put somewhere else ends the ride, or the deck drags them back the very next frame.
 	_transport = null

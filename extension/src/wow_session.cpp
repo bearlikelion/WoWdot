@@ -1363,8 +1363,11 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			emit_signal("character_login_failed", code);
 			return;
 		}
+		// A transport crossing appends the entry of the boat that carries the player over.
 		case LogicalOpcode::SMSG_TRANSFER_PENDING: {
-			emit_signal("transfer_pending", static_cast<int>(packet.readUInt32()));
+			const uint32_t map_id = packet.readUInt32();
+			const uint32_t transport_entry = packet.hasRemaining(4) ? packet.readUInt32() : 0;
+			emit_signal("transfer_pending", static_cast<int>(map_id), static_cast<int>(transport_entry));
 			return;
 		}
 		case LogicalOpcode::SMSG_TRANSFER_ABORTED: {
@@ -1744,6 +1747,9 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 		if (block.hasMovement) {
 			object.position = wow_vector(block.x, block.y, block.z);
 			object.orientation = block.orientation;
+			object.transport_guid = block.onTransport ? block.transportGuid : 0;
+			object.transport_offset = wow_vector(block.transportX, block.transportY, block.transportZ);
+			object.transport_orientation = block.transportO;
 			if (block.runSpeed > 0.0f) {
 				object.speeds = { block.walkSpeed, block.runSpeed, block.runBackSpeed, block.swimSpeed, block.swimBackSpeed, block.turnRate };
 			}
@@ -1796,15 +1802,16 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 	const float y = packet.readFloat();
 	const float z = packet.readFloat();
 	const float orientation = packet.readFloat();
+	uint64_t transport_guid = 0;
+	Vector3 transport_offset;
+	float transport_orientation = 0.0f;
 	if (flags & layout.on_transport) {
-		if (layout.wide_transport) {
-			packet.readPackedGuid();
-		} else {
-			packet.readUInt64();
-		}
-		for (int i = 0; i < 4; i++) {
-			packet.readFloat();
-		}
+		transport_guid = layout.wide_transport ? packet.readPackedGuid() : packet.readUInt64();
+		const float tx = packet.readFloat();
+		const float ty = packet.readFloat();
+		const float tz = packet.readFloat();
+		transport_offset = wow_vector(tx, ty, tz);
+		transport_orientation = packet.readFloat();
 		if (layout.wide_transport) {
 			packet.readUInt32();
 			packet.readUInt8();
@@ -1835,11 +1842,17 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 	move["opcode"] = String(name);
 	move["fall_time_msec"] = fall_time;
 	move["jump_velocity"] = jump_velocity;
+	move["transport_guid"] = static_cast<int64_t>(transport_guid);
+	move["transport_offset"] = transport_offset;
+	move["transport_orientation"] = transport_orientation;
 	auto it = objects.find(guid);
 	if (it != objects.end()) {
 		WorldObject &object = it->second;
 		object.position = wow_vector(x, y, z);
 		object.orientation = orientation;
+		object.transport_guid = transport_guid;
+		object.transport_offset = transport_offset;
+		object.transport_orientation = transport_orientation;
 		for (size_t i = 0; i < SPEED_OPCODES.size(); i++) {
 			if (std::strcmp(name, SPEED_OPCODES[i]) == 0 && packet.hasRemaining(4)) {
 				object.speeds[i] = packet.readFloat();
@@ -1907,6 +1920,18 @@ Vector3 WowSession::get_object_position(int64_t guid) const {
 double WowSession::get_object_orientation(int64_t guid) const {
 	const WorldObject *object = find(guid);
 	return object ? object->orientation : 0.0;
+}
+
+// Empty for an object standing on the ground.
+Dictionary WowSession::get_object_transport(int64_t guid) const {
+	const WorldObject *object = find(guid);
+	Dictionary transport;
+	if (object && object->transport_guid != 0) {
+		transport["guid"] = static_cast<int64_t>(object->transport_guid);
+		transport["offset"] = object->transport_offset;
+		transport["orientation"] = object->transport_orientation;
+	}
+	return transport;
 }
 
 PackedFloat32Array WowSession::get_object_speeds(int64_t guid) const {
@@ -2020,6 +2045,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_object_type", "guid"), &WowSession::get_object_type);
 	ClassDB::bind_method(D_METHOD("get_object_position", "guid"), &WowSession::get_object_position);
 	ClassDB::bind_method(D_METHOD("get_object_orientation", "guid"), &WowSession::get_object_orientation);
+	ClassDB::bind_method(D_METHOD("get_object_transport", "guid"), &WowSession::get_object_transport);
 	ClassDB::bind_method(D_METHOD("get_object_speeds", "guid"), &WowSession::get_object_speeds);
 	ClassDB::bind_method(D_METHOD("get_field", "guid", "field"), &WowSession::get_field);
 	ClassDB::bind_method(D_METHOD("get_field_float", "guid", "field"), &WowSession::get_field_float);
@@ -2038,7 +2064,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("object_updated", PropertyInfo(Variant::INT, "guid")));
 	ADD_SIGNAL(MethodInfo("object_moved", PropertyInfo(Variant::INT, "guid"), PropertyInfo(Variant::DICTIONARY, "movement")));
 	ADD_SIGNAL(MethodInfo("objects_destroyed", PropertyInfo(Variant::PACKED_INT64_ARRAY, "guids")));
-	ADD_SIGNAL(MethodInfo("transfer_pending", PropertyInfo(Variant::INT, "map_id")));
+	ADD_SIGNAL(MethodInfo("transfer_pending", PropertyInfo(Variant::INT, "map_id"), PropertyInfo(Variant::INT, "transport_entry")));
 	ADD_SIGNAL(MethodInfo("transfer_aborted", PropertyInfo(Variant::INT, "reason")));
 	ADD_SIGNAL(MethodInfo("chat_received", PropertyInfo(Variant::DICTIONARY, "line")));
 	ADD_SIGNAL(MethodInfo("spells_changed"));

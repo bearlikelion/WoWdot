@@ -13,6 +13,9 @@ const WORLD: PackedScene = preload("res://game/world/world.tscn")
 
 var world: World
 
+var _map_id: int = 0
+var _intro: bool = false
+
 @onready var _glue: Glue = %Glue
 
 
@@ -31,7 +34,17 @@ func _ready() -> void:
 
 # The loading screen stays up until the tiles around the player have streamed in.
 func _process(_delta: float) -> void:
-	if world == null or not _glue.visible:
+	if world == null:
+		return
+	# An intro flies while the tiles stream, and its view is the one to show meanwhile.
+	var intro: bool = world.intro_playing()
+	if intro != _intro:
+		_intro = intro
+		if intro:
+			_glue.hide()
+		elif not world.player().active:
+			_glue.show_loading(_map_id)
+	if intro or not _glue.visible:
 		return
 	var progress: float = world.load_progress()
 	_glue.set_loading_progress(progress)
@@ -75,14 +88,15 @@ func _on_state_changed(state: WowSession.State, _message: String) -> void:
 		_glue.show()
 
 
-func _on_transfer_pending(map_id: int) -> void:
+func _on_transfer_pending(map_id: int, transport_entry: int) -> void:
 	if world == null:
 		return
-	world.begin_transfer()
+	world.begin_transfer(transport_entry)
 	_glue.show_loading(map_id)
 
 
 func _on_world_entered(map_id: int, position: Vector3, orientation: float) -> void:
+	_map_id = map_id
 	if world == null:
 		world = WORLD.instantiate()
 		add_child(world)

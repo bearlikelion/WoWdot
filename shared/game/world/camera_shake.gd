@@ -27,6 +27,7 @@ var _presets: WowDBC
 var _groups: WowDBC
 var _live: Array[Shake] = []
 
+@onready var _arm: SpringArm3D = player.get_node("CameraPivot/SpringArm3D")
 @onready var _camera: Camera3D = player.get_node("CameraPivot/SpringArm3D/Camera3D")
 
 
@@ -56,8 +57,8 @@ func _process(_delta: float) -> void:
 			strongest[shake.direction] = offset
 	_camera.h_offset = -strongest.get(Direction.LEFT, 0.0)
 	_camera.v_offset = strongest.get(Direction.UP, 0.0)
-	# The spring arm sets the camera's distance, so the forward push rides on its local Z.
-	_camera.position.z = -strongest.get(Direction.FORWARD, 0.0)
+	# The forward push rides on the arm's own length, which it would otherwise overwrite.
+	_camera.position.z = _arm.get_hit_length() - strongest.get(Direction.FORWARD, 0.0)
 
 
 # A spell visual kit names a group of up to three presets, one for each axis.

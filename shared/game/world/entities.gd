@@ -39,10 +39,14 @@ var _dressing: Dictionary[int, bool] = {}
 # Weapons each unit carries and the sheath state they were last hung for.
 var _weapons: Dictionary[int, Array] = {}
 var _sheath_states: Dictionary[int, ItemModels.SheathState] = {}
+var _mounts: Dictionary[int, int] = {}
+var _riders: Dictionary[int, Node3D] = {}
 var _paths: Dictionary[int, Path] = {}
 var _swimmers: Dictionary[int, bool] = {}
 # Other players, carried forward between their relayed movement packets.
 var _motions: Dictionary[int, RemoteMotion] = {}
+# Per rider guid: the transport's {"guid", "offset", "orientation"} from its last movement.
+var _riding: Dictionary[int, Dictionary] = {}
 var _game_object_displays: WowDBC
 var _quest_givers: Dictionary[int, bool] = {}
 var _markers: Dictionary[int, Node3D] = {}
@@ -99,6 +103,14 @@ func _process(delta: float) -> void:
 		if node:
 			node.global_position = _motions[guid].advance(delta, space)
 			node.rotation.y = _motions[guid].orientation
+	# ponytail: a rider walking on deck only moves at each heartbeat, not between them.
+	for guid: int in _riding:
+		var node: Node3D = _nodes.get(guid)
+		var boat: Node3D = _nodes.get(_riding[guid]["guid"])
+		if node and boat:
+			node.global_position = boat.global_transform \
+					* WowCoords.to_godot(_riding[guid]["offset"])
+			node.rotation.y = boat.rotation.y + _riding[guid]["orientation"]
 	for guid: int in _victims:
 		if not _paths.has(guid) and not _motions.has(guid) and _nodes.has(guid):
 			_face(_nodes[guid], _victims[guid])
@@ -126,15 +138,27 @@ func _on_object_created(guid: int, type_id: int) -> void:
 			node = _game_object(guid)
 	if node == null:
 		return
+	var mount_display: int = 0
+	if type_id != ObjectType.GAMEOBJECT:
+		mount_display = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
+		_mounts[guid] = mount_display
+		var mount: Node3D = WowAssets.creatures.instantiate(mount_display) if mount_display else null
+		if mount:
+			WowAssets.creatures.seat(mount_display, mount, node)
+			_riders[guid] = node
+			node = mount
 	add_child(node)
 	node.global_position = WowCoords.to_godot(session.get_object_position(guid))
 	_nodes[guid] = node
+	var transport: Dictionary = session.get_object_transport(guid)
+	if not transport.is_empty():
+		_riding[guid] = transport
 	if type_id == ObjectType.UNIT:
 		_arm(guid)
 	if type_id != ObjectType.GAMEOBJECT:
 		node.rotation.y = session.get_object_orientation(guid)
 		add_nameplate(guid, node)
-		UnitVoice.attach(node, guid, display)
+		UnitVoice.attach(node, guid, display, mount_display)
 		_on_object_updated(guid)
 		if type_id == ObjectType.UNIT and NpcDialog.is_quest_giver(guid):
 			_quest_givers[guid] = true
@@ -168,17 +192,22 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 		UnitAnimations.set_base(node, ["Swim", stride] if _swimmers.has(guid) else [stride])
 		return
 	_paths.erase(guid)
+	if movement.get("transport_guid", 0):
+		_riding[guid] = {
+			"guid": movement["transport_guid"], "offset": movement["transport_offset"],
+			"orientation": movement["transport_orientation"],
+		}
+		_motions.erase(guid)
+		_animate_motion(guid, node, movement["flags"])
+		return
+	_riding.erase(guid)
 	if movement.has("flags"):
 		var motion: RemoteMotion = _motions.get(guid)
 		if motion == null:
 			motion = RemoteMotion.new()
 			_motions[guid] = motion
 		motion.update(movement, node.global_position)
-		var clips: PackedStringArray = UnitAnimations.movement_clips(motion.flags)
-		if clips.is_empty():
-			_play_idle(guid, node)
-		else:
-			UnitAnimations.set_base(node, clips)
+		_animate_motion(guid, node, motion.flags)
 		return
 	node.global_position = WowCoords.to_godot(movement["position"])
 	if movement.has("orientation"):
@@ -257,7 +286,9 @@ func _arm(guid: int) -> void:
 	var model_path: String = WowAssets.creatures.model_path(
 		session.get_field(guid, "UNIT_FIELD_DISPLAYID")
 	)
-	WowAssets.characters.item_models.arm(_nodes[guid], model_path, _weapons[guid], state)
+	WowAssets.characters.item_models.arm(
+		_riders.get(guid, _nodes[guid]), model_path, _weapons[guid], state
+	)
 
 
 func _on_name_received(guid: int, _unit_name: String) -> void:
@@ -327,6 +358,7 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 	for guid: int in guids:
 		_paths.erase(guid)
 		_motions.erase(guid)
+		_riding.erase(guid)
 		_bounds.erase(guid)
 		_nameplates.erase(guid)
 		_victims.erase(guid)
@@ -334,6 +366,8 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_dressing.erase(guid)
 		_weapons.erase(guid)
 		_sheath_states.erase(guid)
+		_mounts.erase(guid)
+		_riders.erase(guid)
 		_quest_givers.erase(guid)
 		_markers.erase(guid)
 		NpcDialog.statuses.erase(guid)
@@ -371,7 +405,9 @@ func _on_object_updated(guid: int) -> void:
 	var node: Node3D = _nodes.get(guid)
 	if node == null or not _bounds.has(guid):
 		return
-	if _worn.has(guid) and _worn[guid] != CharacterModels.visible_items(WowClient.session, guid):
+	if _worn.has(guid) and _worn[guid] != CharacterModels.visible_items(WowClient.session, guid) \
+	or _mounts.has(guid) \
+	and _mounts[guid] != WowClient.session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID"):
 		_respawn(guid)
 		return
 	if _sheath_states.has(guid) \
@@ -467,6 +503,14 @@ func _respawn(guid: int) -> void:
 	_on_object_created(guid, session.get_object_type(guid))
 	if motion and _nodes.has(guid):
 		_motions[guid] = motion
+
+
+func _animate_motion(guid: int, node: Node3D, flags: int) -> void:
+	var clips: PackedStringArray = UnitAnimations.movement_clips(flags)
+	if clips.is_empty():
+		_play_idle(guid, node)
+	else:
+		UnitAnimations.set_base(node, clips)
 
 
 func _play_idle(guid: int, node: Node3D) -> void:

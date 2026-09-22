@@ -85,7 +85,6 @@ func _ready() -> void:
 	%GameMenuFrame.interface_options_requested.connect(show_panel.bind(%UIOptionsFrame))
 	%UIOptionsFrame.close_requested.connect(show_panel.bind(%GameMenuFrame))
 	%GameMenuFrame.key_bindings_requested.connect(show_panel.bind(%KeyBindingFrame))
-	%GameMenuFrame.macros_requested.connect(show_panel.bind(%MacroFrame))
 	%MacroFrame.open_requested.connect(show_panel.bind(%MacroFrame))
 	%BattlefieldFrame.open_requested.connect(show_panel.bind(%BattlefieldFrame))
 	%WorldStateScoreFrame.open_requested.connect(show_panel.bind(%WorldStateScoreFrame))
