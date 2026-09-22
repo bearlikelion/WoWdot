@@ -403,6 +403,16 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_EMOTE":
 		return _play_emote(payload)
 	var me: int = WowClient.session.get_player_guid()
+	if opcode == "SMSG_CLEAR_TARGET" or opcode == "SMSG_BREAK_TARGET":
+		if payload.size() >= 8 and _hud.target() == payload.decode_u64(0):
+			select(0)
+		return
+	if opcode == "SMSG_MOVE_SET_COLLISION_HGT":
+		var reader: PacketReader = PacketReader.new(payload)
+		if reader.packed_guid() == me:
+			var counter: int = reader.u32()
+			_player.ack_collision_height(reader.f32(), counter)
+		return
 	if opcode == "SMSG_TRIGGER_CINEMATIC":
 		_play_cinematic(payload.decode_u32(0) if payload.size() >= 4 else 0)
 		return

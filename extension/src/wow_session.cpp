@@ -994,6 +994,14 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 			emit_signal("quest_giver_status_received", guid, static_cast<int64_t>(packet.readUInt32()));
 			return true;
 		}
+		case LogicalOpcode::SMSG_QUESTGIVER_STATUS_MULTIPLE: {
+			const uint32_t count = packet.readUInt32();
+			for (uint32_t i = 0; i < count && packet.hasRemaining(9); ++i) {
+				const int64_t guid = static_cast<int64_t>(packet.readUInt64());
+				emit_signal("quest_giver_status_received", guid, static_cast<int64_t>(quest_giver_status_from_wotlk(packet.readUInt8())));
+			}
+			return true;
+		}
 		case LogicalOpcode::SMSG_GOSSIP_MESSAGE: {
 			Dictionary gossip;
 			gossip["guid"] = static_cast<int64_t>(packet.readUInt64());
@@ -1604,50 +1612,18 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			emit_signal("objects_destroyed", guids);
 			return;
 		}
-		case LogicalOpcode::SMSG_MONSTER_MOVE: {
-			game::MonsterMoveData data;
-			if (!parsers->parseMonsterMove(packet, data)) {
-				return;
-			}
-			Dictionary move;
-			move["position"] = wow_vector(data.x, data.y, data.z);
-			if (data.hasDest) {
-				move["destination"] = wow_vector(data.destX, data.destY, data.destZ);
-				move["duration_msec"] = data.duration;
-			}
-			if (data.moveType == MONSTER_MOVE_FACING_ANGLE) {
-				move["orientation"] = data.facingAngle;
-			}
-			constexpr uint32_t SPLINE_FLYING = 0x200;
-			if (!(data.splineFlags & SPLINE_FLYING) && data.hasDest && !data.waypoints.empty()) {
-				PackedVector3Array corners;
-				for (const auto &point : data.waypoints) {
-					corners.push_back(wow_vector(point.x, point.y, point.z));
-				}
-				corners.push_back(wow_vector(data.destX, data.destY, data.destZ));
-				move["corners"] = corners;
-			}
-			if (data.splineFlags & SPLINE_FLYING) {
-				PackedVector3Array points;
-				for (const auto &point : data.waypoints) {
-					points.push_back(wow_vector(point.x, point.y, point.z));
-				}
-				points.push_back(wow_vector(data.destX, data.destY, data.destZ));
-				move["points"] = points;
-				if (data.guid == player_guid) {
-					player_path = move.duplicate();
-					player_path["elapsed_msec"] = static_cast<int64_t>(0);
-					player_path["from_start"] = false;
-					player_path_msec = Time::get_singleton()->get_ticks_msec();
-				}
-			}
-			if (auto it = objects.find(data.guid); it != objects.end()) {
-				it->second.position = data.hasDest ? wow_vector(data.destX, data.destY, data.destZ) : wow_vector(data.x, data.y, data.z);
-				if (data.moveType == MONSTER_MOVE_FACING_ANGLE) {
-					it->second.orientation = data.facingAngle;
-				}
-			}
-			emit_signal("object_moved", static_cast<int64_t>(data.guid), move);
+		case LogicalOpcode::SMSG_MONSTER_MOVE:
+			handle_monster_move(packet, 0);
+			return;
+		case LogicalOpcode::SMSG_MONSTER_MOVE_TRANSPORT: {
+			// The mover, then the transport it rides and its seat, then the spline as SMSG_MONSTER_MOVE lays it out.
+			const uint64_t mover = packet.readPackedGuid();
+			const uint64_t transport = packet.readPackedGuid();
+			packet.readUInt8();
+			network::Packet rebuilt(packet.getOpcode());
+			rebuilt.writePackedGuid(mover);
+			rebuilt.writeBytes(packet.getData().data() + packet.getReadPos(), packet.getSize() - packet.getReadPos());
+			handle_monster_move(rebuilt, transport);
 			return;
 		}
 		case LogicalOpcode::SMSG_COMPRESSED_MOVES:
@@ -1657,8 +1633,40 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			latency_msec = static_cast<int>(Time::get_singleton()->get_ticks_msec() - last_ping_msec);
 			return;
 		case LogicalOpcode::SMSG_MESSAGECHAT:
+		case LogicalOpcode::SMSG_GM_MESSAGECHAT:
 			handle_chat(packet);
 			return;
+		case LogicalOpcode::SMSG_INSTANCE_LOCK_WARNING_QUERY: {
+			// Unanswered, the server ports the player out once the timer runs down.
+			network::Packet accept(game::wireOpcode(game::LogicalOpcode::CMSG_INSTANCE_LOCK_RESPONSE));
+			accept.writeUInt8(1);
+			world->send(accept);
+			return;
+		}
+		case LogicalOpcode::SMSG_POWER_UPDATE: {
+			const uint64_t guid = packet.readPackedGuid();
+			const uint8_t power = packet.readUInt8();
+			const int64_t value = packet.readUInt32();
+			const int index = field_index("UNIT_FIELD_POWER1");
+			if (auto it = objects.find(guid); it != objects.end() && index >= 0) {
+				it->second.fields[static_cast<uint16_t>(index + power)] = value;
+				emit_signal("object_updated", static_cast<int64_t>(guid));
+			}
+			return;
+		}
+		case LogicalOpcode::SMSG_MOTD: {
+			const uint32_t lines = packet.readUInt32();
+			for (uint32_t i = 0; i < lines && packet.hasRemaining(1); ++i) {
+				Dictionary line;
+				line["type"] = CHAT_SYSTEM;
+				line["language"] = 0;
+				line["text"] = String::utf8(packet.readString().c_str());
+				line["sender_guid"] = static_cast<int64_t>(0);
+				line["sender_name"] = String();
+				emit_signal("chat_received", line);
+			}
+			return;
+		}
 		case LogicalOpcode::SMSG_NAME_QUERY_RESPONSE: {
 			game::NameQueryResponseData data;
 			if (!parsers->parseNameQueryResponse(packet, data) || !data.isValid()) {
@@ -1873,8 +1881,12 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			break;
 	}
 	const char *name = game::OpcodeTable::logicalToName(*op);
-	if (std::strncmp(name, "MSG_MOVE_", 9) == 0 && std::strstr(name, "TELEPORT") == nullptr && std::strstr(name, "WORLDPORT") == nullptr) {
+	if (std::strncmp(name, "MSG_MOVE_", 9) == 0 && std::strstr(name, "_ACK") == nullptr && std::strstr(name, "WORLDPORT") == nullptr) {
 		handle_movement_relay(packet);
+		return;
+	}
+	if (std::strncmp(name, "SMSG_SPLINE_SET_", 16) == 0) {
+		handle_spline_speed(name, packet);
 		return;
 	}
 	PackedByteArray payload;
@@ -2023,6 +2035,75 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 		}
 	}
 	emit_signal("object_moved", static_cast<int64_t>(guid), move);
+}
+
+
+// A creature's spline, or on a transport the same spline in the transport's own space.
+void WowSession::handle_monster_move(network::Packet &packet, uint64_t transport_guid) {
+	game::MonsterMoveData data;
+	if (!parsers->parseMonsterMove(packet, data)) {
+		return;
+	}
+	Dictionary move;
+	move["position"] = wow_vector(data.x, data.y, data.z);
+	if (data.hasDest) {
+		move["destination"] = wow_vector(data.destX, data.destY, data.destZ);
+		move["duration_msec"] = data.duration;
+	}
+	if (data.moveType == MONSTER_MOVE_FACING_ANGLE) {
+		move["orientation"] = data.facingAngle;
+	}
+	constexpr uint32_t SPLINE_FLYING = 0x200;
+	if (!(data.splineFlags & SPLINE_FLYING) && data.hasDest && !data.waypoints.empty()) {
+		PackedVector3Array corners;
+		for (const auto &point : data.waypoints) {
+			corners.push_back(wow_vector(point.x, point.y, point.z));
+		}
+		corners.push_back(wow_vector(data.destX, data.destY, data.destZ));
+		move["corners"] = corners;
+	}
+	if (data.splineFlags & SPLINE_FLYING) {
+		PackedVector3Array points;
+		for (const auto &point : data.waypoints) {
+			points.push_back(wow_vector(point.x, point.y, point.z));
+		}
+		points.push_back(wow_vector(data.destX, data.destY, data.destZ));
+		move["points"] = points;
+		if (data.guid == player_guid) {
+			player_path = move.duplicate();
+			player_path["elapsed_msec"] = static_cast<int64_t>(0);
+			player_path["from_start"] = false;
+			player_path_msec = Time::get_singleton()->get_ticks_msec();
+		}
+	}
+	if (auto it = objects.find(data.guid); it != objects.end()) {
+		it->second.position = data.hasDest ? wow_vector(data.destX, data.destY, data.destZ) : wow_vector(data.x, data.y, data.z);
+		if (data.moveType == MONSTER_MOVE_FACING_ANGLE) {
+			it->second.orientation = data.facingAngle;
+		}
+	}
+}
+
+// SMSG_SPLINE_SET_*_SPEED names another unit and its new speed; the flight and pitch rates have no slot.
+void WowSession::handle_spline_speed(const char *name, network::Packet &packet) {
+	constexpr std::array<const char *, 6> NAMES = {
+		"SMSG_SPLINE_SET_WALK_SPEED", "SMSG_SPLINE_SET_RUN_SPEED", "SMSG_SPLINE_SET_RUN_BACK_SPEED",
+		"SMSG_SPLINE_SET_SWIM_SPEED", "SMSG_SPLINE_SET_SWIM_BACK_SPEED", "SMSG_SPLINE_SET_TURN_RATE",
+	};
+	const uint64_t guid = packet.readPackedGuid();
+	if (!packet.hasRemaining(4)) {
+		return;
+	}
+	const float speed = packet.readFloat();
+	auto it = objects.find(guid);
+	if (it == objects.end()) {
+		return;
+	}
+	for (size_t i = 0; i < NAMES.size(); i++) {
+		if (std::strcmp(name, NAMES[i]) == 0) {
+			it->second.speeds[i] = speed;
+		}
+	}
 }
 
 // SMSG_COMPRESSED_MOVES inflates to a run of [u8 size][u16 opcode][payload] monster move packets.

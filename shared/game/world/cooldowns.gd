@@ -30,6 +30,12 @@ func get_cooldown(spell_id: int) -> Vector2i:
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_ITEM_COOLDOWN" and payload.size() >= 12:
 		_on_spell_cooldown(payload.decode_u32(8), ITEM_COOLDOWN_MSEC)
+	elif opcode == "SMSG_MODIFY_COOLDOWN" and payload.size() >= 16:
+		var spell_id: int = payload.decode_u32(0)
+		if _by_spell.has(spell_id):
+			var cooldown: Vector2i = _by_spell[spell_id]
+			_by_spell[spell_id] = Vector2i(cooldown.x, cooldown.y + payload.decode_s32(12))
+			changed.emit()
 
 
 func _on_spell_cooldown(spell_id: int, cooldown_msec: int) -> void:

@@ -36,6 +36,7 @@ var _victims: Dictionary[int, int] = {}
 # Players' visible item entries, and those whose gear still waits on item queries.
 var _worn: Dictionary[int, PackedInt32Array] = {}
 var _dressing: Dictionary[int, bool] = {}
+var _quest_query_pending: bool = false
 # Weapons each unit carries and the sheath state they were last hung for.
 var _weapons: Dictionary[int, Array] = {}
 var _sheath_states: Dictionary[int, ItemModels.SheathState] = {}
@@ -164,7 +165,7 @@ func _on_object_created(guid: int, type_id: int) -> void:
 		_on_object_updated(guid)
 		if type_id == ObjectType.UNIT and NpcDialog.is_quest_giver(guid):
 			_quest_givers[guid] = true
-			NpcDialog.send("CMSG_QUESTGIVER_STATUS_QUERY", guid)
+			_query_quest_givers(guid)
 
 
 func _on_object_moved(guid: int, movement: Dictionary) -> void:
@@ -435,7 +436,20 @@ func _refresh_quest_givers() -> void:
 		return
 	_quest_state = state
 	for guid: int in _quest_givers:
+		_query_quest_givers(guid)
+
+
+# 3.3.5 answers every quest giver in range at once, so one query covers a whole batch of arrivals.
+func _query_quest_givers(guid: int) -> void:
+	if not PacketReader.wotlk:
 		NpcDialog.send("CMSG_QUESTGIVER_STATUS_QUERY", guid)
+		return
+	if _quest_query_pending:
+		return
+	_quest_query_pending = true
+	await get_tree().process_frame
+	_quest_query_pending = false
+	WowClient.session.send_packet("CMSG_QUESTGIVER_STATUS_MULTIPLE_QUERY", PackedByteArray())
 
 
 func _on_quest_giver_status(guid: int, status: int) -> void:

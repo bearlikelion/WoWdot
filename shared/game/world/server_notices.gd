@@ -66,6 +66,8 @@ static var meeting_stone_area: int = 0
 static func line(opcode: String, payload: PackedByteArray) -> String:
 	var reader: PacketReader = PacketReader.new(payload)
 	match opcode:
+		"SMSG_INSTANCE_SAVE_CREATED":
+			return WowStrings.get_text("INSTANCE_SAVED", "You are now saved to this instance.")
 		"SMSG_ZONE_UNDER_ATTACK":
 			var text: String = WowStrings.get_text("ZONE_UNDER_ATTACK")
 			return WowStrings.format(text, [AreaInfo.area_name(reader.u32())])
@@ -187,6 +189,8 @@ static func error(opcode: String, payload: PackedByteArray) -> String:
 	match opcode:
 		"SMSG_AREA_TRIGGER_MESSAGE":
 			return reader.text(reader.u32())
+		"SMSG_CHAT_PLAYER_AMBIGUOUS":
+			return WowStrings.format(WowStrings.get_text("ERR_CHAT_PLAYER_AMBIGUOUS_S"), [reader.cstring()])
 		"SMSG_QUESTLOG_FULL":
 			return WowStrings.get_text("ERR_QUEST_LOG_FULL")
 		"SMSG_PET_ACTION_FEEDBACK":

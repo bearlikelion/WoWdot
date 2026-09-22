@@ -43,6 +43,7 @@ var _cast_failures: Array[int] = []
 var _combat: CombatEvents = CombatEvents.new(_session)
 var _melee: Array[CombatEvents.CombatEvent] = []
 var _spawned: int = 0
+var _quest_givers: int = 0
 var _failures: PackedStringArray = []
 
 
@@ -58,6 +59,7 @@ func _ready() -> void:
 	_session.spell_cast_failed.connect(_on_spell_cast_failed)
 	_combat.logged.connect(_on_combat_logged)
 	_session.object_created.connect(_on_object_created)
+	_session.quest_giver_status_received.connect(func(_guid: int, _status: int) -> void: _quest_givers += 1)
 	_run.call_deferred()
 
 
@@ -78,6 +80,8 @@ func _run() -> void:
 	await _check_update_fields(guid)
 	var walked: Vector3 = await _walk()
 	await _jump(walked)
+	_session.send_packet("CMSG_QUESTGIVER_STATUS_MULTIPLE_QUERY", PackedByteArray())
+	await _until(func() -> bool: return _quest_givers > 0, "the batched quest giver statuses arrive")
 	if not await _log_out():
 		return _finish()
 	if not await _enter(guid):

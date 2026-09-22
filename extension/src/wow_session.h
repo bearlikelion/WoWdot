@@ -161,6 +161,8 @@ private:
 	void handle_world_packet(wowee::network::Packet &packet);
 	void handle_update(wowee::game::UpdateObjectData &data);
 	void handle_movement_relay(wowee::network::Packet &packet);
+	void handle_monster_move(wowee::network::Packet &packet, uint64_t transport_guid);
+	void handle_spline_speed(const char *name, wowee::network::Packet &packet);
 	void handle_compressed_moves(wowee::network::Packet &packet);
 	void handle_chat(wowee::network::Packet &packet);
 	void read_vanilla_chat(wowee::network::Packet &packet, uint8_t type, uint64_t &sender, std::string &name, Dictionary &line);

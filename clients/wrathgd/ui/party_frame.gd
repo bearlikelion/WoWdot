@@ -216,6 +216,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_on_result_received(payload)
 		"MSG_RAID_READY_CHECK":
 			_on_ready_check(payload)
+		"MSG_RAID_READY_CHECK_FINISHED":
+			message_added.emit(WowStrings.get_text("READY_CHECK_FINISHED", "Ready check complete."))
 		"MSG_RAID_READY_CHECK_CONFIRM":
 			_on_ready_answer(PacketReader.new(payload))
 		"MSG_RAID_TARGET_UPDATE":

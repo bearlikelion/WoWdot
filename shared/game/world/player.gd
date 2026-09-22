@@ -319,6 +319,14 @@ func force_speed(kind: SpeedKind, speed: float, counter: int) -> void:
 
 
 # A 1.12 client rooted mid-jump hangs in the air until the root ends.
+# Mounting changes the collision height, which the server wants acknowledged like a speed.
+func ack_collision_height(height: float, counter: int) -> void:
+	var tail: PackedByteArray = []
+	tail.resize(4)
+	tail.encode_float(0, height)
+	_send("CMSG_MOVE_SET_COLLISION_HGT_ACK", _flags, counter, tail)
+
+
 func force_flag(flag: MoveFlag, apply: bool, counter: int) -> void:
 	_persistent = (_persistent & ~flag) | (flag if apply else MoveFlag.NONE)
 	if flag == MoveFlag.ROOT:
