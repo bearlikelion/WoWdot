@@ -32,6 +32,8 @@ var positions: Dictionary[int, Vector2] = {}
 var flag_carrier: int = 0
 ## The battlemaster whose list arrived last, which a join has to name.
 var battlemaster: int = 0
+## The last listed battleground's win and loss rewards, 3.3.5 only.
+var rewards: Dictionary = {}
 
 var _session: WowSession
 var _queues: Array[Dictionary] = []
@@ -52,6 +54,17 @@ func ask(battlemaster_guid: int) -> void:
 	payload.resize(8)
 	payload.encode_u64(0, battlemaster_guid)
 	_session.send_packet("CMSG_BATTLEMASTER_HELLO", payload)
+
+
+# RequestBattlegroundInstanceInfo: the PvP frame's list, answered like a battlemaster's.
+func request_list(battleground_type: int) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(6)
+	payload.encode_u32(0, battleground_type)
+	# From the UI rather than a battlemaster, by a character that can gain experience.
+	payload.encode_u8(4, 1)
+	payload.encode_u8(5, 1)
+	_session.send_packet("CMSG_BATTLEFIELD_LIST", payload)
 
 
 # An instance of 0 takes the first one with room, which is what the stock window sends.
@@ -139,7 +152,10 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 				reader.u8()
 				_listed_type = reader.u32()
 				map_id = BATTLEGROUND_MAPS.get(_listed_type, 0)
-				reader.skip(15)
+				reader.skip(3)
+				rewards = {
+					"win_honor": reader.u32(), "win_arena": reader.u32(), "loss_honor": reader.u32(),
+				}
 				if reader.u8() != 0:
 					reader.skip(13)
 			else:

@@ -114,6 +114,19 @@ func _arena_team() -> void:
 				"the team roster lists the captain")
 		await _frames(30)
 		_capture("user://wotlk_pvp.png")
+	frame.show_tab(2)
+	var battlegrounds: Battlegrounds = WowClient.battlegrounds
+	var first: Label = frame.get_node("%BattlegroundType1Text")
+	var listed: Callable = func() -> bool:
+		return not first.text.is_empty() and battlegrounds.rewards.size() > 0
+	if await _until(listed, "the battleground tab lists and describes a battleground"):
+		await _frames(30)
+		_capture("user://wotlk_pvp_battlegrounds.png")
+		(frame.get_node("%PVPBattlegroundFrameJoinButton") as BaseButton).pressed.emit()
+		var queued: Callable = func() -> bool:
+			return battlegrounds.queue(0).get("status", 0) == Battlegrounds.Status.WAIT_QUEUE
+		if await _until(queued, "joining from the PvP frame queues the character"):
+			battlegrounds.abandon(battlegrounds.queue(0)["map_id"])
 	frame.close_requested.emit()
 	arena.disband(team_id)
 	await _until(func() -> bool: return arena.slot_info(0).is_empty(),

@@ -49,8 +49,9 @@ func _ready() -> void:
 	%PVPFrameToggleButton.pressed.connect(_toggle_season)
 	%PVPTeamDetailsToggleButton.pressed.connect(_toggle_season)
 	%PVPTeamDetailsCloseButton.pressed.connect(%PVPTeamDetails.hide)
-	%PVPParentFrameTab2.hide()
-	%PVPBattlegroundFrame.hide()
+	for tab: int in [1, 2]:
+		(get_node("%%PVPParentFrameTab%d" % tab) as BaseButton).pressed.connect(show_tab.bind(tab))
+	%PVPBattlegroundFrame.close_requested.connect(close_requested.emit)
 	%PVPFrameOffSeason.hide()
 	%PVPTeamDetailsAddTeamMember.hide()
 	%PVPDropDown.hide()
@@ -63,6 +64,15 @@ func _ready() -> void:
 	_arena.changed.connect(refresh)
 	WowClient.session.object_updated.connect(_on_object_updated)
 	visibility_changed.connect(_on_visibility_changed)
+
+
+# PVPParentFrame's tabs: 1 is honor and arena teams, 2 the battleground queue.
+func show_tab(tab: int) -> void:
+	%PVPFrame.visible = tab == 1
+	%PVPBattlegroundFrame.visible = tab == 2
+	%PVPTeamDetails.hide()
+	for other: int in [1, 2]:
+		PanelManager.select_tab(get_node("%%PVPParentFrameTab%d" % other), other == tab)
 
 
 func refresh() -> void:
@@ -245,6 +255,7 @@ func _on_object_updated(guid: int) -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		_portrait.show_unit(WowClient.session.get_player_guid())
+		show_tab(1)
 		refresh()
 	else:
 		%PVPTeamDetails.hide()

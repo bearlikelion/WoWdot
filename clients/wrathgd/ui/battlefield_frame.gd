@@ -67,7 +67,10 @@ func _join(as_group: bool) -> void:
 	close_requested.emit()
 
 
+# The PvP frame's own list requests come back with no battlemaster and leave this window shut.
 func _on_listed(map_id: int, instances: PackedInt32Array) -> void:
+	if PacketReader.wotlk and WowClient.battlegrounds.battlemaster == 0:
+		return
 	_map_id = map_id
 	_instances = PackedInt32Array([0])
 	_instances.append_array(instances)

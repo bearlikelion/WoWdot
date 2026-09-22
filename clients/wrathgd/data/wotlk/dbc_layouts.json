@@ -355,11 +355,22 @@
     "ID": 0,
     "Name": 1
   },
+  "BattlemasterList": {
+    "ID": 0,
+    "MapID": 1,
+    "InstanceType": 9,
+    "Name": 11,
+    "MaxGroupSize": 28,
+    "MinLevel": 30,
+    "MaxLevel": 31
+  },
   "Map": {
     "ID": 0,
     "InternalName": 1,
     "LoadingScreenID": 57,
-    "MapName": 5
+    "MapName": 5,
+    "HordeDescription": 23,
+    "AllianceDescription": 40
   },
   "QuestInfo": {
     "ID": 0,

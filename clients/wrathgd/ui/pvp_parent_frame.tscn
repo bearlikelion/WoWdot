@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://ui/pvp_parent_frame.gd" id="1"]
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
 [ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="3"]
-[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="4"]
+[ext_resource type="Script" path="res://ui/pvp_battleground_frame.gd" id="4"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="5"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
@@ -4198,6 +4199,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="PVPBattlegroundFrame" type="Control" parent="."]
 unique_name_in_owner = true
+script = ExtResource("4")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1
@@ -4580,7 +4582,7 @@ expand_mode = 1
 
 [node name="PVPBattlegroundFrameTypeScrollFrame" type="Control" parent="PVPBattlegroundFrame"]
 unique_name_in_owner = true
-script = ExtResource("4")
+script = ExtResource("5")
 offset_left = 23
 offset_top = 77
 offset_right = 318
@@ -4796,7 +4798,7 @@ material = SubResource("CanvasItemMaterial_4")
 
 [node name="PVPBattlegroundFrameInfoScrollFrame" type="Control" parent="PVPBattlegroundFrame"]
 unique_name_in_owner = true
-script = ExtResource("4")
+script = ExtResource("5")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
