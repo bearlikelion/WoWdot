@@ -117,6 +117,7 @@ func _ready() -> void:
 	WowClient.session.object_moved.connect(_on_object_moved)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_cinematic.finished.connect(_on_cinematic_finished)
+	UnitVoice.footprints = $Footprints
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
 	WowClient.session.leveled_up.connect(_on_leveled_up)
 	WowClient.session.game_object_info_received.connect(_on_game_object_info_received)

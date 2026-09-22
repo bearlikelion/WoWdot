@@ -34,6 +34,8 @@ const SKY_UNIFORMS: Dictionary[StringName, WorldLight.ColorBand] = {
 @export var sun: DirectionalLight3D
 @export var environment: WorldEnvironment
 
+const GLOW_SCALE: float = 0.6
+
 var map_id: int = 0
 var wow_position: Vector3 = Vector3.ZERO
 var underwater: bool = false
@@ -85,6 +87,9 @@ func update() -> void:
 	settings.fog_depth_begin = sample.fog_start
 	settings.fog_depth_end = sample.fog_end
 	settings.fog_sky_affect = 1.0 if underwater else 0.0
+	# ponytail: Godot's own glow stands in for the stock FFXGlow pass, scaled by the light's glow.
+	settings.glow_enabled = sample.glow > 0.0
+	settings.glow_intensity = sample.glow * GLOW_SCALE
 	var sky: ShaderMaterial = settings.sky.sky_material
 	for uniform: StringName in SKY_UNIFORMS:
 		sky.set_shader_parameter(uniform, sample.color(SKY_UNIFORMS[uniform]))

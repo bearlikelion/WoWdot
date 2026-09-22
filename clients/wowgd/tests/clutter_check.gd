@@ -8,7 +8,7 @@ var _failures: PackedStringArray = []
 var _main: Main
 
 
-# Coldridge Valley's snow and grass carry ground effects, so clutter should scatter round the player.
+# Coldridge Valley's snow carries ground effects, so clutter scatters round the player.
 func _ready() -> void:
 	_main = MAIN.instantiate()
 	_main.auto_account = "wowgd"
@@ -23,7 +23,21 @@ func _run() -> void:
 		if Time.get_ticks_msec() > ready_at:
 			return _finish("never reached the world")
 		await get_tree().process_frame
-	await get_tree().create_timer(5.0).timeout
+	Input.action_press("move_forward")
+	await get_tree().create_timer(4.0).timeout
+	Input.action_release("move_forward")
+	# Turn round and look down at the trail just walked.
+	var player: Player = _main.world.player()
+	player.rotation.y += PI
+	(player.get_node("CameraPivot") as Node3D).rotation.x = -1.2
+	(player.get_node("CameraPivot/SpringArm3D") as SpringArm3D).spring_length = 2.0
+	await get_tree().create_timer(1.0).timeout
+	var prints: Footprints = _main.world.get_node("Footprints")
+	var stamped: int = prints.get_children().filter(
+		func(d: Node) -> bool: return (d as Decal).visible
+	).size()
+	print("  footprints ", stamped)
+	_check(stamped > 0, "walking leaves footprints")
 	var clutter: GroundClutter = _main.world.get_node("GroundClutter")
 	var instances: int = 0
 	for holder: Node in clutter.get_children():

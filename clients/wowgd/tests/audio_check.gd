@@ -33,7 +33,7 @@ func _ready() -> void:
 	add_child(model)
 	UnitVoice.attach(model, 1, HUMAN_MALE_DISPLAY)
 	var voice: UnitVoice = UnitVoice.by_guid[1]
-	assert(voice._sound_row >= 0 and voice._footstep_sound > 0)
+	assert(voice._sound_row >= 0 and voice._footstep_id > 0)
 	voice.play_sound(UnitVoice.Sound.ATTACK)
 	assert(voice.playing)
 	assert(UnitVoice._kit_sound(FIREBALL, UnitVoice.Kit.PRECAST) > 0)

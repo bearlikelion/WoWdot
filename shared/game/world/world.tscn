@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="Script" path="res://game/world/world.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://game/world/ground_clutter.gd" id="12_clutter"]
 [ext_resource type="Script" path="res://game/world/world_horizon.gd" id="13_horizon"]
 [ext_resource type="PackedScene" path="res://game/world/water_fx.tscn" id="14_water_fx"]
+[ext_resource type="Script" path="res://game/world/footprints.gd" id="15_footprints"]
 
 [sub_resource type="FastNoiseLite" id="Noise_clouds"]
 frequency = 0.008
@@ -114,6 +115,9 @@ entities = NodePath("../Entities")
 
 [node name="SelectionCircle" parent="." node_paths=PackedStringArray("entities") instance=ExtResource("10_selection")]
 entities = NodePath("../Entities")
+
+[node name="Footprints" type="Node3D" parent="."]
+script = ExtResource("15_footprints")
 
 [node name="WaterFx" parent="." node_paths=PackedStringArray("player") instance=ExtResource("14_water_fx")]
 player = NodePath("../Player")

@@ -43,6 +43,8 @@ const STRIDES: Dictionary[String, float] = {
 }
 
 static var by_guid: Dictionary[int, UnitVoice] = {}
+## Where footsteps leave their prints, when a world provides one.
+static var footprints: Footprints
 ## The terrain a unit walks on decides its footstep sound; unset, every step lands on dirt.
 static var map: WowMap
 
@@ -65,6 +67,7 @@ var _guid: int = 0
 var _sound_row: int = -1
 var _npc_row: int = -1
 var _footstep_id: int = 0
+var _model_id: int = 0
 var _was_alive: bool = false
 var _precast: int = AudioStreamPlaybackPolyphonic.INVALID_ID
 
@@ -92,6 +95,8 @@ static func attach(model: Node3D, guid: int, display_id: int, mount_display_id: 
 		_displays.get_uint(_displays.find(display_id), DISPLAY_NPC_SOUND_COLUMN)
 	)
 	var walker: int = _sound_data_row(mount_display_id) if mount_display_id else voice._sound_row
+	var display: int = _displays.find(mount_display_id if mount_display_id else display_id)
+	voice._model_id = _displays.get_uint(display, DISPLAY_MODEL_COLUMN) if display >= 0 else 0
 	if walker >= 0:
 		voice._footstep_id = _creature_sounds.get_uint(walker, FOOTSTEP_COLUMN)
 	model.add_child(voice)
@@ -289,6 +294,8 @@ func _on_step() -> void:
 	var key: Vector2i = Vector2i(_footstep_id, _terrain_under())
 	var wading: bool = map != null and global_position.y < map.liquid_height_at(global_position)
 	play_entry(_splashes.get(key, 0) if wading else _footsteps.get(key, 0))
+	if footprints and not wading and _model_id != 0:
+		footprints.stamp(_model_id, get_parent().global_position, get_parent().global_rotation.y)
 
 
 # Ground with no GroundEffectTexture of its own sounds like dirt, as it does in the stock client.

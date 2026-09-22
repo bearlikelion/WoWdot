@@ -19,7 +19,7 @@ enum ColorBand {
 enum FloatBand { FOG_END = 0, FOG_START_SCALE = 1, CLOUD_DENSITY = 3 }
 # Light.dbc param sets, as offsets from LightColumn.PARAMS.
 enum Condition { CLEAR = 0, UNDERWATER = 1, STORM = 2, STORM_UNDERWATER = 3, DEATH = 4 }
-enum ParamsColumn { HIGHLIGHT_SKY = 1, SKYBOX = 2 }
+enum ParamsColumn { HIGHLIGHT_SKY = 1, SKYBOX = 2, GLOW = 3 }
 enum LightColumn {
 	MAP = 1,
 	X = 2,
@@ -115,6 +115,7 @@ func _describe(result: Sample, params_id: int) -> void:
 	if params < 0:
 		return
 	result.stars = _params.get_uint(params, ParamsColumn.HIGHLIGHT_SKY) != 0
+	result.glow = _params.get_float(params, ParamsColumn.GLOW)
 	var skybox: int = _skyboxes.find(_params.get_uint(params, ParamsColumn.SKYBOX))
 	result.skybox = _skyboxes.get_string(skybox, SKYBOX_PATH_COLUMN) if skybox >= 0 else ""
 
@@ -206,6 +207,7 @@ class Sample:
 	# From the strongest light here: whether the night sky shows stars, and a skybox model.
 	var stars: bool = false
 	var skybox: String = ""
+	var glow: float = 0.0
 
 
 	func color(band: ColorBand) -> Color:

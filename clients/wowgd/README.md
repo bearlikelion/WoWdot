@@ -121,6 +121,14 @@ A character left dead cannot use chat, which silently breaks the GM commands lat
 | `battleground_check` | The Warsong Gulch queue round trip: a battlemaster lists its battleground, joining takes a place in the queue and giving it up clears the slot. It needs `.character level` (the account must be a developer-level GM), since the starting character is below the level Warsong Gulch asks for, and it leaves the character at level 20. Entering a match needs four players a side, so nothing past the queue is proven. |
 | `transport_check` | A zeppelin sails the taxi path its game object names, and standing on its deck carries the player while their place on it holds still. A Thunder Bluff mesa lift runs its `TransportAnimation` loop and carries them up its shaft without claiming a transport on the wire. The Menethil ferry's path keeps the legs on both continents. |
 | `petition_check.sh` | Buying a guild charter from a registrar, a second character signing it, and handing it back. It leaves the guild the character was in first, which `guild_check` makes again. Nine signatures from nine accounts are needed to found a guild, so the check asserts the refusal rather than the guild. |
+| `protocol_gaps_check` | Canned payloads through the newer handlers with no server: dispel, instant kill and item push log lines, played time, mount results, item cooldowns, proficiencies, the battleground scoreboard and positions, raid info rows and the keyring's sizing. |
+| `score_frame_check` | The battleground scoreboard fills its rows and per battleground columns from a canned `MSG_PVP_LOG_DATA`, with the fixed headers titled, and hides the rows it does not need. |
+| `help_check` | The GM ticket window opens on its home page, lists the categories from `GMTicketCategory.dbc`, files a ticket under the one picked, and turns Submit into Save Changes once a ticket is open. |
+| `stack_split_check` | The stack split window opens on one, its arrows stop one short of the stack, and Okay hands the count back. |
+| `cinematic_check` | The human intro's camera model plays from `CinematicSequences.dbc` without a server, moves along its track, and refuses an unknown sequence. |
+| `cinematic_flyover_check` | The server's `.debug play cinematic` takes the camera, hides the interface, and hands both back afterwards. |
+| `clutter_check` | Detail doodads scatter over the chunks in reach of the player from the ground effect tables, and walking leaves footprints behind. |
+| `horizon_check` | The map's WDL builds the low detail horizon mesh with the loaded tiles cut out of it. |
 
 ## Still to do
 
