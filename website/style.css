@@ -6,6 +6,15 @@
   --gold: #f2a81d;
   --ice: #5bb4f5;
   --line: #2a3a57;
+  /* 4px scale: tight groups sit on s-1 to s-3, sections separate on s-8 and up. */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-12: 48px;
+  --s-16: 64px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -42,7 +51,7 @@ a:hover {
 }
 
 .hero {
-  padding: 56px 16px 40px;
+  padding: var(--s-16) var(--s-4) var(--s-12);
   text-align: center;
   background: linear-gradient(90deg, rgba(242, 168, 29, 0.12), rgba(91, 180, 245, 0.12));
   border-bottom: 1px solid var(--line);
@@ -59,7 +68,7 @@ h1 {
 }
 
 .tagline {
-  margin: 4px 0 24px;
+  margin: var(--s-1) 0 0;
   color: var(--muted);
 }
 
@@ -86,37 +95,44 @@ nav {
 main {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 16px;
+  padding: var(--s-4) var(--s-4) 0;
+}
+
+main > section,
+main > .facts {
+  margin-top: var(--s-16);
 }
 
 h2 {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 32px;
+  margin: 0 0 var(--s-3);
   font-size: 1.3rem;
 }
 
 h3 {
-  margin: 24px 0 8px;
-  font-size: 1rem;
+  margin: var(--s-8) 0 var(--s-2);
+  font-size: 0.85rem;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
+p {
+  margin: 0 0 var(--s-3);
+}
+
+/* WoWGD carries the page, so it takes the wider column. */
 .columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--s-16);
+  margin-top: var(--s-12);
 }
 
 .col {
   min-width: 0;
-}
-
-.col > h2 {
-  margin-top: 24px;
 }
 
 .col h2 img {
@@ -124,7 +140,7 @@ h3 {
 }
 
 .sub {
-  margin: 4px 0 12px;
+  margin: 0 0 var(--s-2);
   color: var(--muted);
 }
 
@@ -134,7 +150,7 @@ table {
 }
 
 th, td {
-  padding: 6px 10px 6px 0;
+  padding: var(--s-2) 10px var(--s-2) 0;
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
@@ -157,8 +173,25 @@ td:first-child {
   color: var(--ice);
 }
 
+ul, ol {
+  margin: 0 0 var(--s-3);
+  padding-left: var(--s-6);
+}
+
 li {
-  margin: 6px 0;
+  margin: var(--s-1) 0;
+}
+
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-6);
+  margin-bottom: var(--s-3);
+  font-weight: 600;
+}
+
+.steps {
+  color: var(--muted);
 }
 
 .client {
@@ -173,7 +206,6 @@ li {
 
 .dl {
   display: inline-block;
-  margin-right: 16px;
   color: var(--text);
   text-decoration: none;
   white-space: nowrap;
@@ -205,9 +237,35 @@ li {
 }
 
 
+/* The three project facts read as one band; proximity groups them, not boxes. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-12);
+  padding-top: var(--s-12);
+  border-top: 1px solid var(--line);
+}
+
+.facts h2 {
+  font-size: 1.1rem;
+}
+
+/* Inside the band the logo sits above its text, so all three columns share one measure. */
+.facts .split {
+  display: block;
+}
+
+.facts .split img {
+  margin-bottom: var(--s-3);
+}
+
+.about {
+  max-width: 68ch;
+}
+
 .split {
   display: flex;
-  gap: 20px;
+  gap: var(--s-4);
   align-items: flex-start;
 }
 
@@ -221,7 +279,7 @@ li {
 }
 
 figure {
-  margin: 0 0 20px;
+  margin: 0 0 var(--s-6);
 }
 
 figure img {
@@ -272,8 +330,8 @@ code {
 
 footer {
   max-width: 1120px;
-  margin: 32px auto 0;
-  padding: 16px 16px 40px;
+  margin: var(--s-16) auto 0;
+  padding: var(--s-6) var(--s-4) var(--s-12);
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.9rem;
@@ -284,8 +342,24 @@ footer p {
 }
 
 @media (max-width: 860px) {
+  .hero {
+    padding: var(--s-12) var(--s-4) var(--s-8);
+  }
+
   .columns {
-    display: block;
+    grid-template-columns: 1fr;
+    gap: var(--s-12);
+    margin-top: var(--s-8);
+  }
+
+  main > section,
+  main > .facts {
+    margin-top: var(--s-12);
+  }
+
+  .facts {
+    grid-template-columns: 1fr;
+    gap: var(--s-8);
   }
 
   .split {
@@ -294,6 +368,6 @@ footer p {
 
   .split img {
     display: block;
-    margin: 0 auto 12px;
+    margin: 0 0 var(--s-3);
   }
 }
