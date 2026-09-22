@@ -20,6 +20,7 @@ const DIVE_PITCH: float = -1.2
 const RISE_PITCH: float = 0.5
 
 var _failures: PackedStringArray = []
+var _splashed: bool = false
 var _main: Main
 var _sent: PackedStringArray = []
 
@@ -43,6 +44,8 @@ func _run() -> void:
 	var session: WowSession = WowClient.session
 	var player: Player = _main.world.player()
 	player.movement_changed.connect(_on_movement_changed)
+	var fx: WaterFx = _main.world.get_node("WaterFx")
+	fx.splashed.connect(func() -> void: _splashed = true)
 	await _teleport(LAKE)
 	var surface: Vector3 = _water_near(player.global_position)
 	if is_nan(surface.y):
@@ -54,12 +57,16 @@ func _run() -> void:
 	while not "MSG_MOVE_START_SWIM" in _sent and Time.get_ticks_msec() < swimming_by:
 		await get_tree().process_frame
 	_check("MSG_MOVE_START_SWIM" in _sent, "falling into the lake starts a swim")
+	_check(_splashed, "dropping in splashes")
 	var floating: float = player.global_position.y
 	_check(absf(floating - surface.y) < 2.0, "the player floats at the surface")
 
 	_pitch(DIVE_PITCH)
 	Input.action_press("move_forward")
 	await _frames(SWIM_FRAMES)
+	_check((fx.get_node("%Wake") as GPUParticles3D).emitting, "swimming forward trails a wake")
+	if DisplayServer.get_name() != "headless":
+		get_viewport().get_texture().get_image().save_png("user://swim_check.png")
 	var deep: float = player.global_position.y
 	_check(deep < floating - 2.0, "swimming forward while looking down dives")
 	# The server starts the breath timer once the head is under, which the mirror timers show.

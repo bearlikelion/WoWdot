@@ -270,6 +270,10 @@ func set_water_surface(surface: float) -> void:
 	_water_surface = surface
 
 
+func water_surface() -> float:
+	return _water_surface
+
+
 # WoW sends the camera's pitch while swimming, positive looking up.
 func pitch() -> float:
 	return _pivot.rotation.x

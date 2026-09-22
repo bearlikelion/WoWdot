@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://game/world/water_fx.gd" id="1_fx"]
+
+[sub_resource type="Curve" id="Curve_wake"]
+_data = [Vector2(0, 0.3), 0.0, 2.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="Scale_wake"]
+curve = SubResource("Curve_wake")
+
+[sub_resource type="ParticleProcessMaterial" id="Process_wake"]
+emission_shape = 1
+emission_sphere_radius = 0.4
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 0.0
+initial_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.6
+scale_max = 1.0
+scale_curve = SubResource("Scale_wake")
+color = Color(1, 1, 1, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="Material_wake"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.85, 0.92, 1, 0.35)
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="Mesh_wake"]
+material = SubResource("Material_wake")
+size = Vector2(1.4, 1.4)
+orientation = 1
+
+[sub_resource type="ParticleProcessMaterial" id="Process_splash"]
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+spread = 50.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, -9.8, 0)
+scale_min = 0.08
+scale_max = 0.16
+color = Color(0.9, 0.95, 1, 0.8)
+
+[node name="WaterFx" type="Node3D"]
+script = ExtResource("1_fx")
+
+[node name="Wake" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 12
+lifetime = 1.2
+local_coords = false
+process_material = SubResource("Process_wake")
+draw_pass_1 = SubResource("Mesh_wake")
+
+[node name="Splash" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 24
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource("Process_splash")
+draw_pass_1 = SubResource("Mesh_wake")
+
