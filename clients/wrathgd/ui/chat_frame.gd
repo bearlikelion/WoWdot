@@ -32,6 +32,8 @@ const COLORS: Dictionary[WowSession.ChatType, Color] = {
 	WowSession.CHAT_EMOTE: Color(1.0, 0.5, 0.25),
 	WowSession.CHAT_TEXT_EMOTE: Color(1.0, 0.5, 0.25),
 	WowSession.CHAT_SYSTEM: Color(1.0, 1.0, 0.0),
+	WowSession.CHAT_ACHIEVEMENT: Color(1.0, 1.0, 0.0),
+	WowSession.CHAT_GUILD_ACHIEVEMENT: Color(0.25, 1.0, 0.25),
 	WowSession.CHAT_MONSTER_SAY: Color(1.0, 1.0, 0.62),
 	WowSession.CHAT_MONSTER_YELL: Color(1.0, 0.25, 0.25),
 	WowSession.CHAT_MONSTER_EMOTE: Color(1.0, 0.5, 0.25),
@@ -176,6 +178,9 @@ func format_line(line: Dictionary) -> String:
 			return text
 		WowSession.CHAT_MONSTER_EMOTE, WowSession.CHAT_RAID_BOSS_EMOTE:
 			return text.replace("%s", sender)
+		WowSession.CHAT_ACHIEVEMENT, WowSession.CHAT_GUILD_ACHIEVEMENT:
+			var achievement: String = WowClient.achievements.title(line.get("achievement", 0))
+			return text.replace("%s", "[%s]" % sender).replace("$a", "[%s]" % achievement)
 	var who: String = "[%s]" % sender if chat_type in PLAYER_TYPES else sender
 	var key: String = "CHAT_%s_GET" % TYPE_KEYS.get(chat_type, "SAY")
 	var header: String = WowStrings.get_text(key, "%s: ")

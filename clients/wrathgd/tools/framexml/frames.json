@@ -512,7 +512,8 @@
   "RuneFrame": "res://ui/rune_frame.gd",
   "ComboFrame": "res://ui/combo_frame.gd",
   "GlyphFrame": "res://ui/glyph_frame.gd",
-  "GearManagerDialog": "res://ui/gear_manager_dialog.gd"
+  "GearManagerDialog": "res://ui/gear_manager_dialog.gd",
+  "PlayerTitlePickerFrame": "res://ui/title_picker_frame.gd"
  },
  "exclude": [
   "AccountLoginAccountEditFill",
@@ -578,6 +579,12 @@
    "name": "DropDownList1Button%d",
    "first": 9,
    "count": 24
+  },
+  {
+   "parent": "PlayerTitlePickerScrollFrameScrollChild",
+   "template": "PlayerTitleButtonTemplate",
+   "name": "PlayerTitlePickerScrollFrameButton%d",
+   "count": 6
   },
   {
    "parent": "GearManagerDialog",

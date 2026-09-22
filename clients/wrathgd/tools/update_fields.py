@@ -47,6 +47,7 @@ EXTRA = {
     "PLAYER_FIELD_GLYPH_SLOTS_1",
     "PLAYER_FIELD_GLYPHS_1",
     "PLAYER_GLYPHS_ENABLED",
+    "PLAYER__FIELD_KNOWN_TITLES",
 }
 
 ENTRY = re.compile(r"^\s*([A-Z][A-Z0-9_]+)\s*=\s*([^,]+),", re.MULTILINE)

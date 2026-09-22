@@ -1307,6 +1307,10 @@ void WowSession::handle_chat(network::Packet &packet) {
 	}
 	packet.readUInt32();
 	line["text"] = String::utf8(packet.readString().c_str());
+	if (type == CHAT_ACHIEVEMENT || type == CHAT_GUILD_ACHIEVEMENT) {
+		packet.readUInt8();
+		line["achievement"] = packet.readUInt32();
+	}
 	line["sender_guid"] = static_cast<int64_t>(sender);
 	if (name.empty() && is_player_guid(sender)) {
 		const auto it = player_names.find(sender);
@@ -2394,6 +2398,8 @@ void WowSession::_bind_methods() {
 	BIND_ENUM_CONSTANT(CHAT_MONSTER_EMOTE);
 	BIND_ENUM_CONSTANT(CHAT_CHANNEL);
 	BIND_ENUM_CONSTANT(CHAT_MONSTER_WHISPER);
+	BIND_ENUM_CONSTANT(CHAT_ACHIEVEMENT);
+	BIND_ENUM_CONSTANT(CHAT_GUILD_ACHIEVEMENT);
 	BIND_ENUM_CONSTANT(CHAT_RAID_BOSS_WHISPER);
 	BIND_ENUM_CONSTANT(CHAT_RAID_BOSS_EMOTE);
 	BIND_ENUM_CONSTANT(CHAT_AFK);

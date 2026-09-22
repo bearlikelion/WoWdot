@@ -1,6 +1,12 @@
 class_name GlueCheck
 extends Node
 
+# Can I Keep Him?, which a GM can grant outright.
+const ACHIEVEMENT: int = 1017
+# CharTitles 1, Private, whose known-titles bit is also 1.
+const TITLE: int = 1
+const TITLE_BIT: int = 1
+const TITLE_NAME: String = "Private"
 const GEAR_SET: String = "Gluecheck"
 const GLYPH: int = 43397
 const GLYPH_LEVEL: int = 15
@@ -80,7 +86,35 @@ func _run() -> void:
 	await _glyph()
 	await _gear_manager()
 	await _dungeon_finder()
+	await _achievements()
 	_finish()
+
+
+# A GM-granted achievement lands in the list or arrives as earned, and a granted title can be worn.
+func _achievements() -> void:
+	var session: WowSession = WowClient.session
+	var achievements: Achievements = WowClient.achievements
+	if not achievements.completed.has(ACHIEVEMENT):
+		session.send_chat(WowSession.CHAT_SAY, ".achievement add %d" % ACHIEVEMENT)
+		await _until(func() -> bool: return achievements.completed.has(ACHIEVEMENT),
+				"the granted achievement is earned")
+	_check(achievements.points() > 0, "completed achievements count their points")
+	var me: int = session.get_player_guid()
+	session.send_chat(WowSession.CHAT_SAY, ".titles add %d" % TITLE)
+	await _frames(30)
+	achievements.set_title(TITLE_BIT)
+	var worn: Callable = func() -> bool:
+		return session.get_field(me, "PLAYER_CHOSEN_TITLE") == TITLE_BIT
+	if not await _until(worn, "the chosen title is worn"):
+		return
+	var character: CharacterFrame = get_tree().root.find_child("CharacterFrame", true, false)
+	character.refresh()
+	_check((character.get_node("%PlayerTitleFrameText") as Label).text == TITLE_NAME,
+			"the paper doll names the worn title")
+	achievements.set_title(TitlePickerFrame.NO_TITLE)
+	await _until(func() -> bool: return session.get_field(me, "PLAYER_CHOSEN_TITLE") == 0,
+			"the title comes off")
+	session.send_chat(WowSession.CHAT_SAY, ".titles remove %d" % TITLE)
 
 
 # A one-player queue through the LFD frame: a proposal, the teleport in, and back out.

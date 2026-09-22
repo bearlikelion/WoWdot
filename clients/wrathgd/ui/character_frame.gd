@@ -106,6 +106,12 @@ func _ready() -> void:
 	%SkillFrame.close_requested.connect(close_requested.emit)
 	%SkillFrame.unlearn_requested.connect(unlearn_requested.emit)
 	%ReputationFrame.watched_changed.connect(watched_changed.emit)
+	%PlayerTitleFrameButton.pressed.connect(
+		func() -> void: %PlayerTitlePickerFrame.visible = not %PlayerTitlePickerFrame.visible
+	)
+	%PlayerTitlePickerFrame.title_chosen.connect(
+		func(text: String) -> void: %PlayerTitleFrameText.text = text
+	)
 	%GearManagerToggleButton.show()
 	%GearManagerToggleButton.pressed.connect(
 		func() -> void: %GearManagerDialog.visible = not %GearManagerDialog.visible
@@ -193,6 +199,9 @@ func refresh() -> void:
 		var icon: Texture2D = Inventory.icon(item_entry) if item_entry else null
 		_slot_buttons[slot].set_item(icon if icon else _empty_icons[slot])
 	_set_stats(session, guid)
+	var title: String = %PlayerTitlePickerFrame.refresh()
+	%PlayerTitleFrame.visible = not title.is_empty()
+	%PlayerTitleFrameText.text = title
 	var worn: PackedInt32Array = CharacterModels.visible_items(session, guid)
 	if worn != _worn or _model.get_node("%Scene").get_child_count() == 0:
 		_worn = worn

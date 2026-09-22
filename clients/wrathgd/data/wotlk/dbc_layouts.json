@@ -1,9 +1,36 @@
 {
   "Achievement": {
-    "Description": 21,
     "ID": 0,
+    "Faction": 1,
+    "MapID": 2,
+    "Supercedes": 3,
+    "Title": 4,
+    "Description": 21,
+    "CategoryID": 38,
     "Points": 39,
-    "Title": 4
+    "UIOrder": 40,
+    "Flags": 41,
+    "IconID": 42,
+    "Reward": 43,
+    "MinimumCriteria": 60,
+    "SharesCriteria": 61
+  },
+  "Achievement_Category": {
+    "ID": 0,
+    "Parent": 1,
+    "Name": 2,
+    "UIOrder": 19
+  },
+  "Achievement_Criteria": {
+    "ID": 0,
+    "AchievementID": 1,
+    "Type": 2,
+    "Asset": 3,
+    "Quantity": 4,
+    "Description": 9,
+    "Flags": 26,
+    "TimeLimit": 29,
+    "UIOrder": 30
   },
   "AchievementCriteria": {
     "AchievementID": 1,
@@ -75,6 +102,7 @@
   "CharTitles": {
     "ID": 0,
     "Title": 2,
+    "TitleFemale": 19,
     "TitleBit": 36
   },
   "CharacterFacialHairStyles": {
