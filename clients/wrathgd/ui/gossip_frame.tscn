@@ -521,6 +521,7 @@ theme_type_variation = &"QuestFont"
 text = "Filler Text"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="GossipTitleButton1" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame"]
 unique_name_in_owner = true
@@ -552,6 +553,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton1"]
 offset_left = 0
@@ -594,6 +596,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton2"]
 offset_left = 0
@@ -636,6 +639,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton3"]
 offset_left = 0
@@ -678,6 +682,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton4"]
 offset_left = 0
@@ -720,6 +725,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton5"]
 offset_left = 0
@@ -762,6 +768,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton6"]
 offset_left = 0
@@ -804,6 +811,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton7"]
 offset_left = 0
@@ -846,6 +854,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton8"]
 offset_left = 0
@@ -888,6 +897,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton9"]
 offset_left = 0
@@ -930,6 +940,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton10"]
 offset_left = 0
@@ -972,6 +983,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton11"]
 offset_left = 0
@@ -1014,6 +1026,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton12"]
 offset_left = 0
@@ -1056,6 +1069,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton13"]
 offset_left = 0
@@ -1098,6 +1112,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton14"]
 offset_left = 0
@@ -1140,6 +1155,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton15"]
 offset_left = 0
@@ -1182,6 +1198,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton16"]
 offset_left = 0
@@ -1224,6 +1241,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton17"]
 offset_left = 0
@@ -1266,6 +1284,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton18"]
 offset_left = 0
@@ -1308,6 +1327,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton19"]
 offset_left = 0
@@ -1350,6 +1370,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton20"]
 offset_left = 0
@@ -1392,6 +1413,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton21"]
 offset_left = 0
@@ -1434,6 +1456,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton22"]
 offset_left = 0
@@ -1476,6 +1499,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton23"]
 offset_left = 0
@@ -1518,6 +1542,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton24"]
 offset_left = 0
@@ -1560,6 +1585,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton25"]
 offset_left = 0
@@ -1602,6 +1628,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton26"]
 offset_left = 0
@@ -1644,6 +1671,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton27"]
 offset_left = 0
@@ -1686,6 +1714,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton28"]
 offset_left = 0
@@ -1728,6 +1757,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton29"]
 offset_left = 0
@@ -1770,6 +1800,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton30"]
 offset_left = 0
@@ -1812,6 +1843,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton31"]
 offset_left = 0
@@ -1854,6 +1886,7 @@ grow_vertical = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton32"]
 offset_left = 0

@@ -626,6 +626,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "No Active Quests"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestLogCount" type="Control" parent="."]
 unique_name_in_owner = true
@@ -2722,6 +2723,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Quest title"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjectivesText" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -2733,6 +2735,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoRewardText" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -2744,6 +2747,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoRequiredMoneyText" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoFrame"]
 offset_left = 0
@@ -2789,6 +2793,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Description"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjectivesHeader" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -2801,6 +2806,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Quest Objectives"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoDescriptionText" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -2812,6 +2818,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoFadingFrame" type="Control" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -2851,6 +2858,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Rewards"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoItemChooseText" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
@@ -2866,6 +2874,7 @@ theme_type_variation = &"QuestFont"
 text = "You will be able to choose one of these rewards:"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoItemReceiveText" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
@@ -3722,6 +3731,7 @@ theme_type_variation = &"QuestFont"
 text = "Reputation awards:"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoReputation1" type="Control" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
 unique_name_in_owner = true
@@ -4095,6 +4105,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective2" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4109,6 +4120,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective3" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4123,6 +4135,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective4" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4137,6 +4150,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective5" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4151,6 +4165,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective6" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4165,6 +4180,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective7" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4179,6 +4195,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective8" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4193,6 +4210,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective9" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4207,6 +4225,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective10" type="Label" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -4221,6 +4240,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoTimerFrame" type="Control" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame"]
 unique_name_in_owner = true
@@ -4243,6 +4263,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoRequiredMoneyFrame" type="Control" parent="QuestLogDetailFrame/QuestLogDetailScrollFrame/QuestLogDetailScrollFrameClip/QuestLogDetailScrollChildFrame"]
 unique_name_in_owner = true

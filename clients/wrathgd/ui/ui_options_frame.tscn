@@ -12188,6 +12188,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "This allows you to save sets of equipment. You will then be able to equip a set by clicking on the icon. Once enabled, the Equipment Manager can be accessed through the character frame."
 horizontal_alignment = 0
 vertical_alignment = 0
+autowrap_mode = 3
 
 [node name="CheckedTexture" type="TextureRect" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsFeaturesPanel/InterfaceOptionsFeaturesPanelEquipmentManager"]
 offset_left = 0
@@ -12274,6 +12275,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "If enabled, you will be able to review your talents in the Talent Interface before spending your talent points."
 horizontal_alignment = 0
 vertical_alignment = 0
+autowrap_mode = 3
 
 [node name="CheckedTexture" type="TextureRect" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsFeaturesPanel/InterfaceOptionsFeaturesPanelPreviewTalentChanges"]
 offset_left = 0

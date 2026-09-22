@@ -942,6 +942,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Quest Title"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestProgressText" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame"]
 unique_name_in_owner = true
@@ -955,6 +956,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestProgressRequiredItemsText" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame"]
 unique_name_in_owner = true
@@ -969,6 +971,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Required items:"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestProgressRequiredMoneyText" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame"]
 unique_name_in_owner = true
@@ -1675,6 +1678,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Quest title"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjectivesText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -1686,6 +1690,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoRewardText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -1697,6 +1702,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoRequiredMoneyText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 offset_left = 0
@@ -1742,6 +1748,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Description"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjectivesHeader" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -1754,6 +1761,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Quest Objectives"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoDescriptionText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -1765,6 +1773,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoFadingFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
@@ -1804,6 +1813,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Rewards"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoItemChooseText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
@@ -1819,6 +1829,7 @@ theme_type_variation = &"QuestFont"
 text = "You will be able to choose one of these rewards:"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoItemReceiveText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
@@ -2675,6 +2686,7 @@ theme_type_variation = &"QuestFont"
 text = "Reputation awards:"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoReputation1" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
 unique_name_in_owner = true
@@ -3048,6 +3060,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective2" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3062,6 +3075,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective3" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3076,6 +3090,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective4" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3090,6 +3105,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective5" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3104,6 +3120,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective6" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3118,6 +3135,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective7" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3132,6 +3150,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective8" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3146,6 +3165,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective9" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3160,6 +3180,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoObjective10" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
 unique_name_in_owner = true
@@ -3174,6 +3195,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoTimerFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
 unique_name_in_owner = true
@@ -3196,6 +3218,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestInfoRequiredMoneyFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
 unique_name_in_owner = true
@@ -3527,6 +3550,7 @@ theme_type_variation = &"QuestFont"
 text = "Filler Text"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CurrentQuestsText" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame"]
 unique_name_in_owner = true
@@ -3541,6 +3565,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Current Quests"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestGreetingFrameHorizontalBreak" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame"]
 unique_name_in_owner = true
@@ -3565,6 +3590,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Available Quests"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="QuestTitleButton1" type="TextureButton" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame"]
 unique_name_in_owner = true
@@ -3596,6 +3622,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton1"]
 offset_left = 0
@@ -3638,6 +3665,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton2"]
 offset_left = 0
@@ -3680,6 +3708,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton3"]
 offset_left = 0
@@ -3722,6 +3751,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton4"]
 offset_left = 0
@@ -3764,6 +3794,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton5"]
 offset_left = 0
@@ -3806,6 +3837,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton6"]
 offset_left = 0
@@ -3848,6 +3880,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton7"]
 offset_left = 0
@@ -3890,6 +3923,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton8"]
 offset_left = 0
@@ -3932,6 +3966,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton9"]
 offset_left = 0
@@ -3974,6 +4009,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton10"]
 offset_left = 0
@@ -4016,6 +4052,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton11"]
 offset_left = 0
@@ -4058,6 +4095,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton12"]
 offset_left = 0
@@ -4100,6 +4138,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton13"]
 offset_left = 0
@@ -4142,6 +4181,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton14"]
 offset_left = 0
@@ -4184,6 +4224,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton15"]
 offset_left = 0
@@ -4226,6 +4267,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton16"]
 offset_left = 0
@@ -4268,6 +4310,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton17"]
 offset_left = 0
@@ -4310,6 +4353,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton18"]
 offset_left = 0
@@ -4352,6 +4396,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton19"]
 offset_left = 0
@@ -4394,6 +4439,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton20"]
 offset_left = 0
@@ -4436,6 +4482,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton21"]
 offset_left = 0
@@ -4478,6 +4525,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton22"]
 offset_left = 0
@@ -4520,6 +4568,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton23"]
 offset_left = 0
@@ -4562,6 +4611,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton24"]
 offset_left = 0
@@ -4604,6 +4654,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton25"]
 offset_left = 0
@@ -4646,6 +4697,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton26"]
 offset_left = 0
@@ -4688,6 +4740,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton27"]
 offset_left = 0
@@ -4730,6 +4783,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton28"]
 offset_left = 0
@@ -4772,6 +4826,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton29"]
 offset_left = 0
@@ -4814,6 +4869,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton30"]
 offset_left = 0
@@ -4856,6 +4912,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton31"]
 offset_left = 0
@@ -4898,6 +4955,7 @@ grow_vertical = 1
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton32"]
 offset_left = 0

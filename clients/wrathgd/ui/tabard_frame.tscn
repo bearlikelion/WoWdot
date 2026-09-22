@@ -421,6 +421,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "Greetings! Choose the symbol and colors of your guild."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TabardModel" type="Control" parent="."]
 unique_name_in_owner = true

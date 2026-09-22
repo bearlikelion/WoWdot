@@ -242,6 +242,7 @@ theme_type_variation = &"GameFontNormal"
 text = "Page"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="MerchantRepairText" type="Label" parent="."]
 unique_name_in_owner = true

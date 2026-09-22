@@ -331,6 +331,7 @@ theme_type_variation = &"FactionName_Shadow_Huge"
 text = "Race"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CharacterCreateRaceScrollFrame" type="Control" parent="CharacterCreateFrame/CharacterCreateCharacterRace"]
 unique_name_in_owner = true
@@ -482,6 +483,7 @@ mouse_filter = 2
 theme_type_variation = &"GlueFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CharacterCreateRaceText" type="Label" parent="CharacterCreateFrame/CharacterCreateCharacterRace/CharacterCreateRaceScrollFrame/CharacterCreateRaceScrollFrameClip/CharacterCreateRaceScrollChild"]
 unique_name_in_owner = true
@@ -495,6 +497,7 @@ mouse_filter = 2
 theme_type_variation = &"GlueFontCharacterCreate"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CharacterCreateCharacterClass" type="Control" parent="CharacterCreateFrame"]
 unique_name_in_owner = true
@@ -552,6 +555,7 @@ theme_type_variation = &"FactionName_Shadow_Huge"
 text = "Race"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CharacterCreateClassScrollFrame" type="Control" parent="CharacterCreateFrame/CharacterCreateCharacterClass"]
 unique_name_in_owner = true
@@ -703,6 +707,7 @@ mouse_filter = 2
 theme_type_variation = &"GlueFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CharacterCreateClassText" type="Label" parent="CharacterCreateFrame/CharacterCreateCharacterClass/CharacterCreateClassScrollFrame/CharacterCreateClassScrollFrameClip/CharacterCreateClassScrollChild"]
 unique_name_in_owner = true
@@ -716,6 +721,7 @@ mouse_filter = 2
 theme_type_variation = &"GlueFontCharacterCreate"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CharacterCreateConfigurationFrame" type="Control" parent="CharacterCreateFrame"]
 unique_name_in_owner = true

@@ -547,6 +547,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TutorialTextBorder" type="Control" parent="."]
 unique_name_in_owner = true

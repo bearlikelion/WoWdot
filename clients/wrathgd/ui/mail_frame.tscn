@@ -374,6 +374,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="InboxTooMuchMail" type="Control" parent="InboxFrame"]
 unique_name_in_owner = true

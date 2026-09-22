@@ -844,6 +844,9 @@ class SceneWriter:
             props.append(("horizontal_alignment", justify.get(w.attrs.get("justifyH", "CENTER").upper(), "1")))
             vjustify = {"TOP": "0", "MIDDLE": "1", "BOTTOM": "2"}
             props.append(("vertical_alignment", vjustify.get(w.attrs.get("justifyV", "MIDDLE").upper(), "1")))
+            if w.size and w.size[0] and not w.size[1]:
+                # A fixed width with no height wraps and grows down, as WoW sizes such a FontString.
+                props.append(("autowrap_mode", "3"))
             if w.size and w.size[1]:
                 # Text larger than its box spills out around the side it is justified to.
                 spill = {"LEFT": "1", "TOP": "1", "CENTER": "2", "MIDDLE": "2", "RIGHT": "0", "BOTTOM": "0"}

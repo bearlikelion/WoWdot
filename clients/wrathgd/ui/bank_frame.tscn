@@ -447,6 +447,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "Do you wish to purchase space for an additional bag?"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="BankFrameSlotCost" type="Label" parent="BankFramePurchaseInfo"]
 unique_name_in_owner = true

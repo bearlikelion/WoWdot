@@ -417,6 +417,7 @@ mouse_filter = 2
 theme_type_variation = &"GlueFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="RealmSplitPending" type="Label" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
 unique_name_in_owner = true
@@ -431,6 +432,7 @@ theme_type_variation = &"GlueFontNormal"
 text = "Realm Split Pending..."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="NormalTexture" type="TextureRect" parent="CharacterSelectUI/CharacterSelectRealmSplitButton"]
 offset_left = 0
@@ -2523,6 +2525,7 @@ mouse_filter = 2
 theme_type_variation = &"GlueFontNormalLarge"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CharacterDeleteText2" type="Label" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
 unique_name_in_owner = true
@@ -2537,6 +2540,7 @@ theme_type_variation = &"GlueFontNormalSmall"
 text = "Type \"DELETE\" into the field to confirm."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="CharacterDeleteAlertIcon" type="TextureRect" parent="CharacterDeleteDialog/CharacterDeleteBackground"]
 unique_name_in_owner = true

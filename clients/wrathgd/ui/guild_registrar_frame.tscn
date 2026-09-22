@@ -164,6 +164,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="GuildRegistrarNpcNameFrame" type="Control" parent="."]
 unique_name_in_owner = true
@@ -254,6 +255,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Available Services"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Texture" type="TextureRect" parent="GuildRegistrarGreetingFrame"]
 layout_mode = 1
@@ -363,6 +365,7 @@ mouse_filter = 2
 text = "Purchase a Guild Charter"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GuildRegistrarGreetingFrame/GuildRegistrarButton1"]
 offset_left = 0
@@ -406,6 +409,7 @@ mouse_filter = 2
 text = "Register a Guild Charter"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HighlightTexture" type="TextureRect" parent="GuildRegistrarGreetingFrame/GuildRegistrarButton2"]
 offset_left = 0
@@ -443,6 +447,7 @@ theme_type_variation = &"QuestFont"
 text = "To create a guild you must purchase this charter, get 9 unique player signatures, and return the charter to me.  Please enter the desired name for your guild."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="GuildRegistrarCostLabel" type="Label" parent="GuildRegistrarPurchaseFrame"]
 unique_name_in_owner = true

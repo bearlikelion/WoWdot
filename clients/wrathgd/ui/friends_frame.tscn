@@ -4976,6 +4976,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "This should be a person you know and trust in real life. You will be able to chat with them no matter which Blizzard game you are playing. If you accept their friend invite your real name will be displayed to all of their friends."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PendingListInfoFrameContinueButton" type="TextureButton" parent="PendingListFrame/PendingListInfoFrame"]
 unique_name_in_owner = true
@@ -5251,6 +5252,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsFramePendingButton1Highlight" type="Control" parent="PendingListFrame/FriendsFramePendingScrollFrame/FriendsFramePendingScrollFrameClip/FriendsFramePendingScrollFrameScrollChild/FriendsFramePendingButton1"]
 unique_name_in_owner = true
@@ -5499,6 +5501,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsFramePendingButton2Highlight" type="Control" parent="PendingListFrame/FriendsFramePendingScrollFrame/FriendsFramePendingScrollFrameClip/FriendsFramePendingScrollFrameScrollChild/FriendsFramePendingButton2"]
 unique_name_in_owner = true
@@ -5747,6 +5750,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsFramePendingButton3Highlight" type="Control" parent="PendingListFrame/FriendsFramePendingScrollFrame/FriendsFramePendingScrollFrameClip/FriendsFramePendingScrollFrameScrollChild/FriendsFramePendingButton3"]
 unique_name_in_owner = true
@@ -5995,6 +5999,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsFramePendingButton4Highlight" type="Control" parent="PendingListFrame/FriendsFramePendingScrollFrame/FriendsFramePendingScrollFrameClip/FriendsFramePendingScrollFrameScrollChild/FriendsFramePendingButton4"]
 unique_name_in_owner = true
@@ -14810,6 +14815,7 @@ mouse_filter = 2
 theme_type_variation = &"ChatFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="GuildEventLogCloseButton" type="TextureButton" parent="GuildEventLogFrame"]
 unique_name_in_owner = true
@@ -15425,6 +15431,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Normal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon1Name" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15438,6 +15445,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon1Info" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15451,6 +15459,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipNoteText" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15464,6 +15473,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 0
+autowrap_mode = 3
 
 [node name="FriendsTooltipNoteIcon" type="TextureRect" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15488,6 +15498,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_UserText"
 horizontal_alignment = 0
 vertical_alignment = 0
+autowrap_mode = 3
 
 [node name="FriendsTooltipBroadcastIcon" type="TextureRect" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15511,6 +15522,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 0
+autowrap_mode = 3
 
 [node name="FriendsTooltipOtherToons" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15540,6 +15552,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon2Info" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15554,6 +15567,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon3Name" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15568,6 +15582,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon3Info" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15582,6 +15597,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon4Name" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15596,6 +15612,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon4Info" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15610,6 +15627,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon5Name" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15624,6 +15642,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToon5Info" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15638,6 +15657,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="FriendsTooltipToonMany" type="Label" parent="FriendsTooltip"]
 unique_name_in_owner = true
@@ -15652,6 +15672,7 @@ mouse_filter = 2
 theme_type_variation = &"FriendsFont_Small"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="RaidFrame" type="Control" parent="."]
 unique_name_in_owner = true
@@ -15690,6 +15711,7 @@ theme_type_variation = &"GameFontNormal"
 text = "Raids are groups of more than 5 people and are typically used to defeat unique challenges at high levels.\n\n|cffffffff- Raid members cannot earn credit toward most non-raid quests. Specifically, they will not receive non-raid quest credit for killing creatures or collecting items.\n\n- Raids grant substantially less experience for defeating monsters than normal groups.\n\n- Raids allow you to overcome challenges that might otherwise be nearly impossible.|r"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="RaidFrameRaidBrowserDescription" type="Label" parent="RaidFrame/RaidFrameNotInRaid"]
 unique_name_in_owner = true
@@ -15704,6 +15726,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "Find a Raid Group or Assemble a Raid"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="RaidFrameNotInRaidRaidBrowserButton" type="TextureButton" parent="RaidFrame/RaidFrameNotInRaid"]
 unique_name_in_owner = true

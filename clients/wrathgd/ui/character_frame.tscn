@@ -8741,6 +8741,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillDetailDescriptionText" type="Label" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame"]
 unique_name_in_owner = true
@@ -8754,6 +8755,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 0
 vertical_alignment = 0
+autowrap_mode = 3
 
 [node name="SkillDetailStatusBar" type="TextureProgressBar" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame"]
 unique_name_in_owner = true
@@ -8822,6 +8824,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillDetailStatusBarLearnSkillButton" type="TextureButton" parent="SkillFrame/SkillDetailScrollFrame/SkillDetailScrollFrameClip/SkillDetailScrollChildFrame/SkillDetailStatusBar"]
 unique_name_in_owner = true
@@ -9027,6 +9030,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame1Border" type="TextureButton" parent="SkillFrame/SkillRankFrame1"]
 unique_name_in_owner = true
@@ -9114,6 +9118,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame2Border" type="TextureButton" parent="SkillFrame/SkillRankFrame2"]
 unique_name_in_owner = true
@@ -9201,6 +9206,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame3Border" type="TextureButton" parent="SkillFrame/SkillRankFrame3"]
 unique_name_in_owner = true
@@ -9288,6 +9294,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame4Border" type="TextureButton" parent="SkillFrame/SkillRankFrame4"]
 unique_name_in_owner = true
@@ -9375,6 +9382,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame5Border" type="TextureButton" parent="SkillFrame/SkillRankFrame5"]
 unique_name_in_owner = true
@@ -9462,6 +9470,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame6Border" type="TextureButton" parent="SkillFrame/SkillRankFrame6"]
 unique_name_in_owner = true
@@ -9549,6 +9558,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame7Border" type="TextureButton" parent="SkillFrame/SkillRankFrame7"]
 unique_name_in_owner = true
@@ -9636,6 +9646,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame8Border" type="TextureButton" parent="SkillFrame/SkillRankFrame8"]
 unique_name_in_owner = true
@@ -9723,6 +9734,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame9Border" type="TextureButton" parent="SkillFrame/SkillRankFrame9"]
 unique_name_in_owner = true
@@ -9810,6 +9822,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame10Border" type="TextureButton" parent="SkillFrame/SkillRankFrame10"]
 unique_name_in_owner = true
@@ -9897,6 +9910,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame11Border" type="TextureButton" parent="SkillFrame/SkillRankFrame11"]
 unique_name_in_owner = true
@@ -9984,6 +9998,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SkillRankFrame12Border" type="TextureButton" parent="SkillFrame/SkillRankFrame12"]
 unique_name_in_owner = true
@@ -13055,6 +13070,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="ReputationDetailFactionDescription" type="Label" parent="ReputationFrame/ReputationDetailFrame"]
 unique_name_in_owner = true
@@ -13068,6 +13084,7 @@ mouse_filter = 2
 theme_type_variation = &"ReputationDetailFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Texture" type="TextureRect" parent="ReputationFrame/ReputationDetailFrame"]
 offset_left = 11

@@ -858,6 +858,7 @@ theme_type_variation = &"GameFontBlackMedium"
 text = "BATTLEGROUND_LORETEXT_1"
 horizontal_alignment = 0
 vertical_alignment = 0
+autowrap_mode = 3
 
 [node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo" type="Control" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame"]
 unique_name_in_owner = true
@@ -894,6 +895,7 @@ theme_type_variation = &"QuestFont"
 text = "Completing Random Battlegrounds will earn you extra rewards."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoRewardsLabel" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo"]
 unique_name_in_owner = true

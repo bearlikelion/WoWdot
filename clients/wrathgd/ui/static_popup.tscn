@@ -149,6 +149,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlight"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="StaticPopup1AlertIcon" type="TextureRect" parent="."]
 unique_name_in_owner = true

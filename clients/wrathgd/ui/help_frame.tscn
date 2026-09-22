@@ -482,6 +482,7 @@ theme_type_variation = &"GameFontNormalLarge"
 text = "Talk to a Game Master"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkText1" type="Label" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -496,6 +497,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "Game Masters are normally available to assist 24 hours a day. The next available Game Master will be able to assist you no matter which character you are currently playing on.  Please keep in mind wait times may vary, and there are some issues that Game Masters will |cffffd200NOT|r be able to assist you with.  Those issues include, but are |cffffd200NOT|r limited to the following:"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkIssue1Header" type="Label" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -510,6 +512,7 @@ theme_type_variation = &"GameFontNormal"
 text = "Game Hints"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkIssue1" type="Label" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -524,6 +527,7 @@ theme_type_variation = &"GameFontHighlightSmall"
 text = "This includes information about:  quests, non-player characters (NPCs), items, locations, or anything else that the player could possibly find out through exploration and/or interaction with the world or other players."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkIssue2Header" type="Label" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -538,6 +542,7 @@ theme_type_variation = &"GameFontNormal"
 text = "Meta-Game Hints"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkIssue2" type="Label" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -552,6 +557,7 @@ theme_type_variation = &"GameFontHighlightSmall"
 text = "This includes information about:  an upcoming patch (what, when, how), upcoming content additions, game play changes, and future rule changes."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkIssue3Header" type="Label" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -566,6 +572,7 @@ theme_type_variation = &"GameFontNormal"
 text = "PvP"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkIssue3" type="Label" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -580,6 +587,7 @@ theme_type_variation = &"GameFontHighlightSmall"
 text = "Most PVP issues can be resolved through the PVP game mechanics. GM's will not be able to assist in many cases.  The exceptions to this rule are any behaviors that fall under the World of Warcraft Harassment Policy.  For special rules designated for PvP activity, please go to:"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkPvpPolicyUrl" type="Label" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -608,6 +616,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "Additionally, we encourage all players to first utilize the forums and the website to pursue information about their respective issues at |cffffd200www.worldofwarcraft.com|r , and request that specific attention be paid to our game policies at |cffffd200www.worldofwarcraft.com/policy/|r ."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameGMTalkOpenTicket" type="TextureButton" parent="HelpFrameGMTalk"]
 unique_name_in_owner = true
@@ -760,6 +769,7 @@ theme_type_variation = &"GameFontNormalLarge"
 text = "Report a Problem"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameReportIssueText1" type="Label" parent="HelpFrameReportIssue"]
 unique_name_in_owner = true
@@ -774,6 +784,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "Use this page to let us know about any problems you notice in the game that don't require an immediate Game Master response."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameReportIssueBulletTitle1" type="Label" parent="HelpFrameReportIssue"]
 unique_name_in_owner = true
@@ -788,6 +799,7 @@ theme_type_variation = &"GameFontNormal"
 text = "Examples include:"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameReportIssueBullet1" type="Control" parent="HelpFrameReportIssue"]
 unique_name_in_owner = true
@@ -818,6 +830,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameReportIssueBullet2" type="Control" parent="HelpFrameReportIssue"]
 unique_name_in_owner = true
@@ -848,6 +861,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameReportIssueText2" type="Label" parent="HelpFrameReportIssue/HelpFrameReportIssueBullet2"]
 unique_name_in_owner = true
@@ -862,6 +876,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "We will only contact you if we require more information. However, we will still work hard to solve the problem."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameReportIssueOpenTicket" type="TextureButton" parent="HelpFrameReportIssue"]
 unique_name_in_owner = true
@@ -1014,6 +1029,7 @@ theme_type_variation = &"GameFontNormalLarge"
 text = "Report Lag"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameLagText1" type="Label" parent="HelpFrameLag"]
 unique_name_in_owner = true
@@ -1028,6 +1044,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "Lag is often caused by having a large number of players in one location, such as a city or Battleground. It can also be caused by high latency between your computer and the WoW servers. Submitting this report will help us detect and hopefully address lag problems you might be experiencing. \n\nWhat type of lag are you experiencing? Click on a button below to submit a report."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameLagLoot" type="TextureButton" parent="HelpFrameLag"]
 unique_name_in_owner = true
@@ -1485,6 +1502,7 @@ theme_type_variation = &"GameFontNormalLarge"
 text = "Character Stuck"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameStuckText1" type="Label" parent="HelpFrameStuck"]
 unique_name_in_owner = true
@@ -1499,6 +1517,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "If you find yourself stuck and unable to move, please try the auto-unstuck feature prior to petitioning a GM. In most cases, this should solve the problem. Activating the auto-unstuck command will first attempt to use your hearthstone to port you back to your inn. If this is not possible, it will attempt to nudge your character out of position.\n\nPlease note this option can only be used every 5 minutes. Using the auto-unstuck option will log your character and location so that we can verify and fix the location in the future."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameStuckStuck" type="TextureButton" parent="HelpFrameStuck"]
 unique_name_in_owner = true
@@ -2261,6 +2280,7 @@ mouse_filter = 2
 theme_type_variation = &"ChatFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameViewResponseDivider" type="Control" parent="HelpFrameViewResponse"]
 unique_name_in_owner = true
@@ -2494,6 +2514,7 @@ mouse_filter = 2
 theme_type_variation = &"ChatFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameViewResponseCancel" type="TextureButton" parent="HelpFrameViewResponse"]
 unique_name_in_owner = true
@@ -2711,6 +2732,7 @@ theme_type_variation = &"GameFontNormalLarge"
 text = "Customer Support"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameWelcomeText1" type="Label" parent="HelpFrameWelcome"]
 unique_name_in_owner = true
@@ -2725,6 +2747,7 @@ theme_type_variation = &"GameFontHighlight"
 text = "For assistance with in-game support, please use the following options to submit a petition for GM assistance or report an issue."
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HelpFrameWelcomeGMTalk" type="TextureButton" parent="HelpFrameWelcome"]
 unique_name_in_owner = true
@@ -5317,6 +5340,7 @@ theme_type_variation = &"ErrorFont"
 text = "ERROR"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="KnowledgeBaseFrameReportIssue" type="TextureButton" parent="KnowledgeBaseFrame"]
 unique_name_in_owner = true

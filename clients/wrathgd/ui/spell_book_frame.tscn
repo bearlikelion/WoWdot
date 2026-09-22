@@ -216,6 +216,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellBookFrameTabButton1" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -669,6 +670,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton1SubSpellName" type="Label" parent="SpellButton1"]
 unique_name_in_owner = true
@@ -788,6 +790,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton2SubSpellName" type="Label" parent="SpellButton2"]
 unique_name_in_owner = true
@@ -907,6 +910,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton3SubSpellName" type="Label" parent="SpellButton3"]
 unique_name_in_owner = true
@@ -1026,6 +1030,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton4SubSpellName" type="Label" parent="SpellButton4"]
 unique_name_in_owner = true
@@ -1145,6 +1150,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton5SubSpellName" type="Label" parent="SpellButton5"]
 unique_name_in_owner = true
@@ -1264,6 +1270,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton6SubSpellName" type="Label" parent="SpellButton6"]
 unique_name_in_owner = true
@@ -1383,6 +1390,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton7SubSpellName" type="Label" parent="SpellButton7"]
 unique_name_in_owner = true
@@ -1502,6 +1510,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton8SubSpellName" type="Label" parent="SpellButton8"]
 unique_name_in_owner = true
@@ -1621,6 +1630,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton9SubSpellName" type="Label" parent="SpellButton9"]
 unique_name_in_owner = true
@@ -1740,6 +1750,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton10SubSpellName" type="Label" parent="SpellButton10"]
 unique_name_in_owner = true
@@ -1859,6 +1870,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton11SubSpellName" type="Label" parent="SpellButton11"]
 unique_name_in_owner = true
@@ -1978,6 +1990,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="SpellButton12SubSpellName" type="Label" parent="SpellButton12"]
 unique_name_in_owner = true

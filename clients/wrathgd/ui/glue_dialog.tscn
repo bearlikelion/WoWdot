@@ -108,6 +108,7 @@ mouse_filter = 2
 theme_type_variation = &"GlueFontNormalLarge"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="GlueDialogAlertIcon" type="TextureRect" parent="GlueDialogBackground"]
 unique_name_in_owner = true

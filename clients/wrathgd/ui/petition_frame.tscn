@@ -142,6 +142,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameCharterTitle" type="Label" parent="."]
 unique_name_in_owner = true
@@ -155,6 +156,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestTitleFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameCharterName" type="Label" parent="."]
 unique_name_in_owner = true
@@ -168,6 +170,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMasterTitle" type="Label" parent="."]
 unique_name_in_owner = true
@@ -181,6 +184,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestTitleFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMasterName" type="Label" parent="."]
 unique_name_in_owner = true
@@ -194,6 +198,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberTitle" type="Label" parent="."]
 unique_name_in_owner = true
@@ -208,6 +213,7 @@ theme_type_variation = &"QuestTitleFont"
 text = "Members"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName1" type="Label" parent="."]
 unique_name_in_owner = true
@@ -221,6 +227,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName2" type="Label" parent="."]
 unique_name_in_owner = true
@@ -234,6 +241,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName3" type="Label" parent="."]
 unique_name_in_owner = true
@@ -247,6 +255,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName4" type="Label" parent="."]
 unique_name_in_owner = true
@@ -260,6 +269,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName5" type="Label" parent="."]
 unique_name_in_owner = true
@@ -273,6 +283,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName6" type="Label" parent="."]
 unique_name_in_owner = true
@@ -286,6 +297,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName7" type="Label" parent="."]
 unique_name_in_owner = true
@@ -299,6 +311,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName8" type="Label" parent="."]
 unique_name_in_owner = true
@@ -312,6 +325,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameMemberName9" type="Label" parent="."]
 unique_name_in_owner = true
@@ -325,6 +339,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionFrameInstructions" type="Label" parent="."]
 unique_name_in_owner = true
@@ -338,6 +353,7 @@ mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PetitionNpcNameFrame" type="Control" parent="."]
 unique_name_in_owner = true

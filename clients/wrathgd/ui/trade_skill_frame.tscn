@@ -1846,6 +1846,7 @@ theme_type_variation = &"GameFontNormal"
 text = "Skill Name"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TradeSkillRequirementLabel" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
 unique_name_in_owner = true
@@ -1873,6 +1874,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 0
 vertical_alignment = 0
+autowrap_mode = 3
 
 [node name="TradeSkillSkillCooldown" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
 unique_name_in_owner = true
@@ -1918,6 +1920,7 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TradeSkillReagentLabel" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
 unique_name_in_owner = true
