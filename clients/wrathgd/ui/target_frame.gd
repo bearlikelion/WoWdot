@@ -20,6 +20,10 @@ const AURA_ROW_WIDTH: int = 122
 const NORMAL_LEVEL: Color = Color(1.0, 0.82, 0.0)
 const TAPPED: Color = Color(0.5, 0.5, 0.5)
 const FRIENDLY_PLAYER: Color = Color(0.0, 0.0, 1.0)
+# GetThreatStatusColor for UnitThreatSituation's 0 to 3.
+const THREAT_COLORS: Array[Color] = [
+	Color(0.69, 0.69, 0.69), Color(1.0, 1.0, 0.47), Color(1.0, 0.6, 0.0), Color(1.0, 0.0, 0.0),
+]
 const BORDERS: Dictionary[Rank, String] = {
 	Rank.NORMAL: "Interface\\TargetingFrame\\UI-TargetingFrame.blp",
 	Rank.ELITE: "Interface\\TargetingFrame\\UI-TargetingFrame-Elite.blp",
@@ -37,6 +41,9 @@ var _debuff_icons: Array[TextureRect] = []
 var _debuff_borders: Array[TextureRect] = []
 var _debuff_counts: Array[Label] = []
 var _aura_spells: Dictionary[Control, int] = {}
+# Each unit's threat list, victim to threat, and the victim it is attacking.
+var _threat: Dictionary[int, Dictionary] = {}
+var _tanks: Dictionary[int, int] = {}
 
 @onready var _name_background: TextureRect = %TargetFrameNameBackground
 @onready var _border: TextureRect = %TargetFrameTextureFrameTexture
@@ -48,6 +55,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		super()
 		return
+	WowClient.session.packet_received.connect(_on_threat_packet)
 	_name_label = %TargetFrameTextureFrameName
 	_level_label = %TargetFrameTextureFrameLevelText
 	_health_bar = %TargetFrameHealthBar
@@ -120,7 +128,56 @@ func _update_unit() -> void:
 	_dead_text.visible = session.get_field(guid, "UNIT_FIELD_HEALTH") == 0
 	_update_target_of_target()
 	_update_auras()
+	_update_threat()
+	%ComboFrame.target = guid
 
+
+func _on_threat_packet(opcode: String, payload: PackedByteArray) -> void:
+	if not opcode.contains("THREAT"):
+		return
+	var reader: PacketReader = PacketReader.new(payload)
+	var unit: int = reader.packed_guid()
+	match opcode:
+		"SMSG_THREAT_UPDATE", "SMSG_HIGHEST_THREAT_UPDATE":
+			if opcode == "SMSG_HIGHEST_THREAT_UPDATE":
+				_tanks[unit] = reader.packed_guid()
+			var threat: Dictionary[int, int] = {}
+			for i: int in reader.u32():
+				var victim: int = reader.packed_guid()
+				threat[victim] = reader.u32()
+			_threat[unit] = threat
+		"SMSG_THREAT_REMOVE":
+			(_threat.get(unit, {}) as Dictionary).erase(reader.packed_guid())
+		"SMSG_THREAT_CLEAR":
+			_threat.erase(unit)
+			_tanks.erase(unit)
+		_:
+			return
+	if unit == guid:
+		_update_threat()
+
+
+# UnitThreatSituation: 3 tanking with the most threat, 2 tanking without it,
+# 1 not tanking but above the tank, 0 below; the flash shows from 1 up.
+func _update_threat() -> void:
+	var flash: TextureRect = %TargetFrameFlash
+	var threat: Dictionary = _threat.get(guid, {})
+	var me: int = WowClient.session.get_player_guid()
+	if not threat.has(me):
+		flash.hide()
+		return
+	var mine: int = threat[me]
+	var top: int = 0
+	for victim: int in threat:
+		top = maxi(top, threat[victim])
+	var tank: int = _tanks.get(guid, me if mine >= top else 0)
+	var status: int = 0
+	if tank == me:
+		status = 3 if mine >= top else 2
+	elif mine > threat.get(tank, 0):
+		status = 1
+	flash.visible = status > 0
+	flash.self_modulate = THREAT_COLORS[status]
 
 func _update_target_of_target() -> void:
 	var session: WowSession = WowClient.session

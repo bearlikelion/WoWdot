@@ -46,6 +46,7 @@ var _melee: Array[CombatEvents.CombatEvent] = []
 var _spawned: int = 0
 var _quest_givers: int = 0
 var _fly_counter: int = -1
+var _threat_units: Array[int] = []
 var _failures: PackedStringArray = []
 
 
@@ -156,6 +157,8 @@ func _packets() -> void:
 	if await _until(func() -> bool: return not _melee.is_empty(), "the GM damage lands as a melee log"):
 		_check(_melee[0].amount == DAMAGE and _melee[0].target == _spawned,
 				"the melee log carries the amount and target (%d)" % _melee[0].amount)
+		await _until(func() -> bool: return _spawned in _threat_units,
+				"the struck creature sends its threat list")
 	_session.send_chat(WowSession.CHAT_SAY, ".npc delete")
 	_session.set_selection(0)
 
@@ -386,6 +389,8 @@ func _on_chat_received(line: Dictionary) -> void:
 func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
 	if opcode == "SMSG_TIME_SYNC_REQ":
 		_time_syncs += 1
+	elif opcode == "SMSG_THREAT_UPDATE" or opcode == "SMSG_HIGHEST_THREAT_UPDATE":
+		_threat_units.append(PacketReader.new(_payload).packed_guid())
 	elif opcode == "SMSG_MOVE_SET_CAN_FLY":
 		var reader: PacketReader = PacketReader.new(_payload)
 		reader.packed_guid()

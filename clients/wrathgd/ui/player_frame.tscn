@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
 [ext_resource type="Script" path="res://ui/wow/wow_cooldown.gd" id="3"]
 [ext_resource type="Script" path="res://ui/pet_frame.gd" id="4"]
+[ext_resource type="Script" path="res://ui/rune_frame.gd" id="5"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame-Flash.blp"
@@ -167,6 +168,19 @@ region = Rect2(0, 0, 24, 23)
 [sub_resource type="AtlasTexture" id="AtlasTexture_48"]
 atlas = SubResource("WowTexture_33")
 region = Rect2(3, 0, 85, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\PlayerFrame\\UI-PlayerFrame-Deathknight-Blood.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_50"]
+file = "Interface\\PlayerFrame\\UI-PlayerFrame-Deathknight-Ring.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_51"]
+file = "Interface\\ComboFrame\\ComboPoint.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52"]
+atlas = SubResource("WowTexture_51")
+region = Rect2(18, 0, 14, 16)
 
 [node name="PlayerFrame" type="TextureButton"]
 script = ExtResource("1")
@@ -1521,3 +1535,413 @@ mouse_filter = 2
 theme_type_variation = &"TextStatusBarText"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RuneFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -11
+offset_top = -34
+offset_right = 119
+offset_bottom = -16
+mouse_filter = 2
+
+[node name="RuneButtonIndividual1" type="TextureButton" parent="RuneFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="RuneButtonIndividual1Rune" type="TextureRect" parent="RuneFrame/RuneButtonIndividual1"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("WowTexture_49")
+expand_mode = 1
+
+[node name="RuneButtonIndividual1Cooldown" type="Control" parent="RuneFrame/RuneButtonIndividual1"]
+unique_name_in_owner = true
+offset_left = 1.5
+offset_top = 2.5
+offset_right = 16.5
+offset_bottom = 17.5
+mouse_filter = 2
+
+[node name="RuneButtonIndividual1Border" type="Control" parent="RuneFrame/RuneButtonIndividual1"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+
+[node name="RuneButtonIndividual1BorderTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual1/RuneButtonIndividual1Border"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+self_modulate = Color(0.6, 0.6, 0.6, 1)
+
+[node name="RuneButtonIndividual1Shine" type="Control" parent="RuneFrame/RuneButtonIndividual1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+mouse_filter = 2
+
+[node name="RuneButtonIndividual1ShineTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual1/RuneButtonIndividual1Shine"]
+unique_name_in_owner = true
+offset_left = -21
+offset_top = -8.5
+offset_right = 39
+offset_bottom = 26.5
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="RuneButtonIndividual2" type="TextureButton" parent="RuneFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = 0
+offset_right = 39
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="RuneButtonIndividual2Rune" type="TextureRect" parent="RuneFrame/RuneButtonIndividual2"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("WowTexture_49")
+expand_mode = 1
+
+[node name="RuneButtonIndividual2Cooldown" type="Control" parent="RuneFrame/RuneButtonIndividual2"]
+unique_name_in_owner = true
+offset_left = 1.5
+offset_top = 2.5
+offset_right = 16.5
+offset_bottom = 17.5
+mouse_filter = 2
+
+[node name="RuneButtonIndividual2Border" type="Control" parent="RuneFrame/RuneButtonIndividual2"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+
+[node name="RuneButtonIndividual2BorderTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual2/RuneButtonIndividual2Border"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+self_modulate = Color(0.6, 0.6, 0.6, 1)
+
+[node name="RuneButtonIndividual2Shine" type="Control" parent="RuneFrame/RuneButtonIndividual2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+mouse_filter = 2
+
+[node name="RuneButtonIndividual2ShineTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual2/RuneButtonIndividual2Shine"]
+unique_name_in_owner = true
+offset_left = -21
+offset_top = -8.5
+offset_right = 39
+offset_bottom = 26.5
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="RuneButtonIndividual3" type="TextureButton" parent="RuneFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 42
+offset_top = 0
+offset_right = 60
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="RuneButtonIndividual3Rune" type="TextureRect" parent="RuneFrame/RuneButtonIndividual3"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("WowTexture_49")
+expand_mode = 1
+
+[node name="RuneButtonIndividual3Cooldown" type="Control" parent="RuneFrame/RuneButtonIndividual3"]
+unique_name_in_owner = true
+offset_left = 1.5
+offset_top = 2.5
+offset_right = 16.5
+offset_bottom = 17.5
+mouse_filter = 2
+
+[node name="RuneButtonIndividual3Border" type="Control" parent="RuneFrame/RuneButtonIndividual3"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+
+[node name="RuneButtonIndividual3BorderTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual3/RuneButtonIndividual3Border"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+self_modulate = Color(0.6, 0.6, 0.6, 1)
+
+[node name="RuneButtonIndividual3Shine" type="Control" parent="RuneFrame/RuneButtonIndividual3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+mouse_filter = 2
+
+[node name="RuneButtonIndividual3ShineTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual3/RuneButtonIndividual3Shine"]
+unique_name_in_owner = true
+offset_left = -21
+offset_top = -8.5
+offset_right = 39
+offset_bottom = 26.5
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="RuneButtonIndividual4" type="TextureButton" parent="RuneFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 63
+offset_top = 0
+offset_right = 81
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="RuneButtonIndividual4Rune" type="TextureRect" parent="RuneFrame/RuneButtonIndividual4"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("WowTexture_49")
+expand_mode = 1
+
+[node name="RuneButtonIndividual4Cooldown" type="Control" parent="RuneFrame/RuneButtonIndividual4"]
+unique_name_in_owner = true
+offset_left = 1.5
+offset_top = 2.5
+offset_right = 16.5
+offset_bottom = 17.5
+mouse_filter = 2
+
+[node name="RuneButtonIndividual4Border" type="Control" parent="RuneFrame/RuneButtonIndividual4"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+
+[node name="RuneButtonIndividual4BorderTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual4/RuneButtonIndividual4Border"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+self_modulate = Color(0.6, 0.6, 0.6, 1)
+
+[node name="RuneButtonIndividual4Shine" type="Control" parent="RuneFrame/RuneButtonIndividual4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+mouse_filter = 2
+
+[node name="RuneButtonIndividual4ShineTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual4/RuneButtonIndividual4Shine"]
+unique_name_in_owner = true
+offset_left = -21
+offset_top = -8.5
+offset_right = 39
+offset_bottom = 26.5
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="RuneButtonIndividual5" type="TextureButton" parent="RuneFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 84
+offset_top = 0
+offset_right = 102
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="RuneButtonIndividual5Rune" type="TextureRect" parent="RuneFrame/RuneButtonIndividual5"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("WowTexture_49")
+expand_mode = 1
+
+[node name="RuneButtonIndividual5Cooldown" type="Control" parent="RuneFrame/RuneButtonIndividual5"]
+unique_name_in_owner = true
+offset_left = 1.5
+offset_top = 2.5
+offset_right = 16.5
+offset_bottom = 17.5
+mouse_filter = 2
+
+[node name="RuneButtonIndividual5Border" type="Control" parent="RuneFrame/RuneButtonIndividual5"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+
+[node name="RuneButtonIndividual5BorderTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual5/RuneButtonIndividual5Border"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+self_modulate = Color(0.6, 0.6, 0.6, 1)
+
+[node name="RuneButtonIndividual5Shine" type="Control" parent="RuneFrame/RuneButtonIndividual5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+mouse_filter = 2
+
+[node name="RuneButtonIndividual5ShineTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual5/RuneButtonIndividual5Shine"]
+unique_name_in_owner = true
+offset_left = -21
+offset_top = -8.5
+offset_right = 39
+offset_bottom = 26.5
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="RuneButtonIndividual6" type="TextureButton" parent="RuneFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 105
+offset_top = 0
+offset_right = 123
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="RuneButtonIndividual6Rune" type="TextureRect" parent="RuneFrame/RuneButtonIndividual6"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("WowTexture_49")
+expand_mode = 1
+
+[node name="RuneButtonIndividual6Cooldown" type="Control" parent="RuneFrame/RuneButtonIndividual6"]
+unique_name_in_owner = true
+offset_left = 1.5
+offset_top = 2.5
+offset_right = 16.5
+offset_bottom = 17.5
+mouse_filter = 2
+
+[node name="RuneButtonIndividual6Border" type="Control" parent="RuneFrame/RuneButtonIndividual6"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -2
+offset_right = 21
+offset_bottom = 22
+mouse_filter = 2
+
+[node name="RuneButtonIndividual6BorderTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual6/RuneButtonIndividual6Border"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+self_modulate = Color(0.6, 0.6, 0.6, 1)
+
+[node name="RuneButtonIndividual6Shine" type="Control" parent="RuneFrame/RuneButtonIndividual6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 18
+mouse_filter = 2
+
+[node name="RuneButtonIndividual6ShineTexture" type="TextureRect" parent="RuneFrame/RuneButtonIndividual6/RuneButtonIndividual6Shine"]
+unique_name_in_owner = true
+offset_left = -21
+offset_top = -8.5
+offset_right = 39
+offset_bottom = 26.5
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")

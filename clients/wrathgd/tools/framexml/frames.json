@@ -478,7 +478,9 @@
   "QuestInfoRequiredMoneyFrame": [
    "QuestDetailScrollChildFrame",
    "QuestLogDetailScrollChildFrame"
-  ]
+  ],
+  "RuneFrame": "PlayerFrame",
+  "ComboFrame": "TargetFrame"
  },
  "frame_scripts": {
   "Minimap": "res://ui/minimap_view.gd",
@@ -490,7 +492,9 @@
   "ShapeshiftBarFrame": "res://ui/stance_bar.gd",
   "PetFrame": "res://ui/pet_frame.gd",
   "PetActionBarFrame": "res://ui/pet_action_bar.gd",
-  "TargetFrameToT": "res://ui/target_of_target_frame.gd"
+  "TargetFrameToT": "res://ui/target_of_target_frame.gd",
+  "RuneFrame": "res://ui/rune_frame.gd",
+  "ComboFrame": "res://ui/combo_frame.gd"
  },
  "exclude": [
   "AccountLoginAccountEditFill",
