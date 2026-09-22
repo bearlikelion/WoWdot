@@ -145,6 +145,14 @@ func loaded_tiles() -> Array[Vector2i]:
 	return _tiles.keys()
 
 
+func tile_node(tile: Vector2i) -> Node3D:
+	return _tiles.get(tile)
+
+
+func chunk_index_at(godot_position: Vector3) -> int:
+	return _chunk_index(godot_position, tile_at(godot_position))
+
+
 # One of the tile's 128x128 ground cells, laid out as 8x8 within each chunk of _chunk_index.
 func _cell_index(godot_position: Vector3, tile: Vector2i) -> int:
 	var wow: Vector3 = WowCoords.from_godot(godot_position)

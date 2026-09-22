@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://game/world/world.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://game/world/camera_shake.gd" id="13_shake"]
 [ext_resource type="Script" path="res://game/world/area_triggers.gd" id="13_triggers"]
 [ext_resource type="Script" path="res://game/world/cinematic_camera.gd" id="11_cinematic"]
+[ext_resource type="Script" path="res://game/world/ground_clutter.gd" id="12_clutter"]
 
 [sub_resource type="FastNoiseLite" id="Noise_clouds"]
 frequency = 0.008
@@ -111,6 +112,11 @@ entities = NodePath("../Entities")
 
 [node name="SelectionCircle" parent="." node_paths=PackedStringArray("entities") instance=ExtResource("10_selection")]
 entities = NodePath("../Entities")
+
+[node name="GroundClutter" type="Node3D" parent="." node_paths=PackedStringArray("map", "player")]
+script = ExtResource("12_clutter")
+map = NodePath("../WowMap")
+player = NodePath("../Player")
 
 [node name="CinematicCamera" type="Camera3D" parent="."]
 script = ExtResource("11_cinematic")
