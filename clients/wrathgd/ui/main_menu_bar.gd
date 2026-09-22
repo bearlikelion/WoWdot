@@ -7,7 +7,7 @@ signal bottom_bars_toggled(shown: bool)
 signal bag_toggled(bag: int)
 
 enum GamePanel {
-	CHARACTER, SPELLBOOK, TALENTS, QUEST_LOG, SOCIAL, WORLD_MAP, GAME_MENU, HELP, BAGS, LFD,
+	CHARACTER, SPELLBOOK, TALENTS, QUEST_LOG, SOCIAL, WORLD_MAP, GAME_MENU, HELP, BAGS, LFD, ACHIEVEMENTS,
 }
 enum RestState { RESTED = 1, NORMAL = 2 }
 
@@ -39,6 +39,9 @@ const PANEL_TIPS: Dictionary[GamePanel, Array] = {
 	GamePanel.HELP: ["HELP_BUTTON", "NEWBIE_TOOLTIP_HELP", ""],
 	GamePanel.BAGS: ["BACKPACK_TOOLTIP", "", "toggle_bags"],
 	GamePanel.LFD: ["DUNGEONS_BUTTON", "NEWBIE_TOOLTIP_LFGPARENT", "toggle_lfd"],
+	GamePanel.ACHIEVEMENTS: [
+		"ACHIEVEMENT_BUTTON", "NEWBIE_TOOLTIP_ACHIEVEMENT", "toggle_achievements",
+	],
 }
 # MicroButtonPortrait's SetTexCoord in CharacterMicroButton_SetNormal and _SetPushed.
 # MainMenuBar.lua: green up to 300 ms, yellow up to 600, then red, checked every ten seconds.
@@ -80,6 +83,7 @@ var _portrait: AtlasTexture = AtlasTexture.new()
 	%MainMenuMicroButton: GamePanel.GAME_MENU,
 	%HelpMicroButton: GamePanel.HELP,
 	%LFDMicroButton: GamePanel.LFD,
+	%AchievementMicroButton: GamePanel.ACHIEVEMENTS,
 	%MainMenuBarBackpackButton: GamePanel.BAGS,
 }
 

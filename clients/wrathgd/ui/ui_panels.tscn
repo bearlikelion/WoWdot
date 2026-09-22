@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://ui/panel_manager.gd" id="1_panels"]
 [ext_resource type="PackedScene" path="res://ui/character_frame.tscn" id="2_character"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" path="res://ui/help_frame.tscn" id="39_help"]
 [ext_resource type="PackedScene" path="res://ui/stack_split_frame.tscn" id="40_split"]
 [ext_resource type="PackedScene" path="res://ui/lfd_parent_frame.tscn" id="41_lfd"]
+[ext_resource type="PackedScene" path="res://ui/achievement_frame.tscn" id="42_achievements"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -164,6 +165,11 @@ visible = false
 layout_mode = 1
 
 [node name="WorldStateScoreFrame" parent="." instance=ExtResource("38_score")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="AchievementFrame" parent="." instance=ExtResource("42_achievements")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

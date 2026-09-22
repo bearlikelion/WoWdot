@@ -89,6 +89,7 @@ var _chat_hover_time: float = 0.0
 @onready var _trade: TradeFrame = _panels.get_node("%TradeFrame")
 @onready var _friends: FriendsFrame = _panels.get_node("%FriendsFrame")
 @onready var _lfd: LFDParentFrame = _panels.get_node("%LFDParentFrame")
+@onready var _achievement_frame: AchievementFrame = _panels.get_node("%AchievementFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
 @onready var _item_text: ItemTextFrame = _panels.get_node_or_null("%ItemTextFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
@@ -268,6 +269,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_panels.toggle_panel(_quest_log)
 	elif _exact(event, "toggle_lfd"):
 		_panels.toggle_panel(_lfd)
+	elif _exact(event, "toggle_achievements"):
+		_panels.toggle_panel(_achievement_frame)
 	elif _exact(event, "toggle_scores") and WowClient.battlegrounds.in_battle():
 		_panels.toggle_panel(_panels.get_node("%WorldStateScoreFrame"))
 	elif _exact(event, "toggle_world_map"):
@@ -623,6 +626,8 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 			_panels.toggle_backpack()
 		MainMenuBar.GamePanel.LFD:
 			_panels.toggle_panel(_lfd)
+		MainMenuBar.GamePanel.ACHIEVEMENTS:
+			_panels.toggle_panel(_achievement_frame)
 		MainMenuBar.GamePanel.HELP:
 			_panels.toggle_panel(_panels.get_node("%HelpFrame"))
 		MainMenuBar.GamePanel.GAME_MENU:

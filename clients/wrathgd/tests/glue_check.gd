@@ -115,6 +115,22 @@ func _achievements() -> void:
 	await _until(func() -> bool: return session.get_field(me, "PLAYER_CHOSEN_TITLE") == 0,
 			"the title comes off")
 	session.send_chat(WowSession.CHAT_SAY, ".titles remove %d" % TITLE)
+	var press: InputEventAction = InputEventAction.new()
+	press.action = "toggle_achievements"
+	press.pressed = true
+	Input.parse_input_event(press)
+	await _frames(30)
+	var frame: AchievementFrame = get_tree().root.find_child("AchievementFrame", true, false)
+	_check(frame.visible, "the achievement key opens the achievement frame")
+	var points: Label = frame.get_node("%AchievementFrameHeaderPoints")
+	_check(points.text == str(achievements.points()), "the achievement frame shows the points earned")
+	var latest: Label = frame.get_node("%AchievementFrameSummaryAchievement1Label")
+	_check(not latest.text.is_empty(), "the summary lists the latest achievement")
+	_capture("user://wotlk_achievements.png")
+	(frame.get_node("%AchievementFrameCategoriesContainerButton2") as BaseButton).pressed.emit()
+	await _frames(30)
+	_capture("user://wotlk_achievements_category.png")
+	frame.close_requested.emit()
 
 
 # A one-player queue through the LFD frame: a proposal, the teleport in, and back out.

@@ -459,6 +459,11 @@
    "script": "res://ui/lfd_dungeon_ready_popup.gd"
   },
   {
+   "frame": "AchievementFrame",
+   "out": "ui/achievement_frame.tscn",
+   "script": "res://ui/achievement_frame.gd"
+  },
+  {
    "frame": "TargetDebuffFrameTemplate",
    "out": "ui/target_debuff_frame.tscn",
    "template": true
@@ -585,6 +590,27 @@
    "template": "PlayerTitleButtonTemplate",
    "name": "PlayerTitlePickerScrollFrameButton%d",
    "count": 6
+  },
+  {
+   "parent": "AchievementFrameCategoriesContainerScrollChild",
+   "template": "AchievementCategoryTemplate",
+   "name": "AchievementFrameCategoriesContainerButton%d",
+   "count": 20
+  },
+  {
+   "parent": "AchievementFrameAchievementsContainerScrollChild",
+   "template": "AchievementTemplate",
+   "name": "AchievementFrameAchievementsContainerButton%d",
+   "count": 7
+  },
+  {
+   "parent": "AchievementFrameSummaryAchievements",
+   "template": "SummaryAchievementTemplate",
+   "name": "AchievementFrameSummaryAchievement%d",
+   "count": 4,
+   "offset": [18, -18],
+   "gap": [0, -3],
+   "size": [483, 48]
   },
   {
    "parent": "GearManagerDialog",
