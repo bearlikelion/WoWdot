@@ -107,12 +107,10 @@ h1 {
   width: auto;
   object-fit: contain;
   mask-image: radial-gradient(ellipse 82% 80% at 50% 48%, #000 45%, transparent 100%);
-  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .model-slot > .model-empty {
   display: none;
-  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .model:not(.is-empty) > .model-slot > #model-image {
@@ -212,10 +210,6 @@ h1 {
   color: var(--ivory-dim);
   text-align: center;
   font-size: 1rem;
-}
-
-.model.is-fading .model-slot > * {
-  opacity: 0;
 }
 
 .model figcaption {

@@ -257,7 +257,7 @@
         return name.replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
       }
 
-      function show(i, animate) {
+      function show(i) {
         var info = clients[current];
         var shots = info.shots;
         var paint = function () {
@@ -282,14 +282,11 @@
             dot.setAttribute("role", "tab");
             dot.setAttribute("aria-selected", n === index ? "true" : "false");
             dot.setAttribute("aria-label", caption(shot));
-            dot.addEventListener("click", function () { show(n, true); });
+            dot.addEventListener("click", function () { show(n); });
             dots.appendChild(dot);
           });
-          model.classList.remove("is-fading");
         };
-        if (!animate || reduce) { paint(); return; }
-        model.classList.add("is-fading");
-        window.setTimeout(paint, 300);
+        paint();
       }
 
       function select(id) {
@@ -302,25 +299,25 @@
           row.setAttribute("aria-pressed", on ? "true" : "false");
         });
         document.getElementById("enter").classList.toggle("is-locked", !info.playable);
-        show(0, true);
+        show(0);
       }
 
       function rest() {
         window.clearInterval(timer);
         if (reduce) return;
-        timer = window.setInterval(function () { show(index + 1, true); }, 7000);
+        timer = window.setInterval(function () { show(index + 1); }, 7000);
       }
 
-      document.getElementById("model-prev").addEventListener("click", function () { show(index - 1, true); rest(); });
-      document.getElementById("model-next").addEventListener("click", function () { show(index + 1, true); rest(); });
+      document.getElementById("model-prev").addEventListener("click", function () { show(index - 1); rest(); });
+      document.getElementById("model-next").addEventListener("click", function () { show(index + 1); rest(); });
       model.addEventListener("mouseenter", function () { window.clearInterval(timer); });
       model.addEventListener("mouseleave", rest);
       model.addEventListener("focusin", function () { window.clearInterval(timer); });
       model.addEventListener("focusout", rest);
       document.addEventListener("keydown", function (event) {
         if (event.target.closest("button, a, input")) return;
-        if (event.key === "ArrowLeft") { show(index - 1, true); rest(); }
-        if (event.key === "ArrowRight") { show(index + 1, true); rest(); }
+        if (event.key === "ArrowLeft") { show(index - 1); rest(); }
+        if (event.key === "ArrowRight") { show(index + 1); rest(); }
       });
 
       rows.forEach(function (row, n) {
@@ -342,8 +339,8 @@
         Object.keys(clients).forEach(function (id) {
           if (Array.isArray(lists[id]) && lists[id].length) clients[id].shots = lists[id];
         });
-        show(0, false);
-      }).catch(function () {}).then(function () { show(index, false); rest(); });
+        show(0);
+      }).catch(function () {}).then(function () { show(index); rest(); });
     })();
   </script>
 </body>
