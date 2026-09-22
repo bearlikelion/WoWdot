@@ -16,6 +16,7 @@ var dungeon_finder: DungeonFinder = DungeonFinder.new(session)
 var achievements: Achievements = Achievements.new(session)
 var arena_teams: ArenaTeams = ArenaTeams.new(session)
 var guild_bank: GuildBank = GuildBank.new(session)
+var barbershop: Barbershop = Barbershop.new(session)
 
 
 func _ready() -> void:

@@ -67,6 +67,8 @@ var _last_hostile: int = 0
 var _worn: PackedInt32Array = []
 var _dressing: bool = false
 var _mount_display: int = 0
+# PLAYER_BYTES and PLAYER_BYTES_2 as last drawn, so a haircut redraws the player.
+var _appearance: Vector2i = Vector2i.ZERO
 # Which of the helm and cloak the server has hidden, and which we have asked it to.
 var _hidden_gear: int = -1
 var _wanted_gear: int = -1
@@ -120,6 +122,7 @@ func _ready() -> void:
 	WowClient.session.attack_stopped.connect(_on_attack_changed.bind(false))
 	WowClient.session.melee_swing.connect(_on_melee_swing)
 	WowClient.session.object_updated.connect(_on_object_updated)
+	WowClient.barbershop.preview_changed.connect(_dress_player)
 	WowClient.session.item_info_received.connect(_on_item_info_received)
 	WowClient.session.object_created.connect(_on_object_created)
 	WowClient.session.player_teleported.connect(_on_player_teleported)
@@ -565,8 +568,11 @@ func _on_object_updated(guid: int) -> void:
 	_player.stand_state = session.get_field(guid, "UNIT_FIELD_BYTES_1") & 0xFF
 	var mount: int = session.get_field(guid, "UNIT_FIELD_MOUNTDISPLAYID")
 	var gear_changed: bool = _read_hidden_gear()
+	var appearance: Vector2i = Vector2i(
+		session.get_field(guid, "PLAYER_BYTES"), session.get_field(guid, "PLAYER_BYTES_2") & 0xFF
+	)
 	if gear_changed or CharacterModels.visible_items(session, guid) != _worn \
-	or mount != _mount_display:
+	or mount != _mount_display or appearance != _appearance:
 		_dress_player()
 	elif _rider and ItemModels.sheath_state(session, guid) != _sheath_state:
 		_sheath_state = ItemModels.sheath_state(session, guid)
@@ -585,6 +591,9 @@ func _dress_player() -> void:
 	var session: WowSession = WowClient.session
 	var guid: int = session.get_player_guid()
 	var look: Dictionary = CharacterModels.player_look(session, guid)
+	_appearance = Vector2i(
+		session.get_field(guid, "PLAYER_BYTES"), session.get_field(guid, "PLAYER_BYTES_2") & 0xFF
+	)
 	_worn = CharacterModels.visible_items(session, guid)
 	_dressing = look["pending"]
 	_weapons = look["weapons"]

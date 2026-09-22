@@ -1,0 +1,790 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/barber_shop_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\MoneyFrame\\UI-MoneyFrame-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 80, 22)
+
+[node name="BarberShopFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 0.5
+anchor_right = 1
+anchor_bottom = 0.5
+offset_left = -283
+offset_top = -105.5
+offset_right = -18
+offset_bottom = 213.5
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="BarberShopFrameBackground" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="BarberShopFrameSelector1" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 74
+offset_right = 89.5
+offset_bottom = 106
+mouse_filter = 2
+
+[node name="BarberShopFrameSelector1Category" type="Label" parent="BarberShopFrameSelector1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Hair Style"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BarberShopFrameSelector1Prev" type="TextureButton" parent="BarberShopFrameSelector1"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -37
+offset_top = -9
+offset_right = -5
+offset_bottom = 23
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameSelector1Next" type="TextureButton" parent="BarberShopFrameSelector1"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 95
+offset_top = -9
+offset_right = 127
+offset_bottom = 23
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameSelector2" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 107
+offset_right = 89.5
+offset_bottom = 139
+mouse_filter = 2
+
+[node name="BarberShopFrameSelector2Category" type="Label" parent="BarberShopFrameSelector2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Hair Style"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BarberShopFrameSelector2Prev" type="TextureButton" parent="BarberShopFrameSelector2"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -37
+offset_top = -9
+offset_right = -5
+offset_bottom = 23
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameSelector2Next" type="TextureButton" parent="BarberShopFrameSelector2"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 95
+offset_top = -9
+offset_right = 127
+offset_bottom = 23
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameSelector3" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 140
+offset_right = 89.5
+offset_bottom = 172
+mouse_filter = 2
+
+[node name="BarberShopFrameSelector3Category" type="Label" parent="BarberShopFrameSelector3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Hair Style"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BarberShopFrameSelector3Prev" type="TextureButton" parent="BarberShopFrameSelector3"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -37
+offset_top = -9
+offset_right = -5
+offset_bottom = 23
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameSelector3Next" type="TextureButton" parent="BarberShopFrameSelector3"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 95
+offset_top = -9
+offset_right = 127
+offset_bottom = 23
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameSelector4" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 169
+offset_right = 89.5
+offset_bottom = 201
+visible = false
+mouse_filter = 2
+
+[node name="BarberShopFrameSelector4Category" type="Label" parent="BarberShopFrameSelector4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 90
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Hair Style"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BarberShopFrameSelector4Prev" type="TextureButton" parent="BarberShopFrameSelector4"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -37
+offset_top = -9
+offset_right = -5
+offset_bottom = 23
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Prev"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameSelector4Next" type="TextureButton" parent="BarberShopFrameSelector4"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 95
+offset_top = -9
+offset_right = 127
+offset_bottom = 23
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Next"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameMoneyFrame" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55
+offset_top = 182
+offset_right = 73
+offset_bottom = 195
+
+[node name="Texture" type="TextureRect" parent="BarberShopFrameMoneyFrame"]
+offset_left = -8
+offset_top = -3.5
+offset_right = 120
+offset_bottom = 28.5
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="BarberShopFrameOkayButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80
+offset_top = 208
+offset_right = 0
+offset_bottom = 232
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="BarberShopFrameOkayButtonText" type="Label" parent="BarberShopFrameOkayButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+mouse_filter = 2
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameCancelButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 5
+offset_top = 208
+offset_right = 85
+offset_bottom = 232
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="BarberShopFrameCancelButtonText" type="Label" parent="BarberShopFrameCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+mouse_filter = 2
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")
+
+[node name="BarberShopFrameResetButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -38
+offset_top = -74
+offset_right = 42
+offset_bottom = -50
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BarberShopFrameResetButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BarberShopFrameResetButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameResetButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="BarberShopFrameResetButtonText" type="Label" parent="BarberShopFrameResetButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+mouse_filter = 2
+text = "Reset"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameResetButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_5")

@@ -2,6 +2,8 @@ class_name GlueCheck
 extends Node
 
 # Can I Keep Him?, which a GM can grant outright.
+# Barbershop Chair, gameobject type 32.
+const BARBER_CHAIR: int = 190683
 const GUILD: String = "Wrathglue Bank"
 # A Guild Vault, gameobject type 34.
 const GUILD_VAULT: int = 187289
@@ -96,7 +98,43 @@ func _run() -> void:
 	await _achievements()
 	await _arena_team()
 	await _guild_bank()
+	await _barbershop()
 	_finish()
+
+
+# Sitting in a spawned barber chair opens the shop, and a new hair style is paid for and worn.
+func _barbershop() -> void:
+	var session: WowSession = WowClient.session
+	var me: int = session.get_player_guid()
+	var chairs: Array[int] = []
+	var on_created: Callable = func(guid: int, _type_id: int) -> void:
+		if session.get_field(guid, "OBJECT_FIELD_ENTRY") == BARBER_CHAIR:
+			chairs.append(guid)
+	session.object_created.connect(on_created)
+	session.send_chat(WowSession.CHAT_SAY, ".gobject add temp %d" % BARBER_CHAIR)
+	var sat: bool = await _until(func() -> bool: return not chairs.is_empty(),
+			"a barber chair spawns")
+	session.object_created.disconnect(on_created)
+	if not sat:
+		return
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, chairs[0])
+	session.send_packet("CMSG_GAMEOBJ_USE", payload)
+	var frame: BarberShopFrame = get_tree().root.find_child("BarberShopFrame", true, false)
+	if not await _until(func() -> bool: return frame.visible, "the chair opens the barber shop"):
+		return
+	var style: int = (session.get_field(me, "PLAYER_BYTES") >> 16) & 0xFF
+	(frame.get_node("%BarberShopFrameSelector1Next") as BaseButton).pressed.emit()
+	_check(WowClient.barbershop.preview.get("hair_style", style) != style,
+			"the next hair style is previewed on the player")
+	await _frames(30)
+	_capture("user://wotlk_barbershop.png")
+	(frame.get_node("%BarberShopFrameOkayButton") as BaseButton).pressed.emit()
+	var restyled: Callable = func() -> bool:
+		return (session.get_field(me, "PLAYER_BYTES") >> 16) & 0xFF != style
+	await _until(restyled, "the paid for hair style is worn")
+	_check(not frame.visible, "the barber shop closes after the haircut")
 
 
 # A GM-made guild buys its first tab at a spawned vault, then money and a stack go in and out.

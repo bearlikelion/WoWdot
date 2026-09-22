@@ -165,6 +165,14 @@ func _ready() -> void:
 	WowClient.arena_teams.message.connect(add_system_line)
 	WowClient.arena_teams.invited.connect(_on_arena_team_invited)
 	WowClient.guild_bank.opened.connect(_panels.show_panel.bind(_guild_bank))
+	%BarberShopFrame.caption_changed.connect(
+		func(text: String) -> void:
+			(%BarberShopBannerFrame.get_node("%BarberShopBannerFrameCaption") as Label).text = text
+	)
+	%BarberShopFrame.visibility_changed.connect(
+		func() -> void: %BarberShopBannerFrame.visible = %BarberShopFrame.visible
+	)
+	WowClient.barbershop.refused.connect(_on_barber_shop_refused)
 	_guild_bank.money_requested.connect(_on_guild_bank_money_requested)
 	_guild_bank.item_hovered.connect(func(button: ItemButton, item_entry: int) -> void:
 		if GameTooltip.current:
@@ -679,6 +687,13 @@ func _on_pet_changed() -> void:
 		return
 	_named_pet = pet.guid
 	_popup.ask_name(WowStrings.get_text("PET_RENAME_LABEL", "Name your pet"), pet.rename)
+
+
+func _on_barber_shop_refused(result: Barbershop.Result) -> void:
+	if result == Barbershop.Result.NOT_SEATED:
+		show_error(WowStrings.get_text("SPELL_FAILED_NOT_IN_BARBERSHOP"))
+	else:
+		show_error(WowStrings.get_text("ERR_NOT_ENOUGH_MONEY"))
 
 
 func _on_guild_bank_money_requested(deposit: bool) -> void:

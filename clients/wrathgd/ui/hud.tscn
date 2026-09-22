@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" path="res://ui/world_state_header.tscn" id="33_world_state"]
 [ext_resource type="PackedScene" path="res://ui/lfd_role_check_popup.tscn" id="34_role_check"]
 [ext_resource type="PackedScene" path="res://ui/lfd_dungeon_ready_popup.tscn" id="35_dungeon_ready"]
+[ext_resource type="PackedScene" path="res://ui/barber_shop_frame.tscn" id="36_barber"]
+[ext_resource type="PackedScene" path="res://ui/barber_shop_banner_frame.tscn" id="37_barber_banner"]
 
 [node name="Hud" type="Control" unique_id=2063934219]
 layout_mode = 3
@@ -266,6 +268,16 @@ offset_left = -153
 offset_top = 135
 offset_right = 153
 offset_bottom = 358
+
+[node name="BarberShopBannerFrame" parent="UIParent" instance=ExtResource("37_barber_banner")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="BarberShopFrame" parent="UIParent" instance=ExtResource("36_barber")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="GameTooltip" parent="UIParent" unique_id=823173588 instance=ExtResource("13_tooltip")]
 unique_name_in_owner = true

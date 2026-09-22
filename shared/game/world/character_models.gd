@@ -175,7 +175,7 @@ static func player_look(session: WowSession, guid: int) -> Dictionary:
 	var cloak: int = 0 if flags & PLAYER_FLAG_HIDE_CLOAK else items[BACK_SLOT]
 	var cloak_info: Dictionary = session.get_item_info(cloak) if cloak != 0 else {}
 	pending = pending or (cloak != 0 and cloak_info.is_empty())
-	return {
+	var look: Dictionary = {
 		"race": bytes_0 & 0xFF,
 		"gender": (bytes_0 >> 16) & 0xFF,
 		"skin": player_bytes & 0xFF,
@@ -189,6 +189,10 @@ static func player_look(session: WowSession, guid: int) -> Dictionary:
 		"cape": cloak_info.get("display_id", 0),
 		"pending": pending,
 	}
+	# The player in a barber's chair wears the style being tried.
+	if guid == session.get_player_guid():
+		look.merge(WowClient.barbershop.preview, true)
+	return look
 
 
 # How many of an option character creation cycles through, given the look's other choices.

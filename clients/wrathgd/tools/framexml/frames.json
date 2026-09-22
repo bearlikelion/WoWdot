@@ -474,6 +474,15 @@
    "script": "res://ui/guild_bank_frame.gd"
   },
   {
+   "frame": "BarberShopFrame",
+   "out": "ui/barber_shop_frame.tscn",
+   "script": "res://ui/barber_shop_frame.gd"
+  },
+  {
+   "frame": "BarberShopBannerFrame",
+   "out": "ui/barber_shop_banner_frame.tscn"
+  },
+  {
    "frame": "TargetDebuffFrameTemplate",
    "out": "ui/target_debuff_frame.tscn",
    "template": true

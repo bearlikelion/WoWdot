@@ -355,6 +355,15 @@
     "ID": 0,
     "Name": 1
   },
+  "BarberShopStyle": {
+    "ID": 0,
+    "Type": 1,
+    "Name": 2,
+    "CostModifier": 36,
+    "Race": 37,
+    "Sex": 38,
+    "Data": 39
+  },
   "BattlemasterList": {
     "ID": 0,
     "MapID": 1,
@@ -613,5 +622,8 @@
     "TextureHeight": 10,
     "TextureName": 8,
     "TextureWidth": 9
+  },
+  "gtBarberShopCostBase": {
+    "Cost": 0
   }
 }
