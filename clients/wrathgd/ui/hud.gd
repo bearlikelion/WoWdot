@@ -92,6 +92,7 @@ var _chat_hover_time: float = 0.0
 @onready var _achievement_frame: AchievementFrame = _panels.get_node("%AchievementFrame")
 @onready var _pvp: PVPParentFrame = _panels.get_node("%PVPParentFrame")
 @onready var _guild_bank: GuildBankFrame = _panels.get_node("%GuildBankFrame")
+@onready var _calendar: CalendarFrame = _panels.get_node("%CalendarFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
 @onready var _item_text: ItemTextFrame = _panels.get_node_or_null("%ItemTextFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
@@ -161,6 +162,13 @@ func _ready() -> void:
 	_trade.trade_offered.connect(_on_trade_offered)
 	_friends.message_added.connect(add_system_line)
 	_minimap.lfd_toggled.connect(_panels.toggle_panel.bind(_lfd))
+	_minimap.calendar_toggled.connect(_panels.toggle_panel.bind(_calendar))
+	_calendar.day_hovered.connect(func(button: Control, lines: PackedStringArray) -> void:
+		if GameTooltip.current:
+			GameTooltip.current.set_text(button, lines[0], "\n".join(lines.slice(1))))
+	_calendar.day_left.connect(func(button: Control) -> void:
+		if GameTooltip.current:
+			GameTooltip.current.hide_for(button))
 	WowClient.dungeon_finder.failed.connect(show_error)
 	WowClient.arena_teams.message.connect(add_system_line)
 	WowClient.arena_teams.invited.connect(_on_arena_team_invited)

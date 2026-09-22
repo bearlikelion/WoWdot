@@ -38,6 +38,7 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"AchievementFrame": [Area.LEFT, 0],
 	&"PVPParentFrame": [Area.LEFT, 0],
 	&"GuildBankFrame": [Area.LEFT, 0],
+	&"CalendarFrame": [Area.LEFT, 0],
 	&"BattlefieldFrame": [Area.LEFT, 0],
 	&"WorldStateScoreFrame": [Area.CENTER, 0],
 	&"HelpFrame": [Area.CENTER, 0],

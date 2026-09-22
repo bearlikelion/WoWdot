@@ -99,7 +99,31 @@ func _run() -> void:
 	await _arena_team()
 	await _guild_bank()
 	await _barbershop()
+	await _calendar()
 	_finish()
+
+
+# The minimap clock opens this month's calendar once the server's calendar arrives.
+func _calendar() -> void:
+	var minimap: MinimapCluster = get_tree().root.find_child("MinimapCluster", true, false)
+	(minimap.get_node("%GameTimeFrame") as BaseButton).pressed.emit()
+	var frame: CalendarFrame = get_tree().root.find_child("CalendarFrame", true, false)
+	var opened: Callable = func() -> bool:
+		return frame.visible and WowClient.calendar.server_time > 0
+	if not await _until(opened, "the calendar opens with the server's calendar"):
+		return
+	var now: Dictionary = frame.today()
+	_check((frame.get_node("%CalendarMonthName") as Label).text \
+			== WowStrings.get_text(CalendarFrame.MONTH_KEYS[now["month"] - 1]),
+			"the calendar opens on the server's month")
+	var festive: int = 0
+	for i: int in CalendarFrame.DAYS_SHOWN:
+		if (frame.get_node("%%CalendarDayButton%dEventTexture" % (i + 1)) as CanvasItem).visible:
+			festive += 1
+	print("calendar: %d holidays, %d events, %d days with holiday art" % [
+		WowClient.calendar.holidays.size(), WowClient.calendar.events.size(), festive,
+	])
+	frame.close_requested.emit()
 
 
 # Sitting in a spawned barber chair opens the shop, and a new hair style is paid for and worn.

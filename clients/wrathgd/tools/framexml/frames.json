@@ -483,6 +483,11 @@
    "out": "ui/barber_shop_banner_frame.tscn"
   },
   {
+   "frame": "CalendarFrame",
+   "out": "ui/calendar_frame.tscn",
+   "script": "res://ui/calendar_frame.gd"
+  },
+  {
    "frame": "TargetDebuffFrameTemplate",
    "out": "ui/target_debuff_frame.tscn",
    "template": true
@@ -631,6 +636,14 @@
    "offset": [18, -18],
    "gap": [0, -3],
    "size": [483, 48]
+  },
+  {
+   "parent": "CalendarFrame",
+   "template": "CalendarDayButtonTemplate",
+   "name": "CalendarDayButton%d",
+   "count": 42,
+   "columns": 7,
+   "offset": [12, -74]
   },
   {
    "parent": "GearManagerDialog",

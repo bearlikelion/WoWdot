@@ -2,6 +2,7 @@ class_name MinimapCluster
 extends Control
 
 signal lfd_toggled
+signal calendar_toggled
 
 # GetZonePVPInfo colours for the zone name above the minimap.
 const FRIENDLY: Color = Color(0.1, 1.0, 0.1)
@@ -25,6 +26,7 @@ func _ready() -> void:
 	var indicator: AtlasTexture = AtlasTexture.new()
 	indicator.atlas = _game_time.texture
 	_game_time.texture = indicator
+	%GameTimeFrame.pressed.connect(calendar_toggled.emit)
 	LFGArt.eye(%MiniMapLFGFrameIconTexture)
 	%MiniMapLFGFrameDropDown.hide()
 	%MiniMapLFGFrame.pressed.connect(lfd_toggled.emit)

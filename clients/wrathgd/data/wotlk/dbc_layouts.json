@@ -303,6 +303,27 @@
     "Threshold8": 46,
     "Threshold9": 47
   },
+  "HolidayDescriptions": {
+    "ID": 0,
+    "Description": 1
+  },
+  "HolidayNames": {
+    "ID": 0,
+    "Name": 1
+  },
+  "Holidays": {
+    "ID": 0,
+    "Duration": 1,
+    "Date": 11,
+    "Region": 37,
+    "Looping": 38,
+    "CalendarFlags": 39,
+    "NameID": 49,
+    "DescriptionID": 50,
+    "TextureFilename": 51,
+    "Priority": 52,
+    "FilterType": 53
+  },
   "LFGDungeons": {
     "ID": 0,
     "Name": 1,
