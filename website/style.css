@@ -50,6 +50,17 @@ a:hover {
   color: var(--gold);
 }
 
+:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--ice);
+  color: var(--bg);
+}
+
 .hero {
   padding: var(--s-16) var(--s-4) var(--s-12);
   text-align: center;
@@ -63,7 +74,7 @@ a:hover {
 }
 
 h1 {
-  margin: 8px 0 0;
+  margin: var(--s-2) 0 0;
   font-size: 2.6rem;
 }
 
@@ -72,24 +83,22 @@ h1 {
   color: var(--muted);
 }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
 .button {
-  padding: 8px 18px;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--s-2) 18px;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--surface);
   color: var(--text);
+  font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .button:hover {
   border-color: var(--ice);
+  color: var(--text);
 }
 
 main {
@@ -185,34 +194,13 @@ li {
 .downloads {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--s-2) var(--s-6);
+  align-items: center;
+  gap: var(--s-3) var(--s-4);
   margin-bottom: var(--s-3);
-  font-weight: 600;
 }
 
 .steps {
   color: var(--muted);
-}
-
-.client {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.client img {
-  border-radius: 6px;
-}
-
-.dl {
-  display: inline-block;
-  color: var(--text);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.dl:hover {
-  color: var(--ice);
 }
 
 .plat {
@@ -291,15 +279,15 @@ figure img {
 }
 
 figcaption {
-  margin-top: 6px;
+  margin-top: var(--s-2);
   color: var(--muted);
   font-size: 0.9rem;
 }
 
 blockquote {
-  margin: 16px 0;
-  padding-left: 16px;
-  border-left: 3px solid var(--line);
+  margin: var(--s-4) 0;
+  padding-left: var(--s-4);
+  border-left: 1px solid var(--line);
   color: var(--muted);
 }
 
@@ -308,7 +296,7 @@ blockquote p {
 }
 
 pre {
-  padding: 12px 16px;
+  padding: var(--s-3) var(--s-4);
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -338,7 +326,7 @@ footer {
 }
 
 footer p {
-  margin: 4px 0;
+  margin: var(--s-1) 0;
 }
 
 @media (max-width: 860px) {
