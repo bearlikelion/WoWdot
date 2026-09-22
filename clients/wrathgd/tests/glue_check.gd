@@ -79,7 +79,59 @@ func _run() -> void:
 	await _use_item()
 	await _glyph()
 	await _gear_manager()
+	await _dungeon_finder()
 	_finish()
+
+
+# A one-player queue through the LFD frame: a proposal, the teleport in, and back out.
+func _dungeon_finder() -> void:
+	var session: WowSession = WowClient.session
+	var finder: DungeonFinder = WowClient.dungeon_finder
+	var said: PackedStringArray = []
+	var maps: Array[int] = []
+	session.chat_received.connect(func(line: Dictionary) -> void: said.append(line["text"]))
+	session.world_entered.connect(
+		func(map_id: int, _at: Vector3, _facing: float) -> void: maps.append(map_id)
+	)
+	if not await _set_solo_queue(true, said):
+		return
+	var press: InputEventAction = InputEventAction.new()
+	press.action = "toggle_lfd"
+	press.pressed = true
+	Input.parse_input_event(press)
+	var frame: LFDParentFrame = get_tree().root.find_child("LFDParentFrame", true, false)
+	if await _until(func() -> bool: return not finder.random_dungeons.is_empty(),
+			"the dungeon finder offers random dungeons"):
+		await _frames(30)
+		_capture("user://wotlk_lfd.png")
+		(frame.get_node("%LFDQueueFrameFindGroupButton") as BaseButton).pressed.emit()
+		var popup: LFDDungeonReadyPopup = \
+				get_tree().root.find_child("LFDDungeonReadyPopup", true, false)
+		if await _until(func() -> bool: return popup.visible, "the dungeon ready popup opens"):
+			await _frames(30)
+			_capture("user://wotlk_lfd_ready.png")
+			var enter: BaseButton = popup.get_node("%LFDDungeonReadyDialogEnterDungeonButton")
+			enter.pressed.emit()
+			if await _until(func() -> bool: return not maps.is_empty(), "the group is sent in"):
+				print("dungeon finder sent the group to map %d" % maps[0])
+				finder.teleport(true)
+				await _until(func() -> bool: return maps.size() > 1, "the teleport out lands")
+			session.send_packet("CMSG_GROUP_DISBAND", PackedByteArray())
+	await _set_solo_queue(false, said)
+
+
+# .debug lfg toggles AzerothCore's one-player queue for every session, so it is set back after.
+func _set_solo_queue(solo: bool, said: PackedStringArray) -> bool:
+	for attempt: int in 2:
+		said.clear()
+		WowClient.session.send_chat(WowSession.CHAT_SAY, ".debug lfg")
+		var answered: Callable = func() -> bool:
+			return not said.is_empty() and said[-1].begins_with("LFG")
+		if not await _until(answered, "the LFG debug toggle answers"):
+			return false
+		if said[-1].contains("1 player") == solo:
+			return true
+	return false
 
 
 # The paper doll's gear manager saves a set through its popup and lists it.

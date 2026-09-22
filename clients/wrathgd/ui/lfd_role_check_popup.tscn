@@ -1,0 +1,519 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/lfd_role_check_popup.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\LFGFrame\\UI-LFG-ICON-ROLES.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_3")
+region = Rect2(0, 133.99, 66.9952, 66.9952)
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_10"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(68, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(12, 0, 56, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(0, 0, 80, 22)
+
+[node name="LFDRoleCheckPopup" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = -0
+offset_right = 306
+offset_bottom = 180
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="."]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="FontString" type="Label" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 15
+offset_right = 0
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Confirm your role:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDRoleCheckPopupRoleButtonTank" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 35
+offset_top = 35
+offset_right = 105
+offset_bottom = 105
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonTank"]
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 70
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonTank"]
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="CheckButton" type="TextureButton" parent="LFDRoleCheckPopupRoleButtonTank"]
+script = ExtResource("3")
+offset_left = -5
+offset_top = 51
+offset_right = 19
+offset_bottom = 75
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="LFDRoleCheckPopupRoleButtonHealer" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 120
+offset_top = 35
+offset_right = 190
+offset_bottom = 105
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonHealer"]
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 70
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonHealer"]
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="CheckButton" type="TextureButton" parent="LFDRoleCheckPopupRoleButtonHealer"]
+script = ExtResource("3")
+offset_left = -5
+offset_top = 51
+offset_right = 19
+offset_bottom = 75
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="LFDRoleCheckPopupRoleButtonDPS" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 205
+offset_top = 35
+offset_right = 275
+offset_bottom = 105
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonDPS"]
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 70
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonDPS"]
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="CheckButton" type="TextureButton" parent="LFDRoleCheckPopupRoleButtonDPS"]
+script = ExtResource("3")
+offset_left = -5
+offset_top = 51
+offset_right = 19
+offset_bottom = 75
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDRoleCheckPopupRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="LFDRoleCheckPopupAcceptButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -118
+offset_top = -37
+offset_right = -3
+offset_bottom = -15
+ignore_texture_size = true
+
+[node name="LFDRoleCheckPopupAcceptButtonLeft" type="TextureRect" parent="LFDRoleCheckPopupAcceptButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="LFDRoleCheckPopupAcceptButtonRight" type="TextureRect" parent="LFDRoleCheckPopupAcceptButton"]
+unique_name_in_owner = true
+offset_left = 103
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="LFDRoleCheckPopupAcceptButtonMiddle" type="TextureRect" parent="LFDRoleCheckPopupAcceptButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 103
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="LFDRoleCheckPopupAcceptButtonText" type="Label" parent="LFDRoleCheckPopupAcceptButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+mouse_filter = 2
+text = "Accept"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDRoleCheckPopupAcceptButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="LFDRoleCheckPopupDeclineButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 3
+offset_top = -37
+offset_right = 118
+offset_bottom = -15
+ignore_texture_size = true
+
+[node name="LFDRoleCheckPopupDeclineButtonLeft" type="TextureRect" parent="LFDRoleCheckPopupDeclineButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="LFDRoleCheckPopupDeclineButtonRight" type="TextureRect" parent="LFDRoleCheckPopupDeclineButton"]
+unique_name_in_owner = true
+offset_left = 103
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="LFDRoleCheckPopupDeclineButtonMiddle" type="TextureRect" parent="LFDRoleCheckPopupDeclineButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 103
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="LFDRoleCheckPopupDeclineButtonText" type="Label" parent="LFDRoleCheckPopupDeclineButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+mouse_filter = 2
+text = "Decline"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDRoleCheckPopupDeclineButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="LFDRoleCheckPopupDescription" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -0.5
+offset_top = -65
+offset_right = 0.5
+offset_bottom = -49
+mouse_filter = 2
+
+[node name="LFDRoleCheckPopupDescriptionText" type="Label" parent="LFDRoleCheckPopupDescription"]
+unique_name_in_owner = true
+offset_left = -139.5
+offset_top = -4.5
+offset_right = 140.5
+offset_bottom = 20.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2

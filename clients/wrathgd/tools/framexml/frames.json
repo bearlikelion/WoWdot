@@ -444,6 +444,21 @@
    "template": true
   },
   {
+   "frame": "LFDParentFrame",
+   "out": "ui/lfd_parent_frame.tscn",
+   "script": "res://ui/lfd_parent_frame.gd"
+  },
+  {
+   "frame": "LFDRoleCheckPopup",
+   "out": "ui/lfd_role_check_popup.tscn",
+   "script": "res://ui/lfd_role_check_popup.gd"
+  },
+  {
+   "frame": "LFDDungeonReadyPopup",
+   "out": "ui/lfd_dungeon_ready_popup.tscn",
+   "script": "res://ui/lfd_dungeon_ready_popup.gd"
+  },
+  {
    "frame": "TargetDebuffFrameTemplate",
    "out": "ui/target_debuff_frame.tscn",
    "template": true

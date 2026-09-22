@@ -1,0 +1,753 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/lfd_dungeon_ready_popup.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Buttons\\UI-Panel-HideButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-Panel-HideButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\LFGFrame\\UI-LFG-ICON-ROLES.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\RaidFrame\\ReadyCheck-Waiting.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\LFGFrame\\UI-LFG-BACKGROUND-RANDOMDUNGEON.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\LFGFrame\\UI-LFG-FILIGREE.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(13.9981, 74, 291.999, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 286.976, 72)
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(0, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(68, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(12, 0, 56, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_19")
+region = Rect2(0, 1, 19, 19)
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\LFGFrame\\UI-LFG-SEPARATOR.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(0, 0, 170, 40)
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\LFGFrame\\UI-LFG-ICON-REWARDRING.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
+atlas = SubResource("WowTexture_23")
+region = Rect2(0, 0, 43.2, 43.2)
+
+[node name="LFDDungeonReadyPopup" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = -0
+offset_right = 306
+offset_bottom = 223
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+
+[node name="LFDDungeonReadyStatus" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -153
+offset_top = 0
+offset_right = 153
+offset_bottom = 120
+mouse_filter = 0
+
+[node name="Backdrop" type="Control" parent="LFDDungeonReadyStatus"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="LFDDungeonReadyStatusLabel" type="Label" parent="LFDDungeonReadyStatus"]
+unique_name_in_owner = true
+offset_left = 153
+offset_top = 15
+offset_right = 153
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Ready Check"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDDungeonReadyStatusCloseButton" type="TextureButton" parent="LFDDungeonReadyStatus"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 272
+offset_top = 2
+offset_right = 304
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="LFDDungeonReadyStatusPlayer1" type="Control" parent="LFDDungeonReadyStatus"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 42.5
+offset_right = 70
+offset_bottom = 97.5
+mouse_filter = 2
+
+[node name="LFDDungeonReadyStatusPlayer1Texture" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 55
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer1StatusIcon" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer1"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 25
+offset_right = 35
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer2" type="Control" parent="LFDDungeonReadyStatus"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 42.5
+offset_right = 125
+offset_bottom = 97.5
+mouse_filter = 2
+
+[node name="LFDDungeonReadyStatusPlayer2Texture" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 55
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer2StatusIcon" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer2"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 25
+offset_right = 35
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer3" type="Control" parent="LFDDungeonReadyStatus"]
+unique_name_in_owner = true
+offset_left = 125
+offset_top = 42.5
+offset_right = 180
+offset_bottom = 97.5
+mouse_filter = 2
+
+[node name="LFDDungeonReadyStatusPlayer3Texture" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 55
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer3StatusIcon" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer3"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 25
+offset_right = 35
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer4" type="Control" parent="LFDDungeonReadyStatus"]
+unique_name_in_owner = true
+offset_left = 180
+offset_top = 42.5
+offset_right = 235
+offset_bottom = 97.5
+mouse_filter = 2
+
+[node name="LFDDungeonReadyStatusPlayer4Texture" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 55
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer4StatusIcon" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer4"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 25
+offset_right = 35
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer5" type="Control" parent="LFDDungeonReadyStatus"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 42.5
+offset_right = 290
+offset_bottom = 97.5
+mouse_filter = 2
+
+[node name="LFDDungeonReadyStatusPlayer5Texture" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 55
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="LFDDungeonReadyStatusPlayer5StatusIcon" type="TextureRect" parent="LFDDungeonReadyStatus/LFDDungeonReadyStatusPlayer5"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 25
+offset_right = 35
+offset_bottom = 55
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialog" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 306
+offset_bottom = 193
+mouse_filter = 0
+
+[node name="Backdrop" type="Control" parent="LFDDungeonReadyDialog"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="LFDDungeonReadyDialogBackground" type="TextureRect" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 6
+offset_top = 11
+offset_right = 300
+offset_bottom = 129
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogLabel" type="Label" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 78
+offset_top = 15
+offset_right = 228
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDDungeonReadyDialogFiligree" type="TextureRect" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 3
+offset_right = 299
+offset_bottom = 57
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogBottomArt" type="TextureRect" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 9.5
+offset_top = 66
+offset_right = 296.5
+offset_bottom = 138
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogYourRoleDescription" type="Label" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 90
+offset_right = 108
+offset_bottom = 100
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightExtraSmall"
+text = "Your Role"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDDungeonReadyDialogRoleLabel" type="Label" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 100
+offset_right = 108
+offset_bottom = 116
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLarge"
+text = "Healer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDDungeonReadyDialogCloseButton" type="TextureButton" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 272
+offset_top = 2
+offset_right = 304
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="LFDDungeonReadyDialogEnterDungeonButton" type="TextureButton" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 31
+offset_top = 146
+offset_right = 146
+offset_bottom = 168
+ignore_texture_size = true
+
+[node name="LFDDungeonReadyDialogEnterDungeonButtonLeft" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogEnterDungeonButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogEnterDungeonButtonRight" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogEnterDungeonButton"]
+unique_name_in_owner = true
+offset_left = 103
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogEnterDungeonButtonMiddle" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogEnterDungeonButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 103
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogEnterDungeonButtonText" type="Label" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogEnterDungeonButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+mouse_filter = 2
+text = "Enter Dungeon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogEnterDungeonButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="LFDDungeonReadyDialogLeaveQueueButton" type="TextureButton" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 160
+offset_top = 146
+offset_right = 275
+offset_bottom = 168
+ignore_texture_size = true
+
+[node name="LFDDungeonReadyDialogLeaveQueueButtonLeft" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogLeaveQueueButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogLeaveQueueButtonRight" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogLeaveQueueButton"]
+unique_name_in_owner = true
+offset_left = 103
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogLeaveQueueButtonMiddle" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogLeaveQueueButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 103
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogLeaveQueueButtonText" type="Label" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogLeaveQueueButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+mouse_filter = 2
+text = "Leave Queue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogLeaveQueueButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 115
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="LFDDungeonReadyDialogRoleIcon" type="Control" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 118.5
+offset_top = 72
+offset_right = 185.5
+offset_bottom = 139
+mouse_filter = 2
+
+[node name="LFDDungeonReadyDialogRoleIconTexture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRoleIcon"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogRoleIconLeaderIcon" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRoleIcon"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 4
+offset_right = 19
+offset_bottom = 23
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogRandomInProgressFrame" type="Control" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 68
+offset_top = 32
+offset_right = 238
+offset_bottom = 62
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRandomInProgressFrame"]
+offset_left = -20
+offset_top = 0
+offset_right = 190
+offset_bottom = 40
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+flip_v = true
+
+[node name="LFDDungeonReadyDialogRandomInProgressFrameStatusText" type="Label" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRandomInProgressFrame"]
+unique_name_in_owner = true
+offset_left = 85
+offset_top = 18
+offset_right = 85
+offset_bottom = 30
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "This Dungeon is In Progress."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDDungeonReadyDialogInstanceInfoFrame" type="Control" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 67
+offset_top = 12
+offset_right = 237
+offset_bottom = 62
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogInstanceInfoFrame"]
+offset_left = 0
+offset_top = 0
+offset_right = 170
+offset_bottom = 40
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogInstanceInfoFrameName" type="Label" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogInstanceInfoFrame"]
+unique_name_in_owner = true
+offset_left = 85
+offset_top = 13
+offset_right = 85
+offset_bottom = 29
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDDungeonReadyDialogInstanceInfoFrameStatusText" type="Label" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogInstanceInfoFrame"]
+unique_name_in_owner = true
+offset_left = 85
+offset_top = 38
+offset_right = 85
+offset_bottom = 50
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDDungeonReadyDialogRewardsFrame" type="Control" parent="LFDDungeonReadyDialog"]
+unique_name_in_owner = true
+offset_left = 204.5
+offset_top = 84
+offset_right = 276.5
+offset_bottom = 124
+mouse_filter = 2
+
+[node name="LFDDungeonReadyDialogRewardsFrameLabel" type="Label" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 36
+offset_top = 30
+offset_right = 36
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Rewards"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDDungeonReadyDialogRewardsFrameReward1" type="Control" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+mouse_filter = 2
+
+[node name="LFDDungeonReadyDialogRewardsFrameReward1Texture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRewardsFrame/LFDDungeonReadyDialogRewardsFrameReward1"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogRewardsFrameReward1Border" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRewardsFrame/LFDDungeonReadyDialogRewardsFrameReward1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogRewardsFrameReward2" type="Control" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+mouse_filter = 2
+
+[node name="LFDDungeonReadyDialogRewardsFrameReward2Texture" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRewardsFrame/LFDDungeonReadyDialogRewardsFrameReward2"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+expand_mode = 1
+
+[node name="LFDDungeonReadyDialogRewardsFrameReward2Border" type="TextureRect" parent="LFDDungeonReadyDialog/LFDDungeonReadyDialogRewardsFrame/LFDDungeonReadyDialogRewardsFrameReward2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1

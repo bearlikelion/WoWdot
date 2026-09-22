@@ -12,6 +12,7 @@ var targeting: ItemTargeting = ItemTargeting.new(session)
 var battlegrounds: Battlegrounds = Battlegrounds.new(session)
 var proficiencies: Proficiencies = Proficiencies.new(session)
 var equipment_sets: EquipmentSets = EquipmentSets.new(session)
+var dungeon_finder: DungeonFinder = DungeonFinder.new(session)
 
 
 func _ready() -> void:

@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" path="res://ui/drop_down_list.tscn" id="24_menu"]
 [ext_resource type="PackedScene" path="res://ui/tutorial_frame.tscn" id="32_tutorial"]
 [ext_resource type="PackedScene" path="res://ui/world_state_header.tscn" id="33_world_state"]
+[ext_resource type="PackedScene" path="res://ui/lfd_role_check_popup.tscn" id="34_role_check"]
+[ext_resource type="PackedScene" path="res://ui/lfd_dungeon_ready_popup.tscn" id="35_dungeon_ready"]
 
 [node name="Hud" type="Control" unique_id=2063934219]
 layout_mode = 3
@@ -244,6 +246,26 @@ layout_mode = 1
 [node name="UIPanels" parent="UIParent" unique_id=1619233165 instance=ExtResource("15_panels")]
 unique_name_in_owner = true
 layout_mode = 1
+
+[node name="LFDRoleCheckPopup" parent="UIParent" instance=ExtResource("34_role_check")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -153
+offset_top = 135
+offset_right = 153
+offset_bottom = 315
+
+[node name="LFDDungeonReadyPopup" parent="UIParent" instance=ExtResource("35_dungeon_ready")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -153
+offset_top = 135
+offset_right = 153
+offset_bottom = 358
 
 [node name="GameTooltip" parent="UIParent" unique_id=823173588 instance=ExtResource("13_tooltip")]
 unique_name_in_owner = true

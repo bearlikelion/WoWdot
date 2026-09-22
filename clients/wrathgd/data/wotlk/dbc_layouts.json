@@ -277,7 +277,16 @@
   },
   "LFGDungeons": {
     "ID": 0,
-    "Name": 1
+    "Name": 1,
+    "MinLevel": 18,
+    "MaxLevel": 19,
+    "MapID": 23,
+    "Difficulty": 24,
+    "Flags": 25,
+    "TypeID": 26,
+    "TextureFilename": 28,
+    "ExpansionLevel": 29,
+    "Description": 32
   },
   "Light": {
     "ID": 0,

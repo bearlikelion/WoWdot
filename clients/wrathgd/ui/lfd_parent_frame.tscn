@@ -1,0 +1,4043 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/lfd_parent_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="3"]
+[ext_resource type="PackedScene" path="res://ui/money_frame.tscn" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\LFGFrame\\UI-LFG-FRAME.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\LFGFrame\\UI-LFG-BACKGROUND-QUESTPAPER.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\LFGFrame\\UI-LFG-ICONS-ROLEBACKGROUNDS.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\LFGFrame\\UI-LFG-ICON-ROLES.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 133.99, 66.9952, 66.9952)
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
+atlas = SubResource("WowTexture_23")
+region = Rect2(0, 0, 31, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_23")
+region = Rect2(33, 0, 31, 106)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28"]
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_33")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
+atlas = SubResource("WowTexture_43")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\QuestFrame\\UI-QuestItemNameFrame.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface/LFGFrame/UI-LFG-ICON-HEROIC.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_46")
+region = Rect2(0, 0, 128, 160)
+
+[sub_resource type="WowTexture" id="WowTexture_48"]
+file = "Interface/LFGFrame/UI-LFG-ICON-LOCK.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
+atlas = SubResource("WowTexture_48")
+region = Rect2(0, 0, 184, 224)
+
+[sub_resource type="WowTexture" id="WowTexture_50"]
+file = "Interface\\Buttons\\UI-MinusButton-UP.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_51"]
+file = "Interface\\Buttons\\UI-PlusButton-Hilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_52"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
+atlas = SubResource("WowTexture_52")
+region = Rect2(0, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54"]
+atlas = SubResource("WowTexture_52")
+region = Rect2(68, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55"]
+atlas = SubResource("WowTexture_52")
+region = Rect2(12, 0, 56, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
+atlas = SubResource("WowTexture_56")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_58"]
+file = "Interface\\LFGFrame\\UI-LFG-PORTRAIT.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_59"]
+file = "Interface\\LFGFrame\\LFG-Eye.blp"
+
+[node name="LFDParentFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = -0
+offset_right = 355
+offset_bottom = 440
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="Button" type="TextureButton" parent="."]
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -30
+offset_top = 8
+offset_right = 2
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="LFDQueueFrameLayout" type="TextureRect" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 512
+offset_bottom = 512
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="LFDQueueFrameBackground" type="TextureRect" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 21
+offset_top = -64
+offset_right = 533
+offset_bottom = 192
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="LFDQueueFrameTitleText" type="Label" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 12
+offset_top = 17
+offset_right = 12
+offset_bottom = 29
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Dungeon Finder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDQueueFrameRoleButtonTank" type="TextureButton" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 65
+offset_top = 60
+offset_right = 113
+offset_bottom = 108
+ignore_texture_size = true
+
+[node name="LFDQueueFrameRoleButtonTankBackground" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank"]
+unique_name_in_owner = true
+offset_left = -16
+offset_top = -16
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank"]
+offset_left = 0
+offset_top = 0
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank"]
+offset_left = 0
+offset_top = 0
+offset_right = 48
+offset_bottom = 48
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="CheckButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank"]
+script = ExtResource("2")
+offset_left = -5
+offset_top = 29
+offset_right = 19
+offset_bottom = 53
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonTank/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameRoleButtonHealer" type="TextureButton" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 138
+offset_top = 60
+offset_right = 186
+offset_bottom = 108
+ignore_texture_size = true
+
+[node name="LFDQueueFrameRoleButtonHealerBackground" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer"]
+unique_name_in_owner = true
+offset_left = -16
+offset_top = -16
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer"]
+offset_left = 0
+offset_top = 0
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer"]
+offset_left = 0
+offset_top = 0
+offset_right = 48
+offset_bottom = 48
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="CheckButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer"]
+script = ExtResource("2")
+offset_left = -5
+offset_top = 29
+offset_right = 19
+offset_bottom = 53
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonHealer/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameRoleButtonDPS" type="TextureButton" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 209
+offset_top = 60
+offset_right = 257
+offset_bottom = 108
+ignore_texture_size = true
+
+[node name="LFDQueueFrameRoleButtonDPSBackground" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS"]
+unique_name_in_owner = true
+offset_left = -16
+offset_top = -16
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS"]
+offset_left = 0
+offset_top = 0
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS"]
+offset_left = 0
+offset_top = 0
+offset_right = 48
+offset_bottom = 48
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="CheckButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS"]
+script = ExtResource("2")
+offset_left = -5
+offset_top = 29
+offset_right = 19
+offset_bottom = 53
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonDPS/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameRoleButtonLeader" type="TextureButton" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 289
+offset_top = 60
+offset_right = 337
+offset_bottom = 108
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonLeader"]
+offset_left = 0
+offset_top = 0
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonLeader"]
+offset_left = 0
+offset_top = 0
+offset_right = 48
+offset_bottom = 48
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="CheckButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameRoleButtonLeader"]
+script = ExtResource("2")
+offset_left = -5
+offset_top = 29
+offset_right = 19
+offset_bottom = 53
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonLeader/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonLeader/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonLeader/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonLeader/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRoleButtonLeader/CheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameTypeDropDown" type="Control" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+offset_left = 131
+offset_top = 125
+offset_right = 171
+offset_bottom = 157
+mouse_filter = 2
+
+[node name="LFDQueueFrameTypeDropDownLeft" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="LFDQueueFrameTypeDropDownMiddle" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="LFDQueueFrameTypeDropDownRight" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="LFDQueueFrameTypeDropDownText" type="Label" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="LFDQueueFrameTypeDropDownName" type="Label" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown"]
+unique_name_in_owner = true
+offset_left = -115
+offset_top = 2
+offset_right = 0
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Type:"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="LFDQueueFrameTypeDropDownButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown/LFDQueueFrameTypeDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown/LFDQueueFrameTypeDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown/LFDQueueFrameTypeDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameTypeDropDown/LFDQueueFrameTypeDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameRandom" type="Control" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="LFDQueueFrameRandomScrollFrame" type="Control" parent="LFDQueueFrame/LFDQueueFrameRandom"]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -332
+offset_top = -283
+offset_right = -34
+offset_bottom = -30
+mouse_filter = 0
+
+[node name="LFDQueueFrameRandomScrollFrameScrollBackground" type="ColorRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame"]
+unique_name_in_owner = true
+offset_left = 298
+offset_top = 5
+offset_right = 327
+offset_bottom = 255
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="LFDQueueFrameRandomScrollFrameScrollBackgroundTopLeft" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame"]
+unique_name_in_owner = true
+offset_left = 296
+offset_top = -5
+offset_right = 327
+offset_bottom = 251
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="LFDQueueFrameRandomScrollFrameScrollBackgroundBottomRight" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame"]
+unique_name_in_owner = true
+offset_left = 296
+offset_top = 151
+offset_right = 327
+offset_bottom = 257
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="LFDQueueFrameRandomScrollFrameScrollBar" type="VSlider" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame"]
+unique_name_in_owner = true
+offset_left = 304
+offset_top = 16
+offset_right = 320
+offset_bottom = 237
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_27")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_27")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_28")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_28")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_28")
+max_value = 0.0
+step = 0.0
+
+[node name="LFDQueueFrameRandomScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar/LFDQueueFrameRandomScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar/LFDQueueFrameRandomScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar/LFDQueueFrameRandomScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar/LFDQueueFrameRandomScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameRandomScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 221
+offset_right = 17
+offset_bottom = 237
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar/LFDQueueFrameRandomScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar/LFDQueueFrameRandomScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar/LFDQueueFrameRandomScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameScrollBar/LFDQueueFrameRandomScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameRandomScrollFrameClip" type="Control" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrame" type="Control" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 1
+offset_bottom = 1
+mouse_filter = 2
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameTitle" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 15
+offset_right = 10
+offset_bottom = 33
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestTitleFontBlackShadow"
+text = "Random Dungeon"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameDescription" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 38
+offset_right = 290
+offset_bottom = 51
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Using the Dungeon Finder to do a Random Dungeon will earn you extra rewards."
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameRewardsLabel" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 61
+offset_right = 10
+offset_bottom = 79
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestTitleFontBlackShadow"
+text = "Rewards"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameRewardsDescription" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 84
+offset_right = 290
+offset_bottom = 97
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "The first random dungeon that you complete each day will earn you:"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameRandomScrollFrameChildFramePUGDescription" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 84
+offset_right = 290
+offset_bottom = 97
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "You will also receive the following rewards. They scale with the number of random players included in your group:"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameMoneyLabel" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 107
+offset_right = 30
+offset_bottom = 120
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Money:"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameXPLabel" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 125
+offset_right = 30
+offset_bottom = 138
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Experience:"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameXPAmount" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 123.5
+offset_right = 40
+offset_bottom = 139.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameItem1" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 10
+offset_top = 107
+offset_right = 157
+offset_bottom = 148
+ignore_texture_size = true
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameItem1IconTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame/LFDQueueFrameRandomScrollFrameChildFrameItem1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameItem1NameFrame" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame/LFDQueueFrameRandomScrollFrameChildFrameItem1"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameItem1Name" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame/LFDQueueFrameRandomScrollFrameChildFrameItem1"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameItem1Count" type="Label" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame/LFDQueueFrameRandomScrollFrameChildFrameItem1"]
+unique_name_in_owner = true
+offset_left = 38
+offset_top = 24
+offset_right = 38
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameMoneyFrame" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame" instance=ExtResource("4")]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 99.5
+offset_right = 232
+offset_bottom = 127.5
+
+[node name="LFDQueueFrameRandomScrollFrameChildFrameSpacer" type="Control" parent="LFDQueueFrame/LFDQueueFrameRandom/LFDQueueFrameRandomScrollFrame/LFDQueueFrameRandomScrollFrameClip/LFDQueueFrameRandomScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 148
+offset_right = 32
+offset_bottom = 150
+mouse_filter = 2
+
+[node name="LFDQueueFrameSpecific" type="Control" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="LFDQueueFrameSpecificListButton1" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 165
+offset_right = 320
+offset_bottom = 181
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton1HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton1InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton1InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton1LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton1EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1/LFDQueueFrameSpecificListButton1EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1/LFDQueueFrameSpecificListButton1EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1/LFDQueueFrameSpecificListButton1EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1/LFDQueueFrameSpecificListButton1EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1/LFDQueueFrameSpecificListButton1EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton1ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1/LFDQueueFrameSpecificListButton1ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton1/LFDQueueFrameSpecificListButton1ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton2" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 181
+offset_right = 320
+offset_bottom = 197
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton2HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton2InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton2InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton2LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton2EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2/LFDQueueFrameSpecificListButton2EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2/LFDQueueFrameSpecificListButton2EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2/LFDQueueFrameSpecificListButton2EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2/LFDQueueFrameSpecificListButton2EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2/LFDQueueFrameSpecificListButton2EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton2ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2/LFDQueueFrameSpecificListButton2ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton2/LFDQueueFrameSpecificListButton2ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton3" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 197
+offset_right = 320
+offset_bottom = 213
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton3HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton3InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton3InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton3LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton3EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3/LFDQueueFrameSpecificListButton3EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3/LFDQueueFrameSpecificListButton3EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3/LFDQueueFrameSpecificListButton3EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3/LFDQueueFrameSpecificListButton3EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3/LFDQueueFrameSpecificListButton3EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton3ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3/LFDQueueFrameSpecificListButton3ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton3/LFDQueueFrameSpecificListButton3ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton4" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 213
+offset_right = 320
+offset_bottom = 229
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton4HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton4InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton4InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton4LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton4EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4/LFDQueueFrameSpecificListButton4EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4/LFDQueueFrameSpecificListButton4EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4/LFDQueueFrameSpecificListButton4EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4/LFDQueueFrameSpecificListButton4EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4/LFDQueueFrameSpecificListButton4EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton4ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4/LFDQueueFrameSpecificListButton4ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton4/LFDQueueFrameSpecificListButton4ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton5" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 229
+offset_right = 320
+offset_bottom = 245
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton5HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton5InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton5InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton5LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton5EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5/LFDQueueFrameSpecificListButton5EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5/LFDQueueFrameSpecificListButton5EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5/LFDQueueFrameSpecificListButton5EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5/LFDQueueFrameSpecificListButton5EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5/LFDQueueFrameSpecificListButton5EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton5ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5/LFDQueueFrameSpecificListButton5ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton5/LFDQueueFrameSpecificListButton5ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton6" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 245
+offset_right = 320
+offset_bottom = 261
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton6HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton6InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton6InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton6LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton6EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6/LFDQueueFrameSpecificListButton6EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6/LFDQueueFrameSpecificListButton6EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6/LFDQueueFrameSpecificListButton6EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6/LFDQueueFrameSpecificListButton6EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6/LFDQueueFrameSpecificListButton6EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton6ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6/LFDQueueFrameSpecificListButton6ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton6/LFDQueueFrameSpecificListButton6ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton7" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 261
+offset_right = 320
+offset_bottom = 277
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton7HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton7InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton7InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton7LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton7EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7/LFDQueueFrameSpecificListButton7EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7/LFDQueueFrameSpecificListButton7EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7/LFDQueueFrameSpecificListButton7EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7/LFDQueueFrameSpecificListButton7EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7/LFDQueueFrameSpecificListButton7EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton7ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7/LFDQueueFrameSpecificListButton7ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton7/LFDQueueFrameSpecificListButton7ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton8" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 277
+offset_right = 320
+offset_bottom = 293
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton8HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton8InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton8InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton8LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton8EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8/LFDQueueFrameSpecificListButton8EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8/LFDQueueFrameSpecificListButton8EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8/LFDQueueFrameSpecificListButton8EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8/LFDQueueFrameSpecificListButton8EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8/LFDQueueFrameSpecificListButton8EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton8ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8/LFDQueueFrameSpecificListButton8ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton8/LFDQueueFrameSpecificListButton8ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton9" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 293
+offset_right = 320
+offset_bottom = 309
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton9HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton9InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton9InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton9LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton9EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9/LFDQueueFrameSpecificListButton9EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9/LFDQueueFrameSpecificListButton9EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9/LFDQueueFrameSpecificListButton9EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9/LFDQueueFrameSpecificListButton9EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9/LFDQueueFrameSpecificListButton9EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton9ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9/LFDQueueFrameSpecificListButton9ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton9/LFDQueueFrameSpecificListButton9ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton10" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 309
+offset_right = 320
+offset_bottom = 325
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton10HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton10InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton10InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton10LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton10EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10/LFDQueueFrameSpecificListButton10EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10/LFDQueueFrameSpecificListButton10EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10/LFDQueueFrameSpecificListButton10EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10/LFDQueueFrameSpecificListButton10EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10/LFDQueueFrameSpecificListButton10EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton10ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10/LFDQueueFrameSpecificListButton10ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton10/LFDQueueFrameSpecificListButton10ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton11" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 325
+offset_right = 320
+offset_bottom = 341
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton11HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton11InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton11InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton11LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton11EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11/LFDQueueFrameSpecificListButton11EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11/LFDQueueFrameSpecificListButton11EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11/LFDQueueFrameSpecificListButton11EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11/LFDQueueFrameSpecificListButton11EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11/LFDQueueFrameSpecificListButton11EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton11ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11/LFDQueueFrameSpecificListButton11ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton11/LFDQueueFrameSpecificListButton11ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton12" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 341
+offset_right = 320
+offset_bottom = 357
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton12HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton12InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton12InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton12LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton12EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12/LFDQueueFrameSpecificListButton12EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12/LFDQueueFrameSpecificListButton12EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12/LFDQueueFrameSpecificListButton12EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12/LFDQueueFrameSpecificListButton12EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12/LFDQueueFrameSpecificListButton12EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton12ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12/LFDQueueFrameSpecificListButton12ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton12/LFDQueueFrameSpecificListButton12ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton13" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 357
+offset_right = 320
+offset_bottom = 373
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton13HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton13InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton13InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton13LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton13EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13/LFDQueueFrameSpecificListButton13EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13/LFDQueueFrameSpecificListButton13EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13/LFDQueueFrameSpecificListButton13EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13/LFDQueueFrameSpecificListButton13EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13/LFDQueueFrameSpecificListButton13EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton13ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13/LFDQueueFrameSpecificListButton13ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton13/LFDQueueFrameSpecificListButton13ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton14" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 373
+offset_right = 320
+offset_bottom = 389
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton14HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton14InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton14InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton14LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton14EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14/LFDQueueFrameSpecificListButton14EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14/LFDQueueFrameSpecificListButton14EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14/LFDQueueFrameSpecificListButton14EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14/LFDQueueFrameSpecificListButton14EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14/LFDQueueFrameSpecificListButton14EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton14ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14/LFDQueueFrameSpecificListButton14ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton14/LFDQueueFrameSpecificListButton14ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton15" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 389
+offset_right = 320
+offset_bottom = 405
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListButton15HeroicIcon" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = -1
+offset_right = 56
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton15InstanceLevel" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15"]
+unique_name_in_owner = true
+offset_left = 235
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton15InstanceName" type="Label" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 0
+offset_right = 225
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="LFDQueueFrameSpecificListButton15LockedIndicator" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 1
+offset_right = 37
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListButton15EnableButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 21
+offset_top = -2
+offset_right = 41
+offset_bottom = 18
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15/LFDQueueFrameSpecificListButton15EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15/LFDQueueFrameSpecificListButton15EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15/LFDQueueFrameSpecificListButton15EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15/LFDQueueFrameSpecificListButton15EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15/LFDQueueFrameSpecificListButton15EnableButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListButton15ExpandOrCollapseButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 3
+offset_top = 1.5
+offset_right = 16
+offset_bottom = 14.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15/LFDQueueFrameSpecificListButton15ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListButton15/LFDQueueFrameSpecificListButton15ExpandOrCollapseButton"]
+offset_left = 3
+offset_top = -1.5
+offset_right = 19
+offset_bottom = 14.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListScrollFrame" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 25
+offset_top = 158
+offset_right = 321
+offset_bottom = 412
+mouse_filter = 0
+
+[node name="LFDQueueFrameSpecificListScrollFrameScrollBackgroundTopLeft" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 294
+offset_top = -5
+offset_right = 325
+offset_bottom = 251
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListScrollFrameScrollBackgroundBottomRight" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 294
+offset_top = 150
+offset_right = 325
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="LFDQueueFrameSpecificListScrollFrameScrollBar" type="VSlider" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 302
+offset_top = 16
+offset_right = 318
+offset_bottom = 238
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_27")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_27")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_28")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_28")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_28")
+max_value = 0.0
+step = 0.0
+
+[node name="LFDQueueFrameSpecificListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar/LFDQueueFrameSpecificListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar/LFDQueueFrameSpecificListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar/LFDQueueFrameSpecificListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar/LFDQueueFrameSpecificListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 222
+offset_right = 17
+offset_bottom = 238
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar/LFDQueueFrameSpecificListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar/LFDQueueFrameSpecificListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar/LFDQueueFrameSpecificListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameScrollBar/LFDQueueFrameSpecificListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameSpecificListScrollFrameClip" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="LFDQueueFrameSpecificListScrollFrameScrollChildFrame" type="Control" parent="LFDQueueFrame/LFDQueueFrameSpecific/LFDQueueFrameSpecificListScrollFrame/LFDQueueFrameSpecificListScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="LFDQueueFrameFindGroupButton" type="TextureButton" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 18
+offset_top = -28
+offset_right = 153
+offset_bottom = -6
+ignore_texture_size = true
+
+[node name="LFDQueueFrameFindGroupButtonLeft" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameFindGroupButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="LFDQueueFrameFindGroupButtonRight" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameFindGroupButton"]
+unique_name_in_owner = true
+offset_left = 123
+offset_top = 0
+offset_right = 135
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+
+[node name="LFDQueueFrameFindGroupButtonMiddle" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameFindGroupButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 123
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="LFDQueueFrameFindGroupButtonText" type="Label" parent="LFDQueueFrame/LFDQueueFrameFindGroupButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 22
+mouse_filter = 2
+text = "Find Group"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameFindGroupButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 135
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameCancelButton" type="TextureButton" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -119
+offset_top = -28
+offset_right = -7
+offset_bottom = -6
+ignore_texture_size = true
+
+[node name="LFDQueueFrameCancelButtonLeft" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="LFDQueueFrameCancelButtonRight" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameCancelButton"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 0
+offset_right = 112
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+
+[node name="LFDQueueFrameCancelButtonMiddle" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameCancelButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="LFDQueueFrameCancelButtonText" type="Label" parent="LFDQueueFrame/LFDQueueFrameCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 112
+offset_bottom = 22
+mouse_filter = 2
+text = "Close"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 112
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameCooldownFrame" type="Control" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -337
+offset_top = -285
+offset_right = -7
+offset_bottom = -28
+visible = false
+mouse_filter = 0
+
+[node name="LFDQueueFrameCooldownFrameBlackFilter" type="ColorRect" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 330
+offset_bottom = 257
+mouse_filter = 2
+color = Color(0, 0, 0, 0.93)
+
+[node name="LFDQueueFrameCooldownFrameDescription" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 315
+offset_bottom = 42
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "One of your group members has recently queued for a Random Dungeon and may not yet queue for another."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameCooldownFrameTime" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 165
+offset_top = 52
+offset_right = 165
+offset_bottom = 68
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LFDQueueFrameCooldownFrameName1" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 102
+offset_right = 160
+offset_bottom = 114
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameCooldownFrameStatus1" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 160
+offset_top = 102
+offset_right = 270
+offset_bottom = 114
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameCooldownFrameName2" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 119
+offset_right = 160
+offset_bottom = 131
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameCooldownFrameStatus2" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 160
+offset_top = 119
+offset_right = 270
+offset_bottom = 131
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameCooldownFrameName3" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 136
+offset_right = 160
+offset_bottom = 148
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameCooldownFrameStatus3" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 160
+offset_top = 136
+offset_right = 270
+offset_bottom = 148
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameCooldownFrameName4" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 40
+offset_top = 153
+offset_right = 160
+offset_bottom = 165
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameCooldownFrameStatus4" type="Label" parent="LFDQueueFrame/LFDQueueFrameCooldownFrame"]
+unique_name_in_owner = true
+offset_left = 160
+offset_top = 153
+offset_right = 270
+offset_bottom = 165
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFramePartyBackfill" type="Control" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -337
+offset_top = -285
+offset_right = -7
+offset_bottom = -28
+visible = false
+mouse_filter = 0
+
+[node name="LFDQueueFramePartyBackfillBlackFilter" type="ColorRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 330
+offset_bottom = 257
+mouse_filter = 2
+color = Color(0, 0, 0, 0.93)
+
+[node name="LFDQueueFramePartyBackfillDescription" type="Label" parent="LFDQueueFrame/LFDQueueFramePartyBackfill"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 70
+offset_right = 315
+offset_bottom = 82
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFramePartyBackfillBackfillButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFramePartyBackfill"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 7
+offset_top = 92
+offset_right = 160
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="LFDQueueFramePartyBackfillBackfillButtonLeft" type="TextureRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillBackfillButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="LFDQueueFramePartyBackfillBackfillButtonRight" type="TextureRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillBackfillButton"]
+unique_name_in_owner = true
+offset_left = 141
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+
+[node name="LFDQueueFramePartyBackfillBackfillButtonMiddle" type="TextureRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillBackfillButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 141
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="LFDQueueFramePartyBackfillBackfillButtonText" type="Label" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillBackfillButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+mouse_filter = 2
+text = "Yes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillBackfillButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFramePartyBackfillNoBackfillButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFramePartyBackfill"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 170
+offset_top = 92
+offset_right = 323
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="LFDQueueFramePartyBackfillNoBackfillButtonLeft" type="TextureRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillNoBackfillButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="LFDQueueFramePartyBackfillNoBackfillButtonRight" type="TextureRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillNoBackfillButton"]
+unique_name_in_owner = true
+offset_left = 141
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+
+[node name="LFDQueueFramePartyBackfillNoBackfillButtonMiddle" type="TextureRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillNoBackfillButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 141
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="LFDQueueFramePartyBackfillNoBackfillButtonText" type="Label" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillNoBackfillButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+mouse_filter = 2
+text = "Hide"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFramePartyBackfill/LFDQueueFramePartyBackfillNoBackfillButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDQueueFrameNoLFDWhileLFR" type="Control" parent="LFDQueueFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -337
+offset_top = -285
+offset_right = -7
+offset_bottom = -28
+visible = false
+mouse_filter = 0
+
+[node name="LFDQueueFrameNoLFDWhileLFRBlackFilter" type="ColorRect" parent="LFDQueueFrame/LFDQueueFrameNoLFDWhileLFR"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 330
+offset_bottom = 257
+mouse_filter = 2
+color = Color(0, 0, 0, 0.93)
+
+[node name="LFDQueueFrameNoLFDWhileLFRDescription" type="Label" parent="LFDQueueFrame/LFDQueueFrameNoLFDWhileLFR"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 70
+offset_right = 315
+offset_bottom = 82
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "You may not queue for a Dungeon while you are listed in the Raid Browser."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LFDQueueFrameNoLFDWhileLFRLeaveQueueButton" type="TextureButton" parent="LFDQueueFrame/LFDQueueFrameNoLFDWhileLFR"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 88.5
+offset_top = 92
+offset_right = 241.5
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="LFDQueueFrameNoLFDWhileLFRLeaveQueueButtonLeft" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameNoLFDWhileLFR/LFDQueueFrameNoLFDWhileLFRLeaveQueueButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="LFDQueueFrameNoLFDWhileLFRLeaveQueueButtonRight" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameNoLFDWhileLFR/LFDQueueFrameNoLFDWhileLFRLeaveQueueButton"]
+unique_name_in_owner = true
+offset_left = 141
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+
+[node name="LFDQueueFrameNoLFDWhileLFRLeaveQueueButtonMiddle" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameNoLFDWhileLFR/LFDQueueFrameNoLFDWhileLFRLeaveQueueButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 141
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="LFDQueueFrameNoLFDWhileLFRLeaveQueueButtonText" type="Label" parent="LFDQueueFrame/LFDQueueFrameNoLFDWhileLFR/LFDQueueFrameNoLFDWhileLFRLeaveQueueButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+mouse_filter = 2
+text = "List My Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="LFDQueueFrame/LFDQueueFrameNoLFDWhileLFR/LFDQueueFrameNoLFDWhileLFRLeaveQueueButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 153
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="LFDParentFramePortrait" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = 5
+offset_right = 73
+offset_bottom = 69
+mouse_filter = 2
+
+[node name="LFDParentFramePortraitIcon" type="TextureRect" parent="LFDParentFramePortrait"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 67
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_58")
+expand_mode = 1
+
+[node name="LFDParentFramePortraitTexture" type="TextureRect" parent="LFDParentFramePortrait"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_59")
+expand_mode = 1
