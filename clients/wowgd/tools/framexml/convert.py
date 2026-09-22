@@ -97,6 +97,9 @@ def child(node, tag):
     return None
 
 
+# WhoFrameColumn_SetWidth leaves this much of a header's width to its end caps.
+WHO_COLUMN_CAPS = 9.0
+
 class Library:
     """Every named element across the dumped XML, plus fonts and global strings."""
 
@@ -206,6 +209,13 @@ class Widget:
         size = dimension(child(node, "Size"))
         if size is not None:
             self.size = size
+        # WhoFrameColumn_SetWidth in OnLoad sizes a column header before it is first drawn.
+        scripts = child(node, "Scripts")
+        onload = child(scripts, "OnLoad") if scripts is not None else None
+        width = re.search(r"WhoFrameColumn_SetWidth\(self,\s*(\d+)\)", onload.text or "") if onload is not None else None
+        if width:
+            self.column_width = float(width.group(1))
+            self.size = (self.column_width, self.size[1] if self.size else 0.0)
         anchors = child(node, "Anchors")
         if anchors is not None:
             self.anchors = []
@@ -381,6 +391,10 @@ class Converter:
             text.font = text.font or self._button_font(widget)
         order = {level: i for i, level in enumerate(LAYERS)}
         widget.children.sort(key=lambda w: order.get(w.layer, 2))
+        if getattr(widget, "column_width", None):
+            for c in widget.children:
+                if c.name == name + "Middle":
+                    c.size = (widget.column_width - WHO_COLUMN_CAPS, c.size[1] if c.size else 0.0)
         for c in widget.frames:
             add(c, "FRAME")
         if not node.get("virtual") == "true":

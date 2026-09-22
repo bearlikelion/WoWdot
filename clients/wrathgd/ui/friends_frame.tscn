@@ -6213,7 +6213,7 @@ unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 20
 offset_top = 70
-offset_right = 30
+offset_right = 103
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -6231,7 +6231,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 79
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -6239,9 +6239,9 @@ expand_mode = 1
 
 [node name="WhoFrameColumnHeader1Right" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader1"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 79
 offset_top = 0
-offset_right = 62
+offset_right = 83
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -6263,7 +6263,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader1"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 85
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -6274,9 +6274,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="WhoFrameColumnHeader2" type="TextureButton" parent="WhoFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 28
+offset_left = 101
 offset_top = 70
-offset_right = 38
+offset_right = 206
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -6294,7 +6294,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 101
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -6302,9 +6302,9 @@ expand_mode = 1
 
 [node name="WhoFrameColumnHeader2Right" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader2"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 101
 offset_top = 0
-offset_right = 62
+offset_right = 105
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -6325,7 +6325,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader2"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 107
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -6448,9 +6448,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="WhoFrameColumnHeader3" type="TextureButton" parent="WhoFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 36
+offset_left = 204
 offset_top = 70
-offset_right = 46
+offset_right = 236
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -6468,7 +6468,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 28
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -6476,9 +6476,9 @@ expand_mode = 1
 
 [node name="WhoFrameColumnHeader3Right" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader3"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 28
 offset_top = 0
-offset_right = 62
+offset_right = 32
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -6500,7 +6500,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader3"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 34
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -6511,9 +6511,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="WhoFrameColumnHeader4" type="TextureButton" parent="WhoFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 44
+offset_left = 234
 offset_top = 70
-offset_right = 54
+offset_right = 326
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -6531,7 +6531,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 88
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -6539,9 +6539,9 @@ expand_mode = 1
 
 [node name="WhoFrameColumnHeader4Right" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader4"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 88
 offset_top = 0
-offset_right = 62
+offset_right = 92
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -6563,7 +6563,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader4"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 94
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -8366,7 +8366,7 @@ unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 20
 offset_top = 70
-offset_right = 30
+offset_right = 103
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -8384,7 +8384,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 79
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -8392,9 +8392,9 @@ expand_mode = 1
 
 [node name="GuildFrameColumnHeader1Right" type="TextureRect" parent="GuildFrame/GuildPlayerStatusFrame/GuildFrameColumnHeader1"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 79
 offset_top = 0
-offset_right = 62
+offset_right = 83
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -8416,7 +8416,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="GuildFrame/GuildPlayerStatusFrame/GuildFrameColumnHeader1"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 85
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -8427,9 +8427,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="GuildFrameColumnHeader2" type="TextureButton" parent="GuildFrame/GuildPlayerStatusFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 28
+offset_left = 101
 offset_top = 70
-offset_right = 38
+offset_right = 206
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -8447,7 +8447,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 101
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -8455,9 +8455,9 @@ expand_mode = 1
 
 [node name="GuildFrameColumnHeader2Right" type="TextureRect" parent="GuildFrame/GuildPlayerStatusFrame/GuildFrameColumnHeader2"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 101
 offset_top = 0
-offset_right = 62
+offset_right = 105
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -8479,7 +8479,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="GuildFrame/GuildPlayerStatusFrame/GuildFrameColumnHeader2"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 107
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -8490,9 +8490,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="GuildFrameColumnHeader3" type="TextureButton" parent="GuildFrame/GuildPlayerStatusFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 36
+offset_left = 204
 offset_top = 70
-offset_right = 46
+offset_right = 236
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -8510,7 +8510,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 28
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -8518,9 +8518,9 @@ expand_mode = 1
 
 [node name="GuildFrameColumnHeader3Right" type="TextureRect" parent="GuildFrame/GuildPlayerStatusFrame/GuildFrameColumnHeader3"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 28
 offset_top = 0
-offset_right = 62
+offset_right = 32
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -8542,7 +8542,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="GuildFrame/GuildPlayerStatusFrame/GuildFrameColumnHeader3"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 34
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -8553,9 +8553,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="GuildFrameColumnHeader4" type="TextureButton" parent="GuildFrame/GuildPlayerStatusFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 44
+offset_left = 234
 offset_top = 70
-offset_right = 54
+offset_right = 326
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -8573,7 +8573,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 88
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -8581,9 +8581,9 @@ expand_mode = 1
 
 [node name="GuildFrameColumnHeader4Right" type="TextureRect" parent="GuildFrame/GuildPlayerStatusFrame/GuildFrameColumnHeader4"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 88
 offset_top = 0
-offset_right = 62
+offset_right = 92
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -8605,7 +8605,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="GuildFrame/GuildPlayerStatusFrame/GuildFrameColumnHeader4"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 94
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -9732,7 +9732,7 @@ unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 20
 offset_top = 70
-offset_right = 30
+offset_right = 103
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -9750,7 +9750,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 79
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -9758,9 +9758,9 @@ expand_mode = 1
 
 [node name="GuildFrameGuildStatusColumnHeader1Right" type="TextureRect" parent="GuildFrame/GuildStatusFrame/GuildFrameGuildStatusColumnHeader1"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 79
 offset_top = 0
-offset_right = 62
+offset_right = 83
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -9782,7 +9782,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="GuildFrame/GuildStatusFrame/GuildFrameGuildStatusColumnHeader1"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 85
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -9793,9 +9793,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="GuildFrameGuildStatusColumnHeader2" type="TextureButton" parent="GuildFrame/GuildStatusFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 28
+offset_left = 101
 offset_top = 70
-offset_right = 38
+offset_right = 176
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -9813,7 +9813,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 71
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -9821,9 +9821,9 @@ expand_mode = 1
 
 [node name="GuildFrameGuildStatusColumnHeader2Right" type="TextureRect" parent="GuildFrame/GuildStatusFrame/GuildFrameGuildStatusColumnHeader2"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 71
 offset_top = 0
-offset_right = 62
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -9845,7 +9845,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="GuildFrame/GuildStatusFrame/GuildFrameGuildStatusColumnHeader2"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 77
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -9856,9 +9856,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="GuildFrameGuildStatusColumnHeader3" type="TextureButton" parent="GuildFrame/GuildStatusFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 36
+offset_left = 174
 offset_top = 70
-offset_right = 46
+offset_right = 249
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -9876,7 +9876,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 71
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -9884,9 +9884,9 @@ expand_mode = 1
 
 [node name="GuildFrameGuildStatusColumnHeader3Right" type="TextureRect" parent="GuildFrame/GuildStatusFrame/GuildFrameGuildStatusColumnHeader3"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 71
 offset_top = 0
-offset_right = 62
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -9908,7 +9908,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="GuildFrame/GuildStatusFrame/GuildFrameGuildStatusColumnHeader3"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 77
 offset_bottom = 31
 visible = false
 mouse_filter = 2
@@ -9919,9 +9919,9 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="GuildFrameGuildStatusColumnHeader4" type="TextureButton" parent="GuildFrame/GuildStatusFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 44
+offset_left = 247
 offset_top = 70
-offset_right = 54
+offset_right = 322
 offset_bottom = 94
 ignore_texture_size = true
 
@@ -9939,7 +9939,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 58
+offset_right = 71
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_78")
@@ -9947,9 +9947,9 @@ expand_mode = 1
 
 [node name="GuildFrameGuildStatusColumnHeader4Right" type="TextureRect" parent="GuildFrame/GuildStatusFrame/GuildFrameGuildStatusColumnHeader4"]
 unique_name_in_owner = true
-offset_left = 58
+offset_left = 71
 offset_top = 0
-offset_right = 62
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 texture = SubResource("AtlasTexture_79")
@@ -9971,7 +9971,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="GuildFrame/GuildStatusFrame/GuildFrameGuildStatusColumnHeader4"]
 offset_left = -2
 offset_top = -5
-offset_right = 64
+offset_right = 77
 offset_bottom = 31
 visible = false
 mouse_filter = 2
