@@ -292,6 +292,16 @@ h1 {
   background: rgba(201, 162, 39, 0.08);
 }
 
+/* A row that cannot be chosen yet keeps its facts but none of the affordance. */
+.row:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.row:disabled:hover {
+  background: transparent;
+}
+
 .row.is-selected {
   background: linear-gradient(90deg, rgba(201, 162, 39, 0.18), rgba(201, 162, 39, 0.04));
   border-top: 1px solid var(--gold);

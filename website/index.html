@@ -50,7 +50,7 @@
           </button>
         </li>
         <li>
-          <button class="row" type="button" data-client="wrathgd" aria-pressed="false">
+          <button class="row" type="button" data-client="wrathgd" aria-pressed="false" disabled>
             <img src="wrathgd.png" alt="" width="40" height="40">
             <span class="row-text">
               <span class="row-name">WrathGD</span>
@@ -332,7 +332,7 @@
           var next = null;
           if (event.key === "ArrowDown") next = rows[n + 1];
           if (event.key === "ArrowUp") next = rows[n - 1];
-          if (next) { event.preventDefault(); next.focus(); select(next.dataset.client); }
+          if (next && !next.disabled) { event.preventDefault(); next.focus(); select(next.dataset.client); }
           if (event.key === "Enter" && clients[row.dataset.client].playable) {
             document.getElementById("enter-world").click();
           }
