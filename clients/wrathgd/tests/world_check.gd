@@ -87,6 +87,7 @@ func _run() -> void:
 	if not await _enter(guid):
 		return _finish()
 	print("came back at %v" % _position)
+	await _until(_sees_units, "creatures come into view again after logging back in")
 	_check(_position.distance_to(walked) < 1.0, "the server kept the walk's last position")
 	_check(_position.distance_to(start) > 3.0, "the kept position is not where the walk began")
 	await _auras(guid)
@@ -154,6 +155,13 @@ func _packets() -> void:
 				"the melee log carries the amount and target (%d)" % _melee[0].amount)
 	_session.send_chat(WowSession.CHAT_SAY, ".npc delete")
 	_session.set_selection(0)
+
+
+func _sees_units() -> bool:
+	for guid: int in _session.get_object_guids():
+		if _session.get_object_type(guid) == UNIT_TYPE:
+			return true
+	return false
 
 
 func _aura(guid: int, spell: int) -> Variant:
