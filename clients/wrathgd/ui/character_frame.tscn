@@ -1,14 +1,14 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/ui/character_frame.gd" id="1"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
-[ext_resource type="PackedScene" path="res://game/ui/wow/wow_model_frame.tscn" id="3"]
+[ext_resource type="Script" path="res://ui/character_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="PackedScene" path="res://ui/wow/wow_model_frame.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="4"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_cooldown.gd" id="5"]
-[ext_resource type="Script" path="res://game/ui/skill_frame.gd" id="6"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_scroll_frame.gd" id="7"]
-[ext_resource type="Script" path="res://game/ui/reputation_frame.gd" id="8"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_backdrop.gd" id="9"]
+[ext_resource type="Script" path="res://ui/wow/wow_cooldown.gd" id="5"]
+[ext_resource type="Script" path="res://ui/skill_frame.gd" id="6"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="7"]
+[ext_resource type="Script" path="res://ui/reputation_frame.gd" id="8"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="9"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"

@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/ui/side_action_bars.gd" id="1"]
+[ext_resource type="Script" path="res://ui/side_action_bars.gd" id="1"]
 [ext_resource type="PackedScene" path="res://ui/action_button_template.tscn" id="2"]
 
 [node name="MultiBarRight" type="Control"]

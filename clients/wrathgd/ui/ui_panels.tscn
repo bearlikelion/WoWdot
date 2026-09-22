@@ -1,0 +1,264 @@
+[gd_scene load_steps=23 format=3]
+
+[ext_resource type="Script" path="res://ui/panel_manager.gd" id="1_panels"]
+[ext_resource type="PackedScene" path="res://ui/character_frame.tscn" id="2_character"]
+[ext_resource type="PackedScene" path="res://ui/game_menu_frame.tscn" id="3_menu"]
+[ext_resource type="PackedScene" path="res://ui/container_frame.tscn" id="4_bag"]
+[ext_resource type="PackedScene" path="res://ui/spell_book_frame.tscn" id="5_spells"]
+[ext_resource type="PackedScene" path="res://ui/talent_frame.tscn" id="6_talents"]
+[ext_resource type="PackedScene" path="res://ui/quest_log_frame.tscn" id="7_quests"]
+[ext_resource type="PackedScene" path="res://ui/static_popup.tscn" id="8_popup"]
+[ext_resource type="PackedScene" path="res://ui/gossip_frame.tscn" id="9_gossip"]
+[ext_resource type="PackedScene" path="res://ui/quest_frame.tscn" id="10_quest"]
+[ext_resource type="PackedScene" path="res://ui/merchant_frame.tscn" id="11_merchant"]
+[ext_resource type="PackedScene" path="res://ui/class_trainer_frame.tscn" id="12_trainer"]
+[ext_resource type="PackedScene" path="res://ui/taxi_frame.tscn" id="13_taxi"]
+[ext_resource type="PackedScene" path="res://ui/loot_frame.tscn" id="14_loot"]
+[ext_resource type="PackedScene" path="res://ui/bank_frame.tscn" id="17_bank"]
+[ext_resource type="PackedScene" path="res://ui/pet_stable_frame.tscn" id="30_stable"]
+[ext_resource type="PackedScene" path="res://ui/mail_frame.tscn" id="18_mail"]
+[ext_resource type="PackedScene" path="res://ui/open_mail_frame.tscn" id="19_openmail"]
+[ext_resource type="PackedScene" path="res://ui/auction_frame.tscn" id="20_auction"]
+[ext_resource type="PackedScene" path="res://ui/guild_registrar_frame.tscn" id="27_registrar"]
+[ext_resource type="PackedScene" path="res://ui/petition_frame.tscn" id="28_petition"]
+[ext_resource type="PackedScene" path="res://ui/tabard_frame.tscn" id="29_tabard"]
+[ext_resource type="PackedScene" path="res://ui/trade_frame.tscn" id="21_trade"]
+[ext_resource type="PackedScene" path="res://ui/friends_frame.tscn" id="22_friends"]
+[ext_resource type="PackedScene" path="res://ui/world_map_frame.tscn" id="14_map"]
+[ext_resource type="PackedScene" path="res://ui/sound_options_frame.tscn" id="15_sound"]
+[ext_resource type="PackedScene" path="res://ui/video_options_frame.tscn" id="16_video"]
+[ext_resource type="PackedScene" path="res://ui/ui_options_frame.tscn" id="30_uiopt"]
+[ext_resource type="PackedScene" path="res://ui/key_binding_frame.tscn" id="31_keys"]
+[ext_resource type="PackedScene" path="res://ui/trade_skill_frame.tscn" id="32_trade_skill"]
+[ext_resource type="PackedScene" path="res://ui/dress_up_frame.tscn" id="33_dress_up"]
+[ext_resource type="PackedScene" path="res://ui/inspect_frame.tscn" id="34_inspect"]
+[ext_resource type="PackedScene" path="res://ui/macro_frame.tscn" id="35_macro"]
+[ext_resource type="PackedScene" path="res://ui/macro_popup_frame.tscn" id="36_macro_popup"]
+[ext_resource type="PackedScene" path="res://ui/battlefield_frame.tscn" id="37_battlefield"]
+[ext_resource type="PackedScene" path="res://ui/world_state_score_frame.tscn" id="38_score"]
+[ext_resource type="PackedScene" path="res://ui/help_frame.tscn" id="39_help"]
+[ext_resource type="PackedScene" path="res://ui/stack_split_frame.tscn" id="40_split"]
+
+[node name="UIPanels" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_panels")
+
+[node name="CharacterFrame" parent="." instance=ExtResource("2_character")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SpellBookFrame" parent="." instance=ExtResource("5_spells")]
+unique_name_in_owner = true
+visible = false
+
+[node name="TalentFrame" parent="." instance=ExtResource("6_talents")]
+unique_name_in_owner = true
+visible = false
+
+[node name="QuestLogFrame" parent="." instance=ExtResource("7_quests")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GossipFrame" parent="." instance=ExtResource("9_gossip")]
+unique_name_in_owner = true
+visible = false
+
+[node name="QuestFrame" parent="." instance=ExtResource("10_quest")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MerchantFrame" parent="." instance=ExtResource("11_merchant")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PetStableFrame" parent="." instance=ExtResource("30_stable")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="BankFrame" parent="." instance=ExtResource("17_bank")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="MailFrame" parent="." instance=ExtResource("18_mail")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="OpenMailFrame" parent="." instance=ExtResource("19_openmail")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="AuctionFrame" parent="." instance=ExtResource("20_auction")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="GuildRegistrarFrame" parent="." instance=ExtResource("27_registrar")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="PetitionFrame" parent="." instance=ExtResource("28_petition")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="TabardFrame" parent="." instance=ExtResource("29_tabard")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="TradeFrame" parent="." instance=ExtResource("21_trade")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="FriendsFrame" parent="." instance=ExtResource("22_friends")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="ClassTrainerFrame" parent="." instance=ExtResource("12_trainer")]
+unique_name_in_owner = true
+visible = false
+
+[node name="TradeSkillFrame" parent="." instance=ExtResource("32_trade_skill")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="DressUpFrame" parent="." instance=ExtResource("33_dress_up")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="InspectFrame" parent="." instance=ExtResource("34_inspect")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="MacroFrame" parent="." node_paths=PackedStringArray("popup") instance=ExtResource("35_macro")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+popup = NodePath("../MacroPopupFrame")
+
+[node name="MacroPopupFrame" parent="." instance=ExtResource("36_macro_popup")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="BattlefieldFrame" parent="." instance=ExtResource("37_battlefield")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="WorldStateScoreFrame" parent="." instance=ExtResource("38_score")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="HelpFrame" parent="." instance=ExtResource("39_help")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="TaxiFrame" parent="." instance=ExtResource("13_taxi")]
+unique_name_in_owner = true
+visible = false
+
+[node name="LootFrame" parent="." instance=ExtResource("14_loot")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame1" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame2" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame3" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame4" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame5" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame6" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame7" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame8" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame9" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame10" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame11" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GameMenuFrame" parent="." instance=ExtResource("3_menu")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="SoundOptionsFrame" parent="." instance=ExtResource("15_sound")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="VideoOptionsFrame" parent="." instance=ExtResource("16_video")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="UIOptionsFrame" parent="." instance=ExtResource("30_uiopt")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="KeyBindingFrame" parent="." instance=ExtResource("31_keys")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="WorldMapFrame" parent="." instance=ExtResource("14_map")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="StaticPopup1" parent="." instance=ExtResource("8_popup")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
+
+[node name="StackSplitFrame" parent="." instance=ExtResource("40_split")]
+unique_name_in_owner = true
+visible = false

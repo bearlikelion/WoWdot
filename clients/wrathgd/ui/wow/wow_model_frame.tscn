@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cy5341kr34ndw"]
+
+[ext_resource type="Script" uid="uid://cnbbuc0j3ucr4" path="res://ui/wow/wow_model_frame.gd" id="1_frame"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vrf4o"]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="Environment" id="Environment_frame"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.6, 0.6, 1)
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 1.0
+fog_depth_curve = 2.2
+fog_depth_begin = 0.0
+fog_depth_end = 1200.0
+
+[node name="WowModelFrame" type="TextureRect" unique_id=2101632160]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_vrf4o")
+expand_mode = 1
+script = ExtResource("1_frame")
+
+[node name="Viewport" type="SubViewport" parent="." unique_id=881346071]
+unique_name_in_owner = true
+own_world_3d = true
+msaa_3d = 2
+render_target_update_mode = 4
+size = Vector2i(1152, 648)
+
+[node name="Environment" type="WorldEnvironment" parent="Viewport" unique_id=309272610]
+unique_name_in_owner = true
+environment = SubResource("Environment_frame")
+
+[node name="Light" type="DirectionalLight3D" parent="Viewport" unique_id=541863683]
+unique_name_in_owner = true
+transform = Transform3D(0.70710677, -0.40824828, 0.57735026, 0, 0.8164966, 0.57735026, -0.70710677, -0.40824828, 0.57735026, 0, 0, 0)
+
+[node name="Camera" type="Camera3D" parent="Viewport" unique_id=543118129]
+unique_name_in_owner = true
+current = true
+far = 2000.0
+
+[node name="Scene" type="Node3D" parent="Viewport" unique_id=1946977010]
+unique_name_in_owner = true

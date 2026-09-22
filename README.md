@@ -36,7 +36,7 @@ Needs Godot 4.7, SCons and a C++20 compiler.
 Every library is a submodule compiled in, so there is nothing to install from the system.
 
 ```sh
-git clone --recursive <repo> WoWdot
+git clone --recursive https://github.com/bearlikelion/WoWGD.git WoWdot
 cd WoWdot/extension
 scons -j"$(nproc)" target=template_debug
 ```
@@ -58,7 +58,7 @@ Exported builds read the `Data` folder next to their executable.
 
 `packaging/publish.sh <tag>` zips the local export and attaches it to a GitHub release.
 Releases are built locally because the export encrypts the pck, which only templates compiled with the key can load.
-The site in `website/` is plain HTML; `.forgejo/workflows/pages.yml` publishes it on every push to `main`.
+The site in `website/` is plain HTML; `.github/workflows/pages.yml` publishes it to GitHub Pages on every push to `main`.
 
 ## Thanks
 

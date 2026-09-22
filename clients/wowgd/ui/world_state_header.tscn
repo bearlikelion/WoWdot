@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/world_state_header.gd" id="1_header"]
+
+[node name="WorldStateHeader" type="VBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 15.0
+offset_right = 150.0
+offset_bottom = 15.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_type_variation = &"MessageLines"
+script = ExtResource("1_header")

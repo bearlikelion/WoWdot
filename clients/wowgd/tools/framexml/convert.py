@@ -33,12 +33,12 @@ FRAME_TAGS = {"Frame", "Button", "CheckButton", "StatusBar", "EditBox", "ScrollF
 REGION_TAGS = {"Texture", "FontString"}
 # Blizzard font names that are also Godot class names, which a theme variation cannot be.
 RENAMED_FONTS = {"SystemFont": "WowSystemFont"}
-WOW_BUTTON = "res://game/ui/wow/wow_button.gd"
-WOW_BACKDROP = "res://game/ui/wow/wow_backdrop.gd"
-WOW_MESSAGE_FRAME = "res://game/ui/wow/wow_message_frame.gd"
-WOW_SCROLLING_MESSAGE_FRAME = "res://game/ui/wow/wow_scrolling_message_frame.gd"
-WOW_MODEL_FRAME = "res://game/ui/wow/wow_model_frame.tscn"
-WOW_SCROLL_FRAME = "res://game/ui/wow/wow_scroll_frame.gd"
+WOW_BUTTON = "res://ui/wow/wow_button.gd"
+WOW_BACKDROP = "res://ui/wow/wow_backdrop.gd"
+WOW_MESSAGE_FRAME = "res://ui/wow/wow_message_frame.gd"
+WOW_SCROLLING_MESSAGE_FRAME = "res://ui/wow/wow_scrolling_message_frame.gd"
+WOW_MODEL_FRAME = "res://ui/wow/wow_model_frame.tscn"
+WOW_SCROLL_FRAME = "res://ui/wow/wow_scroll_frame.gd"
 # Frames that show a 3D scene; plain Models are cooldown spirals and sparkles drawn another way.
 MODEL_TAGS = {"ModelFFX", "PlayerModel", "DressUpModel", "TabardModel"}
 # Two root sizes the layout is solved at; how an edge moves between them gives its Godot anchor.

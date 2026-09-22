@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bnfpuen12o1q6"]
 
-[ext_resource type="Script" uid="uid://b77ioq7lg8mr7" path="res://game/ui/main_menu_bar.gd" id="1"]
-[ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" uid="uid://b77ioq7lg8mr7" path="res://ui/main_menu_bar.gd" id="1"]
+[ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://ui/wow/wow_button.gd" id="2"]
 [ext_resource type="PackedScene" path="res://ui/action_button_template.tscn" id="3"]
-[ext_resource type="Script" uid="uid://cf2uxwerdf4cv" path="res://game/ui/wow/wow_cooldown.gd" id="4"]
-[ext_resource type="Script" path="res://game/ui/stance_bar.gd" id="5"]
-[ext_resource type="Script" path="res://game/ui/pet_action_bar.gd" id="6_pet_bar"]
+[ext_resource type="Script" uid="uid://cf2uxwerdf4cv" path="res://ui/wow/wow_cooldown.gd" id="4"]
+[ext_resource type="Script" path="res://ui/stance_bar.gd" id="5"]
+[ext_resource type="Script" path="res://ui/pet_action_bar.gd" id="6_pet_bar"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-StatusBar.blp"

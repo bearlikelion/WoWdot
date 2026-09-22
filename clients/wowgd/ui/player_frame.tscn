@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://df5hxxkp0rumj"]
 
-[ext_resource type="Script" uid="uid://bii67wnr3638s" path="res://game/ui/player_frame.gd" id="1"]
-[ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://game/ui/wow/wow_button.gd" id="2"]
-[ext_resource type="Script" uid="uid://3m311igyqooh" path="res://game/ui/pet_frame.gd" id="3_pet"]
+[ext_resource type="Script" uid="uid://bii67wnr3638s" path="res://ui/player_frame.gd" id="1"]
+[ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" uid="uid://3m311igyqooh" path="res://ui/pet_frame.gd" id="3_pet"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame.blp"

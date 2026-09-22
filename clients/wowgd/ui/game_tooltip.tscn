@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://ui/game_tooltip.gd" id="1_tooltip"]
+[ext_resource type="Theme" path="res://ui/hud_theme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="3_backdrop"]
+
+[sub_resource type="WowTexture" id="WowTexture_background"]
+file = "Interface\\Tooltips\\UI-Tooltip-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_border"]
+file = "Interface\\Tooltips\\UI-Tooltip-Border.blp"
+
+[node name="GameTooltip" type="Control"]
+visible = false
+mouse_filter = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_tooltip")
+
+[node name="Backdrop" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_backdrop")
+background = SubResource("WowTexture_background")
+edge = SubResource("WowTexture_border")
+tile = true
+tile_size = 16.0
+edge_size = 16.0
+insets = Vector4(5, 5, 5, 5)
+background_color = Color(0.09, 0.09, 0.19, 1)
+
+[node name="Lines" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+mouse_filter = 2
+theme_type_variation = &"TooltipLines"

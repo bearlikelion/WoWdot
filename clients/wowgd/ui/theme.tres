@@ -1,0 +1,47 @@
+[gd_resource type="Theme" format=3 uid="uid://bam1m4uuy3pl5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_health_background"]
+bg_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_health_fill"]
+bg_color = Color(0.12, 0.62, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_hud_panel"]
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.08, 0.08, 0.1, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.08, 0.08, 0.1, 0.85)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+FrameRow/base_type = &"HBoxContainer"
+FrameRow/constants/separation = 16
+HealthBar/base_type = &"ProgressBar"
+HealthBar/styles/background = SubResource("StyleBox_health_background")
+HealthBar/styles/fill = SubResource("StyleBox_health_fill")
+HudPanel/base_type = &"PanelContainer"
+HudPanel/styles/panel = SubResource("StyleBox_hud_panel")
+MacroBody/base_type = &"TextEdit"
+MacroBody/colors/font_color = Color(1, 1, 1, 1)
+MacroBody/font_sizes/font_size = 10
+MessageLines/base_type = &"VBoxContainer"
+MessageLines/constants/separation = 0
+PanelContainer/styles/panel = SubResource("StyleBox_panel")
+RichTextLabel/colors/font_outline_color = Color(0.16, 0.16, 0.18, 1)
+RichTextLabel/constants/outline_size = 4
+VBoxContainer/constants/separation = 8

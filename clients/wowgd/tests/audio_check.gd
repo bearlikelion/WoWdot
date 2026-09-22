@@ -4,7 +4,7 @@ extends Node
 const COLDRIDGE_VALLEY: int = 132
 const FIREBALL: int = 133
 const HUMAN_MALE_DISPLAY: int = 49
-const PANELS: PackedScene = preload("res://game/ui/ui_panels.tscn")
+const PANELS: PackedScene = preload("res://ui/ui_panels.tscn")
 
 
 # Run with `--headless tests/audio_check.tscn`; needs no server.

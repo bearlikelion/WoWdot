@@ -7,7 +7,7 @@ set -Eeuo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 readonly ROOT
 readonly OUT="${ROOT}/export/wowgd"
-readonly REPO="${SITE_REPO:-bearlikelion/wowdot-site}"
+readonly REPO="${SITE_REPO:-bearlikelion/WoWGD}"
 
 die() {
   printf '[ERROR] %s\n' "$*" >&2

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bo77y5vv62tb8"]
 
 [ext_resource type="Script" uid="uid://blpp0gsiy1g7u" path="res://game/main.gd" id="1_main"]
-[ext_resource type="PackedScene" uid="uid://cq22pawhr28if" path="res://game/ui/glue.tscn" id="2_glue"]
+[ext_resource type="PackedScene" uid="uid://cq22pawhr28if" path="res://ui/glue.tscn" id="2_glue"]
 
 [node name="Main" type="Node" unique_id=880244167]
 script = ExtResource("1_main")

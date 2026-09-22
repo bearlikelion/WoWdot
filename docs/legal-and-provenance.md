@@ -30,7 +30,7 @@ Everything outside `extension/wowee/`, `extension/godot-cpp/` and `extension/thi
 | --- | --- |
 | WoWee code in `extension/wowee/` | MIT, base commit verified |
 | WoWee music | Not included |
-| `shared/game/ui/wow/*.tscn`, `tools/framexml/frames.json`, `data/classic/ui_sounds.json` | **Open.** Generated from Blizzard's FrameXML (layout, coordinates, texture paths, sound names) by `tools/framexml/convert.py`. No pixels are stored, but the layouts are derived from Blizzard files. Decide before the first public push, because pushed history cannot be recalled. |
+| `clients/*/ui/wow/*.tscn`, `tools/framexml/frames.json`, `data/classic/ui_sounds.json` | **Open.** Generated from Blizzard's FrameXML (layout, coordinates, texture paths, sound names) by `tools/framexml/convert.py`. No pixels are stored, but the layouts are derived from Blizzard files. Decide before the first public push, because pushed history cannot be recalled. |
 | `data/*/opcodes.json`, `update_fields.json`, `dbc_layouts.json` | Protocol and file-format tables from WoWee (MIT) |
 | `clients/wowgd/wowgd_icon.png` | **Open.** Confirm origin |
 | Game fonts | Loaded from the player's MPQs at runtime, none bundled |

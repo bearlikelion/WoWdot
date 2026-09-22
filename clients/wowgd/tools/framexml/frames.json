@@ -4,8 +4,8 @@
   "wowgd.xml"
  ],
  "template_scripts": {
-  "CooldownFrameTemplate": "res://game/ui/wow/wow_cooldown.gd",
-  "SpellButtonTemplate": "res://game/ui/spell_button.gd"
+  "CooldownFrameTemplate": "res://ui/wow/wow_cooldown.gd",
+  "SpellButtonTemplate": "res://ui/spell_button.gd"
  },
  "inject": {
   "CharacterMicroButton": {
@@ -76,32 +76,32 @@
    "frame": "ActionButtonTemplate",
    "template": true,
    "out": "ui/action_button_template.tscn",
-   "script": "res://game/ui/action_button.gd"
+   "script": "res://ui/action_button.gd"
   },
   {
    "frame": "MainMenuBar",
    "out": "ui/main_menu_bar.tscn",
-   "script": "res://game/ui/main_menu_bar.gd"
+   "script": "res://ui/main_menu_bar.gd"
   },
   {
    "frame": "PlayerFrame",
    "out": "ui/player_frame.tscn",
-   "script": "res://game/ui/player_frame.gd"
+   "script": "res://ui/player_frame.gd"
   },
   {
    "frame": "TargetFrame",
    "out": "ui/target_frame.tscn",
-   "script": "res://game/ui/target_frame.gd"
+   "script": "res://ui/target_frame.gd"
   },
   {
    "frame": "CastingBarFrame",
    "out": "ui/casting_bar_frame.tscn",
-   "script": "res://game/ui/casting_bar.gd"
+   "script": "res://ui/casting_bar.gd"
   },
   {
    "frame": "BuffFrame",
    "out": "ui/buff_frame.tscn",
-   "script": "res://game/ui/buff_frame.gd"
+   "script": "res://ui/buff_frame.gd"
   },
   {
    "frame": "UIErrorsFrame",
@@ -110,251 +110,251 @@
   {
    "frame": "MultiBarRight",
    "out": "ui/multi_bar_right.tscn",
-   "script": "res://game/ui/side_action_bars.gd"
+   "script": "res://ui/side_action_bars.gd"
   },
   {
    "frame": "MinimapCluster",
    "out": "ui/minimap_cluster.tscn",
-   "script": "res://game/ui/minimap_cluster.gd"
+   "script": "res://ui/minimap_cluster.gd"
   },
   {
    "frame": "ChatFrame1",
    "out": "ui/chat_frame.tscn",
-   "script": "res://game/ui/chat_frame.gd"
+   "script": "res://ui/chat_frame.gd"
   },
   {
    "frame": "ChatFrame2",
    "out": "ui/combat_log_frame.tscn",
-   "script": "res://game/ui/combat_log_frame.gd"
+   "script": "res://ui/combat_log_frame.gd"
   },
   {
    "frame": "AccountLogin",
    "out": "ui/account_login.tscn",
-   "script": "res://game/ui/login_screen.gd"
+   "script": "res://ui/login_screen.gd"
   },
   {
    "frame": "RealmList",
    "out": "ui/realm_list.tscn",
-   "script": "res://game/ui/realm_list.gd"
+   "script": "res://ui/realm_list.gd"
   },
   {
    "frame": "CharacterSelect",
    "out": "ui/character_select.tscn",
-   "script": "res://game/ui/character_select.gd"
+   "script": "res://ui/character_select.gd"
   },
   {
    "frame": "CharacterCreate",
    "out": "ui/character_create.tscn",
-   "script": "res://game/ui/character_create.gd"
+   "script": "res://ui/character_create.gd"
   },
   {
    "frame": "GlueDialog",
    "out": "ui/glue_dialog.tscn",
-   "script": "res://game/ui/glue_dialog.gd"
+   "script": "res://ui/glue_dialog.gd"
   },
   {
    "frame": "ItemButtonTemplate",
    "template": true,
    "out": "ui/item_button.tscn",
-   "script": "res://game/ui/item_button.gd"
+   "script": "res://ui/item_button.gd"
   },
   {
    "frame": "MoneyFrameTemplate",
    "template": true,
    "out": "ui/money_frame.tscn",
-   "script": "res://game/ui/money_frame.gd"
+   "script": "res://ui/money_frame.gd"
   },
   {
    "frame": "SmallMoneyFrameTemplate",
    "template": true,
    "out": "ui/small_money_frame.tscn",
-   "script": "res://game/ui/money_frame.gd"
+   "script": "res://ui/money_frame.gd"
   },
   {
    "frame": "ContainerFrameTemplate",
    "template": true,
    "out": "ui/container_frame.tscn",
-   "script": "res://game/ui/container_frame.gd"
+   "script": "res://ui/container_frame.gd"
   },
   {
    "frame": "GameMenuFrame",
    "out": "ui/game_menu_frame.tscn",
-   "script": "res://game/ui/game_menu.gd"
+   "script": "res://ui/game_menu.gd"
   },
   {
    "frame": "SoundOptionsFrame",
    "out": "ui/sound_options_frame.tscn",
-   "script": "res://game/ui/sound_options_frame.gd"
+   "script": "res://ui/sound_options_frame.gd"
   },
   {
    "frame": "VideoOptionsFrame",
    "out": "ui/video_options_frame.tscn",
-   "script": "res://game/ui/video_options_frame.gd"
+   "script": "res://ui/video_options_frame.gd"
   },
   {
    "frame": "CharacterFrame",
    "out": "ui/character_frame.tscn",
-   "script": "res://game/ui/character_frame.gd"
+   "script": "res://ui/character_frame.gd"
   },
   {
    "frame": "SpellBookFrame",
    "out": "ui/spell_book_frame.tscn",
-   "script": "res://game/ui/spell_book.gd"
+   "script": "res://ui/spell_book.gd"
   },
   {
    "frame": "TalentButtonTemplate",
    "template": true,
    "out": "ui/talent_button.tscn",
-   "script": "res://game/ui/item_button.gd"
+   "script": "res://ui/item_button.gd"
   },
   {
    "frame": "TalentFrame",
    "out": "ui/talent_frame.tscn",
-   "script": "res://game/ui/talent_frame.gd"
+   "script": "res://ui/talent_frame.gd"
   },
   {
    "frame": "QuestLogFrame",
    "out": "ui/quest_log_frame.tscn",
-   "script": "res://game/ui/quest_log_frame.gd"
+   "script": "res://ui/quest_log_frame.gd"
   },
   {
    "frame": "StaticPopup1",
    "out": "ui/static_popup.tscn",
-   "script": "res://game/ui/static_popup.gd"
+   "script": "res://ui/static_popup.gd"
   },
   {
    "frame": "GossipFrame",
    "out": "ui/gossip_frame.tscn",
-   "script": "res://game/ui/gossip_frame.gd"
+   "script": "res://ui/gossip_frame.gd"
   },
   {
    "frame": "QuestFrame",
    "out": "ui/quest_frame.tscn",
-   "script": "res://game/ui/quest_frame.gd"
+   "script": "res://ui/quest_frame.gd"
   },
   {
    "frame": "QuestWatchFrame",
    "out": "ui/quest_watch_frame.tscn",
-   "script": "res://game/ui/quest_watch_frame.gd"
+   "script": "res://ui/quest_watch_frame.gd"
   },
   {
    "frame": "MerchantFrame",
    "out": "ui/merchant_frame.tscn",
-   "script": "res://game/ui/merchant_frame.gd"
+   "script": "res://ui/merchant_frame.gd"
   },
   {
    "frame": "PartyMemberFrameTemplate",
    "template": true,
    "out": "ui/party_member_frame.tscn",
-   "script": "res://game/ui/party_member_frame.gd"
+   "script": "res://ui/party_member_frame.gd"
   },
   {
    "frame": "LootButtonTemplate",
    "template": true,
    "out": "ui/loot_button.tscn",
-   "script": "res://game/ui/item_button.gd"
+   "script": "res://ui/item_button.gd"
   },
   {
    "frame": "LootFrame",
    "out": "ui/loot_frame.tscn",
-   "script": "res://game/ui/loot_frame.gd"
+   "script": "res://ui/loot_frame.gd"
   },
   {
    "frame": "ClassTrainerFrame",
    "out": "ui/class_trainer_frame.tscn",
-   "script": "res://game/ui/class_trainer_frame.gd"
+   "script": "res://ui/class_trainer_frame.gd"
   },
   {
    "frame": "TaxiButtonTemplate",
    "template": true,
    "out": "ui/taxi_button.tscn",
-   "script": "res://game/ui/wow/wow_button.gd"
+   "script": "res://ui/wow/wow_button.gd"
   },
   {
    "frame": "TaxiFrame",
    "out": "ui/taxi_frame.tscn",
-   "script": "res://game/ui/taxi_frame.gd"
+   "script": "res://ui/taxi_frame.gd"
   },
   {
    "frame": "WorldMapFrame",
    "out": "ui/world_map_frame.tscn",
-   "script": "res://game/ui/world_map_frame.gd"
+   "script": "res://ui/world_map_frame.gd"
   },
   {
    "frame": "BankFrame",
    "out": "ui/bank_frame.tscn",
-   "script": "res://game/ui/bank_frame.gd"
+   "script": "res://ui/bank_frame.gd"
   },
   {
    "frame": "MailFrame",
    "out": "ui/mail_frame.tscn",
-   "script": "res://game/ui/mail_frame.gd"
+   "script": "res://ui/mail_frame.gd"
   },
   {
    "frame": "OpenMailFrame",
    "out": "ui/open_mail_frame.tscn",
-   "script": "res://game/ui/open_mail_frame.gd"
+   "script": "res://ui/open_mail_frame.gd"
   },
   {
    "frame": "ItemTextFrame",
    "out": "ui/item_text_frame.tscn",
-   "script": "res://game/ui/item_text_frame.gd"
+   "script": "res://ui/item_text_frame.gd"
   },
   {
    "frame": "AuctionFrame",
    "out": "ui/auction_frame.tscn",
-   "script": "res://game/ui/auction_frame.gd"
+   "script": "res://ui/auction_frame.gd"
   },
   {
    "frame": "TradeFrame",
    "out": "ui/trade_frame.tscn",
-   "script": "res://game/ui/trade_frame.gd"
+   "script": "res://ui/trade_frame.gd"
   },
   {
    "frame": "FriendsFrame",
    "out": "ui/friends_frame.tscn",
-   "script": "res://game/ui/friends_frame.gd"
+   "script": "res://ui/friends_frame.gd"
   },
   {
    "frame": "GroupLootFrameTemplate",
    "template": true,
    "out": "ui/group_loot_frame.tscn",
-   "script": "res://game/ui/group_loot_frame.gd"
+   "script": "res://ui/group_loot_frame.gd"
   },
   {
    "frame": "DropDownList1",
    "out": "ui/drop_down_list.tscn",
-   "script": "res://game/ui/drop_down_list.gd"
+   "script": "res://ui/drop_down_list.gd"
   },
   {
    "frame": "PetStableFrame",
    "out": "ui/pet_stable_frame.tscn",
-   "script": "res://game/ui/pet_stable_frame.gd"
+   "script": "res://ui/pet_stable_frame.gd"
   },
   {
    "frame": "TradeSkillFrame",
    "out": "ui/trade_skill_frame.tscn",
-   "script": "res://game/ui/trade_skill_frame.gd"
+   "script": "res://ui/trade_skill_frame.gd"
   },
   {
    "frame": "DressUpFrame",
    "out": "ui/dress_up_frame.tscn",
-   "script": "res://game/ui/dress_up_frame.gd"
+   "script": "res://ui/dress_up_frame.gd"
   },
   {
    "frame": "InspectFrame",
    "out": "ui/inspect_frame.tscn",
-   "script": "res://game/ui/inspect_frame.gd"
+   "script": "res://ui/inspect_frame.gd"
   },
   {
    "frame": "MacroFrame",
    "out": "ui/macro_frame.tscn",
-   "script": "res://game/ui/macro_frame.gd"
+   "script": "res://ui/macro_frame.gd"
   },
   {
    "frame": "MacroPopupFrame",
    "out": "ui/macro_popup_frame.tscn",
-   "script": "res://game/ui/macro_popup_frame.gd"
+   "script": "res://ui/macro_popup_frame.gd"
   },
   {
    "frame": "RaidGroupTemplate",
@@ -369,27 +369,27 @@
   {
    "frame": "BattlefieldFrame",
    "out": "ui/battlefield_frame.tscn",
-   "script": "res://game/ui/battlefield_frame.gd"
+   "script": "res://ui/battlefield_frame.gd"
   },
   {
    "frame": "WorldStateScoreFrame",
    "out": "ui/world_state_score_frame.tscn",
-   "script": "res://game/ui/world_state_score_frame.gd"
+   "script": "res://ui/world_state_score_frame.gd"
   },
   {
    "frame": "HelpFrame",
    "out": "ui/help_frame.tscn",
-   "script": "res://game/ui/help_frame.gd"
+   "script": "res://ui/help_frame.gd"
   },
   {
    "frame": "StackSplitFrame",
    "out": "ui/stack_split_frame.tscn",
-   "script": "res://game/ui/stack_split_frame.gd"
+   "script": "res://ui/stack_split_frame.gd"
   },
   {
    "frame": "TutorialFrame",
    "out": "ui/tutorial_frame.tscn",
-   "script": "res://game/ui/tutorial_frame.gd"
+   "script": "res://ui/tutorial_frame.gd"
   },
   {
    "frame": "TutorialFrameAlertButtonTemplate",
@@ -399,32 +399,32 @@
   {
    "frame": "MirrorTimer1",
    "out": "ui/mirror_timer.tscn",
-   "script": "res://game/ui/mirror_timer.gd"
+   "script": "res://ui/mirror_timer.gd"
   },
   {
    "frame": "UIOptionsFrame",
    "out": "ui/ui_options_frame.tscn",
-   "script": "res://game/ui/ui_options_frame.gd"
+   "script": "res://ui/ui_options_frame.gd"
   },
   {
    "frame": "KeyBindingFrame",
    "out": "ui/key_binding_frame.tscn",
-   "script": "res://game/ui/key_binding_frame.gd"
+   "script": "res://ui/key_binding_frame.gd"
   },
   {
    "frame": "GuildRegistrarFrame",
    "out": "ui/guild_registrar_frame.tscn",
-   "script": "res://game/ui/guild_registrar_frame.gd"
+   "script": "res://ui/guild_registrar_frame.gd"
   },
   {
    "frame": "PetitionFrame",
    "out": "ui/petition_frame.tscn",
-   "script": "res://game/ui/petition_frame.gd"
+   "script": "res://ui/petition_frame.gd"
   },
   {
    "frame": "TabardFrame",
    "out": "ui/tabard_frame.tscn",
-   "script": "res://game/ui/tabard_frame.gd"
+   "script": "res://ui/tabard_frame.gd"
   }
  ],
  "graft": {
@@ -438,16 +438,16 @@
   "CharacterDeleteDialog": "CharacterSelect"
  },
  "frame_scripts": {
-  "Minimap": "res://game/ui/minimap_view.gd",
-  "SkillFrame": "res://game/ui/skill_frame.gd",
-  "HonorFrame": "res://game/ui/honor_frame.gd",
-  "RaidFrame": "res://game/ui/raid_frame.gd",
-  "WhoFrame": "res://game/ui/who_frame.gd",
-  "ReputationFrame": "res://game/ui/reputation_frame.gd",
-  "ShapeshiftBarFrame": "res://game/ui/stance_bar.gd",
-  "TargetofTargetFrame": "res://game/ui/target_of_target_frame.gd",
-  "PetFrame": "res://game/ui/pet_frame.gd",
-  "PetActionBarFrame": "res://game/ui/pet_action_bar.gd"
+  "Minimap": "res://ui/minimap_view.gd",
+  "SkillFrame": "res://ui/skill_frame.gd",
+  "HonorFrame": "res://ui/honor_frame.gd",
+  "RaidFrame": "res://ui/raid_frame.gd",
+  "WhoFrame": "res://ui/who_frame.gd",
+  "ReputationFrame": "res://ui/reputation_frame.gd",
+  "ShapeshiftBarFrame": "res://ui/stance_bar.gd",
+  "TargetofTargetFrame": "res://ui/target_of_target_frame.gd",
+  "PetFrame": "res://ui/pet_frame.gd",
+  "PetActionBarFrame": "res://ui/pet_action_bar.gd"
  },
  "exclude": [
   "VirtualKeypadFrame",

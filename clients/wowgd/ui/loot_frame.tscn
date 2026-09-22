@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/ui/loot_frame.gd" id="1"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://ui/loot_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
 [ext_resource type="PackedScene" path="res://ui/loot_button.tscn" id="3"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]

@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/ui/party_member_frame.gd" id="1"]
-[ext_resource type="Script" path="res://game/ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://ui/party_member_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"

@@ -37,27 +37,27 @@
   {
    "frame": "AccountLogin",
    "out": "ui/account_login.tscn",
-   "script": "res://game/ui/login_screen.gd"
+   "script": "res://ui/login_screen.gd"
   },
   {
    "frame": "RealmList",
    "out": "ui/realm_list.tscn",
-   "script": "res://game/ui/realm_list.gd"
+   "script": "res://ui/realm_list.gd"
   },
   {
    "frame": "CharacterSelect",
    "out": "ui/character_select.tscn",
-   "script": "res://game/ui/character_select.gd"
+   "script": "res://ui/character_select.gd"
   },
   {
    "frame": "CharacterCreate",
    "out": "ui/character_create.tscn",
-   "script": "res://game/ui/character_create.gd"
+   "script": "res://ui/character_create.gd"
   },
   {
    "frame": "GlueDialog",
    "out": "ui/glue_dialog.tscn",
-   "script": "res://game/ui/glue_dialog.gd"
+   "script": "res://ui/glue_dialog.gd"
   }
  ]
 }

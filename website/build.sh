@@ -7,15 +7,14 @@ readonly ROOT
 readonly OUT="${ROOT}/_site"
 
 main() {
-  # SITE_REPO is the public GitHub repo holding the releases; local builds get a dead link.
-  local releases="${SITE_REPO:+https://github.com/${SITE_REPO}/releases/latest}"
+  local releases="https://github.com/${SITE_REPO:-bearlikelion/WoWGD}/releases/latest"
 
   rm -rf "$OUT"
   mkdir -p "$OUT"
   "${ROOT}/website/screenshots.sh"
   cp "${ROOT}"/website/*.{html,css,png,json} "$OUT"/
   cp -r "${ROOT}"/website/wowgd "${ROOT}"/website/wrathgd "$OUT"/
-  sed -i "s|{{RELEASES}}|${releases:-#}|g" "${OUT}/index.html"
+  sed -i "s|{{RELEASES}}|${releases}|g" "${OUT}/index.html"
 }
 
 main "$@"
