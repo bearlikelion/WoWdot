@@ -1,6 +1,8 @@
 class_name RaidFrame
 extends Control
 
+signal member_requested
+
 const GROUP: PackedScene = preload("res://ui/raid_group.tscn")
 const MEMBER: PackedScene = preload("res://ui/raid_group_button.tscn")
 const GROUPS: int = 8
@@ -33,8 +35,7 @@ func _ready() -> void:
 	(%RaidFrameRaidDescription as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	%RaidFrameConvertToRaidButton.pressed.connect(PartyFrame.convert_to_raid)
 	%RaidFrameReadyCheckButton.pressed.connect(PartyFrame.start_ready_check)
-	# ponytail: adding by name needs the name popup; /invite does the same meanwhile.
-	%RaidFrameAddMemberButton.hide()
+	%RaidFrameAddMemberButton.pressed.connect(member_requested.emit)
 	%RaidFrameRaidInfoButton.pressed.connect(_toggle_raid_info)
 	%RaidInfoCloseButton.pressed.connect(%RaidInfoFrame.hide)
 	%RaidInfoFrame.hide()

@@ -4,9 +4,12 @@ extends UnitFrame
 
 const OFFLINE_TINT: Color = Color(0.5, 0.5, 0.5)
 
+const DEBUFFS: int = 4
+
 var member_name: String = ""
 var online: bool = true
 var remote_stats: Dictionary = {}
+var _debuffs: Array[Control] = []
 
 # The converter keeps a name unique only once, and the pet frame repeats these.
 @onready var _member_label: Label = $Frame/Frame/Name
@@ -22,11 +25,12 @@ func _ready() -> void:
 	_health_bar = $HealthBar
 	_power_bar = %ManaBar
 	_portrait_rect = $Portrait
-	# ponytail: no party pets, debuffs or status icons yet; add them with the aura port.
+	# ponytail: no party pets or status icons yet.
 	for unused: String in ["%DropDown", "%PetFrame", "%Status", "%PVPIcon", "%MasterIcon"]:
 		(get_node(unused) as Control).hide()
-	for i: int in 4:
-		(get_node("Debuff%d" % (i + 1)) as Control).hide()
+	for i: int in DEBUFFS:
+		_debuffs.append(get_node("Debuff%d" % (i + 1)))
+		_debuffs[i].hide()
 	super()
 
 
@@ -42,6 +46,7 @@ func refresh() -> void:
 	super()
 	if member_name.is_empty() or visible:
 		_update_status()
+		_update_debuffs()
 		return
 	show()
 	_name_label.text = member_name
@@ -52,6 +57,20 @@ func refresh() -> void:
 	var power_type: PowerType = remote_stats.get("power_type", PowerType.MANA) as PowerType
 	_power_bar.tint_progress = POWER_COLORS.get(power_type, POWER_COLORS[PowerType.MANA])
 	_update_status()
+
+
+# PartyMemberFrame_RefreshDebuffs: the first four harmful auras, bordered by dispel type.
+func _update_debuffs() -> void:
+	var harmful: Array[Dictionary] = []
+	for aura: Dictionary in UnitAuras.read(WowClient.session, guid):
+		if aura["harmful"]:
+			harmful.append(aura)
+	for i: int in DEBUFFS:
+		_debuffs[i].visible = i < harmful.size()
+		if _debuffs[i].visible:
+			var spell: int = harmful[i]["spell"]
+			(_debuffs[i].get_node("Icon") as TextureRect).texture = WowAssets.spells.icon(spell)
+			(_debuffs[i].get_node("Border") as TextureRect).self_modulate = UnitAuras.border_color(spell)
 
 
 func _update_status() -> void:

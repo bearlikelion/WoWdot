@@ -621,6 +621,9 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 # UseContainerItem: gear equips, everything else is used.
 # The stock frame asks for a name in a popup with an edit box; a targeted player fills it here.
 func _on_friend_name_requested(tab: FriendsFrame.Tab) -> void:
+	if tab == FriendsFrame.Tab.RAID:
+		_popup.ask_name(WowStrings.get_text("ADD_RAID_MEMBER"), PartyFrame.invite)
+		return
 	var player_name: String = WowClient.session.get_object_name(target())
 	if player_name.is_empty():
 		show_error(WowStrings.get_text("ERR_BAD_PLAYER_NAME_S", "") % "")

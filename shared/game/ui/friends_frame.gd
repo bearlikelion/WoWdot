@@ -99,6 +99,7 @@ func _ready() -> void:
 	var session: WowSession = WowClient.session
 	session.packet_received.connect(_on_packet_received)
 	session.name_received.connect(_on_name_received)
+	%RaidFrame.member_requested.connect(func() -> void: name_requested.emit(Tab.RAID))
 	hide()
 
 
