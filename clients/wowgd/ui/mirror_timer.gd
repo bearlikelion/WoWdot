@@ -32,10 +32,10 @@ func _process(delta: float) -> void:
 	_bar().value = clampf(_seconds, 0.0, _bar().max_value)
 
 
-func start(timer: Kind, value_msec: int, max_msec: int, scale: int, paused: bool) -> void:
+func start(timer: Kind, value_msec: int, max_msec: int, scale_msec: int, paused: bool) -> void:
 	kind = timer
 	_seconds = value_msec / 1000.0
-	_scale = scale / 1000.0
+	_scale = scale_msec / 1000.0
 	_paused = paused
 	var bar: TextureProgressBar = _bar()
 	bar.min_value = 0.0

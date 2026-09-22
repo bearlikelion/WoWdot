@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 	_last_chunk = chunk
 	var reach_chunks: int = ceili(REACH / CHUNK_YARDS)
 	var wanted: Dictionary[Vector3i, bool] = {}
-	var here: Vector2i = Vector2i(tile.x * 16 + chunk.z % 16, tile.y * 16 + chunk.z / 16)
+	var here: Vector2i = Vector2i(tile.x * 16 + chunk.z % 16, tile.y * 16 + floori(chunk.z / 16.0))
 	for dy: int in range(-reach_chunks, reach_chunks + 1):
 		for dx: int in range(-reach_chunks, reach_chunks + 1):
 			var global: Vector2i = here + Vector2i(dx, dy)
@@ -93,12 +93,12 @@ func _build(key: Vector3i) -> Node3D:
 			var slot: int = _textures.get_uint(row, DOODAD_COLUMNS[(n + i) & 3])
 			if slot == EMPTY_SLOT or not _models.has(slot):
 				continue
-			var scale: float = rng.randf_range(0.9, 1.1)
+			var size: float = rng.randf_range(0.9, 1.1)
 			var yaw: float = rng.randf_range(-PI, PI)
 			var east: float = (chunk_x * 8 + cell.x + fx) * CELL_YARDS
 			var south: float = (chunk_y * 8 + cell.y + fy) * CELL_YARDS
 			var local: Vector3 = _tile_point(tile_node, shape, east, south)
-			var placed: Transform3D = Transform3D(Basis(Vector3.UP, yaw).scaled(Vector3.ONE * scale), local)
+			var placed: Transform3D = Transform3D(Basis(Vector3.UP, yaw).scaled(Vector3.ONE * size), local)
 			if not transforms.has(_models[slot]):
 				transforms[_models[slot]] = []
 			transforms[_models[slot]].append(placed)

@@ -23,7 +23,7 @@
 
     <figure class="model" id="model" data-client="wowgd">
       <div class="model-slot">
-        <img id="model-image" src="wowgd/wowgd-login.png" alt="WoWGD login screen" width="1920" height="1080">
+        <img id="model-image" src="wowgd/wowgd-login.jpg" alt="WoWGD login screen" width="1920" height="1080">
         <p class="model-empty" id="model-empty">No capture yet. WrathGD logs in, makes a character and walks around Shadowglen; the first screenshot will land here.</p>
         <button class="model-arrow model-prev" id="model-prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg></button>
         <button class="model-arrow model-next" id="model-next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
@@ -50,7 +50,7 @@
           </button>
         </li>
         <li>
-          <button class="row" type="button" data-client="wrathgd" aria-pressed="false" disabled>
+          <button class="row" type="button" data-client="wrathgd" aria-pressed="false">
             <img src="wrathgd.png" alt="" width="40" height="40">
             <span class="row-text">
               <span class="row-name">WrathGD</span>
@@ -233,7 +233,7 @@
           name: "WoWGD",
           sub: "running in the Godot editor",
           playable: true,
-          shots: ["wowgd/northshire-valley.png"]
+          shots: ["wowgd/wowgd-login.jpg"]
         },
         wrathgd: {
           name: "WrathGD",
@@ -251,7 +251,7 @@
       var rows = document.querySelectorAll(".row");
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      // The file name becomes the caption: wowgd/wowgd-create-character.png reads Create Character.
+      // The file name becomes the caption: wowgd/wowgd-create-character.jpg reads Create Character.
       function caption(path) {
         var name = path.split("/").pop().replace(/\.[a-z]+$/i, "").replace(/^(wowgd|wrathgd)[-_]/i, "").replace(/[-_]+/g, " ");
         return name.replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });

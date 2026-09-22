@@ -159,7 +159,7 @@ func _cell_index(godot_position: Vector3, tile: Vector2i) -> int:
 	var wow: Vector3 = WowCoords.from_godot(godot_position)
 	var x: int = clampi(floori((32.0 - wow.y / TILE_SIZE - tile.x) * 128.0), 0, 127)
 	var y: int = clampi(floori((32.0 - wow.x / TILE_SIZE - tile.y) * 128.0), 0, 127)
-	return ((y / 8) * 16 + x / 8) * GROUND_CELLS + (y % 8) * 8 + x % 8
+	return (floori(y / 8.0) * 16 + floori(x / 8.0)) * GROUND_CELLS + (y % 8) * 8 + x % 8
 
 
 # A WMO's water is one mesh per flooded group, and its box is what tells the player they are in it.

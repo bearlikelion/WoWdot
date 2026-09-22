@@ -19,11 +19,11 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			var kind: MirrorTimer.Kind = reader.u32() as MirrorTimer.Kind
 			var value: int = reader.u32()
 			var longest: int = reader.u32()
-			var scale: int = reader.i32()
+			var scale_msec: int = reader.i32()
 			var paused: bool = reader.u8() > 0
 			var timer: MirrorTimer = _free_timer(kind)
 			if timer:
-				timer.start(kind, value, longest, scale, paused)
+				timer.start(kind, value, longest, scale_msec, paused)
 		"SMSG_PAUSE_MIRROR_TIMER":
 			var kind: MirrorTimer.Kind = reader.u32() as MirrorTimer.Kind
 			var paused: bool = reader.u8() > 0

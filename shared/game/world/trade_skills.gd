@@ -74,7 +74,7 @@ static func difficulty(recipe: Dictionary, rank: int) -> Difficulty:
 	var low: int = recipe["trivial_low"]
 	if high > 0 and rank >= high:
 		return Difficulty.TRIVIAL
-	if low > 0 and rank >= low + (high - low) / 2:
+	if low > 0 and rank >= low + floori((high - low) / 2.0):
 		return Difficulty.EASY
 	if low > 0 and rank >= low:
 		return Difficulty.MEDIUM

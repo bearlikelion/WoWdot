@@ -99,11 +99,11 @@ func _ready() -> void:
 		var right: BaseButton = get_node(frame + "RightButton")
 		left.pressed.connect(_cycle.bind(CUSTOMIZATIONS[i], -1))
 		right.pressed.connect(_cycle.bind(CUSTOMIZATIONS[i], 1))
-	for name: String in [
+	for label_name: String in [
 		"CharacterCreateFactionText", "CharacterCreateRaceText",
 		"CharacterCreateRaceAbilityText", "CharacterCreateClassText",
 	]:
-		var label: Label = get_node_or_null("%" + name) as Label
+		var label: Label = get_node_or_null("%" + label_name) as Label
 		if label != null:
 			label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	var name_backdrop: WowBackdrop = _name_edit.get_node("Backdrop")

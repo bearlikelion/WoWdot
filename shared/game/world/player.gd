@@ -169,8 +169,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Capturing only once a drag starts keeps plain clicks from grabbing the pointer.
 		if _drag_distance >= CLICK_SLOP and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		var pitch: float = -1.0 if WowAssets.interface.is_on(&"invert_mouse") else 1.0
-		var tilt: float = _pivot.rotation.x - motion.relative.y * MOUSE_TURN * pitch
+		var sign_y: float = -1.0 if WowAssets.interface.is_on(&"invert_mouse") else 1.0
+		var tilt: float = _pivot.rotation.x - motion.relative.y * MOUSE_TURN * sign_y
 		_pivot.rotation.x = clampf(tilt, MIN_PITCH, MAX_PITCH)
 		if _mouse_turning:
 			rotation.y -= motion.relative.x * MOUSE_TURN
@@ -340,11 +340,11 @@ func knock_back(take_off_velocity: Vector3, counter: int) -> void:
 	_send("CMSG_MOVE_KNOCK_BACK_ACK", _flags, counter)
 
 
-func set_model(model: Node3D) -> void:
+func set_model(body: Node3D) -> void:
 	for child: Node in _model_slot.get_children():
 		child.queue_free()
-	_model_slot.add_child(model)
-	_model = model
+	_model_slot.add_child(body)
+	_model = body
 
 
 func model() -> Node3D:

@@ -84,7 +84,7 @@ func _run() -> void:
 
 
 func _ahead(start: Vector3, seconds: float) -> Vector3:
-	return start + Vector3(Player.RUN_SPEED * seconds, 0.0, 0.0)
+	return start + Vector3(Player.DEFAULT_SPEEDS[Player.SpeedKind.RUN] * seconds, 0.0, 0.0)
 
 
 func _move(opcode: String, at: Vector3, flags: int) -> void:

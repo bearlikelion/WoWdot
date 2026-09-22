@@ -24,7 +24,7 @@ func _ready() -> void:
 		var group: Control = GROUP.instantiate()
 		add_child(group)
 		group.position = FIRST_GROUP + Vector2(
-			(i % 2) * (group.size.x + COLUMN_GAP), (i / 2) * (group.size.y + ROW_GAP)
+			(i % 2) * (group.size.x + COLUMN_GAP), floori(i / 2.0) * (group.size.y + ROW_GAP)
 		)
 		(group.get_node("Label/Text") as Label).text = "%s %d" % [WowStrings.get_text("GROUP"), i + 1]
 		group.set_drag_forwarding(Callable(), _can_drop_member, _drop_member.bind(i))
@@ -50,9 +50,9 @@ func refresh() -> void:
 	var session: WowSession = WowClient.session
 	var raid: bool = PartyFrame.is_raid
 	%RaidFrameRaidDescription.visible = not raid
-	var convert: BaseButton = %RaidFrameConvertToRaidButton
-	convert.visible = not raid
-	convert.disabled = not PartyFrame.in_party() or PartyFrame.leader != session.get_player_guid()
+	var to_raid: BaseButton = %RaidFrameConvertToRaidButton
+	to_raid.visible = not raid
+	to_raid.disabled = not PartyFrame.in_party() or PartyFrame.leader != session.get_player_guid()
 	for button: Control in _buttons:
 		((button.get_parent() as Control).get_node("FontString") as Label).show()
 		button.queue_free()

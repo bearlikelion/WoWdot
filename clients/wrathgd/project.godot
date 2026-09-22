@@ -31,6 +31,12 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
+[file_customization]
+
+folder_colors={
+"res://game/": "teal"
+}
+
 [input]
 
 move_forward={

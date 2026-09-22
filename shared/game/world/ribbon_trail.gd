@@ -70,7 +70,7 @@ static func attach(model: Node3D, m2_path: String) -> void:
 	var ribbons: Array = WowAssets.loader.get_m2_info(m2_path).get("ribbons", [])
 	if ribbons.is_empty():
 		return
-	var skeleton: Skeleton3D = model.find_children("*", "Skeleton3D", true, false).pop_front()
+	var rig: Skeleton3D = model.find_children("*", "Skeleton3D", true, false).pop_front()
 	for ribbon: Dictionary in ribbons:
 		if String(ribbon["texture"]).is_empty():
 			continue
@@ -84,13 +84,13 @@ static func attach(model: Node3D, m2_path: String) -> void:
 		trail.material_override = _material(ribbon["texture"], ribbon.get("blend", BLEND_ADD))
 		var mount: Node3D = model
 		var offset: Vector3 = ribbon["position"]
-		if skeleton and ribbon["bone"] >= 0 and ribbon["bone"] < skeleton.get_bone_count():
+		if rig and ribbon["bone"] >= 0 and ribbon["bone"] < rig.get_bone_count():
 			var bone: BoneAttachment3D = BoneAttachment3D.new()
 			bone.bone_idx = ribbon["bone"]
-			skeleton.add_child(bone)
+			rig.add_child(bone)
 			mount = bone
 			# An M2 emitter's position is model space, like the bone's pivot.
-			offset -= skeleton.get_bone_global_rest(ribbon["bone"]).origin
+			offset -= rig.get_bone_global_rest(ribbon["bone"]).origin
 		var anchor: Node3D = Node3D.new()
 		anchor.position = offset
 		mount.add_child(anchor)

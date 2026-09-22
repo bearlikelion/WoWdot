@@ -34,14 +34,14 @@ func model_path(display_id: int) -> String:
 
 # The rider goes on attachment 0 and keeps its own scale against the mount's.
 func seat(mount_display: int, mount: Node3D, rider: Node3D) -> void:
-	var seat: Vector3 = Vector3.ZERO
+	var saddle: Vector3 = Vector3.ZERO
 	for attachment: Dictionary in WowAssets.loader.get_m2_info(model_path(mount_display)).get(
 		"attachments", []
 	):
 		if attachment["id"] == 0:
-			seat = attachment["position"]
+			saddle = attachment["position"]
 	mount.add_child(rider)
-	rider.position = seat
+	rider.position = saddle
 	rider.scale = rider.scale / mount.scale
 	# The animation only takes once the mount, and so the rider, is in the tree.
 	UnitAnimations.set_base.call_deferred(rider, PackedStringArray(["Mount"]))

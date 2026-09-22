@@ -40,15 +40,15 @@ var _parts: Dictionary[Part, int] = {}
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	for part: Part in PART_LABELS:
-		_parts[part] = 0
-		var row: int = part + 1
+	for which: Part in PART_LABELS:
+		_parts[which] = 0
+		var row: int = which + 1
 		(get_node("%%TabardFrameCustomization%dText" % row) as Label).text = \
-			WowStrings.get_text(PART_LABELS[part])
+			WowStrings.get_text(PART_LABELS[which])
 		var left: BaseButton = get_node("%%TabardFrameCustomization%dLeftButton" % row)
 		var right: BaseButton = get_node("%%TabardFrameCustomization%dRightButton" % row)
-		left.pressed.connect(_cycle.bind(part, -1))
-		right.pressed.connect(_cycle.bind(part, 1))
+		left.pressed.connect(_cycle.bind(which, -1))
+		right.pressed.connect(_cycle.bind(which, 1))
 	%TabardFrameAcceptButton.pressed.connect(_save)
 	%TabardFrameCancelButton.pressed.connect(close_requested.emit)
 	%TabardFrameCloseButton.pressed.connect(close_requested.emit)

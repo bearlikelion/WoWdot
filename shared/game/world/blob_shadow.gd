@@ -17,7 +17,7 @@ func _ready() -> void:
 		image.clear_mipmaps()
 		var data: PackedByteArray = image.get_data()
 		for i: int in range(0, data.size(), 4):
-			data[i + 3] = (255 - data[i]) * data[i + 3] / 255
+			data[i + 3] = floori((255 - data[i]) * data[i + 3] / 255.0)
 			data[i] = 0
 			data[i + 1] = 0
 			data[i + 2] = 0
