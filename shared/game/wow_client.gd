@@ -15,6 +15,7 @@ var equipment_sets: EquipmentSets = EquipmentSets.new(session)
 var dungeon_finder: DungeonFinder = DungeonFinder.new(session)
 var achievements: Achievements = Achievements.new(session)
 var arena_teams: ArenaTeams = ArenaTeams.new(session)
+var guild_bank: GuildBank = GuildBank.new(session)
 
 
 func _ready() -> void:

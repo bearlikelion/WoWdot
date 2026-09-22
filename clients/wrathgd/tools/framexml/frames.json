@@ -469,6 +469,11 @@
    "script": "res://ui/pvp_parent_frame.gd"
   },
   {
+   "frame": "GuildBankFrame",
+   "out": "ui/guild_bank_frame.tscn",
+   "script": "res://ui/guild_bank_frame.gd"
+  },
+  {
    "frame": "TargetDebuffFrameTemplate",
    "out": "ui/target_debuff_frame.tscn",
    "template": true

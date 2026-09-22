@@ -25,6 +25,7 @@ const LEVEL_UP_EFFECT: String = "Spells\\LevelUp\\LevelUp.m2"
 const LEVEL_UP_SECONDS: float = 3.0
 const GAMEOBJECT_TYPE_MAILBOX: int = 19
 const GAMEOBJECT_TYPE_MEETING_STONE: int = 23
+const GAMEOBJECT_TYPE_GUILD_BANK: int = 34
 # Which data field of a readable game object's template holds its first page, by type.
 const GAMEOBJECT_PAGE_FIELDS: Dictionary[int, int] = {9: 0, 10: 7}
 const NPC_FLAG_AUCTIONEER: int = 0x1000
@@ -759,6 +760,9 @@ func _use_game_object(guid: int) -> void:
 		return
 	if info.get("type", 0) == GAMEOBJECT_TYPE_MAILBOX:
 		_hud.open_mailbox(guid)
+		return
+	if info.get("type", 0) == GAMEOBJECT_TYPE_GUILD_BANK and PacketReader.wotlk:
+		WowClient.guild_bank.activate(guid)
 		return
 	var payload: PackedByteArray = []
 	payload.resize(8)

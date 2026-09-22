@@ -1,0 +1,3034 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/guild_bank_frame.gd" id="1"]
+[ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="4"]
+[ext_resource type="Script" path="res://ui/wow/wow_scrolling_message_frame.gd" id="5"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="6"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\GuildBankFrame\\UI-GuildBankFrame-Left.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\GuildBankFrame\\UI-GuildBankFrame-Right.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\GuildBankFrame\\UI-TabNameBorder.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_3")
+region = Rect2(8, 0, 62, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_3")
+region = Rect2(0, 0, 8, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_3")
+region = Rect2(70, 0, 8, 18)
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\GuildBankFrame\\UI-GuildBankFrame-EmblemBorder.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
+atlas = SubResource("WowTexture_7")
+region = Rect2(0, 0, 512, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_7")
+region = Rect2(0, 81, 512, 79)
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\GuildBankFrame\\UI-GuildBankFrame-Slots.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 100, 311)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_20"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\GuildBankFrame\\UI-GuildBankFrame-Tab.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\Buttons\\UI-Quickslot2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-Quickslot-Depress.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\Buttons\\CheckButtonHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_39"]
+atlas = SubResource("WowTexture_38")
+region = Rect2(0, 0, 31, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_38")
+region = Rect2(33, 0, 31, 106)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_43"]
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_46")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_48"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
+atlas = SubResource("WowTexture_48")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_50"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
+atlas = SubResource("WowTexture_50")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_52"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
+atlas = SubResource("WowTexture_52")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_54"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55"]
+atlas = SubResource("WowTexture_54")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
+atlas = SubResource("WowTexture_56")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_58"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_59"]
+atlas = SubResource("WowTexture_58")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[node name="GuildBankFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 769
+offset_bottom = 548
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="GuildBankFramePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 5
+offset_right = 47
+offset_bottom = 45
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankErrorMessage" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 216
+offset_right = 0
+offset_bottom = 228
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Your guild has not purchased any guild bank space."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GuildBankFrameLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 512
+offset_bottom = 512
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="GuildBankFrameRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = 11
+offset_right = 1024
+offset_bottom = 523
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="GuildBankTabTitleBackground" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1
+offset_top = 43
+offset_right = 11
+offset_bottom = 61
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="GuildBankTabTitleBackgroundLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -7
+offset_top = 43
+offset_right = 1
+offset_bottom = 61
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="GuildBankTabTitleBackgroundRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 11
+offset_top = 43
+offset_right = 19
+offset_bottom = 61
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="GuildBankTabTitle" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 6
+offset_top = 45
+offset_right = 6
+offset_bottom = 57
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GuildBankTabLimitBackground" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1
+offset_top = 388
+offset_right = 11
+offset_bottom = 406
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="GuildBankTabLimitBackgroundLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -7
+offset_top = 388
+offset_right = 1
+offset_bottom = 406
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="GuildBankTabLimitBackgroundRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 11
+offset_top = 388
+offset_right = 19
+offset_bottom = 406
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="GuildBankLimitLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 6
+offset_top = 391
+offset_right = 6
+offset_bottom = 401
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GuildBankMoneyLimitLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 26
+offset_top = -29
+offset_right = 26
+offset_bottom = -16
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Available Amount:"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="GuildBankMoneyUnlimitedLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 31
+offset_top = -29
+offset_right = 31
+offset_bottom = -16
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Unlimited"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="GuildBankEmblemFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -420
+offset_top = -46
+offset_right = 280
+offset_bottom = 34
+mouse_filter = 2
+
+[node name="GuildBankEmblemBackgroundUL" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 386
+offset_top = 19
+offset_right = 426
+offset_bottom = 59
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankEmblemBackgroundUR" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 426
+offset_top = 19
+offset_right = 466
+offset_bottom = 59
+mouse_filter = 2
+expand_mode = 1
+flip_h = true
+
+[node name="GuildBankEmblemBackgroundBL" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 386
+offset_top = 59
+offset_right = 426
+offset_bottom = 79
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankEmblemBackgroundBR" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 426
+offset_top = 59
+offset_right = 466
+offset_bottom = 79
+mouse_filter = 2
+expand_mode = 1
+flip_h = true
+
+[node name="GuildBankEmblemBorderUL" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 386
+offset_top = 19
+offset_right = 426
+offset_bottom = 59
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankEmblemBorderUR" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 426
+offset_top = 19
+offset_right = 466
+offset_bottom = 59
+mouse_filter = 2
+expand_mode = 1
+flip_h = true
+
+[node name="GuildBankEmblemBorderBL" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 386
+offset_top = 59
+offset_right = 426
+offset_bottom = 79
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankEmblemBorderBR" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 426
+offset_top = 59
+offset_right = 466
+offset_bottom = 79
+mouse_filter = 2
+expand_mode = 1
+flip_h = true
+
+[node name="GuildBankEmblemUL" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 386
+offset_top = 19
+offset_right = 426
+offset_bottom = 59
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankEmblemUR" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 426
+offset_top = 19
+offset_right = 466
+offset_bottom = 59
+mouse_filter = 2
+expand_mode = 1
+flip_h = true
+
+[node name="GuildBankEmblemBL" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 386
+offset_top = 59
+offset_right = 426
+offset_bottom = 79
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankEmblemBR" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 426
+offset_top = 59
+offset_right = 466
+offset_bottom = 79
+mouse_filter = 2
+expand_mode = 1
+flip_h = true
+
+[node name="GuildBankEmblemFrameLeft" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 512
+offset_bottom = 80
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+
+[node name="GuildBankEmblemFrameRight" type="TextureRect" parent="GuildBankEmblemFrame"]
+unique_name_in_owner = true
+offset_left = 512
+offset_top = 1
+offset_right = 1024
+offset_bottom = 80
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="GuildBankColumn1" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 70
+offset_right = 130
+offset_bottom = 381
+mouse_filter = 2
+
+[node name="GuildBankColumn1Background" type="TextureRect" parent="GuildBankColumn1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 311
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="GuildBankColumn1Button1" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 3
+offset_right = 44
+offset_bottom = 40
+
+[node name="GuildBankColumn1Button2" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 47
+offset_right = 44
+offset_bottom = 84
+
+[node name="GuildBankColumn1Button3" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 91
+offset_right = 44
+offset_bottom = 128
+
+[node name="GuildBankColumn1Button4" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 135
+offset_right = 44
+offset_bottom = 172
+
+[node name="GuildBankColumn1Button5" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 179
+offset_right = 44
+offset_bottom = 216
+
+[node name="GuildBankColumn1Button6" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 223
+offset_right = 44
+offset_bottom = 260
+
+[node name="GuildBankColumn1Button7" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 267
+offset_right = 44
+offset_bottom = 304
+
+[node name="GuildBankColumn1Button8" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 3
+offset_right = 93
+offset_bottom = 40
+
+[node name="GuildBankColumn1Button9" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 47
+offset_right = 93
+offset_bottom = 84
+
+[node name="GuildBankColumn1Button10" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 91
+offset_right = 93
+offset_bottom = 128
+
+[node name="GuildBankColumn1Button11" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 135
+offset_right = 93
+offset_bottom = 172
+
+[node name="GuildBankColumn1Button12" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 179
+offset_right = 93
+offset_bottom = 216
+
+[node name="GuildBankColumn1Button13" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 223
+offset_right = 93
+offset_bottom = 260
+
+[node name="GuildBankColumn1Button14" parent="GuildBankColumn1" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 267
+offset_right = 93
+offset_bottom = 304
+
+[node name="GuildBankColumn2" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 133
+offset_top = 70
+offset_right = 233
+offset_bottom = 381
+mouse_filter = 2
+
+[node name="GuildBankColumn2Background" type="TextureRect" parent="GuildBankColumn2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 311
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="GuildBankColumn2Button1" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 3
+offset_right = 44
+offset_bottom = 40
+
+[node name="GuildBankColumn2Button2" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 47
+offset_right = 44
+offset_bottom = 84
+
+[node name="GuildBankColumn2Button3" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 91
+offset_right = 44
+offset_bottom = 128
+
+[node name="GuildBankColumn2Button4" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 135
+offset_right = 44
+offset_bottom = 172
+
+[node name="GuildBankColumn2Button5" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 179
+offset_right = 44
+offset_bottom = 216
+
+[node name="GuildBankColumn2Button6" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 223
+offset_right = 44
+offset_bottom = 260
+
+[node name="GuildBankColumn2Button7" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 267
+offset_right = 44
+offset_bottom = 304
+
+[node name="GuildBankColumn2Button8" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 3
+offset_right = 93
+offset_bottom = 40
+
+[node name="GuildBankColumn2Button9" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 47
+offset_right = 93
+offset_bottom = 84
+
+[node name="GuildBankColumn2Button10" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 91
+offset_right = 93
+offset_bottom = 128
+
+[node name="GuildBankColumn2Button11" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 135
+offset_right = 93
+offset_bottom = 172
+
+[node name="GuildBankColumn2Button12" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 179
+offset_right = 93
+offset_bottom = 216
+
+[node name="GuildBankColumn2Button13" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 223
+offset_right = 93
+offset_bottom = 260
+
+[node name="GuildBankColumn2Button14" parent="GuildBankColumn2" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 267
+offset_right = 93
+offset_bottom = 304
+
+[node name="GuildBankColumn3" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 236
+offset_top = 70
+offset_right = 336
+offset_bottom = 381
+mouse_filter = 2
+
+[node name="GuildBankColumn3Background" type="TextureRect" parent="GuildBankColumn3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 311
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="GuildBankColumn3Button1" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 3
+offset_right = 44
+offset_bottom = 40
+
+[node name="GuildBankColumn3Button2" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 47
+offset_right = 44
+offset_bottom = 84
+
+[node name="GuildBankColumn3Button3" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 91
+offset_right = 44
+offset_bottom = 128
+
+[node name="GuildBankColumn3Button4" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 135
+offset_right = 44
+offset_bottom = 172
+
+[node name="GuildBankColumn3Button5" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 179
+offset_right = 44
+offset_bottom = 216
+
+[node name="GuildBankColumn3Button6" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 223
+offset_right = 44
+offset_bottom = 260
+
+[node name="GuildBankColumn3Button7" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 267
+offset_right = 44
+offset_bottom = 304
+
+[node name="GuildBankColumn3Button8" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 3
+offset_right = 93
+offset_bottom = 40
+
+[node name="GuildBankColumn3Button9" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 47
+offset_right = 93
+offset_bottom = 84
+
+[node name="GuildBankColumn3Button10" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 91
+offset_right = 93
+offset_bottom = 128
+
+[node name="GuildBankColumn3Button11" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 135
+offset_right = 93
+offset_bottom = 172
+
+[node name="GuildBankColumn3Button12" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 179
+offset_right = 93
+offset_bottom = 216
+
+[node name="GuildBankColumn3Button13" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 223
+offset_right = 93
+offset_bottom = 260
+
+[node name="GuildBankColumn3Button14" parent="GuildBankColumn3" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 267
+offset_right = 93
+offset_bottom = 304
+
+[node name="GuildBankColumn4" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 339
+offset_top = 70
+offset_right = 439
+offset_bottom = 381
+mouse_filter = 2
+
+[node name="GuildBankColumn4Background" type="TextureRect" parent="GuildBankColumn4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 311
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="GuildBankColumn4Button1" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 3
+offset_right = 44
+offset_bottom = 40
+
+[node name="GuildBankColumn4Button2" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 47
+offset_right = 44
+offset_bottom = 84
+
+[node name="GuildBankColumn4Button3" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 91
+offset_right = 44
+offset_bottom = 128
+
+[node name="GuildBankColumn4Button4" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 135
+offset_right = 44
+offset_bottom = 172
+
+[node name="GuildBankColumn4Button5" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 179
+offset_right = 44
+offset_bottom = 216
+
+[node name="GuildBankColumn4Button6" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 223
+offset_right = 44
+offset_bottom = 260
+
+[node name="GuildBankColumn4Button7" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 267
+offset_right = 44
+offset_bottom = 304
+
+[node name="GuildBankColumn4Button8" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 3
+offset_right = 93
+offset_bottom = 40
+
+[node name="GuildBankColumn4Button9" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 47
+offset_right = 93
+offset_bottom = 84
+
+[node name="GuildBankColumn4Button10" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 91
+offset_right = 93
+offset_bottom = 128
+
+[node name="GuildBankColumn4Button11" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 135
+offset_right = 93
+offset_bottom = 172
+
+[node name="GuildBankColumn4Button12" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 179
+offset_right = 93
+offset_bottom = 216
+
+[node name="GuildBankColumn4Button13" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 223
+offset_right = 93
+offset_bottom = 260
+
+[node name="GuildBankColumn4Button14" parent="GuildBankColumn4" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 267
+offset_right = 93
+offset_bottom = 304
+
+[node name="GuildBankColumn5" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 442
+offset_top = 70
+offset_right = 542
+offset_bottom = 381
+mouse_filter = 2
+
+[node name="GuildBankColumn5Background" type="TextureRect" parent="GuildBankColumn5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 311
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="GuildBankColumn5Button1" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 3
+offset_right = 44
+offset_bottom = 40
+
+[node name="GuildBankColumn5Button2" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 47
+offset_right = 44
+offset_bottom = 84
+
+[node name="GuildBankColumn5Button3" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 91
+offset_right = 44
+offset_bottom = 128
+
+[node name="GuildBankColumn5Button4" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 135
+offset_right = 44
+offset_bottom = 172
+
+[node name="GuildBankColumn5Button5" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 179
+offset_right = 44
+offset_bottom = 216
+
+[node name="GuildBankColumn5Button6" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 223
+offset_right = 44
+offset_bottom = 260
+
+[node name="GuildBankColumn5Button7" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 267
+offset_right = 44
+offset_bottom = 304
+
+[node name="GuildBankColumn5Button8" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 3
+offset_right = 93
+offset_bottom = 40
+
+[node name="GuildBankColumn5Button9" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 47
+offset_right = 93
+offset_bottom = 84
+
+[node name="GuildBankColumn5Button10" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 91
+offset_right = 93
+offset_bottom = 128
+
+[node name="GuildBankColumn5Button11" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 135
+offset_right = 93
+offset_bottom = 172
+
+[node name="GuildBankColumn5Button12" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 179
+offset_right = 93
+offset_bottom = 216
+
+[node name="GuildBankColumn5Button13" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 223
+offset_right = 93
+offset_bottom = 260
+
+[node name="GuildBankColumn5Button14" parent="GuildBankColumn5" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 267
+offset_right = 93
+offset_bottom = 304
+
+[node name="GuildBankColumn6" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 545
+offset_top = 70
+offset_right = 645
+offset_bottom = 381
+mouse_filter = 2
+
+[node name="GuildBankColumn6Background" type="TextureRect" parent="GuildBankColumn6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 311
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="GuildBankColumn6Button1" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 3
+offset_right = 44
+offset_bottom = 40
+
+[node name="GuildBankColumn6Button2" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 47
+offset_right = 44
+offset_bottom = 84
+
+[node name="GuildBankColumn6Button3" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 91
+offset_right = 44
+offset_bottom = 128
+
+[node name="GuildBankColumn6Button4" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 135
+offset_right = 44
+offset_bottom = 172
+
+[node name="GuildBankColumn6Button5" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 179
+offset_right = 44
+offset_bottom = 216
+
+[node name="GuildBankColumn6Button6" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 223
+offset_right = 44
+offset_bottom = 260
+
+[node name="GuildBankColumn6Button7" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 267
+offset_right = 44
+offset_bottom = 304
+
+[node name="GuildBankColumn6Button8" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 3
+offset_right = 93
+offset_bottom = 40
+
+[node name="GuildBankColumn6Button9" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 47
+offset_right = 93
+offset_bottom = 84
+
+[node name="GuildBankColumn6Button10" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 91
+offset_right = 93
+offset_bottom = 128
+
+[node name="GuildBankColumn6Button11" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 135
+offset_right = 93
+offset_bottom = 172
+
+[node name="GuildBankColumn6Button12" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 179
+offset_right = 93
+offset_bottom = 216
+
+[node name="GuildBankColumn6Button13" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 223
+offset_right = 93
+offset_bottom = 260
+
+[node name="GuildBankColumn6Button14" parent="GuildBankColumn6" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 267
+offset_right = 93
+offset_bottom = 304
+
+[node name="GuildBankColumn7" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 648
+offset_top = 70
+offset_right = 748
+offset_bottom = 381
+mouse_filter = 2
+
+[node name="GuildBankColumn7Background" type="TextureRect" parent="GuildBankColumn7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 311
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="GuildBankColumn7Button1" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 3
+offset_right = 44
+offset_bottom = 40
+
+[node name="GuildBankColumn7Button2" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 47
+offset_right = 44
+offset_bottom = 84
+
+[node name="GuildBankColumn7Button3" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 91
+offset_right = 44
+offset_bottom = 128
+
+[node name="GuildBankColumn7Button4" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 135
+offset_right = 44
+offset_bottom = 172
+
+[node name="GuildBankColumn7Button5" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 179
+offset_right = 44
+offset_bottom = 216
+
+[node name="GuildBankColumn7Button6" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 223
+offset_right = 44
+offset_bottom = 260
+
+[node name="GuildBankColumn7Button7" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 267
+offset_right = 44
+offset_bottom = 304
+
+[node name="GuildBankColumn7Button8" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 3
+offset_right = 93
+offset_bottom = 40
+
+[node name="GuildBankColumn7Button9" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 47
+offset_right = 93
+offset_bottom = 84
+
+[node name="GuildBankColumn7Button10" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 91
+offset_right = 93
+offset_bottom = 128
+
+[node name="GuildBankColumn7Button11" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 135
+offset_right = 93
+offset_bottom = 172
+
+[node name="GuildBankColumn7Button12" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 179
+offset_right = 93
+offset_bottom = 216
+
+[node name="GuildBankColumn7Button13" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 223
+offset_right = 93
+offset_bottom = 260
+
+[node name="GuildBankColumn7Button14" parent="GuildBankColumn7" instance=ExtResource("2")]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 267
+offset_right = 93
+offset_bottom = 304
+
+[node name="GuildBankMoneyFrame" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -132
+offset_top = -29
+offset_right = -4
+offset_bottom = -16
+
+[node name="GuildBankWithdrawMoneyFrame" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 39
+offset_top = -29
+offset_right = 167
+offset_bottom = -16
+
+[node name="GuildBankFrameDepositButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -111
+offset_top = -58
+offset_right = -11
+offset_bottom = -37
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankFrameDepositButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankFrameDepositButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GuildBankFrameDepositButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="GuildBankFrameDepositButtonText" type="Label" parent="GuildBankFrameDepositButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+text = "Deposit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameDepositButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankFrameWithdrawButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -208
+offset_top = -58
+offset_right = -108
+offset_bottom = -37
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankFrameWithdrawButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankFrameWithdrawButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GuildBankFrameWithdrawButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="GuildBankFrameWithdrawButtonText" type="Label" parent="GuildBankFrameWithdrawButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+text = "Withdraw"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameWithdrawButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="Button" type="TextureButton" parent="."]
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -29
+offset_top = 8
+offset_right = 3
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankFrameTab1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 19
+offset_top = -8
+offset_right = 29
+offset_bottom = 24
+ignore_texture_size = true
+
+[node name="GuildBankFrameTab1LeftDisabled" type="TextureRect" parent="GuildBankFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="GuildBankFrameTab1MiddleDisabled" type="TextureRect" parent="GuildBankFrameTab1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="GuildBankFrameTab1RightDisabled" type="TextureRect" parent="GuildBankFrameTab1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="GuildBankFrameTab1Left" type="TextureRect" parent="GuildBankFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="GuildBankFrameTab1Middle" type="TextureRect" parent="GuildBankFrameTab1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="GuildBankFrameTab1Right" type="TextureRect" parent="GuildBankFrameTab1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="GuildBankFrameTab1Text" type="Label" parent="GuildBankFrameTab1"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 9
+offset_right = 5
+offset_bottom = 19
+grow_horizontal = 2
+mouse_filter = 2
+text = "Guild Bank"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameTab1"]
+offset_left = 10
+offset_top = -2
+offset_right = 0
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankFrameTab2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 13
+offset_top = -8
+offset_right = 23
+offset_bottom = 24
+ignore_texture_size = true
+
+[node name="GuildBankFrameTab2LeftDisabled" type="TextureRect" parent="GuildBankFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="GuildBankFrameTab2MiddleDisabled" type="TextureRect" parent="GuildBankFrameTab2"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="GuildBankFrameTab2RightDisabled" type="TextureRect" parent="GuildBankFrameTab2"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="GuildBankFrameTab2Left" type="TextureRect" parent="GuildBankFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="GuildBankFrameTab2Middle" type="TextureRect" parent="GuildBankFrameTab2"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="GuildBankFrameTab2Right" type="TextureRect" parent="GuildBankFrameTab2"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="GuildBankFrameTab2Text" type="Label" parent="GuildBankFrameTab2"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 9
+offset_right = 5
+offset_bottom = 19
+grow_horizontal = 2
+mouse_filter = 2
+text = "Log"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameTab2"]
+offset_left = 10
+offset_top = -2
+offset_right = 0
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankFrameTab3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 7
+offset_top = -8
+offset_right = 17
+offset_bottom = 24
+ignore_texture_size = true
+
+[node name="GuildBankFrameTab3LeftDisabled" type="TextureRect" parent="GuildBankFrameTab3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="GuildBankFrameTab3MiddleDisabled" type="TextureRect" parent="GuildBankFrameTab3"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="GuildBankFrameTab3RightDisabled" type="TextureRect" parent="GuildBankFrameTab3"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="GuildBankFrameTab3Left" type="TextureRect" parent="GuildBankFrameTab3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="GuildBankFrameTab3Middle" type="TextureRect" parent="GuildBankFrameTab3"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="GuildBankFrameTab3Right" type="TextureRect" parent="GuildBankFrameTab3"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="GuildBankFrameTab3Text" type="Label" parent="GuildBankFrameTab3"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 9
+offset_right = 5
+offset_bottom = 19
+grow_horizontal = 2
+mouse_filter = 2
+text = "Money Log"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameTab3"]
+offset_left = 10
+offset_top = -2
+offset_right = 0
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankFrameTab4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 1
+offset_top = -8
+offset_right = 11
+offset_bottom = 24
+ignore_texture_size = true
+
+[node name="GuildBankFrameTab4LeftDisabled" type="TextureRect" parent="GuildBankFrameTab4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="GuildBankFrameTab4MiddleDisabled" type="TextureRect" parent="GuildBankFrameTab4"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="GuildBankFrameTab4RightDisabled" type="TextureRect" parent="GuildBankFrameTab4"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="GuildBankFrameTab4Left" type="TextureRect" parent="GuildBankFrameTab4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="GuildBankFrameTab4Middle" type="TextureRect" parent="GuildBankFrameTab4"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="GuildBankFrameTab4Right" type="TextureRect" parent="GuildBankFrameTab4"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="GuildBankFrameTab4Text" type="Label" parent="GuildBankFrameTab4"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 9
+offset_right = 5
+offset_bottom = 19
+grow_horizontal = 2
+mouse_filter = 2
+text = "Info"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameTab4"]
+offset_left = 10
+offset_top = -2
+offset_right = 0
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankTab1" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -1
+offset_top = 32
+offset_right = 41
+offset_bottom = 82
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="GuildBankTab1"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="GuildBankTab1Button" type="TextureButton" parent="GuildBankTab1"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 2
+offset_top = 8
+offset_right = 38
+offset_bottom = 42
+ignore_texture_size = true
+
+[node name="GuildBankTab1ButtonIconTexture" type="TextureRect" parent="GuildBankTab1/GuildBankTab1Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankTab1ButtonCount" type="Label" parent="GuildBankTab1/GuildBankTab1Button"]
+unique_name_in_owner = true
+offset_left = 31
+offset_top = 18
+offset_right = 31
+offset_bottom = 32
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankTab1/GuildBankTab1Button"]
+offset_left = -12
+offset_top = -12
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankTab1/GuildBankTab1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="GuildBankTab1/GuildBankTab1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankTab1/GuildBankTab1Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankTab2" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -1
+offset_top = 82
+offset_right = 41
+offset_bottom = 132
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="GuildBankTab2"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="GuildBankTab2Button" type="TextureButton" parent="GuildBankTab2"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 2
+offset_top = 8
+offset_right = 38
+offset_bottom = 42
+ignore_texture_size = true
+
+[node name="GuildBankTab2ButtonIconTexture" type="TextureRect" parent="GuildBankTab2/GuildBankTab2Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankTab2ButtonCount" type="Label" parent="GuildBankTab2/GuildBankTab2Button"]
+unique_name_in_owner = true
+offset_left = 31
+offset_top = 18
+offset_right = 31
+offset_bottom = 32
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankTab2/GuildBankTab2Button"]
+offset_left = -12
+offset_top = -12
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankTab2/GuildBankTab2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="GuildBankTab2/GuildBankTab2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankTab2/GuildBankTab2Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankTab3" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -1
+offset_top = 132
+offset_right = 41
+offset_bottom = 182
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="GuildBankTab3"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="GuildBankTab3Button" type="TextureButton" parent="GuildBankTab3"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 2
+offset_top = 8
+offset_right = 38
+offset_bottom = 42
+ignore_texture_size = true
+
+[node name="GuildBankTab3ButtonIconTexture" type="TextureRect" parent="GuildBankTab3/GuildBankTab3Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankTab3ButtonCount" type="Label" parent="GuildBankTab3/GuildBankTab3Button"]
+unique_name_in_owner = true
+offset_left = 31
+offset_top = 18
+offset_right = 31
+offset_bottom = 32
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankTab3/GuildBankTab3Button"]
+offset_left = -12
+offset_top = -12
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankTab3/GuildBankTab3Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="GuildBankTab3/GuildBankTab3Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankTab3/GuildBankTab3Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankTab4" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -1
+offset_top = 182
+offset_right = 41
+offset_bottom = 232
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="GuildBankTab4"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="GuildBankTab4Button" type="TextureButton" parent="GuildBankTab4"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 2
+offset_top = 8
+offset_right = 38
+offset_bottom = 42
+ignore_texture_size = true
+
+[node name="GuildBankTab4ButtonIconTexture" type="TextureRect" parent="GuildBankTab4/GuildBankTab4Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankTab4ButtonCount" type="Label" parent="GuildBankTab4/GuildBankTab4Button"]
+unique_name_in_owner = true
+offset_left = 31
+offset_top = 18
+offset_right = 31
+offset_bottom = 32
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankTab4/GuildBankTab4Button"]
+offset_left = -12
+offset_top = -12
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankTab4/GuildBankTab4Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="GuildBankTab4/GuildBankTab4Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankTab4/GuildBankTab4Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankTab5" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -1
+offset_top = 232
+offset_right = 41
+offset_bottom = 282
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="GuildBankTab5"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="GuildBankTab5Button" type="TextureButton" parent="GuildBankTab5"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 2
+offset_top = 8
+offset_right = 38
+offset_bottom = 42
+ignore_texture_size = true
+
+[node name="GuildBankTab5ButtonIconTexture" type="TextureRect" parent="GuildBankTab5/GuildBankTab5Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankTab5ButtonCount" type="Label" parent="GuildBankTab5/GuildBankTab5Button"]
+unique_name_in_owner = true
+offset_left = 31
+offset_top = 18
+offset_right = 31
+offset_bottom = 32
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankTab5/GuildBankTab5Button"]
+offset_left = -12
+offset_top = -12
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankTab5/GuildBankTab5Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="GuildBankTab5/GuildBankTab5Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankTab5/GuildBankTab5Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankTab6" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -1
+offset_top = 282
+offset_right = 41
+offset_bottom = 332
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="GuildBankTab6"]
+offset_left = 0
+offset_top = 0
+offset_right = 64
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="GuildBankTab6Button" type="TextureButton" parent="GuildBankTab6"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 2
+offset_top = 8
+offset_right = 38
+offset_bottom = 42
+ignore_texture_size = true
+
+[node name="GuildBankTab6ButtonIconTexture" type="TextureRect" parent="GuildBankTab6/GuildBankTab6Button"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+mouse_filter = 2
+expand_mode = 1
+
+[node name="GuildBankTab6ButtonCount" type="Label" parent="GuildBankTab6/GuildBankTab6Button"]
+unique_name_in_owner = true
+offset_left = 31
+offset_top = 18
+offset_right = 31
+offset_bottom = 32
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankTab6/GuildBankTab6Button"]
+offset_left = -12
+offset_top = -12
+offset_right = 48
+offset_bottom = 48
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankTab6/GuildBankTab6Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="GuildBankTab6/GuildBankTab6Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankTab6/GuildBankTab6Button"]
+offset_left = 0
+offset_top = 0
+offset_right = 36
+offset_bottom = 34
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankFrameBuyInfo" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10
+offset_top = 194
+offset_right = 10
+offset_bottom = 214
+visible = false
+mouse_filter = 2
+
+[node name="GuildBankFrameBuyInfoText" type="Label" parent="GuildBankFrameBuyInfo"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 0
+offset_right = 10
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Do you wish to purchase this tab?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GuildBankFrameBuyInfoNumTabsPurchasedText" type="Label" parent="GuildBankFrameBuyInfo"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 14
+offset_right = 10
+offset_bottom = 24
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Do you wish to purchase this tab?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GuildBankFrameTabCost" type="Label" parent="GuildBankFrameBuyInfo"]
+unique_name_in_owner = true
+offset_left = -83
+offset_top = 38
+offset_right = -83
+offset_bottom = 50
+grow_horizontal = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Cost:"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="GuildBankFrameTabCostMoneyFrame" parent="GuildBankFrameBuyInfo" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = -73
+offset_top = 37.5
+offset_right = 55
+offset_bottom = 50.5
+
+[node name="GuildBankFramePurchaseButton" type="TextureButton" parent="GuildBankFrameBuyInfo"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 67
+offset_top = 33.5
+offset_right = 191
+offset_bottom = 54.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankFrameBuyInfo/GuildBankFramePurchaseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 124
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankFrameBuyInfo/GuildBankFramePurchaseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 124
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GuildBankFrameBuyInfo/GuildBankFramePurchaseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 124
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="GuildBankFramePurchaseButtonText" type="Label" parent="GuildBankFrameBuyInfo/GuildBankFramePurchaseButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 124
+offset_bottom = 21
+mouse_filter = 2
+text = "Purchase"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameBuyInfo/GuildBankFramePurchaseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 124
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankFrameLog" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 10
+offset_bottom = 10
+mouse_filter = 2
+
+[node name="GuildBankMessageFrame" type="Control" parent="GuildBankFrameLog"]
+unique_name_in_owner = true
+script = ExtResource("5")
+offset_left = 33
+offset_top = 73
+offset_right = 721
+offset_bottom = 377
+mouse_filter = 2
+font_variation = &"ChatFontNormal"
+display_duration = 120
+max_lines = 128
+
+[node name="GuildBankMessageFrameClip" type="Control" parent="GuildBankFrameLog/GuildBankMessageFrame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="MessageLines" type="VBoxContainer" parent="GuildBankFrameLog/GuildBankMessageFrame/GuildBankMessageFrameClip"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="GuildBankTransactionsScrollFrame" type="Control" parent="GuildBankFrameLog"]
+unique_name_in_owner = true
+script = ExtResource("6")
+offset_left = 31
+offset_top = 75
+offset_right = 719
+offset_bottom = 379
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame"]
+offset_left = 686
+offset_top = -5
+offset_right = 717
+offset_bottom = 251
+mouse_filter = 2
+texture = SubResource("AtlasTexture_39")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame"]
+offset_left = 686
+offset_top = 200
+offset_right = 717
+offset_bottom = 306
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="GuildBankTransactionsScrollFrameScrollBar" type="VSlider" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame"]
+unique_name_in_owner = true
+offset_left = 694
+offset_top = 16
+offset_right = 710
+offset_bottom = 288
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_42")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_42")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_43")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_43")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_43")
+max_value = 0.0
+step = 0.0
+
+[node name="GuildBankTransactionsScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar/GuildBankTransactionsScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar/GuildBankTransactionsScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar/GuildBankTransactionsScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar/GuildBankTransactionsScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankTransactionsScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = -1
+offset_top = 272
+offset_right = 17
+offset_bottom = 288
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar/GuildBankTransactionsScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar/GuildBankTransactionsScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar/GuildBankTransactionsScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameScrollBar/GuildBankTransactionsScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_59")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankTransactionsScrollFrameClip" type="Control" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="GuildBankTransactionsScrollFrameScrollChildFrame" type="Control" parent="GuildBankFrameLog/GuildBankTransactionsScrollFrame/GuildBankTransactionsScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="GuildBankInfo" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 74
+offset_right = 42
+offset_bottom = 84
+visible = false
+mouse_filter = 2
+
+[node name="GuildBankInfoSaveButton" type="TextureButton" parent="GuildBankInfo"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = -7
+offset_top = 311
+offset_right = 93
+offset_bottom = 333
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoSaveButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoSaveButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoSaveButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="GuildBankInfoSaveButtonText" type="Label" parent="GuildBankInfo/GuildBankInfoSaveButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+mouse_filter = 2
+text = "Save Changes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoSaveButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankInfoScrollFrame" type="Control" parent="GuildBankInfo"]
+unique_name_in_owner = true
+script = ExtResource("6")
+offset_left = 0
+offset_top = 0
+offset_right = 691
+offset_bottom = 306
+mouse_filter = 0
+
+[node name="GuildBankInfoScrollFrameScrollBar" type="VSlider" parent="GuildBankInfo/GuildBankInfoScrollFrame"]
+unique_name_in_owner = true
+offset_left = 697
+offset_top = 16
+offset_right = 713
+offset_bottom = 290
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_42")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_42")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_43")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_43")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_43")
+max_value = 0.0
+step = 0.0
+
+[node name="GuildBankInfoScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar/GuildBankInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar/GuildBankInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar/GuildBankInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar/GuildBankInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankInfoScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = -1
+offset_top = 274
+offset_right = 17
+offset_bottom = 290
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar/GuildBankInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar/GuildBankInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar/GuildBankInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameScrollBar/GuildBankInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_59")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_20")
+
+[node name="GuildBankInfoScrollFrameClip" type="Control" parent="GuildBankInfo/GuildBankInfoScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="GuildBankTabInfoEditBox" type="TextEdit" parent="GuildBankInfo/GuildBankInfoScrollFrame/GuildBankInfoScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 690
+offset_bottom = 218
+mouse_filter = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_43")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_43")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_43")
+wrap_mode = 1
+caret_blink = true
+scroll_fit_content_height = true

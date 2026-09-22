@@ -91,6 +91,7 @@ var _chat_hover_time: float = 0.0
 @onready var _lfd: LFDParentFrame = _panels.get_node("%LFDParentFrame")
 @onready var _achievement_frame: AchievementFrame = _panels.get_node("%AchievementFrame")
 @onready var _pvp: PVPParentFrame = _panels.get_node("%PVPParentFrame")
+@onready var _guild_bank: GuildBankFrame = _panels.get_node("%GuildBankFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
 @onready var _item_text: ItemTextFrame = _panels.get_node_or_null("%ItemTextFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
@@ -163,6 +164,14 @@ func _ready() -> void:
 	WowClient.dungeon_finder.failed.connect(show_error)
 	WowClient.arena_teams.message.connect(add_system_line)
 	WowClient.arena_teams.invited.connect(_on_arena_team_invited)
+	WowClient.guild_bank.opened.connect(_panels.show_panel.bind(_guild_bank))
+	_guild_bank.money_requested.connect(_on_guild_bank_money_requested)
+	_guild_bank.item_hovered.connect(func(button: ItemButton, item_entry: int) -> void:
+		if GameTooltip.current:
+			GameTooltip.current.set_item(button, item_entry))
+	_guild_bank.item_left.connect(func(button: ItemButton) -> void:
+		if GameTooltip.current:
+			GameTooltip.current.hide_for(button))
 	_friends.name_requested.connect(_on_friend_name_requested)
 	_friends.guild_invited.connect(_on_guild_invited)
 	_duel = Duel.new(WowClient.session)
@@ -672,6 +681,19 @@ func _on_pet_changed() -> void:
 	_popup.ask_name(WowStrings.get_text("PET_RENAME_LABEL", "Name your pet"), pet.rename)
 
 
+func _on_guild_bank_money_requested(deposit: bool) -> void:
+	var bank: GuildBank = WowClient.guild_bank
+	_popup.ask_name(
+		WowStrings.get_text("GUILDBANK_DEPOSIT" if deposit else "GUILDBANK_WITHDRAW"),
+		func(text: String) -> void:
+			var copper: int = GuildBankFrame.parse_money(text)
+			if deposit:
+				bank.deposit_money(copper)
+			else:
+				bank.withdraw_money(copper),
+	)
+
+
 func _on_arena_team_invited(inviter: String, team_name: String) -> void:
 	_popup.ask(
 		WowStrings.get_text("ARENA_TEAM_INVITATION") % [inviter, team_name],
@@ -741,6 +763,8 @@ func use_container_item(bag: int, slot: int) -> void:
 		_merchant.sell(item)
 		return
 	if _bank.store(bag, slot):
+		return
+	if _guild_bank.deposit(bag, slot):
 		return
 	if _auction.offer(item):
 		return

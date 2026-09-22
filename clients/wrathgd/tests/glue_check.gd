@@ -2,6 +2,12 @@ class_name GlueCheck
 extends Node
 
 # Can I Keep Him?, which a GM can grant outright.
+const GUILD: String = "Wrathglue Bank"
+# A Guild Vault, gameobject type 34.
+const GUILD_VAULT: int = 187289
+# Enough for the first tab's hundred gold.
+const GUILD_BANK_MONEY: int = 1000000
+const COPPER: int = 1234
 const ARENA_TEAM: String = "Wrathglue Arena"
 const ACHIEVEMENT: int = 1017
 # CharTitles 1, Private, whose known-titles bit is also 1.
@@ -89,7 +95,58 @@ func _run() -> void:
 	await _dungeon_finder()
 	await _achievements()
 	await _arena_team()
+	await _guild_bank()
 	_finish()
+
+
+# A GM-made guild buys its first tab at a spawned vault, then money and a stack go in and out.
+func _guild_bank() -> void:
+	var session: WowSession = WowClient.session
+	var bank: GuildBank = WowClient.guild_bank
+	var vaults: Array[int] = []
+	var on_created: Callable = func(guid: int, _type_id: int) -> void:
+		if session.get_field(guid, "OBJECT_FIELD_ENTRY") == GUILD_VAULT:
+			vaults.append(guid)
+	session.object_created.connect(on_created)
+	# A run stopped part way leaves its guild behind, which would keep the create from working.
+	session.send_chat(WowSession.CHAT_SAY, '.guild delete "%s"' % GUILD)
+	await _frames(30)
+	session.send_chat(WowSession.CHAT_SAY, '.guild create "%s"' % GUILD)
+	session.send_chat(WowSession.CHAT_SAY, ".modify money %d" % GUILD_BANK_MONEY)
+	session.send_chat(WowSession.CHAT_SAY, ".additem %d %d" % [WATER, 5])
+	session.send_chat(WowSession.CHAT_SAY, ".gobject add temp %d" % GUILD_VAULT)
+	if not await _until(func() -> bool: return not vaults.is_empty(), "a guild vault spawns"):
+		return
+	bank.activate(vaults[0])
+	var frame: GuildBankFrame = get_tree().root.find_child("GuildBankFrame", true, false)
+	if not await _until(func() -> bool: return frame.visible, "the vault opens the guild bank"):
+		return
+	(frame.get_node("%GuildBankFramePurchaseButton") as BaseButton).pressed.emit()
+	if not await _until(func() -> bool: return bank.tabs.size() == 1,
+			"the first bank tab is bought"):
+		return
+	bank.query_tab(0)
+	bank.deposit_money(COPPER)
+	await _until(func() -> bool: return bank.money == COPPER, "money goes into the bank")
+	var at: Vector2i = Inventory.find_item(WATER)
+	if at.x >= 0 and frame.deposit(at.x, at.y):
+		var water_slot: Callable = func() -> int:
+			var slots: Array = bank.items.get(0, [])
+			for slot: int in slots.size():
+				if slots[slot].get("item", 0) == WATER:
+					return slot
+			return -1
+		if await _until(func() -> bool: return water_slot.call() >= 0,
+				"a bag stack goes into the bank tab"):
+			await _frames(30)
+			_capture("user://wotlk_guild_bank.png")
+			var slot: int = water_slot.call()
+			bank.withdraw_item(0, slot)
+			await _until(func() -> bool: return bank.items[0][slot].is_empty(),
+					"the stack comes back out of the bank")
+	frame.close_requested.emit()
+	session.object_created.disconnect(on_created)
+	session.send_chat(WowSession.CHAT_SAY, '.guild delete "%s"' % GUILD)
 
 
 # A GM-made 2v2 team shows on the PvP frame with its roster, then the captain disbands it.
