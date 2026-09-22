@@ -17,3 +17,6 @@ __pycache__/
 # GDDocs output; the site build regenerates it
 clients/*/docs/api/
 /_site/
+
+# Impeccable review captures are transient
+.impeccable/review/

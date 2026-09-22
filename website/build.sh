@@ -12,7 +12,9 @@ main() {
 
   rm -rf "$OUT"
   mkdir -p "$OUT"
-  cp "${ROOT}"/website/*.{html,css,png} "$OUT"/
+  "${ROOT}/website/screenshots.sh"
+  cp "${ROOT}"/website/*.{html,css,png,json} "$OUT"/
+  cp -r "${ROOT}"/website/wowgd "${ROOT}"/website/wrathgd "$OUT"/
   sed -i "s|{{RELEASES}}|${releases:-#}|g" "${OUT}/index.html"
 }
 

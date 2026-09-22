@@ -1,12 +1,13 @@
 :root {
-  --bg: #0f1726;
-  --surface: #17233a;
-  --text: #e6edf7;
-  --muted: #9fb0c8;
-  --gold: #f2a81d;
-  --ice: #5bb4f5;
-  --line: #2a3a57;
-  /* 4px scale: tight groups sit on s-1 to s-3, sections separate on s-8 and up. */
+  --night: #070b16;
+  --indigo: #0d162b;
+  --ivory: #efe8d6;
+  --ivory-dim: #b7b3c4;
+  --gold: #c9a227;
+  --gold-deep: #8d6f12;
+  --ice: #6fb6f0;
+  --rule: rgba(201, 162, 39, 0.45);
+  --rule-soft: rgba(201, 162, 39, 0.18);
   --s-1: 4px;
   --s-2: 8px;
   --s-3: 12px;
@@ -15,163 +16,336 @@
   --s-8: 32px;
   --s-12: 48px;
   --s-16: 64px;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #f5f7fb;
-    --surface: #ffffff;
-    --text: #16233a;
-    --muted: #51627c;
-    --gold: #b97800;
-    --ice: #1f74c2;
-    --line: #d8e0ec;
-  }
+  --s-24: 96px;
+  --display: "Grenze", "Times New Roman", serif;
+  --body: "Alegreya Sans", system-ui, sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 16px/1.6 system-ui, sans-serif;
+  color: var(--ivory);
+  background: var(--night);
+  font: 17px/1.55 var(--body);
 }
 
-a {
-  color: var(--ice);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+/* The night: indigo deepening toward the bottom, with a drawn star field over it. */
+.glue {
+  position: relative;
+  display: grid;
+  grid-template-columns: 62fr 38fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "realm roster"
+    "model roster"
+    "build roster";
+  gap: 0 var(--s-12);
+  height: 100vh;
+  min-height: 640px;
+  padding: var(--s-8) var(--s-12) var(--s-6);
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><g fill='%23efe8d6'><circle cx='23' cy='41' r='.9' opacity='.7'/><circle cx='88' cy='12' r='.6' opacity='.5'/><circle cx='131' cy='77' r='1.1' opacity='.8'/><circle cx='190' cy='33' r='.7' opacity='.45'/><circle cx='244' cy='96' r='.8' opacity='.6'/><circle cx='301' cy='19' r='1' opacity='.7'/><circle cx='372' cy='58' r='.6' opacity='.5'/><circle cx='41' cy='152' r='.7' opacity='.5'/><circle cx='109' cy='188' r='.9' opacity='.65'/><circle cx='171' cy='139' r='.6' opacity='.4'/><circle cx='226' cy='171' r='1.2' opacity='.85'/><circle cx='287' cy='134' r='.7' opacity='.5'/><circle cx='349' cy='182' r='.8' opacity='.55'/><circle cx='398' cy='121' r='.6' opacity='.45'/><circle cx='14' cy='246' r='.8' opacity='.6'/><circle cx='76' cy='291' r='.6' opacity='.4'/><circle cx='143' cy='262' r='1' opacity='.7'/><circle cx='208' cy='309' r='.7' opacity='.5'/><circle cx='263' cy='241' r='.9' opacity='.6'/><circle cx='321' cy='288' r='.6' opacity='.45'/><circle cx='384' cy='257' r='1.1' opacity='.75'/><circle cx='52' cy='366' r='.7' opacity='.5'/><circle cx='118' cy='401' r='.9' opacity='.6'/><circle cx='182' cy='352' r='.6' opacity='.4'/><circle cx='247' cy='389' r='.8' opacity='.55'/><circle cx='312' cy='341' r='1' opacity='.7'/><circle cx='366' cy='402' r='.7' opacity='.5'/><circle cx='404' cy='356' r='.6' opacity='.4'/></g></svg>") repeat,
+    linear-gradient(180deg, #0b1330 0%, var(--indigo) 45%, var(--night) 100%);
 }
 
-a:hover {
-  color: var(--gold);
+.realm {
+  grid-area: realm;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-6);
 }
 
-:focus-visible {
-  outline: 2px solid var(--ice);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-::selection {
-  background: var(--ice);
-  color: var(--bg);
-}
-
-.hero {
-  padding: var(--s-16) var(--s-4) var(--s-12);
-  text-align: center;
-  background: linear-gradient(90deg, rgba(242, 168, 29, 0.12), rgba(91, 180, 245, 0.12));
-  border-bottom: 1px solid var(--line);
-}
-
-.hero img {
-  width: 160px;
-  height: auto;
+.realm img {
+  width: 56px;
+  height: 56px;
 }
 
 h1 {
-  margin: var(--s-2) 0 0;
-  font-size: 2.6rem;
+  margin: 0;
+  font: 700 2.4rem/1 var(--display);
+  letter-spacing: 0.01em;
+  color: var(--gold);
 }
 
 .tagline {
   margin: var(--s-1) 0 0;
-  color: var(--muted);
+  color: var(--ivory-dim);
 }
 
-.button {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--s-2) 18px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--surface);
-  color: var(--text);
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.button:hover {
-  border-color: var(--ice);
-  color: var(--text);
-}
-
-main {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: var(--s-4) var(--s-4) 0;
-}
-
-main > section,
-main > .facts {
-  margin-top: var(--s-16);
-}
-
-h2 {
+/* The model slot: the capture at full height, its edges fading into the night. */
+.model {
+  grid-area: model;
+  margin: 0;
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 var(--s-3);
-  font-size: 1.3rem;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
 }
 
-h3 {
-  margin: var(--s-8) 0 var(--s-2);
-  font-size: 0.85rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-p {
-  margin: 0 0 var(--s-3);
-}
-
-/* WoWGD carries the page, so it takes the wider column. */
-.columns {
+.model-slot {
+  position: relative;
+  flex: 0 1 auto;
+  min-height: 0;
   display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: var(--s-16);
-  margin-top: var(--s-12);
+  place-items: center;
+  overflow: hidden;
 }
 
-.col {
-  min-width: 0;
+.model-slot > img {
+  grid-area: 1 / 1;
+  display: none;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  mask-image: radial-gradient(ellipse 82% 80% at 50% 48%, #000 45%, transparent 100%);
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.col h2 img {
+.model-slot > .model-empty {
+  display: none;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.model:not(.is-empty) > .model-slot > #model-image {
+  display: block;
+}
+
+.model.is-empty > .model-slot > .model-empty {
+  display: block;
+}
+
+/* The carousel's arrows sit on the slot's edges and only show when there is more than one shot. */
+.model-arrow {
+  grid-area: 1 / 1;
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 11, 22, 0.7);
+  color: var(--gold);
+  cursor: pointer;
+  transition: background 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.model-arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.model-arrow:hover {
+  background: rgba(7, 11, 22, 0.9);
+  border-color: var(--gold);
+}
+
+.model-prev {
+  justify-self: start;
+  margin-left: var(--s-3);
+}
+
+.model-next {
+  justify-self: end;
+  margin-right: var(--s-3);
+}
+
+.model.is-single .model-arrow,
+.model.is-single .model-dots {
+  display: none;
+}
+
+.model-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-1);
+  margin-top: var(--s-2);
+}
+
+/* A 24px hit box around a 10px disc, so the dots stay tappable. */
+.dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dot::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 0 auto;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+}
+
+.dot.is-on::before {
+  background: var(--gold);
+}
+
+.model-empty {
+  grid-area: 1 / 1;
+  max-width: 34ch;
+  margin: 0;
+  padding: var(--s-6);
+  border: 1px solid var(--rule);
+  color: var(--ivory-dim);
+  text-align: center;
+  font-size: 1rem;
+}
+
+.model.is-fading .model-slot > * {
+  opacity: 0;
+}
+
+.model figcaption {
+  margin-top: var(--s-3);
+  text-align: center;
+}
+
+.zone {
+  display: block;
+  font: 600 1.6rem/1.15 var(--display);
+  color: var(--gold);
+}
+
+.zone-sub {
+  display: block;
+  margin-top: var(--s-1);
+  color: var(--ivory-dim);
+}
+
+/* The character list: gold-ruled rows on the right, the chosen one lit. */
+.roster {
+  grid-area: roster;
+  align-self: center;
+  padding: var(--s-6) 0;
+}
+
+.roster-heading {
+  margin: 0 0 var(--s-3);
+  font: 600 1.05rem/1 var(--display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+/* The glue screen's double gold rule: two hairlines three pixels apart. */
+.rule-double {
+  position: relative;
+  border-top: 1px solid var(--rule);
+}
+
+.rule-double::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 3px;
+  height: 1px;
+  background: var(--rule);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: var(--s-2) 0 0;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  width: 100%;
+  padding: var(--s-4) var(--s-3);
+  border: 0;
+  border-bottom: 1px solid var(--rule-soft);
+  background: transparent;
+  color: var(--ivory);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease-out;
+}
+
+.row:hover {
+  background: rgba(201, 162, 39, 0.08);
+}
+
+.row.is-selected {
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.18), rgba(201, 162, 39, 0.04));
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  margin-top: -1px;
+}
+
+.row img {
+  flex: none;
+  width: 40px;
+  height: 40px;
   border-radius: 6px;
 }
 
-.sub {
-  margin: 0 0 var(--s-2);
-  color: var(--muted);
+.row-text {
+  display: grid;
+  gap: 2px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.row-name {
+  font: 600 1.45rem/1.1 var(--display);
+  color: var(--ivory);
 }
 
-th, td {
-  padding: var(--s-2) 10px var(--s-2) 0;
-  border-bottom: 1px solid var(--line);
-  text-align: left;
-  vertical-align: top;
+.row.is-selected .row-name {
+  color: var(--gold);
 }
 
-td:first-child {
-  white-space: nowrap;
-  font-weight: 600;
+/* WrathGD wears ice where WoWGD wears gold; each client keeps its own colour when chosen. */
+.row[data-client="wrathgd"].is-selected {
+  background: linear-gradient(90deg, rgba(111, 182, 240, 0.18), rgba(111, 182, 240, 0.04));
+  border-color: var(--ice);
+}
+
+.row[data-client="wrathgd"].is-selected .row-name {
+  color: var(--ice);
+}
+
+.row[data-client="wrathgd"]:hover {
+  background: rgba(111, 182, 240, 0.08);
+}
+
+.row-level {
+  font-weight: 500;
+}
+
+.row-class,
+.row-zone {
+  color: var(--ivory-dim);
+  font-size: 0.95rem;
 }
 
 .status {
-  font-weight: 600;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .gold {
@@ -182,7 +356,203 @@ td:first-child {
   color: var(--ice);
 }
 
-ul, ol {
+/* Enter World: the one lit control on the screen. */
+.enter {
+  margin-top: var(--s-6);
+}
+
+.enter-world {
+  display: block;
+  padding: var(--s-3) var(--s-6);
+  border: 1px solid var(--gold-deep);
+  background: var(--gold);
+  color: #1a1304;
+  font: 700 1.35rem/1.2 var(--display);
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease-out;
+}
+
+.enter-world:hover {
+  color: #1a1304;
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.enter-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-4);
+  margin: var(--s-3) 0 0;
+  font-size: 0.95rem;
+}
+
+.enter-platforms a {
+  color: var(--ivory);
+  font-weight: 500;
+}
+
+.enter-platforms a:last-child {
+  color: var(--ivory-dim);
+  font-weight: 400;
+}
+
+.enter-locked {
+  display: none;
+  margin: var(--s-3) 0 0;
+  color: var(--ivory-dim);
+}
+
+.enter.is-locked .enter-world {
+  pointer-events: none;
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.enter.is-locked .enter-platforms {
+  display: none;
+}
+
+.enter.is-locked .enter-locked {
+  display: block;
+}
+
+.plat {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: -3px;
+  fill: currentColor;
+}
+
+/* Cut out of the body so the penguin reads against the night. */
+.plat .bg {
+  fill: var(--indigo);
+}
+
+.plat .beak {
+  fill: var(--gold);
+}
+
+/* Where the client prints its build number. */
+.build {
+  grid-area: build;
+  margin: var(--s-6) 0 0;
+  color: var(--ivory-dim);
+  font-size: 0.9rem;
+}
+
+a {
+  color: var(--ivory);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--rule);
+}
+
+a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--night);
+}
+
+/* The character sheet, below the fold: one full-width column of gold-ruled sections. */
+main {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 var(--s-6);
+}
+
+.sheet {
+  padding: var(--s-16) 0;
+}
+
+.sheet-head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-bottom: var(--s-8);
+}
+
+.sheet-head img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+h2 {
+  margin: 0;
+  font: 600 2rem/1.05 var(--display);
+  color: var(--gold);
+}
+
+.sheet-sub {
+  margin: var(--s-1) 0 0;
+  color: var(--ivory-dim);
+}
+
+h3 {
+  margin: var(--s-8) 0 var(--s-3);
+  font: 600 1.15rem/1.2 var(--display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ivory-dim);
+}
+
+.sheet > p,
+.sheet-cols p {
+  margin: 0 0 var(--s-3);
+}
+
+.sheet-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4) var(--s-12);
+}
+
+.sheet-cols h3:first-child {
+  margin-top: var(--s-4);
+}
+
+/* The feature sheet: every area on one dense two-column list, the way a character sheet lists stats. */
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 var(--s-12);
+  margin: 0;
+}
+
+.facts > div {
+  display: grid;
+  grid-template-columns: 8.5em 1fr;
+  gap: var(--s-3);
+  padding: var(--s-2) 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.facts dt {
+  font-weight: 700;
+  color: var(--ivory);
+}
+
+.facts dd {
+  margin: 0;
+  color: var(--ivory-dim);
+}
+
+ul,
+ol {
   margin: 0 0 var(--s-3);
   padding-left: var(--s-6);
 }
@@ -191,137 +561,62 @@ li {
   margin: var(--s-1) 0;
 }
 
-.downloads {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--s-3) var(--s-4);
-  margin-bottom: var(--s-3);
-}
-
 .steps {
-  color: var(--muted);
-}
-
-.plat {
-  width: 18px;
-  height: 18px;
-  margin-right: 6px;
-  vertical-align: -4px;
-  fill: currentColor;
-}
-
-/* Cut out of the body so the penguin reads in both themes. */
-.plat .bg {
-  fill: var(--bg);
-}
-
-.plat .beak {
-  fill: var(--gold);
+  color: var(--ivory);
 }
 
 .muted {
-  color: var(--muted);
+  color: var(--ivory-dim);
 }
 
-
-/* The three project facts read as one band; proximity groups them, not boxes. */
-.facts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-12);
-  padding-top: var(--s-12);
-  border-top: 1px solid var(--line);
-}
-
-.facts h2 {
-  font-size: 1.1rem;
-}
-
-/* Inside the band the logo sits above its text, so all three columns share one measure. */
-.facts .split {
-  display: block;
-}
-
-.facts .split img {
-  margin-bottom: var(--s-3);
-}
-
-.about {
-  max-width: 68ch;
-}
-
-.split {
+.classes {
   display: flex;
-  gap: var(--s-4);
-  align-items: flex-start;
-}
-
-.split img {
-  flex: none;
-  border-radius: 8px;
-}
-
-.split p:first-child {
-  margin-top: 0;
-}
-
-figure {
+  flex-wrap: wrap;
+  gap: var(--s-2);
   margin: 0 0 var(--s-6);
+  padding: 0;
+  list-style: none;
 }
 
-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--line);
-  border-radius: 6px;
+.classes li {
+  margin: 0;
 }
 
-figcaption {
-  margin-top: var(--s-2);
-  color: var(--muted);
-  font-size: 0.9rem;
+code {
+  font-family: ui-monospace, "Cascadia Mono", monospace;
+  font-size: 0.9em;
+}
+
+:not(pre) > code {
+  padding: 1px 6px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  background: rgba(13, 22, 43, 0.9);
+  color: var(--ivory);
+}
+
+.classes code {
+  padding: var(--s-1) var(--s-3);
+  border-color: var(--rule);
+  color: var(--gold);
 }
 
 blockquote {
   margin: var(--s-4) 0;
   padding-left: var(--s-4);
-  border-left: 1px solid var(--line);
-  color: var(--muted);
+  border-left: 1px solid var(--rule);
+  color: var(--ivory-dim);
 }
 
 blockquote p {
   margin: 0;
 }
 
-pre {
-  padding: var(--s-3) var(--s-4);
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--surface);
-}
-
-code {
-  font-family: ui-monospace, monospace;
-}
-
-/* Scoped so a code block inside pre does not get a second box. */
-:not(pre) > code {
-  padding: 1px 6px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  background: var(--surface);
-  font-size: 0.9em;
-}
-
 footer {
-  max-width: 1120px;
-  margin: var(--s-16) auto 0;
-  padding: var(--s-6) var(--s-4) var(--s-12);
-  border-top: 1px solid var(--line);
-  color: var(--muted);
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: var(--s-8) var(--s-6) var(--s-12);
+  color: var(--ivory-dim);
   font-size: 0.9rem;
 }
 
@@ -329,33 +624,72 @@ footer p {
   margin: var(--s-1) 0;
 }
 
-@media (max-width: 860px) {
-  .hero {
-    padding: var(--s-12) var(--s-4) var(--s-8);
-  }
-
-  .columns {
+@media (max-width: 900px) {
+  .glue {
     grid-template-columns: 1fr;
-    gap: var(--s-12);
-    margin-top: var(--s-8);
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "realm"
+      "model"
+      "roster"
+      "build";
+    gap: 0;
+    height: auto;
+    min-height: 0;
+    padding: var(--s-6) var(--s-4) var(--s-6);
   }
 
-  main > section,
-  main > .facts {
-    margin-top: var(--s-12);
+  .model-slot {
+    aspect-ratio: 16 / 9;
+    width: 100%;
   }
 
+  .roster {
+    padding: var(--s-4) 0 0;
+  }
+
+  .model figcaption {
+    margin-top: var(--s-2);
+  }
+
+  .row {
+    padding: var(--s-3);
+  }
+
+  .row-name {
+    font-size: 1.3rem;
+  }
+
+  .enter {
+    margin-top: var(--s-4);
+  }
+
+  main {
+    padding: 0 var(--s-4);
+  }
+
+  .sheet {
+    padding: var(--s-12) 0;
+  }
+
+  .sheet-cols,
   .facts {
     grid-template-columns: 1fr;
-    gap: var(--s-8);
   }
 
-  .split {
-    display: block;
+  .facts > div {
+    grid-template-columns: 7em 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  .split img {
-    display: block;
-    margin: 0 0 var(--s-3);
+  .model-slot img,
+  .row,
+  .enter-world {
+    transition: none;
   }
 }
