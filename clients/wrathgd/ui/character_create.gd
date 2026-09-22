@@ -182,8 +182,7 @@ func _choose_race(race: int) -> void:
 	for i: int in _class_buttons.size():
 		_class_buttons[i].visible = i < _classes.size()
 		if _class_buttons[i].visible:
-			var icon: TextureRect = _class_buttons[i].get_node("NormalTexture")
-			_set_tex_coords(icon, _class_icon(CharacterOptions.class_file(_classes[i])))
+			_set_button_icon(_class_buttons[i], _class_icon(CharacterOptions.class_file(_classes[i])))
 	_choose_class(0)
 	_refresh_gender()
 	_model.facing = INITIAL_FACING
@@ -216,7 +215,7 @@ func _refresh_gender() -> void:
 	var order: Array[int] = CharacterOptions.race_order()
 	for i: int in _race_buttons.size():
 		var shown_race: int = order[i]
-		_set_tex_coords(_race_buttons[i].get_node("NormalTexture"), _race_icon(shown_race, gender))
+		_set_button_icon(_race_buttons[i], _race_icon(shown_race, gender))
 		_mark(_race_buttons[i], shown_race == race, CharacterOptions.race_name(race))
 	for i: int in _gender_buttons.size():
 		_mark(_gender_buttons[i], i == gender, WowStrings.get_text(["MALE", "FEMALE"][i]))
@@ -343,6 +342,14 @@ func _stack_texts() -> void:
 # The 1.12 atlas has no Death Knight cell, so a class it does not know draws nothing.
 func _class_icon(class_file: String) -> Rect2:
 	return CLASS_ICON_RECTS.get(class_file, Rect2())
+
+
+# The pushed art shares the icon sheet, so it takes the same cell as the normal art.
+func _set_button_icon(button: WowButton, region: Rect2) -> void:
+	for state: String in ["NormalTexture", "PushedTexture"]:
+		var rect: TextureRect = button.get_node_or_null(state)
+		if rect != null:
+			_set_tex_coords(rect, region)
 
 
 func _set_tex_coords(rect: TextureRect, region: Rect2) -> void:

@@ -195,6 +195,25 @@ func _check_update_fields(guid: int) -> void:
 		return
 	_check(_session.get_field(guid, "UNIT_FIELD_HEALTH") > 0, "the player's health reads")
 	_check(_session.get_field(guid, "UNIT_FIELD_LEVEL") == 1, "the player's level reads as 1")
+	var worn: PackedInt32Array = CharacterModels.visible_items(_session, guid)
+	var entries: Array[int] = []
+	for entry: int in worn:
+		if entry != 0:
+			entries.append(entry)
+	print("visible items: %s" % [entries])
+	if _check(not entries.is_empty(), "a new character wears its starting gear"):
+		for entry: int in entries:
+			_session.get_item_info(entry)
+		if await _until(func() -> bool: return not _session.get_item_info(entries[-1]).is_empty(),
+				"the item queries answer"):
+			var displays: WowDBC = WowDBC.open(WowLoader.get_shared().get_archive(), "ItemDisplayInfo")
+			for entry: int in entries:
+				var info: Dictionary = _session.get_item_info(entry)
+				var row: int = displays.find(info.get("display_id", 0))
+				print("item %d %s: display %d torso '%s' legs '%s'" % [entry, info.get("name", ""),
+						info.get("display_id", 0), displays.get_string(row, "TextureTorsoUpper") if row >= 0 else "?",
+						displays.get_string(row, "TextureLegUpper") if row >= 0 else "?"])
+			_check(_session.get_item_info(entries[0]).get("display_id", 0) > 0, "the worn items carry display ids")
 	_check(_session.get_field(guid, "OBJECT_FIELD_ENTRY") == 0, "a player carries no entry")
 	print("objects in sight: %d" % _session.get_object_guids().size())
 

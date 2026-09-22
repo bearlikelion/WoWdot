@@ -8,12 +8,13 @@ enum EquipSlot { HEAD, SHOULDER, SHIRT, CHEST, WAIST, LEGS, FEET, WRIST, HANDS, 
 enum TextureSlot { BODY = 1, CAPE = 2, HAIR = 6, FUR = 8 }
 
 const SKIN_ATLAS_SIZE: int = 256
+const SECTION_NPC_ONLY: int = 0x8
 # Where each overlay lands on the 256x256 body skin, matched by a word in its file name.
-const SKIN_REGIONS: Dictionary[String, Vector2i] = {
-	"upper": Vector2i(0, 160),
-	"lower": Vector2i(0, 192),
-	"pelvis": Vector2i(128, 96),
-	"torso": Vector2i(128, 0),
+const SKIN_REGIONS: Dictionary[String, Rect2i] = {
+	"upper": Rect2i(0, 160, 128, 32),
+	"lower": Rect2i(0, 192, 128, 64),
+	"pelvis": Rect2i(128, 96, 128, 64),
+	"torso": Rect2i(128, 0, 128, 64),
 }
 # Bare hands, feet and legs, ears, and 1501 (no cloak), which also carries the neck and upper chest.
 const BARE_GEOSETS: Array[int] = [0, 401, 501, 702, 1301, 1501]
@@ -31,7 +32,6 @@ const INVENTORY_SLOTS: Dictionary[int, EquipSlot] = {
 	5: EquipSlot.WAIST, 6: EquipSlot.LEGS, 7: EquipSlot.FEET, 8: EquipSlot.WRIST,
 	9: EquipSlot.HANDS, 18: EquipSlot.TABARD,
 }
-const VISIBLE_ITEM_STRIDE: int = 12
 # PLAYER_FLAGS the server sets from CMSG_SHOWING_HELM and CMSG_SHOWING_CLOAK.
 const PLAYER_FLAG_HIDE_HELM: int = 0x400
 const PLAYER_FLAG_HIDE_CLOAK: int = 0x800
@@ -203,8 +203,7 @@ func option_count(look: Dictionary, option: Option) -> int:
 				found[_facial_hair.get_uint(row, "Variation")] = true
 		return found.size()
 	for row: int in _rows(race, gender):
-		# Flagged rows are NPC-only looks.
-		if _sections.get_uint(row, "Flags") != 0:
+		if _npc_only(_sections.get_uint(row, "Flags")):
 			continue
 		var section: int = _sections.get_uint(row, "BaseSection")
 		var variation: int = _sections.get_uint(row, "VariationIndex")
@@ -268,10 +267,9 @@ static func starting_look(look: Dictionary) -> Dictionary:
 
 # Item entries per inventory slot, from the PLAYER_VISIBLE_ITEM_n_0 fields.
 static func visible_items(session: WowSession, guid: int) -> PackedInt32Array:
-	var first: int = session.field_index("PLAYER_VISIBLE_ITEM_1_0")
 	var items: PackedInt32Array = []
 	for slot: int in 19:
-		items.append(session.get_field(guid, first + slot * VISIBLE_ITEM_STRIDE))
+		items.append(session.get_field(guid, "PLAYER_VISIBLE_ITEM_%d_0" % (slot + 1)))
 	return items
 
 
@@ -304,13 +302,17 @@ func _skin(race: int, gender: int, look: Dictionary) -> ImageTexture:
 	overlays.append_array(_textures(race, gender, Section.UNDERWEAR, -1, skin))
 	var scale: int = maxi(floori(base.get_width() / float(SKIN_ATLAS_SIZE)), 1)
 	for path: String in overlays:
-		var region: Vector2i = _region(path)
-		var overlay: Image = _loader.load_image(path) if region != -Vector2i.ONE else null
+		var region: Rect2i = _region(path)
+		var overlay: Image = _loader.load_image(path) if region.size != Vector2i.ZERO else null
 		if overlay == null:
 			continue
 		overlay = overlay.duplicate()
 		overlay.clear_mipmaps()
-		base.blend_rect(overlay, Rect2i(Vector2i.ZERO, overlay.get_size()), region * scale)
+		# 3.3.5 ships some scalp textures at half the region's resolution.
+		var target: Vector2i = region.size * scale
+		if overlay.get_size() != target:
+			overlay.resize(target.x, target.y)
+		base.blend_rect(overlay, Rect2i(Vector2i.ZERO, target), region.position * scale)
 	_paint_equipment(base, gender, look.get("equipment", PackedInt32Array()), scale)
 	base.generate_mipmaps()
 	_skins[key] = ImageTexture.create_from_image(base)
@@ -354,18 +356,25 @@ func _paint_equipment(skin: Image, gender: int, equipment: PackedInt32Array, sca
 # Component textures come per gender (_M, _F) or shared (_U).
 func _item_texture(folder: String, texture_name: String, gender: int) -> Image:
 	var base: String = TEXTURE_COMPONENTS + folder + "\\" + texture_name
-	for suffix: String in ["_F" if gender == 1 else "_M", "_U"]:
+	# A piece drawn for one gender only lends that art to the other, as the stock client does.
+	var own: String = "_F" if gender == 1 else "_M"
+	for suffix: String in [own, "_U", "_M" if own == "_F" else "_F"]:
 		if _loader.archive.has(base + suffix + ".blp"):
 			return _loader.load_image(base + suffix + ".blp")
 	return null
 
 
-func _region(path: String) -> Vector2i:
+# 1.12 flags only NPC looks; 3.3.5 flags every row and keeps one bit for NPC-only ones.
+static func _npc_only(flags: int) -> bool:
+	return flags & SECTION_NPC_ONLY != 0 if PacketReader.wotlk else flags != 0
+
+
+func _region(path: String) -> Rect2i:
 	var name: String = path.to_lower().get_file()
 	for word: String in SKIN_REGIONS:
 		if name.contains(word):
 			return SKIN_REGIONS[word]
-	return -Vector2i.ONE
+	return Rect2i()
 
 
 func _texture(race: int, gender: int, section: Section, variation: int, color: int) -> String:

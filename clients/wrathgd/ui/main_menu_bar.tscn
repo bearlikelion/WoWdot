@@ -102,191 +102,215 @@ file = "Interface\\Buttons\\UI-MicroButton-Talents-Down.blp"
 file = "Interface\\Buttons\\UI-MicroButton-Talents-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
-file = "Interface\\Buttons\\UI-MicroButton-Quest-Up.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Achievement-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_29"]
-file = "Interface\\Buttons\\UI-MicroButton-Quest-Down.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Achievement-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_30"]
-file = "Interface\\Buttons\\UI-MicroButton-Quest-Disabled.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Achievement-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_31"]
-file = "Interface\\Buttons\\UI-MicroButton-Socials-Up.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Quest-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
-file = "Interface\\Buttons\\UI-MicroButton-Socials-Down.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Quest-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_33"]
-file = "Interface\\Buttons\\UI-MicroButton-Socials-Disabled.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Quest-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
-file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Up.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Socials-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_35"]
-file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Down.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Socials-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_36"]
-file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Disabled.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Socials-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_37"]
-file = "Interface\\MainMenuBar\\UI-MainMenuBar-PerformanceBar.blp"
+file = "Interface\\Buttons\\UI-MicroButton-LFG-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_38"]
-file = "Interface\\Buttons\\UI-MicroButton-Help-Up.blp"
+file = "Interface\\Buttons\\UI-MicroButton-LFG-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_39"]
-file = "Interface\\Buttons\\UI-MicroButton-Help-Down.blp"
+file = "Interface\\Buttons\\UI-MicroButton-LFG-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_40"]
-file = "Interface\\Buttons\\UI-MicroButton-Help-Disabled.blp"
+file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_41"]
-file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Up.blp"
+file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_42"]
-file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Down.blp"
+file = "Interface\\Buttons\\UI-MicroButton-MainMenu-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_43"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+file = "Interface\\MainMenuBar\\UI-MainMenuBar-PerformanceBar.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_44"]
-file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Highlight.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Help-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_45"]
-file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Up.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Help-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_46"]
-file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Down.blp"
+file = "Interface\\Buttons\\UI-MicroButton-Help-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_47"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_48"]
-file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Highlight.blp"
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_49"]
-file = "Interface\\Buttons\\CheckButtonHilight.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_50"]
-file = "Interface\\Buttons\\UI-Button-KeyRing.blp"
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollUpButton-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
-atlas = SubResource("WowTexture_50")
-region = Rect2(0, 0, 18, 39)
+[sub_resource type="WowTexture" id="WowTexture_51"]
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_52"]
-file = "Interface\\Buttons\\UI-Button-KeyRing-Down.blp"
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
-atlas = SubResource("WowTexture_52")
-region = Rect2(0, 0, 18, 39)
+[sub_resource type="WowTexture" id="WowTexture_53"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_54"]
-file = "Interface\\Buttons\\UI-Button-KeyRing-Highlight.blp"
+file = "Interface\\MainMenuBar\\UI-MainMenu-ScrollDownButton-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_55"]
-atlas = SubResource("WowTexture_54")
-region = Rect2(0, 0, 18, 39)
+[sub_resource type="WowTexture" id="WowTexture_55"]
+file = "Interface\\Buttons\\CheckButtonHilight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_56"]
-file = "Interface\\Vehicles\\UI-Vehicles-Button-Exit-Up.blp"
+file = "Interface\\Buttons\\Button-Backpack-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
-atlas = SubResource("WowTexture_56")
-region = Rect2(9, 9, 46, 46)
+[sub_resource type="WowTexture" id="WowTexture_57"]
+file = "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_58"]
-file = "Interface\\Vehicles\\UI-Vehicles-Button-Exit-Down.blp"
+file = "Interface\\Buttons\\UI-Button-KeyRing.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_59"]
 atlas = SubResource("WowTexture_58")
-region = Rect2(9, 9, 46, 46)
+region = Rect2(0, 0, 18, 39)
 
 [sub_resource type="WowTexture" id="WowTexture_60"]
-file = "Interface\\Vehicles\\UI-Vehicles-Button-Highlight.blp"
+file = "Interface\\Buttons\\UI-Button-KeyRing-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61"]
 atlas = SubResource("WowTexture_60")
-region = Rect2(8.36, 8.36, 47.92, 47.92)
+region = Rect2(0, 0, 18, 39)
 
 [sub_resource type="WowTexture" id="WowTexture_62"]
-file = "Interface\\MainMenuBar\\UI-ExhaustionTickNormal.blp"
+file = "Interface\\Buttons\\UI-Button-KeyRing-Highlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_63"]
-file = "Interface\\MainMenuBar\\UI-ExhaustionTickHighlight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_63"]
+atlas = SubResource("WowTexture_62")
+region = Rect2(0, 0, 18, 39)
 
 [sub_resource type="WowTexture" id="WowTexture_64"]
-file = "Interface\\PaperDollInfoFrame\\UI-ReputationWatchBar.blp"
+file = "Interface\\Vehicles\\UI-Vehicles-Button-Exit-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65"]
 atlas = SubResource("WowTexture_64")
-region = Rect2(0, 0, 256, 11)
+region = Rect2(9, 9, 46, 46)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_66"]
-atlas = SubResource("WowTexture_64")
-region = Rect2(0, 11, 256, 11)
+[sub_resource type="WowTexture" id="WowTexture_66"]
+file = "Interface\\Vehicles\\UI-Vehicles-Button-Exit-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67"]
-atlas = SubResource("WowTexture_64")
-region = Rect2(0, 22, 256, 11)
+atlas = SubResource("WowTexture_66")
+region = Rect2(9, 9, 46, 46)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_68"]
-atlas = SubResource("WowTexture_64")
-region = Rect2(0, 33, 256, 11)
+[sub_resource type="WowTexture" id="WowTexture_68"]
+file = "Interface\\Vehicles\\UI-Vehicles-Button-Highlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_69"]
-file = "Interface\\PetActionBar\\UI-PetBar.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_69"]
+atlas = SubResource("WowTexture_68")
+region = Rect2(8.36, 8.36, 47.92, 47.92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_70"]
-atlas = SubResource("WowTexture_69")
-region = Rect2(0, 2, 256, 44)
+[sub_resource type="WowTexture" id="WowTexture_70"]
+file = "Interface\\MainMenuBar\\UI-ExhaustionTickNormal.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_71"]
-atlas = SubResource("WowTexture_69")
-region = Rect2(0, 48, 184, 44)
+[sub_resource type="WowTexture" id="WowTexture_71"]
+file = "Interface\\MainMenuBar\\UI-ExhaustionTickHighlight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_72"]
-file = "Interface\\Buttons\\UI-TotemBar.blp"
+file = "Interface\\PaperDollInfoFrame\\UI-ReputationWatchBar.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_73"]
 atlas = SubResource("WowTexture_72")
-region = Rect2(72, 69, 20, 10)
+region = Rect2(0, 0, 256, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_74"]
 atlas = SubResource("WowTexture_72")
-region = Rect2(72, 88, 20, 10)
+region = Rect2(0, 11, 256, 11)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75"]
 atlas = SubResource("WowTexture_72")
+region = Rect2(0, 22, 256, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76"]
+atlas = SubResource("WowTexture_72")
+region = Rect2(0, 33, 256, 11)
+
+[sub_resource type="WowTexture" id="WowTexture_77"]
+file = "Interface\\PetActionBar\\UI-PetBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78"]
+atlas = SubResource("WowTexture_77")
+region = Rect2(0, 2, 256, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_79"]
+atlas = SubResource("WowTexture_77")
+region = Rect2(0, 48, 184, 44)
+
+[sub_resource type="WowTexture" id="WowTexture_80"]
+file = "Interface\\Buttons\\UI-TotemBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81"]
+atlas = SubResource("WowTexture_80")
+region = Rect2(72, 69, 20, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82"]
+atlas = SubResource("WowTexture_80")
+region = Rect2(72, 88, 20, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83"]
+atlas = SubResource("WowTexture_80")
 region = Rect2(99, 84, 28, 18)
 
-[sub_resource type="WowTexture" id="WowTexture_76"]
+[sub_resource type="WowTexture" id="WowTexture_84"]
 file = "Interface\\Buttons\\ButtonHilight-Square.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_77"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_85"]
 atlas = SubResource("WowTexture_2")
 region = Rect2(4, 213, 252, 43)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_78"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_86"]
 atlas = SubResource("WowTexture_2")
 region = Rect2(0, 149, 253, 43)
 
-[sub_resource type="WowTexture" id="WowTexture_79"]
+[sub_resource type="WowTexture" id="WowTexture_87"]
 file = "Interface\\ShapeshiftBar\\ShapeshiftBar.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_80"]
-atlas = SubResource("WowTexture_79")
+[sub_resource type="AtlasTexture" id="AtlasTexture_88"]
+atlas = SubResource("WowTexture_87")
 region = Rect2(0, 0, 47, 38)
 
-[sub_resource type="WowTexture" id="WowTexture_81"]
+[sub_resource type="WowTexture" id="WowTexture_89"]
 file = "Interface\\ShapeshiftBar\\ShapeshiftBarMiddle.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_82"]
-atlas = SubResource("WowTexture_81")
+[sub_resource type="AtlasTexture" id="AtlasTexture_90"]
+atlas = SubResource("WowTexture_89")
 region = Rect2(0, 0, 64, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_83"]
-atlas = SubResource("WowTexture_79")
+[sub_resource type="AtlasTexture" id="AtlasTexture_91"]
+atlas = SubResource("WowTexture_87")
 region = Rect2(21, 40, 43, 37)
 
 [node name="MainMenuBar" type="Control"]
@@ -742,6 +766,46 @@ offset_right = 655
 offset_bottom = -2
 ignore_texture_size = true
 
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/AchievementMicroButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 28
+offset_bottom = 58
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/AchievementMicroButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 28
+offset_bottom = 58
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/AchievementMicroButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 28
+offset_bottom = 58
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_30")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/AchievementMicroButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 28
+offset_bottom = 58
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_21")
+
 [node name="QuestLogMicroButton" type="TextureButton" parent="MainMenuBarArtFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
@@ -760,7 +824,7 @@ offset_top = 0
 offset_right = 28
 offset_bottom = 58
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/QuestLogMicroButton"]
@@ -770,7 +834,7 @@ offset_right = 28
 offset_bottom = 58
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_29")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/QuestLogMicroButton"]
@@ -780,7 +844,7 @@ offset_right = 28
 offset_bottom = 58
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_30")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/QuestLogMicroButton"]
@@ -812,7 +876,7 @@ offset_top = 0
 offset_right = 28
 offset_bottom = 58
 mouse_filter = 2
-texture = SubResource("WowTexture_31")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/SocialsMicroButton"]
@@ -822,7 +886,7 @@ offset_right = 28
 offset_bottom = 58
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/SocialsMicroButton"]
@@ -832,7 +896,7 @@ offset_right = 28
 offset_bottom = 58
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/SocialsMicroButton"]
@@ -879,6 +943,46 @@ offset_right = 755
 offset_bottom = -2
 ignore_texture_size = true
 
+[node name="NormalTexture" type="TextureRect" parent="MainMenuBarArtFrame/LFDMicroButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 28
+offset_bottom = 58
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/LFDMicroButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 28
+offset_bottom = 58
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/LFDMicroButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 28
+offset_bottom = 58
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_39")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/LFDMicroButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 28
+offset_bottom = 58
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_21")
+
 [node name="MainMenuMicroButton" type="TextureButton" parent="MainMenuBarArtFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
@@ -897,7 +1001,7 @@ offset_top = 0
 offset_right = 28
 offset_bottom = 58
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuMicroButton"]
@@ -907,7 +1011,7 @@ offset_right = 28
 offset_bottom = 58
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_41")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuMicroButton"]
@@ -917,7 +1021,7 @@ offset_right = 28
 offset_bottom = 58
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_42")
 expand_mode = 1
 
 [node name="MainMenuBarPerformanceBar" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuMicroButton"]
@@ -927,7 +1031,7 @@ offset_top = 34
 offset_right = 24
 offset_bottom = 41
 mouse_filter = 2
-texture = SubResource("WowTexture_37")
+texture = SubResource("WowTexture_43")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/MainMenuMicroButton"]
@@ -959,7 +1063,7 @@ offset_top = 0
 offset_right = 28
 offset_bottom = 58
 mouse_filter = 2
-texture = SubResource("WowTexture_38")
+texture = SubResource("WowTexture_44")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/HelpMicroButton"]
@@ -969,7 +1073,7 @@ offset_right = 28
 offset_bottom = 58
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_39")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/HelpMicroButton"]
@@ -979,7 +1083,7 @@ offset_right = 28
 offset_bottom = 58
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/HelpMicroButton"]
@@ -1128,7 +1232,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_47")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarUpButton"]
@@ -1138,7 +1242,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_42")
+texture = SubResource("WowTexture_48")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarUpButton"]
@@ -1148,7 +1252,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_43")
+texture = SubResource("WowTexture_49")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarUpButton"]
@@ -1158,7 +1262,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_44")
+texture = SubResource("WowTexture_50")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1177,7 +1281,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_45")
+texture = SubResource("WowTexture_51")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarDownButton"]
@@ -1187,7 +1291,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_46")
+texture = SubResource("WowTexture_52")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarDownButton"]
@@ -1197,7 +1301,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_47")
+texture = SubResource("WowTexture_53")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/ActionBarDownButton"]
@@ -1207,7 +1311,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_48")
+texture = SubResource("WowTexture_54")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1231,7 +1335,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_49")
+texture = SubResource("WowTexture_55")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1243,6 +1347,9 @@ offset_right = 27
 offset_bottom = 37
 visible = false
 mouse_filter = 2
+
+[node name="IconTexture" parent="MainMenuBarArtFrame/MainMenuBarBackpackButton"]
+texture = SubResource("WowTexture_56")
 
 [node name="CharacterBag0Slot" parent="MainMenuBarArtFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
@@ -1256,6 +1363,9 @@ offset_top = -35.5
 offset_right = -48
 offset_bottom = -5.5
 
+[node name="IconTexture" parent="MainMenuBarArtFrame/CharacterBag0Slot"]
+texture = SubResource("WowTexture_57")
+
 [node name="CharacterBag1Slot" parent="MainMenuBarArtFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 layout_mode = 1
@@ -1267,6 +1377,9 @@ offset_left = -112
 offset_top = -35.5
 offset_right = -82
 offset_bottom = -5.5
+
+[node name="IconTexture" parent="MainMenuBarArtFrame/CharacterBag1Slot"]
+texture = SubResource("WowTexture_57")
 
 [node name="CharacterBag2Slot" parent="MainMenuBarArtFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
@@ -1280,6 +1393,9 @@ offset_top = -35.5
 offset_right = -116
 offset_bottom = -5.5
 
+[node name="IconTexture" parent="MainMenuBarArtFrame/CharacterBag2Slot"]
+texture = SubResource("WowTexture_57")
+
 [node name="CharacterBag3Slot" parent="MainMenuBarArtFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 layout_mode = 1
@@ -1291,6 +1407,9 @@ offset_left = -180
 offset_top = -35.5
 offset_right = -150
 offset_bottom = -5.5
+
+[node name="IconTexture" parent="MainMenuBarArtFrame/CharacterBag3Slot"]
+texture = SubResource("WowTexture_57")
 
 [node name="KeyRingButton" type="TextureButton" parent="MainMenuBarArtFrame"]
 unique_name_in_owner = true
@@ -1313,7 +1432,7 @@ offset_top = 0
 offset_right = 18
 offset_bottom = 39
 mouse_filter = 2
-texture = SubResource("AtlasTexture_51")
+texture = SubResource("AtlasTexture_59")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MainMenuBarArtFrame/KeyRingButton"]
@@ -1323,7 +1442,7 @@ offset_right = 18
 offset_bottom = 39
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_61")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MainMenuBarArtFrame/KeyRingButton"]
@@ -1333,7 +1452,7 @@ offset_right = 18
 offset_bottom = 39
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_55")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1367,7 +1486,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_57")
+texture = SubResource("AtlasTexture_65")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MainMenuBarVehicleLeaveButton"]
@@ -1377,7 +1496,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_59")
+texture = SubResource("AtlasTexture_67")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MainMenuBarVehicleLeaveButton"]
@@ -1387,7 +1506,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_61")
+texture = SubResource("AtlasTexture_69")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1409,7 +1528,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_62")
+texture = SubResource("WowTexture_70")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ExhaustionTick"]
@@ -1419,7 +1538,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_63")
+texture = SubResource("WowTexture_71")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1466,7 +1585,7 @@ offset_top = -2
 offset_right = 256
 offset_bottom = 9
 mouse_filter = 2
-texture = SubResource("AtlasTexture_65")
+texture = SubResource("AtlasTexture_73")
 expand_mode = 1
 
 [node name="ReputationWatchBarTexture1" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar"]
@@ -1476,7 +1595,7 @@ offset_top = -2
 offset_right = 512
 offset_bottom = 9
 mouse_filter = 2
-texture = SubResource("AtlasTexture_66")
+texture = SubResource("AtlasTexture_74")
 expand_mode = 1
 
 [node name="ReputationWatchBarTexture2" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar"]
@@ -1486,7 +1605,7 @@ offset_top = -2
 offset_right = 768
 offset_bottom = 9
 mouse_filter = 2
-texture = SubResource("AtlasTexture_67")
+texture = SubResource("AtlasTexture_75")
 expand_mode = 1
 
 [node name="ReputationWatchBarTexture3" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar"]
@@ -1496,7 +1615,7 @@ offset_top = -2
 offset_right = 1024
 offset_bottom = 9
 mouse_filter = 2
-texture = SubResource("AtlasTexture_68")
+texture = SubResource("AtlasTexture_76")
 expand_mode = 1
 
 [node name="ReputationXPBarTexture0" type="TextureRect" parent="ReputationWatchBar/ReputationWatchStatusBar"]
@@ -1581,7 +1700,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 44
 mouse_filter = 2
-texture = SubResource("AtlasTexture_70")
+texture = SubResource("AtlasTexture_78")
 expand_mode = 1
 
 [node name="SlidingActionBarTexture1" type="TextureRect" parent="PetActionBarFrame"]
@@ -1591,7 +1710,7 @@ offset_top = 0
 offset_right = 440
 offset_bottom = 44
 mouse_filter = 2
-texture = SubResource("AtlasTexture_71")
+texture = SubResource("AtlasTexture_79")
 expand_mode = 1
 
 [node name="PetActionButton1" parent="PetActionBarFrame" instance=ExtResource("3")]
@@ -1689,7 +1808,7 @@ offset_top = 10
 offset_right = 32
 offset_bottom = 30
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="MultiCastFlyoutFrameMiddle" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastFlyoutFrame"]
@@ -1699,7 +1818,7 @@ offset_top = 30
 offset_right = 32
 offset_bottom = 30
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="MultiCastFlyoutFrameCloseButton" type="TextureButton" parent="MultiCastActionBarFrame/MultiCastFlyoutFrame"]
@@ -1717,7 +1836,7 @@ offset_top = 0
 offset_right = 28
 offset_bottom = 18
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastFlyoutFrame/MultiCastFlyoutFrameCloseButton"]
@@ -1727,7 +1846,7 @@ offset_right = 24
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_73")
+texture = SubResource("AtlasTexture_81")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1747,7 +1866,7 @@ offset_top = 0
 offset_right = 28
 offset_bottom = 18
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastFlyoutFrameOpenButton"]
@@ -1757,7 +1876,7 @@ offset_right = 24
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_82")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1784,7 +1903,7 @@ offset_top = 0
 offset_right = 28
 offset_bottom = 18
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_83")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSummonSpellButton/MultiCastSummonSpellButtonFlyoutButton"]
@@ -1794,7 +1913,7 @@ offset_right = 24
 offset_bottom = 14.5
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_82")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1813,7 +1932,7 @@ offset_top = 0
 offset_right = 30
 offset_bottom = 30
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSlotButton1"]
@@ -1822,7 +1941,7 @@ offset_top = -2
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSlotButton1"]
@@ -1832,7 +1951,7 @@ offset_right = 30
 offset_bottom = 30
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_76")
+texture = SubResource("WowTexture_84")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1851,7 +1970,7 @@ offset_top = 0
 offset_right = 30
 offset_bottom = 30
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSlotButton2"]
@@ -1860,7 +1979,7 @@ offset_top = -2
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSlotButton2"]
@@ -1870,7 +1989,7 @@ offset_right = 30
 offset_bottom = 30
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_76")
+texture = SubResource("WowTexture_84")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1889,7 +2008,7 @@ offset_top = 0
 offset_right = 30
 offset_bottom = 30
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSlotButton3"]
@@ -1898,7 +2017,7 @@ offset_top = -2
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSlotButton3"]
@@ -1908,7 +2027,7 @@ offset_right = 30
 offset_bottom = 30
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_76")
+texture = SubResource("WowTexture_84")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -1927,7 +2046,7 @@ offset_top = 0
 offset_right = 30
 offset_bottom = 30
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSlotButton4"]
@@ -1936,7 +2055,7 @@ offset_top = -2
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MultiCastActionBarFrame/MultiCastSlotButton4"]
@@ -1946,7 +2065,7 @@ offset_right = 30
 offset_bottom = 30
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_76")
+texture = SubResource("WowTexture_84")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_21")
 
@@ -2086,7 +2205,7 @@ offset_top = 0
 offset_right = 252
 offset_bottom = 43
 mouse_filter = 2
-texture = SubResource("AtlasTexture_77")
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 
 [node name="BonusActionBarTexture1" type="TextureRect" parent="BonusActionBarFrame"]
@@ -2096,7 +2215,7 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 43
 mouse_filter = 2
-texture = SubResource("AtlasTexture_78")
+texture = SubResource("AtlasTexture_86")
 expand_mode = 1
 
 [node name="BonusActionButton1" parent="BonusActionBarFrame" instance=ExtResource("3")]
@@ -2200,7 +2319,7 @@ offset_top = -6
 offset_right = 47
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_80")
+texture = SubResource("AtlasTexture_88")
 expand_mode = 1
 
 [node name="ShapeshiftBarMiddle" type="TextureRect" parent="ShapeshiftBarFrame"]
@@ -2210,7 +2329,7 @@ offset_top = -6
 offset_right = 84
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_82")
+texture = SubResource("AtlasTexture_90")
 expand_mode = 1
 
 [node name="ShapeshiftBarRight" type="TextureRect" parent="ShapeshiftBarFrame"]
@@ -2220,7 +2339,7 @@ offset_top = -6
 offset_right = 127
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_83")
+texture = SubResource("AtlasTexture_91")
 expand_mode = 1
 
 [node name="ShapeshiftButton1" parent="ShapeshiftBarFrame" instance=ExtResource("3")]
@@ -2309,7 +2428,7 @@ offset_top = -6
 offset_right = 47
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_80")
+texture = SubResource("AtlasTexture_88")
 expand_mode = 1
 
 [node name="PossessBackground2" type="TextureRect" parent="PossessBarFrame"]
@@ -2319,7 +2438,7 @@ offset_top = -6
 offset_right = 90
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_83")
+texture = SubResource("AtlasTexture_91")
 expand_mode = 1
 
 [node name="PossessButton1" parent="PossessBarFrame" instance=ExtResource("3")]

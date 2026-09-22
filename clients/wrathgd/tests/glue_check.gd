@@ -67,6 +67,8 @@ func _run() -> void:
 	])
 	_check(WowClient.session.get_state() == WowSession.STATE_IN_WORLD,
 			"the session reports being in the world")
+	await _frames(60)
+	_capture("user://wotlk_world.png")
 	_finish()
 
 
@@ -82,6 +84,7 @@ func _survey_races() -> bool:
 		(_create.get_node("%%CharacterCreateRaceButton%d" % (index + 1)) as BaseButton) \
 				.pressed.emit()
 		await _frames(2)
+		_capture("user://wotlk_create_%02d.png" % race)
 		var classes: Array[int] = CharacterOptions.classes_for(race)
 		var label: String = (_create.get_node("%CharacterCreateRaceLabel") as Label).text
 		_check(label == CharacterOptions.race_name(race),

@@ -588,6 +588,8 @@ class SceneWriter:
         return f'SubResource("{self.sub_ids[key]}")'
 
     def texture(self, file, coords):
+        # 3.3.5 names a few textures with the .tga the artists exported; the archives hold .blp.
+        file = re.sub(r"\.tga$", "", file, flags=re.I)
         path = file if file.lower().endswith(".blp") else file + ".blp"
         base = self.sub_resource("WowTexture", [("file", quote(path))])
         if not coords or coords == (0.0, 1.0, 0.0, 1.0):
@@ -698,6 +700,12 @@ class SceneWriter:
             for c in w.children:
                 if c.own:
                     self.emit(c, w, path, in_template=inherited)
+            # Injected art for a child the template scene holds is set on that child in place.
+            for child, file in getattr(w, "injected", {}).items():
+                short = child[len(w.name):] if child.startswith(w.name) else child
+                if short in inherited:
+                    self.nodes.append({"name": short, "parent": path, "type": None, "instance": None,
+                                       "props": [("texture", self.texture(file, None))], "unique": False})
             return
         for c in w.children:
             if not getattr(c, "scroll_child", False):

@@ -512,6 +512,8 @@ void parseAnimTrack(const std::vector<uint8_t>& data,
         if (type == TrackType::FLOAT) keyElementSize = sizeof(float);
         else if (type == TrackType::FIXED16) keyElementSize = sizeof(int16_t);
         else if (type == TrackType::VEC3) keyElementSize = sizeof(float) * 3;
+        else if (type == TrackType::SPLINE3) keyElementSize = sizeof(float) * 9;
+        else if (type == TrackType::SPLINE1) keyElementSize = sizeof(float) * 3;
         else keyElementSize = sizeof(int16_t) * 4;
         if (keyOffset + keyCount * keyElementSize > data.size()) {
             track.sequences[i].timestamps.clear();
@@ -537,6 +539,21 @@ void parseAnimTrack(const std::vector<uint8_t>& data,
             track.sequences[i].vec3Values.reserve(values.size());
             for (const auto& v : values) {
                 track.sequences[i].vec3Values.emplace_back(v.x, v.y, v.z);
+            }
+        } else if (type == TrackType::SPLINE3) {
+            // Camera splines carry value, in tangent and out tangent; only the value is kept.
+            struct Spline3Disk { float v[3], in[3], out[3]; };
+            auto values = readArray<Spline3Disk>(data, keyOffset, keyCount);
+            track.sequences[i].vec3Values.reserve(values.size());
+            for (const auto& k : values) {
+                track.sequences[i].vec3Values.emplace_back(k.v[0], k.v[1], k.v[2]);
+            }
+        } else if (type == TrackType::SPLINE1) {
+            struct Spline1Disk { float v, in, out; };
+            auto values = readArray<Spline1Disk>(data, keyOffset, keyCount);
+            track.sequences[i].floatValues.reserve(values.size());
+            for (const auto& k : values) {
+                track.sequences[i].floatValues.push_back(k.v);
             }
         } else {
             // Rotation: compressed quaternion int16[4] per key
@@ -1418,9 +1435,20 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
                 parseAnimTrackVanilla(m2Data, trackDisk, cam.rollTrack, TrackType::SPLINE1);
             }
         } else {
+            std::vector<uint32_t> cameraSeqFlags;
+            for (const auto& seq : model.sequences) cameraSeqFlags.push_back(seq.flags);
             auto disk = readArray<M2CameraDisk>(m2Data, header.ofsCameras, cameraCount);
-            for (const auto& dc : disk)
+            for (const auto& dc : disk) {
                 pushCamera(dc.type, dc.fov, dc.farClip, dc.nearClip, dc.positionBase, dc.targetBase);
+                M2Camera& cam = model.cameras.back();
+                M2TrackDisk trackDisk;
+                std::memcpy(&trackDisk, dc.positionTrack, sizeof(trackDisk));
+                parseAnimTrack(m2Data, trackDisk, cam.positionTrack, TrackType::SPLINE3, cameraSeqFlags);
+                std::memcpy(&trackDisk, dc.targetTrack, sizeof(trackDisk));
+                parseAnimTrack(m2Data, trackDisk, cam.targetTrack, TrackType::SPLINE3, cameraSeqFlags);
+                std::memcpy(&trackDisk, dc.rollTrack, sizeof(trackDisk));
+                parseAnimTrack(m2Data, trackDisk, cam.rollTrack, TrackType::SPLINE1, cameraSeqFlags);
+            }
         }
         core::Logger::getInstance().debug("  Cameras: ", model.cameras.size());
     }

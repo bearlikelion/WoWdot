@@ -16,38 +16,38 @@
   "SpellbookMicroButton": {
    "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Up",
    "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Down",
-   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Disabled"
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Disabled",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
   },
   "TalentMicroButton": {
    "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Up",
    "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Down",
-   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Disabled"
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Disabled",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
   },
   "QuestLogMicroButton": {
    "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Up",
    "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Down",
-   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Disabled"
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Disabled",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
   },
   "SocialsMicroButton": {
    "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Up",
    "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Down",
-   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Disabled"
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Disabled",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
   },
   "MainMenuMicroButton": {
    "NormalTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Up",
    "PushedTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Down",
-   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Disabled"
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Disabled",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
   },
   "HelpMicroButton": {
    "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Help-Up",
    "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Help-Down",
-   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
-   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Help-Disabled"
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Help-Disabled",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
   },
   "MainMenuBarBackpackButton": {
    "IconTexture": "Interface\\Buttons\\Button-Backpack-Up"
@@ -63,6 +63,18 @@
   },
   "CharacterBag3Slot": {
    "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+  },
+  "AchievementMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Achievement-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Achievement-Down",
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Achievement-Disabled",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
+  },
+  "LFDMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButton-LFG-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButton-LFG-Down",
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-LFG-Disabled",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
   }
  },
  "scenes": [

@@ -16,6 +16,12 @@ const UNUSED: Array[String] = [
 ]
 const SCROLL_BUTTONS: Array[String] = ["UpButton", "DownButton", "BottomButton"]
 
+const WINDOW_ART: PackedStringArray = [
+	"Background", "TopLeftTexture", "TopRightTexture", "BottomLeftTexture", "BottomRightTexture",
+	"LeftTexture", "RightTexture", "TopTexture", "BottomTexture",
+]
+const WINDOW_TINT: Color = Color(0.0, 0.0, 0.0, 0.25)
+
 var selected: bool = true
 
 var _hovered: bool = false
@@ -34,6 +40,11 @@ func _ready() -> void:
 		if node:
 			node.hide()
 	_background.self_modulate = Color(0.0, 0.0, 0.0, 0.0)
+	# FCF_SetWindowColor tints the white window art; the stock default is black at a quarter.
+	for part: String in WINDOW_ART:
+		var art: CanvasItem = get_node_or_null("%" + name + part)
+		if art:
+			art.self_modulate = WINDOW_TINT
 	_tab.modulate.a = 0.0
 	_tab.hide()
 	_tab.pressed.connect(tab_selected.emit)

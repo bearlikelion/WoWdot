@@ -8,6 +8,7 @@ enum LightType { DIRECTIONAL, POINT }
 const STAND_ATTACHMENT: int = 0
 # PlayerModel frames without a scene show the whole character, a little clear of the edges.
 const CHARACTER_FOV: float = 30.0
+const DESIGN_ASPECT: float = 4.0 / 3.0
 const CHARACTER_MARGIN: float = 1.15
 
 @export var model_file: String = "":
@@ -185,12 +186,12 @@ func _light_scene(lights: Array) -> void:
 	_environment.ambient_light_color = ambient
 
 
-# An M2 camera keeps a diagonal FOV; the client divides it down for the frame it draws into.
+# An M2 camera keeps a diagonal FOV framed for the 4:3 screen; a wider window sees more at the sides.
 func _fit_fov() -> void:
 	if _diagonal_fov <= 0.0:
 		return
-	var aspect: float = float(_viewport.size.x) / _viewport.size.y
-	_camera.fov = rad_to_deg(_diagonal_fov / sqrt(1.0 + aspect * aspect))
+	var diagonal: float = sqrt(1.0 + DESIGN_ASPECT * DESIGN_ASPECT)
+	_camera.fov = rad_to_deg(2.0 * atan(tan(_diagonal_fov / 2.0) / diagonal))
 
 
 func _turn_character() -> void:
