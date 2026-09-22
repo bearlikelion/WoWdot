@@ -1728,7 +1728,6 @@ mouse_filter = 2
 theme_type_variation = &"GameFontRedSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SendMailErrorCoin" type="TextureRect" parent="SendMailFrame"]
@@ -3394,11 +3393,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Inbox"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MailFrameTab1"]
@@ -3490,11 +3489,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Send Mail"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MailFrameTab2"]

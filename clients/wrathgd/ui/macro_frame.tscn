@@ -368,11 +368,11 @@ offset_left = -15
 offset_top = -115
 offset_right = -15
 offset_bottom = -105
+grow_horizontal = 2
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MacroFrameSelectedMacroButton" type="TextureButton" parent="."]
@@ -3110,11 +3110,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "General Macros"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MacroFrameTab1"]
@@ -3203,10 +3203,10 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MacroFrameTab2"]

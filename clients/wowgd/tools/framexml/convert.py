@@ -280,6 +280,8 @@ class Converter:
             names = [spec["name"] % i for i in range(first, first + spec["count"])]
             for k, row_name in enumerate(names):
                 row = ET.Element(ns + "Button", name=row_name, inherits=spec["template"])
+                if "size" in spec:
+                    ET.SubElement(row, ns + "Size", x=str(spec["size"][0]), y=str(spec["size"][1]))
                 anchor = ET.SubElement(ET.SubElement(row, ns + "Anchors"), ns + "Anchor", point="TOPLEFT")
                 offset = spec.get("offset", [0, 0])
                 gap = spec.get("gap", [0, 0])
@@ -669,9 +671,13 @@ class SceneWriter:
         if not is_root:
             props += self.placement(w, parent)
             grow = getattr(w, "grow", None)
-            if w.tag == "FontString" and grow and not (w.size and w.size[1]):
+            if w.tag == "FontString" and grow:
+                # An axis with no size set grows from its anchor as the text sizes it.
                 names = {"end": "1", "begin": "0", "both": "2", None: "1"}
-                props += [("grow_horizontal", names[grow[0]]), ("grow_vertical", names[grow[1]])]
+                if not (w.size and w.size[1]):
+                    props += [("grow_horizontal", names[grow[0]]), ("grow_vertical", names[grow[1]])]
+                elif not w.size[0]:
+                    props.append(("grow_horizontal", names[grow[0]]))
         if parent is not None and self.kind(parent)[0] in SELF_DRAWING and getattr(w, "layer", "") in ("BACKGROUND", "BORDER"):
             props.append(("show_behind_parent", "true"))
         if w.attrs.get("hidden") == "true" or getattr(w, "state", None) in (
@@ -850,7 +856,8 @@ class SceneWriter:
             if w.size and w.size[1]:
                 # Text larger than its box spills out around the side it is justified to.
                 spill = {"LEFT": "1", "TOP": "1", "CENTER": "2", "MIDDLE": "2", "RIGHT": "0", "BOTTOM": "0"}
-                props.append(("grow_horizontal", spill.get(w.attrs.get("justifyH", "CENTER").upper(), "2")))
+                if w.size[0]:
+                    props.append(("grow_horizontal", spill.get(w.attrs.get("justifyH", "CENTER").upper(), "2")))
                 props.append(("grow_vertical", spill.get(w.attrs.get("justifyV", "MIDDLE").upper(), "2")))
         elif kind == "TextureProgressBar":
             bar = w.special.get("BarTexture")

@@ -455,12 +455,12 @@ offset_left = 45
 offset_top = 40
 offset_right = 45
 offset_bottom = 52
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 text = "Cost:"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BankFramePurchaseButton" type="TextureButton" parent="BankFramePurchaseInfo"]

@@ -448,11 +448,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Character"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectFrameTab1"]
@@ -544,11 +544,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "PvP"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectFrameTab2"]
@@ -640,11 +640,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Talents"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectFrameTab3"]
@@ -3100,11 +3100,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "OK"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab1"]
@@ -3193,11 +3193,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "OK"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab2"]
@@ -3286,11 +3286,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "OK"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab3"]
@@ -3409,11 +3409,11 @@ offset_left = 12
 offset_top = 4.5
 offset_right = 12
 offset_bottom = 19.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
-grow_horizontal = 1
 grow_vertical = 2
 
 [node name="InspectTalentFrameTalentPointsText" type="Label" parent="InspectTalentFrame/InspectTalentFramePointsBar"]
@@ -3425,11 +3425,11 @@ offset_left = -12
 offset_top = 4.5
 offset_right = -12
 offset_bottom = 19.5
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InspectTalentFrameScrollFrame" type="Control" parent="InspectTalentFrame"]

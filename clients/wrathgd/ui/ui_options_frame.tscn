@@ -1004,12 +1004,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These are general gameplay related controls that affect how your character interacts with objects and other players in the game world."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsControlsPanelStickyTargeting" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsControlsPanel"]
@@ -1502,11 +1502,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsControlsPanelAutoLootKeyDropDownButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsControlsPanel/InterfaceOptionsControlsPanelAutoLootKeyDropDown"]
@@ -1591,12 +1591,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options affect your character's behaviors in combat, and allow you to change the way combat is displayed in the UI."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsCombatPanelAttackOnAssist" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsCombatPanel"]
@@ -2017,11 +2017,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsCombatPanelSelfCastKeyDropDownButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsCombatPanel/InterfaceOptionsCombatPanelSelfCastKeyDropDown"]
@@ -2364,11 +2364,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsCombatPanelTOTDropDownButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsCombatPanel/InterfaceOptionsCombatPanelTOTDropDown"]
@@ -2481,11 +2481,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsCombatPanelFocusCastKeyDropDownButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsCombatPanel/InterfaceOptionsCombatPanelFocusCastKeyDropDown"]
@@ -2570,12 +2570,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options affect whether certain UI and character elements are hidden or displayed."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsDisplayPanelShowCloak" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsDisplayPanel"]
@@ -3146,11 +3146,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsDisplayPanelAggroWarningDisplayButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsDisplayPanel/InterfaceOptionsDisplayPanelAggroWarningDisplay"]
@@ -3560,11 +3560,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsDisplayPanelWorldPVPObjectiveDisplayButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsDisplayPanel/InterfaceOptionsDisplayPanelWorldPVPObjectiveDisplay"]
@@ -3721,12 +3721,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to customize how game objectives like Quests and Achievements are displayed in the user interface,"
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsObjectivesPanelInstantQuestText" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsObjectivesPanel"]
@@ -4194,12 +4194,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to control and modify your interactions with other players you encounter in Azeroth."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsSocialPanelProfanityFilter" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsSocialPanel"]
@@ -4839,11 +4839,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsSocialPanelChatStyleButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsSocialPanel/InterfaceOptionsSocialPanelChatStyle"]
@@ -5031,11 +5031,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsSocialPanelConversationModeButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsSocialPanel/InterfaceOptionsSocialPanelConversationMode"]
@@ -5148,11 +5148,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsSocialPanelTimestampsButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsSocialPanel/InterfaceOptionsSocialPanelTimestamps"]
@@ -5237,12 +5237,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "ActionBars are banks of hotkeys that allow you to quickly access abilities and inventory items. Here you can activate additional ActionBars and control their behaviors."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsActionBarsPanelBottomLeft" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsActionBarsPanel"]
@@ -5791,12 +5791,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to control which names are visible within the game field while you play."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsNamesPanelMyName" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsNamesPanel"]
@@ -7454,12 +7454,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to configure the floating combat text which can be displayed in the center of the screen, making it easier to follow battles."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsCombatTextPanelTargetDamage" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsCombatTextPanel"]
@@ -8030,11 +8030,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsCombatTextPanelFCTDropDownButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsCombatTextPanel/InterfaceOptionsCombatTextPanelFCTDropDown"]
@@ -8983,12 +8983,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to display detailed information on status bars throughout the game."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsStatusTextPanelPlayer" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsStatusTextPanel"]
@@ -9456,12 +9456,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options can be used to change the display and behavior of unit frames within the UI."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsUnitFramePanelPartyBackground" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsUnitFramePanel"]
@@ -10073,12 +10073,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to control how buffs and debuffs are displayed."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsBuffsPanelBuffDurations" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsBuffsPanel"]
@@ -10474,12 +10474,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to change the types of Battle.net messages you receive."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsBattlenetPanelOnlineFriends" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsBattlenetPanel"]
@@ -11017,12 +11017,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to modify the camera's behavior inside the game."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsCameraPanelStyleDropDown" type="Control" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsCameraPanel"]
@@ -11086,11 +11086,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsCameraPanelStyleDropDownButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsCameraPanel/InterfaceOptionsCameraPanelStyleDropDown"]
@@ -11609,12 +11609,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to change the way the mouse behaves inside the game."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsMousePanelInvertMouse" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsMousePanel"]
@@ -12037,11 +12037,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsMousePanelClickMoveStyleDropDownButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsMousePanel/InterfaceOptionsMousePanelClickMoveStyleDropDown"]
@@ -12126,12 +12126,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to enable and disable full game features."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsFeaturesPanelEquipmentManager" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsFeaturesPanel"]
@@ -12341,12 +12341,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to change the behavior of the help systems within the game."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsHelpPanelShowTutorials" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsHelpPanel"]
@@ -12805,12 +12805,12 @@ offset_left = 16
 offset_top = 40
 offset_right = -32
 offset_bottom = 72
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "These options allow you to modify language settings for the game."
 horizontal_alignment = 0
 vertical_alignment = 0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="InterfaceOptionsLanguagesPanelLocaleDropDown" type="Control" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsLanguagesPanel"]
@@ -12871,11 +12871,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="InterfaceOptionsLanguagesPanelLocaleDropDownButton" type="TextureButton" parent="InterfaceOptionsFramePanelContainer/InterfaceOptionsLanguagesPanel/InterfaceOptionsLanguagesPanelLocaleDropDown"]

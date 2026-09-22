@@ -890,11 +890,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Character"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="CharacterFrameTab1"]
@@ -986,11 +986,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Pets"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="CharacterFrameTab2"]
@@ -1082,11 +1082,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Reputation"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="CharacterFrameTab3"]
@@ -1178,11 +1178,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Skills"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="CharacterFrameTab4"]
@@ -1275,11 +1275,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Currency"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="CharacterFrameTab5"]
@@ -2673,11 +2673,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="PlayerStatFrameLeftDropDownButton" type="TextureButton" parent="PaperDollFrame/CharacterAttributesFrame/PlayerStatFrameLeftDropDown"]
@@ -2773,11 +2773,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="PlayerStatFrameRightDropDownButton" type="TextureButton" parent="PaperDollFrame/CharacterAttributesFrame/PlayerStatFrameRightDropDown"]
@@ -7635,11 +7635,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "Pet"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab1"]
@@ -7728,11 +7728,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "Companions"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab2"]
@@ -7821,11 +7821,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "Mounts"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="PetPaperDollFrame/PetPaperDollFrameTab3"]

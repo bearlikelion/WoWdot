@@ -528,11 +528,11 @@ offset_left = 117
 offset_top = 1
 offset_right = 117
 offset_bottom = 10
+grow_horizontal = 2
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillRankFrameBorder" type="TextureRect" parent="TradeSkillRankFrame"]
@@ -738,11 +738,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="TradeSkillInvSlotDropDownButton" type="TextureButton" parent="TradeSkillInvSlotDropDown"]
@@ -841,11 +841,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="TradeSkillSubClassDropDownButton" type="TextureButton" parent="TradeSkillSubClassDropDown"]
@@ -961,11 +961,11 @@ offset_left = 0
 offset_top = 1.5
 offset_right = 0
 offset_bottom = 14.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillSkill1Text" type="Label" parent="TradeSkillSkill1"]
@@ -1036,11 +1036,11 @@ offset_left = 0
 offset_top = 1.5
 offset_right = 0
 offset_bottom = 14.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillSkill2Text" type="Label" parent="TradeSkillSkill2"]
@@ -1111,11 +1111,11 @@ offset_left = 0
 offset_top = 1.5
 offset_right = 0
 offset_bottom = 14.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillSkill3Text" type="Label" parent="TradeSkillSkill3"]
@@ -1186,11 +1186,11 @@ offset_left = 0
 offset_top = 1.5
 offset_right = 0
 offset_bottom = 14.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillSkill4Text" type="Label" parent="TradeSkillSkill4"]
@@ -1261,11 +1261,11 @@ offset_left = 0
 offset_top = 1.5
 offset_right = 0
 offset_bottom = 14.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillSkill5Text" type="Label" parent="TradeSkillSkill5"]
@@ -1336,11 +1336,11 @@ offset_left = 0
 offset_top = 1.5
 offset_right = 0
 offset_bottom = 14.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillSkill6Text" type="Label" parent="TradeSkillSkill6"]
@@ -1411,11 +1411,11 @@ offset_left = 0
 offset_top = 1.5
 offset_right = 0
 offset_bottom = 14.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillSkill7Text" type="Label" parent="TradeSkillSkill7"]
@@ -1486,11 +1486,11 @@ offset_left = 0
 offset_top = 1.5
 offset_right = 0
 offset_bottom = 14.5
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TradeSkillSkill8Text" type="Label" parent="TradeSkillSkill8"]

@@ -258,12 +258,12 @@ offset_left = 114
 offset_top = 45
 offset_right = 114
 offset_bottom = 61
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlight"
 text = "From:"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OpenMailSender" type="Label" parent="."]
@@ -286,12 +286,12 @@ offset_left = 114
 offset_top = 65
 offset_right = 114
 offset_bottom = 81
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlight"
 text = "Subject:"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OpenMailSubject" type="Label" parent="."]

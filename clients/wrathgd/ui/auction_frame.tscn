@@ -513,11 +513,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Browse"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameTab1"]
@@ -609,11 +609,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Bids"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameTab2"]
@@ -705,11 +705,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Auctions"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameTab3"]
@@ -4478,11 +4478,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="BrowseDropDownName" type="Label" parent="AuctionFrameBrowse/BrowseDropDown"]
@@ -8884,13 +8884,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton1BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton1"]
@@ -9113,13 +9113,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton2BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton2"]
@@ -9342,13 +9342,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton3BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton3"]
@@ -9571,13 +9571,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton4BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton4"]
@@ -9800,13 +9800,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton5BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton5"]
@@ -10029,13 +10029,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton6BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton6"]
@@ -10258,13 +10258,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton7BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton7"]
@@ -10487,13 +10487,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton8BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton8"]
@@ -10716,13 +10716,13 @@ offset_left = 114
 offset_top = -15
 offset_right = 114
 offset_bottom = -3
+grow_horizontal = 0
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Incoming Amount"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AuctionsButton9BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton9"]
@@ -11106,11 +11106,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="FontString" type="Label" parent="AuctionFrameAuctions/PriceDropDown"]
@@ -11703,11 +11703,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="FontString" type="Label" parent="AuctionFrameAuctions/DurationDropDown"]

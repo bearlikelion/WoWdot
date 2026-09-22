@@ -174,11 +174,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="Button" type="TextureButton" parent="DropDown"]

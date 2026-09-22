@@ -3396,11 +3396,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Merchant"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MerchantFrameTab1"]
@@ -3492,11 +3492,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Buyback"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MerchantFrameTab2"]

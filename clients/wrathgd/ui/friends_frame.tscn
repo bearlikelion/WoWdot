@@ -711,11 +711,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="FriendsDropDownButton" type="TextureButton" parent="FriendsDropDown"]
@@ -935,11 +935,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="FriendsFrameStatusDropDownStatus" type="TextureRect" parent="FriendsTabHeader/FriendsFrameStatusDropDown"]
@@ -1184,11 +1184,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "Friends"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="FriendsTabHeader/FriendsTabHeaderTab1"]
@@ -1277,11 +1277,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "Ignore"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="FriendsTabHeader/FriendsTabHeaderTab2"]
@@ -1370,11 +1370,11 @@ offset_left = 57.5
 offset_top = 14
 offset_right = 57.5
 offset_bottom = 27
+grow_horizontal = 2
 mouse_filter = 2
 text = "Pending"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="FriendsTabHeader/FriendsTabHeaderTab3"]
@@ -4846,11 +4846,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="PendingListFrameDropDownButton" type="TextureButton" parent="PendingListFrame/PendingListFrameDropDown"]
@@ -6377,11 +6377,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="WhoFrameDropDownHighlightTexture" type="TextureRect" parent="WhoFrame/WhoFrameColumnHeader2/WhoFrameDropDown"]
@@ -8188,11 +8188,11 @@ offset_left = 75
 offset_top = 59
 offset_right = 75
 offset_bottom = 75
+grow_horizontal = 2
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
-grow_horizontal = 1
 grow_vertical = 2
 
 [node name="GuildFrameOnlineTotals" type="Label" parent="GuildFrame"]
@@ -8204,11 +8204,11 @@ offset_left = 78
 offset_top = 59
 offset_right = 78
 offset_bottom = 75
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 0
 vertical_alignment = 1
-grow_horizontal = 1
 grow_vertical = 2
 
 [node name="GuildFrameNotesLabel" type="Label" parent="GuildFrame"]
@@ -11486,11 +11486,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="GuildControlPopupFrameDropDownButton" type="TextureButton" parent="GuildControlPopupFrame/GuildControlPopupFrameCheckboxes/GuildControlPopupFrameDropDown"]
@@ -14119,11 +14119,11 @@ offset_left = 17
 offset_top = 18
 offset_right = 17
 offset_bottom = 30
+grow_horizontal = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GuildMemberDetailLevel" type="Label" parent="GuildMemberDetailFrame"]
@@ -14994,11 +14994,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Friends"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="FriendsFrameTab1"]
@@ -15090,11 +15090,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Who"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="FriendsFrameTab2"]
@@ -15186,11 +15186,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Guild"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="FriendsFrameTab3"]
@@ -15282,11 +15282,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Chat"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="FriendsFrameTab4"]
@@ -15378,11 +15378,11 @@ offset_left = 5
 offset_top = 9
 offset_right = 5
 offset_bottom = 19
+grow_horizontal = 2
 mouse_filter = 2
 text = "Raid"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="FriendsFrameTab5"]
@@ -21238,12 +21238,12 @@ offset_left = 0
 offset_top = 0
 offset_right = 0
 offset_bottom = 13
+grow_horizontal = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ChannelRosterScrollFrame" type="Control" parent="ChannelFrame/ChannelRoster"]
@@ -23648,11 +23648,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="ChannelRosterDropDownButton" type="TextureButton" parent="ChannelFrame/ChannelRoster/ChannelRosterDropDown"]
@@ -23733,12 +23733,12 @@ offset_left = 101
 offset_top = 13
 offset_right = 101
 offset_bottom = 25
+grow_horizontal = 2
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 text = "New Channel"
 horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ChannelFrameDaughterFrameTitlebar" type="TextureRect" parent="ChannelFrame/ChannelFrameDaughterFrame"]
@@ -24103,11 +24103,11 @@ offset_left = 122
 offset_top = 8
 offset_right = 122
 offset_bottom = 18
+grow_horizontal = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
-grow_horizontal = 0
 grow_vertical = 2
 
 [node name="ChannelListDropDownButton" type="TextureButton" parent="ChannelFrame/ChannelListDropDown"]
