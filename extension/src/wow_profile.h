@@ -50,6 +50,10 @@ inline const WowProfile &wow_profile() {
 	return active;
 }
 
+inline bool wow_wotlk() {
+	return std::strcmp(wow_profile().id, "wotlk") == 0;
+}
+
 // res://data/<id>/ holds the profile's opcode, update field and DBC layout tables.
 inline String wow_data_path(const String &name) {
 	return String("res://data/") + wow_profile().id + "/" + name;

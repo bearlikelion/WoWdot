@@ -54,7 +54,6 @@ Most of the WotLK protocol and format code is already in the vendored WoWee sour
 
 | Area | Work |
 | --- | --- |
-| Hand-parsed packets | `wow_session.cpp` still parses learned spells, cast failed, spell cooldown, quest query, quest giver status, gossip, vendor, trainer and taxi lists in the vanilla layout. |
 | Animations | Version 264 keeps most sequences in `.anim` files, hundreds per model, which want loading on demand. |
 | Data tables | `data/wotlk/` has no `ui_sounds.json`, `spell_failures.json` or `equip_failures.json` yet, so UI sounds are silent and refusals have no text. |
 | Update fields | `tools/update_fields.py` reports 93 classic names WotLK removed; the game reads none of them now except the honor frame's weekly kill counts, which the 3.3.5 PvP frame replaces. |
@@ -63,7 +62,7 @@ Most of the WotLK protocol and format code is already in the vendored WoWee sour
 | Character create | Death Knight is offered without the level 55 gate and without the blue button art. |
 | Interface | Every screen past the glue is still the 1.12 conversion; convert each from the 3.3.5a FrameXML with `python3 ../wowgd/tools/framexml/convert.py <dump> . tools/framexml/frames.json`. |
 
-The order: the packets still parsed as vanilla, then the 3.3.5a FrameXML.
+The order: the `shared/game` packets still decoded as vanilla, then the 3.3.5a FrameXML.
 
 ## Checks
 
@@ -73,7 +72,7 @@ Run one with `godot --headless --path . tests/<name>.tscn`; each prints `<name>:
 | Check | Covers |
 | --- | --- |
 | `login_check` | SRP6 against the authserver, the realm list, the RC4 header cipher and the WotLK `CMSG_AUTH_SESSION`, through to `SMSG_CHAR_ENUM`. |
-| `world_check` | A throwaway character enters the world, walks, runs a GM command, takes a teleport, gains and loses an aura through `SMSG_AURA_UPDATE`, and logs out. |
+| `world_check` | A throwaway character enters the world, walks, runs a GM command, takes a teleport, gains and loses an aura through `SMSG_AURA_UPDATE`, learns a spell, fails a cast, queries a quest, and logs out. |
 | `model_check` | A character and a creature model: version 264 geometry from the `.skin` beside the model. |
 | `terrain_check` | An Azeroth and a Northrend tile with MH2O water. |
 | `glue_check` | The login screen, every race on the create screen, and the world loading round the new character. |

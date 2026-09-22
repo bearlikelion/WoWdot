@@ -246,7 +246,7 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	var typing: bool = get_viewport().gui_get_focus_owner() is LineEdit
-	if not event.is_pressed() or event.is_echo() or typing:
+	if not visible or not event.is_pressed() or event.is_echo() or typing:
 		return
 	if event.is_action_pressed("ui_cancel"):
 		_escape()

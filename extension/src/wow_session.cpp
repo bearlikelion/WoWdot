@@ -419,7 +419,27 @@ void WowSession::set_action_button(int slot, int packed) {
 	emit_signal("action_buttons_changed");
 }
 
-// Spell, cooldown and melee packets in their vanilla layouts; true when the opcode was one of them.
+namespace {
+
+// 3.3.5 widened spell ids to 32 bits.
+int32_t read_spell_id(network::Packet &packet) {
+	return static_cast<int32_t>(wow_wotlk() ? packet.readUInt32() : packet.readUInt16());
+}
+
+// 3.3.5 names the caster with a packed guid where 1.12 wrote all eight bytes.
+uint64_t read_caster_guid(network::Packet &packet) {
+	return wow_wotlk() ? packet.readPackedGuid() : packet.readUInt64();
+}
+
+// 3.3.5 QuestGiverStatus to the 1.12 numbering the game code keys its markers on.
+uint8_t quest_giver_status_from_wotlk(uint8_t status) {
+	static constexpr uint8_t TABLE[] = { 0, 1, 1, 4, 1, 3, 4, 5, 5, 7, 6 };
+	return status < sizeof(TABLE) ? TABLE[status] : 0;
+}
+
+} // namespace
+
+// Spell, cooldown and melee packets; true when the opcode was one of them.
 bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 	using game::LogicalOpcode;
 	switch (static_cast<LogicalOpcode>(op)) {
@@ -435,20 +455,20 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 			return true;
 		}
 		case LogicalOpcode::SMSG_LEARNED_SPELL: {
-			known_spells.push_back(packet.readUInt16());
+			known_spells.push_back(read_spell_id(packet));
 			emit_signal("spells_changed");
 			return true;
 		}
 		case LogicalOpcode::SMSG_REMOVED_SPELL: {
-			if (const int64_t at = known_spells.find(packet.readUInt16()); at >= 0) {
+			if (const int64_t at = known_spells.find(read_spell_id(packet)); at >= 0) {
 				known_spells.remove_at(at);
 			}
 			emit_signal("spells_changed");
 			return true;
 		}
 		case LogicalOpcode::SMSG_SUPERCEDED_SPELL: {
-			const int32_t old_spell = packet.readUInt16();
-			const int32_t new_spell = packet.readUInt16();
+			const int32_t old_spell = read_spell_id(packet);
+			const int32_t new_spell = read_spell_id(packet);
 			if (const int64_t at = known_spells.find(old_spell); at >= 0) {
 				known_spells.set(at, new_spell);
 			} else {
@@ -493,6 +513,12 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 			return true;
 		}
 		case LogicalOpcode::SMSG_CAST_FAILED: {
+			if (wow_wotlk()) {
+				packet.readUInt8(); // Cast count.
+				const int spell = static_cast<int>(packet.readUInt32());
+				emit_signal("spell_cast_failed", static_cast<int64_t>(player_guid), spell, static_cast<int>(packet.readUInt8()));
+				return true;
+			}
 			const int spell = static_cast<int>(packet.readUInt32());
 			const uint8_t status = packet.readUInt8();
 			if (status != 0) {
@@ -502,7 +528,10 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 		}
 		case LogicalOpcode::SMSG_SPELL_FAILED_OTHER: {
 			// Reason -1 marks an interrupt; 0 is a real SpellCastResult (SPELL_FAILED_AFFECTING_COMBAT).
-			const int64_t caster = static_cast<int64_t>(packet.readUInt64());
+			const int64_t caster = static_cast<int64_t>(read_caster_guid(packet));
+			if (wow_wotlk()) {
+				packet.readUInt8(); // Cast count.
+			}
 			emit_signal("spell_cast_failed", caster, static_cast<int>(packet.readUInt32()), -1);
 			return true;
 		}
@@ -522,21 +551,30 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 			emit_signal("attack_swing_error", ATTACK_ERROR_CANT_ATTACK);
 			return true;
 		case LogicalOpcode::SMSG_SPELL_DELAYED: {
-			const int64_t caster = static_cast<int64_t>(packet.readUInt64());
+			const int64_t caster = static_cast<int64_t>(read_caster_guid(packet));
 			emit_signal("spell_cast_delayed", caster, static_cast<int>(packet.readUInt32()));
 			return true;
 		}
 		case LogicalOpcode::MSG_CHANNEL_START: {
+			if (wow_wotlk()) {
+				packet.readPackedGuid();
+			}
 			const int spell = static_cast<int>(packet.readUInt32());
 			emit_signal("spell_channel_started", spell, static_cast<int>(packet.readUInt32()));
 			return true;
 		}
 		case LogicalOpcode::MSG_CHANNEL_UPDATE: {
+			if (wow_wotlk()) {
+				packet.readPackedGuid();
+			}
 			emit_signal("spell_channel_updated", static_cast<int>(packet.readUInt32()));
 			return true;
 		}
 		case LogicalOpcode::SMSG_SPELL_COOLDOWN: {
 			packet.readUInt64();
+			if (wow_wotlk()) {
+				packet.readUInt8(); // Cooldown flags.
+			}
 			while (packet.hasRemaining(8)) {
 				const int spell = static_cast<int>(packet.readUInt32());
 				emit_signal("spell_cooldown", spell, static_cast<int>(packet.readUInt32()));
@@ -730,27 +768,51 @@ Dictionary WowSession::get_quest_info(int quest_id) {
 	return Dictionary();
 }
 
-// The 1.12 SMSG_QUEST_QUERY_RESPONSE: fixed fields, reward pairs, the four texts, then the objectives.
+// SMSG_QUEST_QUERY_RESPONSE: fixed fields, reward pairs, the texts, then the objectives.
 void WowSession::handle_quest_query(network::Packet &packet) {
 	constexpr int REWARD_ITEMS = 4;
 	constexpr int REWARD_CHOICES = 6;
 	constexpr int OBJECTIVES = 4;
+	constexpr int REQUIRED_ITEMS = 6;
+	constexpr int REPUTATIONS = 5;
+	const bool wotlk = wow_wotlk();
 	const uint32_t id = packet.readUInt32();
 	Dictionary quest;
 	quest["id"] = static_cast<int64_t>(id);
 	quest["method"] = static_cast<int64_t>(packet.readUInt32());
 	quest["level"] = static_cast<int64_t>(packet.readUInt32());
+	if (wotlk) {
+		quest["min_level"] = static_cast<int64_t>(packet.readUInt32());
+	}
 	quest["zone_or_sort"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
 	quest["type"] = static_cast<int64_t>(packet.readUInt32());
+	if (wotlk) {
+		quest["suggested_players"] = static_cast<int64_t>(packet.readUInt32());
+	}
 	for (int i = 0; i < 4; ++i) {
 		packet.readUInt32(); // Reputation objective and opposite faction requirements.
 	}
 	quest["next_quest"] = static_cast<int64_t>(packet.readUInt32());
+	if (wotlk) {
+		packet.readUInt32(); // XP id.
+	}
 	quest["money"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
 	quest["max_level_money"] = static_cast<int64_t>(packet.readUInt32());
 	quest["reward_spell"] = static_cast<int64_t>(packet.readUInt32());
+	if (wotlk) {
+		quest["reward_spell_cast"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
+		quest["honor"] = static_cast<int64_t>(packet.readUInt32());
+		packet.readFloat(); // Honor multiplier.
+	}
 	quest["source_item"] = static_cast<int64_t>(packet.readUInt32());
 	quest["flags"] = static_cast<int64_t>(packet.readUInt32());
+	if (wotlk) {
+		quest["title_id"] = static_cast<int64_t>(packet.readUInt32());
+		packet.readUInt32(); // Players slain.
+		quest["bonus_talents"] = static_cast<int64_t>(packet.readUInt32());
+		quest["arena_points"] = static_cast<int64_t>(packet.readUInt32());
+		packet.readUInt32(); // Reputation show mask.
+	}
 	const auto read_pairs = [&packet](int count) {
 		Array pairs;
 		for (int i = 0; i < count; ++i) {
@@ -764,6 +826,11 @@ void WowSession::handle_quest_query(network::Packet &packet) {
 	};
 	quest["rewards"] = read_pairs(REWARD_ITEMS);
 	quest["choices"] = read_pairs(REWARD_CHOICES);
+	if (wotlk) {
+		for (int i = 0; i < REPUTATIONS * 3; ++i) {
+			packet.readUInt32(); // Reward faction ids, values and overrides.
+		}
+	}
 	quest["point_map"] = static_cast<int64_t>(packet.readUInt32());
 	const float point_x = packet.readFloat();
 	const float point_y = packet.readFloat();
@@ -773,6 +840,9 @@ void WowSession::handle_quest_query(network::Packet &packet) {
 	quest["objectives"] = String::utf8(packet.readString().c_str());
 	quest["details"] = String::utf8(packet.readString().c_str());
 	quest["end_text"] = String::utf8(packet.readString().c_str());
+	if (wotlk) {
+		quest["completed_text"] = String::utf8(packet.readString().c_str());
+	}
 	Array objectives;
 	for (int i = 0; i < OBJECTIVES; ++i) {
 		Dictionary objective;
@@ -782,6 +852,32 @@ void WowSession::handle_quest_query(network::Packet &packet) {
 		objective["item"] = static_cast<int64_t>(packet.readUInt32());
 		objective["item_count"] = static_cast<int64_t>(packet.readUInt32());
 		objectives.push_back(objective);
+	}
+	if (wotlk) {
+		// 3.3.5 lists the item to drop with each objective and the items to gather on their own.
+		for (int i = 0; i < OBJECTIVES; ++i) {
+			Dictionary objective = objectives[i];
+			objective["item_drop"] = objective["item"];
+			objective["item"] = 0;
+			objective["item_count"] = 0;
+		}
+		for (int i = 0; i < REQUIRED_ITEMS; ++i) {
+			const int64_t item = packet.readUInt32();
+			const int64_t amount = packet.readUInt32();
+			if (i < OBJECTIVES) {
+				Dictionary objective = objectives[i];
+				objective["item"] = item;
+				objective["item_count"] = amount;
+			} else if (item != 0) {
+				Dictionary objective;
+				objective["target"] = 0;
+				objective["target_count"] = 0;
+				objective["item"] = item;
+				objective["item_count"] = amount;
+				objective["text"] = String();
+				objectives.push_back(objective);
+			}
+		}
 	}
 	for (int i = 0; i < OBJECTIVES; ++i) {
 		Dictionary objective = objectives[i];
@@ -850,12 +946,19 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 	switch (static_cast<LogicalOpcode>(op)) {
 		case LogicalOpcode::SMSG_QUESTGIVER_STATUS: {
 			const int64_t guid = static_cast<int64_t>(packet.readUInt64());
+			if (wow_wotlk()) {
+				emit_signal("quest_giver_status_received", guid, static_cast<int64_t>(quest_giver_status_from_wotlk(packet.readUInt8())));
+				return true;
+			}
 			emit_signal("quest_giver_status_received", guid, static_cast<int64_t>(packet.readUInt32()));
 			return true;
 		}
 		case LogicalOpcode::SMSG_GOSSIP_MESSAGE: {
 			Dictionary gossip;
 			gossip["guid"] = static_cast<int64_t>(packet.readUInt64());
+			if (wow_wotlk()) {
+				packet.readUInt32(); // Menu id.
+			}
 			gossip["text_id"] = static_cast<int64_t>(packet.readUInt32());
 			Array options;
 			const uint32_t option_count = packet.readUInt32();
@@ -864,7 +967,13 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 				option["index"] = static_cast<int64_t>(packet.readUInt32());
 				option["icon"] = static_cast<int64_t>(packet.readUInt8());
 				option["coded"] = packet.readUInt8() != 0;
+				if (wow_wotlk()) {
+					option["box_money"] = static_cast<int64_t>(packet.readUInt32());
+				}
 				option["text"] = read_string(packet);
+				if (wow_wotlk()) {
+					option["box_text"] = read_string(packet);
+				}
 				options.push_back(option);
 			}
 			gossip["options"] = options;
@@ -875,6 +984,10 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 				quest["id"] = static_cast<int64_t>(packet.readUInt32());
 				quest["icon"] = static_cast<int64_t>(packet.readUInt32());
 				quest["level"] = static_cast<int64_t>(packet.readUInt32());
+				if (wow_wotlk()) {
+					quest["flags"] = static_cast<int64_t>(packet.readUInt32());
+					quest["repeatable"] = packet.readUInt8() != 0;
+				}
 				quest["title"] = read_string(packet);
 				quests.push_back(quest);
 			}
@@ -922,6 +1035,10 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 				quest["id"] = static_cast<int64_t>(packet.readUInt32());
 				quest["icon"] = static_cast<int64_t>(packet.readUInt32());
 				quest["level"] = static_cast<int64_t>(packet.readUInt32());
+				if (wow_wotlk()) {
+					quest["flags"] = static_cast<int64_t>(packet.readUInt32());
+					quest["repeatable"] = packet.readUInt8() != 0;
+				}
 				quest["title"] = read_string(packet);
 				quests.push_back(quest);
 			}
@@ -1013,6 +1130,9 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 				item["price"] = static_cast<int64_t>(packet.readUInt32());
 				item["durability"] = static_cast<int64_t>(packet.readUInt32());
 				item["count"] = static_cast<int64_t>(packet.readUInt32());
+				if (wow_wotlk()) {
+					item["extended_cost"] = static_cast<int64_t>(packet.readUInt32());
+				}
 				items.push_back(item);
 			}
 			inventory["items"] = items;
@@ -1083,13 +1203,12 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 			return true;
 		}
 		case LogicalOpcode::SMSG_SHOWTAXINODES: {
-			constexpr int MASK_WORDS = 8;
 			Dictionary taxi;
 			packet.readUInt32();
 			taxi["guid"] = static_cast<int64_t>(packet.readUInt64());
 			taxi["current"] = static_cast<int64_t>(packet.readUInt32());
 			PackedInt64Array mask;
-			for (int i = 0; i < MASK_WORDS && packet.hasRemaining(4); ++i) {
+			while (packet.hasRemaining(4)) {
 				mask.push_back(packet.readUInt32());
 			}
 			taxi["mask"] = mask;

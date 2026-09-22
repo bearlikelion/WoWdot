@@ -15,6 +15,9 @@ const COPPER: int = 1000
 # Arcane Intellect, a buff with a duration, and Curse of Weakness for the debuff side.
 const BUFF_SPELL: int = 1459
 const DEBUFF_SPELL: int = 702
+const LEARN_SPELL: int = 100
+const QUEST: int = 783
+const QUEST_TITLE: String = "A Threat Within"
 
 # Wire values, which WotLK shares with vanilla for these two.
 enum MoveFlag { NONE = 0, FORWARD = 1 }
@@ -32,6 +35,7 @@ var _teleports: int = 0
 var _walked_from_teleport: Vector3 = Vector3.ZERO
 var _chat: Array[Dictionary] = []
 var _time_syncs: int = 0
+var _cast_failures: Array[int] = []
 var _failures: PackedStringArray = []
 
 
@@ -44,6 +48,7 @@ func _ready() -> void:
 	_session.player_teleported.connect(_on_player_teleported)
 	_session.packet_received.connect(_on_packet_received)
 	_session.chat_received.connect(_on_chat_received)
+	_session.spell_cast_failed.connect(_on_spell_cast_failed)
 	_run.call_deferred()
 
 
@@ -71,6 +76,7 @@ func _run() -> void:
 	_check(_position.distance_to(walked) < 1.0, "the server kept the walk's last position")
 	_check(_position.distance_to(start) > 3.0, "the kept position is not where the walk began")
 	await _auras(guid)
+	await _packets()
 	if await _gm_command() and await _teleport() and await _log_out() and await _enter(guid):
 		print("after the teleport and a second walk, came back at %v" % _position)
 		_check(_position.distance_to(_walked_from_teleport) < 1.0,
@@ -105,6 +111,24 @@ func _auras(guid: int) -> void:
 	for aura: Dictionary in UnitAuras.read(_session, guid):
 		left.append(str(aura["spell"]))
 	print("auras left on the player: %s" % ", ".join(left))
+
+
+# The packets 3.3.5 lays out differently from 1.12: wide spell ids, the cast count
+# before a failure, and the longer quest query.
+func _packets() -> void:
+	_session.send_chat(WowSession.CHAT_SAY, ".learn %d" % LEARN_SPELL)
+	if await _until(func() -> bool: return LEARN_SPELL in _session.get_known_spells(),
+			"the learned spell arrives"):
+		_session.cast_spell(LEARN_SPELL, 0)
+		if await _until(func() -> bool: return not _cast_failures.is_empty(),
+				"casting without a target fails"):
+			_check(_cast_failures[0] > 0, "the failure carries its reason (%d)" % _cast_failures[0])
+	_session.get_quest_info(QUEST)
+	if await _until(func() -> bool: return not _session.get_quest_info(QUEST).is_empty(),
+			"the quest query is answered"):
+		var info: Dictionary = _session.get_quest_info(QUEST)
+		_check(info["title"] == QUEST_TITLE, "the quest title reads (%s)" % info["title"])
+		_check(info["objective_list"].size() >= 4, "the objectives read")
 
 
 func _aura(guid: int, spell: int) -> Variant:
@@ -272,6 +296,10 @@ func _on_chat_received(line: Dictionary) -> void:
 func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
 	if opcode == "SMSG_TIME_SYNC_REQ":
 		_time_syncs += 1
+
+
+func _on_spell_cast_failed(_caster: int, _spell_id: int, reason: int) -> void:
+	_cast_failures.append(reason)
 
 
 func _on_player_teleported(position: Vector3, _orientation: float) -> void:
