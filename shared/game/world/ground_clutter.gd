@@ -151,7 +151,9 @@ func _height_shape(tile_node: Node3D) -> HeightMapShape3D:
 func _mesh(path: String) -> Mesh:
 	if not _meshes.has(path):
 		var model: Node3D = WowAssets.loader.load_m2(path)
-		var found: Array[Node] = model.find_children("*", "MeshInstance3D", true, false) if model else []
+		var found: Array[Node] = []
+		if model:
+			found = model.find_children("*", "MeshInstance3D", true, false)
 		_meshes[path] = (found[0] as MeshInstance3D).mesh if not found.is_empty() else null
 		if model:
 			model.queue_free()

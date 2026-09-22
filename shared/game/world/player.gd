@@ -24,24 +24,32 @@ enum MoveFlag {
 	JUMPING = 0x2000,
 	FALLING_FAR = 0x4000,
 	SWIMMING = 0x200000,
+	# Not 1.12 bits: the session moves them to where 3.3.5 keeps them.
+	FLYING = 0x800000,
+	CAN_FLY = 0x1000000,
 	ONTRANSPORT = 0x2000000,
 	WATERWALKING = 0x10000000,
 	SAFE_FALL = 0x20000000,
 	HOVER = 0x40000000,
 }
 # The order of WowSession.get_object_speeds.
-enum SpeedKind { WALK, RUN, RUN_BACK, SWIM, SWIM_BACK, TURN_RATE }
+enum SpeedKind { WALK, RUN, RUN_BACK, SWIM, SWIM_BACK, TURN_RATE, FLIGHT, FLIGHT_BACK }
 
-const DEFAULT_SPEEDS: PackedFloat32Array = [2.5, 7.0, 4.5, 4.722222, 2.5, 3.141594]
-const SPEED_ACKS: PackedStringArray = [
-	"CMSG_FORCE_WALK_SPEED_CHANGE_ACK", "CMSG_FORCE_RUN_SPEED_CHANGE_ACK",
-	"CMSG_FORCE_RUN_BACK_SPEED_CHANGE_ACK", "CMSG_FORCE_SWIM_SPEED_CHANGE_ACK",
-	"CMSG_FORCE_SWIM_BACK_SPEED_CHANGE_ACK",
-]
+const DEFAULT_SPEEDS: PackedFloat32Array = [2.5, 7.0, 4.5, 4.722222, 2.5, 3.141594, 7.0, 4.5]
+const SPEED_ACKS: Dictionary[SpeedKind, String] = {
+	SpeedKind.WALK: "CMSG_FORCE_WALK_SPEED_CHANGE_ACK",
+	SpeedKind.RUN: "CMSG_FORCE_RUN_SPEED_CHANGE_ACK",
+	SpeedKind.RUN_BACK: "CMSG_FORCE_RUN_BACK_SPEED_CHANGE_ACK",
+	SpeedKind.SWIM: "CMSG_FORCE_SWIM_SPEED_CHANGE_ACK",
+	SpeedKind.SWIM_BACK: "CMSG_FORCE_SWIM_BACK_SPEED_CHANGE_ACK",
+	SpeedKind.FLIGHT: "CMSG_FORCE_FLIGHT_SPEED_CHANGE_ACK",
+	SpeedKind.FLIGHT_BACK: "CMSG_FORCE_FLIGHT_BACK_SPEED_CHANGE_ACK",
+}
 const FLAG_ACKS: Dictionary[MoveFlag, String] = {
 	MoveFlag.WATERWALKING: "CMSG_MOVE_WATER_WALK_ACK",
 	MoveFlag.SAFE_FALL: "CMSG_MOVE_FEATHER_FALL_ACK",
 	MoveFlag.HOVER: "CMSG_MOVE_HOVER_ACK",
+	MoveFlag.CAN_FLY: "CMSG_MOVE_SET_CAN_FLY_ACK",
 }
 const GRAVITY: float = 19.29
 # Slow Fall and Levitate drift down at this speed rather than under full gravity.
@@ -73,7 +81,8 @@ const STRAFE: int = MoveFlag.STRAFE_LEFT | MoveFlag.STRAFE_RIGHT
 const TURN: int = MoveFlag.TURN_LEFT | MoveFlag.TURN_RIGHT
 const AIRBORNE: int = MoveFlag.JUMPING | MoveFlag.FALLING_FAR
 # States the server switches on and off, which say nothing about motion.
-const PERSISTENT: int = MoveFlag.ROOT | MoveFlag.WATERWALKING | MoveFlag.SAFE_FALL | MoveFlag.HOVER
+const PERSISTENT: int = MoveFlag.ROOT | MoveFlag.WATERWALKING | MoveFlag.SAFE_FALL | MoveFlag.HOVER \
+		| MoveFlag.CAN_FLY
 # Animations for the UNIT_FIELD_BYTES_1 stand states other than standing and dead.
 const STAND_STATE_ANIMATIONS: Dictionary[int, String] = {
 	1: "SitGround", 2: "SitChairLow", 3: "Sleep", 4: "SitChairLow", 5: "SitChairMed",
@@ -107,6 +116,7 @@ var _orbiting: bool = false
 var _fall_time: float = 0.0
 var _fall_start_y: float = 0.0
 var _jump_velocity: Vector3 = Vector3.ZERO
+var _ascending: bool = false
 var _press_position: Vector2 = Vector2.ZERO
 var _right_press_position: Vector2 = Vector2.ZERO
 var _drag_distance: float = 0.0
@@ -195,6 +205,8 @@ func _physics_process(delta: float) -> void:
 		_flags = flags
 	elif _swimming():
 		_swim(flags)
+	elif _flags & MoveFlag.FLYING:
+		_flight(flags)
 	elif _flags & AIRBORNE:
 		_fly(flags, delta)
 	else:
@@ -388,6 +400,8 @@ func _walk(flags: int) -> void:
 	_send_changes(_flags, flags)
 	_flags = flags
 	if Input.is_action_just_pressed("jump") and controllable and not _typing():
+		if _persistent & MoveFlag.CAN_FLY:
+			return _start_flight(flags)
 		_take_off(flags, Vector3(planar.x, JUMP_VELOCITY, planar.z))
 		_send("MSG_MOVE_JUMP", _flags)
 	_step_up(velocity)
@@ -456,8 +470,55 @@ func _swim(flags: int) -> void:
 	_jump_velocity = Vector3.ZERO
 
 
+func _start_flight(flags: int) -> void:
+	_flags = (flags & ~AIRBORNE) | MoveFlag.FLYING
+	_fall_time = 0.0
+	_send("CMSG_MOVE_SET_FLY", _flags)
+	_send("MSG_MOVE_START_ASCEND", _flags)
+	_ascending = true
+
+
+# Flight steers by the camera's pitch like swimming; jump climbs, and touching ground lands.
+func _flight(flags: int) -> void:
+	if not _persistent & MoveFlag.CAN_FLY:
+		_flags &= ~MoveFlag.FLYING
+		_send("CMSG_MOVE_SET_FLY", _flags)
+		_take_off(_flags, Vector3.ZERO)
+		return
+	flags |= MoveFlag.FLYING
+	var local: Vector3 = Vector3.ZERO
+	if flags & MoveFlag.STRAFE_LEFT:
+		local.x -= 1.0
+	elif flags & MoveFlag.STRAFE_RIGHT:
+		local.x += 1.0
+	var direction: Vector3 = basis * local
+	var forward: Vector3 = -basis.z * cos(pitch()) + Vector3.UP * sin(pitch())
+	if flags & MoveFlag.FORWARD:
+		direction += forward
+	elif flags & MoveFlag.BACKWARD:
+		direction -= forward
+	var kind: SpeedKind = SpeedKind.FLIGHT_BACK if flags & MoveFlag.BACKWARD else SpeedKind.FLIGHT
+	velocity = direction.normalized() * _speeds[kind]
+	var climbing: bool = Input.is_action_pressed("jump") and controllable and not _typing()
+	if climbing:
+		velocity.y = _speeds[SpeedKind.FLIGHT]
+	if climbing != _ascending:
+		_ascending = climbing
+		_send("MSG_MOVE_START_ASCEND" if climbing else "MSG_MOVE_STOP_ASCEND", flags)
+	_send_changes(_flags, flags)
+	_flags = flags
+	move_and_slide()
+	_fall_time = 0.0
+	if is_on_floor() and velocity.y <= 0.0:
+		_flags &= ~MoveFlag.FLYING
+		_send("CMSG_MOVE_SET_FLY", _flags)
+
+
 # Airborne movement keeps the take-off velocity; only turning follows the keys until landing.
 func _fly(flags: int, delta: float) -> void:
+	if _persistent & MoveFlag.CAN_FLY and Input.is_action_just_pressed("jump") and controllable \
+	and not _typing():
+		return _start_flight(flags)
 	_fall_time += delta
 	velocity.x = _jump_velocity.x
 	velocity.z = _jump_velocity.z

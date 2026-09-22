@@ -99,7 +99,7 @@ private:
 		Vector3 transport_offset;
 		float transport_orientation = 0.0f;
 		// Walk, run, run back, swim, swim back and turn rate, from the stock defaults until told otherwise.
-		std::array<float, 6> speeds = { 2.5f, 7.0f, 4.5f, 4.722222f, 2.5f, 3.141594f };
+		std::array<float, 8> speeds = { 2.5f, 7.0f, 4.5f, 4.722222f, 2.5f, 3.141594f, 7.0f, 4.5f };
 	};
 
 	std::unique_ptr<wowee::auth::AuthHandler> auth;

@@ -23,7 +23,8 @@ const DUMMY_CREATURE: int = 6
 const UNIT_TYPE: int = 3
 
 # Wire values, which WotLK shares with vanilla for these two.
-enum MoveFlag { NONE = 0, FORWARD = 1, JUMPING = 0x2000 }
+enum MoveFlag { NONE = 0, FORWARD = 1, JUMPING = 0x2000, FLYING = 0x800000, CAN_FLY = 0x1000000 }
+const FLIGHT_METRES: float = 10.0
 const JUMP_SPEED: float = 7.95
 
 var _session: WowSession = WowSession.new()
@@ -44,6 +45,7 @@ var _combat: CombatEvents = CombatEvents.new(_session)
 var _melee: Array[CombatEvents.CombatEvent] = []
 var _spawned: int = 0
 var _quest_givers: int = 0
+var _fly_counter: int = -1
 var _failures: PackedStringArray = []
 
 
@@ -97,6 +99,7 @@ func _run() -> void:
 		_check(_position.distance_to(_walked_from_teleport) < 1.0,
 				"the server took movement after the teleport was acknowledged")
 	_check(_time_syncs > 0, "the server asked for a time sync while in the world")
+	await _flight(guid)
 	if await _log_out():
 		await _remove_character(guid)
 	_finish()
@@ -306,6 +309,29 @@ func _walk() -> Vector3:
 	return at
 
 
+# 3.3.5 flies on the bit 1.12 used for transports, so a height the server keeps proves the flag.
+func _flight(guid: int) -> void:
+	_session.send_chat(WowSession.CHAT_SAY, ".gm fly on")
+	if not await _until(func() -> bool: return _fly_counter >= 0, "the GM command grants flight"):
+		return
+	var applied: PackedByteArray = []
+	applied.resize(4)
+	applied.encode_u32(0, 1)
+	var flying: int = MoveFlag.CAN_FLY | MoveFlag.FLYING
+	_session.send_movement("CMSG_MOVE_SET_CAN_FLY_ACK", _position, 0.0, MoveFlag.CAN_FLY, 0,
+			Vector3.ZERO, 0.0, _fly_counter, applied)
+	_session.send_movement("CMSG_MOVE_SET_FLY", _position, 0.0, flying)
+	var at: Vector3 = _position
+	for i: int in HEARTBEATS:
+		await _wait(STEP_SECONDS)
+		at.z += FLIGHT_METRES / HEARTBEATS
+		_session.send_movement("MSG_MOVE_HEARTBEAT", at, 0.0, flying)
+	await _wait(STEP_SECONDS)
+	if await _log_out() and await _enter(guid):
+		_check(_position.z > at.z - 1.0,
+				"the server kept the flight's height (%.1f, flew to %.1f)" % [_position.z, at.z])
+
+
 # A jump carries the fall time and velocity block, whose flag 3.3.5 renumbered.
 func _jump(at: Vector3) -> void:
 	_session.send_movement("MSG_MOVE_JUMP", at, 0.0, MoveFlag.JUMPING, 0, Vector3(0.0, 0.0, JUMP_SPEED))
@@ -360,6 +386,10 @@ func _on_chat_received(line: Dictionary) -> void:
 func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
 	if opcode == "SMSG_TIME_SYNC_REQ":
 		_time_syncs += 1
+	elif opcode == "SMSG_MOVE_SET_CAN_FLY":
+		var reader: PacketReader = PacketReader.new(_payload)
+		reader.packed_guid()
+		_fly_counter = reader.u32()
 
 
 func _on_object_created(guid: int, type_id: int) -> void:

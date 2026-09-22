@@ -49,12 +49,13 @@ constexpr uint8_t TYPEID_PLAYER = 4;
 constexpr uint8_t MONSTER_MOVE_FACING_ANGLE = 4;
 constexpr uint32_t MOVEFLAG_SPLINE_ELEVATION = 0x4000000;
 
-// The game code keeps 1.12's movement bits; 3.3.5 moved four of them.
+// The game code keeps 1.12's movement bits; 3.3.5 moved several and flies on the old transport bit.
 constexpr std::pair<uint32_t, uint32_t> WOTLK_MOVE_BITS[] = {
 	{ 0x1000, 0x800 }, // Root.
 	{ 0x2000, 0x1000 }, // Jumping.
 	{ 0x4000, 0x2000 }, // Falling far.
 	{ 0x2000000, 0x200 }, // On transport.
+	{ 0x800000, 0x2000000 }, // Flying.
 };
 
 uint32_t move_flags_to_wire(uint32_t flags) {
@@ -1923,7 +1924,7 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 			object.transport_offset = wow_vector(block.transportX, block.transportY, block.transportZ);
 			object.transport_orientation = block.transportO;
 			if (block.runSpeed > 0.0f) {
-				object.speeds = { block.walkSpeed, block.runSpeed, block.runBackSpeed, block.swimSpeed, block.swimBackSpeed, block.turnRate };
+				object.speeds = { block.walkSpeed, block.runSpeed, block.runBackSpeed, block.swimSpeed, block.swimBackSpeed, block.turnRate, block.flightSpeed, block.flightBackSpeed };
 			}
 		}
 		// Logging in mid-flight: the create block carries the whole path and how far along it is.
@@ -1957,12 +1958,14 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 
 // A relay carries a packed GUID, then the MovementInfo the profile describes; speed changes append the speed.
 void WowSession::handle_movement_relay(network::Packet &packet) {
-	constexpr std::array<const char *, 6> SPEED_OPCODES = {
+	constexpr std::array<const char *, 8> SPEED_OPCODES = {
 		"MSG_MOVE_SET_WALK_SPEED", "MSG_MOVE_SET_RUN_SPEED", "MSG_MOVE_SET_RUN_BACK_SPEED",
 		"MSG_MOVE_SET_SWIM_SPEED", "MSG_MOVE_SET_SWIM_BACK_SPEED", "MSG_MOVE_SET_TURN_RATE",
+		"MSG_MOVE_SET_FLIGHT_SPEED", "MSG_MOVE_SET_FLIGHT_BACK_SPEED",
 	};
-	constexpr std::array<const char *, 6> SPEED_KEYS = {
+	constexpr std::array<const char *, 8> SPEED_KEYS = {
 		"walk_speed", "run_speed", "run_back_speed", "swim_speed", "swim_back_speed", "turn_rate",
+		"flight_speed", "flight_back_speed",
 	};
 	const char *name = game::OpcodeTable::logicalToName(*logical(packet));
 	const MovementLayout &layout = wow_profile().movement;
@@ -2086,9 +2089,10 @@ void WowSession::handle_monster_move(network::Packet &packet, uint64_t transport
 
 // SMSG_SPLINE_SET_*_SPEED names another unit and its new speed; the flight and pitch rates have no slot.
 void WowSession::handle_spline_speed(const char *name, network::Packet &packet) {
-	constexpr std::array<const char *, 6> NAMES = {
+	constexpr std::array<const char *, 8> NAMES = {
 		"SMSG_SPLINE_SET_WALK_SPEED", "SMSG_SPLINE_SET_RUN_SPEED", "SMSG_SPLINE_SET_RUN_BACK_SPEED",
 		"SMSG_SPLINE_SET_SWIM_SPEED", "SMSG_SPLINE_SET_SWIM_BACK_SPEED", "SMSG_SPLINE_SET_TURN_RATE",
+		"SMSG_SPLINE_SET_FLIGHT_SPEED", "SMSG_SPLINE_SET_FLIGHT_BACK_SPEED",
 	};
 	const uint64_t guid = packet.readPackedGuid();
 	if (!packet.hasRemaining(4)) {

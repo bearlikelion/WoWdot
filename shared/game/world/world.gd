@@ -36,6 +36,8 @@ const SPEED_CHANGES: Dictionary[String, Player.SpeedKind] = {
 	"SMSG_FORCE_RUN_BACK_SPEED_CHANGE": Player.SpeedKind.RUN_BACK,
 	"SMSG_FORCE_SWIM_SPEED_CHANGE": Player.SpeedKind.SWIM,
 	"SMSG_FORCE_SWIM_BACK_SPEED_CHANGE": Player.SpeedKind.SWIM_BACK,
+	"SMSG_FORCE_FLIGHT_SPEED_CHANGE": Player.SpeedKind.FLIGHT,
+	"SMSG_FORCE_FLIGHT_BACK_SPEED_CHANGE": Player.SpeedKind.FLIGHT_BACK,
 }
 const FLAG_CHANGES: Dictionary[String, Player.MoveFlag] = {
 	"SMSG_FORCE_MOVE_ROOT": Player.MoveFlag.ROOT,
@@ -46,6 +48,8 @@ const FLAG_CHANGES: Dictionary[String, Player.MoveFlag] = {
 	"SMSG_MOVE_NORMAL_FALL": Player.MoveFlag.SAFE_FALL,
 	"SMSG_MOVE_SET_HOVER": Player.MoveFlag.HOVER,
 	"SMSG_MOVE_UNSET_HOVER": Player.MoveFlag.HOVER,
+	"SMSG_MOVE_SET_CAN_FLY": Player.MoveFlag.CAN_FLY,
+	"SMSG_MOVE_UNSET_CAN_FLY": Player.MoveFlag.CAN_FLY,
 }
 const TRANSFER_ABORTS: Dictionary[int, String] = {
 	1: "TRANSFER_ABORT_MAX_PLAYERS", 2: "TRANSFER_ABORT_NOT_FOUND",
@@ -53,6 +57,7 @@ const TRANSFER_ABORTS: Dictionary[int, String] = {
 }
 const FLAGS_APPLIED: PackedStringArray = [
 	"SMSG_FORCE_MOVE_ROOT", "SMSG_MOVE_WATER_WALK", "SMSG_MOVE_FEATHER_FALL", "SMSG_MOVE_SET_HOVER",
+	"SMSG_MOVE_SET_CAN_FLY",
 ]
 
 var _auto_attacking: bool = false
