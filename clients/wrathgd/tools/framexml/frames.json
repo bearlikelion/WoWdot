@@ -480,7 +480,8 @@
    "QuestLogDetailScrollChildFrame"
   ],
   "RuneFrame": "PlayerFrame",
-  "ComboFrame": "TargetFrame"
+  "ComboFrame": "TargetFrame",
+  "GlyphFrame": "PlayerTalentFrame"
  },
  "frame_scripts": {
   "Minimap": "res://ui/minimap_view.gd",
@@ -494,7 +495,8 @@
   "PetActionBarFrame": "res://ui/pet_action_bar.gd",
   "TargetFrameToT": "res://ui/target_of_target_frame.gd",
   "RuneFrame": "res://ui/rune_frame.gd",
-  "ComboFrame": "res://ui/combo_frame.gd"
+  "ComboFrame": "res://ui/combo_frame.gd",
+  "GlyphFrame": "res://ui/glyph_frame.gd"
  },
  "exclude": [
   "AccountLoginAccountEditFill",

@@ -46,6 +46,12 @@ func icon(spell_id: int) -> Texture2D:
 	return icon_texture(path)
 
 
+# A SpellIcon.dbc row's path, without the extension, or empty.
+func icon_path(icon_id: int) -> String:
+	var icon_row: int = _icons.find(icon_id)
+	return _icons.get_string(icon_row, "Path") if icon_row >= 0 else ""
+
+
 func icon_texture(path: String) -> WowTexture:
 	if not _icon_textures.has(path):
 		var texture: WowTexture = WowTexture.new()

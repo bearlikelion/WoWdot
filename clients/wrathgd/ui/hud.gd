@@ -11,6 +11,7 @@ enum UnitMenuItem {
 	INVITE, UNINVITE, LEAVE, TRADE, DUEL, RESET_INSTANCES, PET_DISMISS, PET_ABANDON, INSPECT,
 }
 
+const ITEM_CLASS_GLYPH: int = 16
 const UI_HEIGHT: float = 768.0
 const MIN_STOCK_SCALE: float = 0.9
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
@@ -719,6 +720,11 @@ func use_container_item(bag: int, slot: int) -> void:
 	var readable: Dictionary = session.get_item_info(item_entry)
 	if _item_text and readable.get("page_text", 0) != 0:
 		_item_text.read(readable.get("name", ""), readable["page_text"])
+		return
+	if readable.get("class", 0) == ITEM_CLASS_GLYPH:
+		WowClient.targeting.begin_glyph(address)
+		_panels.show_panel(_talents)
+		_talents.show_glyphs()
 		return
 	for use_spell: int in readable.get("use_spells", PackedInt32Array()):
 		if WowAssets.spells.targets_item(use_spell):

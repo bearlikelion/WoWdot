@@ -1,6 +1,10 @@
 class_name GlueCheck
 extends Node
 
+const GLYPH: int = 43397
+const GLYPH_LEVEL: int = 15
+# Glyph of Charge is minor, and the second socket is the first minor one.
+const GLYPH_SOCKET: int = 1
 const WATER: int = 159
 const DRINK_SPELL: int = 430
 const MAIN: PackedScene = preload("res://game/main.tscn")
@@ -72,7 +76,35 @@ func _run() -> void:
 	await _frames(60)
 	_capture("user://wotlk_world.png")
 	await _use_item()
+	await _glyph()
 	_finish()
+
+
+# A glyph used through the socket path lands in PLAYER_FIELD_GLYPHS_1, and comes out again.
+func _glyph() -> void:
+	var session: WowSession = WowClient.session
+	var me: int = session.get_player_guid()
+	if session.get_field(me, "UNIT_FIELD_LEVEL") < GLYPH_LEVEL:
+		session.send_chat(WowSession.CHAT_SAY, ".levelup %d" % (GLYPH_LEVEL - 1))
+		if not await _until(
+				func() -> bool: return session.get_field(me, "UNIT_FIELD_LEVEL") >= GLYPH_LEVEL,
+				"the character reaches glyph level"):
+			return
+	session.send_chat(WowSession.CHAT_SAY, ".additem %d" % GLYPH)
+	if not await _until(func() -> bool: return Inventory.find_item(GLYPH).x >= 0, "the glyph arrives"):
+		return
+	await _until(func() -> bool: return not session.get_item_info(GLYPH).is_empty(), "the glyph's query")
+	var at: Vector2i = Inventory.find_item(GLYPH)
+	WowClient.targeting.begin_glyph(Inventory.wire_address(at.x, at.y))
+	WowClient.targeting.place_glyph(GLYPH_SOCKET)
+	var field: int = session.field_index("PLAYER_FIELD_GLYPHS_1") + GLYPH_SOCKET
+	if not await _until(func() -> bool: return session.get_field(me, field) != 0,
+			"the glyph goes into the first minor socket"):
+		return
+	var payload: PackedByteArray = [GLYPH_SOCKET, 0, 0, 0]
+	session.send_packet("CMSG_REMOVE_GLYPH", payload)
+	await _until(func() -> bool: return session.get_field(me, field) == 0,
+			"removing the glyph empties the socket")
 
 
 # CMSG_USE_ITEM in the 3.3.5 layout: a drink the server accepts puts its aura on the player.

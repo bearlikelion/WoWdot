@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="3"]
 [ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="4"]
 [ext_resource type="PackedScene" path="res://ui/talent_button.tscn" id="5"]
+[ext_resource type="Script" path="res://ui/glyph_frame.gd" id="6"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\SpellBook\\SpellBook-SkillLineTab-Glow.blp"
@@ -255,6 +256,39 @@ file = "Interface\\Buttons\\CheckButtonHilight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_72"]
 file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_73"]
+file = "Interface\\Spellbook\\UI-GlyphFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74"]
+atlas = SubResource("WowTexture_73")
+region = Rect2(0, 0, 352, 441)
+
+[sub_resource type="WowTexture" id="WowTexture_75"]
+file = "Interface\\Spellbook\\UI-GlyphFrame-Glow.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76"]
+atlas = SubResource("WowTexture_75")
+region = Rect2(0, 0, 352, 441)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77"]
+atlas = SubResource("WowTexture_73")
+region = Rect2(392, 80, 83, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78"]
+atlas = SubResource("WowTexture_73")
+region = Rect2(400, 358, 66, 66)
+
+[sub_resource type="WowTexture" id="WowTexture_79"]
+file = "Interface\\Spellbook\\UI-Glyph-Rune1.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80"]
+atlas = SubResource("WowTexture_73")
+region = Rect2(403, 17, 62, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81"]
+atlas = SubResource("WowTexture_73")
+region = Rect2(492, 472, 20, 20)
 
 [node name="PlayerTalentFrame" type="Control"]
 script = ExtResource("1")
@@ -2493,3 +2527,481 @@ mouse_filter = 2
 texture = SubResource("WowTexture_72")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
+
+[node name="GlyphFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6")
+offset_left = 0
+offset_top = 0
+offset_right = 384
+offset_bottom = 512
+visible = false
+mouse_filter = 2
+
+[node name="GlyphFrameBackground" type="TextureRect" parent="GlyphFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 352
+offset_bottom = 441
+mouse_filter = 2
+texture = SubResource("AtlasTexture_74")
+expand_mode = 1
+
+[node name="GlyphFrameTitleText" type="Label" parent="GlyphFrame"]
+unique_name_in_owner = true
+offset_left = 192
+offset_top = 18
+offset_right = 192
+offset_bottom = 30
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Glyphs"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GlyphFrameGlow" type="TextureRect" parent="GlyphFrame"]
+unique_name_in_owner = true
+offset_left = -9
+offset_top = 38
+offset_right = 343
+offset_bottom = 479
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_76")
+expand_mode = 1
+self_modulate = Color(1, 1, 1, 0)
+
+[node name="GlyphFrameGlyph1" type="TextureButton" parent="GlyphFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 132
+offset_top = 71
+offset_right = 222
+offset_bottom = 161
+ignore_texture_size = true
+
+[node name="GlyphFrameGlyph1Setting" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph1"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph1Highlight" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph1"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+self_modulate = Color(1, 1, 1, 0.25)
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="GlyphFrameGlyph1Background" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph1"]
+unique_name_in_owner = true
+offset_left = 13
+offset_top = 13
+offset_right = 77
+offset_bottom = 77
+mouse_filter = 2
+texture = SubResource("AtlasTexture_78")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph1Glyph" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph1"]
+unique_name_in_owner = true
+offset_left = 18.5
+offset_top = 18.5
+offset_right = 71.5
+offset_bottom = 71.5
+mouse_filter = 2
+texture = SubResource("WowTexture_79")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph1Ring" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph1"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 13
+offset_right = 76
+offset_bottom = 75
+mouse_filter = 2
+texture = SubResource("AtlasTexture_80")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph1Shine" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph1"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 25
+offset_right = 44
+offset_bottom = 41
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph4" type="TextureButton" parent="GlyphFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 238
+offset_top = 254
+offset_right = 328
+offset_bottom = 344
+ignore_texture_size = true
+
+[node name="GlyphFrameGlyph4Setting" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph4"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph4Highlight" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph4"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+self_modulate = Color(1, 1, 1, 0.25)
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="GlyphFrameGlyph4Background" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph4"]
+unique_name_in_owner = true
+offset_left = 13
+offset_top = 13
+offset_right = 77
+offset_bottom = 77
+mouse_filter = 2
+texture = SubResource("AtlasTexture_78")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph4Glyph" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph4"]
+unique_name_in_owner = true
+offset_left = 18.5
+offset_top = 18.5
+offset_right = 71.5
+offset_bottom = 71.5
+mouse_filter = 2
+texture = SubResource("WowTexture_79")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph4Ring" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph4"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 13
+offset_right = 76
+offset_bottom = 75
+mouse_filter = 2
+texture = SubResource("AtlasTexture_80")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph4Shine" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph4"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 25
+offset_right = 44
+offset_bottom = 41
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph6" type="TextureButton" parent="GlyphFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 26
+offset_top = 254
+offset_right = 116
+offset_bottom = 344
+ignore_texture_size = true
+
+[node name="GlyphFrameGlyph6Setting" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph6"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph6Highlight" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph6"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+self_modulate = Color(1, 1, 1, 0.25)
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="GlyphFrameGlyph6Background" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph6"]
+unique_name_in_owner = true
+offset_left = 13
+offset_top = 13
+offset_right = 77
+offset_bottom = 77
+mouse_filter = 2
+texture = SubResource("AtlasTexture_78")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph6Glyph" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph6"]
+unique_name_in_owner = true
+offset_left = 18.5
+offset_top = 18.5
+offset_right = 71.5
+offset_bottom = 71.5
+mouse_filter = 2
+texture = SubResource("WowTexture_79")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph6Ring" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph6"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 13
+offset_right = 76
+offset_bottom = 75
+mouse_filter = 2
+texture = SubResource("AtlasTexture_80")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph6Shine" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph6"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 25
+offset_right = 44
+offset_bottom = 41
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph2" type="TextureButton" parent="GlyphFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 133
+offset_top = 314
+offset_right = 223
+offset_bottom = 404
+ignore_texture_size = true
+
+[node name="GlyphFrameGlyph2Setting" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph2"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph2Highlight" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph2"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+self_modulate = Color(1, 1, 1, 0.25)
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="GlyphFrameGlyph2Background" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph2"]
+unique_name_in_owner = true
+offset_left = 13
+offset_top = 13
+offset_right = 77
+offset_bottom = 77
+mouse_filter = 2
+texture = SubResource("AtlasTexture_78")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph2Glyph" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph2"]
+unique_name_in_owner = true
+offset_left = 18.5
+offset_top = 18.5
+offset_right = 71.5
+offset_bottom = 71.5
+mouse_filter = 2
+texture = SubResource("WowTexture_79")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph2Ring" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph2"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 13
+offset_right = 76
+offset_bottom = 75
+mouse_filter = 2
+texture = SubResource("AtlasTexture_80")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph2Shine" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph2"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 25
+offset_right = 44
+offset_bottom = 41
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph5" type="TextureButton" parent="GlyphFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 238
+offset_top = 133
+offset_right = 328
+offset_bottom = 223
+ignore_texture_size = true
+
+[node name="GlyphFrameGlyph5Setting" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph5"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph5Highlight" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph5"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+self_modulate = Color(1, 1, 1, 0.25)
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="GlyphFrameGlyph5Background" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph5"]
+unique_name_in_owner = true
+offset_left = 13
+offset_top = 13
+offset_right = 77
+offset_bottom = 77
+mouse_filter = 2
+texture = SubResource("AtlasTexture_78")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph5Glyph" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph5"]
+unique_name_in_owner = true
+offset_left = 18.5
+offset_top = 18.5
+offset_right = 71.5
+offset_bottom = 71.5
+mouse_filter = 2
+texture = SubResource("WowTexture_79")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph5Ring" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph5"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 13
+offset_right = 76
+offset_bottom = 75
+mouse_filter = 2
+texture = SubResource("AtlasTexture_80")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph5Shine" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph5"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 25
+offset_right = 44
+offset_bottom = 41
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph3" type="TextureButton" parent="GlyphFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 28
+offset_top = 133
+offset_right = 118
+offset_bottom = 223
+ignore_texture_size = true
+
+[node name="GlyphFrameGlyph3Setting" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph3"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph3Highlight" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph3"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 88
+offset_bottom = 88
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+self_modulate = Color(1, 1, 1, 0.25)
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="GlyphFrameGlyph3Background" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph3"]
+unique_name_in_owner = true
+offset_left = 13
+offset_top = 13
+offset_right = 77
+offset_bottom = 77
+mouse_filter = 2
+texture = SubResource("AtlasTexture_78")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph3Glyph" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph3"]
+unique_name_in_owner = true
+offset_left = 18.5
+offset_top = 18.5
+offset_right = 71.5
+offset_bottom = 71.5
+mouse_filter = 2
+texture = SubResource("WowTexture_79")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph3Ring" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph3"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 13
+offset_right = 76
+offset_bottom = 75
+mouse_filter = 2
+texture = SubResource("AtlasTexture_80")
+expand_mode = 1
+
+[node name="GlyphFrameGlyph3Shine" type="TextureRect" parent="GlyphFrame/GlyphFrameGlyph3"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 25
+offset_right = 44
+offset_bottom = 41
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1

@@ -377,30 +377,16 @@ bool ItemQueryResponseParser::parse(network::Packet& packet, ItemQueryResponseDa
     data.displayInfoId = packet.readUInt32();
     data.quality = packet.readUInt32();
 
-    // WotLK 3.3.5a (TrinityCore/AzerothCore): Flags, Flags2, BuyCount, BuyPrice, SellPrice
-    // Some server variants omit BuyCount (4 fields instead of 5).
-    // Read 5 fields and validate InventoryType; if it looks implausible, rewind and try 4.
-    const size_t postQualityPos = packet.getReadPos();
-    if (!packet.hasRemaining(24)) {
+    // Flags, Flags2, BuyPrice, SellPrice: 3.3.5 sends no BuyCount, and guessing misread class-restricted items.
+    if (!packet.hasRemaining(20)) {
         LOG_ERROR("SMSG_ITEM_QUERY_SINGLE_RESPONSE: truncated before flags (entry=", data.entry, ")");
         return false;
     }
     data.itemFlags = packet.readUInt32(); // Flags
     packet.readUInt32(); // Flags2
-    packet.readUInt32(); // BuyCount
     packet.readUInt32(); // BuyPrice
     data.sellPrice = packet.readUInt32(); // SellPrice
     data.inventoryType = packet.readUInt32();
-
-    if (data.inventoryType > 28) {
-        // inventoryType out of range — BuyCount probably not present; rewind and try 4 fields
-        packet.setReadPos(postQualityPos);
-        data.itemFlags = packet.readUInt32(); // Flags
-        packet.readUInt32(); // Flags2
-        packet.readUInt32(); // BuyPrice
-        data.sellPrice = packet.readUInt32(); // SellPrice
-        data.inventoryType = packet.readUInt32();
-    }
 
     // Validate minimum size for remaining fixed fields before inventoryType through containerSlots: 13×4 = 52 bytes
     if (!packet.hasRemaining(52)) {

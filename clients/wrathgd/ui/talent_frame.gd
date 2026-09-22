@@ -85,12 +85,14 @@ func _ready() -> void:
 		)
 	_tab_gap = %PlayerTalentFrameTab2.position.x - %PlayerTalentFrameTab1.position.x \
 	- %PlayerTalentFrameTab1.size.x
-	# Glyphs, dual spec and talent previews are not ported.
+	# Dual spec and talent previews are not ported.
 	for unported: CanvasItem in [
-		%PlayerTalentFrameTab4, %PlayerSpecTab1, %PlayerSpecTab2, %PlayerSpecTab3,
+		%PlayerSpecTab1, %PlayerSpecTab2, %PlayerSpecTab3,
 		%PlayerTalentFrameStatusFrame, %PlayerTalentFramePreviewBar,
 	]:
 		unported.hide()
+	%PlayerTalentFrameTab4.pressed.connect(show_glyphs)
+	%GlyphFrame.hide()
 	%PlayerTalentFrameCloseButton.pressed.connect(close_requested.emit)
 	_portrait = PORTRAIT.instantiate()
 	add_child(_portrait)
@@ -153,7 +155,12 @@ func _update_tabs() -> void:
 		PanelManager.resize_tab(tab, TAB_PADDING)
 		tab.position.x = x
 		x += tab.size.x + _tab_gap
-		PanelManager.select_tab(tab, i == _tab)
+		PanelManager.select_tab(tab, i == _tab and not %GlyphFrame.visible)
+	var glyph_tab: Control = %PlayerTalentFrameTab4
+	(glyph_tab.get_node("PlayerTalentFrameTab4Text") as Label).text = WowStrings.get_text("GLYPHS")
+	PanelManager.resize_tab(glyph_tab, TAB_PADDING)
+	glyph_tab.position.x = x
+	PanelManager.select_tab(glyph_tab, %GlyphFrame.visible)
 
 
 func _update_talents() -> void:
@@ -435,7 +442,19 @@ func _button(index: int) -> ItemButton:
 
 func _select_tab(tab: int) -> void:
 	_tab = tab
+	_show_glyph_frame(false)
 	refresh()
+
+
+# PlayerTalentFrame_ShowGlyphFrame: the glyph sockets take the talent tree's place.
+func show_glyphs() -> void:
+	_show_glyph_frame(true)
+	refresh()
+
+
+func _show_glyph_frame(shown: bool) -> void:
+	%GlyphFrame.visible = shown
+	%PlayerTalentFrameScrollFrame.visible = not shown
 
 
 func _learnable(row: int) -> bool:

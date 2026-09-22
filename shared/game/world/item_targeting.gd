@@ -10,6 +10,8 @@ var _session: WowSession
 var _spell: int = 0
 # The wire bag and slot of an item being used on another, or (-1, -1) for a plain spell.
 var _used: Vector2i = -Vector2i.ONE
+# The item being used is a glyph, so it waits for a socket instead of a target.
+var _glyph: bool = false
 
 
 func _init(session: WowSession) -> void:
@@ -30,7 +32,22 @@ func begin_spell(spell_id: int) -> void:
 func begin_item(wire_address: Vector2i) -> void:
 	_spell = 0
 	_used = wire_address
+	_glyph = false
 	changed.emit()
+
+
+func begin_glyph(wire_address: Vector2i) -> void:
+	begin_item(wire_address)
+	_glyph = true
+
+
+func is_glyph() -> bool:
+	return _glyph and _used.x >= 0
+
+
+func place_glyph(socket: int) -> void:
+	use_item(_used, targets(0), socket)
+	cancel()
 
 
 # True when there was a cast waiting to call off.
@@ -39,6 +56,7 @@ func cancel() -> bool:
 		return false
 	_spell = 0
 	_used = -Vector2i.ONE
+	_glyph = false
 	changed.emit()
 	return true
 
