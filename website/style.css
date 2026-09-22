@@ -127,6 +127,8 @@ h1 {
 /* The carousel's arrows sit on the slot's edges and only show when there is more than one shot. */
 .model-arrow {
   grid-area: 1 / 1;
+  position: relative;
+  z-index: 2;
   align-self: center;
   width: 44px;
   height: 44px;
