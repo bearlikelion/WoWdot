@@ -1,11 +1,14 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dn2kx5ukbgh03"]
 
-[ext_resource type="Script" path="res://ui/target_frame.gd" id="1"]
-[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
-[ext_resource type="Script" path="res://ui/target_of_target_frame.gd" id="5"]
+[ext_resource type="Script" uid="uid://cdiuwo2podu15" path="res://ui/target_frame.gd" id="1"]
+[ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" uid="uid://drsnihtwfwyg2" path="res://ui/target_of_target_frame.gd" id="5"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame-LevelBackground.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_2"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame.blp"
@@ -47,14 +50,11 @@ file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
 [sub_resource type="WowTexture" id="WowTexture_13"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_14"]
-file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_15"]
 blend_mode = 1
 
-[sub_resource type="WowTexture" id="WowTexture_16"]
-file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_17"]
 file = "Interface\\Buttons\\UI-Debuff-Overlays.blp"
@@ -70,1140 +70,1160 @@ file = "Interface\\TargetingFrame\\UI-TargetofTargetFrame.blp"
 atlas = SubResource("WowTexture_19")
 region = Rect2(2, 0, 91, 45)
 
-[node name="TargetFrame" type="TextureButton"]
-script = ExtResource("1")
-anchor_left = 0
-anchor_top = 0
-anchor_right = 0
-anchor_bottom = 0
-offset_left = 250
-offset_top = 4
-offset_right = 482
-offset_bottom = 104
-grow_horizontal = 1
-grow_vertical = 1
+[node name="TargetFrame" type="TextureButton" unique_id=601313318]
+offset_left = 250.0
+offset_top = 4.0
+offset_right = 482.0
+offset_bottom = 104.0
 ignore_texture_size = true
+script = ExtResource("1")
 
-[node name="TargetFrameBackground" type="ColorRect" parent="."]
+[node name="TargetFrameBackground" type="ColorRect" parent="." unique_id=1353345370]
 unique_name_in_owner = true
-offset_left = 7
-offset_top = 22
-offset_right = 126
-offset_bottom = 63
+layout_mode = 0
+offset_left = 7.0
+offset_top = 22.0
+offset_right = 126.0
+offset_bottom = 63.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
 
-[node name="TargetFrameNameBackground" type="TextureRect" parent="."]
+[node name="TargetFrameNameBackground" type="TextureRect" parent="." unique_id=139463396]
 unique_name_in_owner = true
-offset_left = 7
-offset_top = 22
-offset_right = 126
-offset_bottom = 41
+layout_mode = 0
+offset_left = 7.0
+offset_top = 22.0
+offset_right = 126.0
+offset_bottom = 41.0
 mouse_filter = 2
 texture = SubResource("WowTexture_1")
 expand_mode = 1
 
-[node name="TargetPortrait" type="TextureRect" parent="."]
+[node name="TargetPortrait" type="TextureRect" parent="." unique_id=2033257035]
 unique_name_in_owner = true
-offset_left = 126
-offset_top = 12
-offset_right = 190
-offset_bottom = 76
+layout_mode = 0
+offset_left = 126.0
+offset_top = 12.0
+offset_right = 190.0
+offset_bottom = 76.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameTextureFrame" type="Control" parent="."]
+[node name="TargetFrameHealthBar" type="TextureProgressBar" parent="." unique_id=437340163]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 232
-offset_bottom = 100
+layout_mode = 0
+offset_left = 7.0
+offset_top = 41.0
+offset_right = 126.0
+offset_bottom = 53.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_16")
+
+[node name="TargetFrameManaBar" type="TextureProgressBar" parent="." unique_id=2074800270]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 52.0
+offset_right = 126.0
+offset_bottom = 64.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_16")
+tint_progress = Color(0, 0, 1, 1)
+
+[node name="TargetFrameTextureFrame" type="Control" parent="." unique_id=1354143753]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 232.0
+offset_bottom = 100.0
 mouse_filter = 2
 
-[node name="TargetFrameTexture" type="TextureRect" parent="TargetFrameTextureFrame"]
+[node name="TargetFrameTexture" type="TextureRect" parent="TargetFrameTextureFrame" unique_id=2070083043]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 232
-offset_bottom = 100
+layout_mode = 0
+offset_right = 232.0
+offset_bottom = 100.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
 
-[node name="TargetName" type="Label" parent="TargetFrameTextureFrame"]
+[node name="TargetName" type="Label" parent="TargetFrameTextureFrame" unique_id=643400516]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 26
-offset_right = 116
-offset_bottom = 36
-mouse_filter = 2
+layout_mode = 0
+offset_left = 16.0
+offset_top = 26.0
+offset_right = 116.0
+offset_bottom = 36.0
 theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetLevelText" type="Label" parent="TargetFrameTextureFrame"]
+[node name="TargetLevelText" type="Label" parent="TargetFrameTextureFrame" unique_id=459552402]
 unique_name_in_owner = true
-offset_left = 179
-offset_top = 66
-offset_right = 179
-offset_bottom = 66
+layout_mode = 0
+offset_left = 179.0
+offset_top = 66.0
+offset_right = 179.0
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetDeadText" type="Label" parent="TargetFrameTextureFrame"]
+[node name="TargetDeadText" type="Label" parent="TargetFrameTextureFrame" unique_id=917139814]
 unique_name_in_owner = true
-offset_left = 66
-offset_top = 47
-offset_right = 66
-offset_bottom = 47
+layout_mode = 0
+offset_left = 66.0
+offset_top = 47.0
+offset_right = 66.0
+offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Dead"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetHighLevelTexture" type="TextureRect" parent="TargetFrameTextureFrame"]
+[node name="TargetHighLevelTexture" type="TextureRect" parent="TargetFrameTextureFrame" unique_id=29668313]
 unique_name_in_owner = true
-offset_left = 171
-offset_top = 58
-offset_right = 187
-offset_bottom = 74
+layout_mode = 0
+offset_left = 171.0
+offset_top = 58.0
+offset_right = 187.0
+offset_bottom = 74.0
 mouse_filter = 2
 texture = SubResource("WowTexture_4")
 expand_mode = 1
 
-[node name="TargetLeaderIcon" type="TextureRect" parent="TargetFrameTextureFrame"]
+[node name="TargetLeaderIcon" type="TextureRect" parent="TargetFrameTextureFrame" unique_id=336047953]
 unique_name_in_owner = true
-offset_left = 172
-offset_top = 10
-offset_right = 188
-offset_bottom = 26
 visible = false
+layout_mode = 0
+offset_left = 172.0
+offset_top = 10.0
+offset_right = 188.0
+offset_bottom = 26.0
 mouse_filter = 2
 texture = SubResource("WowTexture_5")
 expand_mode = 1
 
-[node name="TargetPVPIcon" type="TextureRect" parent="TargetFrameTextureFrame"]
+[node name="TargetPVPIcon" type="TextureRect" parent="TargetFrameTextureFrame" unique_id=391395218]
 unique_name_in_owner = true
-offset_left = 171
-offset_top = 20
-offset_right = 235
-offset_bottom = 84
 visible = false
+layout_mode = 0
+offset_left = 171.0
+offset_top = 20.0
+offset_right = 235.0
+offset_bottom = 84.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetRaidTargetIcon" type="TextureRect" parent="TargetFrameTextureFrame"]
+[node name="TargetRaidTargetIcon" type="TextureRect" parent="TargetFrameTextureFrame" unique_id=1101593085]
 unique_name_in_owner = true
-offset_left = 146
-offset_top = 1
-offset_right = 172
-offset_bottom = 27
 visible = false
+layout_mode = 0
+offset_left = 146.0
+offset_top = 1.0
+offset_right = 172.0
+offset_bottom = 27.0
 mouse_filter = 2
 texture = SubResource("WowTexture_6")
 expand_mode = 1
 
-[node name="TargetFrameDropDown" type="Control" parent="."]
+[node name="TargetFrameDropDown" type="Control" parent="." unique_id=1157832984]
 unique_name_in_owner = true
-offset_left = 121
-offset_top = 60
-offset_right = 131
-offset_bottom = 70
 visible = false
+anchors_preset = 0
+offset_left = 121.0
+offset_top = 60.0
+offset_right = 131.0
+offset_bottom = 70.0
 mouse_filter = 2
 
-[node name="TargetFrameDropDownLeft" type="TextureRect" parent="TargetFrameDropDown"]
+[node name="TargetFrameDropDownLeft" type="TextureRect" parent="TargetFrameDropDown" unique_id=1128972014]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = -17
-offset_right = 25
-offset_bottom = 47
+layout_mode = 0
+offset_top = -17.0
+offset_right = 25.0
+offset_bottom = 47.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
-[node name="TargetFrameDropDownMiddle" type="TextureRect" parent="TargetFrameDropDown"]
+[node name="TargetFrameDropDownMiddle" type="TextureRect" parent="TargetFrameDropDown" unique_id=777140987]
 unique_name_in_owner = true
-offset_left = 25
-offset_top = -17
-offset_right = 140
-offset_bottom = 47
+layout_mode = 0
+offset_left = 25.0
+offset_top = -17.0
+offset_right = 140.0
+offset_bottom = 47.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_9")
 expand_mode = 1
 
-[node name="TargetFrameDropDownRight" type="TextureRect" parent="TargetFrameDropDown"]
+[node name="TargetFrameDropDownRight" type="TextureRect" parent="TargetFrameDropDown" unique_id=1164078086]
 unique_name_in_owner = true
-offset_left = 140
-offset_top = -17
-offset_right = 165
-offset_bottom = 47
+layout_mode = 0
+offset_left = 140.0
+offset_top = -17.0
+offset_right = 165.0
+offset_bottom = 47.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_10")
 expand_mode = 1
 
-[node name="TargetFrameDropDownText" type="Label" parent="TargetFrameDropDown"]
+[node name="TargetFrameDropDownText" type="Label" parent="TargetFrameDropDown" unique_id=1289926426]
 unique_name_in_owner = true
-offset_left = 122
-offset_top = 8
-offset_right = 122
-offset_bottom = 18
-mouse_filter = 2
+layout_mode = 0
+offset_left = 122.0
+offset_top = 8.0
+offset_right = 122.0
+offset_bottom = 18.0
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TargetFrameDropDownButton" type="TextureButton" parent="TargetFrameDropDown"]
+[node name="TargetFrameDropDownButton" type="TextureButton" parent="TargetFrameDropDown" unique_id=1710858550]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 125
-offset_top = 1
-offset_right = 149
-offset_bottom = 25
+layout_mode = 0
+offset_left = 125.0
+offset_top = 1.0
+offset_right = 149.0
+offset_bottom = 25.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="NormalTexture" type="TextureRect" parent="TargetFrameDropDown/TargetFrameDropDownButton"]
+[node name="NormalTexture" type="TextureRect" parent="TargetFrameDropDown/TargetFrameDropDownButton" unique_id=707277499]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
 mouse_filter = 2
 texture = SubResource("WowTexture_11")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="TargetFrameDropDown/TargetFrameDropDownButton"]
+[node name="PushedTexture" type="TextureRect" parent="TargetFrameDropDown/TargetFrameDropDownButton" unique_id=1209503440]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
 visible = false
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
 mouse_filter = 2
 texture = SubResource("WowTexture_12")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="TargetFrameDropDown/TargetFrameDropDownButton"]
+[node name="DisabledTexture" type="TextureRect" parent="TargetFrameDropDown/TargetFrameDropDownButton" unique_id=1315755725]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
 visible = false
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
 mouse_filter = 2
 texture = SubResource("WowTexture_13")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="TargetFrameDropDown/TargetFrameDropDownButton"]
+[node name="HighlightTexture" type="TextureRect" parent="TargetFrameDropDown/TargetFrameDropDownButton" unique_id=1349935079]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
 visible = false
+material = SubResource("CanvasItemMaterial_15")
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
 mouse_filter = 2
 texture = SubResource("WowTexture_14")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_15")
 
-[node name="TargetFrameHealthBar" type="TextureProgressBar" parent="."]
+[node name="TargetFrameDebuff1" type="TextureButton" parent="." unique_id=972302727]
 unique_name_in_owner = true
-offset_left = 7
-offset_top = 41
-offset_right = 126
-offset_bottom = 53
-mouse_filter = 2
-texture_progress = SubResource("WowTexture_16")
-nine_patch_stretch = true
-max_value = 1.0
-step = 0.0
-value = 1.0
-
-[node name="TargetFrameManaBar" type="TextureProgressBar" parent="."]
-unique_name_in_owner = true
-offset_left = 7
-offset_top = 52
-offset_right = 126
-offset_bottom = 64
-mouse_filter = 2
-texture_progress = SubResource("WowTexture_16")
-nine_patch_stretch = true
-tint_progress = Color(0, 0, 1, 1)
-max_value = 1.0
-step = 0.0
-value = 1.0
-
-[node name="TargetFrameDebuff1" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 5
-offset_top = 68
-offset_right = 22
-offset_bottom = 85
+layout_mode = 0
+offset_left = 5.0
+offset_top = 68.0
+offset_right = 22.0
+offset_bottom = 85.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff1Icon" type="TextureRect" parent="TargetFrameDebuff1"]
+[node name="TargetFrameDebuff1Icon" type="TextureRect" parent="TargetFrameDebuff1" unique_id=594842196]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff1Border" type="TextureRect" parent="TargetFrameDebuff1"]
+[node name="TargetFrameDebuff1Border" type="TextureRect" parent="TargetFrameDebuff1" unique_id=397415095]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff1Count" type="Label" parent="TargetFrameDebuff1"]
+[node name="TargetFrameDebuff1Count" type="Label" parent="TargetFrameDebuff1" unique_id=2033944282]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff2" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff2" type="TextureButton" parent="." unique_id=376221080]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25
-offset_top = 68
-offset_right = 42
-offset_bottom = 85
+layout_mode = 0
+offset_left = 25.0
+offset_top = 68.0
+offset_right = 42.0
+offset_bottom = 85.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff2Icon" type="TextureRect" parent="TargetFrameDebuff2"]
+[node name="TargetFrameDebuff2Icon" type="TextureRect" parent="TargetFrameDebuff2" unique_id=1950088218]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff2Border" type="TextureRect" parent="TargetFrameDebuff2"]
+[node name="TargetFrameDebuff2Border" type="TextureRect" parent="TargetFrameDebuff2" unique_id=1628365304]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff2Count" type="Label" parent="TargetFrameDebuff2"]
+[node name="TargetFrameDebuff2Count" type="Label" parent="TargetFrameDebuff2" unique_id=646312673]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff3" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff3" type="TextureButton" parent="." unique_id=1242111150]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 45
-offset_top = 68
-offset_right = 62
-offset_bottom = 85
+layout_mode = 0
+offset_left = 45.0
+offset_top = 68.0
+offset_right = 62.0
+offset_bottom = 85.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff3Icon" type="TextureRect" parent="TargetFrameDebuff3"]
+[node name="TargetFrameDebuff3Icon" type="TextureRect" parent="TargetFrameDebuff3" unique_id=1271829999]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff3Border" type="TextureRect" parent="TargetFrameDebuff3"]
+[node name="TargetFrameDebuff3Border" type="TextureRect" parent="TargetFrameDebuff3" unique_id=1463423406]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff3Count" type="Label" parent="TargetFrameDebuff3"]
+[node name="TargetFrameDebuff3Count" type="Label" parent="TargetFrameDebuff3" unique_id=747785276]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff4" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff4" type="TextureButton" parent="." unique_id=1305408344]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 65
-offset_top = 68
-offset_right = 82
-offset_bottom = 85
+layout_mode = 0
+offset_left = 65.0
+offset_top = 68.0
+offset_right = 82.0
+offset_bottom = 85.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff4Icon" type="TextureRect" parent="TargetFrameDebuff4"]
+[node name="TargetFrameDebuff4Icon" type="TextureRect" parent="TargetFrameDebuff4" unique_id=1970017906]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff4Border" type="TextureRect" parent="TargetFrameDebuff4"]
+[node name="TargetFrameDebuff4Border" type="TextureRect" parent="TargetFrameDebuff4" unique_id=386588364]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff4Count" type="Label" parent="TargetFrameDebuff4"]
+[node name="TargetFrameDebuff4Count" type="Label" parent="TargetFrameDebuff4" unique_id=900543293]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff5" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff5" type="TextureButton" parent="." unique_id=2051179509]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 85
-offset_top = 68
-offset_right = 102
-offset_bottom = 85
+layout_mode = 0
+offset_left = 85.0
+offset_top = 68.0
+offset_right = 102.0
+offset_bottom = 85.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff5Icon" type="TextureRect" parent="TargetFrameDebuff5"]
+[node name="TargetFrameDebuff5Icon" type="TextureRect" parent="TargetFrameDebuff5" unique_id=1927670152]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff5Border" type="TextureRect" parent="TargetFrameDebuff5"]
+[node name="TargetFrameDebuff5Border" type="TextureRect" parent="TargetFrameDebuff5" unique_id=844787150]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff5Count" type="Label" parent="TargetFrameDebuff5"]
+[node name="TargetFrameDebuff5Count" type="Label" parent="TargetFrameDebuff5" unique_id=234956182]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff6" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff6" type="TextureButton" parent="." unique_id=41832910]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 105
-offset_top = 68
-offset_right = 122
-offset_bottom = 85
+layout_mode = 0
+offset_left = 105.0
+offset_top = 68.0
+offset_right = 122.0
+offset_bottom = 85.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff6Icon" type="TextureRect" parent="TargetFrameDebuff6"]
+[node name="TargetFrameDebuff6Icon" type="TextureRect" parent="TargetFrameDebuff6" unique_id=758739358]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff6Border" type="TextureRect" parent="TargetFrameDebuff6"]
+[node name="TargetFrameDebuff6Border" type="TextureRect" parent="TargetFrameDebuff6" unique_id=757743863]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff6Count" type="Label" parent="TargetFrameDebuff6"]
+[node name="TargetFrameDebuff6Count" type="Label" parent="TargetFrameDebuff6" unique_id=1941711851]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff7" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff7" type="TextureButton" parent="." unique_id=1824959591]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 5
-offset_top = 88
-offset_right = 22
-offset_bottom = 105
+layout_mode = 0
+offset_left = 5.0
+offset_top = 88.0
+offset_right = 22.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff7Icon" type="TextureRect" parent="TargetFrameDebuff7"]
+[node name="TargetFrameDebuff7Icon" type="TextureRect" parent="TargetFrameDebuff7" unique_id=142015397]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff7Border" type="TextureRect" parent="TargetFrameDebuff7"]
+[node name="TargetFrameDebuff7Border" type="TextureRect" parent="TargetFrameDebuff7" unique_id=84441585]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff7Count" type="Label" parent="TargetFrameDebuff7"]
+[node name="TargetFrameDebuff7Count" type="Label" parent="TargetFrameDebuff7" unique_id=69047016]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff8" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff8" type="TextureButton" parent="." unique_id=1544183742]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 25
-offset_top = 88
-offset_right = 42
-offset_bottom = 105
+layout_mode = 0
+offset_left = 25.0
+offset_top = 88.0
+offset_right = 42.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff8Icon" type="TextureRect" parent="TargetFrameDebuff8"]
+[node name="TargetFrameDebuff8Icon" type="TextureRect" parent="TargetFrameDebuff8" unique_id=1387789325]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff8Border" type="TextureRect" parent="TargetFrameDebuff8"]
+[node name="TargetFrameDebuff8Border" type="TextureRect" parent="TargetFrameDebuff8" unique_id=635785189]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff8Count" type="Label" parent="TargetFrameDebuff8"]
+[node name="TargetFrameDebuff8Count" type="Label" parent="TargetFrameDebuff8" unique_id=628690865]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff9" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff9" type="TextureButton" parent="." unique_id=1162365379]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 45
-offset_top = 88
-offset_right = 62
-offset_bottom = 105
+layout_mode = 0
+offset_left = 45.0
+offset_top = 88.0
+offset_right = 62.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff9Icon" type="TextureRect" parent="TargetFrameDebuff9"]
+[node name="TargetFrameDebuff9Icon" type="TextureRect" parent="TargetFrameDebuff9" unique_id=188783417]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff9Border" type="TextureRect" parent="TargetFrameDebuff9"]
+[node name="TargetFrameDebuff9Border" type="TextureRect" parent="TargetFrameDebuff9" unique_id=983146784]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff9Count" type="Label" parent="TargetFrameDebuff9"]
+[node name="TargetFrameDebuff9Count" type="Label" parent="TargetFrameDebuff9" unique_id=791716809]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff10" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff10" type="TextureButton" parent="." unique_id=193178341]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 65
-offset_top = 88
-offset_right = 82
-offset_bottom = 105
+layout_mode = 0
+offset_left = 65.0
+offset_top = 88.0
+offset_right = 82.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff10Icon" type="TextureRect" parent="TargetFrameDebuff10"]
+[node name="TargetFrameDebuff10Icon" type="TextureRect" parent="TargetFrameDebuff10" unique_id=992619650]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff10Border" type="TextureRect" parent="TargetFrameDebuff10"]
+[node name="TargetFrameDebuff10Border" type="TextureRect" parent="TargetFrameDebuff10" unique_id=1756405828]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff10Count" type="Label" parent="TargetFrameDebuff10"]
+[node name="TargetFrameDebuff10Count" type="Label" parent="TargetFrameDebuff10" unique_id=1804159325]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff11" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff11" type="TextureButton" parent="." unique_id=516920164]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 85
-offset_top = 88
-offset_right = 102
-offset_bottom = 105
+layout_mode = 0
+offset_left = 85.0
+offset_top = 88.0
+offset_right = 102.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff11Icon" type="TextureRect" parent="TargetFrameDebuff11"]
+[node name="TargetFrameDebuff11Icon" type="TextureRect" parent="TargetFrameDebuff11" unique_id=640679212]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff11Border" type="TextureRect" parent="TargetFrameDebuff11"]
+[node name="TargetFrameDebuff11Border" type="TextureRect" parent="TargetFrameDebuff11" unique_id=1287582037]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff11Count" type="Label" parent="TargetFrameDebuff11"]
+[node name="TargetFrameDebuff11Count" type="Label" parent="TargetFrameDebuff11" unique_id=1847205049]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff12" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff12" type="TextureButton" parent="." unique_id=1459075202]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 105
-offset_top = 88
-offset_right = 122
-offset_bottom = 105
+layout_mode = 0
+offset_left = 105.0
+offset_top = 88.0
+offset_right = 122.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff12Icon" type="TextureRect" parent="TargetFrameDebuff12"]
+[node name="TargetFrameDebuff12Icon" type="TextureRect" parent="TargetFrameDebuff12" unique_id=1927198391]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff12Border" type="TextureRect" parent="TargetFrameDebuff12"]
+[node name="TargetFrameDebuff12Border" type="TextureRect" parent="TargetFrameDebuff12" unique_id=2037089060]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff12Count" type="Label" parent="TargetFrameDebuff12"]
+[node name="TargetFrameDebuff12Count" type="Label" parent="TargetFrameDebuff12" unique_id=911223432]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff13" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff13" type="TextureButton" parent="." unique_id=291478152]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 125
-offset_top = 88
-offset_right = 142
-offset_bottom = 105
+layout_mode = 0
+offset_left = 125.0
+offset_top = 88.0
+offset_right = 142.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff13Icon" type="TextureRect" parent="TargetFrameDebuff13"]
+[node name="TargetFrameDebuff13Icon" type="TextureRect" parent="TargetFrameDebuff13" unique_id=1431347235]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff13Border" type="TextureRect" parent="TargetFrameDebuff13"]
+[node name="TargetFrameDebuff13Border" type="TextureRect" parent="TargetFrameDebuff13" unique_id=1137638144]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff13Count" type="Label" parent="TargetFrameDebuff13"]
+[node name="TargetFrameDebuff13Count" type="Label" parent="TargetFrameDebuff13" unique_id=257315241]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff14" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff14" type="TextureButton" parent="." unique_id=1925867107]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 145
-offset_top = 88
-offset_right = 162
-offset_bottom = 105
+layout_mode = 0
+offset_left = 145.0
+offset_top = 88.0
+offset_right = 162.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff14Icon" type="TextureRect" parent="TargetFrameDebuff14"]
+[node name="TargetFrameDebuff14Icon" type="TextureRect" parent="TargetFrameDebuff14" unique_id=287739885]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff14Border" type="TextureRect" parent="TargetFrameDebuff14"]
+[node name="TargetFrameDebuff14Border" type="TextureRect" parent="TargetFrameDebuff14" unique_id=1374672468]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff14Count" type="Label" parent="TargetFrameDebuff14"]
+[node name="TargetFrameDebuff14Count" type="Label" parent="TargetFrameDebuff14" unique_id=1089092257]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff15" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff15" type="TextureButton" parent="." unique_id=2029661258]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 165
-offset_top = 88
-offset_right = 182
-offset_bottom = 105
+layout_mode = 0
+offset_left = 165.0
+offset_top = 88.0
+offset_right = 182.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff15Icon" type="TextureRect" parent="TargetFrameDebuff15"]
+[node name="TargetFrameDebuff15Icon" type="TextureRect" parent="TargetFrameDebuff15" unique_id=1034755758]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff15Border" type="TextureRect" parent="TargetFrameDebuff15"]
+[node name="TargetFrameDebuff15Border" type="TextureRect" parent="TargetFrameDebuff15" unique_id=283752880]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff15Count" type="Label" parent="TargetFrameDebuff15"]
+[node name="TargetFrameDebuff15Count" type="Label" parent="TargetFrameDebuff15" unique_id=1896601188]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameDebuff16" type="TextureButton" parent="."]
+[node name="TargetFrameDebuff16" type="TextureButton" parent="." unique_id=1757629113]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 185
-offset_top = 88
-offset_right = 202
-offset_bottom = 105
+layout_mode = 0
+offset_left = 185.0
+offset_top = 88.0
+offset_right = 202.0
+offset_bottom = 105.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameDebuff16Icon" type="TextureRect" parent="TargetFrameDebuff16"]
+[node name="TargetFrameDebuff16Icon" type="TextureRect" parent="TargetFrameDebuff16" unique_id=986982849]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 17
-offset_bottom = 17
+layout_mode = 0
+offset_right = 17.0
+offset_bottom = 17.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameDebuff16Border" type="TextureRect" parent="TargetFrameDebuff16"]
+[node name="TargetFrameDebuff16Border" type="TextureRect" parent="TargetFrameDebuff16" unique_id=1617095588]
 unique_name_in_owner = true
-offset_left = -1
-offset_top = -1
-offset_right = 18
-offset_bottom = 18
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 18.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetFrameDebuff16Count" type="Label" parent="TargetFrameDebuff16"]
+[node name="TargetFrameDebuff16Count" type="Label" parent="TargetFrameDebuff16" unique_id=1100643356]
 unique_name_in_owner = true
-offset_left = 16
-offset_top = 17
-offset_right = 16
-offset_bottom = 17
+layout_mode = 0
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 17.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 theme_type_variation = &"NumberFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetFrameBuff1" type="TextureButton" parent="."]
+[node name="TargetFrameBuff1" type="TextureButton" parent="." unique_id=661101570]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 5
-offset_top = 87
-offset_right = 26
-offset_bottom = 108
+layout_mode = 0
+offset_left = 5.0
+offset_top = 87.0
+offset_right = 26.0
+offset_bottom = 108.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameBuff1Icon" type="TextureRect" parent="TargetFrameBuff1"]
+[node name="TargetFrameBuff1Icon" type="TextureRect" parent="TargetFrameBuff1" unique_id=1484357969]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 21
-offset_bottom = 21
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 21.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameBuff2" type="TextureButton" parent="."]
+[node name="TargetFrameBuff2" type="TextureButton" parent="." unique_id=1465274877]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 29
-offset_top = 87
-offset_right = 50
-offset_bottom = 108
+layout_mode = 0
+offset_left = 29.0
+offset_top = 87.0
+offset_right = 50.0
+offset_bottom = 108.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameBuff2Icon" type="TextureRect" parent="TargetFrameBuff2"]
+[node name="TargetFrameBuff2Icon" type="TextureRect" parent="TargetFrameBuff2" unique_id=1474282015]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 21
-offset_bottom = 21
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 21.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameBuff3" type="TextureButton" parent="."]
+[node name="TargetFrameBuff3" type="TextureButton" parent="." unique_id=284103928]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 53
-offset_top = 87
-offset_right = 74
-offset_bottom = 108
+layout_mode = 0
+offset_left = 53.0
+offset_top = 87.0
+offset_right = 74.0
+offset_bottom = 108.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameBuff3Icon" type="TextureRect" parent="TargetFrameBuff3"]
+[node name="TargetFrameBuff3Icon" type="TextureRect" parent="TargetFrameBuff3" unique_id=972560606]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 21
-offset_bottom = 21
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 21.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameBuff4" type="TextureButton" parent="."]
+[node name="TargetFrameBuff4" type="TextureButton" parent="." unique_id=876095235]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 77
-offset_top = 87
-offset_right = 98
-offset_bottom = 108
+layout_mode = 0
+offset_left = 77.0
+offset_top = 87.0
+offset_right = 98.0
+offset_bottom = 108.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameBuff4Icon" type="TextureRect" parent="TargetFrameBuff4"]
+[node name="TargetFrameBuff4Icon" type="TextureRect" parent="TargetFrameBuff4" unique_id=755176912]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 21
-offset_bottom = 21
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 21.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetFrameBuff5" type="TextureButton" parent="."]
+[node name="TargetFrameBuff5" type="TextureButton" parent="." unique_id=911388052]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 101
-offset_top = 87
-offset_right = 122
-offset_bottom = 108
+layout_mode = 0
+offset_left = 101.0
+offset_top = 87.0
+offset_right = 122.0
+offset_bottom = 108.0
 ignore_texture_size = true
+script = ExtResource("2")
 
-[node name="TargetFrameBuff5Icon" type="TextureRect" parent="TargetFrameBuff5"]
+[node name="TargetFrameBuff5Icon" type="TextureRect" parent="TargetFrameBuff5" unique_id=1844746857]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 21
-offset_bottom = 21
+layout_mode = 0
+offset_right = 21.0
+offset_bottom = 21.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetofTargetFrame" type="TextureButton" parent="."]
+[node name="TargetofTargetFrame" type="TextureButton" parent="." unique_id=27870897]
 unique_name_in_owner = true
+layout_mode = 0
+offset_left = 104.0
+offset_top = 65.0
+offset_right = 197.0
+offset_bottom = 110.0
+ignore_texture_size = true
 script = ExtResource("5")
-offset_left = 104
-offset_top = 65
-offset_right = 197
-offset_bottom = 110
-ignore_texture_size = true
 
-[node name="TargetofTargetBackground" type="ColorRect" parent="TargetofTargetFrame"]
+[node name="TargetofTargetBackground" type="ColorRect" parent="TargetofTargetFrame" unique_id=840392166]
 unique_name_in_owner = true
-offset_left = 42
-offset_top = 17
-offset_right = 88
-offset_bottom = 32
+layout_mode = 0
+offset_left = 42.0
+offset_top = 17.0
+offset_right = 88.0
+offset_bottom = 32.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
 
-[node name="TargetofTargetPortrait" type="TextureRect" parent="TargetofTargetFrame"]
+[node name="TargetofTargetPortrait" type="TextureRect" parent="TargetofTargetFrame" unique_id=332548896]
 unique_name_in_owner = true
-offset_left = 6
-offset_top = 6
-offset_right = 41
-offset_bottom = 41
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 41.0
+offset_bottom = 41.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetofTargetTextureFrame" type="Control" parent="TargetofTargetFrame"]
+[node name="TargetofTargetTextureFrame" type="Control" parent="TargetofTargetFrame" unique_id=1479988566]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 93
-offset_bottom = 45
+anchors_preset = 0
+offset_right = 93.0
+offset_bottom = 45.0
 mouse_filter = 2
 
-[node name="TargetofTargetTexture" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetTextureFrame"]
+[node name="TargetofTargetTexture" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetTextureFrame" unique_id=275844450]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 93
-offset_bottom = 45
+layout_mode = 0
+offset_right = 93.0
+offset_bottom = 45.0
 mouse_filter = 2
 texture = SubResource("AtlasTexture_20")
 expand_mode = 1
 
-[node name="TargetofTargetName" type="Label" parent="TargetofTargetFrame/TargetofTargetTextureFrame"]
+[node name="TargetofTargetName" type="Label" parent="TargetofTargetFrame/TargetofTargetTextureFrame" unique_id=1891967352]
 unique_name_in_owner = true
-offset_left = 42
-offset_top = 33
-offset_right = 142
-offset_bottom = 43
-mouse_filter = 2
+layout_mode = 0
+offset_left = 42.0
+offset_top = 33.0
+offset_right = 142.0
+offset_bottom = 43.0
 theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="TargetofTargetDeadText" type="Label" parent="TargetofTargetFrame/TargetofTargetTextureFrame"]
+[node name="TargetofTargetDeadText" type="Label" parent="TargetofTargetFrame/TargetofTargetTextureFrame" unique_id=828631359]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 61.5
 offset_top = 21.5
 offset_right = 61.5
 offset_bottom = 21.5
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
 text = "Dead"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetofTargetHealthBar" type="TextureProgressBar" parent="TargetofTargetFrame"]
+[node name="TargetofTargetHealthBar" type="TextureProgressBar" parent="TargetofTargetFrame" unique_id=1638840453]
 unique_name_in_owner = true
-offset_left = 45
-offset_top = 15
-offset_right = 91
-offset_bottom = 22
+layout_mode = 0
+offset_left = 45.0
+offset_top = 15.0
+offset_right = 91.0
+offset_bottom = 22.0
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_16")
+max_value = 1.0
+step = 0.0
+value = 1.0
 nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_16")
 tint_progress = Color(0, 1, 0, 1)
+
+[node name="TargetofTargetManaBar" type="TextureProgressBar" parent="TargetofTargetFrame" unique_id=446285027]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 45.0
+offset_top = 23.0
+offset_right = 91.0
+offset_bottom = 30.0
+mouse_filter = 2
 max_value = 1.0
 step = 0.0
 value = 1.0
-
-[node name="TargetofTargetManaBar" type="TextureProgressBar" parent="TargetofTargetFrame"]
-unique_name_in_owner = true
-offset_left = 45
-offset_top = 23
-offset_right = 91
-offset_bottom = 30
-mouse_filter = 2
-texture_progress = SubResource("WowTexture_16")
 nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_16")
 tint_progress = Color(0, 0, 1, 1)
-max_value = 1.0
-step = 0.0
-value = 1.0
 
-[node name="TargetofTargetFrameDebuff1" type="Control" parent="TargetofTargetFrame"]
+[node name="TargetofTargetFrameDebuff1" type="Control" parent="TargetofTargetFrame" unique_id=43254073]
 unique_name_in_owner = true
-offset_left = 97
-offset_top = 10
-offset_right = 109
-offset_bottom = 22
 visible = false
+anchors_preset = 0
+offset_left = 97.0
+offset_top = 10.0
+offset_right = 109.0
+offset_bottom = 22.0
 mouse_filter = 2
 
-[node name="TargetofTargetFrameDebuff1Icon" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff1"]
+[node name="TargetofTargetFrameDebuff1Icon" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff1" unique_id=332644162]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 12
-offset_bottom = 12
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetofTargetFrameDebuff1Border" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff1"]
+[node name="TargetofTargetFrameDebuff1Border" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff1" unique_id=1079221986]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -2.5
 offset_top = -2.5
 offset_right = 14.5
@@ -1212,26 +1232,27 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetofTargetFrameDebuff2" type="Control" parent="TargetofTargetFrame"]
+[node name="TargetofTargetFrameDebuff2" type="Control" parent="TargetofTargetFrame" unique_id=1294217718]
 unique_name_in_owner = true
-offset_left = 110
-offset_top = 10
-offset_right = 122
-offset_bottom = 22
 visible = false
+anchors_preset = 0
+offset_left = 110.0
+offset_top = 10.0
+offset_right = 122.0
+offset_bottom = 22.0
 mouse_filter = 2
 
-[node name="TargetofTargetFrameDebuff2Icon" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff2"]
+[node name="TargetofTargetFrameDebuff2Icon" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff2" unique_id=129756354]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 12
-offset_bottom = 12
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetofTargetFrameDebuff2Border" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff2"]
+[node name="TargetofTargetFrameDebuff2Border" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff2" unique_id=1798647786]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -2.5
 offset_top = -2.5
 offset_right = 14.5
@@ -1240,26 +1261,27 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetofTargetFrameDebuff3" type="Control" parent="TargetofTargetFrame"]
+[node name="TargetofTargetFrameDebuff3" type="Control" parent="TargetofTargetFrame" unique_id=92382535]
 unique_name_in_owner = true
-offset_left = 97
-offset_top = 23
-offset_right = 109
-offset_bottom = 35
 visible = false
+anchors_preset = 0
+offset_left = 97.0
+offset_top = 23.0
+offset_right = 109.0
+offset_bottom = 35.0
 mouse_filter = 2
 
-[node name="TargetofTargetFrameDebuff3Icon" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff3"]
+[node name="TargetofTargetFrameDebuff3Icon" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff3" unique_id=1730348716]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 12
-offset_bottom = 12
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetofTargetFrameDebuff3Border" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff3"]
+[node name="TargetofTargetFrameDebuff3Border" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff3" unique_id=348913117]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -2.5
 offset_top = -2.5
 offset_right = 14.5
@@ -1268,26 +1290,27 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="TargetofTargetFrameDebuff4" type="Control" parent="TargetofTargetFrame"]
+[node name="TargetofTargetFrameDebuff4" type="Control" parent="TargetofTargetFrame" unique_id=1838075644]
 unique_name_in_owner = true
-offset_left = 110
-offset_top = 23
-offset_right = 122
-offset_bottom = 35
 visible = false
+anchors_preset = 0
+offset_left = 110.0
+offset_top = 23.0
+offset_right = 122.0
+offset_bottom = 35.0
 mouse_filter = 2
 
-[node name="TargetofTargetFrameDebuff4Icon" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff4"]
+[node name="TargetofTargetFrameDebuff4Icon" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff4" unique_id=1037017789]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 12
-offset_bottom = 12
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
 mouse_filter = 2
 expand_mode = 1
 
-[node name="TargetofTargetFrameDebuff4Border" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff4"]
+[node name="TargetofTargetFrameDebuff4Border" type="TextureRect" parent="TargetofTargetFrame/TargetofTargetFrameDebuff4" unique_id=194652143]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -2.5
 offset_top = -2.5
 offset_right = 14.5

@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://kdrn2sr5ps0w" path="res://ui/wow/wow_button.gd" id="2"]
 [ext_resource type="Script" uid="uid://3m311igyqooh" path="res://ui/pet_frame.gd" id="3_pet"]
 
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame.blp"
 
@@ -51,9 +54,6 @@ region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="WowTexture" id="WowTexture_14"]
 file = "Interface\\CharacterFrame\\UI-Player-PlayTimeTired.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_15"]
-file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_16"]
 file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
@@ -149,6 +149,35 @@ offset_bottom = 76.0
 mouse_filter = 2
 expand_mode = 1
 
+[node name="PlayerFrameHealthBar" type="TextureProgressBar" parent="." unique_id=1530303892]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 106.0
+offset_top = 41.0
+offset_right = 225.0
+offset_bottom = 53.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_15")
+
+[node name="PlayerFrameManaBar" type="TextureProgressBar" parent="." unique_id=1017269533]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 106.0
+offset_top = 52.0
+offset_right = 225.0
+offset_bottom = 64.0
+mouse_filter = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+nine_patch_stretch = true
+texture_progress = SubResource("WowTexture_15")
+tint_progress = Color(0, 0, 1, 1)
+
 [node name="Frame" type="Control" parent="." unique_id=1625973901]
 anchors_preset = 0
 offset_right = 232.0
@@ -170,56 +199,6 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_2")
 expand_mode = 1
 flip_h = true
-
-[node name="PlayerName" type="Label" parent="Frame/Frame" unique_id=902436495]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 116.0
-offset_top = 26.0
-offset_right = 216.0
-offset_bottom = 36.0
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PlayerLevelText" type="Label" parent="Frame/Frame" unique_id=1799011335]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 53.0
-offset_top = 66.0
-offset_right = 53.0
-offset_bottom = 66.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PlayerFrameHealthBarText" type="Label" parent="Frame/Frame" unique_id=754058667]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 166.0
-offset_top = 46.0
-offset_right = 166.0
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"TextStatusBarText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PlayerFrameManaBarText" type="Label" parent="Frame/Frame" unique_id=298602285]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 166.0
-offset_top = 58.0
-offset_right = 166.0
-offset_bottom = 58.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"TextStatusBarText"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PlayerStatusTexture" type="TextureRect" parent="Frame/Frame" unique_id=2107925497]
 unique_name_in_owner = true
@@ -316,6 +295,56 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_11")
 expand_mode = 1
 
+[node name="PlayerName" type="Label" parent="Frame/Frame" unique_id=902436495]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 116.0
+offset_top = 19.0
+offset_right = 216.0
+offset_bottom = 42.0
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerLevelText" type="Label" parent="Frame/Frame" unique_id=1799011335]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 52.5
+offset_top = 54.5
+offset_right = 53.5
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerFrameHealthBarText" type="Label" parent="Frame/Frame" unique_id=754058667]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 165.5
+offset_top = 34.5
+offset_right = 166.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TextStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerFrameManaBarText" type="Label" parent="Frame/Frame" unique_id=298602285]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 165.5
+offset_top = 46.5
+offset_right = 166.5
+offset_bottom = 69.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TextStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PlayerPVPIconHitArea" type="Control" parent="Frame" unique_id=831693501]
 unique_name_in_owner = true
 visible = false
@@ -375,35 +404,6 @@ offset_bottom = 32.0
 mouse_filter = 2
 texture = SubResource("WowTexture_14")
 expand_mode = 1
-
-[node name="PlayerFrameHealthBar" type="TextureProgressBar" parent="." unique_id=1530303892]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 106.0
-offset_top = 41.0
-offset_right = 225.0
-offset_bottom = 53.0
-mouse_filter = 2
-max_value = 1.0
-step = 0.0
-value = 1.0
-nine_patch_stretch = true
-texture_progress = SubResource("WowTexture_15")
-
-[node name="PlayerFrameManaBar" type="TextureProgressBar" parent="." unique_id=1017269533]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 106.0
-offset_top = 52.0
-offset_right = 225.0
-offset_bottom = 64.0
-mouse_filter = 2
-max_value = 1.0
-step = 0.0
-value = 1.0
-nine_patch_stretch = true
-texture_progress = SubResource("WowTexture_15")
-tint_progress = Color(0, 0, 1, 1)
 
 [node name="PlayerFrameDropDown" type="Control" parent="." unique_id=1666226701]
 unique_name_in_owner = true
