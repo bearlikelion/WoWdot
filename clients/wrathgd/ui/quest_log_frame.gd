@@ -30,8 +30,6 @@ const SHARE_MESSAGES: Dictionary[int, String] = {
 	6: "ERR_QUEST_PUSH_LOG_FULL_S", 7: "ERR_QUEST_PUSH_ONQUEST_S",
 	8: "ERR_QUEST_PUSH_ALREADY_DONE_S",
 }
-const TRACKING_OFF: Color = Color(1.0, 0.0, 0.0)
-const TRACKING_ON: Color = Color(0.0, 1.0, 0.0)
 # QuestLogTitleButton's check sits this far past the end of the title.
 const CHECK_GAP: float = 24.0
 const WHEEL_BUTTONS: Array[MouseButton] = [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]
@@ -46,7 +44,7 @@ var _textures: Dictionary[String, WowTexture] = {}
 var _reward_items: Array[int] = []
 var _watched: Array[int] = []
 
-@onready var _list_scroll: WowScrollFrame = %QuestLogListScrollFrame
+@onready var _list_scroll: WowScrollFrame = %QuestLogScrollFrame
 @onready var _detail_scroll: WowScrollFrame = %QuestLogDetailScrollFrame
 @onready var _highlight: Control = %QuestLogHighlightFrame
 
@@ -59,16 +57,13 @@ func _ready() -> void:
 		_textures[path] = texture
 	for i: int in QUESTS_DISPLAYED:
 		_title(i).pressed.connect(_on_title_pressed.bind(i))
-	%QuestLogCollapseAllButton.pressed.connect(_on_collapse_all_pressed)
 	%QuestLogFrameCloseButton.pressed.connect(close_requested.emit)
-	%QuestFrameExitButton.pressed.connect(close_requested.emit)
+	%QuestLogFrameCancelButton.pressed.connect(close_requested.emit)
 	%QuestLogFrameAbandonButton.pressed.connect(_on_abandon_pressed)
-	%QuestFramePushQuestButton.pressed.connect(_on_push_pressed)
+	%QuestLogFramePushQuestButton.pressed.connect(_on_push_pressed)
 	WowClient.session.packet_received.connect(_on_packet_received)
-	%QuestLogTrack.gui_input.connect(_on_track_input)
-	%QuestLogTrackTracking.self_modulate = TRACKING_OFF
-	%QuestLogSpacerFrame.hide()
-	for label_name: String in ["QuestLogObjectivesText", "QuestLogQuestDescription"]:
+	%QuestLogFrameTrackButton.pressed.connect(_on_track_pressed)
+	for label_name: String in ["QuestInfoObjectivesText", "QuestInfoDescriptionText"]:
 		(get_node("%" + label_name) as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	for i: int in MAX_OBJECTIVES:
 		_objective(i).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -117,7 +112,6 @@ func refresh(keep_scroll: bool = false) -> void:
 # The quest watch frame's list, for the checks and the track light.
 func set_watched(quest_ids: Array[int]) -> void:
 	_watched = quest_ids
-	_update_track_light()
 	if is_visible_in_tree():
 		_update_list()
 
@@ -134,7 +128,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	share_answered.emit(WowStrings.get_text(key, "%s") % WowClient.session.get_object_name(guid))
 
 
-# QuestFramePushQuestButton: share the selected quest with the party.
+# QuestLogFramePushQuestButton: share the selected quest with the party.
 func _on_push_pressed() -> void:
 	var quest_id: int = QuestLog.quest_id(_selected_slot) if _selected_slot >= 0 else 0
 	if quest_id == 0:
@@ -188,9 +182,8 @@ func _update_list() -> void:
 	var has_quests: bool = not _entries.is_empty()
 	%EmptyQuestLogFrame.visible = not has_quests
 	%QuestLogFrameAbandonButton.disabled = not has_quests
-	%QuestFramePushQuestButton.disabled = not has_quests or not PartyFrame.in_party()
+	%QuestLogFramePushQuestButton.disabled = not has_quests or not PartyFrame.in_party()
 	_detail_scroll.visible = has_quests
-	%QuestLogExpandButtonFrame.visible = has_quests
 	_update_count()
 	var hidden_entries: int = maxi(_entries.size() - QUESTS_DISPLAYED, 0)
 	_list_scroll.visible = hidden_entries > 0
@@ -203,12 +196,6 @@ func _update_list() -> void:
 		button.visible = index < _entries.size()
 		if button.visible:
 			_show_entry(button, _entries[index])
-	var headers: Array[Dictionary] = _entries.filter(
-		func(entry: Dictionary) -> bool: return entry["header"]
-	)
-	var all_collapsed: bool = headers.all(func(entry: Dictionary) -> bool: return entry["collapsed"])
-	var collapse_all: TextureRect = %QuestLogCollapseAllButton.get_node("NormalTexture")
-	collapse_all.texture = _textures[PLUS_BUTTON if all_collapsed else MINUS_BUTTON]
 
 
 func _show_entry(button: WowButton, entry: Dictionary) -> void:
@@ -251,11 +238,6 @@ func _update_count() -> void:
 	var count: Label = %QuestLogQuestCount
 	count.text = WowStrings.strip_colors(WowStrings.get_text("QUEST_LOG_COUNT_TEMPLATE")) \
 	% [quests, MAX_QUESTLOG_QUESTS]
-	var middle: Control = %QuestLogCountMiddle
-	var right_edge: float = middle.position.x + middle.size.x
-	middle.size.x = count.get_minimum_size().x
-	middle.position.x = right_edge - middle.size.x
-	%QuestLogCountLeft.position.x = middle.position.x - %QuestLogCountLeft.size.x
 
 
 # GetDifficultyColor: by how far the quest's level is above the player's or below the gray level.
@@ -282,32 +264,31 @@ func _gray_level(player_level: int) -> int:
 	return player_level - 9
 
 
-# QuestLog_UpdateQuestDetails and QuestFrameItems_Update, stacked as their anchors chain.
+# QuestLog_UpdateQuestDetails: each block lays out its own content, then the template stacks them.
 func _update_details(keep_scroll: bool) -> void:
-	_update_track_light()
 	if _selected_slot < 0:
 		_detail_scroll.hide()
 		return
 	var info: Dictionary = WowClient.session.get_quest_info(QuestLog.quest_id(_selected_slot))
+	QuestRewards.show_blocks(self, [QuestRewards.TEMPLATE_LOG])
 	var title: String = info["title"]
 	if QuestLog.state(_selected_slot) == QuestLog.State.FAILED:
 		title += " - (%s)" % WowStrings.get_text("FAILED")
-	var title_label: Label = %QuestLogQuestTitle
-	title_label.text = title
-	var objectives_text: Label = %QuestLogObjectivesText
-	objectives_text.text = QuestLog.format_text(info["objectives"])
-	QuestRewards.below(objectives_text, title_label, 5.0)
-	var last: Control = objectives_text
-	var timer: Label = %QuestLogTimerText
+	%QuestInfoTitleHeader.text = title
+	%QuestInfoObjectivesText.text = QuestLog.format_text(info["objectives"])
+	var timer_frame: Control = %QuestInfoTimerFrame
+	var timer: Label = %QuestInfoTimerText
 	var seconds_left: int = QuestLog.time_left(_selected_slot) - int(Time.get_unix_time_from_system())
-	timer.visible = QuestLog.time_left(_selected_slot) > 0
-	if timer.visible:
+	timer_frame.visible = QuestLog.time_left(_selected_slot) > 0
+	if timer_frame.visible:
 		timer.text = "%s %d:%02d" % [
 			WowStrings.get_text("TIME_REMAINING"), floori(maxi(seconds_left, 0) / 60.0), maxi(seconds_left, 0) % 60,
 		]
-		QuestRewards.below(timer, last, 10.0)
-		last = timer
+		timer_frame.size.y = QuestRewards.height(timer)
 	var lines: Array[Array] = QuestLog.objectives(_selected_slot, info)
+	var objectives_frame: Control = %QuestInfoObjectivesFrame
+	objectives_frame.visible = not lines.is_empty()
+	var last: Control = null
 	for i: int in MAX_OBJECTIVES:
 		var objective: Label = _objective(i)
 		objective.visible = i < lines.size()
@@ -318,27 +299,27 @@ func _update_details(keep_scroll: bool) -> void:
 		if finished:
 			objective.text += " (%s)" % WowStrings.get_text("COMPLETE")
 		objective.add_theme_color_override("font_color", OBJECTIVE_DONE if finished else OBJECTIVE_OPEN)
-		QuestRewards.below(objective, last, 10.0 if i == 0 else 2.0)
+		if last:
+			QuestRewards.below(objective, last, 2.0)
+		else:
+			objective.position = Vector2.ZERO
 		last = objective
+	if last:
+		objectives_frame.size.y = last.position.y + QuestRewards.height(last)
 	var money: int = info["money"]
-	var money_text: Label = %QuestLogRequiredMoneyText
-	var money_frame: MoneyFrame = %QuestLogRequiredMoneyFrame
-	money_text.visible = money < 0
-	money_frame.visible = money < 0
+	var money_block: Control = %QuestInfoRequiredMoneyFrame
+	money_block.visible = money < 0
 	if money < 0:
+		var money_text: Label = get_node("%QuestInfoRequiredMoneyFrame/QuestInfoRequiredMoneyText")
+		var money_frame: MoneyFrame = %QuestInfoRequiredMoneyDisplay
 		var short: bool = -money > Inventory.money()
 		money_text.add_theme_color_override("font_color", OBJECTIVE_OPEN if short else OBJECTIVE_DONE)
 		money_frame.modulate = NOT_ENOUGH_MONEY if short else Color.WHITE
 		money_frame.set_money(-money)
-		QuestRewards.below(money_text, last, 4.0 if not lines.is_empty() else 10.0)
 		QuestRewards.beside(money_frame, money_text, 10.0)
-		last = money_text
-	var description_title: Label = %QuestLogDescriptionTitle
-	QuestRewards.below(description_title, last, 10.0)
-	var description: Label = %QuestLogQuestDescription
-	description.text = QuestLog.format_text(info["details"])
-	QuestRewards.below(description, description_title, 5.0)
-	_reward_items = QuestRewards.update(self, "QuestLog", info, description)
+	%QuestInfoDescriptionText.text = QuestLog.format_text(info["details"])
+	_reward_items = QuestRewards.update(self, info)
+	QuestRewards.stack(self, %QuestLogDetailScrollChildFrame, QuestRewards.TEMPLATE_LOG)
 	_detail_scroll.show()
 	_detail_scroll.refresh(keep_scroll)
 
@@ -349,30 +330,20 @@ func _list_rect() -> Rect2:
 
 
 func _title(index: int) -> WowButton:
-	return get_node("%%QuestLogTitle%d" % (index + 1))
+	return get_node("%%QuestLogScrollFrameButton%d" % (index + 1))
 
 
 func _objective(index: int) -> Label:
-	return get_node("%%QuestLogObjective%d" % (index + 1))
+	return get_node("%%QuestInfoObjective%d" % (index + 1))
 
 
 func _item(index: int) -> BaseButton:
-	return get_node("%%QuestLogItem%d" % (index + 1))
+	return get_node("%%QuestInfoItem%d" % (index + 1))
 
 
-# QuestLogTrack converts to a plain Control, so its click is read here.
-func _on_track_input(event: InputEvent) -> void:
-	var click: InputEventMouseButton = event as InputEventMouseButton
-	if click == null or not click.pressed or click.button_index != MOUSE_BUTTON_LEFT:
-		return
+func _on_track_pressed() -> void:
 	if _selected_slot >= 0:
 		watch_toggled.emit(QuestLog.quest_id(_selected_slot))
-
-
-# The light burns while the quest on show is one of the tracked ones.
-func _update_track_light() -> void:
-	var tracked: bool = _selected_slot >= 0 and QuestLog.quest_id(_selected_slot) in _watched
-	%QuestLogTrackTracking.self_modulate = TRACKING_ON if tracked else TRACKING_OFF
 
 
 # QuestLogTitleButton_OnClick: headers fold, quests become the selection.
@@ -390,20 +361,6 @@ func _on_title_pressed(index: int) -> void:
 	_selected_slot = entry["slot"]
 	_update_list()
 	_update_details(false)
-
-
-func _on_collapse_all_pressed() -> void:
-	var headers: Array[Dictionary] = _entries.filter(
-		func(entry: Dictionary) -> bool: return entry["header"]
-	)
-	var expand: bool = headers.all(func(entry: Dictionary) -> bool: return entry["collapsed"])
-	for entry: Dictionary in headers:
-		if expand:
-			_collapsed.erase(entry["title"])
-		else:
-			_collapsed[entry["title"]] = true
-	_list_scroll.scroll_to(0.0)
-	refresh(true)
 
 
 func _on_abandon_pressed() -> void:

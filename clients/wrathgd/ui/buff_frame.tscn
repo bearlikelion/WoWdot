@@ -3,13 +3,6 @@
 [ext_resource type="Script" path="res://ui/buff_frame.gd" id="1"]
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
 
-[sub_resource type="WowTexture" id="WowTexture_1"]
-file = "Interface\\Buttons\\UI-Debuff-Overlays.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
-atlas = SubResource("WowTexture_1")
-region = Rect2(38, 0, 35, 33)
-
 [node name="BuffFrame" type="Control"]
 script = ExtResource("1")
 anchor_left = 1
@@ -24,300 +17,12 @@ grow_horizontal = 0
 grow_vertical = 1
 mouse_filter = 2
 
-[node name="BuffButton0Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton1Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton2Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton3Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton4Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton5Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton6Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton7Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton8Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton9Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton10Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton11Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton12Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton13Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton14Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton15Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton16Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton17Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton18Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton19Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton20Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton21Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton22Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuffButton23Duration" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 25
-offset_top = 0
-offset_right = 25
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BuffButton0" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 20
+offset_left = 0
 offset_top = 0
-offset_right = 50
+offset_right = 30
 offset_bottom = 30
 ignore_texture_size = true
 
@@ -333,7 +38,7 @@ expand_mode = 1
 [node name="BuffButton0Count" type="Label" parent="BuffButton0"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -343,12 +48,26 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton0Duration" type="Label" parent="BuffButton0"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton1" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -15
+offset_left = 30
 offset_top = 0
-offset_right = 15
+offset_right = 60
 offset_bottom = 30
 ignore_texture_size = true
 
@@ -364,7 +83,7 @@ expand_mode = 1
 [node name="BuffButton1Count" type="Label" parent="BuffButton1"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -374,12 +93,26 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton1Duration" type="Label" parent="BuffButton1"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton2" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -50
+offset_left = 60
 offset_top = 0
-offset_right = -20
+offset_right = 90
 offset_bottom = 30
 ignore_texture_size = true
 
@@ -395,7 +128,7 @@ expand_mode = 1
 [node name="BuffButton2Count" type="Label" parent="BuffButton2"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -405,12 +138,26 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton2Duration" type="Label" parent="BuffButton2"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton3" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -85
+offset_left = 90
 offset_top = 0
-offset_right = -55
+offset_right = 120
 offset_bottom = 30
 ignore_texture_size = true
 
@@ -426,7 +173,7 @@ expand_mode = 1
 [node name="BuffButton3Count" type="Label" parent="BuffButton3"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -436,12 +183,26 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton3Duration" type="Label" parent="BuffButton3"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton4" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -120
+offset_left = 120
 offset_top = 0
-offset_right = -90
+offset_right = 150
 offset_bottom = 30
 ignore_texture_size = true
 
@@ -457,7 +218,7 @@ expand_mode = 1
 [node name="BuffButton4Count" type="Label" parent="BuffButton4"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -467,12 +228,26 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton4Duration" type="Label" parent="BuffButton4"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton5" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -155
+offset_left = 150
 offset_top = 0
-offset_right = -125
+offset_right = 180
 offset_bottom = 30
 ignore_texture_size = true
 
@@ -488,7 +263,7 @@ expand_mode = 1
 [node name="BuffButton5Count" type="Label" parent="BuffButton5"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -498,12 +273,26 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton5Duration" type="Label" parent="BuffButton5"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton6" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -190
+offset_left = 180
 offset_top = 0
-offset_right = -160
+offset_right = 210
 offset_bottom = 30
 ignore_texture_size = true
 
@@ -519,7 +308,7 @@ expand_mode = 1
 [node name="BuffButton6Count" type="Label" parent="BuffButton6"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -529,12 +318,26 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton6Duration" type="Label" parent="BuffButton6"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton7" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -225
+offset_left = 210
 offset_top = 0
-offset_right = -195
+offset_right = 240
 offset_bottom = 30
 ignore_texture_size = true
 
@@ -550,7 +353,7 @@ expand_mode = 1
 [node name="BuffButton7Count" type="Label" parent="BuffButton7"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -560,13 +363,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton7Duration" type="Label" parent="BuffButton7"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton8" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 20
-offset_top = 35
-offset_right = 50
-offset_bottom = 65
+offset_left = 0
+offset_top = 30
+offset_right = 30
+offset_bottom = 60
 ignore_texture_size = true
 
 [node name="BuffButton8Icon" type="TextureRect" parent="BuffButton8"]
@@ -581,7 +398,7 @@ expand_mode = 1
 [node name="BuffButton8Count" type="Label" parent="BuffButton8"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -591,13 +408,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton8Duration" type="Label" parent="BuffButton8"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton9" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -15
-offset_top = 35
-offset_right = 15
-offset_bottom = 65
+offset_left = 30
+offset_top = 30
+offset_right = 60
+offset_bottom = 60
 ignore_texture_size = true
 
 [node name="BuffButton9Icon" type="TextureRect" parent="BuffButton9"]
@@ -612,7 +443,7 @@ expand_mode = 1
 [node name="BuffButton9Count" type="Label" parent="BuffButton9"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -622,13 +453,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton9Duration" type="Label" parent="BuffButton9"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton10" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -50
-offset_top = 35
-offset_right = -20
-offset_bottom = 65
+offset_left = 60
+offset_top = 30
+offset_right = 90
+offset_bottom = 60
 ignore_texture_size = true
 
 [node name="BuffButton10Icon" type="TextureRect" parent="BuffButton10"]
@@ -643,7 +488,7 @@ expand_mode = 1
 [node name="BuffButton10Count" type="Label" parent="BuffButton10"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -653,13 +498,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton10Duration" type="Label" parent="BuffButton10"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton11" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -85
-offset_top = 35
-offset_right = -55
-offset_bottom = 65
+offset_left = 90
+offset_top = 30
+offset_right = 120
+offset_bottom = 60
 ignore_texture_size = true
 
 [node name="BuffButton11Icon" type="TextureRect" parent="BuffButton11"]
@@ -674,7 +533,7 @@ expand_mode = 1
 [node name="BuffButton11Count" type="Label" parent="BuffButton11"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -684,13 +543,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton11Duration" type="Label" parent="BuffButton11"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton12" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -120
-offset_top = 35
-offset_right = -90
-offset_bottom = 65
+offset_left = 120
+offset_top = 30
+offset_right = 150
+offset_bottom = 60
 ignore_texture_size = true
 
 [node name="BuffButton12Icon" type="TextureRect" parent="BuffButton12"]
@@ -705,7 +578,7 @@ expand_mode = 1
 [node name="BuffButton12Count" type="Label" parent="BuffButton12"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -715,13 +588,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton12Duration" type="Label" parent="BuffButton12"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton13" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -155
-offset_top = 35
-offset_right = -125
-offset_bottom = 65
+offset_left = 150
+offset_top = 30
+offset_right = 180
+offset_bottom = 60
 ignore_texture_size = true
 
 [node name="BuffButton13Icon" type="TextureRect" parent="BuffButton13"]
@@ -736,7 +623,7 @@ expand_mode = 1
 [node name="BuffButton13Count" type="Label" parent="BuffButton13"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -746,13 +633,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton13Duration" type="Label" parent="BuffButton13"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton14" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -190
-offset_top = 35
-offset_right = -160
-offset_bottom = 65
+offset_left = 180
+offset_top = 30
+offset_right = 210
+offset_bottom = 60
 ignore_texture_size = true
 
 [node name="BuffButton14Icon" type="TextureRect" parent="BuffButton14"]
@@ -767,7 +668,7 @@ expand_mode = 1
 [node name="BuffButton14Count" type="Label" parent="BuffButton14"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -777,13 +678,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton14Duration" type="Label" parent="BuffButton14"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton15" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -225
-offset_top = 35
-offset_right = -195
-offset_bottom = 65
+offset_left = 210
+offset_top = 30
+offset_right = 240
+offset_bottom = 60
 ignore_texture_size = true
 
 [node name="BuffButton15Icon" type="TextureRect" parent="BuffButton15"]
@@ -798,7 +713,7 @@ expand_mode = 1
 [node name="BuffButton15Count" type="Label" parent="BuffButton15"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -808,13 +723,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BuffButton15Duration" type="Label" parent="BuffButton15"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BuffButton16" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 5
-offset_top = 70
-offset_right = 35
-offset_bottom = 100
+offset_left = 0
+offset_top = 60
+offset_right = 30
+offset_bottom = 90
 ignore_texture_size = true
 
 [node name="BuffButton16Icon" type="TextureRect" parent="BuffButton16"]
@@ -829,7 +758,7 @@ expand_mode = 1
 [node name="BuffButton16Count" type="Label" parent="BuffButton16"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -839,23 +768,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffButton16Border" type="TextureRect" parent="BuffButton16"]
+[node name="BuffButton16Duration" type="Label" parent="BuffButton16"]
 unique_name_in_owner = true
-offset_left = -1.5
-offset_top = -1
-offset_right = 31.5
-offset_bottom = 31
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_2")
-expand_mode = 1
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuffButton17" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -30
-offset_top = 70
-offset_right = 0
-offset_bottom = 100
+offset_left = 30
+offset_top = 60
+offset_right = 60
+offset_bottom = 90
 ignore_texture_size = true
 
 [node name="BuffButton17Icon" type="TextureRect" parent="BuffButton17"]
@@ -870,7 +803,7 @@ expand_mode = 1
 [node name="BuffButton17Count" type="Label" parent="BuffButton17"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -880,23 +813,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffButton17Border" type="TextureRect" parent="BuffButton17"]
+[node name="BuffButton17Duration" type="Label" parent="BuffButton17"]
 unique_name_in_owner = true
-offset_left = -1.5
-offset_top = -1
-offset_right = 31.5
-offset_bottom = 31
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_2")
-expand_mode = 1
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuffButton18" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -65
-offset_top = 70
-offset_right = -35
-offset_bottom = 100
+offset_left = 60
+offset_top = 60
+offset_right = 90
+offset_bottom = 90
 ignore_texture_size = true
 
 [node name="BuffButton18Icon" type="TextureRect" parent="BuffButton18"]
@@ -911,7 +848,7 @@ expand_mode = 1
 [node name="BuffButton18Count" type="Label" parent="BuffButton18"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -921,23 +858,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffButton18Border" type="TextureRect" parent="BuffButton18"]
+[node name="BuffButton18Duration" type="Label" parent="BuffButton18"]
 unique_name_in_owner = true
-offset_left = -1.5
-offset_top = -1
-offset_right = 31.5
-offset_bottom = 31
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_2")
-expand_mode = 1
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuffButton19" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -100
-offset_top = 70
-offset_right = -70
-offset_bottom = 100
+offset_left = 90
+offset_top = 60
+offset_right = 120
+offset_bottom = 90
 ignore_texture_size = true
 
 [node name="BuffButton19Icon" type="TextureRect" parent="BuffButton19"]
@@ -952,7 +893,7 @@ expand_mode = 1
 [node name="BuffButton19Count" type="Label" parent="BuffButton19"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -962,23 +903,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffButton19Border" type="TextureRect" parent="BuffButton19"]
+[node name="BuffButton19Duration" type="Label" parent="BuffButton19"]
 unique_name_in_owner = true
-offset_left = -1.5
-offset_top = -1
-offset_right = 31.5
-offset_bottom = 31
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_2")
-expand_mode = 1
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuffButton20" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -135
-offset_top = 70
-offset_right = -105
-offset_bottom = 100
+offset_left = 120
+offset_top = 60
+offset_right = 150
+offset_bottom = 90
 ignore_texture_size = true
 
 [node name="BuffButton20Icon" type="TextureRect" parent="BuffButton20"]
@@ -993,7 +938,7 @@ expand_mode = 1
 [node name="BuffButton20Count" type="Label" parent="BuffButton20"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -1003,23 +948,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffButton20Border" type="TextureRect" parent="BuffButton20"]
+[node name="BuffButton20Duration" type="Label" parent="BuffButton20"]
 unique_name_in_owner = true
-offset_left = -1.5
-offset_top = -1
-offset_right = 31.5
-offset_bottom = 31
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_2")
-expand_mode = 1
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuffButton21" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -170
-offset_top = 70
-offset_right = -140
-offset_bottom = 100
+offset_left = 150
+offset_top = 60
+offset_right = 180
+offset_bottom = 90
 ignore_texture_size = true
 
 [node name="BuffButton21Icon" type="TextureRect" parent="BuffButton21"]
@@ -1034,7 +983,7 @@ expand_mode = 1
 [node name="BuffButton21Count" type="Label" parent="BuffButton21"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -1044,23 +993,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffButton21Border" type="TextureRect" parent="BuffButton21"]
+[node name="BuffButton21Duration" type="Label" parent="BuffButton21"]
 unique_name_in_owner = true
-offset_left = -1.5
-offset_top = -1
-offset_right = 31.5
-offset_bottom = 31
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_2")
-expand_mode = 1
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuffButton22" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -205
-offset_top = 70
-offset_right = -175
-offset_bottom = 100
+offset_left = 180
+offset_top = 60
+offset_right = 210
+offset_bottom = 90
 ignore_texture_size = true
 
 [node name="BuffButton22Icon" type="TextureRect" parent="BuffButton22"]
@@ -1075,7 +1028,7 @@ expand_mode = 1
 [node name="BuffButton22Count" type="Label" parent="BuffButton22"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -1085,23 +1038,27 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffButton22Border" type="TextureRect" parent="BuffButton22"]
+[node name="BuffButton22Duration" type="Label" parent="BuffButton22"]
 unique_name_in_owner = true
-offset_left = -1.5
-offset_top = -1
-offset_right = 31.5
-offset_bottom = 31
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_2")
-expand_mode = 1
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuffButton23" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -240
-offset_top = 70
-offset_right = -210
-offset_bottom = 100
+offset_left = 210
+offset_top = 60
+offset_right = 240
+offset_bottom = 90
 ignore_texture_size = true
 
 [node name="BuffButton23Icon" type="TextureRect" parent="BuffButton23"]
@@ -1116,7 +1073,7 @@ expand_mode = 1
 [node name="BuffButton23Count" type="Label" parent="BuffButton23"]
 unique_name_in_owner = true
 offset_left = 28
-offset_top = 28
+offset_top = 14
 offset_right = 28
 offset_bottom = 28
 grow_horizontal = 0
@@ -1126,12 +1083,16 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuffButton23Border" type="TextureRect" parent="BuffButton23"]
+[node name="BuffButton23Duration" type="Label" parent="BuffButton23"]
 unique_name_in_owner = true
-offset_left = -1.5
-offset_top = -1
-offset_right = 31.5
-offset_bottom = 31
+offset_left = 15
+offset_top = 30
+offset_right = 15
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 1
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_2")
-expand_mode = 1
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1

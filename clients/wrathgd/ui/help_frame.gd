@@ -4,56 +4,57 @@ extends Control
 signal close_requested
 signal ticket_requested(text: String, category: int)
 
-enum Page { HOME, GM, OPEN_TICKET }
+enum Page { HOME, GM_TALK, REPORT_ISSUE, LAG, STUCK, OPEN_TICKET }
 
-const CATEGORY_ROWS: int = 10
-# The gameplay category, which a ticket filed without the window falls under.
+# 3.3.5 tickets carry no category, so the wire always gets the gameplay one.
 const DEFAULT_CATEGORY: int = 1
-# GMTicketCategory.dbc: the id the wire carries, then the name.
-const CATEGORY_NAME_COLUMN: int = 1
 # SMSG_GMTICKET_GETTICKET's status when a ticket is open.
 const HAS_TICKET: int = 6
 const TEXT_MARGIN: float = 45.0
 
-var _page: Page = Page.HOME
-var _offset: int = 0
 var _category: int = DEFAULT_CATEGORY
 var _has_ticket: bool = false
-var _categories: WowDBC
 
 @onready var _pages: Dictionary[Page, Control] = {
-	Page.HOME: %HelpFrameHome, Page.GM: %HelpFrameGM, Page.OPEN_TICKET: %HelpFrameOpenTicket,
+	Page.HOME: %KnowledgeBaseFrame, Page.GM_TALK: %HelpFrameGMTalk,
+	Page.REPORT_ISSUE: %HelpFrameReportIssue, Page.LAG: %HelpFrameLag,
+	Page.STUCK: %HelpFrameStuck, Page.OPEN_TICKET: %HelpFrameOpenTicket,
 }
-@onready var _text: TextEdit = %HelpFrameOpenTicketText
-@onready var _scroll: WowScrollFrame = %HelpFrameGMScrollFrame
+@onready var _text: TextEdit = %HelpFrameOpenTicketEditBox
 
 
 func _ready() -> void:
-	_categories = WowDBC.open(WowAssets.archive, "GMTicketCategory")
-	for i: int in CATEGORY_ROWS:
-		_row(i).pressed.connect(_on_category_pressed.bind(i))
-	_scroll.faux = true
-	_scroll.scrolled.connect(_on_scrolled)
-	%HelpFrameHomeIssues.pressed.connect(_show_page.bind(Page.GM))
-	%HelpFrameGMBack.pressed.connect(_show_page.bind(Page.HOME))
+	%KnowledgeBaseFrameGMTalk.pressed.connect(_show_page.bind(Page.GM_TALK))
+	%KnowledgeBaseFrameReportIssue.pressed.connect(_show_page.bind(Page.REPORT_ISSUE))
+	%KnowledgeBaseFrameLag.pressed.connect(_show_page.bind(Page.LAG))
+	%KnowledgeBaseFrameStuck.pressed.connect(_show_page.bind(Page.STUCK))
+	%KnowledgeBaseFrameEditTicket.pressed.connect(_show_page.bind(Page.OPEN_TICKET))
+	%KnowledgeBaseFrameAbandonTicket.pressed.connect(
+		WowClient.session.send_packet.bind("CMSG_GMTICKET_DELETETICKET", PackedByteArray())
+	)
 	for button: BaseButton in [
-		%HelpFrameCloseButton, %HelpFrameHomeCancel, %HelpFrameGMCancel, %HelpFrameOpenTicketCancel,
+		%HelpFrameGMTalkOpenTicket, %HelpFrameReportIssueOpenTicket, %HelpFrameStuckOpenTicket,
 	]:
-		button.pressed.connect(close_requested.emit)
+		button.pressed.connect(_show_page.bind(Page.OPEN_TICKET))
+	for button: BaseButton in [
+		%HelpFrameGMTalkCancel, %HelpFrameReportIssueCancel, %HelpFrameLagCancel,
+		%HelpFrameStuckCancel, %HelpFrameOpenTicketCancel,
+	]:
+		button.pressed.connect(_show_page.bind(Page.HOME))
+	%HelpFrameCloseButton.pressed.connect(close_requested.emit)
+	%KnowledgeBaseFrameCancel.pressed.connect(close_requested.emit)
 	%HelpFrameOpenTicketSubmit.pressed.connect(_on_submit_pressed)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	visibility_changed.connect(_on_visibility_changed)
-	_flow.call_deferred(%HelpFrameHome)
+	for page: Page in [Page.GM_TALK, Page.REPORT_ISSUE, Page.STUCK]:
+		_flow.call_deferred(_pages[page])
 	hide()
 
 
 func _show_page(page: Page) -> void:
-	_page = page
 	for other: Page in _pages:
 		_pages[other].visible = other == page
-	if page == Page.GM:
-		_list_categories()
-	elif page == Page.OPEN_TICKET:
+	if page == Page.OPEN_TICKET:
 		_text.grab_focus()
 
 
@@ -82,21 +83,7 @@ func _flow(page: Control) -> void:
 			pushed += child.size.y - heights[child]
 
 
-func _list_categories() -> void:
-	_scroll.set_range(maxi(_categories.row_count() - CATEGORY_ROWS, 0))
-	for i: int in CATEGORY_ROWS:
-		var index: int = i + _offset
-		_row(i).visible = index < _categories.row_count()
-		if _row(i).visible:
-			var label: Label = get_node("%%HelpFrameButton%dText" % (i + 1))
-			label.text = _categories.get_string(index, CATEGORY_NAME_COLUMN)
-
-
-func _row(i: int) -> BaseButton:
-	return get_node("%%HelpFrameButton%d" % (i + 1))
-
-
-# An open ticket turns Submit into Edit Ticket, as HelpFrameOpenTicket_OnEvent does.
+# An open ticket swaps the home buttons for Edit and Abandon, as HelpFrame_OnEvent does.
 func _show_ticket(text: String) -> void:
 	_text.text = text
 	(%HelpFrameOpenTicketSubmitText as Label).text = WowStrings.get_text(
@@ -105,17 +92,11 @@ func _show_ticket(text: String) -> void:
 	(%HelpFrameOpenTicketLabel as Label).text = WowStrings.get_text(
 		"HELPFRAME_OPENTICKET_EDITTEXT" if _has_ticket else "HELPFRAME_OPENTICKET_TEXT"
 	)
-
-
-func _on_category_pressed(i: int) -> void:
-	_category = _categories.get_uint(i + _offset, 0)
-	_show_page(Page.OPEN_TICKET)
-
-
-func _on_scrolled(value: float) -> void:
-	if roundi(value) != _offset:
-		_offset = roundi(value)
-		_list_categories()
+	%KnowledgeBaseFrameGMTalk.visible = not _has_ticket
+	%KnowledgeBaseFrameReportIssue.visible = not _has_ticket
+	%HelpFrameStuckOpenTicket.visible = not _has_ticket
+	%KnowledgeBaseFrameEditTicket.visible = _has_ticket
+	%KnowledgeBaseFrameAbandonTicket.visible = _has_ticket
 
 
 func _on_submit_pressed() -> void:

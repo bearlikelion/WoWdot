@@ -66,27 +66,42 @@ file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_21"]
-file = "Interface\\Spellbook\\UI-Spellbook-SpellBackground.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_22"]
-file = "Interface\\Buttons\\UI-Quickslot2.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_23"]
-file = "Interface\\Buttons\\UI-Quickslot-Depress.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_24"]
-file = "Interface\\Buttons\\UI-AutoCastableOverlay.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_25"]
-file = "Interface\\Buttons\\CheckButtonHilight.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_26"]
-file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+file = "Interface\\Spellbook\\UI-Spellbook-SpellBackground.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_27"]
-file = "Interface\\SpellBook\\SpellBook-SkillLineTab.blp"
+file = "Interface\\Buttons\\UI-Quickslot2.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-Quickslot-Depress.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\Buttons\\UI-AutoCastableOverlay.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\CheckButtonHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\SpellBook\\SpellBook-SkillLineTab.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
 file = "Interface\\Buttons\\CheckButtonGlow.blp"
 
 [node name="SpellBookFrame" type="Control"]
@@ -104,7 +119,8 @@ grow_vertical = 1
 visible = false
 mouse_filter = 0
 
-[node name="Texture" type="TextureRect" parent="."]
+[node name="SpellBookFrameIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
 offset_left = 10
 offset_top = 8
 offset_right = 68
@@ -113,7 +129,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_1")
 expand_mode = 1
 
-[node name="Texture2" type="TextureRect" parent="."]
+[node name="SpellBookFrameTopLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 256
@@ -122,7 +139,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_2")
 expand_mode = 1
 
-[node name="Texture3" type="TextureRect" parent="."]
+[node name="SpellBookFrameTopRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -134,7 +152,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_3")
 expand_mode = 1
 
-[node name="Texture4" type="TextureRect" parent="."]
+[node name="SpellBookFrameBotLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
@@ -146,7 +165,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_4")
 expand_mode = 1
 
-[node name="Texture5" type="TextureRect" parent="."]
+[node name="SpellBookFrameBotRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 1
 anchor_top = 1
@@ -232,13 +252,12 @@ expand_mode = 1
 [node name="SpellBookFrameTabButton1Text" type="Label" parent="SpellBookFrameTabButton1"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 24
+offset_top = 29
 offset_right = 64
-offset_bottom = 34
+offset_bottom = 29
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -288,13 +307,12 @@ expand_mode = 1
 [node name="SpellBookFrameTabButton2Text" type="Label" parent="SpellBookFrameTabButton2"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 24
+offset_top = 29
 offset_right = 64
-offset_bottom = 34
+offset_bottom = 29
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -344,13 +362,12 @@ expand_mode = 1
 [node name="SpellBookFrameTabButton3Text" type="Label" parent="SpellBookFrameTabButton3"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 24
+offset_top = 29
 offset_right = 64
-offset_bottom = 34
+offset_bottom = 29
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -537,6 +554,79 @@ texture = SubResource("WowTexture_20")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
+[node name="ShowAllSpellRanksCheckBox" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 74
+offset_top = 38
+offset_right = 100
+offset_bottom = 64
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ShowAllSpellRanksCheckBox"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ShowAllSpellRanksCheckBox"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="ShowAllSpellRanksCheckBoxText" type="Label" parent="ShowAllSpellRanksCheckBox"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="ShowAllSpellRanksCheckBox"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="ShowAllSpellRanksCheckBox"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ShowAllSpellRanksCheckBox"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_25")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
 [node name="SpellButton1" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3")
@@ -553,7 +643,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton1IconTexture" type="TextureRect" parent="SpellButton1"]
@@ -600,7 +690,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton1"]
@@ -610,7 +700,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton1AutoCastable" type="TextureRect" parent="SpellButton1"]
@@ -621,7 +711,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton1"]
@@ -631,7 +721,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -642,7 +732,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -653,15 +743,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton1AutoCast" type="Control" parent="SpellButton1"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -681,7 +762,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton2IconTexture" type="TextureRect" parent="SpellButton2"]
@@ -728,7 +809,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton2"]
@@ -738,7 +819,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton2AutoCastable" type="TextureRect" parent="SpellButton2"]
@@ -749,7 +830,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton2"]
@@ -759,7 +840,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -770,7 +851,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -781,15 +862,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton2AutoCast" type="Control" parent="SpellButton2"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -809,7 +881,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton3IconTexture" type="TextureRect" parent="SpellButton3"]
@@ -856,7 +928,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton3"]
@@ -866,7 +938,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton3AutoCastable" type="TextureRect" parent="SpellButton3"]
@@ -877,7 +949,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton3"]
@@ -887,7 +959,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -898,7 +970,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -909,15 +981,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton3AutoCast" type="Control" parent="SpellButton3"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -937,7 +1000,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton4IconTexture" type="TextureRect" parent="SpellButton4"]
@@ -984,7 +1047,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton4"]
@@ -994,7 +1057,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton4AutoCastable" type="TextureRect" parent="SpellButton4"]
@@ -1005,7 +1068,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton4"]
@@ -1015,7 +1078,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1026,7 +1089,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1037,15 +1100,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton4AutoCast" type="Control" parent="SpellButton4"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -1065,7 +1119,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton5IconTexture" type="TextureRect" parent="SpellButton5"]
@@ -1112,7 +1166,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton5"]
@@ -1122,7 +1176,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton5AutoCastable" type="TextureRect" parent="SpellButton5"]
@@ -1133,7 +1187,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton5"]
@@ -1143,7 +1197,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1154,7 +1208,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1165,15 +1219,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton5AutoCast" type="Control" parent="SpellButton5"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -1193,7 +1238,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton6IconTexture" type="TextureRect" parent="SpellButton6"]
@@ -1240,7 +1285,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton6"]
@@ -1250,7 +1295,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton6AutoCastable" type="TextureRect" parent="SpellButton6"]
@@ -1261,7 +1306,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton6"]
@@ -1271,7 +1316,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1282,7 +1327,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1293,15 +1338,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton6AutoCast" type="Control" parent="SpellButton6"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -1321,7 +1357,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton7IconTexture" type="TextureRect" parent="SpellButton7"]
@@ -1368,7 +1404,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton7"]
@@ -1378,7 +1414,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton7AutoCastable" type="TextureRect" parent="SpellButton7"]
@@ -1389,7 +1425,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton7"]
@@ -1399,7 +1435,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1410,7 +1446,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1421,15 +1457,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton7AutoCast" type="Control" parent="SpellButton7"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -1449,7 +1476,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton8IconTexture" type="TextureRect" parent="SpellButton8"]
@@ -1496,7 +1523,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton8"]
@@ -1506,7 +1533,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton8AutoCastable" type="TextureRect" parent="SpellButton8"]
@@ -1517,7 +1544,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton8"]
@@ -1527,7 +1554,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1538,7 +1565,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1549,15 +1576,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton8AutoCast" type="Control" parent="SpellButton8"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -1577,7 +1595,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton9IconTexture" type="TextureRect" parent="SpellButton9"]
@@ -1624,7 +1642,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton9"]
@@ -1634,7 +1652,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton9AutoCastable" type="TextureRect" parent="SpellButton9"]
@@ -1645,7 +1663,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton9"]
@@ -1655,7 +1673,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1666,7 +1684,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1677,15 +1695,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton9AutoCast" type="Control" parent="SpellButton9"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -1705,7 +1714,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton10IconTexture" type="TextureRect" parent="SpellButton10"]
@@ -1752,7 +1761,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton10"]
@@ -1762,7 +1771,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton10AutoCastable" type="TextureRect" parent="SpellButton10"]
@@ -1773,7 +1782,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton10"]
@@ -1783,7 +1792,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1794,7 +1803,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1805,15 +1814,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton10AutoCast" type="Control" parent="SpellButton10"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -1833,7 +1833,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton11IconTexture" type="TextureRect" parent="SpellButton11"]
@@ -1880,7 +1880,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton11"]
@@ -1890,7 +1890,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton11AutoCastable" type="TextureRect" parent="SpellButton11"]
@@ -1901,7 +1901,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton11"]
@@ -1911,7 +1911,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1922,7 +1922,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -1933,15 +1933,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton11AutoCast" type="Control" parent="SpellButton11"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -1961,7 +1952,7 @@ offset_top = -3
 offset_right = 61
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="SpellButton12IconTexture" type="TextureRect" parent="SpellButton12"]
@@ -2008,7 +1999,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SpellButton12"]
@@ -2018,7 +2009,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="SpellButton12AutoCastable" type="TextureRect" parent="SpellButton12"]
@@ -2029,7 +2020,7 @@ offset_right = 48.5
 offset_bottom = 48.5
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="SpellButton12"]
@@ -2039,7 +2030,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2050,7 +2041,7 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2061,15 +2052,6 @@ offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-
-[node name="SpellButton12AutoCast" type="Control" parent="SpellButton12"]
-unique_name_in_owner = true
-offset_left = 1.5
-offset_top = -0.5
-offset_right = 37.5
-offset_bottom = 35.5
 visible = false
 mouse_filter = 2
 
@@ -2092,7 +2074,7 @@ offset_top = -11
 offset_right = 61
 offset_bottom = 53
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="SpellBookSkillLineTab1"]
@@ -2110,7 +2092,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2121,7 +2103,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2144,7 +2126,7 @@ offset_top = -11
 offset_right = 61
 offset_bottom = 53
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="SpellBookSkillLineTab2"]
@@ -2162,7 +2144,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2173,7 +2155,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2196,7 +2178,7 @@ offset_top = -11
 offset_right = 61
 offset_bottom = 53
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="SpellBookSkillLineTab3"]
@@ -2214,7 +2196,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2225,7 +2207,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2248,7 +2230,7 @@ offset_top = -11
 offset_right = 61
 offset_bottom = 53
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="SpellBookSkillLineTab4"]
@@ -2266,7 +2248,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2277,7 +2259,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2300,7 +2282,7 @@ offset_top = -11
 offset_right = 61
 offset_bottom = 53
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="SpellBookSkillLineTab5"]
@@ -2318,7 +2300,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2329,7 +2311,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2352,7 +2334,7 @@ offset_top = -11
 offset_right = 61
 offset_bottom = 53
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="SpellBookSkillLineTab6"]
@@ -2370,7 +2352,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2381,7 +2363,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2404,7 +2386,7 @@ offset_top = -11
 offset_right = 61
 offset_bottom = 53
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="SpellBookSkillLineTab7"]
@@ -2422,7 +2404,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2433,7 +2415,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2456,7 +2438,7 @@ offset_top = -11
 offset_right = 61
 offset_bottom = 53
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="SpellBookSkillLineTab8"]
@@ -2474,7 +2456,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2485,7 +2467,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2509,7 +2491,7 @@ offset_right = 48
 offset_bottom = 48
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2521,7 +2503,7 @@ offset_right = 48
 offset_bottom = 97
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2533,7 +2515,7 @@ offset_right = 48
 offset_bottom = 146
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2545,7 +2527,7 @@ offset_right = 48
 offset_bottom = 195
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2557,7 +2539,7 @@ offset_right = 48
 offset_bottom = 244
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2569,7 +2551,7 @@ offset_right = 48
 offset_bottom = 293
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2581,7 +2563,7 @@ offset_right = 48
 offset_bottom = 342
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -2593,6 +2575,6 @@ offset_right = 48
 offset_bottom = 391
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")

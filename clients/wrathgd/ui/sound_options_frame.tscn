@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://ui/sound_options_frame.gd" id="1"]
 [ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="2"]
-[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="4"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
@@ -14,72 +15,208 @@ file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
 file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_4"]
-file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+file = "Interface\\Tooltips\\UI-Tooltip-Border.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_5"]
-file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_6"]
-file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(96, 0, 16, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_7"]
-file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(112, 0, 16, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_8"]
-file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(80, 0, 16, 16)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_9"]
-blend_mode = 1
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_10"]
-file = "Interface\\Buttons\\UI-SliderBar-Button-Horizontal.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11"]
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\OptionsFrame\\UI-OptionsFrame-Spacer.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14"]
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_19")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_23"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_30")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-SliderBar-Button-Horizontal.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_38"]
 file = "Interface\\Buttons\\UI-SliderBar-Background.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_13"]
+[sub_resource type="WowTexture" id="WowTexture_39"]
 file = "Interface\\Buttons\\UI-SliderBar-Border.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_14"]
+[sub_resource type="WowTexture" id="WowTexture_40"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
+atlas = SubResource("WowTexture_40")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_40")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
+atlas = SubResource("WowTexture_40")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_47"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_48"]
 file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
-atlas = SubResource("WowTexture_14")
+[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
+atlas = SubResource("WowTexture_48")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_16"]
+[sub_resource type="WowTexture" id="WowTexture_50"]
 file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
-atlas = SubResource("WowTexture_16")
+[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
+atlas = SubResource("WowTexture_50")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_18"]
+[sub_resource type="WowTexture" id="WowTexture_52"]
 file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
-atlas = SubResource("WowTexture_18")
+[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
+atlas = SubResource("WowTexture_52")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_20"]
+[sub_resource type="WowTexture" id="WowTexture_54"]
+file = "Interface\\OptionsFrame\\VoiceChat-Record.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_55"]
 file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
-atlas = SubResource("WowTexture_20")
+[sub_resource type="AtlasTexture" id="AtlasTexture_56"]
+atlas = SubResource("WowTexture_55")
 region = Rect2(0, 0, 80, 22)
 
-[node name="SoundOptionsFrame" type="Control"]
+[sub_resource type="WowTexture" id="WowTexture_57"]
+file = "Interface\\OptionsFrame\\VoiceChat-Play.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_58"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_59"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60"]
+atlas = SubResource("WowTexture_59")
+region = Rect2(0, 0, 80, 22)
+
+[node name="AudioOptionsFrame" type="Control"]
 script = ExtResource("1")
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200
-offset_top = -142.5
-offset_right = 200
-offset_bottom = 142.5
+offset_left = -324
+offset_top = -260
+offset_right = 324
+offset_bottom = 260
 grow_horizontal = 2
 grow_vertical = 2
 visible = false
@@ -97,22 +234,23 @@ edge = SubResource("WowTexture_2")
 tile = true
 tile_size = 32
 edge_size = 32
-insets = Vector4(11, 12, 12, 11)
+insets = Vector4(11, 11, 12, 10)
 
-[node name="SoundOptionsFrameHeader" type="TextureRect" parent="."]
+[node name="AudioOptionsFrameHeader" type="TextureRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -128
+offset_left = -150
 offset_top = -12
-offset_right = 128
-offset_bottom = 52
+offset_right = 150
+offset_bottom = 56
 mouse_filter = 2
 texture = SubResource("WowTexture_3")
 expand_mode = 1
 
-[node name="FontString" type="Label" parent="."]
+[node name="AudioOptionsFrameHeaderText" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_right = 0.5
@@ -124,998 +262,3734 @@ grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
-text = "Sound Options"
+text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SoundOptionsFrameCheckButton1" type="TextureButton" parent="."]
+[node name="AudioOptionsFrameCategoryFrame" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 40
+offset_right = 197
+offset_bottom = 469
+mouse_filter = 2
+
+[node name="AudioOptionsFrameCategoryFrameTopLeft" type="TextureRect" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="AudioOptionsFrameCategoryFrameBottomLeft" type="TextureRect" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 413
+offset_right = 16
+offset_bottom = 429
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="AudioOptionsFrameCategoryFrameBottomRight" type="TextureRect" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+offset_left = 159
+offset_top = 413
+offset_right = 175
+offset_bottom = 429
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="AudioOptionsFrameCategoryFrameTopRight" type="TextureRect" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+offset_left = 159
+offset_top = 0
+offset_right = 175
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+
+[node name="AudioOptionsFrameCategoryFrameLeft" type="TextureRect" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 16
+offset_right = 16
+offset_bottom = 413
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="AudioOptionsFrameCategoryFrameRight" type="TextureRect" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+offset_left = 159
+offset_top = 16
+offset_right = 175
+offset_bottom = 413
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="AudioOptionsFrameCategoryFrameBottom" type="TextureRect" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 413
+offset_right = 159
+offset_bottom = 429
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="AudioOptionsFrameCategoryFrameTop" type="TextureRect" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 159
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="AudioOptionsFrameCategoryFrameList" type="Control" parent="AudioOptionsFrameCategoryFrame"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 14
-offset_top = 44
-offset_right = 46
-offset_bottom = 76
+offset_left = 148
+offset_top = 3
+offset_right = 172
+offset_bottom = 426
+visible = false
+mouse_filter = 0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 12
+insets = Vector4(0, 0, 5, 5)
+
+[node name="AudioOptionsFrameCategoryFrameListScrollBar" type="VSlider" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 20
+offset_right = 24
+offset_bottom = 404
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_13")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_13")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="AudioOptionsFrameCategoryFrameListScrollBarScrollUpButton" type="TextureButton" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 3
+offset_top = -16
+offset_right = 21
+offset_bottom = 0
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton1"]
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar/AudioOptionsFrameCategoryFrameListScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 32
-offset_bottom = 32
+offset_right = 18
+offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("AtlasTexture_16")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton1"]
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar/AudioOptionsFrameCategoryFrameListScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 32
-offset_bottom = 32
+offset_right = 18
+offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_5")
+texture = SubResource("AtlasTexture_18")
 expand_mode = 1
 
-[node name="SoundOptionsFrameCheckButton1Text" type="Label" parent="SoundOptionsFrameCheckButton1"]
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar/AudioOptionsFrameCategoryFrameListScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar/AudioOptionsFrameCategoryFrameListScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsFrameCategoryFrameListScrollBarScrollDownButton" type="TextureButton" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar"]
 unique_name_in_owner = true
-offset_left = 30
-offset_top = 11
-offset_right = 30
-offset_bottom = 21
+script = ExtResource("4")
+offset_left = 3
+offset_top = 384
+offset_right = 21
+offset_bottom = 400
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar/AudioOptionsFrameCategoryFrameListScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar/AudioOptionsFrameCategoryFrameListScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar/AudioOptionsFrameCategoryFrameListScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList/AudioOptionsFrameCategoryFrameListScrollBar/AudioOptionsFrameCategoryFrameListScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsFrameCategoryFrameListScrollChildFrame" type="Control" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameList"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 423
+visible = false
+mouse_filter = 2
+
+[node name="AudioOptionsFramePanelContainer" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 213
+offset_top = 40
+offset_right = -22
+offset_bottom = 468
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AudioOptionsSoundPanel" type="Control" parent="AudioOptionsFramePanelContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 428
+mouse_filter = 2
+
+[node name="AudioOptionsSoundPanelTitle" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 16
+offset_right = 16
+offset_bottom = 32
 grow_horizontal = 1
-grow_vertical = 2
+grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_type_variation = &"GameFontNormalLarge"
+text = "Sound"
+horizontal_alignment = 0
+vertical_alignment = 0
 
-[node name="CheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton1"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton1"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_7")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton1"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_8")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
-
-[node name="SoundOptionsFrameCheckButton2" type="TextureButton" parent="."]
+[node name="AudioOptionsSoundPanelSubText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
 unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 24
-offset_top = 74
-offset_right = 48
+layout_mode = 1
+anchor_right = 1
+offset_left = 16
+offset_top = 40
+offset_right = -32
+offset_bottom = 72
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "These options control sound hardware and the types and volumes of sounds within the game."
+horizontal_alignment = 0
+vertical_alignment = 0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AudioOptionsSoundPanelEnableSound" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77
+offset_top = 72
+offset_right = -51
 offset_bottom = 98
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton2"]
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
 offset_left = 0
 offset_top = 0
-offset_right = 24
-offset_bottom = 24
+offset_right = 26
+offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_32")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton2"]
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
 offset_left = 0
 offset_top = 0
-offset_right = 24
-offset_bottom = 24
+offset_right = 26
+offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_5")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 
-[node name="SoundOptionsFrameCheckButton2Text" type="Label" parent="SoundOptionsFrameCheckButton2"]
+[node name="AudioOptionsSoundPanelEnableSoundText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
 unique_name_in_owner = true
-offset_left = 22
-offset_top = 7
-offset_right = 22
-offset_bottom = 17
+offset_left = 26
+offset_top = 6
+offset_right = 26
+offset_bottom = 18
 grow_horizontal = 1
 grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton2"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton2"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_7")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton2"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_8")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
-
-[node name="SoundOptionsFrameCheckButton4" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 24
-offset_top = 96
-offset_right = 48
-offset_bottom = 120
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton4"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-mouse_filter = 2
-texture = SubResource("WowTexture_4")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton4"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_5")
-expand_mode = 1
-
-[node name="SoundOptionsFrameCheckButton4Text" type="Label" parent="SoundOptionsFrameCheckButton4"]
-unique_name_in_owner = true
-offset_left = 22
-offset_top = 7
-offset_right = 22
-offset_bottom = 17
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton4"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton4"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_7")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton4"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_8")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
-
-[node name="SoundOptionsFrameCheckButton5" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 14
-offset_top = 120
-offset_right = 46
-offset_bottom = 152
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton5"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_4")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton5"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_5")
-expand_mode = 1
-
-[node name="SoundOptionsFrameCheckButton5Text" type="Label" parent="SoundOptionsFrameCheckButton5"]
-unique_name_in_owner = true
-offset_left = 30
-offset_top = 11
-offset_right = 30
-offset_bottom = 21
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton5"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton5"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_7")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton5"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_8")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
-
-[node name="SoundOptionsFrameCheckButton6" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 14
-offset_top = 146
-offset_right = 46
-offset_bottom = 178
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton6"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_4")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton6"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_5")
-expand_mode = 1
-
-[node name="SoundOptionsFrameCheckButton6Text" type="Label" parent="SoundOptionsFrameCheckButton6"]
-unique_name_in_owner = true
-offset_left = 30
-offset_top = 11
-offset_right = 30
-offset_bottom = 21
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton6"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton6"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_7")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton6"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_8")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
-
-[node name="SoundOptionsFrameCheckButton7" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 14
-offset_top = 172
-offset_right = 46
-offset_bottom = 204
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton7"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_4")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton7"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_5")
-expand_mode = 1
-
-[node name="SoundOptionsFrameCheckButton7Text" type="Label" parent="SoundOptionsFrameCheckButton7"]
-unique_name_in_owner = true
-offset_left = 30
-offset_top = 11
-offset_right = 30
-offset_bottom = 21
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton7"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton7"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_7")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton7"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_8")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
-
-[node name="SoundOptionsFrameCheckButton8" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 14
-offset_top = 198
-offset_right = 46
-offset_bottom = 230
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton8"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_4")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton8"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_5")
-expand_mode = 1
-
-[node name="SoundOptionsFrameCheckButton8Text" type="Label" parent="SoundOptionsFrameCheckButton8"]
-unique_name_in_owner = true
-offset_left = 30
-offset_top = 11
-offset_right = 30
-offset_bottom = 21
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton8"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton8"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_7")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameCheckButton8"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_8")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
-
-[node name="SoundOptionsFrameSlider1" type="HSlider" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 1
-anchor_right = 1
-offset_left = -146
-offset_top = 43
-offset_right = -18
-offset_bottom = 60
-mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_10")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_10")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_11")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_11")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_11")
-max_value = 0.0
-step = 0.0
-
-[node name="Backdrop" type="Control" parent="SoundOptionsFrameSlider1"]
-script = ExtResource("2")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-background = SubResource("WowTexture_12")
-edge = SubResource("WowTexture_13")
-tile = true
-tile_size = 8
-edge_size = 8
-insets = Vector4(3, 3, 6, 6)
-
-[node name="SoundOptionsFrameSlider1Text" type="Label" parent="SoundOptionsFrameSlider1"]
-unique_name_in_owner = true
-offset_left = 64
-offset_top = -10
-offset_right = 64
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider1Low" type="Label" parent="SoundOptionsFrameSlider1"]
-unique_name_in_owner = true
-offset_left = 2
-offset_top = 14
-offset_right = 2
-offset_bottom = 24
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Low"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider1High" type="Label" parent="SoundOptionsFrameSlider1"]
-unique_name_in_owner = true
-offset_left = 126
-offset_top = 14
-offset_right = 126
-offset_bottom = 24
-grow_horizontal = 0
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "High"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider2" type="HSlider" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 1
-anchor_right = 1
-offset_left = -146
-offset_top = 78
-offset_right = -18
-offset_bottom = 95
-mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_10")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_10")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_11")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_11")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_11")
-max_value = 0.0
-step = 0.0
-
-[node name="Backdrop" type="Control" parent="SoundOptionsFrameSlider2"]
-script = ExtResource("2")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-background = SubResource("WowTexture_12")
-edge = SubResource("WowTexture_13")
-tile = true
-tile_size = 8
-edge_size = 8
-insets = Vector4(3, 3, 6, 6)
-
-[node name="SoundOptionsFrameSlider2Text" type="Label" parent="SoundOptionsFrameSlider2"]
-unique_name_in_owner = true
-offset_left = 64
-offset_top = -10
-offset_right = 64
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider2Low" type="Label" parent="SoundOptionsFrameSlider2"]
-unique_name_in_owner = true
-offset_left = 2
-offset_top = 14
-offset_right = 2
-offset_bottom = 24
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Low"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider2High" type="Label" parent="SoundOptionsFrameSlider2"]
-unique_name_in_owner = true
-offset_left = 126
-offset_top = 14
-offset_right = 126
-offset_bottom = 24
-grow_horizontal = 0
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "High"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider3" type="HSlider" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 1
-anchor_right = 1
-offset_left = -146
-offset_top = 113
-offset_right = -18
-offset_bottom = 130
-mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_10")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_10")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_11")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_11")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_11")
-max_value = 0.0
-step = 0.0
-
-[node name="Backdrop" type="Control" parent="SoundOptionsFrameSlider3"]
-script = ExtResource("2")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-background = SubResource("WowTexture_12")
-edge = SubResource("WowTexture_13")
-tile = true
-tile_size = 8
-edge_size = 8
-insets = Vector4(3, 3, 6, 6)
-
-[node name="SoundOptionsFrameSlider3Text" type="Label" parent="SoundOptionsFrameSlider3"]
-unique_name_in_owner = true
-offset_left = 64
-offset_top = -10
-offset_right = 64
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider3Low" type="Label" parent="SoundOptionsFrameSlider3"]
-unique_name_in_owner = true
-offset_left = 2
-offset_top = 14
-offset_right = 2
-offset_bottom = 24
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Low"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider3High" type="Label" parent="SoundOptionsFrameSlider3"]
-unique_name_in_owner = true
-offset_left = 126
-offset_top = 14
-offset_right = 126
-offset_bottom = 24
-grow_horizontal = 0
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "High"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider4" type="HSlider" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 1
-anchor_right = 1
-offset_left = -146
-offset_top = 148
-offset_right = -18
-offset_bottom = 165
-mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_10")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_10")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_11")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_11")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_11")
-max_value = 0.0
-step = 0.0
-
-[node name="Backdrop" type="Control" parent="SoundOptionsFrameSlider4"]
-script = ExtResource("2")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-background = SubResource("WowTexture_12")
-edge = SubResource("WowTexture_13")
-tile = true
-tile_size = 8
-edge_size = 8
-insets = Vector4(3, 3, 6, 6)
-
-[node name="SoundOptionsFrameSlider4Text" type="Label" parent="SoundOptionsFrameSlider4"]
-unique_name_in_owner = true
-offset_left = 64
-offset_top = -10
-offset_right = 64
-offset_bottom = 0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider4Low" type="Label" parent="SoundOptionsFrameSlider4"]
-unique_name_in_owner = true
-offset_left = 2
-offset_top = 14
-offset_right = 2
-offset_bottom = 24
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Low"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameSlider4High" type="Label" parent="SoundOptionsFrameSlider4"]
-unique_name_in_owner = true
-offset_left = 126
-offset_top = 14
-offset_right = 126
-offset_bottom = 24
-grow_horizontal = 0
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "High"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SoundOptionsFrameDefaults" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3")
-layout_mode = 1
-anchor_top = 1
-anchor_bottom = 1
-offset_left = 16
-offset_top = -37
-offset_right = 116
-offset_bottom = -16
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameDefaults"]
-offset_left = 0
-offset_top = 0
-offset_right = 100
-offset_bottom = 21
-mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameDefaults"]
-offset_left = 0
-offset_top = 0
-offset_right = 100
-offset_bottom = 21
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="SoundOptionsFrameDefaults"]
-offset_left = 0
-offset_top = 0
-offset_right = 100
-offset_bottom = 21
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_19")
-expand_mode = 1
-
-[node name="SoundOptionsFrameDefaultsText" type="Label" parent="SoundOptionsFrameDefaults"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 100
-offset_bottom = 21
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlight"
-text = "Defaults"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameDefaults"]
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelPlayback" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 116
+offset_right = 202
+offset_bottom = 432
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPlayback"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AudioOptionsSoundPanelPlaybackTitle" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPlayback"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = -10
+offset_right = 5
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundEffects" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 24
+offset_top = 122
+offset_right = 50
+offset_bottom = 148
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelSoundEffectsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelErrorSpeech" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 32
+offset_top = 144
+offset_right = 58
+offset_bottom = 170
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelErrorSpeechText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelEmoteSounds" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 32
+offset_top = 166
+offset_right = 58
+offset_bottom = 192
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelEmoteSoundsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelPetSounds" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 32
+offset_top = 188
+offset_right = 58
+offset_bottom = 214
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelPetSoundsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelMusic" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 24
+offset_top = 212
+offset_right = 50
+offset_bottom = 238
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelMusicText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelLoopMusic" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 32
+offset_top = 234
+offset_right = 58
+offset_bottom = 260
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelLoopMusicText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelAmbientSounds" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 24
+offset_top = 258
+offset_right = 50
+offset_bottom = 284
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelAmbientSoundsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelSoundInBG" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 24
+offset_top = 282
+offset_right = 50
+offset_bottom = 308
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelSoundInBGText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelReverb" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 24
+offset_top = 306
+offset_right = 50
+offset_bottom = 332
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelReverbText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelHRTF" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 24
+offset_top = 330
+offset_right = 50
+offset_bottom = 356
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelHRTFText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelEnableDSPs" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 24
+offset_top = 354
+offset_right = 50
+offset_bottom = 380
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelEnableDSPsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelSoundQuality" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 394
+offset_right = 188
+offset_bottom = 411
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundQuality"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsSoundPanelSoundQualityText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundQuality"]
+unique_name_in_owner = true
+offset_left = 78
+offset_top = -12
+offset_right = 78
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundQualityLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundQuality"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundQualityHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundQuality"]
+unique_name_in_owner = true
+offset_left = 160
+offset_top = 14
+offset_right = 160
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelHardware" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 210
+offset_top = 116
+offset_right = 396
+offset_bottom = 252
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardware"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AudioOptionsSoundPanelHardwareTitle" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardware"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = -10
+offset_right = 5
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelHardwareDropDown" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 204
+offset_top = 140
+offset_right = 244
+offset_bottom = 172
+mouse_filter = 2
+
+[node name="AudioOptionsSoundPanelHardwareDropDownLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -15
+offset_right = 20
+offset_bottom = -5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Game Sound Output"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelHardwareDropDownLeft" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_41")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelHardwareDropDownMiddle" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelHardwareDropDownRight" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelHardwareDropDownText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AudioOptionsSoundPanelHardwareDropDownButton" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown/AudioOptionsSoundPanelHardwareDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_44")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown/AudioOptionsSoundPanelHardwareDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown/AudioOptionsSoundPanelHardwareDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown/AudioOptionsSoundPanelHardwareDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_47")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelSoundChannels" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 228
+offset_top = 184
+offset_right = 366
+offset_bottom = 201
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundChannels"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsSoundPanelSoundChannelsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundChannels"]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = -12
+offset_right = 69
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundChannelsLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundChannels"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundChannelsHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundChannels"]
+unique_name_in_owner = true
+offset_left = 142
+offset_top = 14
+offset_right = 142
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelUseHardware" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 224
+offset_top = 217
+offset_right = 250
+offset_bottom = 243
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsSoundPanelUseHardwareText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 7
+offset_right = 26
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsSoundPanelVolume" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 210
+offset_top = 268
+offset_right = 396
+offset_bottom = 412
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelVolume"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AudioOptionsSoundPanelVolumeTitle" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelVolume"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = -10
+offset_right = 5
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelMasterVolume" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 225
+offset_top = 295
+offset_right = 343
+offset_bottom = 312
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMasterVolume"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsSoundPanelMasterVolumeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMasterVolume"]
+unique_name_in_owner = true
+offset_left = 59
+offset_top = -12
+offset_right = 59
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelMasterVolumeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMasterVolume"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelMasterVolumeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMasterVolume"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 14
+offset_right = 122
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelMasterVolumeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMasterVolume"]
+unique_name_in_owner = true
+offset_left = 120
+offset_top = 2.5
+offset_right = 120
+offset_bottom = 12.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundVolume" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 284
+offset_top = 328
+offset_right = 384
+offset_bottom = 345
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundVolume"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsSoundPanelSoundVolumeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundVolume"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = -12
+offset_right = 50
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundVolumeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundVolume"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundVolumeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundVolume"]
+unique_name_in_owner = true
+offset_left = 104
+offset_top = 14
+offset_right = 104
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelSoundVolumeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundVolume"]
+unique_name_in_owner = true
+offset_left = -68
+offset_top = 0.5
+offset_right = -4
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
+text = "Sound"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioOptionsSoundPanelMusicVolume" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 284
+offset_top = 355
+offset_right = 384
+offset_bottom = 372
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusicVolume"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsSoundPanelMusicVolumeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusicVolume"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = -12
+offset_right = 50
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelMusicVolumeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusicVolume"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelMusicVolumeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusicVolume"]
+unique_name_in_owner = true
+offset_left = 104
+offset_top = 14
+offset_right = 104
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelMusicVolumeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusicVolume"]
+unique_name_in_owner = true
+offset_left = -68
+offset_top = 0.5
+offset_right = -4
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioOptionsSoundPanelAmbienceVolume" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel"]
+unique_name_in_owner = true
+offset_left = 284
+offset_top = 382
+offset_right = 384
+offset_bottom = 399
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbienceVolume"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsSoundPanelAmbienceVolumeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbienceVolume"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = -12
+offset_right = 50
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelAmbienceVolumeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbienceVolume"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelAmbienceVolumeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbienceVolume"]
+unique_name_in_owner = true
+offset_left = 104
+offset_top = 14
+offset_right = 104
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsSoundPanelAmbienceVolumeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbienceVolume"]
+unique_name_in_owner = true
+offset_left = -68
+offset_top = 0.5
+offset_right = -4
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
+text = "Ambience"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanel" type="Control" parent="AudioOptionsFramePanelContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 428
+visible = false
+mouse_filter = 2
+
+[node name="AudioOptionsVoicePanelTitle" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 16
+offset_right = 16
+offset_bottom = 32
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLargeLeftTop"
+text = "Voice"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelSubText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 16
+offset_top = 40
+offset_right = -32
+offset_bottom = 72
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmallLeftTop"
+text = "These options control sound hardware and input settings for the voice chat system."
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanelDisabledMessage" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_top = 72
+offset_right = 0.5
+offset_bottom = 96
+visible = false
+mouse_filter = 2
+
+[node name="AudioOptionsVoicePanelDisabledMessageText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelDisabledMessage"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 1
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Voice Chat Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelEnableVoice" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77
+offset_top = 72
+offset_right = -51
+offset_bottom = 98
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelEnableVoiceText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 6
+offset_right = 26
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsVoicePanelTalking" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 116
+offset_right = 202
+offset_bottom = 266
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelTalking"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AudioOptionsVoicePanelTalkingTitle" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelTalking"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = -10
+offset_right = 5
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelEnableMicrophone" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 26
+offset_top = 121
+offset_right = 52
+offset_bottom = 147
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelEnableMicrophoneText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 6
+offset_right = 26
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsVoicePanelInputDeviceDropDown" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 147
+offset_right = 51
+offset_bottom = 179
+mouse_filter = 0
+
+[node name="AudioOptionsVoicePanelInputDeviceDropDownLeft" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_41")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelInputDeviceDropDownMiddle" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelInputDeviceDropDownRight" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelInputDeviceDropDownText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanelInputDeviceDropDownButton" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown/AudioOptionsVoicePanelInputDeviceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_44")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown/AudioOptionsVoicePanelInputDeviceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown/AudioOptionsVoicePanelInputDeviceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown/AudioOptionsVoicePanelInputDeviceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_47")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsVoicePanelMicrophoneVolume" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 199
+offset_right = 158
+offset_bottom = 216
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicrophoneVolume"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsVoicePanelMicrophoneVolumeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicrophoneVolume"]
+unique_name_in_owner = true
+offset_left = 66
+offset_top = -12
+offset_right = 66
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelMicrophoneVolumeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicrophoneVolume"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelMicrophoneVolumeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicrophoneVolume"]
+unique_name_in_owner = true
+offset_left = 136
+offset_top = 14
+offset_right = 136
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelMicrophoneVolumeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicrophoneVolume"]
+unique_name_in_owner = true
+offset_left = 134
+offset_top = 2.5
+offset_right = 134
+offset_bottom = 12.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelMicTest" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 210
+offset_right = 194
+offset_bottom = 265
+mouse_filter = 2
+
+[node name="AudioOptionsVoicePanelMicTestText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest"]
+unique_name_in_owner = true
+offset_left = 90
+offset_top = 10
+offset_right = 90
+offset_bottom = 20
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Microphone Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecordLoopbackSoundButton" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 12
+offset_top = 24
+offset_right = 38
+offset_bottom = 45
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_21")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
 
-[node name="SoundOptionsFrameCancel" type="TextureButton" parent="."]
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="RecordLoopbackSoundButtonTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
 unique_name_in_owner = true
-script = ExtResource("3")
+offset_left = 8
+offset_top = 5.5
+offset_right = 18
+offset_bottom = 15.5
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="RecordLoopbackSoundButtonText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="PlayLoopbackSoundButton" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 41
+offset_top = 24
+offset_right = 67
+offset_bottom = 45
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="PlayLoopbackSoundButtonTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = 5.5
+offset_right = 18
+offset_bottom = 15.5
+mouse_filter = 2
+texture = SubResource("WowTexture_57")
+expand_mode = 1
+
+[node name="PlayLoopbackSoundButtonText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="Frame" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest"]
+offset_left = 70
+offset_top = 22
+offset_right = 170
+offset_bottom = 47
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/Frame"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="Title" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/Frame"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = -10
+offset_right = 5
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoopbackVUMeter" type="TextureProgressBar" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/Frame"]
+unique_name_in_owner = true
+offset_left = 6
+offset_top = 6
+offset_right = 100
+offset_bottom = 19
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_58")
+nine_patch_stretch = true
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="AudioOptionsVoicePanelBinding" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 274
+offset_right = 202
+offset_bottom = 412
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelBinding"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AudioOptionsVoicePanelBindingTitle" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelBinding"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = -10
+offset_right = 5
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelChatModeDropDown" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 299
+offset_right = 51
+offset_bottom = 331
+mouse_filter = 0
+
+[node name="AudioOptionsVoicePanelChatModeDropDownLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -15
+offset_right = 20
+offset_bottom = -5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Voice Chat Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelChatModeDropDownLeft" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_41")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelChatModeDropDownMiddle" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelChatModeDropDownRight" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelChatModeDropDownText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanelChatModeDropDownButton" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown/AudioOptionsVoicePanelChatModeDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_44")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown/AudioOptionsVoicePanelChatModeDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown/AudioOptionsVoicePanelChatModeDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown/AudioOptionsVoicePanelChatModeDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_47")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsVoicePanelChatMode1" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = -49
+offset_top = 329
+offset_right = 111
+offset_bottom = 379
+mouse_filter = 2
+
+[node name="AudioOptionsVoicePanelChatMode1Label" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1"]
+unique_name_in_owner = true
+offset_left = 80
+offset_top = 0
+offset_right = 80
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Key Binding"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelChatMode1KeyBindingButton" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 2.5
+offset_top = 13
+offset_right = 157.5
+offset_bottom = 34
+ignore_texture_size = true
+
+[node name="AudioOptionsVoicePanelChatMode1KeyBindingButtonHiddenText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 13
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 155
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 155
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 155
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelChatMode1KeyBindingButtonText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 155
+offset_bottom = 21
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 155
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsVoicePanelPushToTalkSound" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 0
+offset_top = 56
+offset_right = 26
+offset_bottom = 82
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelPushToTalkSoundText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
+unique_name_in_owner = true
+offset_left = 26
+offset_top = 6
+offset_right = 26
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsVoicePanelBindingOutput" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 36
+offset_right = 159
+offset_bottom = 96
+mouse_filter = 2
+
+[node name="AudioOptionsVoicePanelBindingOutputText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelBindingOutput"]
+unique_name_in_owner = true
+offset_left = 80
+offset_top = 0
+offset_right = 80
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelBindingOutputTextConflict" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelBindingOutput"]
+unique_name_in_owner = true
+offset_left = 80
+offset_top = 50
+offset_right = 80
+offset_bottom = 60
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelChatMode2" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 31
+offset_top = 346
+offset_right = 191
+offset_bottom = 396
+visible = false
+mouse_filter = 2
+
+[node name="AudioOptionsVoicePanelVoiceActivateSlider" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode2"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 144
+offset_bottom = 17
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode2/AudioOptionsVoicePanelVoiceActivateSlider"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsVoicePanelVoiceActivateSliderText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode2/AudioOptionsVoicePanelVoiceActivateSlider"]
+unique_name_in_owner = true
+offset_left = 66
+offset_top = -12
+offset_right = 66
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelVoiceActivateSliderLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode2/AudioOptionsVoicePanelVoiceActivateSlider"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelVoiceActivateSliderHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode2/AudioOptionsVoicePanelVoiceActivateSlider"]
+unique_name_in_owner = true
+offset_left = 136
+offset_top = 14
+offset_right = 136
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelListening" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 210
+offset_top = 116
+offset_right = 396
+offset_bottom = 412
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelListening"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_4")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="AudioOptionsVoicePanelListeningTitle" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelListening"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = -10
+offset_right = 5
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelOutputDeviceDropDown" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 205
+offset_top = 153
+offset_right = 245
+offset_bottom = 185
+mouse_filter = 0
+
+[node name="AudioOptionsVoicePanelOutputDeviceDropDownLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -22
+offset_right = 20
+offset_bottom = -12
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Speakers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelOutputDeviceDropDownLeft" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_41")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelOutputDeviceDropDownMiddle" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelOutputDeviceDropDownRight" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="AudioOptionsVoicePanelOutputDeviceDropDownText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanelOutputDeviceDropDownButton" type="TextureButton" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown/AudioOptionsVoicePanelOutputDeviceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_44")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown/AudioOptionsVoicePanelOutputDeviceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown/AudioOptionsVoicePanelOutputDeviceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown/AudioOptionsVoicePanelOutputDeviceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_47")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsVoicePanelSpeakerVolume" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 223
+offset_top = 205
+offset_right = 355
+offset_bottom = 222
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSpeakerVolume"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsVoicePanelSpeakerVolumeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSpeakerVolume"]
+unique_name_in_owner = true
+offset_left = 66
+offset_top = -12
+offset_right = 66
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelSpeakerVolumeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSpeakerVolume"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelSpeakerVolumeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSpeakerVolume"]
+unique_name_in_owner = true
+offset_left = 136
+offset_top = 14
+offset_right = 136
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelSpeakerVolumeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSpeakerVolume"]
+unique_name_in_owner = true
+offset_left = 134
+offset_top = 2.5
+offset_right = 134
+offset_bottom = 12.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelAudio" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 213
+offset_top = 229
+offset_right = 393
+offset_bottom = 389
+mouse_filter = 2
+
+[node name="AudioOptionsVoicePanelAudioLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAudio"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -10
+offset_right = 175
+offset_bottom = 40
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Game Audio Fade"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanelAudioDescription" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAudio"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 18
+offset_right = 175
+offset_bottom = 68
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Select the level game sounds should adjust to while listening or talking in voice chat."
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanelAudioOff" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAudio"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 80
+offset_right = 70
+offset_bottom = 90
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelAudioNormal" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAudio"]
+unique_name_in_owner = true
+offset_left = 170
+offset_top = 80
+offset_right = 170
+offset_bottom = 90
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Normal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelSoundFade" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 283
+offset_top = 325
+offset_right = 383
+offset_bottom = 342
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSoundFade"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsVoicePanelSoundFadeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSoundFade"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = -12
+offset_right = 50
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelSoundFadeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSoundFade"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelSoundFadeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSoundFade"]
+unique_name_in_owner = true
+offset_left = 104
+offset_top = 14
+offset_right = 104
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelSoundFadeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelSoundFade"]
+unique_name_in_owner = true
+offset_left = -64
+offset_top = 0.5
+offset_right = -4
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
+text = "Sound"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanelMusicFade" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 283
+offset_top = 352
+offset_right = 383
+offset_bottom = 369
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMusicFade"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsVoicePanelMusicFadeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMusicFade"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = -12
+offset_right = 50
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelMusicFadeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMusicFade"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelMusicFadeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMusicFade"]
+unique_name_in_owner = true
+offset_left = 104
+offset_top = 14
+offset_right = 104
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelMusicFadeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMusicFade"]
+unique_name_in_owner = true
+offset_left = -64
+offset_top = 0.5
+offset_right = -4
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioOptionsVoicePanelAmbienceFade" type="HSlider" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel"]
+unique_name_in_owner = true
+offset_left = 283
+offset_top = 379
+offset_right = 383
+offset_bottom = 396
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_37")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAmbienceFade"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_38")
+edge = SubResource("WowTexture_39")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="AudioOptionsVoicePanelAmbienceFadeText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAmbienceFade"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = -12
+offset_right = 50
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelAmbienceFadeLow" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAmbienceFade"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = 14
+offset_right = -4
+offset_bottom = 24
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Low"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelAmbienceFadeHigh" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAmbienceFade"]
+unique_name_in_owner = true
+offset_left = 104
+offset_top = 14
+offset_right = 104
+offset_bottom = 24
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "High"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioOptionsVoicePanelAmbienceFadeLabel" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelAmbienceFade"]
+unique_name_in_owner = true
+offset_left = -64
+offset_top = 0.5
+offset_right = -4
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
+text = "Ambience"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioOptionsFrameCancel" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
 layout_mode = 1
 anchor_left = 1
 anchor_top = 1
 anchor_right = 1
 anchor_bottom = 1
-offset_left = -116
-offset_top = -37
+offset_left = -112
+offset_top = -38
 offset_right = -16
 offset_bottom = -16
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameCancel"]
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFrameCancel"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameCancel"]
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameCancel"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="SoundOptionsFrameCancel"]
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFrameCancel"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_19")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
-[node name="SoundOptionsFrameCancelText" type="Label" parent="SoundOptionsFrameCancel"]
+[node name="AudioOptionsFrameCancelText" type="Label" parent="AudioOptionsFrameCancel"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameCancel"]
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameCancel"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_21")
+texture = SubResource("AtlasTexture_56")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
+material = SubResource("CanvasItemMaterial_23")
 
-[node name="SoundOptionsFrameOkay" type="TextureButton" parent="."]
+[node name="AudioOptionsFrameOkay" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("4")
 layout_mode = 1
 anchor_left = 1
 anchor_top = 1
 anchor_right = 1
 anchor_bottom = 1
-offset_left = -216
-offset_top = -37
-offset_right = -116
+offset_left = -208
+offset_top = -38
+offset_right = -112
 offset_bottom = -16
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="SoundOptionsFrameOkay"]
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFrameOkay"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="SoundOptionsFrameOkay"]
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameOkay"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="SoundOptionsFrameOkay"]
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFrameOkay"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_19")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
-[node name="SoundOptionsFrameOkayText" type="Label" parent="SoundOptionsFrameOkay"]
+[node name="AudioOptionsFrameOkayText" type="Label" parent="AudioOptionsFrameOkay"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
 text = "Okay"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="SoundOptionsFrameOkay"]
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameOkay"]
 offset_left = 0
 offset_top = 0
-offset_right = 100
-offset_bottom = 21
+offset_right = 96
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_21")
+texture = SubResource("AtlasTexture_56")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_9")
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsFrameDefaults" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 16
+offset_top = -38
+offset_right = 112
+offset_bottom = -16
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 96
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 96
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_60")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 96
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="AudioOptionsFrameDefaultsText" type="Label" parent="AudioOptionsFrameDefaults"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 96
+offset_bottom = 22
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameDefaults"]
+offset_left = 0
+offset_top = 0
+offset_right = 96
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")

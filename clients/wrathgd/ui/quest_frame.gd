@@ -37,8 +37,8 @@ var _choice: int = -1
 var _written: float = -1.0
 var _portrait: UnitPortrait
 
-@onready var _description: Label = %QuestDescription
-@onready var _alpha_frame: Control = %TextAlphaDependentFrame
+@onready var _description: Label = %QuestInfoDescriptionText
+@onready var _alpha_frame: Control = %QuestInfoFadingFrame
 @onready var _accept: BaseButton = %QuestFrameAcceptButton
 
 
@@ -47,8 +47,8 @@ func _ready() -> void:
 		for piece: String in MATERIAL_PIECES:
 			(get_node("%" + panel + "Material" + piece) as CanvasItem).hide()
 	for label_name: String in [
-		"GreetingText", "QuestDescription", "QuestObjectiveText", "QuestProgressText",
-		"QuestRewardText", "QuestTitleText", "QuestProgressTitleText", "QuestRewardTitleText",
+		"GreetingText", "QuestInfoDescriptionText", "QuestInfoObjectivesText", "QuestProgressText",
+		"QuestInfoRewardText", "QuestInfoTitleHeader", "QuestProgressTitleText",
 	]:
 		(get_node("%" + label_name) as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	for i: int in MAX_NUM_QUESTS:
@@ -57,17 +57,15 @@ func _ready() -> void:
 		(get_node("%%QuestTitleButton%dText" % (i + 1)) as Label).autowrap_mode = \
 		TextServer.AUTOWRAP_WORD_SMART
 	for i: int in QuestRewards.MAX_NUM_ITEMS:
-		for prefix: String in ["QuestDetail", "QuestReward"]:
-			var item: BaseButton = QuestRewards.item(self, prefix, i)
-			item.mouse_entered.connect(_on_reward_entered.bind(item, i))
-			item.mouse_exited.connect(_hide_tooltip.bind(item))
-		(QuestRewards.item(self, "QuestReward", i) as BaseButton).pressed.connect(_choose.bind(i))
+		var item: BaseButton = QuestRewards.item(self, i)
+		item.mouse_entered.connect(_on_reward_entered.bind(item, i))
+		item.mouse_exited.connect(_hide_tooltip.bind(item))
+		item.pressed.connect(_choose.bind(i))
 	for i: int in MAX_REQUIRED_ITEMS:
 		var item: BaseButton = get_node("%%QuestProgressItem%d" % (i + 1))
 		item.mouse_entered.connect(_on_required_entered.bind(item, i))
 		item.mouse_exited.connect(_hide_tooltip.bind(item))
-	%QuestRewardItemHighlight.hide()
-	%QuestSpacerFrame.hide()
+	%QuestInfoItemHighlight.hide()
 	# The name frame sits above the panel art, which the scene order would draw over it.
 	move_child(%QuestNpcNameFrame, get_child_count() - 1)
 	_accept.pressed.connect(_on_accept_pressed)
@@ -148,18 +146,14 @@ func _on_greeting_received(greeting: Dictionary) -> void:
 # QuestFrameDetailPanel_OnShow.
 func _on_details_received(details: Dictionary) -> void:
 	_open(details, Page.DETAIL)
-	var title: Label = %QuestTitleText
-	title.text = details["title"]
+	QuestRewards.show_blocks(self, [QuestRewards.TEMPLATE_DETAIL1, QuestRewards.TEMPLATE_DETAIL2])
+	%QuestInfoTitleHeader.text = details["title"]
 	_description.text = QuestLog.format_text(details["text"])
-	QuestRewards.below(_description, title, 5.0)
-	_alpha_frame.position = Vector2.ZERO
-	var objective_title: Label = %QuestDetailObjectiveTitleText
-	var objectives: Label = %QuestObjectiveText
-	objectives.text = QuestLog.format_text(details["objectives"])
-	QuestRewards.below(objective_title, _description, 15.0)
-	QuestRewards.below(objectives, objective_title, 5.0)
-	_reward_items = QuestRewards.update(self, "QuestDetail", details, objectives)
-	_fit_alpha_frame()
+	%QuestInfoObjectivesText.text = QuestLog.format_text(details["objectives"])
+	_choices = 0
+	_reward_items = QuestRewards.update(self, details)
+	QuestRewards.stack(self, _alpha_frame, QuestRewards.TEMPLATE_DETAIL2)
+	QuestRewards.stack(self, %QuestDetailScrollChildFrame, QuestRewards.TEMPLATE_DETAIL1)
 	(%QuestDetailScrollFrame as WowScrollFrame).refresh()
 	_alpha_frame.modulate.a = 0.0
 	_accept.disabled = true
@@ -218,15 +212,14 @@ func _on_progress_received(progress: Dictionary) -> void:
 # QuestFrameRewardPanel_OnShow: a choice has to be picked before the quest completes.
 func _on_reward_received(reward: Dictionary) -> void:
 	_open(reward, Page.REWARD)
-	var title: Label = %QuestRewardTitleText
-	var text: Label = %QuestRewardText
-	title.text = reward["title"]
-	text.text = QuestLog.format_text(reward["text"])
-	QuestRewards.below(text, title, 5.0)
-	_reward_items = QuestRewards.update(self, "QuestReward", reward, text)
+	QuestRewards.show_blocks(self, [QuestRewards.TEMPLATE_REWARD])
+	%QuestInfoTitleHeader.text = reward["title"]
+	%QuestInfoRewardText.text = QuestLog.format_text(reward["text"])
+	_reward_items = QuestRewards.update(self, reward)
 	_choices = (reward["choices"] as Array).size()
 	_choice = -1
-	%QuestRewardItemHighlight.hide()
+	%QuestInfoItemHighlight.hide()
+	QuestRewards.stack(self, %QuestRewardScrollChildFrame, QuestRewards.TEMPLATE_REWARD)
 	(%QuestRewardScrollFrame as WowScrollFrame).refresh()
 
 
@@ -258,16 +251,6 @@ func _stack_titles(first: int, quests: Array[Dictionary], heading: Control) -> C
 	return above
 
 
-# The objectives and rewards hang off the description, so their frame grows to cover them.
-func _fit_alpha_frame() -> void:
-	var bottom: float = 0.0
-	for child: Node in _alpha_frame.get_children():
-		var control: Control = child as Control
-		if control and control.visible:
-			bottom = maxf(bottom, control.position.y + QuestRewards.height(control))
-	_alpha_frame.size = Vector2(_alpha_frame.get_parent_control().size.x, bottom)
-
-
 func _on_accept_pressed() -> void:
 	_answer_share(SHARE_ACCEPTED)
 	_send("CMSG_QUESTGIVER_ACCEPT_QUEST")
@@ -286,13 +269,13 @@ func _on_title_pressed(index: int) -> void:
 	NpcDialog.send(opcode, _guid, [quest["id"]])
 
 
-# QuestRewardItem_OnClick: only choices can be picked.
+# QuestInfoItem_OnClick: only choices can be picked.
 func _choose(index: int) -> void:
 	if index >= _choices:
 		return
 	_choice = index
-	var highlight: Control = %QuestRewardItemHighlight
-	highlight.position = QuestRewards.item(self, "QuestReward", index).position + HIGHLIGHT_OFFSET
+	var highlight: Control = %QuestInfoItemHighlight
+	highlight.position = QuestRewards.item(self, index).position + HIGHLIGHT_OFFSET
 	highlight.show()
 
 
@@ -351,10 +334,9 @@ func _on_item_info_received(_entry: int) -> void:
 		return
 	for i: int in _reward_items.size():
 		var reward: int = _reward_items[i]
-		for prefix: String in ["QuestDetail", "QuestReward"]:
-			var name_prefix: String = "%%%sItem%d" % [prefix, i + 1]
-			if reward > 0 and (get_node(name_prefix + "Name") as Label).text.is_empty():
-				var info: Dictionary = WowClient.session.get_item_info(reward)
-				(get_node(name_prefix + "Name") as Label).text = info.get("name", "")
-				var icon: TextureRect = get_node(name_prefix + "IconTexture")
-				icon.texture = Inventory.icon(reward)
+		var name_prefix: String = "%%QuestInfoItem%d" % (i + 1)
+		if reward > 0 and (get_node(name_prefix + "Name") as Label).text.is_empty():
+			var info: Dictionary = WowClient.session.get_item_info(reward)
+			(get_node(name_prefix + "Name") as Label).text = info.get("name", "")
+			var icon: TextureRect = get_node(name_prefix + "IconTexture")
+			icon.texture = Inventory.icon(reward)

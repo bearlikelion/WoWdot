@@ -62,7 +62,7 @@ file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_18"]
 atlas = SubResource("WowTexture_17")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 4, 19.2, 24)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_19"]
 
@@ -71,73 +71,91 @@ file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21"]
 atlas = SubResource("WowTexture_20")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_22"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23"]
 atlas = SubResource("WowTexture_22")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_24"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25"]
 atlas = SubResource("WowTexture_24")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_26"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27"]
 atlas = SubResource("WowTexture_26")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_29"]
 atlas = SubResource("WowTexture_28")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_30"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
 atlas = SubResource("WowTexture_30")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33"]
 atlas = SubResource("WowTexture_32")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35"]
 atlas = SubResource("WowTexture_34")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_36"]
 file = "Interface\\QuestFrame\\UI-QuestItemNameFrame.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_37"]
-file = "Interface\\QuestFrame\\UI-QuestItemHighlight.blp"
+file = "Interface\\PVPFrame\\PVP-ArenaPoints-Icon.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\Icons\\INV_Misc_Note_02.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_39"]
+atlas = SubResource("WowTexture_36")
+region = Rect2(10, 10, 5, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_36")
+region = Rect2(15, 10, 91, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
+atlas = SubResource("WowTexture_36")
+region = Rect2(106, 10, 11, 43)
+
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\QuestFrame\\UI-QuestItemHighlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
 file = "Interface\\QuestFrame\\UI-Quest-BotLeftPatch.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_39"]
+[sub_resource type="WowTexture" id="WowTexture_44"]
 file = "Interface\\QuestFrame\\UI-HorizontalBreak.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_40"]
-file = "Interface\\QuestFrame\\UI-Quest-BulletPoint.blp"
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\GossipFrame\\AvailableQuestIcon.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_41"]
+[sub_resource type="WowTexture" id="WowTexture_46"]
 file = "Interface\\QuestFrame\\UI-QuestTitleHighlight.blp"
 
 [node name="QuestFrame" type="Control"]
@@ -267,7 +285,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
-[node name="Texture4" type="TextureRect" parent="QuestFrameRewardPanel"]
+[node name="QuestFrameRewardPanelBotRight" type="TextureRect" parent="QuestFrameRewardPanel"]
+unique_name_in_owner = true
 offset_left = 256
 offset_top = 256
 offset_right = 384
@@ -357,7 +376,6 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -418,7 +436,6 @@ offset_top = 0
 offset_right = 120
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Complete Quest"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -461,16 +478,16 @@ step = 0.0
 [node name="QuestRewardScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar/QuestRewardScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_21")
@@ -479,7 +496,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar/QuestRewardScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -489,7 +506,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar/QuestRewardScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -499,7 +516,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar/QuestRewardScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -510,16 +527,16 @@ material = SubResource("CanvasItemMaterial_4")
 [node name="QuestRewardScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 302
-offset_right = 16
+offset_right = 17
 offset_bottom = 318
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar/QuestRewardScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_29")
@@ -528,7 +545,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar/QuestRewardScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -538,7 +555,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar/QuestRewardScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -548,7 +565,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameScrollBar/QuestRewardScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -571,653 +588,6 @@ offset_top = 0
 offset_right = 300
 offset_bottom = 334
 mouse_filter = 2
-
-[node name="QuestRewardTitleText" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 10
-offset_right = 290
-offset_bottom = 28
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"QuestTitleFont"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="QuestRewardText" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 33
-offset_right = 280
-offset_bottom = 46
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="QuestRewardRewardTitleText" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 56
-offset_right = 290
-offset_bottom = 74
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"QuestTitleFont"
-text = "Rewards"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="QuestRewardItemChooseText" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 79
-offset_right = 300
-offset_bottom = 92
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"QuestFont"
-text = "Choose your reward:"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="QuestRewardItemReceiveText" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 79
-offset_right = 5
-offset_bottom = 92
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="QuestRewardSpellLearnText" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="QuestRewardItem1" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem1IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem1"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem1NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem1"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem1Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem1"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem1Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem1"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem2" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem2IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem2"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem2NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem2"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem2Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem2"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem2Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem2"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem3" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem3IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem3"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem3NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem3"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem3Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem3"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem3Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem3"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem4" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem4IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem4"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem4NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem4"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem4Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem4"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem4Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem4"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem5" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem5IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem5"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem5NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem5"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem5Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem5"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem5Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem5"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem6" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem6IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem6"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem6NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem6"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem6Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem6"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem6Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem6"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem7" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem7IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem7"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem7NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem7"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem7Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem7"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem7Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem7"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem8" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem8IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem8"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem8NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem8"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem8Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem8"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem8Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem8"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem9" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem9IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem9"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem9NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem9"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem9Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem9"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem9Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem9"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardItem10" type="TextureButton" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 0
-offset_top = 0
-offset_right = 147
-offset_bottom = 41
-ignore_texture_size = true
-
-[node name="QuestRewardItem10IconTexture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem10"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 39
-offset_bottom = 39
-mouse_filter = 2
-expand_mode = 1
-
-[node name="QuestRewardItem10NameFrame" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem10"]
-unique_name_in_owner = true
-offset_left = 29
-offset_top = -12.5
-offset_right = 157
-offset_bottom = 51.5
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
-[node name="QuestRewardItem10Name" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem10"]
-unique_name_in_owner = true
-offset_left = 44
-offset_top = 1.5
-offset_right = 134
-offset_bottom = 37.5
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="QuestRewardItem10Count" type="Label" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItem10"]
-unique_name_in_owner = true
-offset_left = 35
-offset_top = 24
-offset_right = 35
-offset_bottom = 38
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"NumberFontNormal"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="QuestRewardMoneyFrame" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame" instance=ExtResource("4")]
-unique_name_in_owner = true
-offset_left = 20
-offset_top = 71.5
-offset_right = 212
-offset_bottom = 99.5
-
-[node name="QuestRewardItemHighlight" type="Control" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 256
-offset_bottom = 64
-visible = false
-mouse_filter = 2
-
-[node name="Texture" type="TextureRect" parent="QuestFrameRewardPanel/QuestRewardScrollFrame/QuestRewardScrollFrameClip/QuestRewardScrollChildFrame/QuestRewardItemHighlight"]
-offset_left = 0
-offset_top = 0
-offset_right = 256
-offset_bottom = 64
-mouse_filter = 2
-texture = SubResource("WowTexture_37")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_4")
 
 [node name="QuestFrameProgressPanel" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1255,7 +625,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
-[node name="Texture4" type="TextureRect" parent="QuestFrameProgressPanel"]
+[node name="QuestFrameProgressPanelBotRight" type="TextureRect" parent="QuestFrameProgressPanel"]
+unique_name_in_owner = true
 offset_left = 256
 offset_top = 256
 offset_right = 384
@@ -1345,7 +716,6 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1406,7 +776,6 @@ offset_top = 0
 offset_right = 120
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1449,16 +818,16 @@ step = 0.0
 [node name="QuestProgressScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar/QuestProgressScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_21")
@@ -1467,7 +836,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar/QuestProgressScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1477,7 +846,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar/QuestProgressScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1487,7 +856,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar/QuestProgressScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1498,16 +867,16 @@ material = SubResource("CanvasItemMaterial_4")
 [node name="QuestProgressScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 302
-offset_right = 16
+offset_right = 17
 offset_bottom = 318
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar/QuestProgressScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_29")
@@ -1516,7 +885,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar/QuestProgressScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1526,7 +895,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar/QuestProgressScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1536,7 +905,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameScrollBar/QuestProgressScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1665,9 +1034,9 @@ grow_vertical = 2
 
 [node name="QuestProgressItem1Count" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame/QuestProgressItem1"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1719,9 +1088,9 @@ grow_vertical = 2
 
 [node name="QuestProgressItem2Count" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame/QuestProgressItem2"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1773,9 +1142,9 @@ grow_vertical = 2
 
 [node name="QuestProgressItem3Count" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame/QuestProgressItem3"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1827,9 +1196,9 @@ grow_vertical = 2
 
 [node name="QuestProgressItem4Count" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame/QuestProgressItem4"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1881,9 +1250,9 @@ grow_vertical = 2
 
 [node name="QuestProgressItem5Count" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame/QuestProgressItem5"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1935,9 +1304,9 @@ grow_vertical = 2
 
 [node name="QuestProgressItem6Count" type="Label" parent="QuestFrameProgressPanel/QuestProgressScrollFrame/QuestProgressScrollFrameClip/QuestProgressScrollChildFrame/QuestProgressItem6"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1982,7 +1351,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
-[node name="Texture4" type="TextureRect" parent="QuestFrameDetailPanel"]
+[node name="QuestFrameDetailPanelBotRight" type="TextureRect" parent="QuestFrameDetailPanel"]
+unique_name_in_owner = true
 offset_left = 256
 offset_top = 256
 offset_right = 384
@@ -2072,7 +1442,6 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Decline"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2133,7 +1502,6 @@ offset_top = 0
 offset_right = 77
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Accept"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2176,16 +1544,16 @@ step = 0.0
 [node name="QuestDetailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar/QuestDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_21")
@@ -2194,7 +1562,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar/QuestDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2204,7 +1572,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar/QuestDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2214,7 +1582,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar/QuestDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2225,16 +1593,16 @@ material = SubResource("CanvasItemMaterial_4")
 [node name="QuestDetailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 302
-offset_right = 16
+offset_right = 17
 offset_bottom = 318
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar/QuestDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_29")
@@ -2243,7 +1611,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar/QuestDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2253,7 +1621,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar/QuestDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2263,7 +1631,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameScrollBar/QuestDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2287,133 +1655,206 @@ offset_right = 300
 offset_bottom = 334
 mouse_filter = 2
 
-[node name="QuestTitleText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
+[node name="QuestInfoFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
 unique_name_in_owner = true
-offset_left = 5
-offset_top = 10
-offset_right = 290
-offset_bottom = 28
-grow_horizontal = 1
-grow_vertical = 1
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 100
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoTitleHeader" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 18
 mouse_filter = 2
 theme_type_variation = &"QuestTitleFont"
+text = "Quest title"
 horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="QuestDescription" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
+[node name="QuestInfoObjectivesText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
-offset_left = 5
-offset_top = 33
-offset_right = 275
-offset_bottom = 46
-grow_horizontal = 1
-grow_vertical = 1
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 13
 mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="TextAlphaDependentFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 51
-offset_right = 6
-offset_bottom = 52
-mouse_filter = 2
-
-[node name="QuestDetailObjectiveTitleText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoRewardText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = 10
+offset_top = 0
 offset_right = 285
-offset_bottom = 28
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoRequiredMoneyText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 100
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+text = "Required Money:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoGroupSize" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 100
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoAnchor" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 100
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoDescriptionHeader" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"QuestTitleFont"
+text = "Description"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjectivesHeader" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 18
 mouse_filter = 2
 theme_type_variation = &"QuestTitleFont"
 text = "Quest Objectives"
 horizontal_alignment = 0
 vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
 
-[node name="QuestObjectiveText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoDescriptionText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = 33
-offset_right = 270
-offset_bottom = 46
-grow_horizontal = 1
-grow_vertical = 1
+offset_top = 0
+offset_right = 285
+offset_bottom = 13
 mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="QuestDetailRewardTitleText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoFadingFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = 61
+offset_top = 0
+offset_right = 1
+offset_bottom = 1
+mouse_filter = 2
+
+[node name="QuestInfoSpacerFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 5
+mouse_filter = 2
+
+[node name="QuestInfoRewardsFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 162
+offset_right = 292.5
+offset_bottom = 172
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoRewardsHeader" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
 offset_right = 285
-offset_bottom = 79
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"QuestTitleFont"
 text = "Rewards"
 horizontal_alignment = 0
 vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
 
-[node name="QuestDetailItemChooseText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItemChooseText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = 84
-offset_right = 295
-offset_bottom = 97
+offset_top = 23
+offset_right = 285
+offset_bottom = 36
 grow_horizontal = 1
 grow_vertical = 1
+visible = false
 mouse_filter = 2
 theme_type_variation = &"QuestFont"
 text = "You will be able to choose one of these rewards:"
 horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="QuestDetailItemReceiveText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItemReceiveText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 0
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"QuestFont"
-text = "Reward receive text"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="QuestDetailSpellLearnText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 1
+offset_right = 285
+offset_bottom = 10
 visible = false
 mouse_filter = 2
 theme_type_variation = &"QuestFont"
 horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="QuestDetailItem1" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoSpellLearnText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 10
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoItem1" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem1IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem1"]
+[node name="QuestInfoItem1IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem1"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2422,7 +1863,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem1NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem1"]
+[node name="QuestInfoItem1NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem1"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2432,7 +1873,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem1Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem1"]
+[node name="QuestInfoItem1Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem1"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2445,11 +1886,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem1Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem1"]
+[node name="QuestInfoItem1Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem1"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2458,16 +1899,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem2" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem2" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem2IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem2"]
+[node name="QuestInfoItem2IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem2"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2476,7 +1918,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem2NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem2"]
+[node name="QuestInfoItem2NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem2"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2486,7 +1928,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem2Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem2"]
+[node name="QuestInfoItem2Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem2"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2499,11 +1941,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem2Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem2"]
+[node name="QuestInfoItem2Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem2"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2512,16 +1954,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem3" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem3" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem3IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem3"]
+[node name="QuestInfoItem3IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem3"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2530,7 +1973,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem3NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem3"]
+[node name="QuestInfoItem3NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem3"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2540,7 +1983,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem3Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem3"]
+[node name="QuestInfoItem3Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem3"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2553,11 +1996,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem3Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem3"]
+[node name="QuestInfoItem3Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem3"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2566,16 +2009,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem4" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem4" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem4IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem4"]
+[node name="QuestInfoItem4IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem4"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2584,7 +2028,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem4NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem4"]
+[node name="QuestInfoItem4NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem4"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2594,7 +2038,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem4Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem4"]
+[node name="QuestInfoItem4Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem4"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2607,11 +2051,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem4Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem4"]
+[node name="QuestInfoItem4Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem4"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2620,16 +2064,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem5" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem5" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem5IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem5"]
+[node name="QuestInfoItem5IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem5"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2638,7 +2083,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem5NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem5"]
+[node name="QuestInfoItem5NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem5"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2648,7 +2093,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem5Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem5"]
+[node name="QuestInfoItem5Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem5"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2661,11 +2106,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem5Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem5"]
+[node name="QuestInfoItem5Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem5"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2674,16 +2119,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem6" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem6" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem6IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem6"]
+[node name="QuestInfoItem6IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem6"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2692,7 +2138,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem6NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem6"]
+[node name="QuestInfoItem6NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem6"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2702,7 +2148,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem6Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem6"]
+[node name="QuestInfoItem6Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem6"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2715,11 +2161,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem6Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem6"]
+[node name="QuestInfoItem6Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem6"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2728,16 +2174,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem7" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem7" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem7IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem7"]
+[node name="QuestInfoItem7IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem7"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2746,7 +2193,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem7NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem7"]
+[node name="QuestInfoItem7NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem7"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2756,7 +2203,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem7Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem7"]
+[node name="QuestInfoItem7Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem7"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2769,11 +2216,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem7Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem7"]
+[node name="QuestInfoItem7Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem7"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2782,16 +2229,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem8" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem8" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem8IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem8"]
+[node name="QuestInfoItem8IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem8"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2800,7 +2248,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem8NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem8"]
+[node name="QuestInfoItem8NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem8"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2810,7 +2258,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem8Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem8"]
+[node name="QuestInfoItem8Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem8"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2823,11 +2271,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem8Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem8"]
+[node name="QuestInfoItem8Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem8"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2836,16 +2284,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem9" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem9" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem9IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem9"]
+[node name="QuestInfoItem9IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem9"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2854,7 +2303,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem9NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem9"]
+[node name="QuestInfoItem9NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem9"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2864,7 +2313,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem9Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem9"]
+[node name="QuestInfoItem9Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem9"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2877,11 +2326,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem9Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem9"]
+[node name="QuestInfoItem9Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem9"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2890,16 +2339,17 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailItem10" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame"]
+[node name="QuestInfoItem10" type="TextureButton" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
 offset_top = 0
 offset_right = 147
 offset_bottom = 41
+visible = false
 ignore_texture_size = true
 
-[node name="QuestDetailItem10IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem10"]
+[node name="QuestInfoItem10IconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem10"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2908,7 +2358,7 @@ offset_bottom = 39
 mouse_filter = 2
 expand_mode = 1
 
-[node name="QuestDetailItem10NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem10"]
+[node name="QuestInfoItem10NameFrame" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem10"]
 unique_name_in_owner = true
 offset_left = 29
 offset_top = -12.5
@@ -2918,7 +2368,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_36")
 expand_mode = 1
 
-[node name="QuestDetailItem10Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem10"]
+[node name="QuestInfoItem10Name" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem10"]
 unique_name_in_owner = true
 offset_left = 44
 offset_top = 1.5
@@ -2931,11 +2381,11 @@ vertical_alignment = 1
 grow_horizontal = 1
 grow_vertical = 2
 
-[node name="QuestDetailItem10Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame/QuestDetailItem10"]
+[node name="QuestInfoItem10Count" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItem10"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2944,20 +2394,836 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="QuestDetailMoneyFrame" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/TextAlphaDependentFrame" instance=ExtResource("4")]
+[node name="QuestInfoMoneyFrame" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame" instance=ExtResource("4")]
+unique_name_in_owner = true
+offset_left = 300
+offset_top = -9
+offset_right = 492
+offset_bottom = 19
+
+[node name="QuestInfoHonorFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 500
+offset_bottom = 20
+mouse_filter = 2
+
+[node name="QuestInfoHonorFrameReceiveText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoHonorFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3.5
+offset_right = 0
+offset_bottom = 16.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Bonus honor:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoHonorFramePoints" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoHonorFrame"]
 unique_name_in_owner = true
 offset_left = 15
-offset_top = -7.5
-offset_right = 207
-offset_bottom = 20.5
-
-[node name="QuestSpacerFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
-unique_name_in_owner = true
-offset_left = 147.5
-offset_top = 0
-offset_right = 152.5
-offset_bottom = 25
+offset_top = 2
+offset_right = 15
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoHonorFrameIcon" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoHonorFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 0
+offset_right = 47
+offset_bottom = 32
+mouse_filter = 2
+expand_mode = 1
+
+[node name="QuestInfoArenaPointsFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 500
+offset_bottom = 20
+mouse_filter = 2
+
+[node name="QuestInfoArenaPointsFrameReceiveText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoArenaPointsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3.5
+offset_right = 0
+offset_bottom = 16.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Bonus arena points:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoArenaPointsFramePoints" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoArenaPointsFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 2
+offset_right = 15
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoArenaPointsFrameIcon" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoArenaPointsFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 2.5
+offset_right = 32
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="QuestInfoTalentFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 500
+offset_bottom = 20
+mouse_filter = 2
+
+[node name="QuestInfoTalentFrameReceiveText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoTalentFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3.5
+offset_right = 0
+offset_bottom = 16.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Bonus talents:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoTalentFramePoints" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoTalentFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 2
+offset_right = 15
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoXPFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 280
+offset_bottom = 20
+mouse_filter = 2
+
+[node name="QuestInfoXPFrameReceiveText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoXPFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3.5
+offset_right = 0
+offset_bottom = 16.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Experience:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoXPFramePoints" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoXPFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 2
+offset_right = 15
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoPlayerTitleFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 500
+offset_bottom = 40
+mouse_filter = 2
+
+[node name="QuestInfoPlayerTitleFrameIconTexture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoPlayerTitleFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+
+[node name="QuestInfoPlayerTitleFrameTitleFrameLeft" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoPlayerTitleFrame"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = -0.5
+offset_right = 45
+offset_bottom = 39.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_39")
+expand_mode = 1
+
+[node name="QuestInfoPlayerTitleFrameTitleFrameCenter" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoPlayerTitleFrame"]
+unique_name_in_owner = true
+offset_left = 45
+offset_top = -0.5
+offset_right = 245
+offset_bottom = 39.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoPlayerTitleFrame"]
+offset_left = 245
+offset_top = -0.5
+offset_right = 256
+offset_bottom = 39.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_41")
+expand_mode = 1
+
+[node name="QuestInfoPlayerTitleFrameTitleLabel" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoPlayerTitleFrame"]
+unique_name_in_owner = true
+offset_left = 49
+offset_top = 8.5
+offset_right = 249
+offset_bottom = 20.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "You shall be granted the title:"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="QuestInfoPlayerTitleFrameTitle" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoPlayerTitleFrame"]
+unique_name_in_owner = true
+offset_left = 49
+offset_top = 20.5
+offset_right = 49
+offset_bottom = 32.5
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="QuestInfoItemHighlight" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 64
+visible = false
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoItemHighlight"]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 64
+mouse_filter = 2
+texture = SubResource("WowTexture_42")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="QuestInfoReputationsFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -45
+offset_right = 285
+offset_bottom = 55
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputationText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Reputation awards:"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation1" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 15
+offset_right = 280
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation1Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation1Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation1"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation2" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 32
+offset_right = 280
+offset_bottom = 47
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation2Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation2Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation2"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation3" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 49
+offset_right = 280
+offset_bottom = 64
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation3Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation3Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation3"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation4" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 66
+offset_right = 280
+offset_bottom = 81
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation4Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation4Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation4"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation5" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 83
+offset_right = 280
+offset_bottom = 98
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation5Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation5Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation5"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation6" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 100
+offset_right = 280
+offset_bottom = 115
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation6Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation6Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation6"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation7" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 117
+offset_right = 280
+offset_bottom = 132
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation7Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation7Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation7"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation8" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 134
+offset_right = 280
+offset_bottom = 149
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation8Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation8Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation8"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation9" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 151
+offset_right = 280
+offset_bottom = 166
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation9Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation9Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation9"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoReputation10" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 168
+offset_right = 280
+offset_bottom = 183
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoReputation10Faction" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoReputation10Amount" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRewardsFrame/QuestInfoReputationsFrame/QuestInfoReputation10"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = -0.5
+offset_right = 15
+offset_bottom = 15.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjectivesFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 162
+offset_right = 292.5
+offset_bottom = 172
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoObjective1" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 12
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective2" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 14
+offset_right = 285
+offset_bottom = 26
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective3" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 28
+offset_right = 285
+offset_bottom = 40
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective4" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 42
+offset_right = 285
+offset_bottom = 54
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective5" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 56
+offset_right = 285
+offset_bottom = 68
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective6" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 70
+offset_right = 285
+offset_bottom = 82
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective7" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 84
+offset_right = 285
+offset_bottom = 96
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective8" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 98
+offset_right = 285
+offset_bottom = 110
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective9" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 112
+offset_right = 285
+offset_bottom = 124
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoObjective10" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoObjectivesFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 126
+offset_right = 285
+offset_bottom = 138
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoTimerFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 149.5
+offset_top = 166.5
+offset_right = 150.5
+offset_bottom = 167.5
+visible = false
+mouse_filter = 2
+
+[node name="QuestInfoTimerText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoTimerFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 12
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="QuestInfoRequiredMoneyFrame" type="Control" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 285
+offset_bottom = 28
+mouse_filter = 2
+
+[node name="QuestInfoRequiredMoneyText" type="Label" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRequiredMoneyFrame"]
+offset_left = 0
+offset_top = 8
+offset_right = 0
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"QuestFontNormalSmall"
+text = "Required Money:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestInfoRequiredMoneyDisplay" parent="QuestFrameDetailPanel/QuestDetailScrollFrame/QuestDetailScrollFrameClip/QuestDetailScrollChildFrame/QuestInfoRequiredMoneyFrame" instance=ExtResource("4")]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 0
+offset_right = 202
+offset_bottom = 28
 
 [node name="QuestFrameGreetingPanel" type="Control" parent="."]
 unique_name_in_owner = true
@@ -2995,7 +3261,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
-[node name="Texture4" type="TextureRect" parent="QuestFrameGreetingPanel"]
+[node name="QuestFrameGreetingPanelBotRight" type="TextureRect" parent="QuestFrameGreetingPanel"]
+unique_name_in_owner = true
 offset_left = 256
 offset_top = 256
 offset_right = 384
@@ -3040,13 +3307,13 @@ offset_bottom = 444
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Texture5" type="TextureRect" parent="QuestFrameGreetingPanel"]
+[node name="Texture4" type="TextureRect" parent="QuestFrameGreetingPanel"]
 offset_left = 22
 offset_top = 380
 offset_right = 150
 offset_bottom = 444
 mouse_filter = 2
-texture = SubResource("WowTexture_38")
+texture = SubResource("WowTexture_43")
 expand_mode = 1
 
 [node name="QuestFrameGreetingGoodbyeButton" type="TextureButton" parent="QuestFrameGreetingPanel"]
@@ -3094,7 +3361,6 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Goodbye"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3137,16 +3403,16 @@ step = 0.0
 [node name="QuestGreetingScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar/QuestGreetingScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_21")
@@ -3155,7 +3421,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar/QuestGreetingScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3165,7 +3431,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar/QuestGreetingScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3175,7 +3441,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar/QuestGreetingScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3186,16 +3452,16 @@ material = SubResource("CanvasItemMaterial_4")
 [node name="QuestGreetingScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 302
-offset_right = 16
+offset_right = 17
 offset_bottom = 318
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar/QuestGreetingScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_29")
@@ -3204,7 +3470,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar/QuestGreetingScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3214,7 +3480,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar/QuestGreetingScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3224,7 +3490,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameScrollBar/QuestGreetingScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3283,7 +3549,7 @@ offset_top = -5
 offset_right = 278
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("WowTexture_39")
+texture = SubResource("WowTexture_44")
 expand_mode = 1
 
 [node name="AvailableQuestsText" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame"]
@@ -3304,18 +3570,19 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton1"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton1QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton1"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton1Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton1"]
@@ -3323,12 +3590,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton1"]
@@ -3338,7 +3604,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3346,18 +3612,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton2"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton2QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton2"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton2Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton2"]
@@ -3365,12 +3632,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton2"]
@@ -3380,7 +3646,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3388,18 +3654,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton3"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton3QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton3"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton3Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton3"]
@@ -3407,12 +3674,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton3"]
@@ -3422,7 +3688,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3430,18 +3696,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton4"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton4QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton4"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton4Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton4"]
@@ -3449,12 +3716,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton4"]
@@ -3464,7 +3730,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3472,18 +3738,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton5"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton5QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton5"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton5Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton5"]
@@ -3491,12 +3758,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton5"]
@@ -3506,7 +3772,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3514,18 +3780,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton6"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton6QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton6"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton6Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton6"]
@@ -3533,12 +3800,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton6"]
@@ -3548,7 +3814,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3556,18 +3822,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton7"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton7QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton7"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton7Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton7"]
@@ -3575,12 +3842,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton7"]
@@ -3590,7 +3856,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3598,18 +3864,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton8"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton8QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton8"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton8Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton8"]
@@ -3617,12 +3884,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton8"]
@@ -3632,7 +3898,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3640,18 +3906,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton9"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton9QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton9"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton9Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton9"]
@@ -3659,12 +3926,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton9"]
@@ -3674,7 +3940,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3682,18 +3948,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton10"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton10QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton10"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton10Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton10"]
@@ -3701,12 +3968,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton10"]
@@ -3716,7 +3982,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3724,18 +3990,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton11"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton11QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton11"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton11Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton11"]
@@ -3743,12 +4010,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton11"]
@@ -3758,7 +4024,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3766,18 +4032,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton12"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton12QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton12"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton12Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton12"]
@@ -3785,12 +4052,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton12"]
@@ -3800,7 +4066,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3808,18 +4074,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton13"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton13QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton13"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton13Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton13"]
@@ -3827,12 +4094,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton13"]
@@ -3842,7 +4108,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3850,18 +4116,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton14"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton14QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton14"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton14Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton14"]
@@ -3869,12 +4136,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton14"]
@@ -3884,7 +4150,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3892,18 +4158,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton15"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton15QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton15"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton15Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton15"]
@@ -3911,12 +4178,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton15"]
@@ -3926,7 +4192,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3934,18 +4200,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton16"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton16QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton16"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton16Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton16"]
@@ -3953,12 +4220,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton16"]
@@ -3968,7 +4234,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -3976,18 +4242,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton17"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton17QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton17"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton17Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton17"]
@@ -3995,12 +4262,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton17"]
@@ -4010,7 +4276,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4018,18 +4284,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton18"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton18QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton18"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton18Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton18"]
@@ -4037,12 +4304,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton18"]
@@ -4052,7 +4318,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4060,18 +4326,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton19"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton19QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton19"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton19Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton19"]
@@ -4079,12 +4346,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton19"]
@@ -4094,7 +4360,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4102,18 +4368,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton20"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton20QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton20"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton20Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton20"]
@@ -4121,12 +4388,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton20"]
@@ -4136,7 +4402,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4144,18 +4410,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton21"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton21QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton21"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton21Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton21"]
@@ -4163,12 +4430,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton21"]
@@ -4178,7 +4444,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4186,18 +4452,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton22"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton22QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton22"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton22Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton22"]
@@ -4205,12 +4472,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton22"]
@@ -4220,7 +4486,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4228,18 +4494,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton23"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton23QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton23"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton23Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton23"]
@@ -4247,12 +4514,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton23"]
@@ -4262,7 +4528,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4270,18 +4536,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton24"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton24QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton24"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton24Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton24"]
@@ -4289,12 +4556,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton24"]
@@ -4304,7 +4570,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4312,18 +4578,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton25"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton25QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton25"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton25Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton25"]
@@ -4331,12 +4598,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton25"]
@@ -4346,7 +4612,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4354,18 +4620,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton26"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton26QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton26"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton26Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton26"]
@@ -4373,12 +4640,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton26"]
@@ -4388,7 +4654,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4396,18 +4662,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton27"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton27QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton27"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton27Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton27"]
@@ -4415,12 +4682,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton27"]
@@ -4430,7 +4696,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4438,18 +4704,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton28"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton28QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton28"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton28Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton28"]
@@ -4457,12 +4724,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton28"]
@@ -4472,7 +4738,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4480,18 +4746,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton29"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton29QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton29"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton29Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton29"]
@@ -4499,12 +4766,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton29"]
@@ -4514,7 +4780,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4522,18 +4788,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton30"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton30QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton30"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton30Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton30"]
@@ -4541,12 +4808,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton30"]
@@ -4556,7 +4822,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4564,18 +4830,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton31"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton31QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton31"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton31Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton31"]
@@ -4583,12 +4850,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton31"]
@@ -4598,7 +4864,7 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -4606,18 +4872,19 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 61
+offset_top = 71
 offset_right = 300
-offset_bottom = 77
+offset_bottom = 87
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton32"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+[node name="QuestTitleButton32QuestIcon" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton32"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = -2
+offset_right = 20
+offset_bottom = 14
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="QuestTitleButton32Text" type="Label" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton32"]
@@ -4625,12 +4892,11 @@ unique_name_in_owner = true
 offset_left = 20
 offset_top = 0
 offset_right = 295
-offset_bottom = 13
+offset_bottom = 0
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="QuestFrameGreetingPanel/QuestGreetingScrollFrame/QuestGreetingScrollFrameClip/QuestGreetingScrollChildFrame/QuestTitleButton32"]
@@ -4640,6 +4906,6 @@ offset_right = 300
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_41")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")

@@ -10,7 +10,6 @@ const CONTESTED: Color = Color(1.0, 0.7, 0.0)
 @onready var _zone_text: Label = %MinimapZoneText
 @onready var _zoom_in: BaseButton = %MinimapZoomIn
 @onready var _zoom_out: BaseButton = %MinimapZoomOut
-@onready var _toggle: BaseButton = %MinimapToggleButton
 @onready var _game_time: TextureRect = %GameTimeTexture
 
 
@@ -19,7 +18,6 @@ func _ready() -> void:
 	_zone_text.theme_type_variation = &"GameFontHighlight"
 	_zoom_in.pressed.connect(func() -> void: _view.zoom += 1)
 	_zoom_out.pressed.connect(func() -> void: _view.zoom -= 1)
-	_toggle.pressed.connect(func() -> void: _view.visible = not _view.visible)
 	_view.zoom_changed.connect(_on_zoom_changed)
 	_on_zoom_changed(_view.zoom)
 	var indicator: AtlasTexture = AtlasTexture.new()

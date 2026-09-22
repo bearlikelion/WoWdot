@@ -20,122 +20,146 @@ file = "Interface\\BattlefieldFrame\\UI-Battlefield-BotLeft.blp"
 file = "Interface\\BattlefieldFrame\\UI-Battlefield-BotRight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_6"]
-file = "Interface\\Buttons\\UI-Listbox-Highlight2.blp"
+file = "Interface\\PVPFrame\\PvpRandomBg.blp"
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7"]
-blend_mode = 1
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(0, 0, 333.005, 240.998)
 
 [sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-Listbox-Highlight2.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_9"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
-atlas = SubResource("WowTexture_8")
-region = Rect2(0, 0, 31, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
-atlas = SubResource("WowTexture_8")
-region = Rect2(33, 0, 31, 106)
-
-[sub_resource type="WowTexture" id="WowTexture_11"]
-file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 31, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12"]
-atlas = SubResource("WowTexture_11")
-region = Rect2(8, 8, 16, 16)
+atlas = SubResource("WowTexture_10")
+region = Rect2(33, 42, 31, 64)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_13"]
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_14"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(6.4, 4, 19.2, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
-atlas = SubResource("WowTexture_14")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_15"]
 
 [sub_resource type="WowTexture" id="WowTexture_16"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17"]
 atlas = SubResource("WowTexture_16")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_18"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_19"]
 atlas = SubResource("WowTexture_18")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_20"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21"]
 atlas = SubResource("WowTexture_20")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_22"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23"]
 atlas = SubResource("WowTexture_22")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_24"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25"]
 atlas = SubResource("WowTexture_24")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_26"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27"]
 atlas = SubResource("WowTexture_26")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_29"]
 atlas = SubResource("WowTexture_28")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_30"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
 atlas = SubResource("WowTexture_30")
-region = Rect2(0, 0, 80, 22)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
-file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ScrollBar.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33"]
 atlas = SubResource("WowTexture_32")
-region = Rect2(0, 0, 80, 22)
+region = Rect2(0, 0, 30, 128)
 
-[sub_resource type="WowTexture" id="WowTexture_34"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_32")
+region = Rect2(34, 0, 30, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_35"]
-atlas = SubResource("WowTexture_34")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\PVPFrame\\PVP-Currency-Horde.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_36"]
-file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+file = "Interface\\PVPFrame\\PVP-ArenaPoints-Icon.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_37"]
-atlas = SubResource("WowTexture_36")
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_38"]
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
+atlas = SubResource("WowTexture_43")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_39"]
+[sub_resource type="WowTexture" id="WowTexture_46"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_40"]
+[sub_resource type="WowTexture" id="WowTexture_47"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
 
 [node name="BattlefieldFrame" type="Control"]
@@ -241,18 +265,19 @@ text = "Battlefield Instance:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BattlefieldFrameZoneDescription" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 30
-offset_top = 290
-offset_right = 323
-offset_bottom = 405
+[node name="Texture5" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -177.5
+offset_top = -341
+offset_right = 155.5
+offset_bottom = -100
 mouse_filter = 2
-theme_type_variation = &"GameFontBlack"
-horizontal_alignment = 0
-vertical_alignment = 0
-grow_horizontal = 1
-grow_vertical = 1
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
 
 [node name="BattlefieldZone1" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -264,30 +289,16 @@ offset_bottom = 95
 visible = false
 ignore_texture_size = true
 
-[node name="BattlefieldZone1Status" type="Label" parent="BattlefieldZone1"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BattlefieldZone1Text" type="Label" parent="BattlefieldZone1"]
 unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone1"]
@@ -297,9 +308,24 @@ offset_right = 293
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="Frame" type="Control" parent="BattlefieldZone1"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="BattlefieldZone1/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
 
 [node name="BattlefieldZone2" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -311,30 +337,16 @@ offset_bottom = 111
 visible = false
 ignore_texture_size = true
 
-[node name="BattlefieldZone2Status" type="Label" parent="BattlefieldZone2"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BattlefieldZone2Text" type="Label" parent="BattlefieldZone2"]
 unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone2"]
@@ -344,9 +356,24 @@ offset_right = 293
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="Frame" type="Control" parent="BattlefieldZone2"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="BattlefieldZone2/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
 
 [node name="BattlefieldZone3" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -358,30 +385,16 @@ offset_bottom = 127
 visible = false
 ignore_texture_size = true
 
-[node name="BattlefieldZone3Status" type="Label" parent="BattlefieldZone3"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BattlefieldZone3Text" type="Label" parent="BattlefieldZone3"]
 unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone3"]
@@ -391,9 +404,24 @@ offset_right = 293
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="Frame" type="Control" parent="BattlefieldZone3"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="BattlefieldZone3/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
 
 [node name="BattlefieldZone4" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -405,30 +433,16 @@ offset_bottom = 143
 visible = false
 ignore_texture_size = true
 
-[node name="BattlefieldZone4Status" type="Label" parent="BattlefieldZone4"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BattlefieldZone4Text" type="Label" parent="BattlefieldZone4"]
 unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone4"]
@@ -438,9 +452,24 @@ offset_right = 293
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="Frame" type="Control" parent="BattlefieldZone4"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="BattlefieldZone4/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
 
 [node name="BattlefieldZone5" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -452,30 +481,16 @@ offset_bottom = 159
 visible = false
 ignore_texture_size = true
 
-[node name="BattlefieldZone5Status" type="Label" parent="BattlefieldZone5"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BattlefieldZone5Text" type="Label" parent="BattlefieldZone5"]
 unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone5"]
@@ -485,338 +500,24 @@ offset_right = 293
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")
 
-[node name="BattlefieldZone6" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 23
-offset_top = 159
-offset_right = 316
-offset_bottom = 175
-visible = false
-ignore_texture_size = true
-
-[node name="BattlefieldZone6Status" type="Label" parent="BattlefieldZone6"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BattlefieldZone6Text" type="Label" parent="BattlefieldZone6"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone6"]
+[node name="Frame" type="Control" parent="BattlefieldZone5"]
 offset_left = 0
 offset_top = 0
-offset_right = 293
+offset_right = 16
 offset_bottom = 16
-visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+
+[node name="Texture" type="TextureRect" parent="BattlefieldZone5/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
-
-[node name="BattlefieldZone7" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 23
-offset_top = 175
-offset_right = 316
-offset_bottom = 191
-visible = false
-ignore_texture_size = true
-
-[node name="BattlefieldZone7Status" type="Label" parent="BattlefieldZone7"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BattlefieldZone7Text" type="Label" parent="BattlefieldZone7"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone7"]
-offset_left = 0
-offset_top = 0
-offset_right = 293
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
-
-[node name="BattlefieldZone8" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 23
-offset_top = 191
-offset_right = 316
-offset_bottom = 207
-visible = false
-ignore_texture_size = true
-
-[node name="BattlefieldZone8Status" type="Label" parent="BattlefieldZone8"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BattlefieldZone8Text" type="Label" parent="BattlefieldZone8"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone8"]
-offset_left = 0
-offset_top = 0
-offset_right = 293
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
-
-[node name="BattlefieldZone9" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 23
-offset_top = 207
-offset_right = 316
-offset_bottom = 223
-visible = false
-ignore_texture_size = true
-
-[node name="BattlefieldZone9Status" type="Label" parent="BattlefieldZone9"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BattlefieldZone9Text" type="Label" parent="BattlefieldZone9"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone9"]
-offset_left = 0
-offset_top = 0
-offset_right = 293
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
-
-[node name="BattlefieldZone10" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 23
-offset_top = 223
-offset_right = 316
-offset_bottom = 239
-visible = false
-ignore_texture_size = true
-
-[node name="BattlefieldZone10Status" type="Label" parent="BattlefieldZone10"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BattlefieldZone10Text" type="Label" parent="BattlefieldZone10"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone10"]
-offset_left = 0
-offset_top = 0
-offset_right = 293
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
-
-[node name="BattlefieldZone11" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 23
-offset_top = 239
-offset_right = 316
-offset_bottom = 255
-visible = false
-ignore_texture_size = true
-
-[node name="BattlefieldZone11Status" type="Label" parent="BattlefieldZone11"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BattlefieldZone11Text" type="Label" parent="BattlefieldZone11"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone11"]
-offset_left = 0
-offset_top = 0
-offset_right = 293
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
-
-[node name="BattlefieldZone12" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 23
-offset_top = 255
-offset_right = 316
-offset_bottom = 271
-visible = false
-ignore_texture_size = true
-
-[node name="BattlefieldZone12Status" type="Label" parent="BattlefieldZone12"]
-unique_name_in_owner = true
-offset_left = 283
-offset_top = 2
-offset_right = 283
-offset_bottom = 14
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BattlefieldZone12Text" type="Label" parent="BattlefieldZone12"]
-unique_name_in_owner = true
-offset_left = 5
-offset_top = 1
-offset_right = 5
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone12"]
-offset_left = 0
-offset_top = 0
-offset_right = 293
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
 
 [node name="BattlefieldListScrollFrame" type="Control" parent="."]
 unique_name_in_owner = true
@@ -827,25 +528,25 @@ anchor_right = 1
 offset_left = -363
 offset_top = 74
 offset_right = -67
-offset_bottom = 275
+offset_bottom = 169
 mouse_filter = 0
 
 [node name="Texture" type="TextureRect" parent="BattlefieldListScrollFrame"]
 offset_left = 294
 offset_top = -5
 offset_right = 325
-offset_bottom = 123
+offset_bottom = 59
 mouse_filter = 2
-texture = SubResource("AtlasTexture_9")
+texture = SubResource("AtlasTexture_11")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="BattlefieldListScrollFrame"]
 offset_left = 294
-offset_top = 97
+offset_top = 33
 offset_right = 325
-offset_bottom = 203
+offset_bottom = 97
 mouse_filter = 2
-texture = SubResource("AtlasTexture_10")
+texture = SubResource("AtlasTexture_12")
 expand_mode = 1
 
 [node name="BattlefieldListScrollFrameScrollBar" type="VSlider" parent="BattlefieldListScrollFrame"]
@@ -853,113 +554,113 @@ unique_name_in_owner = true
 offset_left = 302
 offset_top = 16
 offset_right = 318
-offset_bottom = 185
+offset_bottom = 79
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("AtlasTexture_12")
-theme_override_icons/grabber_highlight = SubResource("AtlasTexture_12")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_13")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_13")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_13")
+theme_override_icons/grabber = SubResource("AtlasTexture_14")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_14")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_15")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_15")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_15")
 max_value = 0.0
 step = 0.0
 
 [node name="BattlefieldListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_17")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollUpButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_19")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollUpButton"]
+[node name="DisabledTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_21")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+
+[node name="HighlightTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
 
 [node name="BattlefieldListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
-offset_top = 169
-offset_right = 16
-offset_bottom = 185
+offset_left = -1
+offset_top = 63
+offset_right = 17
+offset_bottom = 79
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_23")
+texture = SubResource("AtlasTexture_25")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_25")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollDownButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_27")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollDownButton"]
+[node name="DisabledTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+
+[node name="HighlightTexture" type="TextureRect" parent="BattlefieldListScrollFrame/BattlefieldListScrollFrameScrollBar/BattlefieldListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
 
 [node name="BattlefieldListScrollFrameClip" type="Control" parent="BattlefieldListScrollFrame"]
 layout_mode = 1
@@ -977,6 +678,389 @@ offset_right = 300
 offset_bottom = 334
 mouse_filter = 2
 
+[node name="BattlefieldFrameInfoScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 19
+offset_top = -332
+offset_right = 317
+offset_bottom = -100
+mouse_filter = 0
+
+[node name="Texture" type="ColorRect" parent="BattlefieldFrameInfoScrollFrame"]
+offset_left = 298
+offset_top = -5
+offset_right = 323
+offset_bottom = 234
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Texture2" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame"]
+offset_left = 295
+offset_top = -5
+offset_right = 325
+offset_bottom = 123
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame"]
+offset_left = 295
+offset_top = 106
+offset_right = 325
+offset_bottom = 234
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="BattlefieldFrameInfoScrollFrameScrollBar" type="VSlider" parent="BattlefieldFrameInfoScrollFrame"]
+unique_name_in_owner = true
+offset_left = 304
+offset_top = 16
+offset_right = 320
+offset_bottom = 216
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_14")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_14")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_15")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_15")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_15")
+max_value = 0.0
+step = 0.0
+
+[node name="BattlefieldFrameInfoScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar/BattlefieldFrameInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar/BattlefieldFrameInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_19")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar/BattlefieldFrameInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_21")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar/BattlefieldFrameInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="BattlefieldFrameInfoScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 200
+offset_right = 17
+offset_bottom = 216
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar/BattlefieldFrameInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar/BattlefieldFrameInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar/BattlefieldFrameInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameScrollBar/BattlefieldFrameInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="BattlefieldFrameInfoScrollFrameClip" type="Control" parent="BattlefieldFrameInfoScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrame" type="Control" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 1
+offset_bottom = 1
+mouse_filter = 2
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameDescription" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 290
+offset_bottom = 31
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontBlackMedium"
+text = "BATTLEGROUND_LORETEXT_1"
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo" type="Control" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 298
+offset_bottom = 232
+mouse_filter = 2
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoTitle" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 15
+offset_right = 20
+offset_bottom = 33
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestTitleFontBlackShadow"
+text = "Random Battleground"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoDescription" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 38
+offset_right = 300
+offset_bottom = 51
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Completing Random Battlegrounds will earn you extra rewards."
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoRewardsLabel" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 61
+offset_right = 20
+offset_bottom = 79
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestTitleFontBlackShadow"
+text = "Rewards"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinReward" type="Control" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 94
+offset_right = 320
+offset_bottom = 134
+mouse_filter = 2
+
+[node name="Texture" type="ColorRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+offset_left = 0
+offset_top = 0
+offset_right = 319
+offset_bottom = 40
+mouse_filter = 2
+color = Color(0, 0.439, 0, 0.2)
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinRewardLabel" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 15
+offset_right = 95
+offset_bottom = 25
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightMedium"
+text = "Win"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinRewardHonorSymbol" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 4
+offset_right = 132
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinRewardHonorAmount" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 135
+offset_top = 14
+offset_right = 200
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinRewardArenaSymbol" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 205
+offset_top = 4
+offset_right = 237
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinRewardArenaAmount" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 14
+offset_right = 305
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossReward" type="Control" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 136
+offset_right = 320
+offset_bottom = 176
+mouse_filter = 2
+
+[node name="Texture" type="ColorRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+offset_left = 0
+offset_top = 0
+offset_right = 319
+offset_bottom = 40
+mouse_filter = 2
+color = Color(0.5608, 0, 0, 0.2)
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossRewardLabel" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 15
+offset_right = 95
+offset_bottom = 25
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightMedium"
+text = "Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossRewardHonorSymbol" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 4
+offset_right = 132
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossRewardHonorAmount" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 135
+offset_top = 14
+offset_right = 200
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossRewardArenaSymbol" type="TextureRect" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 205
+offset_top = 4
+offset_right = 237
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+
+[node name="BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossRewardArenaAmount" type="Label" parent="BattlefieldFrameInfoScrollFrame/BattlefieldFrameInfoScrollFrameClip/BattlefieldFrameInfoScrollFrameChildFrame/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo/BattlefieldFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 14
+offset_right = 305
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
 [node name="BattlefieldFrameCancelButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
@@ -992,7 +1076,7 @@ offset_top = 0
 offset_right = 83
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_31")
+texture = SubResource("AtlasTexture_38")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BattlefieldFrameCancelButton"]
@@ -1002,7 +1086,7 @@ offset_right = 83
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_33")
+texture = SubResource("AtlasTexture_40")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BattlefieldFrameCancelButton"]
@@ -1012,7 +1096,7 @@ offset_right = 83
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_35")
+texture = SubResource("AtlasTexture_42")
 expand_mode = 1
 
 [node name="BattlefieldFrameCancelButtonText" type="Label" parent="BattlefieldFrameCancelButton"]
@@ -1022,7 +1106,6 @@ offset_top = 0
 offset_right = 83
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1034,9 +1117,9 @@ offset_right = 83
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_37")
+texture = SubResource("AtlasTexture_44")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")
 
 [node name="BattlefieldFrameJoinButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1053,7 +1136,7 @@ offset_top = 0
 offset_right = 109
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_31")
+texture = SubResource("AtlasTexture_38")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BattlefieldFrameJoinButton"]
@@ -1063,7 +1146,7 @@ offset_right = 109
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_33")
+texture = SubResource("AtlasTexture_40")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BattlefieldFrameJoinButton"]
@@ -1073,7 +1156,7 @@ offset_right = 109
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_35")
+texture = SubResource("AtlasTexture_42")
 expand_mode = 1
 
 [node name="BattlefieldFrameJoinButtonText" type="Label" parent="BattlefieldFrameJoinButton"]
@@ -1083,7 +1166,6 @@ offset_top = 0
 offset_right = 109
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Join Battle"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1095,9 +1177,9 @@ offset_right = 109
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_37")
+texture = SubResource("AtlasTexture_44")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")
 
 [node name="BattlefieldFrameGroupJoinButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1114,7 +1196,7 @@ offset_top = 0
 offset_right = 136
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_31")
+texture = SubResource("AtlasTexture_38")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BattlefieldFrameGroupJoinButton"]
@@ -1124,7 +1206,7 @@ offset_right = 136
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_33")
+texture = SubResource("AtlasTexture_40")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BattlefieldFrameGroupJoinButton"]
@@ -1134,7 +1216,7 @@ offset_right = 136
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_35")
+texture = SubResource("AtlasTexture_42")
 expand_mode = 1
 
 [node name="BattlefieldFrameGroupJoinButtonText" type="Label" parent="BattlefieldFrameGroupJoinButton"]
@@ -1144,7 +1226,6 @@ offset_top = 0
 offset_right = 136
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Join as Group"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1156,9 +1237,9 @@ offset_right = 136
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_37")
+texture = SubResource("AtlasTexture_44")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")
 
 [node name="BattlefieldFrameCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1178,7 +1259,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_38")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BattlefieldFrameCloseButton"]
@@ -1188,7 +1269,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_39")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldFrameCloseButton"]
@@ -1198,6 +1279,6 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_40")
+texture = SubResource("WowTexture_47")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_9")

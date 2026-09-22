@@ -3,43 +3,45 @@ extends Control
 
 signal close_requested
 
-# Check button numbers and the global string that names each one, from UIOptionsFrame.lua.
-const CHECK_TEXTS: Dictionary[int, String] = {
-	1: "INVERT_MOUSE", 2: "STATUS_BAR_TEXT", 3: "ASSIST_ATTACK", 5: "PROFANITY_FILTER",
-	6: "CLICK_TO_MOVE", 7: "SIMPLE_CHAT_TEXT", 8: "CHAT_LOCKED_TEXT", 9: "SHOW_PET_MELEE_DAMAGE",
-	11: "LOG_PERIODIC_EFFECTS", 12: "USE_UBERTOOLTIPS", 13: "GUILDMEMBER_ALERT",
-	14: "BLOCK_TRADES", 15: "SMART_PIVOT", 16: "CLEAR_AFK", 18: "REMOVE_CHAT_DELAY_TEXT",
-	19: "SHOW_DAMAGE_TEXT", 20: "SHOW_HELM", 21: "SHOW_PLAYER_NAMES", 22: "SHOW_GUILD_NAMES",
-	23: "SHOW_PLAYER_TITLES", 24: "FOLLOW_TERRAIN", 26: "HEAD_BOB", 27: "WATER_COLLISION",
-	28: "SHOW_TUTORIALS", 29: "SHOW_NEWBIE_TIPS_TEXT", 30: "SHOW_NPC_NAMES", 31: "SHOW_CLOAK",
-	32: "LOCK_ACTIONBAR_TEXT", 33: "SHOW_MULTIBAR1_TEXT", 34: "SHOW_MULTIBAR2_TEXT",
-	35: "SHOW_MULTIBAR3_TEXT", 36: "SHOW_MULTIBAR4_TEXT", 37: "CHAT_BUBBLES_TEXT",
-	38: "PARTY_CHAT_BUBBLES_TEXT", 39: "SHOW_BUFF_DURATION_TEXT",
-	40: "ALWAYS_SHOW_MULTIBARS_TEXT", 41: "SHOW_PARTY_PETS_TEXT", 42: "SHOW_QUEST_FADING_TEXT",
-	43: "SHOW_PARTY_BACKGROUND_TEXT", 44: "SHOW_TIPOFTHEDAY_TEXT", 45: "GAMEFIELD_DESELECT_TEXT",
-	46: "SHOW_LOOT_SPAM", 47: "HIDE_PARTY_INTERFACE_TEXT", 48: "SHOW_DISPELLABLE_DEBUFFS_TEXT",
-	49: "SHOW_CASTABLE_BUFFS_TEXT", 50: "SHOW_TARGET_OF_TARGET_TEXT",
-	51: "AUTO_JOIN_GUILD_CHANNEL", 52: "SHOW_COMBAT_TEXT_TEXT",
-	53: "COMBAT_TEXT_SHOW_LOW_HEALTH_MANA_TEXT", 54: "COMBAT_TEXT_SHOW_AURAS_TEXT",
-	55: "COMBAT_TEXT_SHOW_AURA_FADE_TEXT", 56: "COMBAT_TEXT_SHOW_COMBAT_STATE_TEXT",
-	57: "COMBAT_TEXT_SHOW_DODGE_PARRY_MISS_TEXT", 58: "COMBAT_TEXT_SHOW_RESISTANCES_TEXT",
-	59: "COMBAT_TEXT_SHOW_MANA_TEXT", 60: "COMBAT_TEXT_SHOW_REPUTATION_TEXT",
-	61: "AUTO_SELF_CAST_TEXT", 62: "HIDE_OUTDOOR_WORLD_STATE_TEXT",
-	63: "COMBAT_TEXT_SHOW_REACTIVES_TEXT", 64: "COMBAT_TEXT_SHOW_FRIENDLY_NAMES_TEXT",
-	65: "COMBAT_TEXT_SHOW_COMBO_POINTS_TEXT", 66: "AUTO_QUEST_WATCH_TEXT", 67: "SHOW_OWN_NAME",
-	68: "DISABLE_SPAM_FILTER", 69: "COMBAT_TEXT_SHOW_HONOR_GAINED_TEXT",
-	# This client's own, so it names itself rather than a global string.
-	70: "Show Map Landmarks",
+# The 3.3.5 check button that carries each option this client answers.
+const CHECK_OPTIONS: Dictionary[String, StringName] = {
+	"InterfaceOptionsMousePanelInvertMouse": &"invert_mouse",
+	"InterfaceOptionsDisplayPanelShowHelm": &"show_helm",
+	"InterfaceOptionsDisplayPanelShowCloak": &"show_cloak",
+	"InterfaceOptionsNamesPanelFriendlyPlayerNames": &"show_player_names",
+	"InterfaceOptionsNamesPanelNPCNames": &"show_npc_names",
+	"InterfaceOptionsNamesPanelMyName": &"show_own_name",
+	"InterfaceOptionsHelpPanelShowTutorials": &"show_tutorials",
+	"InterfaceOptionsHelpPanelLoadingScreenTips": &"show_game_tips",
+	"InterfaceOptionsActionBarsPanelBottomLeft": &"multi_bar_1",
+	"InterfaceOptionsActionBarsPanelBottomRight": &"multi_bar_2",
+	"InterfaceOptionsActionBarsPanelRight": &"multi_bar_3",
+	"InterfaceOptionsActionBarsPanelRightTwo": &"multi_bar_4",
+	"InterfaceOptionsSocialPanelChatBubbles": &"chat_bubbles",
+	"InterfaceOptionsSocialPanelPartyChat": &"party_chat_bubbles",
+	"InterfaceOptionsBuffsPanelBuffDurations": &"show_buff_durations",
+	"InterfaceOptionsObjectivesPanelInstantQuestText": &"instant_quest_text",
+	"InterfaceOptionsObjectivesPanelAutoQuestTracking": &"auto_quest_watch",
 }
-# The options this client answers, which are the only check buttons the scene keeps.
-const CHECK_OPTIONS: Dictionary[int, StringName] = {
-	1: &"invert_mouse", 2: &"status_bar_text", 20: &"show_helm", 21: &"show_player_names",
-	28: &"show_tutorials", 30: &"show_npc_names", 31: &"show_cloak", 33: &"multi_bar_1",
-	34: &"multi_bar_2",
-	35: &"multi_bar_3", 36: &"multi_bar_4", 37: &"chat_bubbles", 38: &"party_chat_bubbles",
-	39: &"show_buff_durations", 42: &"instant_quest_text",
-	44: &"show_game_tips", 66: &"auto_quest_watch", 67: &"show_own_name",
-	70: &"show_map_pois",
+# The global string that names each check button, from InterfaceOptionsPanels.lua.
+const CHECK_TEXTS: Dictionary[String, String] = {
+	"InterfaceOptionsMousePanelInvertMouse": "INVERT_MOUSE",
+	"InterfaceOptionsDisplayPanelShowHelm": "SHOW_HELM",
+	"InterfaceOptionsDisplayPanelShowCloak": "SHOW_CLOAK",
+	"InterfaceOptionsNamesPanelFriendlyPlayerNames": "UNIT_NAME_FRIENDLY",
+	"InterfaceOptionsNamesPanelNPCNames": "UNIT_NAME_NPC",
+	"InterfaceOptionsNamesPanelMyName": "UNIT_NAME_OWN",
+	"InterfaceOptionsHelpPanelShowTutorials": "SHOW_TUTORIALS",
+	"InterfaceOptionsHelpPanelLoadingScreenTips": "SHOW_TIPOFTHEDAY_TEXT",
+	"InterfaceOptionsActionBarsPanelBottomLeft": "SHOW_MULTIBAR1_TEXT",
+	"InterfaceOptionsActionBarsPanelBottomRight": "SHOW_MULTIBAR2_TEXT",
+	"InterfaceOptionsActionBarsPanelRight": "SHOW_MULTIBAR3_TEXT",
+	"InterfaceOptionsActionBarsPanelRightTwo": "SHOW_MULTIBAR4_TEXT",
+	"InterfaceOptionsSocialPanelChatBubbles": "CHAT_BUBBLES_TEXT",
+	"InterfaceOptionsSocialPanelPartyChat": "PARTY_CHAT_BUBBLES_TEXT",
+	"InterfaceOptionsBuffsPanelBuffDurations": "SHOW_BUFF_DURATION_TEXT",
+	"InterfaceOptionsObjectivesPanelInstantQuestText": "SHOW_QUEST_FADING_TEXT",
+	"InterfaceOptionsObjectivesPanelAutoQuestTracking": "AUTO_QUEST_WATCH_TEXT",
 }
 
 # What the options stood at when the window opened, so Cancel can put them back.
@@ -48,28 +50,27 @@ var _accepted: bool = false
 
 
 func _ready() -> void:
-	for number: int in CHECK_TEXTS:
-		var check: WowButton = get_node_or_null("%%UIOptionsFrameCheckButton%d" % number)
-		if check == null:
-			continue
-		var label: Label = check.get_node("UIOptionsFrameCheckButton%dText" % number)
-		label.text = WowStrings.get_text(CHECK_TEXTS[number])
-		check.pressed.connect(_on_check_pressed.bind(number))
-	%UIOptionsFrameResetTutorials.pressed.connect(
+	for key: String in CHECK_OPTIONS:
+		var check: WowButton = _check(key)
+		(check.get_node(key + "Text") as Label).text = WowStrings.get_text(CHECK_TEXTS[key])
+		check.pressed.connect(_on_check_pressed.bind(key))
+	%InterfaceOptionsHelpPanelResetTutorials.pressed.connect(
 		WowClient.session.send_packet.bind("CMSG_TUTORIAL_RESET", PackedByteArray())
 	)
-	%UIOptionsFrameOkay.pressed.connect(_on_okay_pressed)
-	%UIOptionsFrameCancel.pressed.connect(close_requested.emit)
-	%UIOptionsFrameDefaults.pressed.connect(_on_defaults_pressed)
+	%InterfaceOptionsFrameOkay.pressed.connect(_on_okay_pressed)
+	%InterfaceOptionsFrameCancel.pressed.connect(close_requested.emit)
+	%InterfaceOptionsFrameDefaults.pressed.connect(_on_defaults_pressed)
 	visibility_changed.connect(_on_visibility_changed)
+
+
+func _check(key: String) -> WowButton:
+	return get_node("%" + key)
 
 
 func _refresh() -> void:
 	var settings: InterfaceSettings = WowAssets.interface
-	for number: int in CHECK_OPTIONS:
-		var check: WowButton = get_node_or_null("%%UIOptionsFrameCheckButton%d" % number)
-		if check:
-			check.checked = settings.is_on(CHECK_OPTIONS[number])
+	for key: String in CHECK_OPTIONS:
+		_check(key).checked = settings.is_on(CHECK_OPTIONS[key])
 
 
 # Options apply as they are ticked, so closing any way but Okay puts the old ones back.
@@ -87,8 +88,8 @@ func _on_visibility_changed() -> void:
 	_refresh()
 
 
-func _on_check_pressed(number: int) -> void:
-	var option: StringName = CHECK_OPTIONS[number]
+func _on_check_pressed(key: String) -> void:
+	var option: StringName = CHECK_OPTIONS[key]
 	WowAssets.interface.set_on(option, not WowAssets.interface.is_on(option))
 	_refresh()
 

@@ -20,86 +20,122 @@ mouse_filter = 2
 
 [node name="MultiBarRightButton1" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 0
-offset_right = 38
+offset_right = 0
 offset_bottom = 36
 
 [node name="MultiBarRightButton2" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 42
-offset_right = 38
+offset_right = 0
 offset_bottom = 78
 
 [node name="MultiBarRightButton3" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 84
-offset_right = 38
+offset_right = 0
 offset_bottom = 120
 
 [node name="MultiBarRightButton4" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 126
-offset_right = 38
+offset_right = 0
 offset_bottom = 162
 
 [node name="MultiBarRightButton5" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 168
-offset_right = 38
+offset_right = 0
 offset_bottom = 204
 
 [node name="MultiBarRightButton6" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 210
-offset_right = 38
+offset_right = 0
 offset_bottom = 246
 
 [node name="MultiBarRightButton7" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 252
-offset_right = 38
+offset_right = 0
 offset_bottom = 288
 
 [node name="MultiBarRightButton8" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 294
-offset_right = 38
+offset_right = 0
 offset_bottom = 330
 
 [node name="MultiBarRightButton9" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 336
-offset_right = 38
+offset_right = 0
 offset_bottom = 372
 
 [node name="MultiBarRightButton10" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 378
-offset_right = 38
+offset_right = 0
 offset_bottom = 414
 
 [node name="MultiBarRightButton11" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 420
-offset_right = 38
+offset_right = 0
 offset_bottom = 456
 
 [node name="MultiBarRightButton12" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
-offset_left = 2
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -36
 offset_top = 462
-offset_right = 38
+offset_right = 0
 offset_bottom = 498
 
 [node name="MultiBarLeft" type="Control" parent="."]

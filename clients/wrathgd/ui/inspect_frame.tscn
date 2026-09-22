@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" path="res://ui/inspect_frame.gd" id="1"]
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
-[ext_resource type="PackedScene" path="res://ui/wow/wow_model_frame.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="4"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="3"]
+[ext_resource type="PackedScene" path="res://ui/wow/wow_model_frame.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="5"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="6"]
+[ext_resource type="PackedScene" path="res://ui/talent_button.tscn" id="7"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
@@ -78,31 +81,201 @@ file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-BottomRight.blp"
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_23"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-CharacterTab-L1.blp"
+file = "Interface\\PVPFrame\\UI-Character-PVP.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_24"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-CharacterTab-R1.blp"
+file = "Interface\\PVPFrame\\PVP-ArenaPoints-Icon.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\PVPFrame\\UI-Character-PVP-Elements.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(0, 390, 212, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(0, 466, 51, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(0, 435, 279, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(285, 361, 10, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(295, 361, 10, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(0, 446, 279, 18)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\PVPFrame\\UI-Character-PVP-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-CharacterTab-L1.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-CharacterTab-R1.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-CharacterTab-BottomLeft.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_26"]
+[sub_resource type="WowTexture" id="WowTexture_36"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-CharacterTab-BottomRight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_27"]
+[sub_resource type="WowTexture" id="WowTexture_37"]
 file = "Interface\\Buttons\\UI-RotationLeft-Button-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_28"]
+[sub_resource type="WowTexture" id="WowTexture_38"]
 file = "Interface\\Buttons\\UI-RotationLeft-Button-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_29"]
+[sub_resource type="WowTexture" id="WowTexture_39"]
 file = "Interface\\Buttons\\ButtonHilight-Round.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_30"]
+[sub_resource type="WowTexture" id="WowTexture_40"]
 file = "Interface\\Buttons\\UI-RotationRight-Button-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_31"]
+[sub_resource type="WowTexture" id="WowTexture_41"]
 file = "Interface\\Buttons\\UI-RotationRight-Button-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\HelpFrame\\HelpFrameTab-Active.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
+atlas = SubResource("WowTexture_42")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
+atlas = SubResource("WowTexture_42")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45"]
+atlas = SubResource("WowTexture_42")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface\\HelpFrame\\HelpFrameTab-Inactive.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_46")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
+atlas = SubResource("WowTexture_46")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
+atlas = SubResource("WowTexture_46")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_50"]
+file = "Interface\\Buttons\\UI-Button-Borders2.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
+atlas = SubResource("WowTexture_50")
+region = Rect2(0, 27, 331, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52"]
+atlas = SubResource("WowTexture_50")
+region = Rect2(0, 54, 6, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
+atlas = SubResource("WowTexture_50")
+region = Rect2(156, 54, 6, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54"]
+atlas = SubResource("WowTexture_50")
+region = Rect2(6, 54, 150, 18)
+
+[sub_resource type="WowTexture" id="WowTexture_55"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56"]
+atlas = SubResource("WowTexture_55")
+region = Rect2(0, 0, 31, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
+atlas = SubResource("WowTexture_55")
+region = Rect2(33, 0, 31, 106)
+
+[sub_resource type="WowTexture" id="WowTexture_58"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_59"]
+atlas = SubResource("WowTexture_58")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60"]
+
+[sub_resource type="WowTexture" id="WowTexture_61"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62"]
+atlas = SubResource("WowTexture_61")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_63"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64"]
+atlas = SubResource("WowTexture_63")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_65"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66"]
+atlas = SubResource("WowTexture_65")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_67"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68"]
+atlas = SubResource("WowTexture_67")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_69"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70"]
+atlas = SubResource("WowTexture_69")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_71"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72"]
+atlas = SubResource("WowTexture_71")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_73"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74"]
+atlas = SubResource("WowTexture_73")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_75"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76"]
+atlas = SubResource("WowTexture_75")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_77"]
+file = "Interface\\TalentFrame\\UI-TalentBranches.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_78"]
+file = "Interface\\TalentFrame\\UI-TalentArrows.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_79"]
+file = "Interface\\Buttons\\UI-ScrollBar-Button-Overlay.blp"
 
 [node name="InspectFrame" type="Control"]
 script = ExtResource("1")
@@ -203,9 +376,9 @@ script = ExtResource("2")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 2.5
+offset_left = 55
 offset_top = -77
-offset_right = 117.5
+offset_right = 65
 offset_bottom = -45
 ignore_texture_size = true
 
@@ -271,22 +444,21 @@ expand_mode = 1
 
 [node name="InspectFrameTab1Text" type="Label" parent="InspectFrameTab1"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Character"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectFrameTab1"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
@@ -300,9 +472,9 @@ script = ExtResource("2")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 101.5
+offset_left = 49
 offset_top = -77
-offset_right = 216.5
+offset_right = 59
 offset_bottom = -45
 ignore_texture_size = true
 
@@ -368,22 +540,117 @@ expand_mode = 1
 
 [node name="InspectFrameTab2Text" type="Label" parent="InspectFrameTab2"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-text = "Honor"
+text = "PvP"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectFrameTab2"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="InspectFrameTab3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 43
+offset_top = -77
+offset_right = 53
+offset_bottom = -45
+ignore_texture_size = true
+
+[node name="InspectFrameTab3LeftDisabled" type="TextureRect" parent="InspectFrameTab3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="InspectFrameTab3MiddleDisabled" type="TextureRect" parent="InspectFrameTab3"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="InspectFrameTab3RightDisabled" type="TextureRect" parent="InspectFrameTab3"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+
+[node name="InspectFrameTab3Left" type="TextureRect" parent="InspectFrameTab3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="InspectFrameTab3Middle" type="TextureRect" parent="InspectFrameTab3"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="InspectFrameTab3Right" type="TextureRect" parent="InspectFrameTab3"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="InspectFrameTab3Text" type="Label" parent="InspectFrameTab3"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 9
+offset_right = 5
+offset_bottom = 19
+mouse_filter = 2
+text = "Talents"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="InspectFrameTab3"]
+offset_left = 10
+offset_top = -2
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
@@ -545,7 +812,7 @@ grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
-text = "This Week"
+text = "HONOR_THISWEEK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1041,6 +1308,1277 @@ offset_right = 315
 offset_bottom = 29
 mouse_filter = 0
 
+[node name="InspectPVPFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="InspectPVPFrame"]
+offset_left = 2
+offset_top = 1
+offset_right = 258
+offset_bottom = 257
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="InspectPVPFrame"]
+offset_left = 258
+offset_top = 1
+offset_right = 386
+offset_bottom = 257
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="InspectPVPFrame"]
+offset_left = 2
+offset_top = 257
+offset_right = 258
+offset_bottom = 513
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="InspectPVPFrame"]
+offset_left = 258
+offset_top = 257
+offset_right = 386
+offset_bottom = 513
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="InspectPVPFrameBackground" type="TextureRect" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 36
+offset_right = 526
+offset_bottom = 548
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="InspectPVPFrameHonor" type="Control" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+offset_left = 132
+offset_top = 38
+offset_right = 432
+offset_bottom = 58
+mouse_filter = 2
+
+[node name="InspectPVPFrameHonorLabel" type="Label" parent="InspectPVPFrame/InspectPVPFrameHonor"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "HONOR:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPFrameHonorPoints" type="Label" parent="InspectPVPFrame/InspectPVPFrameHonor"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 4
+offset_right = 15
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="InspectPVPFrameHonorIcon" type="TextureRect" parent="InspectPVPFrame/InspectPVPFrameHonor"]
+unique_name_in_owner = true
+offset_left = 19
+offset_top = 2
+offset_right = 47
+offset_bottom = 30
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPFrameArena" type="Control" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+offset_left = 134
+offset_top = 131
+offset_right = 434
+offset_bottom = 151
+mouse_filter = 2
+
+[node name="InspectPVPFrameArenaLabel" type="Label" parent="InspectPVPFrame/InspectPVPFrameArena"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "ARENA:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPFrameArenaPoints" type="Label" parent="InspectPVPFrame/InspectPVPFrameArena"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 4
+offset_right = 15
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="InspectPVPFrameArenaIcon" type="TextureRect" parent="InspectPVPFrame/InspectPVPFrameArena"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 2.5
+offset_right = 37
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="InspectPVPHonor" type="Control" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 64
+offset_right = 329
+offset_bottom = 164
+mouse_filter = 2
+
+[node name="InspectPVPHonorKillsLabel" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 24
+offset_right = 25
+offset_bottom = 34
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Kills"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorHonorLabel" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 44
+offset_right = 25
+offset_bottom = 54
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Honor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPFrameLine1" type="TextureRect" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 265
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="InspectPVPHonorTodayLabel" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 55
+offset_top = 4
+offset_right = 55
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Today"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorTodayKills" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 55
+offset_top = 24
+offset_right = 55
+offset_bottom = 34
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorTodayHonor" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 55
+offset_top = 44
+offset_right = 55
+offset_bottom = 54
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorYesterdayLabel" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 85
+offset_top = 4
+offset_right = 85
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Yesterday"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorYesterdayKills" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 85
+offset_top = 24
+offset_right = 85
+offset_bottom = 34
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorYesterdayHonor" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 85
+offset_top = 44
+offset_right = 85
+offset_bottom = 54
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorLifetimeLabel" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 115
+offset_top = 4
+offset_right = 115
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Lifetime"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorLifetimeKills" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 115
+offset_top = 24
+offset_right = 115
+offset_bottom = 34
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPHonorLifetimeHonor" type="Label" parent="InspectPVPFrame/InspectPVPHonor"]
+unique_name_in_owner = true
+offset_left = 115
+offset_top = 44
+offset_right = 115
+offset_bottom = 54
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam1Standard" type="Control" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 175
+offset_right = 94
+offset_bottom = 239
+mouse_filter = 2
+
+[node name="InspectPVPTeam1StandardBar" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1Standard"]
+unique_name_in_owner = true
+offset_left = -8
+offset_top = -6
+offset_right = 42
+offset_bottom = 7
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="InspectPVPTeam1StandardBanner" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam1StandardBorder" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam1StandardEmblem" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1Standard"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 12
+offset_right = 29
+offset_bottom = 36
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam1" type="TextureButton" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 63
+offset_top = 168
+offset_right = 363
+offset_bottom = 246
+ignore_texture_size = true
+
+[node name="InspectPVPTeam1Top" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 279
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="InspectPVPTeam1Left" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 12
+offset_right = 10
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="InspectPVPTeam1Background" type="ColorRect" parent="InspectPVPFrame/InspectPVPTeam1"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = 8
+offset_right = 274
+offset_bottom = 73
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="InspectPVPTeam1Right" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1"]
+unique_name_in_owner = true
+offset_left = 269
+offset_top = 12
+offset_right = 279
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="InspectPVPTeam1Bottom" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 66
+offset_right = 279
+offset_bottom = 83
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="InspectPVPTeam1TeamType" type="Label" parent="InspectPVPFrame/InspectPVPTeam1"]
+unique_name_in_owner = true
+offset_left = 142
+offset_top = 31
+offset_right = 142
+offset_bottom = 47
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam1Highlight" type="Control" parent="InspectPVPFrame/InspectPVPTeam1"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -6
+offset_right = 287
+offset_bottom = 87
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Highlight"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_32")
+tile = true
+tile_size = 0
+edge_size = 32
+insets = Vector4(0, 0, 0, 0)
+
+[node name="InspectPVPTeam1Data" type="Control" parent="InspectPVPFrame/InspectPVPTeam1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 280
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+
+[node name="InspectPVPTeam1DataName" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 165
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="InspectPVPTeam1DataRatingLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 163
+offset_top = 15
+offset_right = 238
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Team Rating"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="InspectPVPTeam1DataRating" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 15
+offset_right = 280
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+offset_left = 17
+offset_top = 32
+offset_right = 267
+offset_bottom = 34
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="InspectPVPTeam1DataTypeLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 41
+offset_right = 78
+offset_bottom = 65
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "This Week"
+horizontal_alignment = 0
+vertical_alignment = 2
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="InspectPVPTeam1DataGamesLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 37
+offset_right = 128
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam1DataGames" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 100.5
+offset_top = 55
+offset_right = 100.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam1DataWinLossLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 128
+offset_top = 37
+offset_right = 203
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Win - Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam1Data_" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam1DataWins" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam1DataLoss" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam1DataPlayedLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 203
+offset_top = 37
+offset_right = 270
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Played"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam1DataPlayed" type="Label" parent="InspectPVPFrame/InspectPVPTeam1/InspectPVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 236.5
+offset_top = 55
+offset_right = 236.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam2Standard" type="Control" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 260
+offset_right = 94
+offset_bottom = 324
+mouse_filter = 2
+
+[node name="InspectPVPTeam2StandardBar" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2Standard"]
+unique_name_in_owner = true
+offset_left = -8
+offset_top = -6
+offset_right = 42
+offset_bottom = 7
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="InspectPVPTeam2StandardBanner" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam2StandardBorder" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam2StandardEmblem" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2Standard"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 12
+offset_right = 29
+offset_bottom = 36
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam2" type="TextureButton" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 63
+offset_top = 253
+offset_right = 363
+offset_bottom = 331
+ignore_texture_size = true
+
+[node name="InspectPVPTeam2Top" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 279
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="InspectPVPTeam2Left" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 12
+offset_right = 10
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="InspectPVPTeam2Background" type="ColorRect" parent="InspectPVPFrame/InspectPVPTeam2"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = 8
+offset_right = 274
+offset_bottom = 73
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="InspectPVPTeam2Right" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2"]
+unique_name_in_owner = true
+offset_left = 269
+offset_top = 12
+offset_right = 279
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="InspectPVPTeam2Bottom" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 66
+offset_right = 279
+offset_bottom = 83
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="InspectPVPTeam2TeamType" type="Label" parent="InspectPVPFrame/InspectPVPTeam2"]
+unique_name_in_owner = true
+offset_left = 142
+offset_top = 31
+offset_right = 142
+offset_bottom = 47
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam2Highlight" type="Control" parent="InspectPVPFrame/InspectPVPTeam2"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -6
+offset_right = 287
+offset_bottom = 87
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Highlight"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_32")
+tile = true
+tile_size = 0
+edge_size = 32
+insets = Vector4(0, 0, 0, 0)
+
+[node name="InspectPVPTeam2Data" type="Control" parent="InspectPVPFrame/InspectPVPTeam2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 280
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+
+[node name="InspectPVPTeam2DataName" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 165
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="InspectPVPTeam2DataRatingLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 163
+offset_top = 15
+offset_right = 238
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Team Rating"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="InspectPVPTeam2DataRating" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 15
+offset_right = 280
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+offset_left = 17
+offset_top = 32
+offset_right = 267
+offset_bottom = 34
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="InspectPVPTeam2DataTypeLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 41
+offset_right = 78
+offset_bottom = 65
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "This Week"
+horizontal_alignment = 0
+vertical_alignment = 2
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="InspectPVPTeam2DataGamesLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 37
+offset_right = 128
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam2DataGames" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 100.5
+offset_top = 55
+offset_right = 100.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam2DataWinLossLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 128
+offset_top = 37
+offset_right = 203
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Win - Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam2Data_" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam2DataWins" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam2DataLoss" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam2DataPlayedLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 203
+offset_top = 37
+offset_right = 270
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Played"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam2DataPlayed" type="Label" parent="InspectPVPFrame/InspectPVPTeam2/InspectPVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 236.5
+offset_top = 55
+offset_right = 236.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam3Standard" type="Control" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 345
+offset_right = 94
+offset_bottom = 409
+mouse_filter = 2
+
+[node name="InspectPVPTeam3StandardBar" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3Standard"]
+unique_name_in_owner = true
+offset_left = -8
+offset_top = -6
+offset_right = 42
+offset_bottom = 7
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="InspectPVPTeam3StandardBanner" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam3StandardBorder" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam3StandardEmblem" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3Standard"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 12
+offset_right = 29
+offset_bottom = 36
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectPVPTeam3" type="TextureButton" parent="InspectPVPFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 63
+offset_top = 338
+offset_right = 363
+offset_bottom = 416
+ignore_texture_size = true
+
+[node name="InspectPVPTeam3Top" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 279
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="InspectPVPTeam3Left" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 12
+offset_right = 10
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="InspectPVPTeam3Background" type="ColorRect" parent="InspectPVPFrame/InspectPVPTeam3"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = 8
+offset_right = 274
+offset_bottom = 73
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="InspectPVPTeam3Right" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3"]
+unique_name_in_owner = true
+offset_left = 269
+offset_top = 12
+offset_right = 279
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="InspectPVPTeam3Bottom" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 66
+offset_right = 279
+offset_bottom = 83
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="InspectPVPTeam3TeamType" type="Label" parent="InspectPVPFrame/InspectPVPTeam3"]
+unique_name_in_owner = true
+offset_left = 142
+offset_top = 31
+offset_right = 142
+offset_bottom = 47
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam3Highlight" type="Control" parent="InspectPVPFrame/InspectPVPTeam3"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -6
+offset_right = 287
+offset_bottom = 87
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Highlight"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_32")
+tile = true
+tile_size = 0
+edge_size = 32
+insets = Vector4(0, 0, 0, 0)
+
+[node name="InspectPVPTeam3Data" type="Control" parent="InspectPVPFrame/InspectPVPTeam3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 280
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+
+[node name="InspectPVPTeam3DataName" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 165
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="InspectPVPTeam3DataRatingLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 163
+offset_top = 15
+offset_right = 238
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Team Rating"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="InspectPVPTeam3DataRating" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 15
+offset_right = 280
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+offset_left = 17
+offset_top = 32
+offset_right = 267
+offset_bottom = 34
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="InspectPVPTeam3DataTypeLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 41
+offset_right = 78
+offset_bottom = 65
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "This Week"
+horizontal_alignment = 0
+vertical_alignment = 2
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="InspectPVPTeam3DataGamesLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 37
+offset_right = 128
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam3DataGames" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 100.5
+offset_top = 55
+offset_right = 100.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam3DataWinLossLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 128
+offset_top = 37
+offset_right = 203
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Win - Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam3Data_" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam3DataWins" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam3DataLoss" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InspectPVPTeam3DataPlayedLabel" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 203
+offset_top = 37
+offset_right = 270
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Played"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InspectPVPTeam3DataPlayed" type="Label" parent="InspectPVPFrame/InspectPVPTeam3/InspectPVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 236.5
+offset_top = 55
+offset_right = 236.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="InspectPaperDollFrame" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -1058,7 +2596,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 256
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="InspectPaperDollFrame"]
@@ -1067,7 +2605,7 @@ offset_top = 0
 offset_right = 384
 offset_bottom = 256
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="Texture3" type="TextureRect" parent="InspectPaperDollFrame"]
@@ -1076,7 +2614,7 @@ offset_top = 256
 offset_right = 256
 offset_bottom = 512
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 
 [node name="Texture4" type="TextureRect" parent="InspectPaperDollFrame"]
@@ -1085,7 +2623,7 @@ offset_top = 256
 offset_right = 384
 offset_bottom = 512
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="InspectLevelText" type="Label" parent="InspectPaperDollFrame"]
@@ -1155,7 +2693,7 @@ offset_right = 298
 offset_bottom = 378
 mouse_filter = 2
 
-[node name="InspectModelFrameModel" parent="InspectPaperDollFrame/InspectModelFrame" instance=ExtResource("3")]
+[node name="InspectModelFrameModel" parent="InspectPaperDollFrame/InspectModelFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -1178,7 +2716,7 @@ offset_top = 0
 offset_right = 35
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="InspectPaperDollFrame/InspectModelFrame/InspectModelRotateLeftButton"]
@@ -1188,7 +2726,7 @@ offset_right = 35
 offset_bottom = 35
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectPaperDollFrame/InspectModelFrame/InspectModelRotateLeftButton"]
@@ -1198,7 +2736,7 @@ offset_right = 35
 offset_bottom = 35
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_29")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
@@ -1217,7 +2755,7 @@ offset_top = 0
 offset_right = 35
 offset_bottom = 35
 mouse_filter = 2
-texture = SubResource("WowTexture_30")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="InspectPaperDollFrame/InspectModelFrame/InspectModelRotateRightButton"]
@@ -1227,7 +2765,7 @@ offset_right = 35
 offset_bottom = 35
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_31")
+texture = SubResource("WowTexture_41")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="InspectPaperDollFrame/InspectModelFrame/InspectModelRotateRightButton"]
@@ -1237,123 +2775,123 @@ offset_right = 35
 offset_bottom = 35
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_29")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
-[node name="InspectHeadSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectHeadSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 74
 offset_right = 58
 offset_bottom = 111
 
-[node name="InspectNeckSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectNeckSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 115
 offset_right = 58
 offset_bottom = 152
 
-[node name="InspectShoulderSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectShoulderSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 156
 offset_right = 58
 offset_bottom = 193
 
-[node name="InspectBackSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectBackSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 197
 offset_right = 58
 offset_bottom = 234
 
-[node name="InspectChestSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectChestSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 238
 offset_right = 58
 offset_bottom = 275
 
-[node name="InspectShirtSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectShirtSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 279
 offset_right = 58
 offset_bottom = 316
 
-[node name="InspectTabardSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectTabardSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 320
 offset_right = 58
 offset_bottom = 357
 
-[node name="InspectWristSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectWristSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 361
 offset_right = 58
 offset_bottom = 398
 
-[node name="InspectHandsSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectHandsSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 74
 offset_right = 342
 offset_bottom = 111
 
-[node name="InspectWaistSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectWaistSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 115
 offset_right = 342
 offset_bottom = 152
 
-[node name="InspectLegsSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectLegsSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 156
 offset_right = 342
 offset_bottom = 193
 
-[node name="InspectFeetSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectFeetSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 197
 offset_right = 342
 offset_bottom = 234
 
-[node name="InspectFinger0Slot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectFinger0Slot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 238
 offset_right = 342
 offset_bottom = 275
 
-[node name="InspectFinger1Slot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectFinger1Slot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 279
 offset_right = 342
 offset_bottom = 316
 
-[node name="InspectTrinket0Slot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectTrinket0Slot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 320
 offset_right = 342
 offset_bottom = 357
 
-[node name="InspectTrinket1Slot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectTrinket1Slot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 offset_left = 305
 offset_top = 361
 offset_right = 342
 offset_bottom = 398
 
-[node name="InspectMainHandSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectMainHandSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 1
@@ -1363,7 +2901,7 @@ offset_top = -127
 offset_right = 159
 offset_bottom = -90
 
-[node name="InspectSecondaryHandSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectSecondaryHandSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 1
@@ -1373,7 +2911,7 @@ offset_top = -127
 offset_right = 201
 offset_bottom = -90
 
-[node name="InspectRangedSlot" parent="InspectPaperDollFrame" instance=ExtResource("4")]
+[node name="InspectRangedSlot" parent="InspectPaperDollFrame" instance=ExtResource("5")]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 1
@@ -1382,3 +2920,1594 @@ offset_left = 206
 offset_top = -127
 offset_right = 243
 offset_bottom = -90
+
+[node name="InspectTalentFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 0
+
+[node name="InspectTalentFramePortrait" type="TextureRect" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="InspectTalentFrame"]
+offset_left = 2
+offset_top = 1
+offset_right = 258
+offset_bottom = 257
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="InspectTalentFrame"]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -126
+offset_top = 1
+offset_right = 2
+offset_bottom = 257
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="InspectTalentFrame"]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 2
+offset_top = -255
+offset_right = 258
+offset_bottom = 1
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="InspectTalentFrame"]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -126
+offset_top = -255
+offset_right = 2
+offset_bottom = 1
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="InspectTalentFrameBackgroundTopLeft" type="TextureRect" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+offset_left = 23
+offset_top = 77
+offset_right = 279
+offset_bottom = 333
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectTalentFrameBackgroundTopRight" type="TextureRect" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+offset_left = 279
+offset_top = 77
+offset_right = 343
+offset_bottom = 333
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectTalentFrameBackgroundBottomLeft" type="TextureRect" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+offset_left = 23
+offset_top = 333
+offset_right = 279
+offset_bottom = 461
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectTalentFrameBackgroundBottomRight" type="TextureRect" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+offset_left = 279
+offset_top = 333
+offset_right = 343
+offset_bottom = 461
+mouse_filter = 2
+expand_mode = 1
+
+[node name="InspectTalentFrameTab1" type="TextureButton" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 70
+offset_top = 40
+offset_right = 185
+offset_bottom = 72
+ignore_texture_size = true
+
+[node name="InspectTalentFrameTab1LeftDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3
+offset_right = 16
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab1MiddleDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 3
+offset_right = 48
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab1RightDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 3
+offset_right = 64
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab1Left" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab1Middle" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 48
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab1Right" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 0
+offset_right = 64
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab1Text" type="Label" parent="InspectTalentFrame/InspectTalentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 57.5
+offset_top = 14
+offset_right = 57.5
+offset_bottom = 27
+mouse_filter = 2
+text = "OK"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab1"]
+offset_left = 57
+offset_top = 8
+offset_right = 62
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="InspectTalentFrameTab2" type="TextureButton" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 185
+offset_top = 40
+offset_right = 300
+offset_bottom = 72
+ignore_texture_size = true
+
+[node name="InspectTalentFrameTab2LeftDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3
+offset_right = 16
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab2MiddleDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 3
+offset_right = 48
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab2RightDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 3
+offset_right = 64
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab2Left" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab2Middle" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 48
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab2Right" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 0
+offset_right = 64
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab2Text" type="Label" parent="InspectTalentFrame/InspectTalentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 57.5
+offset_top = 14
+offset_right = 57.5
+offset_bottom = 27
+mouse_filter = 2
+text = "OK"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab2"]
+offset_left = 57
+offset_top = 8
+offset_right = 62
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="InspectTalentFrameTab3" type="TextureButton" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 300
+offset_top = 40
+offset_right = 415
+offset_bottom = 72
+ignore_texture_size = true
+
+[node name="InspectTalentFrameTab3LeftDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 3
+offset_right = 16
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab3MiddleDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab3"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 3
+offset_right = 48
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab3RightDisabled" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab3"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 3
+offset_right = 64
+offset_bottom = 35
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab3Left" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab3Middle" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab3"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 48
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab3Right" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab3"]
+unique_name_in_owner = true
+offset_left = 48
+offset_top = 0
+offset_right = 64
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="InspectTalentFrameTab3Text" type="Label" parent="InspectTalentFrame/InspectTalentFrameTab3"]
+unique_name_in_owner = true
+offset_left = 57.5
+offset_top = 14
+offset_right = 57.5
+offset_bottom = 27
+mouse_filter = 2
+text = "OK"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameTab3"]
+offset_left = 57
+offset_top = 8
+offset_right = 62
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="InspectTalentFrameCloseButton" type="TextureButton" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -60
+offset_top = 9
+offset_right = -28
+offset_bottom = 41
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="InspectTalentFramePointsBar" type="Control" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 16
+offset_top = -107
+offset_right = -36
+offset_bottom = -81
+mouse_filter = 2
+
+[node name="InspectTalentFramePointsBarBackground" type="TextureRect" parent="InspectTalentFrame/InspectTalentFramePointsBar"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 331
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="InspectTalentFramePointsBarBorderLeft" type="TextureRect" parent="InspectTalentFrame/InspectTalentFramePointsBar"]
+unique_name_in_owner = true
+offset_left = 4
+offset_top = 5
+offset_right = 10
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="InspectTalentFramePointsBarBorderRight" type="TextureRect" parent="InspectTalentFrame/InspectTalentFramePointsBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -10
+offset_top = 5
+offset_right = -4
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="InspectTalentFramePointsBarBorderMiddle" type="TextureRect" parent="InspectTalentFrame/InspectTalentFramePointsBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 10
+offset_top = 5
+offset_right = -10
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+
+[node name="InspectTalentFrameSpentPointsText" type="Label" parent="InspectTalentFrame/InspectTalentFramePointsBar"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 4.5
+offset_right = 12
+offset_bottom = 19.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="InspectTalentFrameTalentPointsText" type="Label" parent="InspectTalentFrame/InspectTalentFramePointsBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -12
+offset_top = 4.5
+offset_right = -12
+offset_bottom = 19.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="InspectTalentFrameScrollFrame" type="Control" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+script = ExtResource("6")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -361
+offset_top = 77
+offset_right = -65
+offset_bottom = -107
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame"]
+offset_left = 294
+offset_top = -5
+offset_right = 325
+offset_bottom = 251
+mouse_filter = 2
+texture = SubResource("AtlasTexture_56")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame"]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 294
+offset_top = -104
+offset_right = 325
+offset_bottom = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+
+[node name="InspectTalentFrameScrollFrameScrollBar" type="VSlider" parent="InspectTalentFrame/InspectTalentFrameScrollFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_bottom = 1
+offset_left = 302
+offset_top = 16
+offset_right = 318
+offset_bottom = -16
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_59")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_59")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_60")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_60")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_60")
+max_value = 0.0
+step = 0.0
+
+[node name="InspectTalentFrameScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar/InspectTalentFrameScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_62")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar/InspectTalentFrameScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_64")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar/InspectTalentFrameScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_66")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar/InspectTalentFrameScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_68")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="InspectTalentFrameScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -1
+offset_top = 0
+offset_right = 17
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar/InspectTalentFrameScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_70")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar/InspectTalentFrameScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_72")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar/InspectTalentFrameScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_74")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameScrollBar/InspectTalentFrameScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_76")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="InspectTalentFrameScrollFrameClip" type="Control" parent="InspectTalentFrame/InspectTalentFrameScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="InspectTalentFrameScrollChildFrame" type="Control" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 320
+offset_bottom = 50
+mouse_filter = 2
+
+[node name="InspectTalentFrameBranch1" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch2" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch3" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch4" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch5" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch6" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch7" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch8" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch9" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch10" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch11" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch12" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch13" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch14" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch15" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch16" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch17" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch18" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch19" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch20" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch21" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch22" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch23" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch24" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch25" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch26" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch27" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch28" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch29" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameBranch30" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+
+[node name="InspectTalentFrameTalent1" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent2" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent3" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent4" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent5" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent6" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent7" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent8" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent9" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent10" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent11" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent12" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent13" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent14" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent15" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent16" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent17" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent18" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent19" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent20" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent21" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent22" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent23" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent24" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent25" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent26" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent27" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent28" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent29" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent30" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent31" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent32" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent33" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent34" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent35" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent36" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent37" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent38" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent39" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameTalent40" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="InspectTalentFrameArrowFrame" type="Control" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 320
+offset_bottom = 50
+mouse_filter = 2
+
+[node name="InspectTalentFrameArrow1" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow2" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow3" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow4" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow5" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow6" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow7" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow8" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow9" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow10" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow11" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow12" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow13" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow14" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow15" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow16" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow17" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow18" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow19" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow20" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow21" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow22" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow23" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow24" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow25" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow26" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow27" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow28" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow29" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameArrow30" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame/InspectTalentFrameArrowFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_78")
+expand_mode = 1
+
+[node name="InspectTalentFrameScrollButtonOverlay" type="Control" parent="InspectTalentFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16
+offset_top = -16
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="InspectTalentFrame/InspectTalentFrameScrollButtonOverlay"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_79")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")

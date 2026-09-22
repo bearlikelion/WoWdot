@@ -1,12 +1,15 @@
 {
 	"AccountLoginCinematicsButton": {
-		"click": "gsTitleIntroMovie"
+		"click": "gsTitleOptions"
 	},
 	"AccountLoginCommunityButton": {
 		"click": "gsLoginNewAccount"
 	},
 	"AccountLoginCreditsButton": {
 		"click": "gsTitleCredits"
+	},
+	"AccountLoginDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"AccountLoginExitButton": {
 		"click": "gsTitleQuit"
@@ -20,10 +23,73 @@
 	"AccountLoginSaveAccountName": {
 		"click": "igMainMenuOptionCheckBoxOff"
 	},
+	"AccountLoginShowLauncher": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"AccountLoginTOSButton": {
+		"click": "gsLoginNewAccount"
+	},
+	"AccountLoginUpgradeAccountButton": {
+		"click": "gsLoginNewAccount"
+	},
+	"AchievementFrameAchievementsContainerScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameAchievementsContainerScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameCategoriesContainerScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameCategoriesContainerScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameComparisonContainerScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameComparisonContainerScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameComparisonStatsContainerScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameComparisonStatsContainerScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameFilterDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AchievementFrameStatsContainerScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameStatsContainerScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"AchievementFrameTab1": {
+		"click": "igCharacterInfoTab"
+	},
+	"AchievementFrameTab2": {
+		"click": "igCharacterInfoTab"
+	},
 	"ActionBarDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"ActionBarUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"AddFriendEntryFrameInfoButton": {
+		"click": "igMainMenuOpen"
+	},
+	"AddFriendFrame": {
+		"hide": "igMainMenuClose"
+	},
+	"AddFriendInfoFrameContinueButton": {
+		"click": "igMainMenuOpen"
+	},
+	"AddFriendNoteFrameScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"AddFriendNoteFrameScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
 	"AddonCharacterDropDownButton": {
@@ -44,9 +110,69 @@
 	"AddonListScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"AuctionDressUpFrame": {
+	"ArenaEnemyFrame1DropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame1PetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame2DropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame2PetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame3DropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame3PetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame4DropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame4PetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame5DropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaEnemyFrame5PetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ArenaFrame": {
 		"hide": "igCharacterInfoClose",
 		"show": "igCharacterInfoOpen"
+	},
+	"ArenaRegistrarButton1": {
+		"click": "igQuestListSelect"
+	},
+	"ArenaRegistrarButton2": {
+		"click": "igQuestListSelect"
+	},
+	"ArenaRegistrarButton3": {
+		"click": "igQuestListSelect"
+	},
+	"ArenaRegistrarButton4": {
+		"click": "igQuestListSelect"
+	},
+	"ArenaRegistrarButton5": {
+		"click": "igQuestListSelect"
+	},
+	"ArenaRegistrarButton6": {
+		"click": "igQuestListSelect"
+	},
+	"ArenaRegistrarFrame": {
+		"hide": "igQuestListClose"
+	},
+	"ArenaRegistrarMoneyFrameCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"ArenaRegistrarMoneyFrameGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"ArenaRegistrarMoneyFrameSilverButton": {
+		"click": "igBackPackCoinSelect"
 	},
 	"AuctionDressUpFrameResetButton": {
 		"click": "gsTitleOptionOK"
@@ -58,8 +184,7 @@
 		"click": "igInventoryRotateCharacter"
 	},
 	"AuctionFrame": {
-		"hide": "AuctionWindowClose",
-		"show": "AuctionWindowOpen"
+		"hide": "AuctionWindowClose"
 	},
 	"AuctionFrameMoneyFrameCopperButton": {
 		"click": "igBackPackCoinSelect"
@@ -79,13 +204,13 @@
 	"AuctionFrameTab3": {
 		"click": "igCharacterInfoTab"
 	},
-	"AuctionsButton1BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton1BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton1BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton1BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton1BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton1BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton1MoneyFrameCopperButton": {
@@ -97,13 +222,13 @@
 	"AuctionsButton1MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton2BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton2BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton2BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton2BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton2BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton2BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton2MoneyFrameCopperButton": {
@@ -115,13 +240,13 @@
 	"AuctionsButton2MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton3BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton3BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton3BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton3BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton3BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton3BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton3MoneyFrameCopperButton": {
@@ -133,13 +258,13 @@
 	"AuctionsButton3MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton4BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton4BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton4BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton4BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton4BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton4BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton4MoneyFrameCopperButton": {
@@ -151,13 +276,13 @@
 	"AuctionsButton4MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton5BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton5BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton5BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton5BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton5BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton5BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton5MoneyFrameCopperButton": {
@@ -169,13 +294,13 @@
 	"AuctionsButton5MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton6BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton6BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton6BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton6BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton6BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton6BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton6MoneyFrameCopperButton": {
@@ -187,13 +312,13 @@
 	"AuctionsButton6MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton7BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton7BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton7BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton7BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton7BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton7BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton7MoneyFrameCopperButton": {
@@ -205,13 +330,13 @@
 	"AuctionsButton7MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton8BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton8BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton8BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton8BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton8BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton8BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton8MoneyFrameCopperButton": {
@@ -223,13 +348,13 @@
 	"AuctionsButton8MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton9BuyoutMoneyFrameCopperButton": {
+	"AuctionsButton9BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton9BuyoutMoneyFrameGoldButton": {
+	"AuctionsButton9BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"AuctionsButton9BuyoutMoneyFrameSilverButton": {
+	"AuctionsButton9BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"AuctionsButton9MoneyFrameCopperButton": {
@@ -256,27 +381,97 @@
 	"AuctionsScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"BankFrame": {
+	"AudioOptionsFrame": {
+		"hide": "gsTitleOptionExit"
+	},
+	"AudioOptionsFrameCategoryFrameListScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"AudioOptionsFrameCategoryFrameListScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"AudioOptionsFrameDefaults": {
+		"click": "igMainMenuOption"
+	},
+	"AudioOptionsSoundPanelAmbientSounds": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelEmoteSounds": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelEnableDSPs": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelEnableSound": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelErrorSpeech": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelHRTF": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelHardwareDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelLoopMusic": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelMusic": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelPetSounds": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelReverb": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelSoundEffects": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelSoundInBG": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsSoundPanelUseHardware": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsVoicePanelChatModeDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsVoicePanelEnableMicrophone": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsVoicePanelEnableVoice": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsVoicePanelInputDeviceDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsVoicePanelOutputDeviceDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"AudioOptionsVoicePanelPushToTalkSound": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"BNConversationInviteDialog": {
 		"hide": "igMainMenuClose",
 		"show": "igMainMenuOpen"
 	},
-	"BankFrameBag1": {
-		"click": "BAGMENUBUTTONPRESS"
+	"BNConversationInviteDialogListScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
 	},
-	"BankFrameBag2": {
-		"click": "BAGMENUBUTTONPRESS"
+	"BNConversationInviteDialogListScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
-	"BankFrameBag3": {
-		"click": "BAGMENUBUTTONPRESS"
+	"BNetReportFrame": {
+		"hide": "igMainMenuClose",
+		"show": "igMainMenuOpen"
 	},
-	"BankFrameBag4": {
-		"click": "BAGMENUBUTTONPRESS"
+	"BNetReportFrameCommentScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
 	},
-	"BankFrameBag5": {
-		"click": "BAGMENUBUTTONPRESS"
-	},
-	"BankFrameBag6": {
-		"click": "BAGMENUBUTTONPRESS"
+	"BNetReportFrameCommentScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
 	"BankFrameDetailMoneyFrameCopperButton": {
 		"click": "igBackPackCoinSelect"
@@ -296,9 +491,30 @@
 	"BankFrameMoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
+	"BarberShopFrameCancelButton": {
+		"click": "igCharacterInfoClose"
+	},
+	"BarberShopFrameMoneyFrameCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"BarberShopFrameMoneyFrameGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"BarberShopFrameMoneyFrameSilverButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"BarberShopFrameResetButton": {
+		"click": "igCharacterInfoClose"
+	},
 	"BattlefieldFrame": {
 		"hide": "igCharacterInfoClose",
 		"show": "igCharacterInfoOpen"
+	},
+	"BattlefieldFrameInfoScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"BattlefieldFrameInfoScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
 	"BattlefieldListScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
@@ -483,13 +699,25 @@
 	"BillingWarningButton": {
 		"click": "gsCharacterSelectionAcctOptions"
 	},
-	"BrowseButton1BuyoutMoneyFrameCopperButton": {
+	"Boss1TargetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"Boss2TargetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"Boss3TargetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"Boss4TargetFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"BrowseButton1BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton1BuyoutMoneyFrameGoldButton": {
+	"BrowseButton1BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton1BuyoutMoneyFrameSilverButton": {
+	"BrowseButton1BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"BrowseButton1MoneyFrameCopperButton": {
@@ -501,13 +729,13 @@
 	"BrowseButton1MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton2BuyoutMoneyFrameCopperButton": {
+	"BrowseButton2BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton2BuyoutMoneyFrameGoldButton": {
+	"BrowseButton2BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton2BuyoutMoneyFrameSilverButton": {
+	"BrowseButton2BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"BrowseButton2MoneyFrameCopperButton": {
@@ -519,13 +747,13 @@
 	"BrowseButton2MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton3BuyoutMoneyFrameCopperButton": {
+	"BrowseButton3BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton3BuyoutMoneyFrameGoldButton": {
+	"BrowseButton3BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton3BuyoutMoneyFrameSilverButton": {
+	"BrowseButton3BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"BrowseButton3MoneyFrameCopperButton": {
@@ -537,13 +765,13 @@
 	"BrowseButton3MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton4BuyoutMoneyFrameCopperButton": {
+	"BrowseButton4BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton4BuyoutMoneyFrameGoldButton": {
+	"BrowseButton4BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton4BuyoutMoneyFrameSilverButton": {
+	"BrowseButton4BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"BrowseButton4MoneyFrameCopperButton": {
@@ -555,13 +783,13 @@
 	"BrowseButton4MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton5BuyoutMoneyFrameCopperButton": {
+	"BrowseButton5BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton5BuyoutMoneyFrameGoldButton": {
+	"BrowseButton5BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton5BuyoutMoneyFrameSilverButton": {
+	"BrowseButton5BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"BrowseButton5MoneyFrameCopperButton": {
@@ -573,13 +801,13 @@
 	"BrowseButton5MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton6BuyoutMoneyFrameCopperButton": {
+	"BrowseButton6BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton6BuyoutMoneyFrameGoldButton": {
+	"BrowseButton6BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton6BuyoutMoneyFrameSilverButton": {
+	"BrowseButton6BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"BrowseButton6MoneyFrameCopperButton": {
@@ -591,13 +819,13 @@
 	"BrowseButton6MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton7BuyoutMoneyFrameCopperButton": {
+	"BrowseButton7BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton7BuyoutMoneyFrameGoldButton": {
+	"BrowseButton7BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton7BuyoutMoneyFrameSilverButton": {
+	"BrowseButton7BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"BrowseButton7MoneyFrameCopperButton": {
@@ -609,13 +837,13 @@
 	"BrowseButton7MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton8BuyoutMoneyFrameCopperButton": {
+	"BrowseButton8BuyoutFrameMoneyCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton8BuyoutMoneyFrameGoldButton": {
+	"BrowseButton8BuyoutFrameMoneyGoldButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"BrowseButton8BuyoutMoneyFrameSilverButton": {
+	"BrowseButton8BuyoutFrameMoneySilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"BrowseButton8MoneyFrameCopperButton": {
@@ -648,6 +876,447 @@
 	"BrowseScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
+	"CalendarArenaTeamContextMenu": {
+		"show": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton1": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton10": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton11": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton12": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton13": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton14": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton15": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton16": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton17": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton18": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton19": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton2": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton20": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton21": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton22": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton23": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton24": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton25": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton26": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton27": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton28": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton29": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton3": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton30": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton31": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton32": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton4": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton5": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton6": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton7": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton8": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarArenaTeamContextMenuButton9": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenu": {
+		"show": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton1": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton10": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton11": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton12": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton13": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton14": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton15": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton16": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton17": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton18": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton19": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton2": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton20": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton21": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton22": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton23": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton24": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton25": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton26": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton27": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton28": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton29": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton3": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton30": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton31": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton32": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton4": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton5": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton6": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton7": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton8": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarContextMenuButton9": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarCreateEventAMPMDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarCreateEventCloseButton": {
+		"click": "igMainMenuQuit"
+	},
+	"CalendarCreateEventDescriptionScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarCreateEventDescriptionScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarCreateEventHourDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarCreateEventInviteListClassSortButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarCreateEventInviteListNameSortButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarCreateEventInviteListScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarCreateEventInviteListScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarCreateEventInviteListStatusSortButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarCreateEventMinuteDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarCreateEventRepeatOptionDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarCreateEventTypeDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarEventPickerFrame": {
+		"hide": "igMainMenuQuit",
+		"show": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarEventPickerScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarEventPickerScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarFilterDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarInviteStatusContextMenu": {
+		"show": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton1": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton10": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton11": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton12": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton13": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton14": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton15": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton16": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton17": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton18": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton19": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton2": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton20": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton21": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton22": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton23": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton24": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton25": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton26": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton27": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton28": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton29": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton3": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton30": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton31": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton32": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton4": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton5": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton6": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton7": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton8": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarInviteStatusContextMenuButton9": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarMassInviteFrame": {
+		"hide": "igMainMenuQuit",
+		"show": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarMassInviteGuildRankMenuButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarTexturePickerFrame": {
+		"hide": "igMainMenuQuit",
+		"show": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarTexturePickerScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarTexturePickerScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarViewEventCloseButton": {
+		"click": "igMainMenuQuit"
+	},
+	"CalendarViewEventDescriptionScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarViewEventDescriptionScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarViewEventInviteListClassSortButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarViewEventInviteListNameSortButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarViewEventInviteListScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarViewEventInviteListScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarViewEventInviteListStatusSortButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CalendarViewHolidayCloseButton": {
+		"click": "igMainMenuQuit"
+	},
+	"CalendarViewHolidayScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarViewHolidayScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarViewRaidCloseButton": {
+		"click": "igMainMenuQuit"
+	},
+	"CalendarViewRaidScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"CalendarViewRaidScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"ChannelFrameAutoJoinBattleground": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"ChannelFrameAutoJoinParty": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"ChannelListDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ChannelListScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"ChannelListScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"ChannelPulloutCloseButton": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"ChannelPulloutTab": {
+		"click": "UChatScrollButton"
+	},
+	"ChannelPulloutTabDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ChannelRosterDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ChannelRosterScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"ChannelRosterScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
 	"CharCreateBackButton": {
 		"click": "gsCharacterCreationCancel"
 	},
@@ -658,7 +1327,7 @@
 		"click": "gsCharacterCreationLook"
 	},
 	"CharSelectChangeRealmButton": {
-		"click": "gsLoginChangeRealmSelect"
+		"click": "gsCharacterSelectionDelCharacter"
 	},
 	"CharSelectCharacterButton1": {
 		"click": "gsCharacterSelectionCreateNew"
@@ -690,25 +1359,106 @@
 	"CharSelectCharacterButton9": {
 		"click": "gsCharacterSelectionCreateNew"
 	},
+	"CharSelectCharacterCustomize1": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize10": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize2": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize3": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize4": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize5": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize6": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize7": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize8": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectCharacterCustomize9": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
 	"CharSelectCreateCharacterButton": {
 		"click": "gsCharacterSelectionCreateNew"
 	},
 	"CharSelectEnterWorldButton": {
 		"click": "gsCharacterSelectionEnterWorld"
 	},
-	"CharacterBag0Slot": {
-		"click": "BAGMENUBUTTONPRESS"
+	"CharSelectFactionChange1": {
+		"click": "gsCharacterSelectionCreateNew"
 	},
-	"CharacterBag1Slot": {
-		"click": "BAGMENUBUTTONPRESS"
+	"CharSelectFactionChange10": {
+		"click": "gsCharacterSelectionCreateNew"
 	},
-	"CharacterBag2Slot": {
-		"click": "BAGMENUBUTTONPRESS"
+	"CharSelectFactionChange2": {
+		"click": "gsCharacterSelectionCreateNew"
 	},
-	"CharacterBag3Slot": {
-		"click": "BAGMENUBUTTONPRESS"
+	"CharSelectFactionChange3": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectFactionChange4": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectFactionChange5": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectFactionChange6": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectFactionChange7": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectFactionChange8": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectFactionChange9": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange1": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange10": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange2": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange3": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange4": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange5": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange6": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange7": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange8": {
+		"click": "gsCharacterSelectionCreateNew"
+	},
+	"CharSelectRaceChange9": {
+		"click": "gsCharacterSelectionCreateNew"
 	},
 	"CharacterCreateClassButton1": {
+		"click": "gsCharacterCreationClass"
+	},
+	"CharacterCreateClassButton10": {
 		"click": "gsCharacterCreationClass"
 	},
 	"CharacterCreateClassButton2": {
@@ -732,16 +1482,13 @@
 	"CharacterCreateClassButton8": {
 		"click": "gsCharacterCreationClass"
 	},
+	"CharacterCreateClassButton9": {
+		"click": "gsCharacterCreationClass"
+	},
 	"CharacterCreateClassScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"CharacterCreateClassScrollFrameScrollBarScrollUpButton": {
-		"click": "UChatScrollButton"
-	},
-	"CharacterCreateFactionScrollFrameScrollBarScrollDownButton": {
-		"click": "UChatScrollButton"
-	},
-	"CharacterCreateFactionScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
 	"CharacterCreateGenderButtonFemale": {
@@ -751,6 +1498,9 @@
 		"click": "gsCharacterCreationClass"
 	},
 	"CharacterCreateRaceButton1": {
+		"click": "gsCharacterCreationClass"
+	},
+	"CharacterCreateRaceButton10": {
 		"click": "gsCharacterCreationClass"
 	},
 	"CharacterCreateRaceButton2": {
@@ -774,6 +1524,9 @@
 	"CharacterCreateRaceButton8": {
 		"click": "gsCharacterCreationClass"
 	},
+	"CharacterCreateRaceButton9": {
+		"click": "gsCharacterCreationClass"
+	},
 	"CharacterCreateRaceScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
@@ -782,6 +1535,12 @@
 	},
 	"CharacterCreateRandomName": {
 		"click": "gsCharacterCreationLook"
+	},
+	"CharacterCreateRotateLeft": {
+		"click": "igInventoryRotateCharacter"
+	},
+	"CharacterCreateRotateRight": {
+		"click": "igInventoryRotateCharacter"
 	},
 	"CharacterCustomizationButtonFrame1LeftButton": {
 		"click": "gsCharacterCreationLook"
@@ -819,10 +1578,6 @@
 	"CharacterDeleteButton2": {
 		"click": "gsTitleOptionExit"
 	},
-	"CharacterFrame": {
-		"hide": "igCharacterInfoClose",
-		"show": "igCharacterInfoOpen"
-	},
 	"CharacterFrameTab1": {
 		"click": "igCharacterInfoTab"
 	},
@@ -836,9 +1591,6 @@
 		"click": "igCharacterInfoTab"
 	},
 	"CharacterFrameTab5": {
-		"click": "igCharacterInfoTab"
-	},
-	"CharacterMicroButton": {
 		"click": "igCharacterInfoTab"
 	},
 	"CharacterModelFrameRotateLeftButton": {
@@ -859,11 +1611,62 @@
 	"CharacterSelectDeleteButton": {
 		"click": "gsCharacterSelectionDelCharacter"
 	},
-	"ChatFrame1BottomButton": {
+	"CharacterSelectRotateLeft": {
+		"click": "igInventoryRotateCharacter"
+	},
+	"CharacterSelectRotateRight": {
+		"click": "igInventoryRotateCharacter"
+	},
+	"CharacterSelectUpgradeAccountButton": {
+		"click": "gsLoginNewAccount"
+	},
+	"ChatBNPlayerDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ChatChannelDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ChatConfigCombatSettingsFiltersScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"ChatConfigCombatSettingsFiltersScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"ChatConfigFrameCancelButton": {
+		"click": "gsTitleOptionOK"
+	},
+	"ChatConfigFrameOkayButton": {
+		"click": "gsTitleOptionOK"
+	},
+	"ChatConfigMoveFilterDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"ChatConfigMoveFilterUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"ChatFrame10ButtonFrameBottomButton": {
 		"click": "igChatBottom"
 	},
-	"ChatFrame1DownButton": {
+	"ChatFrame10ButtonFrameDownButton": {
 		"click": "igChatScrollDown"
+	},
+	"ChatFrame10ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
+	},
+	"ChatFrame10Tab": {
+		"click": "UChatScrollButton"
+	},
+	"ChatFrame10TabDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ChatFrame1ButtonFrameBottomButton": {
+		"click": "igChatBottom"
+	},
+	"ChatFrame1ButtonFrameDownButton": {
+		"click": "igChatScrollDown"
+	},
+	"ChatFrame1ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
 	},
 	"ChatFrame1Tab": {
 		"click": "UChatScrollButton"
@@ -871,14 +1674,14 @@
 	"ChatFrame1TabDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ChatFrame1UpButton": {
-		"click": "igChatScrollUp"
-	},
-	"ChatFrame2BottomButton": {
+	"ChatFrame2ButtonFrameBottomButton": {
 		"click": "igChatBottom"
 	},
-	"ChatFrame2DownButton": {
+	"ChatFrame2ButtonFrameDownButton": {
 		"click": "igChatScrollDown"
+	},
+	"ChatFrame2ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
 	},
 	"ChatFrame2Tab": {
 		"click": "UChatScrollButton"
@@ -886,14 +1689,14 @@
 	"ChatFrame2TabDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ChatFrame2UpButton": {
-		"click": "igChatScrollUp"
-	},
-	"ChatFrame3BottomButton": {
+	"ChatFrame3ButtonFrameBottomButton": {
 		"click": "igChatBottom"
 	},
-	"ChatFrame3DownButton": {
+	"ChatFrame3ButtonFrameDownButton": {
 		"click": "igChatScrollDown"
+	},
+	"ChatFrame3ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
 	},
 	"ChatFrame3Tab": {
 		"click": "UChatScrollButton"
@@ -901,14 +1704,14 @@
 	"ChatFrame3TabDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ChatFrame3UpButton": {
-		"click": "igChatScrollUp"
-	},
-	"ChatFrame4BottomButton": {
+	"ChatFrame4ButtonFrameBottomButton": {
 		"click": "igChatBottom"
 	},
-	"ChatFrame4DownButton": {
+	"ChatFrame4ButtonFrameDownButton": {
 		"click": "igChatScrollDown"
+	},
+	"ChatFrame4ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
 	},
 	"ChatFrame4Tab": {
 		"click": "UChatScrollButton"
@@ -916,14 +1719,14 @@
 	"ChatFrame4TabDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ChatFrame4UpButton": {
-		"click": "igChatScrollUp"
-	},
-	"ChatFrame5BottomButton": {
+	"ChatFrame5ButtonFrameBottomButton": {
 		"click": "igChatBottom"
 	},
-	"ChatFrame5DownButton": {
+	"ChatFrame5ButtonFrameDownButton": {
 		"click": "igChatScrollDown"
+	},
+	"ChatFrame5ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
 	},
 	"ChatFrame5Tab": {
 		"click": "UChatScrollButton"
@@ -931,14 +1734,14 @@
 	"ChatFrame5TabDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ChatFrame5UpButton": {
-		"click": "igChatScrollUp"
-	},
-	"ChatFrame6BottomButton": {
+	"ChatFrame6ButtonFrameBottomButton": {
 		"click": "igChatBottom"
 	},
-	"ChatFrame6DownButton": {
+	"ChatFrame6ButtonFrameDownButton": {
 		"click": "igChatScrollDown"
+	},
+	"ChatFrame6ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
 	},
 	"ChatFrame6Tab": {
 		"click": "UChatScrollButton"
@@ -946,14 +1749,14 @@
 	"ChatFrame6TabDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ChatFrame6UpButton": {
-		"click": "igChatScrollUp"
-	},
-	"ChatFrame7BottomButton": {
+	"ChatFrame7ButtonFrameBottomButton": {
 		"click": "igChatBottom"
 	},
-	"ChatFrame7DownButton": {
+	"ChatFrame7ButtonFrameDownButton": {
 		"click": "igChatScrollDown"
+	},
+	"ChatFrame7ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
 	},
 	"ChatFrame7Tab": {
 		"click": "UChatScrollButton"
@@ -961,8 +1764,35 @@
 	"ChatFrame7TabDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ChatFrame7UpButton": {
+	"ChatFrame8ButtonFrameBottomButton": {
+		"click": "igChatBottom"
+	},
+	"ChatFrame8ButtonFrameDownButton": {
+		"click": "igChatScrollDown"
+	},
+	"ChatFrame8ButtonFrameUpButton": {
 		"click": "igChatScrollUp"
+	},
+	"ChatFrame8Tab": {
+		"click": "UChatScrollButton"
+	},
+	"ChatFrame8TabDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ChatFrame9ButtonFrameBottomButton": {
+		"click": "igChatBottom"
+	},
+	"ChatFrame9ButtonFrameDownButton": {
+		"click": "igChatScrollDown"
+	},
+	"ChatFrame9ButtonFrameUpButton": {
+		"click": "igChatScrollUp"
+	},
+	"ChatFrame9Tab": {
+		"click": "UChatScrollButton"
+	},
+	"ChatFrame9TabDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"ChatFrameMenuButton": {
 		"click": "igChatEmoteButton"
@@ -1094,15 +1924,8 @@
 	"ClassTrainerMoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"CoinPickupCancelButton": {
-		"click": "igBackPackCoinCancel"
-	},
 	"CoinPickupFrame": {
-		"hide": "MONEYFRAMECLOSE",
 		"show": "MONEYFRAMEOPEN"
-	},
-	"CoinPickupOkayButton": {
-		"click": "igBackPackCoinOK"
 	},
 	"ColorPickerCancelButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
@@ -1110,14 +1933,122 @@
 	"ColorPickerOkayButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"CombatLogBottomButton": {
-		"click": "igChatBottom"
+	"CombatConfigColorsColorizeDamageNumberCheck": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"CombatLogDownButton": {
-		"click": "igChatScrollDown"
+	"CombatConfigColorsColorizeDamageNumberSchoolColoring": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"CombatLogUpButton": {
-		"click": "igChatScrollUp"
+	"CombatConfigColorsColorizeDamageSchoolCheck": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsColorizeEntireLineBySource": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsColorizeEntireLineByTarget": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsColorizeEntireLineCheck": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsColorizeSpellNamesCheck": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsColorizeSpellNamesSchoolColoring": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsColorizeUnitNameCheck": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsHighlightingAbility": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsHighlightingDamage": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsHighlightingLine": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigColorsHighlightingSchool": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigFormattingFullText": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigFormattingItemNames": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigFormattingShowBraces": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigFormattingShowTimeStamp": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigFormattingSpellNames": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigFormattingUnitNames": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigSettingsParty": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigSettingsRaid": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigSettingsShowQuickButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatConfigSettingsSolo": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatLogDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CombatLogQuickButtonFrame_CustomAdditionalFilterButton": {
+		"click": "UChatScrollButton"
+	},
+	"CompanionButton1": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton10": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton11": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton12": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton3": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton4": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton5": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton6": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton7": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton8": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionButton9": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"CompanionModelFrameRotateLeftButton": {
+		"click": "igInventoryRotateCharacter"
+	},
+	"CompanionModelFrameRotateRightButton": {
+		"click": "igInventoryRotateCharacter"
 	},
 	"ConnectionHelpScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
@@ -1166,6 +2097,19 @@
 		"click": "igBackPackCoinSelect"
 	},
 	"ContainerFrame12MoneyFrameSilverButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"ContainerFrame13": {
+		"hide": "KeyRingClose",
+		"show": "KeyRingOpen"
+	},
+	"ContainerFrame13MoneyFrameCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"ContainerFrame13MoneyFrameGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"ContainerFrame13MoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
 	"ContainerFrame1MoneyFrameCopperButton": {
@@ -1287,21 +2231,11 @@
 	"ContestScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"CraftDetailScrollFrameScrollBarScrollDownButton": {
-		"click": "UChatScrollButton"
+	"CreditsFrameSwitchButton1": {
+		"click": "igMainMenuOptionCheckBoxOff"
 	},
-	"CraftDetailScrollFrameScrollBarScrollUpButton": {
-		"click": "UChatScrollButton"
-	},
-	"CraftFrame": {
-		"hide": "igCharacterInfoClose",
-		"show": "igCharacterInfoOpen"
-	},
-	"CraftListScrollFrameScrollBarScrollDownButton": {
-		"click": "UChatScrollButton"
-	},
-	"CraftListScrollFrameScrollBarScrollUpButton": {
-		"click": "UChatScrollButton"
+	"CreditsFrameSwitchButton2": {
+		"click": "igMainMenuOptionCheckBoxOff"
 	},
 	"DressUpFrame": {
 		"hide": "igCharacterInfoClose",
@@ -1319,79 +2253,10 @@
 	"DropDownList1Button1": {
 		"click": "UChatScrollButton"
 	},
-	"DropDownList1Button10": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button11": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button12": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button13": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button14": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button15": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button16": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button17": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button18": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button19": {
-		"click": "UChatScrollButton"
-	},
 	"DropDownList1Button2": {
 		"click": "UChatScrollButton"
 	},
-	"DropDownList1Button20": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button21": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button22": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button23": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button24": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button25": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button26": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button27": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button28": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button29": {
-		"click": "UChatScrollButton"
-	},
 	"DropDownList1Button3": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button30": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button31": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList1Button32": {
 		"click": "UChatScrollButton"
 	},
 	"DropDownList1Button4": {
@@ -1409,85 +2274,13 @@
 	"DropDownList1Button8": {
 		"click": "UChatScrollButton"
 	},
-	"DropDownList1Button9": {
-		"click": "UChatScrollButton"
-	},
 	"DropDownList2Button1": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button10": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button11": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button12": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button13": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button14": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button15": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button16": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button17": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button18": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button19": {
 		"click": "UChatScrollButton"
 	},
 	"DropDownList2Button2": {
 		"click": "UChatScrollButton"
 	},
-	"DropDownList2Button20": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button21": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button22": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button23": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button24": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button25": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button26": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button27": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button28": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button29": {
-		"click": "UChatScrollButton"
-	},
 	"DropDownList2Button3": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button30": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button31": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList2Button32": {
 		"click": "UChatScrollButton"
 	},
 	"DropDownList2Button4": {
@@ -1505,85 +2298,13 @@
 	"DropDownList2Button8": {
 		"click": "UChatScrollButton"
 	},
-	"DropDownList2Button9": {
-		"click": "UChatScrollButton"
-	},
 	"DropDownList3Button1": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button10": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button11": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button12": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button13": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button14": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button15": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button16": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button17": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button18": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button19": {
 		"click": "UChatScrollButton"
 	},
 	"DropDownList3Button2": {
 		"click": "UChatScrollButton"
 	},
-	"DropDownList3Button20": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button21": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button22": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button23": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button24": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button25": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button26": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button27": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button28": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button29": {
-		"click": "UChatScrollButton"
-	},
 	"DropDownList3Button3": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button30": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button31": {
-		"click": "UChatScrollButton"
-	},
-	"DropDownList3Button32": {
 		"click": "UChatScrollButton"
 	},
 	"DropDownList3Button4": {
@@ -1601,8 +2322,8 @@
 	"DropDownList3Button8": {
 		"click": "UChatScrollButton"
 	},
-	"DropDownList3Button9": {
-		"click": "UChatScrollButton"
+	"DurationDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"EULAScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
@@ -1709,41 +2430,10 @@
 	"EmoteMenuButton9": {
 		"click": "UChatScrollButton"
 	},
+	"FocusFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
 	"FriendsDropDownButton": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrame": {
-		"hide": "igMainMenuClose",
-		"show": "igMainMenuOpen"
-	},
-	"FriendsFrameFriendButton1": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton10": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton2": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton3": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton4": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton5": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton6": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton7": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton8": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"FriendsFrameFriendButton9": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"FriendsFrameFriendsScrollFrameScrollBarScrollDownButton": {
@@ -1788,9 +2478,6 @@
 	"FriendsFrameIgnoreButton2": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"FriendsFrameIgnoreButton20": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
 	"FriendsFrameIgnoreButton3": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
@@ -1812,23 +2499,81 @@
 	"FriendsFrameIgnoreButton9": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
+	"FriendsFrameIgnorePlayerButton": {
+		"click": "UChatScrollButton"
+	},
 	"FriendsFrameIgnoreScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"FriendsFrameIgnoreScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
+	"FriendsFrameMutePlayerButton": {
+		"click": "UChatScrollButton"
+	},
+	"FriendsFramePendingScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"FriendsFramePendingScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"FriendsFrameStatusDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
 	"FriendsFrameTab1": {
-		"click": "igMainMenuOpen"
+		"click": "igCharacterInfoTab"
 	},
 	"FriendsFrameTab2": {
-		"click": "igMainMenuOpen"
+		"click": "igCharacterInfoTab"
 	},
 	"FriendsFrameTab3": {
-		"click": "igMainMenuOpen"
+		"click": "igCharacterInfoTab"
 	},
 	"FriendsFrameTab4": {
-		"click": "igMainMenuOpen"
+		"click": "igCharacterInfoTab"
+	},
+	"FriendsFrameTab5": {
+		"click": "igCharacterInfoTab"
+	},
+	"FriendsFriendsFrame": {
+		"hide": "igMainMenuClose",
+		"show": "igMainMenuOpen"
+	},
+	"FriendsFriendsFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"FriendsFriendsNoteFrameScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"FriendsFriendsNoteFrameScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"FriendsFriendsScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"FriendsFriendsScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"FriendsMicroButton": {
+		"click": "igCharacterInfoTab"
+	},
+	"FriendsTabHeaderTab1": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"FriendsTabHeaderTab2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"FriendsTabHeaderTab3": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"GMChatFrameButtonFrameBottomButton": {
+		"click": "igChatBottom"
+	},
+	"GMChatFrameButtonFrameDownButton": {
+		"click": "igChatScrollDown"
+	},
+	"GMChatFrameButtonFrameUpButton": {
+		"click": "igChatScrollUp"
 	},
 	"GMSurveyScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
@@ -1845,6 +2590,9 @@
 	"GameMenuButtonLogout": {
 		"click": "igMainMenuLogout"
 	},
+	"GameMenuButtonMacOptions": {
+		"click": "igMainMenuOption"
+	},
 	"GameMenuButtonMacros": {
 		"click": "igMainMenuOption"
 	},
@@ -1854,25 +2602,40 @@
 	"GameMenuButtonQuit": {
 		"click": "igMainMenuQuit"
 	},
+	"GameMenuButtonRatings": {
+		"click": "igMainMenuOption"
+	},
 	"GameMenuButtonSoundOptions": {
 		"click": "igMainMenuOption"
 	},
 	"GameMenuButtonUIOptions": {
 		"click": "igMainMenuOption"
 	},
-	"GameTooltipMoneyFrameCopperButton": {
-		"click": "igBackPackCoinSelect"
+	"GearManagerDialogPopupCancel": {
+		"click": "gsTitleOptionOK"
 	},
-	"GameTooltipMoneyFrameGoldButton": {
-		"click": "igBackPackCoinSelect"
+	"GearManagerDialogPopupOkay": {
+		"click": "gsTitleOptionOK"
 	},
-	"GameTooltipMoneyFrameSilverButton": {
-		"click": "igBackPackCoinSelect"
+	"GearManagerDialogPopupScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"GearManagerDialogPopupScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"GeneralDockManagerOverflowButton": {
+		"click": "UChatScrollButton"
+	},
+	"GlueDialog": {
+		"hide": "igMainMenuClose"
 	},
 	"GlueDialogButton1": {
 		"click": "gsTitleOptionOK"
 	},
 	"GlueDialogButton2": {
+		"click": "gsTitleOptionOK"
+	},
+	"GlueDialogButton3": {
 		"click": "gsTitleOptionOK"
 	},
 	"GossipFrame": {
@@ -1888,6 +2651,102 @@
 	"GroupLootDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
+	"GuildBankFrame": {
+		"hide": "GuildVaultClose"
+	},
+	"GuildBankFrameDepositButton": {
+		"click": "igMainMenuOption"
+	},
+	"GuildBankFramePurchaseButton": {
+		"click": "igMainMenuOption"
+	},
+	"GuildBankFrameTab1": {
+		"click": "igCharacterInfoTab"
+	},
+	"GuildBankFrameTab2": {
+		"click": "igCharacterInfoTab"
+	},
+	"GuildBankFrameTab3": {
+		"click": "igCharacterInfoTab"
+	},
+	"GuildBankFrameTab4": {
+		"click": "igCharacterInfoTab"
+	},
+	"GuildBankFrameTabCostMoneyFrameCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"GuildBankFrameTabCostMoneyFrameGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"GuildBankFrameTabCostMoneyFrameSilverButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"GuildBankFrameWithdrawButton": {
+		"click": "igMainMenuOption"
+	},
+	"GuildBankInfoScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"GuildBankInfoScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"GuildBankMoneyFrameCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"GuildBankMoneyFrameGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"GuildBankMoneyFrameSilverButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"GuildBankPopupCancelButton": {
+		"click": "gsTitleOptionOK"
+	},
+	"GuildBankPopupFrame": {
+		"hide": "igCharacterInfoTab"
+	},
+	"GuildBankPopupOkayButton": {
+		"click": "gsTitleOptionOK"
+	},
+	"GuildBankPopupScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"GuildBankPopupScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"GuildBankTab1Button": {
+		"click": "GuildBankOpenBag"
+	},
+	"GuildBankTab2Button": {
+		"click": "GuildBankOpenBag"
+	},
+	"GuildBankTab3Button": {
+		"click": "GuildBankOpenBag"
+	},
+	"GuildBankTab4Button": {
+		"click": "GuildBankOpenBag"
+	},
+	"GuildBankTab5Button": {
+		"click": "GuildBankOpenBag"
+	},
+	"GuildBankTab6Button": {
+		"click": "GuildBankOpenBag"
+	},
+	"GuildBankTransactionsScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"GuildBankTransactionsScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"GuildBankWithdrawMoneyFrameCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"GuildBankWithdrawMoneyFrameGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"GuildBankWithdrawMoneyFrameSilverButton": {
+		"click": "igBackPackCoinSelect"
+	},
 	"GuildControlPopupFrameCheckbox1": {
 		"click": "igMainMenuOptionCheckBoxOff"
 	},
@@ -1901,6 +2760,15 @@
 		"click": "igMainMenuOptionCheckBoxOff"
 	},
 	"GuildControlPopupFrameCheckbox13": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"GuildControlPopupFrameCheckbox15": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"GuildControlPopupFrameCheckbox16": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"GuildControlPopupFrameCheckbox17": {
 		"click": "igMainMenuOptionCheckBoxOff"
 	},
 	"GuildControlPopupFrameCheckbox2": {
@@ -1929,6 +2797,21 @@
 	},
 	"GuildControlPopupFrameDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"GuildControlTabPermissionsDepositItems": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"GuildControlTabPermissionsUpdateText": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"GuildControlTabPermissionsViewTab": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"GuildEventLogScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"GuildEventLogScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
 	"GuildFrameColumnHeader1": {
 		"click": "igMainMenuOptionCheckBoxOn"
@@ -1994,31 +2877,23 @@
 	"GuildRegistrarMoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"HelpFrame": {
-		"hide": "igCharacterInfoClose",
-		"show": "igCharacterInfoOpen"
-	},
-	"HelpFrameGMScrollFrameScrollBarScrollDownButton": {
-		"click": "UChatScrollButton"
-	},
-	"HelpFrameGMScrollFrameScrollBarScrollUpButton": {
-		"click": "UChatScrollButton"
-	},
 	"HelpFrameOpenTicketScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"HelpFrameOpenTicketScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"InboxNextPageButton": {
-		"click": "igMainMenuOptionCheckBoxOn"
+	"HelpFrameViewResponseIssueScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
 	},
-	"InboxPrevPageButton": {
-		"click": "igMainMenuOptionCheckBoxOn"
+	"HelpFrameViewResponseIssueScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
-	"InspectFrame": {
-		"hide": "igCharacterInfoClose",
-		"show": "igCharacterInfoOpen"
+	"HelpFrameViewResponseMessageScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"HelpFrameViewResponseMessageScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
 	"InspectFrameTab1": {
 		"click": "igCharacterInfoTab"
@@ -2026,20 +2901,486 @@
 	"InspectFrameTab2": {
 		"click": "igCharacterInfoTab"
 	},
-	"InspectModelRotateLeftButton": {
-		"click": "igInventoryRotateCharacter"
+	"InspectFrameTab3": {
+		"click": "igCharacterInfoTab"
 	},
-	"InspectModelRotateRightButton": {
-		"click": "igInventoryRotateCharacter"
+	"InspectTalentFrameScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
 	},
-	"ItemRefTooltipMoneyFrameCopperButton": {
-		"click": "igBackPackCoinSelect"
+	"InspectTalentFrameScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
-	"ItemRefTooltipMoneyFrameGoldButton": {
-		"click": "igBackPackCoinSelect"
+	"InspectTalentFrameTab1": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ItemRefTooltipMoneyFrameSilverButton": {
-		"click": "igBackPackCoinSelect"
+	"InspectTalentFrameTab2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InspectTalentFrameTab3": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsActionBarsPanelAlwaysShowActionBars": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsActionBarsPanelBottomLeft": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsActionBarsPanelBottomRight": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsActionBarsPanelLockActionBars": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsActionBarsPanelRight": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsActionBarsPanelRightTwo": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsActionBarsPanelSecureAbilityToggle": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBattlenetPanelBroadcasts": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBattlenetPanelConversations": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBattlenetPanelFriendRequests": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBattlenetPanelOfflineFriends": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBattlenetPanelOnlineFriends": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBattlenetPanelShowToastWindow": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBuffsPanelBuffDurations": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBuffsPanelCastableBuffs": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBuffsPanelConsolidateBuffs": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBuffsPanelDispellableDebuffs": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsBuffsPanelShowCastableDebuffs": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCameraPanelFollowTerrain": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCameraPanelHeadBob": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCameraPanelSmartPivot": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCameraPanelStyleDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCameraPanelWaterCollision": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelAttackOnAssist": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelAutoRange": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelAutoSelfCast": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelEnemyCastBarsOnNameplates": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelEnemyCastBarsOnPortrait": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelFocusCastKeyDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelNameplateClassColors": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelSelfCastKeyDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelStopAutoAttack": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelTOTDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatPanelTargetOfTarget": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelAuras": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelCombatState": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelComboPoints": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelDamageReduction": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelDodgeParryMiss": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelEnableFCT": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelEnergyGains": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelFCTDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelFriendlyHealerNames": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelHealing": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelHonorGains": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelLowManaHealth": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelOtherTargetEffects": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelPeriodicDamage": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelPeriodicEnergyGains": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelPetDamage": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelReactiveAbilities": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelRepChanges": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelTargetDamage": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsCombatTextPanelTargetEffects": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsControlsPanelAutoClearAFK": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsControlsPanelAutoDismount": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsControlsPanelAutoLootCorpse": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsControlsPanelAutoLootKeyDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsControlsPanelBlockTrades": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsControlsPanelLootAtMouse": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsControlsPanelStickyTargeting": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelAggroWarningDisplayButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelCinematicSubtitles": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelColorblindMode": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelDetailedLootInfo": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelPlayAggroSounds": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelRotateMinimap": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelScreenEdgeFlash": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelShowAggroPercentage": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelShowCloak": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelShowClock": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelShowFreeBagSpace": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelShowHelm": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelShowItemLevel": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsDisplayPanelWorldPVPObjectiveDisplayButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsFeaturesPanelEquipmentManager": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsFeaturesPanelPreviewTalentChanges": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsFrameAddOnsListScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"InterfaceOptionsFrameAddOnsListScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"InterfaceOptionsFrameCategoriesListScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"InterfaceOptionsFrameCategoriesListScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"InterfaceOptionsFrameTab1": {
+		"click": "igCharacterInfoTab"
+	},
+	"InterfaceOptionsFrameTab2": {
+		"click": "igCharacterInfoTab"
+	},
+	"InterfaceOptionsHelpPanelBeginnerTooltips": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsHelpPanelEnhancedTooltips": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsHelpPanelLoadingScreenTips": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsHelpPanelResetTutorials": {
+		"click": "gsTitleOptionOK"
+	},
+	"InterfaceOptionsHelpPanelShowLuaErrors": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsHelpPanelShowTutorials": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsLanguagesPanelLocaleDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsLanguagesPanelUseEnglishAudio": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsMousePanelClickMoveStyleDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsMousePanelClickToMove": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsMousePanelInvertMouse": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsMousePanelWoWMouse": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelEnemyGuardians": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelEnemyPets": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelEnemyPlayerNames": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelEnemyTotems": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelFriendlyGuardians": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelFriendlyPets": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelFriendlyPlayerNames": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelFriendlyTotems": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelGuilds": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelMyName": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelNPCNames": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelNonCombatCreature": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelTitles": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesAllowOverlap": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesEnemies": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesEnemyGuardians": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesEnemyPets": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesEnemyTotems": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesFriendlyGuardians": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesFriendlyPets": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesFriendlyTotems": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsNamesPanelUnitNameplatesFriends": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsObjectivesPanelAdvancedWorldMap": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsObjectivesPanelAutoQuestProgress": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsObjectivesPanelAutoQuestTracking": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsObjectivesPanelInstantQuestText": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsObjectivesPanelMapQuestDifficulty": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsObjectivesPanelWatchFrameWidth": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelChatBubbles": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelChatHoverDelay": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelChatMouseScroll": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelChatStyleButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelConversationModeButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelGuildMemberAlert": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelGuildRecruitment": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelPartyChat": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelProfanityFilter": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelSpamFilter": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelTimestampsButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsSocialPanelWholeChatWindowClickable": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsStatusTextPanelParty": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsStatusTextPanelPercentages": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsStatusTextPanelPet": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsStatusTextPanelPlayer": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsStatusTextPanelTarget": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsStatusTextPanelXP": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsUnitFramePanelArenaEnemyCastBar": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsUnitFramePanelArenaEnemyFrames": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsUnitFramePanelArenaEnemyPets": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsUnitFramePanelFullSizeFocusFrame": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsUnitFramePanelPartyBackground": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsUnitFramePanelPartyInRaid": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsUnitFramePanelPartyPets": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"InterfaceOptionsUnitFramePanelRaidRange": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"IsUsableCheckButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ItemSocketingFrame": {
+		"hide": "igCharacterInfoClose",
+		"show": "igCharacterInfoOpen"
+	},
+	"ItemSocketingScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"ItemSocketingScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"ItemSocketingSocketButton": {
+		"click": "JewelcraftingFinalize"
 	},
 	"ItemTextFrame": {
 		"hide": "igMainMenuClose",
@@ -2057,10 +3398,189 @@
 	"ItemTextScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
+	"KeyBindingFrame": {
+		"hide": "gsTitleOptionExit"
+	},
 	"KeyBindingFrameScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"KeyBindingFrameScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"KnowledgeBaseArticleListFrameNextButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListFramePreviousButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem1": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem10": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem11": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem12": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem13": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem14": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem15": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem16": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem17": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem18": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem19": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem20": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem3": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem4": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem5": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem6": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem7": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem8": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleListItem9": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseArticleScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"KnowledgeBaseArticleScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"KnowledgeBaseFrameCategoryDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseFrameSearchButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseFrameSubCategoryDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"KnowledgeBaseFrameTopIssuesButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFDDungeonReadyDialogCloseButton": {
+		"click": "igCharacterInfoTab"
+	},
+	"LFDDungeonReadyDialogEnterDungeonButton": {
+		"click": "igCharacterInfoTab"
+	},
+	"LFDDungeonReadyDialogLeaveQueueButton": {
+		"click": "igCharacterInfoTab"
+	},
+	"LFDDungeonReadyPopup": {
+		"show": "LFG_RoleCheck"
+	},
+	"LFDQueueFrame": {
+		"hide": "igCharacterInfoClose",
+		"show": "igCharacterInfoOpen"
+	},
+	"LFDQueueFramePartyBackfillNoBackfillButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFDQueueFrameRandomScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFDQueueFrameRandomScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFDQueueFrameSpecificListScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFDQueueFrameSpecificListScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFDQueueFrameTypeDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameColumnHeader1": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameColumnHeader2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameColumnHeader3": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameColumnHeader4": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameColumnHeader5": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameColumnHeader6": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameColumnHeader7": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameInviteButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFRBrowseFrameListScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFRBrowseFrameListScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFRBrowseFrameRaidDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"LFRBrowseFrameRefreshButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFRBrowseFrameSendMessageButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFRParentFrame": {
+		"hide": "igCharacterInfoClose",
+		"show": "igCharacterInfoOpen"
+	},
+	"LFRParentFrameTab1": {
+		"click": "igCharacterInfoTab"
+	},
+	"LFRParentFrameTab2": {
+		"click": "igCharacterInfoTab"
+	},
+	"LFRQueueFrameAcceptCommentButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFRQueueFrameSpecificListScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"LFRQueueFrameSpecificListScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
 	"LanguageMenu": {
@@ -2162,12 +3682,77 @@
 	"LanguageMenuButton9": {
 		"click": "UChatScrollButton"
 	},
-	"LootFrame": {
-		"show": "LOOTWINDOWOPENEMPTY"
+	"MacOptionsButtonCompress": {
+		"click": "igMainMenuOption"
 	},
-	"MacroFrame": {
-		"hide": "igCharacterInfoClose",
-		"show": "igCharacterInfoOpen"
+	"MacOptionsButtonKeybindings": {
+		"click": "igMainMenuOption"
+	},
+	"MacOptionsCancelFrameNo": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsCancelFrameYes": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsCompressFrameCompress": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsCompressFrameDelete": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsCompressFrameSkip": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrame": {
+		"hide": "gsTitleOptionExit"
+	},
+	"MacOptionsFrameCancel": {
+		"click": "gsTitleOptionExit"
+	},
+	"MacOptionsFrameCheckButton1": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameCheckButton2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameCheckButton3": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameCheckButton4": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameCheckButton5": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameCheckButton6": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameCheckButton7": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameCheckButton8": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameCodecDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameDefaults": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameFramerateDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacOptionsFrameOkay": {
+		"click": "gsTitleOptionOK"
+	},
+	"MacOptionsFrameResolutionDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MacroButtonScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"MacroButtonScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
 	"MacroFrameScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
@@ -2177,9 +3762,6 @@
 	},
 	"MacroPopupCancelButton": {
 		"click": "gsTitleOptionOK"
-	},
-	"MacroPopupFrame": {
-		"show": "igCharacterInfoOpen"
 	},
 	"MacroPopupOkayButton": {
 		"click": "gsTitleOptionOK"
@@ -2220,9 +3802,6 @@
 	"MailItem7Button": {
 		"click": "igSpellBookOpen"
 	},
-	"MainMenuMicroButton": {
-		"click": "igMainMenuQuit"
-	},
 	"MerchantBuyBackItemMoneyFrameCopperButton": {
 		"click": "igBackPackCoinSelect"
 	},
@@ -2232,15 +3811,14 @@
 	"MerchantBuyBackItemMoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"MerchantFrame": {
-		"hide": "igCharacterInfoClose",
-		"show": "igCharacterInfoOpen"
-	},
 	"MerchantFrameTab1": {
 		"click": "igCharacterInfoTab"
 	},
 	"MerchantFrameTab2": {
 		"click": "igCharacterInfoTab"
+	},
+	"MerchantGuildBankRepairButton": {
+		"click": "ITEM_REPAIR"
 	},
 	"MerchantItem10MoneyFrameCopperButton": {
 		"click": "igBackPackCoinSelect"
@@ -2359,38 +3937,77 @@
 	"MerchantMoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"MerchantNextPageButton": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"MerchantPrevPageButton": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
 	"MerchantRepairAllButton": {
 		"click": "ITEM_REPAIR"
 	},
 	"MiniMapBattlefieldDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"MinimapToggleButton": {
-		"click": "igMiniMapClose"
+	"MiniMapLFGFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"MinimapZoomIn": {
-		"click": "igMiniMapZoomIn"
+	"MiniMapTrackingButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"MinimapZoomOut": {
-		"click": "igMiniMapZoomOut"
+	"MiniMapTrackingDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OpenMailFrame": {
-		"hide": "igSpellBookClose"
+	"MiniMapVoiceChatDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"MiniMapVoiceChatFrame": {
+		"click": "igCharacterInfoTab"
+	},
+	"OpenMailAttachmentButton1": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton10": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton11": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton12": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton13": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton14": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton15": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton16": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton3": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton4": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton5": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton6": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton7": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton8": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"OpenMailAttachmentButton9": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"OpenMailLetterButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"OpenMailPackageButton": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"OpenMailReplyButton": {
-		"click": "igSpellBookOpen"
 	},
 	"OpenMailScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
@@ -2398,76 +4015,103 @@
 	"OpenMailScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"OptionsFrameCancel": {
-		"click": "gsTitleOptionExit"
+	"OptionsButton": {
+		"click": "gsTitleOptions"
 	},
-	"OptionsFrameCheckButton1": {
+	"OptionsSelectFrameBackgroundContainerAudioOptionsButton": {
+		"click": "igMainMenuOption"
+	},
+	"OptionsSelectFrameBackgroundContainerVideoOptionsButton": {
+		"click": "igMainMenuOption"
+	},
+	"OptionsSelectFrameBackgroundOkayButton": {
+		"click": "gsLoginChangeRealmCancel"
+	},
+	"OptionsSelectResetSettingsButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton10": {
+	"PVPBannerFrameCustomization1LeftButton": {
+		"click": "gsCharacterCreationLook"
+	},
+	"PVPBannerFrameCustomization1RightButton": {
+		"click": "gsCharacterCreationLook"
+	},
+	"PVPBannerFrameCustomization2LeftButton": {
+		"click": "gsCharacterCreationLook"
+	},
+	"PVPBannerFrameCustomization2RightButton": {
+		"click": "gsCharacterCreationLook"
+	},
+	"PVPBattlegroundFrameInfoScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"PVPBattlegroundFrameInfoScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"PVPBattlegroundFrameTypeScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"PVPBattlegroundFrameTypeScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"PVPDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton11": {
+	"PVPFrameToggleButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton12": {
+	"PVPParentFrameTab1": {
+		"click": "igCharacterInfoTab"
+	},
+	"PVPParentFrameTab2": {
+		"click": "igCharacterInfoTab"
+	},
+	"PVPTeamDetailsButton1": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton13": {
+	"PVPTeamDetailsButton10": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton14": {
+	"PVPTeamDetailsButton2": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton15": {
+	"PVPTeamDetailsButton3": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton16": {
+	"PVPTeamDetailsButton4": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton17": {
+	"PVPTeamDetailsButton5": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton18": {
+	"PVPTeamDetailsButton6": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton2": {
+	"PVPTeamDetailsButton7": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton3": {
+	"PVPTeamDetailsButton8": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton4": {
+	"PVPTeamDetailsButton9": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton5": {
+	"PVPTeamDetailsFrameColumnHeader1": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton6": {
+	"PVPTeamDetailsFrameColumnHeader2": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton7": {
+	"PVPTeamDetailsFrameColumnHeader3": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton8": {
+	"PVPTeamDetailsFrameColumnHeader4": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameCheckButton9": {
+	"PVPTeamDetailsFrameColumnHeader5": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"OptionsFrameDefaults": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"OptionsFrameMultiSampleDropDownButton": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"OptionsFrameOkay": {
-		"click": "gsTitleOptionOK"
-	},
-	"OptionsFrameRefreshDropDownButton": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"OptionsFrameResolutionDropDownButton": {
+	"PVPTeamDetailsToggleButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"PartyMemberFrame1DropDownButton": {
@@ -2482,6 +4126,9 @@
 	"PartyMemberFrame4DropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
+	"PendingListFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
 	"PetFrameDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
@@ -2490,6 +4137,15 @@
 	},
 	"PetModelFrameRotateRightButton": {
 		"click": "igInventoryRotateCharacter"
+	},
+	"PetPaperDollFrameTab1": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"PetPaperDollFrameTab2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"PetPaperDollFrameTab3": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"PetStableCostMoneyFrameCopperButton": {
 		"click": "igBackPackCoinSelect"
@@ -2523,7 +4179,55 @@
 		"hide": "igQuestListClose",
 		"show": "igQuestListOpen"
 	},
+	"PlayLoopbackSoundButton": {
+		"click": "gsTitleOptionExit"
+	},
 	"PlayerFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"PlayerSpecTab1": {
+		"click": "igCharacterInfoTab"
+	},
+	"PlayerSpecTab2": {
+		"click": "igCharacterInfoTab"
+	},
+	"PlayerSpecTab3": {
+		"click": "igCharacterInfoTab"
+	},
+	"PlayerStatFrameLeftDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"PlayerStatFrameRightDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"PlayerTalentFrameScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"PlayerTalentFrameScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"PlayerTalentFrameTab1": {
+		"click": "igCharacterInfoTab"
+	},
+	"PlayerTalentFrameTab2": {
+		"click": "igCharacterInfoTab"
+	},
+	"PlayerTalentFrameTab3": {
+		"click": "igCharacterInfoTab"
+	},
+	"PlayerTalentFrameTab4": {
+		"click": "igCharacterInfoTab"
+	},
+	"PlayerTitleFrameButton": {
+		"click": "igMainMenuOptionCheckBoxOff"
+	},
+	"PlayerTitlePickerScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"PlayerTitlePickerScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"PriceDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"QuestDetailScrollFrameScrollBarScrollDownButton": {
@@ -2532,30 +4236,29 @@
 	"QuestDetailScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"QuestFrame": {
-		"hide": "igQuestListClose",
-		"show": "igQuestListOpen"
-	},
-	"QuestFrameCancelButton": {
-		"click": "igQuestCancel"
-	},
-	"QuestFrameCompleteButton": {
-		"click": "igQuestListComplete"
-	},
-	"QuestFrameCompleteQuestButton": {
-		"click": "igQuestListComplete"
-	},
-	"QuestFrameDeclineButton": {
-		"click": "igQuestCancel"
-	},
-	"QuestFrameGoodbyeButton": {
-		"click": "igQuestCancel"
-	},
 	"QuestGreetingScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"QuestGreetingScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
+	},
+	"QuestInfoMoneyFrameCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"QuestInfoMoneyFrameGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"QuestInfoMoneyFrameSilverButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"QuestInfoRequiredMoneyDisplayCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"QuestInfoRequiredMoneyDisplayGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"QuestInfoRequiredMoneyDisplaySilverButton": {
+		"click": "igBackPackCoinSelect"
 	},
 	"QuestLogDetailScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
@@ -2563,14 +4266,13 @@
 	"QuestLogDetailScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"QuestLogFrame": {
-		"hide": "igQuestLogClose",
-		"show": "igQuestLogOpen"
+	"QuestLogFramePushQuestButton": {
+		"click": "igQuestLogOpen"
 	},
-	"QuestLogListScrollFrameScrollBarScrollDownButton": {
+	"QuestLogScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
-	"QuestLogListScrollFrameScrollBarScrollUpButton": {
+	"QuestLogScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
 	"QuestProgressScrollFrameScrollBarScrollDownButton": {
@@ -2585,16 +4287,29 @@
 	"QuestRewardScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"RaceSelectBackButton": {
-		"click": "gsCharacterCreationCancel"
+	"RaidFrameReadyCheckButton": {
+		"click": "UChatScrollButton"
 	},
-	"RaceSelectOkButton": {
-		"click": "gsCharacterSelectionCreateNew"
+	"RaidInfoFrame": {
+		"hide": "UChatScrollButton",
+		"show": "UChatScrollButton"
 	},
 	"RaidInfoScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"RaidInfoScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"RatingMenuButtonOkay": {
+		"click": "gsTitleOptionExit"
+	},
+	"ReadyCheckListenerFrame": {
+		"show": "ReadyCheck"
+	},
+	"RealmHelpScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"RealmHelpScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
 	"RealmListCancelButton": {
@@ -2651,6 +4366,9 @@
 	"RealmWizardSuggest": {
 		"click": "gsTitleOptionOK"
 	},
+	"RecordLoopbackSoundButton": {
+		"click": "gsTitleOptionExit"
+	},
 	"ReputationDetailAtWarCheckBox": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
@@ -2672,6 +4390,51 @@
 	"ScanningScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
+	"ScorePlayerDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"ScriptErrorsFrameScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"ScriptErrorsFrameScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixKeypadButtonClear": {
+		"click": "igSpellBookOpen"
+	},
+	"SecurityMatrixKeypadButtonOK": {
+		"click": "igSpellBookClose"
+	},
+	"SecurityMatrixPinwheelButton0": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton1": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton2": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton3": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton4": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton5": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton6": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton7": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton8": {
+		"click": "UChatScrollButton"
+	},
+	"SecurityMatrixPinwheelButton9": {
+		"click": "UChatScrollButton"
+	},
 	"SendMailCODButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
@@ -2683,9 +4446,6 @@
 	},
 	"SendMailCostMoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
-	},
-	"SendMailFrame": {
-		"show": "igMainMenuOptionCheckBoxOn"
 	},
 	"SendMailMoneyFrameCopperButton": {
 		"click": "igBackPackCoinSelect"
@@ -2711,23 +4471,11 @@
 	"ServerAlertScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
-	"ShoppingTooltip1MoneyFrameCopperButton": {
-		"click": "igBackPackCoinSelect"
+	"ShowAllSpellRanksCheckBox": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"ShoppingTooltip1MoneyFrameGoldButton": {
-		"click": "igBackPackCoinSelect"
-	},
-	"ShoppingTooltip1MoneyFrameSilverButton": {
-		"click": "igBackPackCoinSelect"
-	},
-	"ShoppingTooltip2MoneyFrameCopperButton": {
-		"click": "igBackPackCoinSelect"
-	},
-	"ShoppingTooltip2MoneyFrameGoldButton": {
-		"click": "igBackPackCoinSelect"
-	},
-	"ShoppingTooltip2MoneyFrameSilverButton": {
-		"click": "igBackPackCoinSelect"
+	"ShowOnPlayerCheckButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"SkillDetailScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
@@ -2742,71 +4490,31 @@
 		"click": "UChatScrollButton"
 	},
 	"SocialsMicroButton": {
-		"click": "igMainMenuOpen"
-	},
-	"SoundOptionsFrameCancel": {
-		"click": "gsTitleOptionExit"
-	},
-	"SoundOptionsFrameCheckButton1": {
-		"click": "igMainMenuOptionCheckBoxOff"
-	},
-	"SoundOptionsFrameCheckButton2": {
-		"click": "igMainMenuOptionCheckBoxOff"
-	},
-	"SoundOptionsFrameCheckButton4": {
-		"click": "igMainMenuOptionCheckBoxOff"
-	},
-	"SoundOptionsFrameCheckButton5": {
-		"click": "igMainMenuOptionCheckBoxOff"
-	},
-	"SoundOptionsFrameCheckButton6": {
-		"click": "igMainMenuOptionCheckBoxOff"
-	},
-	"SoundOptionsFrameCheckButton7": {
-		"click": "igMainMenuOptionCheckBoxOff"
-	},
-	"SoundOptionsFrameCheckButton8": {
-		"click": "igMainMenuOptionCheckBoxOff"
-	},
-	"SoundOptionsFrameDefaults": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"SoundOptionsFrameOkay": {
-		"click": "gsTitleOptionOK"
-	},
-	"SpellBookFrame": {
-		"hide": "igSpellBookClose",
-		"show": "igSpellBookOpen"
-	},
-	"SpellBookNextPageButton": {
-		"click": "igAbiliityPageTurn"
-	},
-	"SpellBookPrevPageButton": {
-		"click": "igAbiliityPageTurn"
+		"click": "igCharacterInfoTab"
 	},
 	"SpellBookSkillLineTab1": {
-		"click": "igSpellBookOpen"
+		"click": "igAbiliityPageTurn"
 	},
 	"SpellBookSkillLineTab2": {
-		"click": "igSpellBookOpen"
+		"click": "igAbiliityPageTurn"
 	},
 	"SpellBookSkillLineTab3": {
-		"click": "igSpellBookOpen"
+		"click": "igAbiliityPageTurn"
 	},
 	"SpellBookSkillLineTab4": {
-		"click": "igSpellBookOpen"
+		"click": "igAbiliityPageTurn"
 	},
 	"SpellBookSkillLineTab5": {
-		"click": "igSpellBookOpen"
+		"click": "igAbiliityPageTurn"
 	},
 	"SpellBookSkillLineTab6": {
-		"click": "igSpellBookOpen"
+		"click": "igAbiliityPageTurn"
 	},
 	"SpellBookSkillLineTab7": {
-		"click": "igSpellBookOpen"
+		"click": "igAbiliityPageTurn"
 	},
 	"SpellBookSkillLineTab8": {
-		"click": "igSpellBookOpen"
+		"click": "igAbiliityPageTurn"
 	},
 	"StaticPopup1": {
 		"hide": "igMainMenuClose",
@@ -2923,17 +4631,15 @@
 	"TOSDecline": {
 		"click": "gsTitleQuit"
 	},
+	"TOSFrame": {
+		"hide": "igMainMenuClose",
+		"show": "igMainMenuOpen"
+	},
 	"TOSScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"TOSScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
-	},
-	"TabardCharacterModelRotateLeftButton": {
-		"click": "igInventoryRotateCharacter"
-	},
-	"TabardCharacterModelRotateRightButton": {
-		"click": "igInventoryRotateCharacter"
 	},
 	"TabardFrame": {
 		"hide": "igCharacterInfoClose",
@@ -2987,41 +4693,48 @@
 	"TabardFrameMoneyFrameSilverButton": {
 		"click": "igBackPackCoinSelect"
 	},
-	"TalentFrame": {
-		"hide": "TalentScreenClose",
-		"show": "TalentScreenOpen"
-	},
-	"TalentFrameScrollFrameScrollBarScrollDownButton": {
-		"click": "UChatScrollButton"
-	},
-	"TalentFrameScrollFrameScrollBarScrollUpButton": {
-		"click": "UChatScrollButton"
-	},
-	"TalentFrameTab1": {
-		"click": "igCharacterInfoTab"
-	},
-	"TalentFrameTab2": {
-		"click": "igCharacterInfoTab"
-	},
-	"TalentFrameTab3": {
-		"click": "igCharacterInfoTab"
-	},
-	"TalentFrameTab4": {
-		"click": "igCharacterInfoTab"
-	},
-	"TalentFrameTab5": {
-		"click": "igCharacterInfoTab"
-	},
-	"TargetFrame": {
-		"hide": "INTERFACESOUND_LOSTTARGETUNIT",
-		"show": "igCreatureAggroSelect"
-	},
 	"TargetFrameDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"TaxiFrame": {
 		"hide": "igMainMenuClose",
 		"show": "igMainMenuOpen"
+	},
+	"TerminationScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"TerminationScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"TimeManagerAlarmAMPMDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"TimeManagerAlarmHourDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"TimeManagerAlarmMinuteDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"TokenFrameContainerScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"TokenFrameContainerScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"TokenFrameMoneyFrameCopperButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"TokenFrameMoneyFrameGoldButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"TokenFrameMoneyFrameSilverButton": {
+		"click": "igBackPackCoinSelect"
+	},
+	"TokenFramePopupBackpackCheckBox": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"TokenFramePopupInactiveCheckBox": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"TradeFrame": {
 		"hide": "igCharacterInfoClose",
@@ -3058,232 +4771,103 @@
 	"TradeSkillSubClassDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"TutorialFrame": {
-		"hide": "igMainMenuClose"
+	"TrialConvertRestartButton": {
+		"click": "gsTitleQuit"
 	},
-	"UIOptionsFrameCameraDropDownButton": {
+	"TutorialFrameNextButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCancel": {
-		"click": "gsTitleOptionExit"
-	},
-	"UIOptionsFrameCheckButton1": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton11": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton12": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton13": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton14": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton15": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton16": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton18": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton19": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton2": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton20": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton21": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton22": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton23": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton24": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton26": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton27": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton28": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton29": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton3": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton30": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton31": {
+	"TutorialFramePrevButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton32": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton33": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton34": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton35": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton36": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton37": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton38": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton39": {
-		"click": "igMainMenuOptionCheckBoxOff"
-	},
-	"UIOptionsFrameCheckButton40": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton41": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton42": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton43": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton44": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton45": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton46": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton47": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton48": {
-		"click": "igMainMenuOptionCheckBoxOn"
+	"TutorialFrameTextScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
 	},
-	"UIOptionsFrameCheckButton49": {
-		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameCheckButton5": {
-		"click": "igMainMenuOptionCheckBoxOn"
+	"TutorialFrameTextScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
-	"UIOptionsFrameCheckButton50": {
+	"VehicleSeatIndicatorDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton51": {
+	"VideoOptionsEffectsPanelDeathEffect": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton52": {
+	"VideoOptionsEffectsPanelFullScreenGlow": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton53": {
+	"VideoOptionsEffectsPanelProjectedTextures": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton54": {
+	"VideoOptionsEffectsPanelSpecularLighting": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton55": {
-		"click": "igMainMenuOptionCheckBoxOn"
+	"VideoOptionsFrame": {
+		"hide": "gsTitleOptionExit"
 	},
-	"UIOptionsFrameCheckButton56": {
+	"VideoOptionsFrameApply": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton57": {
-		"click": "igMainMenuOptionCheckBoxOn"
+	"VideoOptionsFrameCategoryFrameListScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
 	},
-	"UIOptionsFrameCheckButton58": {
-		"click": "igMainMenuOptionCheckBoxOn"
+	"VideoOptionsFrameCategoryFrameListScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
-	"UIOptionsFrameCheckButton59": {
+	"VideoOptionsFrameCheckButton1": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton6": {
+	"VideoOptionsFrameCheckButton2": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton60": {
+	"VideoOptionsFrameCheckButton3": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton61": {
+	"VideoOptionsFrameCheckButton4": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton62": {
-		"click": "igMainMenuOptionCheckBoxOn"
+	"VideoOptionsFrameDefaults": {
+		"click": "igMainMenuOption"
 	},
-	"UIOptionsFrameCheckButton63": {
+	"VideoOptionsResolutionPanelDesktopGamma": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton64": {
+	"VideoOptionsResolutionPanelDisableResize": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton65": {
+	"VideoOptionsResolutionPanelFixInputLag": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton66": {
+	"VideoOptionsResolutionPanelHardwareCursor": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton67": {
+	"VideoOptionsResolutionPanelMaximized": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton68": {
+	"VideoOptionsResolutionPanelMultiSampleDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton69": {
+	"VideoOptionsResolutionPanelRefreshDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton7": {
+	"VideoOptionsResolutionPanelResolutionDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton8": {
+	"VideoOptionsResolutionPanelTripleBuffer": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCheckButton9": {
+	"VideoOptionsResolutionPanelUseUIScale": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameClickCameraDropDownButton": {
+	"VideoOptionsResolutionPanelVSync": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameCombatTextDropDownButton": {
+	"VideoOptionsResolutionPanelWindowed": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"UIOptionsFrameDefaults": {
+	"VideoOptionsStereoPanelEnabled": {
 		"click": "igMainMenuOptionCheckBoxOn"
-	},
-	"UIOptionsFrameOkay": {
-		"click": "gsTitleOptionOK"
-	},
-	"UIOptionsFrameResetTutorials": {
-		"click": "gsTitleOptionOK"
-	},
-	"UIOptionsFrameTab1": {
-		"click": "igCharacterInfoTab"
-	},
-	"UIOptionsFrameTab2": {
-		"click": "igCharacterInfoTab"
 	},
-	"UIOptionsFrameTargetofTargetDropDownButton": {
+	"VideoOptionsStereoPanelHardwareCursor": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"VoiceMacroMenu": {
@@ -3385,6 +4969,12 @@
 	"VoiceMacroMenuButton9": {
 		"click": "UChatScrollButton"
 	},
+	"WatchFrameDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WatchFrameHeaderDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
 	"WhoFrameButton1": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
@@ -3451,33 +5041,116 @@
 	"WhoFrameDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
+	"WhoFrameWhoButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
 	"WhoListScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"
 	},
 	"WhoListScrollFrameScrollBarScrollUpButton": {
 		"click": "UChatScrollButton"
 	},
+	"WoWAccountSelectDialogBackgroundAcceptButton": {
+		"click": "gsLoginChangeRealmOK"
+	},
+	"WoWAccountSelectDialogBackgroundCancelButton": {
+		"click": "gsLoginChangeRealmCancel"
+	},
+	"WoWAccountSelectDialogBackgroundContainerScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"WoWAccountSelectDialogBackgroundContainerScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
 	"WorldMapContinentDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"WorldMapFrame": {
-		"hide": "igQuestLogClose",
-		"show": "igQuestLogOpen"
+	"WorldMapLevelDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
-	"WorldMapTooltipMoneyFrameCopperButton": {
-		"click": "igBackPackCoinSelect"
+	"WorldMapQuestDetailScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
 	},
-	"WorldMapTooltipMoneyFrameGoldButton": {
-		"click": "igBackPackCoinSelect"
+	"WorldMapQuestDetailScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
 	},
-	"WorldMapTooltipMoneyFrameSilverButton": {
-		"click": "igBackPackCoinSelect"
+	"WorldMapQuestRewardScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"WorldMapQuestRewardScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"WorldMapQuestScrollFrameScrollBarScrollDownButton": {
+		"click": "UChatScrollButton"
+	},
+	"WorldMapQuestScrollFrameScrollBarScrollUpButton": {
+		"click": "UChatScrollButton"
+	},
+	"WorldMapQuestShowObjectives": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldMapTitleDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldMapTrackQuest": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldMapUnitDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"WorldMapZoneDropDownButton": {
 		"click": "igMainMenuOptionCheckBoxOn"
 	},
+	"WorldMapZoneMinimapDropDownButton": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreColumn1": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreColumn2": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreColumn3": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreColumn4": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreColumn5": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreColumn6": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreColumn7": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
 	"WorldStateScoreFrame": {
 		"show": "igCharacterInfoTab"
+	},
+	"WorldStateScoreFrameClass": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreFrameDamageDone": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreFrameDeaths": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreFrameHK": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreFrameHealingDone": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreFrameHonorGained": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreFrameKB": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreFrameName": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"WorldStateScoreFrameTab1": {
 		"click": "igCharacterInfoTab"
@@ -3487,6 +5160,12 @@
 	},
 	"WorldStateScoreFrameTab3": {
 		"click": "igCharacterInfoTab"
+	},
+	"WorldStateScoreFrameTeam": {
+		"click": "igMainMenuOptionCheckBoxOn"
+	},
+	"WorldStateScoreFrameTeamSkill": {
+		"click": "igMainMenuOptionCheckBoxOn"
 	},
 	"WorldStateScoreScrollFrameScrollBarScrollDownButton": {
 		"click": "UChatScrollButton"

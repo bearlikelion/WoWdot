@@ -3,37 +3,124 @@
  "xml": [
   "wrathgd.xml"
  ],
- "template_scripts": {},
- "inject": {},
- "graft": {
-  "CharacterDeleteDialog": "CharacterSelect"
+ "template_scripts": {
+  "CooldownFrameTemplate": "res://ui/wow/wow_cooldown.gd",
+  "SpellButtonTemplate": "res://ui/spell_button.gd"
  },
- "frame_scripts": {},
- "exclude": [
-  "VirtualKeypadFrame",
-  "ConnectionHelpFrame",
-  "ServerAlertFrame",
-  "TOSFrame",
-  "SurveyNotificationFrame",
-  "AccountLoginTOSButton",
-  "AccountLoginCreditsButton",
-  "AccountLoginCinematicsButton",
-  "BillingWarningFrame",
-  "GameRoomBillingFrame",
-  "CharacterRenameDialog",
-  "CharacterSelectAddonsButton",
-  "CharacterCreateRandomName",
-  "KoreanRatings",
-  "ChangedOptionsDialog",
-  "TokenEnterDialog",
-  "WoWAccountSelectDialog",
-  "AccountLoginDropDown",
-  "AccountLoginTokenEdit",
-  "AccountLoginAccountEditFill",
-  "AccountLoginUpgradeAccountButton",
-  "AccountLoginShowLauncher"
- ],
+ "inject": {
+  "CharacterMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButtonCharacter-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButtonCharacter-Down",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight"
+  },
+  "SpellbookMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Down",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Spellbook-Disabled"
+  },
+  "TalentMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Down",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Talents-Disabled"
+  },
+  "QuestLogMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Down",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Quest-Disabled"
+  },
+  "SocialsMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Down",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Socials-Disabled"
+  },
+  "MainMenuMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Down",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-MainMenu-Disabled"
+  },
+  "HelpMicroButton": {
+   "NormalTexture": "Interface\\Buttons\\UI-MicroButton-Help-Up",
+   "PushedTexture": "Interface\\Buttons\\UI-MicroButton-Help-Down",
+   "HighlightTexture": "Interface\\Buttons\\UI-MicroButton-Hilight",
+   "DisabledTexture": "Interface\\Buttons\\UI-MicroButton-Help-Disabled"
+  },
+  "MainMenuBarBackpackButton": {
+   "IconTexture": "Interface\\Buttons\\Button-Backpack-Up"
+  },
+  "CharacterBag0Slot": {
+   "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+  },
+  "CharacterBag1Slot": {
+   "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+  },
+  "CharacterBag2Slot": {
+   "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+  },
+  "CharacterBag3Slot": {
+   "IconTexture": "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag"
+  }
+ },
  "scenes": [
+  {
+   "frame": "ActionButtonTemplate",
+   "template": true,
+   "out": "ui/action_button_template.tscn",
+   "script": "res://ui/action_button.gd"
+  },
+  {
+   "frame": "MainMenuBar",
+   "out": "ui/main_menu_bar.tscn",
+   "script": "res://ui/main_menu_bar.gd"
+  },
+  {
+   "frame": "PlayerFrame",
+   "out": "ui/player_frame.tscn",
+   "script": "res://ui/player_frame.gd"
+  },
+  {
+   "frame": "TargetFrame",
+   "out": "ui/target_frame.tscn",
+   "script": "res://ui/target_frame.gd"
+  },
+  {
+   "frame": "CastingBarFrame",
+   "out": "ui/casting_bar_frame.tscn",
+   "script": "res://ui/casting_bar.gd"
+  },
+  {
+   "frame": "BuffFrame",
+   "out": "ui/buff_frame.tscn",
+   "script": "res://ui/buff_frame.gd"
+  },
+  {
+   "frame": "UIErrorsFrame",
+   "out": "ui/ui_errors_frame.tscn"
+  },
+  {
+   "frame": "MultiBarRight",
+   "out": "ui/multi_bar_right.tscn",
+   "script": "res://ui/side_action_bars.gd"
+  },
+  {
+   "frame": "MinimapCluster",
+   "out": "ui/minimap_cluster.tscn",
+   "script": "res://ui/minimap_cluster.gd"
+  },
+  {
+   "frame": "ChatFrame1",
+   "out": "ui/chat_frame.tscn",
+   "script": "res://ui/chat_frame.gd"
+  },
+  {
+   "frame": "ChatFrame2",
+   "out": "ui/combat_log_frame.tscn",
+   "script": "res://ui/combat_log_frame.gd"
+  },
   {
    "frame": "AccountLogin",
    "out": "ui/account_login.tscn",
@@ -58,6 +145,405 @@
    "frame": "GlueDialog",
    "out": "ui/glue_dialog.tscn",
    "script": "res://ui/glue_dialog.gd"
+  },
+  {
+   "frame": "ItemButtonTemplate",
+   "template": true,
+   "out": "ui/item_button.tscn",
+   "script": "res://ui/item_button.gd"
+  },
+  {
+   "frame": "MoneyFrameTemplate",
+   "template": true,
+   "out": "ui/money_frame.tscn",
+   "script": "res://ui/money_frame.gd"
+  },
+  {
+   "frame": "SmallMoneyFrameTemplate",
+   "template": true,
+   "out": "ui/small_money_frame.tscn",
+   "script": "res://ui/money_frame.gd"
+  },
+  {
+   "frame": "ContainerFrameTemplate",
+   "template": true,
+   "out": "ui/container_frame.tscn",
+   "script": "res://ui/container_frame.gd"
+  },
+  {
+   "frame": "GameMenuFrame",
+   "out": "ui/game_menu_frame.tscn",
+   "script": "res://ui/game_menu.gd"
+  },
+  {
+   "frame": "AudioOptionsFrame",
+   "out": "ui/sound_options_frame.tscn",
+   "script": "res://ui/sound_options_frame.gd"
+  },
+  {
+   "frame": "VideoOptionsFrame",
+   "out": "ui/video_options_frame.tscn",
+   "script": "res://ui/video_options_frame.gd"
+  },
+  {
+   "frame": "CharacterFrame",
+   "out": "ui/character_frame.tscn",
+   "script": "res://ui/character_frame.gd"
+  },
+  {
+   "frame": "SpellBookFrame",
+   "out": "ui/spell_book_frame.tscn",
+   "script": "res://ui/spell_book.gd"
+  },
+  {
+   "frame": "TalentButtonTemplate",
+   "template": true,
+   "out": "ui/talent_button.tscn",
+   "script": "res://ui/item_button.gd"
+  },
+  {
+   "frame": "PlayerTalentFrame",
+   "out": "ui/talent_frame.tscn",
+   "script": "res://ui/talent_frame.gd"
+  },
+  {
+   "frame": "QuestLogFrame",
+   "out": "ui/quest_log_frame.tscn",
+   "script": "res://ui/quest_log_frame.gd"
+  },
+  {
+   "frame": "StaticPopup1",
+   "out": "ui/static_popup.tscn",
+   "script": "res://ui/static_popup.gd"
+  },
+  {
+   "frame": "GossipFrame",
+   "out": "ui/gossip_frame.tscn",
+   "script": "res://ui/gossip_frame.gd"
+  },
+  {
+   "frame": "QuestFrame",
+   "out": "ui/quest_frame.tscn",
+   "script": "res://ui/quest_frame.gd"
+  },
+  {
+   "frame": "WatchFrame",
+   "out": "ui/quest_watch_frame.tscn",
+   "script": "res://ui/quest_watch_frame.gd"
+  },
+  {
+   "frame": "MerchantFrame",
+   "out": "ui/merchant_frame.tscn",
+   "script": "res://ui/merchant_frame.gd"
+  },
+  {
+   "frame": "PartyMemberFrameTemplate",
+   "template": true,
+   "out": "ui/party_member_frame.tscn",
+   "script": "res://ui/party_member_frame.gd"
+  },
+  {
+   "frame": "LootButtonTemplate",
+   "template": true,
+   "out": "ui/loot_button.tscn",
+   "script": "res://ui/item_button.gd"
+  },
+  {
+   "frame": "LootFrame",
+   "out": "ui/loot_frame.tscn",
+   "script": "res://ui/loot_frame.gd"
+  },
+  {
+   "frame": "ClassTrainerFrame",
+   "out": "ui/class_trainer_frame.tscn",
+   "script": "res://ui/class_trainer_frame.gd"
+  },
+  {
+   "frame": "TaxiButtonTemplate",
+   "template": true,
+   "out": "ui/taxi_button.tscn",
+   "script": "res://ui/wow/wow_button.gd"
+  },
+  {
+   "frame": "TaxiFrame",
+   "out": "ui/taxi_frame.tscn",
+   "script": "res://ui/taxi_frame.gd"
+  },
+  {
+   "frame": "WorldMapFrame",
+   "out": "ui/world_map_frame.tscn",
+   "script": "res://ui/world_map_frame.gd"
+  },
+  {
+   "frame": "BankFrame",
+   "out": "ui/bank_frame.tscn",
+   "script": "res://ui/bank_frame.gd"
+  },
+  {
+   "frame": "MailFrame",
+   "out": "ui/mail_frame.tscn",
+   "script": "res://ui/mail_frame.gd"
+  },
+  {
+   "frame": "OpenMailFrame",
+   "out": "ui/open_mail_frame.tscn",
+   "script": "res://ui/open_mail_frame.gd"
+  },
+  {
+   "frame": "ItemTextFrame",
+   "out": "ui/item_text_frame.tscn",
+   "script": "res://ui/item_text_frame.gd"
+  },
+  {
+   "frame": "AuctionFrame",
+   "out": "ui/auction_frame.tscn",
+   "script": "res://ui/auction_frame.gd"
+  },
+  {
+   "frame": "TradeFrame",
+   "out": "ui/trade_frame.tscn",
+   "script": "res://ui/trade_frame.gd"
+  },
+  {
+   "frame": "FriendsFrame",
+   "out": "ui/friends_frame.tscn",
+   "script": "res://ui/friends_frame.gd"
+  },
+  {
+   "frame": "GroupLootFrameTemplate",
+   "template": true,
+   "out": "ui/group_loot_frame.tscn",
+   "script": "res://ui/group_loot_frame.gd"
+  },
+  {
+   "frame": "DropDownList1",
+   "out": "ui/drop_down_list.tscn",
+   "script": "res://ui/drop_down_list.gd"
+  },
+  {
+   "frame": "PetStableFrame",
+   "out": "ui/pet_stable_frame.tscn",
+   "script": "res://ui/pet_stable_frame.gd"
+  },
+  {
+   "frame": "TradeSkillFrame",
+   "out": "ui/trade_skill_frame.tscn",
+   "script": "res://ui/trade_skill_frame.gd"
+  },
+  {
+   "frame": "DressUpFrame",
+   "out": "ui/dress_up_frame.tscn",
+   "script": "res://ui/dress_up_frame.gd"
+  },
+  {
+   "frame": "InspectFrame",
+   "out": "ui/inspect_frame.tscn",
+   "script": "res://ui/inspect_frame.gd"
+  },
+  {
+   "frame": "MacroFrame",
+   "out": "ui/macro_frame.tscn",
+   "script": "res://ui/macro_frame.gd"
+  },
+  {
+   "frame": "MacroPopupFrame",
+   "out": "ui/macro_popup_frame.tscn",
+   "script": "res://ui/macro_popup_frame.gd"
+  },
+  {
+   "frame": "RaidGroupTemplate",
+   "template": true,
+   "out": "ui/raid_group.tscn"
+  },
+  {
+   "frame": "RaidGroupButtonTemplate",
+   "template": true,
+   "out": "ui/raid_group_button.tscn"
+  },
+  {
+   "frame": "BattlefieldFrame",
+   "out": "ui/battlefield_frame.tscn",
+   "script": "res://ui/battlefield_frame.gd"
+  },
+  {
+   "frame": "WorldStateScoreFrame",
+   "out": "ui/world_state_score_frame.tscn",
+   "script": "res://ui/world_state_score_frame.gd"
+  },
+  {
+   "frame": "HelpFrame",
+   "out": "ui/help_frame.tscn",
+   "script": "res://ui/help_frame.gd"
+  },
+  {
+   "frame": "StackSplitFrame",
+   "out": "ui/stack_split_frame.tscn",
+   "script": "res://ui/stack_split_frame.gd"
+  },
+  {
+   "frame": "TutorialFrame",
+   "out": "ui/tutorial_frame.tscn",
+   "script": "res://ui/tutorial_frame.gd"
+  },
+  {
+   "frame": "TutorialFrameAlertButton",
+   "template": true,
+   "out": "ui/tutorial_alert_button.tscn"
+  },
+  {
+   "frame": "MirrorTimer1",
+   "out": "ui/mirror_timer.tscn",
+   "script": "res://ui/mirror_timer.gd"
+  },
+  {
+   "frame": "InterfaceOptionsFrame",
+   "out": "ui/ui_options_frame.tscn",
+   "script": "res://ui/ui_options_frame.gd"
+  },
+  {
+   "frame": "KeyBindingFrame",
+   "out": "ui/key_binding_frame.tscn",
+   "script": "res://ui/key_binding_frame.gd"
+  },
+  {
+   "frame": "GuildRegistrarFrame",
+   "out": "ui/guild_registrar_frame.tscn",
+   "script": "res://ui/guild_registrar_frame.gd"
+  },
+  {
+   "frame": "PetitionFrame",
+   "out": "ui/petition_frame.tscn",
+   "script": "res://ui/petition_frame.gd"
+  },
+  {
+   "frame": "TabardFrame",
+   "out": "ui/tabard_frame.tscn",
+   "script": "res://ui/tabard_frame.gd"
+  },
+  {
+   "frame": "TargetofTargetFrameTemplate",
+   "out": "ui/target_of_target_frame.tscn",
+   "script": "res://ui/target_of_target_frame.gd",
+   "template": true
+  },
+  {
+   "frame": "TargetBuffFrameTemplate",
+   "out": "ui/target_buff_frame.tscn",
+   "template": true
+  },
+  {
+   "frame": "TargetDebuffFrameTemplate",
+   "out": "ui/target_debuff_frame.tscn",
+   "template": true
+  }
+ ],
+ "graft": {
+  "MultiBarBottomLeft": "MainMenuBar",
+  "MultiBarBottomRight": "MainMenuBar",
+  "MultiBarLeft": "MultiBarRight",
+  "ChatFrame1Tab": "ChatFrame1",
+  "ChatFrame2Tab": "ChatFrame2",
+  "ChatFrameMenuButton": "ChatFrame1",
+  "CharacterDeleteDialog": "CharacterSelect",
+  "QuestLogControlPanel": "QuestLogFrame",
+  "QuestLogDetailFrame": "QuestLogFrame",
+  "QuestInfoFrame": [
+   "QuestDetailScrollChildFrame",
+   "QuestLogDetailScrollChildFrame"
+  ],
+  "QuestInfoRewardsFrame": [
+   "QuestDetailScrollChildFrame",
+   "QuestLogDetailScrollChildFrame"
+  ],
+  "QuestInfoObjectivesFrame": [
+   "QuestDetailScrollChildFrame",
+   "QuestLogDetailScrollChildFrame"
+  ],
+  "QuestInfoTimerFrame": [
+   "QuestDetailScrollChildFrame",
+   "QuestLogDetailScrollChildFrame"
+  ],
+  "QuestInfoRequiredMoneyFrame": [
+   "QuestDetailScrollChildFrame",
+   "QuestLogDetailScrollChildFrame"
+  ]
+ },
+ "frame_scripts": {
+  "Minimap": "res://ui/minimap_view.gd",
+  "SkillFrame": "res://ui/skill_frame.gd",
+  "HonorFrame": "res://ui/honor_frame.gd",
+  "RaidFrame": "res://ui/raid_frame.gd",
+  "WhoFrame": "res://ui/who_frame.gd",
+  "ReputationFrame": "res://ui/reputation_frame.gd",
+  "ShapeshiftBarFrame": "res://ui/stance_bar.gd",
+  "PetFrame": "res://ui/pet_frame.gd",
+  "PetActionBarFrame": "res://ui/pet_action_bar.gd",
+  "TargetFrameToT": "res://ui/target_of_target_frame.gd"
+ },
+ "exclude": [
+  "AccountLoginAccountEditFill",
+  "AccountLoginCinematicsButton",
+  "AccountLoginCreditsButton",
+  "AccountLoginDropDown",
+  "AccountLoginShowLauncher",
+  "AccountLoginTOSButton",
+  "AccountLoginTokenEdit",
+  "AccountLoginUpgradeAccountButton",
+  "BillingWarningFrame",
+  "ChangedOptionsDialog",
+  "CharacterCreateRandomName",
+  "CharacterRenameDialog",
+  "CharacterSelectAddonsButton",
+  "ConnectionHelpFrame",
+  "GameRoomBillingFrame",
+  "KoreanRatings",
+  "ServerAlertFrame",
+  "SurveyNotificationFrame",
+  "TOSFrame",
+  "TokenEnterDialog",
+  "VirtualKeypadFrame",
+  "WoWAccountSelectDialog"
+ ],
+ "rows": [
+  {
+   "parent": "QuestLogScrollFrameScrollChild",
+   "template": "QuestLogTitleButtonTemplate",
+   "name": "QuestLogScrollFrameButton%d",
+   "count": 16
+  },
+  {
+   "parent": "RaidInfoScrollFrameScrollChild",
+   "template": "RaidInfoInstanceTemplate",
+   "name": "RaidInfoInstance%d",
+   "count": 20
+  },
+  {
+   "parent": "FriendsFrameFriendsScrollFrameScrollChild",
+   "template": "FriendsFrameButtonTemplate",
+   "name": "FriendsFrameFriendsScrollFrameButton%d",
+   "count": 10
+  },
+  {
+   "parent": "BuffFrame",
+   "template": "BuffButtonTemplate",
+   "name": "BuffButton%d",
+   "first": 0,
+   "count": 24,
+   "columns": 8
+  },
+  {
+   "parent": "MacroButtonContainer",
+   "template": "MacroButtonTemplate",
+   "name": "MacroButton%d",
+   "count": 36,
+   "columns": 6
+  },
+  {
+   "parent": "DropDownList1",
+   "template": "UIDropDownMenuButtonTemplate",
+   "name": "DropDownList1Button%d",
+   "first": 9,
+   "count": 24
   }
  ]
 }

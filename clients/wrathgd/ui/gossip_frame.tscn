@@ -64,7 +64,7 @@ file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_19"]
 atlas = SubResource("WowTexture_18")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 4, 19.2, 24)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20"]
 
@@ -73,56 +73,56 @@ file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22"]
 atlas = SubResource("WowTexture_21")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_23"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_24"]
 atlas = SubResource("WowTexture_23")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_25"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26"]
 atlas = SubResource("WowTexture_25")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_27"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_28"]
 atlas = SubResource("WowTexture_27")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_29"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_30"]
 atlas = SubResource("WowTexture_29")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_31"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32"]
 atlas = SubResource("WowTexture_31")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_33"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34"]
 atlas = SubResource("WowTexture_33")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_35"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36"]
 atlas = SubResource("WowTexture_35")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_37"]
 file = "Interface\\QuestFrame\\UI-Quest-BulletPoint.blp"
@@ -157,24 +157,27 @@ expand_mode = 1
 [node name="GossipNpcNameFrame" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150
+anchor_right = 1
+offset_left = 77
 offset_top = 23
-offset_right = 150
+offset_right = -58
 offset_bottom = 37
 mouse_filter = 2
 
 [node name="GossipFrameNpcNameText" type="Label" parent="GossipNpcNameFrame"]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
 offset_left = 0
-offset_top = 0
-offset_right = 300
-offset_bottom = 14
+offset_top = -3
+offset_right = 0
+offset_bottom = 17
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlight"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GossipFrameCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -352,7 +355,6 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Goodbye"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -395,16 +397,16 @@ step = 0.0
 [node name="GossipGreetingScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_22")
@@ -413,7 +415,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -423,7 +425,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -433,7 +435,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -444,16 +446,16 @@ material = SubResource("CanvasItemMaterial_4")
 [node name="GossipGreetingScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 302
-offset_right = 16
+offset_right = 17
 offset_bottom = 318
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_30")
@@ -462,7 +464,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -472,7 +474,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -482,7 +484,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameScrollBar/GossipGreetingScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -531,10 +533,10 @@ ignore_texture_size = true
 
 [node name="GossipTitleButton1GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton1"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -542,14 +544,13 @@ expand_mode = 1
 [node name="GossipTitleButton1Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton1"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton1"]
@@ -567,17 +568,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 59
+offset_top = 62
 offset_right = 300
-offset_bottom = 75
+offset_bottom = 78
 ignore_texture_size = true
 
 [node name="GossipTitleButton2GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton2"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -585,14 +586,13 @@ expand_mode = 1
 [node name="GossipTitleButton2Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton2"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton2"]
@@ -610,17 +610,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 75
+offset_top = 81
 offset_right = 300
-offset_bottom = 91
+offset_bottom = 97
 ignore_texture_size = true
 
 [node name="GossipTitleButton3GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton3"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -628,14 +628,13 @@ expand_mode = 1
 [node name="GossipTitleButton3Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton3"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton3"]
@@ -653,17 +652,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 91
+offset_top = 100
 offset_right = 300
-offset_bottom = 107
+offset_bottom = 116
 ignore_texture_size = true
 
 [node name="GossipTitleButton4GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton4"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -671,14 +670,13 @@ expand_mode = 1
 [node name="GossipTitleButton4Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton4"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton4"]
@@ -696,17 +694,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 107
+offset_top = 119
 offset_right = 300
-offset_bottom = 123
+offset_bottom = 135
 ignore_texture_size = true
 
 [node name="GossipTitleButton5GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton5"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -714,14 +712,13 @@ expand_mode = 1
 [node name="GossipTitleButton5Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton5"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton5"]
@@ -739,17 +736,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 123
+offset_top = 138
 offset_right = 300
-offset_bottom = 139
+offset_bottom = 154
 ignore_texture_size = true
 
 [node name="GossipTitleButton6GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton6"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -757,14 +754,13 @@ expand_mode = 1
 [node name="GossipTitleButton6Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton6"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton6"]
@@ -782,17 +778,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 139
+offset_top = 157
 offset_right = 300
-offset_bottom = 155
+offset_bottom = 173
 ignore_texture_size = true
 
 [node name="GossipTitleButton7GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton7"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -800,14 +796,13 @@ expand_mode = 1
 [node name="GossipTitleButton7Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton7"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton7"]
@@ -825,17 +820,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 155
+offset_top = 176
 offset_right = 300
-offset_bottom = 171
+offset_bottom = 192
 ignore_texture_size = true
 
 [node name="GossipTitleButton8GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton8"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -843,14 +838,13 @@ expand_mode = 1
 [node name="GossipTitleButton8Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton8"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton8"]
@@ -868,17 +862,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 171
+offset_top = 195
 offset_right = 300
-offset_bottom = 187
+offset_bottom = 211
 ignore_texture_size = true
 
 [node name="GossipTitleButton9GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton9"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -886,14 +880,13 @@ expand_mode = 1
 [node name="GossipTitleButton9Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton9"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton9"]
@@ -911,17 +904,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 187
+offset_top = 214
 offset_right = 300
-offset_bottom = 203
+offset_bottom = 230
 ignore_texture_size = true
 
 [node name="GossipTitleButton10GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton10"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -929,14 +922,13 @@ expand_mode = 1
 [node name="GossipTitleButton10Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton10"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton10"]
@@ -954,17 +946,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 203
+offset_top = 233
 offset_right = 300
-offset_bottom = 219
+offset_bottom = 249
 ignore_texture_size = true
 
 [node name="GossipTitleButton11GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton11"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -972,14 +964,13 @@ expand_mode = 1
 [node name="GossipTitleButton11Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton11"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton11"]
@@ -997,17 +988,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 219
+offset_top = 252
 offset_right = 300
-offset_bottom = 235
+offset_bottom = 268
 ignore_texture_size = true
 
 [node name="GossipTitleButton12GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton12"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1015,14 +1006,13 @@ expand_mode = 1
 [node name="GossipTitleButton12Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton12"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton12"]
@@ -1040,17 +1030,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 235
+offset_top = 271
 offset_right = 300
-offset_bottom = 251
+offset_bottom = 287
 ignore_texture_size = true
 
 [node name="GossipTitleButton13GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton13"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1058,14 +1048,13 @@ expand_mode = 1
 [node name="GossipTitleButton13Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton13"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton13"]
@@ -1083,17 +1072,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 251
+offset_top = 290
 offset_right = 300
-offset_bottom = 267
+offset_bottom = 306
 ignore_texture_size = true
 
 [node name="GossipTitleButton14GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton14"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1101,14 +1090,13 @@ expand_mode = 1
 [node name="GossipTitleButton14Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton14"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton14"]
@@ -1126,17 +1114,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 267
+offset_top = 309
 offset_right = 300
-offset_bottom = 283
+offset_bottom = 325
 ignore_texture_size = true
 
 [node name="GossipTitleButton15GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton15"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1144,14 +1132,13 @@ expand_mode = 1
 [node name="GossipTitleButton15Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton15"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton15"]
@@ -1169,17 +1156,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 283
+offset_top = 328
 offset_right = 300
-offset_bottom = 299
+offset_bottom = 344
 ignore_texture_size = true
 
 [node name="GossipTitleButton16GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton16"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1187,14 +1174,13 @@ expand_mode = 1
 [node name="GossipTitleButton16Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton16"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton16"]
@@ -1212,17 +1198,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 299
+offset_top = 347
 offset_right = 300
-offset_bottom = 315
+offset_bottom = 363
 ignore_texture_size = true
 
 [node name="GossipTitleButton17GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton17"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1230,14 +1216,13 @@ expand_mode = 1
 [node name="GossipTitleButton17Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton17"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton17"]
@@ -1255,17 +1240,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 315
+offset_top = 366
 offset_right = 300
-offset_bottom = 331
+offset_bottom = 382
 ignore_texture_size = true
 
 [node name="GossipTitleButton18GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton18"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1273,14 +1258,13 @@ expand_mode = 1
 [node name="GossipTitleButton18Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton18"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton18"]
@@ -1298,17 +1282,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 331
+offset_top = 385
 offset_right = 300
-offset_bottom = 347
+offset_bottom = 401
 ignore_texture_size = true
 
 [node name="GossipTitleButton19GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton19"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1316,14 +1300,13 @@ expand_mode = 1
 [node name="GossipTitleButton19Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton19"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton19"]
@@ -1341,17 +1324,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 347
+offset_top = 404
 offset_right = 300
-offset_bottom = 363
+offset_bottom = 420
 ignore_texture_size = true
 
 [node name="GossipTitleButton20GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton20"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1359,14 +1342,13 @@ expand_mode = 1
 [node name="GossipTitleButton20Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton20"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton20"]
@@ -1384,17 +1366,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 363
+offset_top = 423
 offset_right = 300
-offset_bottom = 379
+offset_bottom = 439
 ignore_texture_size = true
 
 [node name="GossipTitleButton21GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton21"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1402,14 +1384,13 @@ expand_mode = 1
 [node name="GossipTitleButton21Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton21"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton21"]
@@ -1427,17 +1408,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 379
+offset_top = 442
 offset_right = 300
-offset_bottom = 395
+offset_bottom = 458
 ignore_texture_size = true
 
 [node name="GossipTitleButton22GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton22"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1445,14 +1426,13 @@ expand_mode = 1
 [node name="GossipTitleButton22Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton22"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton22"]
@@ -1470,17 +1450,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 395
+offset_top = 461
 offset_right = 300
-offset_bottom = 411
+offset_bottom = 477
 ignore_texture_size = true
 
 [node name="GossipTitleButton23GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton23"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1488,14 +1468,13 @@ expand_mode = 1
 [node name="GossipTitleButton23Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton23"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton23"]
@@ -1513,17 +1492,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 411
+offset_top = 480
 offset_right = 300
-offset_bottom = 427
+offset_bottom = 496
 ignore_texture_size = true
 
 [node name="GossipTitleButton24GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton24"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1531,14 +1510,13 @@ expand_mode = 1
 [node name="GossipTitleButton24Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton24"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton24"]
@@ -1556,17 +1534,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 427
+offset_top = 499
 offset_right = 300
-offset_bottom = 443
+offset_bottom = 515
 ignore_texture_size = true
 
 [node name="GossipTitleButton25GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton25"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1574,14 +1552,13 @@ expand_mode = 1
 [node name="GossipTitleButton25Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton25"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton25"]
@@ -1599,17 +1576,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 443
+offset_top = 518
 offset_right = 300
-offset_bottom = 459
+offset_bottom = 534
 ignore_texture_size = true
 
 [node name="GossipTitleButton26GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton26"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1617,14 +1594,13 @@ expand_mode = 1
 [node name="GossipTitleButton26Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton26"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton26"]
@@ -1642,17 +1618,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 459
+offset_top = 537
 offset_right = 300
-offset_bottom = 475
+offset_bottom = 553
 ignore_texture_size = true
 
 [node name="GossipTitleButton27GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton27"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1660,14 +1636,13 @@ expand_mode = 1
 [node name="GossipTitleButton27Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton27"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton27"]
@@ -1685,17 +1660,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 475
+offset_top = 556
 offset_right = 300
-offset_bottom = 491
+offset_bottom = 572
 ignore_texture_size = true
 
 [node name="GossipTitleButton28GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton28"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1703,14 +1678,13 @@ expand_mode = 1
 [node name="GossipTitleButton28Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton28"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton28"]
@@ -1728,17 +1702,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 491
+offset_top = 575
 offset_right = 300
-offset_bottom = 507
+offset_bottom = 591
 ignore_texture_size = true
 
 [node name="GossipTitleButton29GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton29"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1746,14 +1720,13 @@ expand_mode = 1
 [node name="GossipTitleButton29Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton29"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton29"]
@@ -1771,17 +1744,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 507
+offset_top = 594
 offset_right = 300
-offset_bottom = 523
+offset_bottom = 610
 ignore_texture_size = true
 
 [node name="GossipTitleButton30GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton30"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1789,14 +1762,13 @@ expand_mode = 1
 [node name="GossipTitleButton30Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton30"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton30"]
@@ -1814,17 +1786,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 523
+offset_top = 613
 offset_right = 300
-offset_bottom = 539
+offset_bottom = 629
 ignore_texture_size = true
 
 [node name="GossipTitleButton31GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton31"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1832,14 +1804,13 @@ expand_mode = 1
 [node name="GossipTitleButton31Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton31"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton31"]
@@ -1857,17 +1828,17 @@ material = SubResource("CanvasItemMaterial_4")
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 0
-offset_top = 539
+offset_top = 632
 offset_right = 300
-offset_bottom = 555
+offset_bottom = 648
 ignore_texture_size = true
 
 [node name="GossipTitleButton32GossipIcon" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton32"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+offset_left = 3
+offset_top = -1
+offset_right = 19
+offset_bottom = 15
 mouse_filter = 2
 texture = SubResource("WowTexture_37")
 expand_mode = 1
@@ -1875,14 +1846,13 @@ expand_mode = 1
 [node name="GossipTitleButton32Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton32"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 1.5
+offset_top = 8
 offset_right = 295
-offset_bottom = 14.5
+offset_bottom = 8
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"QuestFont"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton32"]

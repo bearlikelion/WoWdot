@@ -1,8 +1,6 @@
 class_name RaidFrame
 extends Control
 
-signal member_requested
-
 const GROUP: PackedScene = preload("res://ui/raid_group.tscn")
 const MEMBER: PackedScene = preload("res://ui/raid_group_button.tscn")
 const GROUPS: int = 8
@@ -12,7 +10,7 @@ const FIRST_GROUP: Vector2 = Vector2(16.0, 70.0)
 const COLUMN_GAP: float = 3.0
 const ROW_GAP: float = 14.0
 const OFFLINE_COLOR: Color = Color(0.5, 0.5, 0.5)
-const RAID_INFOS: int = 10
+const RAID_INFOS: int = 20
 const RESET_UNITS: PackedStringArray = ["DAYS_ABBR", "HOURS_ABBR", "MINUTES_ABBR"]
 
 var _groups: Array[Control] = []
@@ -35,7 +33,6 @@ func _ready() -> void:
 	(%RaidFrameRaidDescription as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	%RaidFrameConvertToRaidButton.pressed.connect(PartyFrame.convert_to_raid)
 	%RaidFrameReadyCheckButton.pressed.connect(PartyFrame.start_ready_check)
-	%RaidFrameAddMemberButton.pressed.connect(member_requested.emit)
 	%RaidFrameRaidInfoButton.pressed.connect(_toggle_raid_info)
 	%RaidInfoCloseButton.pressed.connect(%RaidInfoFrame.hide)
 	%RaidInfoFrame.hide()
@@ -158,7 +155,7 @@ func _show_raid_info(payload: PackedByteArray) -> void:
 			seconds = reader.u32()
 			instance = reader.u32()
 		(get_node("%%RaidInfoInstance%dName" % (i + 1)) as Label).text = map_name
-		(get_node("%%RaidInfoInstance%dID" % (i + 1)) as Label).text = str(instance)
+		(get_node("%%RaidInfoInstance%dDifficulty" % (i + 1)) as Label).text = str(instance)
 		var left: Label = get_node("%%RaidInfoInstance%dReset" % (i + 1))
 		left.text = "%s %s" % [WowStrings.get_text("RESETS_IN"), _reset_text(seconds)]
 	if is_visible_in_tree() and count > 0:

@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://ui/open_mail_frame.gd" id="1"]
-[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="2"]
-[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="3"]
 [ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="5"]
 
@@ -33,117 +33,117 @@ atlas = SubResource("WowTexture_6")
 region = Rect2(0, 16, 75, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_9"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10"]
 atlas = SubResource("WowTexture_9")
-region = Rect2(0, 0, 31, 256)
+region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
-atlas = SubResource("WowTexture_9")
-region = Rect2(33, 0, 31, 106)
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_12"]
-file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
-atlas = SubResource("WowTexture_12")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(0, 0, 80, 22)
 
 [sub_resource type="WowTexture" id="WowTexture_15"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16"]
 atlas = SubResource("WowTexture_15")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_17"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_17"]
+blend_mode = 1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
-atlas = SubResource("WowTexture_17")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_19"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
+region = Rect2(0, 0, 31, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20"]
-atlas = SubResource("WowTexture_19")
-region = Rect2(8, 8, 16, 16)
+atlas = SubResource("WowTexture_18")
+region = Rect2(33, 0, 31, 106)
 
 [sub_resource type="WowTexture" id="WowTexture_21"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22"]
 atlas = SubResource("WowTexture_21")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 4, 19.2, 24)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_23"]
-blend_mode = 1
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_23"]
 
 [sub_resource type="WowTexture" id="WowTexture_24"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25"]
 atlas = SubResource("WowTexture_24")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_26"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27"]
 atlas = SubResource("WowTexture_26")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_29"]
 atlas = SubResource("WowTexture_28")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_30"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
 atlas = SubResource("WowTexture_30")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
-file = "Interface\\MailFrame\\UI-MailFrame-InvoiceLine.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_33"]
-file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_32")
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35"]
 atlas = SubResource("WowTexture_34")
-region = Rect2(0, 0, 80, 22)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_36"]
-file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37"]
 atlas = SubResource("WowTexture_36")
-region = Rect2(0, 0, 80, 22)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_38"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_39"]
 atlas = SubResource("WowTexture_38")
-region = Rect2(0, 0, 80, 22)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_40"]
-file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+file = "Interface\\MailFrame\\UI-MailFrame-InvoiceLine.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
-atlas = SubResource("WowTexture_40")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_42"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
@@ -241,16 +241,11 @@ grow_vertical = 2
 [node name="OpenMailAttachmentText" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchor_left = 0.5
-anchor_top = 1
-anchor_right = 0.5
-anchor_bottom = 1
-offset_left = -128
-offset_top = -133
-offset_right = -8
-offset_bottom = -123
-grow_horizontal = 2
-grow_vertical = 0
+anchor_right = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 10
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "Take Attachments:"
@@ -275,7 +270,7 @@ grow_vertical = 2
 unique_name_in_owner = true
 offset_left = 119
 offset_top = 47
-offset_right = 229
+offset_right = 344
 offset_bottom = 59
 grow_horizontal = 1
 grow_vertical = 2
@@ -330,9 +325,72 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
-[node name="OpenMailScrollFrame" type="Control" parent="."]
+[node name="OpenMailReportSpamButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -155
+offset_top = 45
+offset_right = -45
+offset_bottom = 67
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="OpenMailReportSpamButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="OpenMailReportSpamButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="OpenMailReportSpamButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="OpenMailReportSpamButtonText" type="Label" parent="OpenMailReportSpamButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+mouse_filter = 2
+text = "Report Spam"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="OpenMailReportSpamButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 110
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_17")
+
+[node name="OpenMailScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
 offset_left = 21
 offset_top = 97
 offset_right = 317
@@ -357,22 +415,23 @@ offset_bottom = 256
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Texture" type="TextureRect" parent="OpenMailScrollFrame"]
+[node name="OpenScrollBarBackgroundTop" type="TextureRect" parent="OpenMailScrollFrame"]
+unique_name_in_owner = true
 offset_left = 294
 offset_top = -5
 offset_right = 325
 offset_bottom = 251
 mouse_filter = 2
-texture = SubResource("AtlasTexture_10")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
 
-[node name="Texture2" type="TextureRect" parent="OpenMailScrollFrame"]
+[node name="Texture" type="TextureRect" parent="OpenMailScrollFrame"]
 offset_left = 294
 offset_top = 153
 offset_right = 325
 offset_bottom = 259
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
 
 [node name="OpenMailScrollFrameScrollBar" type="VSlider" parent="OpenMailScrollFrame"]
@@ -382,111 +441,111 @@ offset_top = 16
 offset_right = 318
 offset_bottom = 241
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("AtlasTexture_13")
-theme_override_icons/grabber_highlight = SubResource("AtlasTexture_13")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+theme_override_icons/grabber = SubResource("AtlasTexture_22")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_22")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_23")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_23")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_23")
 max_value = 0.0
 step = 0.0
 
 [node name="OpenMailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar"]
 unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 0
+script = ExtResource("2")
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("AtlasTexture_16")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollUpButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_18")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollUpButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_20")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollUpButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_22")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
-
-[node name="OpenMailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar"]
-unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 0
-offset_top = 225
-offset_right = 16
-offset_bottom = 241
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollDownButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_25")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollDownButton"]
+[node name="PushedTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_27")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollDownButton"]
+[node name="DisabledTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_29")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollDownButton"]
+[node name="HighlightTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
+material = SubResource("CanvasItemMaterial_17")
+
+[node name="OpenMailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 225
+offset_right = 17
+offset_bottom = 241
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_35")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_37")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameScrollBar/OpenMailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_39")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_17")
 
 [node name="OpenMailScrollFrameClip" type="Control" parent="OpenMailScrollFrame"]
 layout_mode = 1
@@ -629,8 +688,35 @@ offset_top = 143
 offset_right = 283
 offset_bottom = 175
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
+
+[node name="OpenMailInvoiceNotYetSent" type="Label" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
+unique_name_in_owner = true
+offset_left = 158
+offset_top = 148
+offset_right = 158
+offset_bottom = 160
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"InvoiceTextFontNormal"
+text = "Amount not yet sent"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OpenMailInvoiceMoneyDelay" type="Label" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
+unique_name_in_owner = true
+offset_left = 158
+offset_top = 161
+offset_right = 158
+offset_bottom = 173
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"InvoiceTextFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="OpenMailTransactionAmountMoneyFrame" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
@@ -688,15 +774,10 @@ offset_bottom = 102.5
 
 [node name="OpenMailLetterButton" parent="." instance=ExtResource("5")]
 unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 1
-anchor_right = 0.5
-anchor_bottom = 1
-offset_left = -3
-offset_top = -146.5
-offset_right = 34
-offset_bottom = -109.5
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
 
 [node name="HighlightTexture" parent="OpenMailLetterButton"]
 offset_left = 0
@@ -705,44 +786,128 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_41")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
+material = SubResource("CanvasItemMaterial_17")
 
-[node name="OpenMailPackageButton" parent="." instance=ExtResource("5")]
+[node name="OpenMailAttachmentButton1" parent="." instance=ExtResource("5")]
 unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 1
-anchor_right = 0.5
-anchor_bottom = 1
-offset_left = 44
-offset_top = -146.5
-offset_right = 81
-offset_bottom = -109.5
-
-[node name="HighlightTexture" parent="OpenMailPackageButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_33")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
+
+[node name="OpenMailAttachmentButton2" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton3" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton4" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton5" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton6" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton7" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton8" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton9" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton10" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton11" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton12" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton13" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton14" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton15" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+
+[node name="OpenMailAttachmentButton16" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
 
 [node name="OpenMailMoneyButton" parent="." instance=ExtResource("5")]
 unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 1
-anchor_right = 0.5
-anchor_bottom = 1
-offset_left = 91
-offset_top = -146.5
-offset_right = 128
-offset_bottom = -109.5
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
 
 [node name="HighlightTexture" parent="OpenMailMoneyButton"]
 offset_left = 0
@@ -751,13 +916,13 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_41")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
+material = SubResource("CanvasItemMaterial_17")
 
 [node name="OpenMailCancelButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_left = 1
 anchor_top = 1
@@ -775,7 +940,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_35")
+texture = SubResource("AtlasTexture_10")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="OpenMailCancelButton"]
@@ -785,7 +950,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_37")
+texture = SubResource("AtlasTexture_12")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="OpenMailCancelButton"]
@@ -795,7 +960,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_39")
+texture = SubResource("AtlasTexture_14")
 expand_mode = 1
 
 [node name="OpenMailCancelButtonText" type="Label" parent="OpenMailCancelButton"]
@@ -805,7 +970,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Close"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -817,13 +981,13 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_41")
+texture = SubResource("AtlasTexture_16")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
+material = SubResource("CanvasItemMaterial_17")
 
 [node name="OpenMailDeleteButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_left = 1
 anchor_top = 1
@@ -841,7 +1005,7 @@ offset_top = 0
 offset_right = 82
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_35")
+texture = SubResource("AtlasTexture_10")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="OpenMailDeleteButton"]
@@ -851,7 +1015,7 @@ offset_right = 82
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_37")
+texture = SubResource("AtlasTexture_12")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="OpenMailDeleteButton"]
@@ -861,7 +1025,7 @@ offset_right = 82
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_39")
+texture = SubResource("AtlasTexture_14")
 expand_mode = 1
 
 [node name="OpenMailDeleteButtonText" type="Label" parent="OpenMailDeleteButton"]
@@ -871,7 +1035,6 @@ offset_top = 0
 offset_right = 82
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Delete"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -883,13 +1046,13 @@ offset_right = 82
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_41")
+texture = SubResource("AtlasTexture_16")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
+material = SubResource("CanvasItemMaterial_17")
 
 [node name="OpenMailReplyButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_left = 1
 anchor_top = 1
@@ -907,7 +1070,7 @@ offset_top = 0
 offset_right = 82
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_35")
+texture = SubResource("AtlasTexture_10")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="OpenMailReplyButton"]
@@ -917,7 +1080,7 @@ offset_right = 82
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_37")
+texture = SubResource("AtlasTexture_12")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="OpenMailReplyButton"]
@@ -927,7 +1090,7 @@ offset_right = 82
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_39")
+texture = SubResource("AtlasTexture_14")
 expand_mode = 1
 
 [node name="OpenMailReplyButtonText" type="Label" parent="OpenMailReplyButton"]
@@ -937,7 +1100,6 @@ offset_top = 0
 offset_right = 82
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Reply"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -949,13 +1111,13 @@ offset_right = 82
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_41")
+texture = SubResource("AtlasTexture_16")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
+material = SubResource("CanvasItemMaterial_17")
 
 [node name="OpenMailCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -993,4 +1155,4 @@ visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_44")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_23")
+material = SubResource("CanvasItemMaterial_17")

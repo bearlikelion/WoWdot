@@ -7,39 +7,34 @@
 file = "Interface\\ChatFrame\\ChatFrameBackground.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_2"]
-file = "Interface\\ChatFrame\\ChatFrameBorder.blp"
+file = "Interface\\ChatFrame\\UI-ChatFrame-BorderCorner.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3"]
 atlas = SubResource("WowTexture_2")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
-atlas = SubResource("WowTexture_2")
-region = Rect2(48, 0, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\ChatFrame\\UI-ChatFrame-BorderLeft.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5"]
-atlas = SubResource("WowTexture_2")
-region = Rect2(0, 93, 16, 16)
+atlas = SubResource("WowTexture_4")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
-atlas = SubResource("WowTexture_2")
-region = Rect2(48, 93, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\ChatFrame\\UI-ChatFrame-BorderTop.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7"]
-atlas = SubResource("WowTexture_2")
-region = Rect2(16, 0, 32, 16)
+atlas = SubResource("WowTexture_6")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
-atlas = SubResource("WowTexture_2")
-region = Rect2(16, 93, 32, 16)
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
-atlas = SubResource("WowTexture_2")
-region = Rect2(0, 16, 16, 77)
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
-atlas = SubResource("WowTexture_2")
-region = Rect2(48, 16, 16, 77)
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_11"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollEnd-Up.blp"
@@ -78,62 +73,89 @@ file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Down.blp"
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_23"]
-file = "Interface\\ChatFrame\\ChatFrameTab.blp"
+file = "Interface\\ChatFrame\\UI-ChatIcon-Minimize-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
-atlas = SubResource("WowTexture_23")
-region = Rect2(0, 0, 16, 32)
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-Minimize-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
-atlas = SubResource("WowTexture_23")
-region = Rect2(16, 0, 32, 32)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
-atlas = SubResource("WowTexture_23")
-region = Rect2(48, 0, 16, 32)
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\ChatFrame\\UI-ChatInputBorder-Left2.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_27"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+file = "Interface\\ChatFrame\\UI-ChatInputBorder-Right2.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
-file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+file = "Interface\\ChatFrame\\UI-ChatInputBorder-Mid2.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
-atlas = SubResource("WowTexture_28")
-region = Rect2(0, 0, 25, 64)
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\ChatFrame\\UI-ChatInputBorderFocus-Left.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
-atlas = SubResource("WowTexture_28")
-region = Rect2(25, 0, 78, 64)
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\ChatFrame\\UI-ChatInputBorderFocus-Right.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
-atlas = SubResource("WowTexture_28")
-region = Rect2(103, 0, 25, 64)
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\ChatFrame\\UI-ChatInputBorderFocus-Mid.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
-file = "Interface\\ChatFrame\\UI-ChatInputBorder-Left.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_33"]
-file = "Interface\\ChatFrame\\UI-ChatInputBorder-Right.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
-atlas = SubResource("WowTexture_33")
-region = Rect2(240, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_35"]
-atlas = SubResource("WowTexture_33")
-region = Rect2(0, 0, 240, 32)
-
-[sub_resource type="WowTexture" id="WowTexture_36"]
 file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
 
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\ChatFrame\\ChatFrameTab-BGLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\ChatFrame\\ChatFrameTab-BGMid.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\ChatFrame\\ChatFrameTab-BGRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\ChatFrame\\ChatFrameTab-SelectedLeft.blp"
+
 [sub_resource type="WowTexture" id="WowTexture_37"]
-file = "Interface\\ChatFrame\\UI-ChatIcon-Chat-Up.blp"
+file = "Interface\\ChatFrame\\ChatFrameTab-SelectedMid.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_38"]
-file = "Interface\\ChatFrame\\UI-ChatIcon-Chat-Down.blp"
+file = "Interface\\ChatFrame\\ChatFrameTab-SelectedRight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\ChatFrame\\ChatFrameTab-NewMessage.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_40"]
+file = "Interface\\ChatFrame\\ChatFrameTab-HighlightLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\ChatFrame\\ChatFrameTab-HighlightMid.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\ChatFrame\\ChatFrameTab-HighlightRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_48"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-Chat-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-Chat-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_50"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-Chat-Disabled.blp"
 
 [node name="ChatFrame1" type="Control"]
@@ -155,176 +177,316 @@ max_lines = 128
 
 [node name="ChatFrame1Background" type="TextureRect" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
 offset_left = -2
 offset_top = -3
-offset_right = 433
-offset_bottom = 126
+offset_right = 3
+offset_bottom = 6
 mouse_filter = 2
 texture = SubResource("WowTexture_1")
 expand_mode = 1
 
-[node name="ChatFrame1ResizeTopLeft" type="TextureButton" parent="."]
+[node name="ChatFrame1TopLeftTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = -4
-offset_top = -5
-offset_right = 12
-offset_bottom = 11
-ignore_texture_size = true
+offset_left = -6
+offset_top = -7
+offset_right = 2
+offset_bottom = 1
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
 
-[node name="ChatFrame1ResizeTopLeftTexture" type="TextureRect" parent="ChatFrame1ResizeTopLeft"]
+[node name="ChatFrame1BottomLeftTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -6
+offset_top = 2
+offset_right = 2
+offset_bottom = 10
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3")
 expand_mode = 1
+flip_v = true
 
-[node name="ChatFrame1ResizeTopRight" type="TextureButton" parent="."]
+[node name="ChatFrame1TopRightTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 419
-offset_top = -5
-offset_right = 435
-offset_bottom = 11
-ignore_texture_size = true
-
-[node name="ChatFrame1ResizeTopRightTexture" type="TextureRect" parent="ChatFrame1ResizeTopRight"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -1
+offset_top = -7
+offset_right = 7
+offset_bottom = 1
 mouse_filter = 2
-texture = SubResource("AtlasTexture_4")
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+flip_h = true
+
+[node name="ChatFrame1BottomRightTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -1
+offset_top = 2
+offset_right = 7
+offset_bottom = 10
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="ChatFrame1LeftTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_bottom = 1
+offset_left = -6
+offset_top = 1
+offset_right = 10
+offset_bottom = 2
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
 expand_mode = 1
 
-[node name="ChatFrame1ResizeBottomLeft" type="TextureButton" parent="."]
+[node name="ChatFrame1RightTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = -4
-offset_top = 113
-offset_right = 12
-offset_bottom = 129
-ignore_texture_size = true
-
-[node name="ChatFrame1ResizeBottomLeftTexture" type="TextureRect" parent="ChatFrame1ResizeBottomLeft"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -9
+offset_top = 1
+offset_right = 7
+offset_bottom = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5")
 expand_mode = 1
+flip_h = true
 
-[node name="ChatFrame1ResizeBottomRight" type="TextureButton" parent="."]
+[node name="ChatFrame1BottomTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 419
-offset_top = 113
-offset_right = 435
-offset_bottom = 129
-ignore_texture_size = true
-
-[node name="ChatFrame1ResizeBottomRightTexture" type="TextureRect" parent="ChatFrame1ResizeBottomRight"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("AtlasTexture_6")
-expand_mode = 1
-
-[node name="ChatFrame1ResizeTop" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 12
-offset_top = -5
-offset_right = 419
-offset_bottom = 11
-ignore_texture_size = true
-
-[node name="ChatFrame1ResizeTopTexture" type="TextureRect" parent="ChatFrame1ResizeTop"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 407
-offset_bottom = 16
+layout_mode = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 2
+offset_top = -6
+offset_right = -1
+offset_bottom = 10
 mouse_filter = 2
 texture = SubResource("AtlasTexture_7")
 expand_mode = 1
+flip_v = true
 
-[node name="ChatFrame1ResizeBottom" type="TextureButton" parent="."]
+[node name="ChatFrame1TopTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 2
+offset_top = -7
+offset_right = -1
+offset_bottom = 9
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="ChatFrame1ClickAnywhereButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 12
-offset_top = 113
-offset_right = 419
-offset_bottom = 129
-ignore_texture_size = true
-
-[node name="ChatFrame1ResizeBottomTexture" type="TextureRect" parent="ChatFrame1ResizeBottom"]
-unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
 offset_left = 0
 offset_top = 0
-offset_right = 407
+offset_right = 0
+offset_bottom = 0
+visible = false
+ignore_texture_size = true
+
+[node name="ChatFrame1ResizeButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -13
+offset_top = -10
+offset_right = 3
+offset_bottom = 6
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame1ResizeButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_8")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
 
-[node name="ChatFrame1ResizeLeft" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = -4
-offset_top = 11
-offset_right = 12
-offset_bottom = 113
-ignore_texture_size = true
-
-[node name="ChatFrame1ResizeLeftTexture" type="TextureRect" parent="ChatFrame1ResizeLeft"]
-unique_name_in_owner = true
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame1ResizeButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 16
-offset_bottom = 102
+offset_bottom = 16
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_9")
+texture = SubResource("WowTexture_9")
 expand_mode = 1
 
-[node name="ChatFrame1ResizeRight" type="TextureButton" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 419
-offset_top = 11
-offset_right = 435
-offset_bottom = 113
-ignore_texture_size = true
-
-[node name="ChatFrame1ResizeRightTexture" type="TextureRect" parent="ChatFrame1ResizeRight"]
-unique_name_in_owner = true
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1ResizeButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 16
-offset_bottom = 102
+offset_bottom = 16
+visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_10")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
-[node name="ChatFrame1BottomButton" type="TextureButton" parent="."]
+[node name="ChatFrame1ButtonFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 29
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="ChatFrame1ButtonFrameBackground" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_bottom = 1
+offset_left = -2
+offset_top = -3
+offset_right = 32
+offset_bottom = 6
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="ChatFrame1ButtonFrameTopLeftTexture" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+offset_left = -6
+offset_top = -7
+offset_right = 2
+offset_bottom = 1
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="ChatFrame1ButtonFrameBottomLeftTexture" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -6
+offset_top = 2
+offset_right = 2
+offset_bottom = 10
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+flip_v = true
+
+[node name="ChatFrame1ButtonFrameTopRightTexture" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = -7
+offset_right = 36
+offset_bottom = 1
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+flip_h = true
+
+[node name="ChatFrame1ButtonFrameBottomRightTexture" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 28
+offset_top = 2
+offset_right = 36
+offset_bottom = 10
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="ChatFrame1ButtonFrameLeftTexture" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_bottom = 1
+offset_left = -6
+offset_top = 1
+offset_right = 10
+offset_bottom = 2
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="ChatFrame1ButtonFrameRightTexture" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_bottom = 1
+offset_left = 20
+offset_top = 1
+offset_right = 36
+offset_bottom = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+flip_h = true
+
+[node name="ChatFrame1ButtonFrameBottomTexture" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 2
+offset_top = -6
+offset_right = 28
+offset_bottom = 10
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+flip_v = true
+
+[node name="ChatFrame1ButtonFrameTopTexture" type="TextureRect" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = -7
+offset_right = 28
+offset_bottom = 9
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="ChatFrame1ButtonFrameBottomButton" type="TextureButton" parent="ChatFrame1ButtonFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -32
-offset_top = 92
-offset_right = 0
-offset_bottom = 124
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -1.5
+offset_top = -25
+offset_right = 30.5
+offset_bottom = 7
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="ChatFrame1BottomButton"]
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameBottomButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -333,7 +495,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_11")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="ChatFrame1BottomButton"]
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameBottomButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -343,7 +505,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_12")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="ChatFrame1BottomButton"]
+[node name="DisabledTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameBottomButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -353,7 +515,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_13")
 expand_mode = 1
 
-[node name="ChatFrame1BottomButtonFlash" type="TextureRect" parent="ChatFrame1BottomButton"]
+[node name="ChatFrame1ButtonFrameBottomButtonFlash" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameBottomButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -364,7 +526,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_14")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1BottomButton"]
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameBottomButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -375,16 +537,19 @@ texture = SubResource("WowTexture_15")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
-[node name="ChatFrame1DownButton" type="TextureButton" parent="."]
+[node name="ChatFrame1ButtonFrameDownButton" type="TextureButton" parent="ChatFrame1ButtonFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -32
-offset_top = 62
-offset_right = 0
-offset_bottom = 94
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -1.5
+offset_top = -55
+offset_right = 30.5
+offset_bottom = -23
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="ChatFrame1DownButton"]
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameDownButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -393,7 +558,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_17")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="ChatFrame1DownButton"]
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameDownButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -403,7 +568,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_18")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="ChatFrame1DownButton"]
+[node name="DisabledTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameDownButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -413,7 +578,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_19")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1DownButton"]
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameDownButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -424,16 +589,19 @@ texture = SubResource("WowTexture_15")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
-[node name="ChatFrame1UpButton" type="TextureButton" parent="."]
+[node name="ChatFrame1ButtonFrameUpButton" type="TextureButton" parent="ChatFrame1ButtonFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -32
-offset_top = 30
-offset_right = 0
-offset_bottom = 62
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -1.5
+offset_top = -87
+offset_right = 30.5
+offset_bottom = -55
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="ChatFrame1UpButton"]
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameUpButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -442,7 +610,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_20")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="ChatFrame1UpButton"]
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameUpButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -452,7 +620,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_21")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="ChatFrame1UpButton"]
+[node name="DisabledTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameUpButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -462,7 +630,7 @@ mouse_filter = 2
 texture = SubResource("WowTexture_22")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1UpButton"]
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameUpButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 32
@@ -473,14 +641,201 @@ texture = SubResource("WowTexture_15")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
+[node name="ChatFrame1ButtonFrameMinimizeButton" type="TextureButton" parent="ChatFrame1ButtonFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -1.5
+offset_top = -119
+offset_right = 30.5
+offset_bottom = -87
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameMinimizeButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameMinimizeButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1ButtonFrame/ChatFrame1ButtonFrameMinimizeButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame1EditBox" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -5
+offset_top = 2
+offset_right = 5
+offset_bottom = 34
+visible = false
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+max_length = 255
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_25")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_25")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_25")
+
+[node name="ChatFrame1EditBoxLeft" type="TextureRect" parent="ChatFrame1EditBox"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("WowTexture_26")
+expand_mode = 1
+
+[node name="ChatFrame1EditBoxRight" type="TextureRect" parent="ChatFrame1EditBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -32
+offset_top = 0
+offset_right = 0
+offset_bottom = 32
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+
+[node name="ChatFrame1EditBoxMid" type="TextureRect" parent="ChatFrame1EditBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 32
+offset_top = 0
+offset_right = -32
+offset_bottom = 32
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="ChatFrame1EditBoxFocusLeft" type="TextureRect" parent="ChatFrame1EditBox"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+
+[node name="ChatFrame1EditBoxFocusRight" type="TextureRect" parent="ChatFrame1EditBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -32
+offset_top = 0
+offset_right = 0
+offset_bottom = 32
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_30")
+expand_mode = 1
+
+[node name="ChatFrame1EditBoxFocusMid" type="TextureRect" parent="ChatFrame1EditBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 32
+offset_top = 0
+offset_right = -32
+offset_bottom = 32
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_31")
+expand_mode = 1
+
+[node name="ChatFrame1EditBoxHeader" type="Label" parent="ChatFrame1EditBox"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 9
+offset_right = 15
+offset_bottom = 23
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"ChatFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChatFrame1EditBoxLanguage" type="TextureButton" parent="ChatFrame1EditBox"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -8
+offset_top = 0
+offset_right = 24
+offset_bottom = 32
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame1EditBox/ChatFrame1EditBoxLanguage"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="ChatFrame1EditBoxLanguageText" type="Label" parent="ChatFrame1EditBox/ChatFrame1EditBoxLanguage"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ChatFrame1Tab" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
 offset_left = 0
-offset_top = -35
+offset_top = -34
 offset_right = 64
-offset_bottom = -3
-visible = false
+offset_bottom = -2
 ignore_texture_size = true
 
 [node name="ChatFrame1TabLeft" type="TextureRect" parent="ChatFrame1Tab"]
@@ -490,7 +845,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_24")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 
 [node name="ChatFrame1TabMiddle" type="TextureRect" parent="ChatFrame1Tab"]
@@ -500,7 +855,7 @@ offset_top = 0
 offset_right = 60
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_25")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="ChatFrame1TabRight" type="TextureRect" parent="ChatFrame1Tab"]
@@ -510,8 +865,53 @@ offset_top = 0
 offset_right = 76
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_26")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
+
+[node name="ChatFrame1TabSelectedLeft" type="TextureRect" parent="ChatFrame1Tab"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame1TabSelectedMiddle" type="TextureRect" parent="ChatFrame1Tab"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 60
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame1TabSelectedRight" type="TextureRect" parent="ChatFrame1Tab"]
+unique_name_in_owner = true
+offset_left = 60
+offset_top = 0
+offset_right = 76
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame1TabGlow" type="TextureRect" parent="ChatFrame1Tab"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = 16
+offset_right = 56
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_39")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
 
 [node name="ChatFrame1TabText" type="Label" parent="ChatFrame1Tab"]
 unique_name_in_owner = true
@@ -520,18 +920,41 @@ offset_top = 17
 offset_right = 66
 offset_bottom = 25
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="HighlightTexture" type="TextureRect" parent="ChatFrame1Tab"]
+[node name="ChatFrame1TabHighlightLeft" type="TextureRect" parent="ChatFrame1Tab"]
+unique_name_in_owner = true
 offset_left = 0
-offset_top = 7
-offset_right = 76
-offset_bottom = 39
-visible = false
+offset_top = 0
+offset_right = 16
+offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_40")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame1TabHighlightMiddle" type="TextureRect" parent="ChatFrame1Tab"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 60
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_41")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame1TabHighlightRight" type="TextureRect" parent="ChatFrame1Tab"]
+unique_name_in_owner = true
+offset_left = 60
+offset_top = 0
+offset_right = 76
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_42")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -550,7 +973,7 @@ offset_top = 0
 offset_right = 76
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_43")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -570,7 +993,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_29")
+texture = SubResource("AtlasTexture_45")
 expand_mode = 1
 
 [node name="ChatFrame1TabDropDownMiddle" type="TextureRect" parent="ChatFrame1Tab/ChatFrame1TabDropDown"]
@@ -580,7 +1003,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_30")
+texture = SubResource("AtlasTexture_46")
 expand_mode = 1
 
 [node name="ChatFrame1TabDropDownRight" type="TextureRect" parent="ChatFrame1Tab/ChatFrame1TabDropDown"]
@@ -590,7 +1013,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_31")
+texture = SubResource("AtlasTexture_47")
 expand_mode = 1
 
 [node name="ChatFrame1TabDropDownText" type="Label" parent="ChatFrame1Tab/ChatFrame1TabDropDown"]
@@ -603,6 +1026,8 @@ mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 2
 vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="ChatFrame1TabDropDownButton" type="TextureButton" parent="ChatFrame1Tab/ChatFrame1TabDropDown"]
 unique_name_in_owner = true
@@ -653,86 +1078,16 @@ texture = SubResource("WowTexture_15")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
-[node name="ChatFrameEditBox" type="LineEdit" parent="."]
-unique_name_in_owner = true
-offset_left = -5
-offset_top = 122
-offset_right = 435
-offset_bottom = 154
-visible = false
-mouse_filter = 0
-
-[node name="ChatFrameEditBoxLeft" type="TextureRect" parent="ChatFrameEditBox"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 256
-offset_bottom = 32
-show_behind_parent = true
-mouse_filter = 2
-texture = SubResource("WowTexture_32")
-expand_mode = 1
-
-[node name="ChatFrameEditBoxRight" type="TextureRect" parent="ChatFrameEditBox"]
-unique_name_in_owner = true
-offset_left = 424
-offset_top = 0
-offset_right = 440
-offset_bottom = 32
-show_behind_parent = true
-mouse_filter = 2
-texture = SubResource("AtlasTexture_34")
-expand_mode = 1
-
-[node name="Texture" type="TextureRect" parent="ChatFrameEditBox"]
-offset_left = 256
-offset_top = 0
-offset_right = 424
-offset_bottom = 32
-show_behind_parent = true
-mouse_filter = 2
-texture = SubResource("AtlasTexture_35")
-expand_mode = 1
-
-[node name="ChatFrameEditBoxHeader" type="Label" parent="ChatFrameEditBox"]
-unique_name_in_owner = true
-offset_left = 13
-offset_top = 16
-offset_right = 13
-offset_bottom = 16
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"ChatFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ChatFrameEditBoxLanguage" type="TextureButton" parent="ChatFrameEditBox"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 432
-offset_top = 0
-offset_right = 464
-offset_bottom = 32
-visible = false
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="ChatFrameEditBox/ChatFrameEditBoxLanguage"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_36")
-expand_mode = 1
-
 [node name="ChatFrameMenuButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = -32
-offset_top = -2
-offset_right = 0
-offset_bottom = 30
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -1.5
+offset_top = -119
+offset_right = 30.5
+offset_bottom = -87
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="ChatFrameMenuButton"]
@@ -741,7 +1096,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_37")
+texture = SubResource("WowTexture_48")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="ChatFrameMenuButton"]
@@ -751,7 +1106,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_38")
+texture = SubResource("WowTexture_49")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="ChatFrameMenuButton"]
@@ -761,7 +1116,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_39")
+texture = SubResource("WowTexture_50")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="ChatFrameMenuButton"]

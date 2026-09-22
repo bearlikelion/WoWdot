@@ -22,7 +22,7 @@ var _hovered: bool = false
 var _fade: Tween
 
 @onready var _tab: TextureButton = get_node("%" + name + "Tab")
-@onready var _background: TextureRect = get_node("%" + name + "Background")
+@onready var _background: TextureRect = get_node("%" + name + "ButtonFrameBackground")
 
 
 func _ready() -> void:
@@ -37,9 +37,11 @@ func _ready() -> void:
 	_tab.modulate.a = 0.0
 	_tab.hide()
 	_tab.pressed.connect(tab_selected.emit)
-	(get_node("%" + name + "UpButton") as BaseButton).pressed.connect(scroll_up)
-	(get_node("%" + name + "DownButton") as BaseButton).pressed.connect(scroll_down)
-	(get_node("%" + name + "BottomButton") as BaseButton).pressed.connect(scroll_to_bottom)
+	(get_node("%" + name + "ButtonFrameUpButton") as BaseButton).pressed.connect(scroll_up)
+	(get_node("%" + name + "ButtonFrameDownButton") as BaseButton).pressed.connect(scroll_down)
+	(get_node("%" + name + "ButtonFrameBottomButton") as BaseButton).pressed.connect(
+		scroll_to_bottom
+	)
 
 
 # MouseIsOver(chatFrame, 45, -10, -5, 5): the area reaches up over the tabs.
@@ -66,7 +68,7 @@ func set_selected(value: bool) -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS if value else Control.MOUSE_FILTER_IGNORE
 	_lines.get_parent().visible = value
 	for button: String in SCROLL_BUTTONS:
-		(get_node("%" + name + button) as CanvasItem).visible = value
+		(get_node("%" + name + "ButtonFrame" + button) as CanvasItem).visible = value
 	_fade_to(_hovered)
 
 

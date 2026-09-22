@@ -95,7 +95,7 @@ file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_28"]
 atlas = SubResource("WowTexture_27")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 4, 19.2, 24)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_29"]
 
@@ -104,56 +104,56 @@ file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
 atlas = SubResource("WowTexture_30")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33"]
 atlas = SubResource("WowTexture_32")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35"]
 atlas = SubResource("WowTexture_34")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_36"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37"]
 atlas = SubResource("WowTexture_36")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_38"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_39"]
 atlas = SubResource("WowTexture_38")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_40"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41"]
 atlas = SubResource("WowTexture_40")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_42"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43"]
 atlas = SubResource("WowTexture_42")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_44"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45"]
 atlas = SubResource("WowTexture_44")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_46"]
 atlas = SubResource("WowTexture_24")
@@ -400,14 +400,13 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 3.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 16.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "All"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerExpandButtonFrame/ClassTrainerCollapseAllButton"]
@@ -587,13 +586,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill1"]
@@ -651,13 +649,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill2"]
@@ -715,13 +712,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill3"]
@@ -779,13 +775,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill4"]
@@ -843,13 +838,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill5"]
@@ -907,13 +901,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill6"]
@@ -971,13 +964,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill7"]
@@ -1035,13 +1027,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill8"]
@@ -1099,13 +1090,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill9"]
@@ -1163,13 +1153,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill10"]
@@ -1227,13 +1216,12 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerSkill11"]
@@ -1295,16 +1283,16 @@ step = 0.0
 [node name="ClassTrainerListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar/ClassTrainerListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
@@ -1313,7 +1301,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar/ClassTrainerListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1323,7 +1311,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar/ClassTrainerListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1333,7 +1321,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar/ClassTrainerListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1344,16 +1332,16 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="ClassTrainerListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 152
-offset_right = 16
+offset_right = 17
 offset_bottom = 168
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar/ClassTrainerListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_39")
@@ -1362,7 +1350,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar/ClassTrainerListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1372,7 +1360,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar/ClassTrainerListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1382,7 +1370,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerListScrollFrame/ClassTrainerListScrollFrameScrollBar/ClassTrainerListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1466,16 +1454,16 @@ step = 0.0
 [node name="ClassTrainerDetailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar/ClassTrainerDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
@@ -1484,7 +1472,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar/ClassTrainerDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1494,7 +1482,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar/ClassTrainerDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1504,7 +1492,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar/ClassTrainerDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1515,16 +1503,16 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="ClassTrainerDetailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 103
-offset_right = 16
+offset_right = 17
 offset_bottom = 119
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar/ClassTrainerDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_39")
@@ -1533,7 +1521,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar/ClassTrainerDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1543,7 +1531,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar/ClassTrainerDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1553,7 +1541,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="ClassTrainerDetailScrollFrame/ClassTrainerDetailScrollFrameScrollBar/ClassTrainerDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1713,7 +1701,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Train"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1774,7 +1761,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Exit"
 horizontal_alignment = 1
 vertical_alignment = 1

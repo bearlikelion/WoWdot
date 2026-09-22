@@ -3,32 +3,39 @@ extends Control
 
 signal close_requested
 
-# Check button and slider numbers from SoundOptionsFrame.lua.
-const CHECK_BUSES: Dictionary[int, WowAudio.Bus] = {
-	1: WowAudio.Bus.MASTER,
-	2: WowAudio.Bus.AMBIENCE,
-	5: WowAudio.Bus.MUSIC,
+# AudioOptionsSoundPanel controls and the global string that names each one.
+const CHECK_BUSES: Dictionary[String, WowAudio.Bus] = {
+	"EnableSound": WowAudio.Bus.MASTER,
+	"SoundEffects": WowAudio.Bus.EFFECTS,
+	"Music": WowAudio.Bus.MUSIC,
+	"AmbientSounds": WowAudio.Bus.AMBIENCE,
 }
-const SLIDER_BUSES: Dictionary[int, WowAudio.Bus] = {
-	1: WowAudio.Bus.MASTER,
-	2: WowAudio.Bus.EFFECTS,
-	3: WowAudio.Bus.MUSIC,
-	4: WowAudio.Bus.AMBIENCE,
+const SLIDER_BUSES: Dictionary[String, WowAudio.Bus] = {
+	"MasterVolume": WowAudio.Bus.MASTER,
+	"SoundVolume": WowAudio.Bus.EFFECTS,
+	"MusicVolume": WowAudio.Bus.MUSIC,
+	"AmbienceVolume": WowAudio.Bus.AMBIENCE,
 }
-const CHECK_TEXTS: Dictionary[int, String] = {
-	1: "ENABLE_ALL_SOUND",
-	2: "ENABLE_AMBIENCE",
-	4: "ENABLE_ERROR_SPEECH",
-	5: "ENABLE_MUSIC",
-	6: "ENABLE_SOUND_AT_CHARACTER",
-	7: "ENABLE_EMOTE_SOUNDS",
-	8: "ENABLE_MUSIC_LOOPING",
+const CHECK_TEXTS: Dictionary[String, String] = {
+	"EnableSound": "ENABLE_SOUND",
+	"SoundEffects": "ENABLE_SOUNDFX",
+	"ErrorSpeech": "ENABLE_ERROR_SPEECH",
+	"EmoteSounds": "ENABLE_EMOTE_SOUNDS",
+	"PetSounds": "ENABLE_PET_SOUNDS",
+	"Music": "ENABLE_MUSIC",
+	"LoopMusic": "ENABLE_MUSIC_LOOPING",
+	"AmbientSounds": "ENABLE_AMBIENCE",
+	"SoundInBG": "ENABLE_BGSOUND",
+	"Reverb": "ENABLE_REVERB",
+	"HRTF": "ENABLE_SOFTWARE_HRTF",
+	"EnableDSPs": "ENABLE_DSP_EFFECTS",
+	"UseHardware": "ENABLE_HARDWARE",
 }
-const SLIDER_TEXTS: Dictionary[int, String] = {
-	1: "MASTER_VOLUME",
-	2: "SOUND_VOLUME",
-	3: "MUSIC_VOLUME",
-	4: "AMBIENCE_VOLUME",
+const SLIDER_TEXTS: Dictionary[String, String] = {
+	"MasterVolume": "MASTER_VOLUME",
+	"SoundVolume": "SOUND_VOLUME",
+	"MusicVolume": "MUSIC_VOLUME",
+	"AmbienceVolume": "AMBIENCE_VOLUME",
 }
 const VOLUME_STEP: float = 0.1
 
@@ -38,43 +45,42 @@ var _accepted: bool = false
 
 
 func _ready() -> void:
-	for number: int in CHECK_TEXTS:
-		var check: WowButton = _check(number)
-		var label: Label = check.get_node("SoundOptionsFrameCheckButton%dText" % number)
-		label.text = WowStrings.get_text(CHECK_TEXTS[number])
-		if CHECK_BUSES.has(number):
-			check.pressed.connect(_on_check_pressed.bind(check, CHECK_BUSES[number]))
+	for key: String in CHECK_TEXTS:
+		var check: WowButton = _control(key)
+		_label(key + "Text").text = WowStrings.get_text(CHECK_TEXTS[key])
+		if CHECK_BUSES.has(key):
+			check.pressed.connect(_on_check_pressed.bind(check, CHECK_BUSES[key]))
 		else:
 			check.disabled = true
-	for number: int in SLIDER_TEXTS:
-		var slider: HSlider = _slider(number)
-		var prefix: String = "SoundOptionsFrameSlider%d" % number
-		(slider.get_node(prefix + "Text") as Label).text = WowStrings.get_text(SLIDER_TEXTS[number])
-		(slider.get_node(prefix + "Low") as Label).text = WowStrings.get_text("LOW")
-		(slider.get_node(prefix + "High") as Label).text = WowStrings.get_text("HIGH")
+	for key: String in SLIDER_TEXTS:
+		var slider: HSlider = _control(key)
+		_label(key + "Text").text = WowStrings.get_text(SLIDER_TEXTS[key])
+		_label(key + "Low").text = WowStrings.get_text("LOW")
+		_label(key + "High").text = WowStrings.get_text("HIGH")
 		slider.max_value = 1.0
 		slider.step = VOLUME_STEP
-		slider.value_changed.connect(_on_slider_changed.bind(SLIDER_BUSES[number]))
-	%SoundOptionsFrameOkay.pressed.connect(_on_okay_pressed)
-	%SoundOptionsFrameCancel.pressed.connect(close_requested.emit)
-	%SoundOptionsFrameDefaults.pressed.connect(_on_defaults_pressed)
+		slider.value_changed.connect(_on_slider_changed.bind(SLIDER_BUSES[key]))
+	%AudioOptionsFrameOkay.pressed.connect(_on_okay_pressed)
+	%AudioOptionsFrameCancel.pressed.connect(close_requested.emit)
+	%AudioOptionsFrameDefaults.pressed.connect(_on_defaults_pressed)
 	visibility_changed.connect(_on_visibility_changed)
 
 
-func _check(number: int) -> WowButton:
-	return get_node("%%SoundOptionsFrameCheckButton%d" % number)
+# The converter emits the sound panel twice, so its controls are not unique names.
+func _control(key: String) -> Control:
+	return %AudioOptionsSoundPanel.find_child("AudioOptionsSoundPanel" + key, true, false)
 
 
-func _slider(number: int) -> HSlider:
-	return get_node("%%SoundOptionsFrameSlider%d" % number)
+func _label(key: String) -> Label:
+	return _control(key) as Label
 
 
 func _refresh() -> void:
 	var audio: WowAudio = WowAssets.audio
-	for number: int in CHECK_BUSES:
-		_check(number).checked = audio.is_bus_enabled(CHECK_BUSES[number])
-	for number: int in SLIDER_BUSES:
-		_slider(number).set_value_no_signal(audio.volume(SLIDER_BUSES[number]))
+	for key: String in CHECK_BUSES:
+		(_control(key) as WowButton).checked = audio.is_bus_enabled(CHECK_BUSES[key])
+	for key: String in SLIDER_BUSES:
+		(_control(key) as HSlider).set_value_no_signal(audio.volume(SLIDER_BUSES[key]))
 
 
 # Sliders apply as they move, so closing any way but Okay puts the old values back.

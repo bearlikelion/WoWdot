@@ -35,7 +35,7 @@ file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10"]
 atlas = SubResource("WowTexture_9")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 4, 19.2, 24)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11"]
 
@@ -44,28 +44,28 @@ file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13"]
 atlas = SubResource("WowTexture_12")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_14"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15"]
 atlas = SubResource("WowTexture_14")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_16"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17"]
 atlas = SubResource("WowTexture_16")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_18"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_19"]
 atlas = SubResource("WowTexture_18")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_20"]
 blend_mode = 1
@@ -75,28 +75,28 @@ file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22"]
 atlas = SubResource("WowTexture_21")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_23"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_24"]
 atlas = SubResource("WowTexture_23")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_25"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26"]
 atlas = SubResource("WowTexture_25")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_27"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_28"]
 atlas = SubResource("WowTexture_27")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_29"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame-BarFill.blp"
@@ -327,16 +327,16 @@ step = 0.0
 [node name="ItemTextScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar/ItemTextScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_13")
@@ -345,7 +345,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar/ItemTextScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -355,7 +355,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar/ItemTextScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -365,7 +365,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar/ItemTextScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -376,16 +376,16 @@ material = SubResource("CanvasItemMaterial_20")
 [node name="ItemTextScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 0
+offset_left = -1
 offset_top = 323
-offset_right = 16
+offset_right = 17
 offset_bottom = 339
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar/ItemTextScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_22")
@@ -394,7 +394,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar/ItemTextScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -404,7 +404,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar/ItemTextScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -414,7 +414,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="ItemTextScrollFrame/ItemTextScrollFrameScrollBar/ItemTextScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2

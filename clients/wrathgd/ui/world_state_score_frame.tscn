@@ -1,8 +1,8 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://ui/world_state_score_frame.gd" id="1"]
-[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="2"]
-[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="3"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\WorldStateFrame\\WorldStateFinalScoreFrame-TopBackground.blp"
@@ -30,159 +30,193 @@ file = "Interface\\WorldStateFrame\\WorldStateFinalScoreFrame-BotRight.blp"
 file = "Interface\\WorldStateFrame\\WorldStateFinalScoreFrame-Bot.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_9"]
-file = "Interface\\WorldStateFrame\\WorldStateFinalScore-Highlight.blp"
+file = "Interface\\PvPRankBadges\\PvPRank06.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_10"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_11"]
 atlas = SubResource("WowTexture_10")
-region = Rect2(0, 2, 31, 254)
+region = Rect2(0, 0, 25, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_12"]
 atlas = SubResource("WowTexture_10")
-region = Rect2(0, 200, 31, 56)
+region = Rect2(25, 0, 78, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13"]
 atlas = SubResource("WowTexture_10")
-region = Rect2(33, 0, 31, 105)
+region = Rect2(103, 0, 25, 64)
 
 [sub_resource type="WowTexture" id="WowTexture_14"]
-file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
-atlas = SubResource("WowTexture_14")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16"]
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_17"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
-atlas = SubResource("WowTexture_17")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18"]
+blend_mode = 1
 
 [sub_resource type="WowTexture" id="WowTexture_19"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+file = "Interface\\WorldStateFrame\\WorldStateFinalScore-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20"]
 atlas = SubResource("WowTexture_19")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(0, 0, 256, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_21"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22"]
 atlas = SubResource("WowTexture_21")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(0, 2, 31, 254)
 
-[sub_resource type="WowTexture" id="WowTexture_23"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(0, 200, 31, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_24"]
-atlas = SubResource("WowTexture_23")
-region = Rect2(8, 8, 16, 16)
+atlas = SubResource("WowTexture_21")
+region = Rect2(33, 0, 31, 105)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_25"]
-blend_mode = 1
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_26"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(6.4, 4, 19.2, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
-atlas = SubResource("WowTexture_26")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_27"]
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_29"]
 atlas = SubResource("WowTexture_28")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_30"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
 atlas = SubResource("WowTexture_30")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33"]
 atlas = SubResource("WowTexture_32")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_35"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_35"]
+atlas = SubResource("WowTexture_34")
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_36"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_37"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-ActiveTab.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_37"]
+atlas = SubResource("WowTexture_36")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
-atlas = SubResource("WowTexture_37")
-region = Rect2(0, 3, 20, 29)
+[sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_39"]
-atlas = SubResource("WowTexture_37")
-region = Rect2(20, 3, 88, 29)
+atlas = SubResource("WowTexture_38")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
-atlas = SubResource("WowTexture_37")
-region = Rect2(108, 3, 20, 29)
+[sub_resource type="WowTexture" id="WowTexture_40"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_41"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
+atlas = SubResource("WowTexture_40")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
-atlas = SubResource("WowTexture_41")
-region = Rect2(0, 3, 20, 29)
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43"]
-atlas = SubResource("WowTexture_41")
-region = Rect2(20, 3, 88, 29)
+atlas = SubResource("WowTexture_42")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
-atlas = SubResource("WowTexture_41")
-region = Rect2(108, 3, 20, 29)
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_45"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_46"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
-atlas = SubResource("WowTexture_46")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_47"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ActiveTab.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_48"]
-file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
+atlas = SubResource("WowTexture_47")
+region = Rect2(0, 3, 20, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_49"]
-atlas = SubResource("WowTexture_48")
-region = Rect2(0, 0, 80, 22)
+atlas = SubResource("WowTexture_47")
+region = Rect2(20, 3, 88, 29)
 
-[sub_resource type="WowTexture" id="WowTexture_50"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
+atlas = SubResource("WowTexture_47")
+region = Rect2(108, 3, 20, 29)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
-atlas = SubResource("WowTexture_50")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_51"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_52"]
-file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_52"]
+atlas = SubResource("WowTexture_51")
+region = Rect2(0, 3, 20, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_53"]
-atlas = SubResource("WowTexture_52")
+atlas = SubResource("WowTexture_51")
+region = Rect2(20, 3, 88, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54"]
+atlas = SubResource("WowTexture_51")
+region = Rect2(108, 3, 20, 29)
+
+[sub_resource type="WowTexture" id="WowTexture_55"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
+atlas = SubResource("WowTexture_56")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_58"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_59"]
+atlas = SubResource("WowTexture_58")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_60"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61"]
+atlas = SubResource("WowTexture_60")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_62"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63"]
+atlas = SubResource("WowTexture_62")
 region = Rect2(0, 0, 80, 22)
 
 [node name="WorldStateScoreFrame" type="Control"]
@@ -297,28 +331,14 @@ text = "Battlegrounds"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WorldStateScoreFrameName" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 20
-offset_top = 48
-offset_right = 20
-offset_bottom = 58
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="WorldStateScoreFrameTimerLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 40
+offset_left = 20
 offset_top = -87
-offset_right = 40
+offset_right = 20
 offset_bottom = -77
 grow_horizontal = 1
 grow_vertical = 0
@@ -333,9 +353,9 @@ unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 42
+offset_left = 22
 offset_top = -87
-offset_right = 42
+offset_right = 22
 offset_bottom = -77
 grow_horizontal = 1
 grow_vertical = 2
@@ -373,19 +393,95 @@ theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WorldStateScoreFrameKB" type="Control" parent="."]
+[node name="WorldStateScoreFrameClass" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 150
-offset_top = 38
-offset_right = 210
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 18
+offset_top = 48
+offset_right = 34
+offset_bottom = 64
+ignore_texture_size = true
+
+[node name="WorldStateScoreFrameClassText" type="Label" parent="WorldStateScoreFrameClass"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 75
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="WorldStateScoreFrameClass"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="WorldStateScoreFrameName" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 18
+offset_top = 48
+offset_right = 193
+offset_bottom = 64
+ignore_texture_size = true
+
+[node name="WorldStateScoreFrameNameText" type="Label" parent="WorldStateScoreFrameName"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 75
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldStateScoreFrameTeam" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 193
+offset_top = 48
+offset_right = 368
+offset_bottom = 64
+ignore_texture_size = true
+
+[node name="WorldStateScoreFrameTeamText" type="Label" parent="WorldStateScoreFrameTeam"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 75
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldStateScoreFrameKB" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 197
+offset_top = 41
+offset_right = 272
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreFrameKBText" type="Label" parent="WorldStateScoreFrameKB"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -394,19 +490,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreFrameDeaths" type="Control" parent="."]
+[node name="WorldStateScoreFrameDeaths" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 208
-offset_top = 38
-offset_right = 268
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 267
+offset_top = 41
+offset_right = 342
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreFrameDeathsText" type="Label" parent="WorldStateScoreFrameDeaths"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -415,19 +512,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreFrameHK" type="Control" parent="."]
+[node name="WorldStateScoreFrameHK" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 266
-offset_top = 38
-offset_right = 326
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 337
+offset_top = 41
+offset_right = 412
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreFrameHKText" type="Label" parent="WorldStateScoreFrameHK"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -436,19 +534,86 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreFrameHonorGained" type="Control" parent="."]
+[node name="WorldStateScoreFrameDamageDone" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 309
-offset_top = 38
-offset_right = 399
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 407
+offset_top = 41
+offset_right = 482
+offset_bottom = 71
+ignore_texture_size = true
+
+[node name="WorldStateScoreFrameDamageDoneText" type="Label" parent="WorldStateScoreFrameDamageDone"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 75
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldStateScoreFrameHealingDone" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 477
+offset_top = 41
+offset_right = 552
+offset_bottom = 71
+ignore_texture_size = true
+
+[node name="WorldStateScoreFrameHealingDoneText" type="Label" parent="WorldStateScoreFrameHealingDone"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 75
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldStateScoreFrameTeamSkill" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 547
+offset_top = 41
+offset_right = 622
+offset_bottom = 71
+ignore_texture_size = true
+
+[node name="WorldStateScoreFrameTeamSkillText" type="Label" parent="WorldStateScoreFrameTeamSkill"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 75
+offset_bottom = 24
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldStateScoreFrameHonorGained" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 547
+offset_top = 41
+offset_right = 622
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreFrameHonorGainedText" type="Label" parent="WorldStateScoreFrameHonorGained"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -457,19 +622,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreColumn1" type="Control" parent="."]
+[node name="WorldStateScoreColumn1" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 334
-offset_top = 38
-offset_right = 394
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 552
+offset_top = 41
+offset_right = 627
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreColumn1Text" type="Label" parent="WorldStateScoreColumn1"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -478,19 +644,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreColumn2" type="Control" parent="."]
+[node name="WorldStateScoreColumn2" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 402
-offset_top = 38
-offset_right = 462
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 627
+offset_top = 41
+offset_right = 702
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreColumn2Text" type="Label" parent="WorldStateScoreColumn2"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -499,19 +666,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreColumn3" type="Control" parent="."]
+[node name="WorldStateScoreColumn3" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 470
-offset_top = 38
-offset_right = 530
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 702
+offset_top = 41
+offset_right = 777
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreColumn3Text" type="Label" parent="WorldStateScoreColumn3"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -520,19 +688,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreColumn4" type="Control" parent="."]
+[node name="WorldStateScoreColumn4" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 538
-offset_top = 38
-offset_right = 598
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 777
+offset_top = 41
+offset_right = 852
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreColumn4Text" type="Label" parent="WorldStateScoreColumn4"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -541,19 +710,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreColumn5" type="Control" parent="."]
+[node name="WorldStateScoreColumn5" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 606
-offset_top = 38
-offset_right = 666
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 852
+offset_top = 41
+offset_right = 927
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreColumn5Text" type="Label" parent="WorldStateScoreColumn5"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -562,19 +732,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreColumn6" type="Control" parent="."]
+[node name="WorldStateScoreColumn6" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 676
-offset_top = 38
-offset_right = 736
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 927
+offset_top = 41
+offset_right = 1002
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreColumn6Text" type="Label" parent="WorldStateScoreColumn6"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -583,19 +754,20 @@ vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldStateScoreColumn7" type="Control" parent="."]
+[node name="WorldStateScoreColumn7" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 746
-offset_top = 38
-offset_right = 806
-offset_bottom = 68
-mouse_filter = 0
+script = ExtResource("2")
+offset_left = 1002
+offset_top = 41
+offset_right = 1077
+offset_bottom = 71
+ignore_texture_size = true
 
 [node name="WorldStateScoreColumn7Text" type="Label" parent="WorldStateScoreColumn7"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 65
+offset_right = 75
 offset_bottom = 24
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
@@ -603,6 +775,107 @@ horizontal_alignment = 1
 vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ScorePlayerDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+
+[node name="ScorePlayerDropDownLeft" type="TextureRect" parent="ScorePlayerDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="ScorePlayerDropDownMiddle" type="TextureRect" parent="ScorePlayerDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="ScorePlayerDropDownRight" type="TextureRect" parent="ScorePlayerDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="ScorePlayerDropDownText" type="Label" parent="ScorePlayerDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ScorePlayerDropDownButton" type="TextureButton" parent="ScorePlayerDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ScorePlayerDropDown/ScorePlayerDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ScorePlayerDropDown/ScorePlayerDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ScorePlayerDropDown/ScorePlayerDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ScorePlayerDropDown/ScorePlayerDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
 
 [node name="WorldStateScoreButton1" type="Control" parent="."]
 unique_name_in_owner = true
@@ -620,7 +893,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton1FactionRight" type="TextureRect" parent="WorldStateScoreButton1"]
@@ -630,52 +903,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton1Team" type="Label" parent="WorldStateScoreButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton1HonorableKills" type="Label" parent="WorldStateScoreButton1"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton1KillingBlows" type="Label" parent="WorldStateScoreButton1"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton1Deaths" type="Label" parent="WorldStateScoreButton1"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton1HonorGained" type="Label" parent="WorldStateScoreButton1"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton1TeamSkill" type="Label" parent="WorldStateScoreButton1"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton1Damage" type="Label" parent="WorldStateScoreButton1"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton1Healing" type="Label" parent="WorldStateScoreButton1"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -842,7 +1165,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton1RankButton" type="Control" parent="WorldStateScoreButton1"]
+[node name="WorldStateScoreButton1ClassButton" type="Control" parent="WorldStateScoreButton1"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -850,7 +1173,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton1RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton1/WorldStateScoreButton1RankButton"]
+[node name="WorldStateScoreButton1ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton1/WorldStateScoreButton1ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -859,19 +1182,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton1NameButton" type="Control" parent="WorldStateScoreButton1"]
+[node name="WorldStateScoreButton1Name" type="Control" parent="WorldStateScoreButton1"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton1NameButtonName" type="Label" parent="WorldStateScoreButton1/WorldStateScoreButton1NameButton"]
+[node name="WorldStateScoreButton1NameText" type="Label" parent="WorldStateScoreButton1/WorldStateScoreButton1Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -883,9 +1206,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton2" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 93
+offset_top = 94
 offset_right = 522
-offset_bottom = 109
+offset_bottom = 110
 visible = false
 mouse_filter = 2
 
@@ -896,7 +1219,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton2FactionRight" type="TextureRect" parent="WorldStateScoreButton2"]
@@ -906,52 +1229,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton2Team" type="Label" parent="WorldStateScoreButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton2HonorableKills" type="Label" parent="WorldStateScoreButton2"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton2KillingBlows" type="Label" parent="WorldStateScoreButton2"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton2Deaths" type="Label" parent="WorldStateScoreButton2"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton2HonorGained" type="Label" parent="WorldStateScoreButton2"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton2TeamSkill" type="Label" parent="WorldStateScoreButton2"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton2Damage" type="Label" parent="WorldStateScoreButton2"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton2Healing" type="Label" parent="WorldStateScoreButton2"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -1118,7 +1491,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton2RankButton" type="Control" parent="WorldStateScoreButton2"]
+[node name="WorldStateScoreButton2ClassButton" type="Control" parent="WorldStateScoreButton2"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1126,7 +1499,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton2RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton2/WorldStateScoreButton2RankButton"]
+[node name="WorldStateScoreButton2ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton2/WorldStateScoreButton2ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1135,19 +1508,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton2NameButton" type="Control" parent="WorldStateScoreButton2"]
+[node name="WorldStateScoreButton2Name" type="Control" parent="WorldStateScoreButton2"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton2NameButtonName" type="Label" parent="WorldStateScoreButton2/WorldStateScoreButton2NameButton"]
+[node name="WorldStateScoreButton2NameText" type="Label" parent="WorldStateScoreButton2/WorldStateScoreButton2Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -1159,9 +1532,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton3" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 108
+offset_top = 110
 offset_right = 522
-offset_bottom = 124
+offset_bottom = 126
 visible = false
 mouse_filter = 2
 
@@ -1172,7 +1545,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton3FactionRight" type="TextureRect" parent="WorldStateScoreButton3"]
@@ -1182,52 +1555,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton3Team" type="Label" parent="WorldStateScoreButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton3HonorableKills" type="Label" parent="WorldStateScoreButton3"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton3KillingBlows" type="Label" parent="WorldStateScoreButton3"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton3Deaths" type="Label" parent="WorldStateScoreButton3"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton3HonorGained" type="Label" parent="WorldStateScoreButton3"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton3TeamSkill" type="Label" parent="WorldStateScoreButton3"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton3Damage" type="Label" parent="WorldStateScoreButton3"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton3Healing" type="Label" parent="WorldStateScoreButton3"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -1394,7 +1817,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton3RankButton" type="Control" parent="WorldStateScoreButton3"]
+[node name="WorldStateScoreButton3ClassButton" type="Control" parent="WorldStateScoreButton3"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1402,7 +1825,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton3RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton3/WorldStateScoreButton3RankButton"]
+[node name="WorldStateScoreButton3ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton3/WorldStateScoreButton3ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1411,19 +1834,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton3NameButton" type="Control" parent="WorldStateScoreButton3"]
+[node name="WorldStateScoreButton3Name" type="Control" parent="WorldStateScoreButton3"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton3NameButtonName" type="Label" parent="WorldStateScoreButton3/WorldStateScoreButton3NameButton"]
+[node name="WorldStateScoreButton3NameText" type="Label" parent="WorldStateScoreButton3/WorldStateScoreButton3Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -1435,9 +1858,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton4" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 123
+offset_top = 126
 offset_right = 522
-offset_bottom = 139
+offset_bottom = 142
 visible = false
 mouse_filter = 2
 
@@ -1448,7 +1871,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton4FactionRight" type="TextureRect" parent="WorldStateScoreButton4"]
@@ -1458,52 +1881,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton4Team" type="Label" parent="WorldStateScoreButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton4HonorableKills" type="Label" parent="WorldStateScoreButton4"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton4KillingBlows" type="Label" parent="WorldStateScoreButton4"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton4Deaths" type="Label" parent="WorldStateScoreButton4"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton4HonorGained" type="Label" parent="WorldStateScoreButton4"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton4TeamSkill" type="Label" parent="WorldStateScoreButton4"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton4Damage" type="Label" parent="WorldStateScoreButton4"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton4Healing" type="Label" parent="WorldStateScoreButton4"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -1670,7 +2143,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton4RankButton" type="Control" parent="WorldStateScoreButton4"]
+[node name="WorldStateScoreButton4ClassButton" type="Control" parent="WorldStateScoreButton4"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1678,7 +2151,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton4RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton4/WorldStateScoreButton4RankButton"]
+[node name="WorldStateScoreButton4ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton4/WorldStateScoreButton4ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1687,19 +2160,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton4NameButton" type="Control" parent="WorldStateScoreButton4"]
+[node name="WorldStateScoreButton4Name" type="Control" parent="WorldStateScoreButton4"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton4NameButtonName" type="Label" parent="WorldStateScoreButton4/WorldStateScoreButton4NameButton"]
+[node name="WorldStateScoreButton4NameText" type="Label" parent="WorldStateScoreButton4/WorldStateScoreButton4Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -1711,9 +2184,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton5" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 138
+offset_top = 142
 offset_right = 522
-offset_bottom = 154
+offset_bottom = 158
 visible = false
 mouse_filter = 2
 
@@ -1724,7 +2197,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton5FactionRight" type="TextureRect" parent="WorldStateScoreButton5"]
@@ -1734,52 +2207,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton5Team" type="Label" parent="WorldStateScoreButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton5HonorableKills" type="Label" parent="WorldStateScoreButton5"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton5KillingBlows" type="Label" parent="WorldStateScoreButton5"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton5Deaths" type="Label" parent="WorldStateScoreButton5"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton5HonorGained" type="Label" parent="WorldStateScoreButton5"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton5TeamSkill" type="Label" parent="WorldStateScoreButton5"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton5Damage" type="Label" parent="WorldStateScoreButton5"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton5Healing" type="Label" parent="WorldStateScoreButton5"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -1946,7 +2469,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton5RankButton" type="Control" parent="WorldStateScoreButton5"]
+[node name="WorldStateScoreButton5ClassButton" type="Control" parent="WorldStateScoreButton5"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1954,7 +2477,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton5RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton5/WorldStateScoreButton5RankButton"]
+[node name="WorldStateScoreButton5ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton5/WorldStateScoreButton5ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1963,19 +2486,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton5NameButton" type="Control" parent="WorldStateScoreButton5"]
+[node name="WorldStateScoreButton5Name" type="Control" parent="WorldStateScoreButton5"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton5NameButtonName" type="Label" parent="WorldStateScoreButton5/WorldStateScoreButton5NameButton"]
+[node name="WorldStateScoreButton5NameText" type="Label" parent="WorldStateScoreButton5/WorldStateScoreButton5Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -1987,9 +2510,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton6" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 153
+offset_top = 158
 offset_right = 522
-offset_bottom = 169
+offset_bottom = 174
 visible = false
 mouse_filter = 2
 
@@ -2000,7 +2523,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton6FactionRight" type="TextureRect" parent="WorldStateScoreButton6"]
@@ -2010,52 +2533,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton6Team" type="Label" parent="WorldStateScoreButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton6HonorableKills" type="Label" parent="WorldStateScoreButton6"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton6KillingBlows" type="Label" parent="WorldStateScoreButton6"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton6Deaths" type="Label" parent="WorldStateScoreButton6"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton6HonorGained" type="Label" parent="WorldStateScoreButton6"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton6TeamSkill" type="Label" parent="WorldStateScoreButton6"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton6Damage" type="Label" parent="WorldStateScoreButton6"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton6Healing" type="Label" parent="WorldStateScoreButton6"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -2222,7 +2795,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton6RankButton" type="Control" parent="WorldStateScoreButton6"]
+[node name="WorldStateScoreButton6ClassButton" type="Control" parent="WorldStateScoreButton6"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2230,7 +2803,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton6RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton6/WorldStateScoreButton6RankButton"]
+[node name="WorldStateScoreButton6ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton6/WorldStateScoreButton6ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2239,19 +2812,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton6NameButton" type="Control" parent="WorldStateScoreButton6"]
+[node name="WorldStateScoreButton6Name" type="Control" parent="WorldStateScoreButton6"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton6NameButtonName" type="Label" parent="WorldStateScoreButton6/WorldStateScoreButton6NameButton"]
+[node name="WorldStateScoreButton6NameText" type="Label" parent="WorldStateScoreButton6/WorldStateScoreButton6Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -2263,9 +2836,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton7" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 168
+offset_top = 174
 offset_right = 522
-offset_bottom = 184
+offset_bottom = 190
 visible = false
 mouse_filter = 2
 
@@ -2276,7 +2849,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton7FactionRight" type="TextureRect" parent="WorldStateScoreButton7"]
@@ -2286,52 +2859,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton7Team" type="Label" parent="WorldStateScoreButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton7HonorableKills" type="Label" parent="WorldStateScoreButton7"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton7KillingBlows" type="Label" parent="WorldStateScoreButton7"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton7Deaths" type="Label" parent="WorldStateScoreButton7"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton7HonorGained" type="Label" parent="WorldStateScoreButton7"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton7TeamSkill" type="Label" parent="WorldStateScoreButton7"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton7Damage" type="Label" parent="WorldStateScoreButton7"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton7Healing" type="Label" parent="WorldStateScoreButton7"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -2498,7 +3121,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton7RankButton" type="Control" parent="WorldStateScoreButton7"]
+[node name="WorldStateScoreButton7ClassButton" type="Control" parent="WorldStateScoreButton7"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2506,7 +3129,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton7RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton7/WorldStateScoreButton7RankButton"]
+[node name="WorldStateScoreButton7ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton7/WorldStateScoreButton7ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2515,19 +3138,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton7NameButton" type="Control" parent="WorldStateScoreButton7"]
+[node name="WorldStateScoreButton7Name" type="Control" parent="WorldStateScoreButton7"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton7NameButtonName" type="Label" parent="WorldStateScoreButton7/WorldStateScoreButton7NameButton"]
+[node name="WorldStateScoreButton7NameText" type="Label" parent="WorldStateScoreButton7/WorldStateScoreButton7Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -2539,9 +3162,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton8" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 183
+offset_top = 190
 offset_right = 522
-offset_bottom = 199
+offset_bottom = 206
 visible = false
 mouse_filter = 2
 
@@ -2552,7 +3175,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton8FactionRight" type="TextureRect" parent="WorldStateScoreButton8"]
@@ -2562,52 +3185,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton8Team" type="Label" parent="WorldStateScoreButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton8HonorableKills" type="Label" parent="WorldStateScoreButton8"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton8KillingBlows" type="Label" parent="WorldStateScoreButton8"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton8Deaths" type="Label" parent="WorldStateScoreButton8"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton8HonorGained" type="Label" parent="WorldStateScoreButton8"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton8TeamSkill" type="Label" parent="WorldStateScoreButton8"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton8Damage" type="Label" parent="WorldStateScoreButton8"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton8Healing" type="Label" parent="WorldStateScoreButton8"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -2774,7 +3447,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton8RankButton" type="Control" parent="WorldStateScoreButton8"]
+[node name="WorldStateScoreButton8ClassButton" type="Control" parent="WorldStateScoreButton8"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2782,7 +3455,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton8RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton8/WorldStateScoreButton8RankButton"]
+[node name="WorldStateScoreButton8ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton8/WorldStateScoreButton8ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -2791,19 +3464,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton8NameButton" type="Control" parent="WorldStateScoreButton8"]
+[node name="WorldStateScoreButton8Name" type="Control" parent="WorldStateScoreButton8"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton8NameButtonName" type="Label" parent="WorldStateScoreButton8/WorldStateScoreButton8NameButton"]
+[node name="WorldStateScoreButton8NameText" type="Label" parent="WorldStateScoreButton8/WorldStateScoreButton8Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -2815,9 +3488,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton9" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 198
+offset_top = 206
 offset_right = 522
-offset_bottom = 214
+offset_bottom = 222
 visible = false
 mouse_filter = 2
 
@@ -2828,7 +3501,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton9FactionRight" type="TextureRect" parent="WorldStateScoreButton9"]
@@ -2838,52 +3511,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton9Team" type="Label" parent="WorldStateScoreButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton9HonorableKills" type="Label" parent="WorldStateScoreButton9"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton9KillingBlows" type="Label" parent="WorldStateScoreButton9"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton9Deaths" type="Label" parent="WorldStateScoreButton9"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton9HonorGained" type="Label" parent="WorldStateScoreButton9"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton9TeamSkill" type="Label" parent="WorldStateScoreButton9"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton9Damage" type="Label" parent="WorldStateScoreButton9"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton9Healing" type="Label" parent="WorldStateScoreButton9"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -3050,7 +3773,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton9RankButton" type="Control" parent="WorldStateScoreButton9"]
+[node name="WorldStateScoreButton9ClassButton" type="Control" parent="WorldStateScoreButton9"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -3058,7 +3781,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton9RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton9/WorldStateScoreButton9RankButton"]
+[node name="WorldStateScoreButton9ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton9/WorldStateScoreButton9ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -3067,19 +3790,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton9NameButton" type="Control" parent="WorldStateScoreButton9"]
+[node name="WorldStateScoreButton9Name" type="Control" parent="WorldStateScoreButton9"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton9NameButtonName" type="Label" parent="WorldStateScoreButton9/WorldStateScoreButton9NameButton"]
+[node name="WorldStateScoreButton9NameText" type="Label" parent="WorldStateScoreButton9/WorldStateScoreButton9Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -3091,9 +3814,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton10" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 213
+offset_top = 222
 offset_right = 522
-offset_bottom = 229
+offset_bottom = 238
 visible = false
 mouse_filter = 2
 
@@ -3104,7 +3827,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton10FactionRight" type="TextureRect" parent="WorldStateScoreButton10"]
@@ -3114,52 +3837,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton10Team" type="Label" parent="WorldStateScoreButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton10HonorableKills" type="Label" parent="WorldStateScoreButton10"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton10KillingBlows" type="Label" parent="WorldStateScoreButton10"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton10Deaths" type="Label" parent="WorldStateScoreButton10"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton10HonorGained" type="Label" parent="WorldStateScoreButton10"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton10TeamSkill" type="Label" parent="WorldStateScoreButton10"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton10Damage" type="Label" parent="WorldStateScoreButton10"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton10Healing" type="Label" parent="WorldStateScoreButton10"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -3326,7 +4099,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton10RankButton" type="Control" parent="WorldStateScoreButton10"]
+[node name="WorldStateScoreButton10ClassButton" type="Control" parent="WorldStateScoreButton10"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -3334,7 +4107,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton10RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton10/WorldStateScoreButton10RankButton"]
+[node name="WorldStateScoreButton10ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton10/WorldStateScoreButton10ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -3343,19 +4116,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton10NameButton" type="Control" parent="WorldStateScoreButton10"]
+[node name="WorldStateScoreButton10Name" type="Control" parent="WorldStateScoreButton10"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton10NameButtonName" type="Label" parent="WorldStateScoreButton10/WorldStateScoreButton10NameButton"]
+[node name="WorldStateScoreButton10NameText" type="Label" parent="WorldStateScoreButton10/WorldStateScoreButton10Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -3367,9 +4140,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton11" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 228
+offset_top = 238
 offset_right = 522
-offset_bottom = 244
+offset_bottom = 254
 visible = false
 mouse_filter = 2
 
@@ -3380,7 +4153,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton11FactionRight" type="TextureRect" parent="WorldStateScoreButton11"]
@@ -3390,52 +4163,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton11Team" type="Label" parent="WorldStateScoreButton11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton11HonorableKills" type="Label" parent="WorldStateScoreButton11"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton11KillingBlows" type="Label" parent="WorldStateScoreButton11"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton11Deaths" type="Label" parent="WorldStateScoreButton11"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton11HonorGained" type="Label" parent="WorldStateScoreButton11"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton11TeamSkill" type="Label" parent="WorldStateScoreButton11"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton11Damage" type="Label" parent="WorldStateScoreButton11"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton11Healing" type="Label" parent="WorldStateScoreButton11"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -3602,7 +4425,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton11RankButton" type="Control" parent="WorldStateScoreButton11"]
+[node name="WorldStateScoreButton11ClassButton" type="Control" parent="WorldStateScoreButton11"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -3610,7 +4433,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton11RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton11/WorldStateScoreButton11RankButton"]
+[node name="WorldStateScoreButton11ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton11/WorldStateScoreButton11ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -3619,19 +4442,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton11NameButton" type="Control" parent="WorldStateScoreButton11"]
+[node name="WorldStateScoreButton11Name" type="Control" parent="WorldStateScoreButton11"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton11NameButtonName" type="Label" parent="WorldStateScoreButton11/WorldStateScoreButton11NameButton"]
+[node name="WorldStateScoreButton11NameText" type="Label" parent="WorldStateScoreButton11/WorldStateScoreButton11Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -3643,9 +4466,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton12" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 243
+offset_top = 254
 offset_right = 522
-offset_bottom = 259
+offset_bottom = 270
 visible = false
 mouse_filter = 2
 
@@ -3656,7 +4479,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton12FactionRight" type="TextureRect" parent="WorldStateScoreButton12"]
@@ -3666,52 +4489,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton12Team" type="Label" parent="WorldStateScoreButton12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton12HonorableKills" type="Label" parent="WorldStateScoreButton12"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton12KillingBlows" type="Label" parent="WorldStateScoreButton12"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton12Deaths" type="Label" parent="WorldStateScoreButton12"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton12HonorGained" type="Label" parent="WorldStateScoreButton12"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton12TeamSkill" type="Label" parent="WorldStateScoreButton12"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton12Damage" type="Label" parent="WorldStateScoreButton12"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton12Healing" type="Label" parent="WorldStateScoreButton12"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -3878,7 +4751,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton12RankButton" type="Control" parent="WorldStateScoreButton12"]
+[node name="WorldStateScoreButton12ClassButton" type="Control" parent="WorldStateScoreButton12"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -3886,7 +4759,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton12RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton12/WorldStateScoreButton12RankButton"]
+[node name="WorldStateScoreButton12ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton12/WorldStateScoreButton12ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -3895,19 +4768,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton12NameButton" type="Control" parent="WorldStateScoreButton12"]
+[node name="WorldStateScoreButton12Name" type="Control" parent="WorldStateScoreButton12"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton12NameButtonName" type="Label" parent="WorldStateScoreButton12/WorldStateScoreButton12NameButton"]
+[node name="WorldStateScoreButton12NameText" type="Label" parent="WorldStateScoreButton12/WorldStateScoreButton12Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -3919,9 +4792,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton13" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 258
+offset_top = 270
 offset_right = 522
-offset_bottom = 274
+offset_bottom = 286
 visible = false
 mouse_filter = 2
 
@@ -3932,7 +4805,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton13FactionRight" type="TextureRect" parent="WorldStateScoreButton13"]
@@ -3942,52 +4815,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton13Team" type="Label" parent="WorldStateScoreButton13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton13HonorableKills" type="Label" parent="WorldStateScoreButton13"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton13KillingBlows" type="Label" parent="WorldStateScoreButton13"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton13Deaths" type="Label" parent="WorldStateScoreButton13"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton13HonorGained" type="Label" parent="WorldStateScoreButton13"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton13TeamSkill" type="Label" parent="WorldStateScoreButton13"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton13Damage" type="Label" parent="WorldStateScoreButton13"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton13Healing" type="Label" parent="WorldStateScoreButton13"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -4154,7 +5077,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton13RankButton" type="Control" parent="WorldStateScoreButton13"]
+[node name="WorldStateScoreButton13ClassButton" type="Control" parent="WorldStateScoreButton13"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -4162,7 +5085,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton13RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton13/WorldStateScoreButton13RankButton"]
+[node name="WorldStateScoreButton13ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton13/WorldStateScoreButton13ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -4171,19 +5094,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton13NameButton" type="Control" parent="WorldStateScoreButton13"]
+[node name="WorldStateScoreButton13Name" type="Control" parent="WorldStateScoreButton13"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton13NameButtonName" type="Label" parent="WorldStateScoreButton13/WorldStateScoreButton13NameButton"]
+[node name="WorldStateScoreButton13NameText" type="Label" parent="WorldStateScoreButton13/WorldStateScoreButton13Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -4195,9 +5118,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton14" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 273
+offset_top = 286
 offset_right = 522
-offset_bottom = 289
+offset_bottom = 302
 visible = false
 mouse_filter = 2
 
@@ -4208,7 +5131,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton14FactionRight" type="TextureRect" parent="WorldStateScoreButton14"]
@@ -4218,52 +5141,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton14Team" type="Label" parent="WorldStateScoreButton14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton14HonorableKills" type="Label" parent="WorldStateScoreButton14"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton14KillingBlows" type="Label" parent="WorldStateScoreButton14"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton14Deaths" type="Label" parent="WorldStateScoreButton14"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton14HonorGained" type="Label" parent="WorldStateScoreButton14"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton14TeamSkill" type="Label" parent="WorldStateScoreButton14"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton14Damage" type="Label" parent="WorldStateScoreButton14"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton14Healing" type="Label" parent="WorldStateScoreButton14"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -4430,7 +5403,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton14RankButton" type="Control" parent="WorldStateScoreButton14"]
+[node name="WorldStateScoreButton14ClassButton" type="Control" parent="WorldStateScoreButton14"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -4438,7 +5411,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton14RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton14/WorldStateScoreButton14RankButton"]
+[node name="WorldStateScoreButton14ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton14/WorldStateScoreButton14ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -4447,19 +5420,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton14NameButton" type="Control" parent="WorldStateScoreButton14"]
+[node name="WorldStateScoreButton14Name" type="Control" parent="WorldStateScoreButton14"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton14NameButtonName" type="Label" parent="WorldStateScoreButton14/WorldStateScoreButton14NameButton"]
+[node name="WorldStateScoreButton14NameText" type="Label" parent="WorldStateScoreButton14/WorldStateScoreButton14Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -4471,9 +5444,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton15" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 288
+offset_top = 302
 offset_right = 522
-offset_bottom = 304
+offset_bottom = 318
 visible = false
 mouse_filter = 2
 
@@ -4484,7 +5457,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton15FactionRight" type="TextureRect" parent="WorldStateScoreButton15"]
@@ -4494,52 +5467,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton15Team" type="Label" parent="WorldStateScoreButton15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton15HonorableKills" type="Label" parent="WorldStateScoreButton15"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton15KillingBlows" type="Label" parent="WorldStateScoreButton15"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton15Deaths" type="Label" parent="WorldStateScoreButton15"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton15HonorGained" type="Label" parent="WorldStateScoreButton15"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton15TeamSkill" type="Label" parent="WorldStateScoreButton15"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton15Damage" type="Label" parent="WorldStateScoreButton15"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton15Healing" type="Label" parent="WorldStateScoreButton15"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -4706,7 +5729,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton15RankButton" type="Control" parent="WorldStateScoreButton15"]
+[node name="WorldStateScoreButton15ClassButton" type="Control" parent="WorldStateScoreButton15"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -4714,7 +5737,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton15RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton15/WorldStateScoreButton15RankButton"]
+[node name="WorldStateScoreButton15ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton15/WorldStateScoreButton15ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -4723,19 +5746,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton15NameButton" type="Control" parent="WorldStateScoreButton15"]
+[node name="WorldStateScoreButton15Name" type="Control" parent="WorldStateScoreButton15"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton15NameButtonName" type="Label" parent="WorldStateScoreButton15/WorldStateScoreButton15NameButton"]
+[node name="WorldStateScoreButton15NameText" type="Label" parent="WorldStateScoreButton15/WorldStateScoreButton15Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -4747,9 +5770,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton16" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 303
+offset_top = 318
 offset_right = 522
-offset_bottom = 319
+offset_bottom = 334
 visible = false
 mouse_filter = 2
 
@@ -4760,7 +5783,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton16FactionRight" type="TextureRect" parent="WorldStateScoreButton16"]
@@ -4770,52 +5793,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton16Team" type="Label" parent="WorldStateScoreButton16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton16HonorableKills" type="Label" parent="WorldStateScoreButton16"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton16KillingBlows" type="Label" parent="WorldStateScoreButton16"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton16Deaths" type="Label" parent="WorldStateScoreButton16"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton16HonorGained" type="Label" parent="WorldStateScoreButton16"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton16TeamSkill" type="Label" parent="WorldStateScoreButton16"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton16Damage" type="Label" parent="WorldStateScoreButton16"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton16Healing" type="Label" parent="WorldStateScoreButton16"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -4982,7 +6055,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton16RankButton" type="Control" parent="WorldStateScoreButton16"]
+[node name="WorldStateScoreButton16ClassButton" type="Control" parent="WorldStateScoreButton16"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -4990,7 +6063,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton16RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton16/WorldStateScoreButton16RankButton"]
+[node name="WorldStateScoreButton16ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton16/WorldStateScoreButton16ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -4999,19 +6072,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton16NameButton" type="Control" parent="WorldStateScoreButton16"]
+[node name="WorldStateScoreButton16Name" type="Control" parent="WorldStateScoreButton16"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton16NameButtonName" type="Label" parent="WorldStateScoreButton16/WorldStateScoreButton16NameButton"]
+[node name="WorldStateScoreButton16NameText" type="Label" parent="WorldStateScoreButton16/WorldStateScoreButton16Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -5023,9 +6096,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton17" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 318
+offset_top = 334
 offset_right = 522
-offset_bottom = 334
+offset_bottom = 350
 visible = false
 mouse_filter = 2
 
@@ -5036,7 +6109,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton17FactionRight" type="TextureRect" parent="WorldStateScoreButton17"]
@@ -5046,52 +6119,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton17Team" type="Label" parent="WorldStateScoreButton17"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton17HonorableKills" type="Label" parent="WorldStateScoreButton17"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton17KillingBlows" type="Label" parent="WorldStateScoreButton17"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton17Deaths" type="Label" parent="WorldStateScoreButton17"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton17HonorGained" type="Label" parent="WorldStateScoreButton17"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton17TeamSkill" type="Label" parent="WorldStateScoreButton17"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton17Damage" type="Label" parent="WorldStateScoreButton17"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton17Healing" type="Label" parent="WorldStateScoreButton17"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -5258,7 +6381,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton17RankButton" type="Control" parent="WorldStateScoreButton17"]
+[node name="WorldStateScoreButton17ClassButton" type="Control" parent="WorldStateScoreButton17"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -5266,7 +6389,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton17RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton17/WorldStateScoreButton17RankButton"]
+[node name="WorldStateScoreButton17ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton17/WorldStateScoreButton17ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -5275,19 +6398,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton17NameButton" type="Control" parent="WorldStateScoreButton17"]
+[node name="WorldStateScoreButton17Name" type="Control" parent="WorldStateScoreButton17"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton17NameButtonName" type="Label" parent="WorldStateScoreButton17/WorldStateScoreButton17NameButton"]
+[node name="WorldStateScoreButton17NameText" type="Label" parent="WorldStateScoreButton17/WorldStateScoreButton17Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -5299,9 +6422,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton18" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 333
+offset_top = 350
 offset_right = 522
-offset_bottom = 349
+offset_bottom = 366
 visible = false
 mouse_filter = 2
 
@@ -5312,7 +6435,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton18FactionRight" type="TextureRect" parent="WorldStateScoreButton18"]
@@ -5322,52 +6445,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton18Team" type="Label" parent="WorldStateScoreButton18"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton18HonorableKills" type="Label" parent="WorldStateScoreButton18"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton18KillingBlows" type="Label" parent="WorldStateScoreButton18"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton18Deaths" type="Label" parent="WorldStateScoreButton18"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton18HonorGained" type="Label" parent="WorldStateScoreButton18"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton18TeamSkill" type="Label" parent="WorldStateScoreButton18"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton18Damage" type="Label" parent="WorldStateScoreButton18"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton18Healing" type="Label" parent="WorldStateScoreButton18"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -5534,7 +6707,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton18RankButton" type="Control" parent="WorldStateScoreButton18"]
+[node name="WorldStateScoreButton18ClassButton" type="Control" parent="WorldStateScoreButton18"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -5542,7 +6715,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton18RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton18/WorldStateScoreButton18RankButton"]
+[node name="WorldStateScoreButton18ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton18/WorldStateScoreButton18ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -5551,19 +6724,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton18NameButton" type="Control" parent="WorldStateScoreButton18"]
+[node name="WorldStateScoreButton18Name" type="Control" parent="WorldStateScoreButton18"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton18NameButtonName" type="Label" parent="WorldStateScoreButton18/WorldStateScoreButton18NameButton"]
+[node name="WorldStateScoreButton18NameText" type="Label" parent="WorldStateScoreButton18/WorldStateScoreButton18Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -5575,9 +6748,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton19" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 348
+offset_top = 366
 offset_right = 522
-offset_bottom = 364
+offset_bottom = 382
 visible = false
 mouse_filter = 2
 
@@ -5588,7 +6761,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton19FactionRight" type="TextureRect" parent="WorldStateScoreButton19"]
@@ -5598,52 +6771,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton19Team" type="Label" parent="WorldStateScoreButton19"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton19HonorableKills" type="Label" parent="WorldStateScoreButton19"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton19KillingBlows" type="Label" parent="WorldStateScoreButton19"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton19Deaths" type="Label" parent="WorldStateScoreButton19"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton19HonorGained" type="Label" parent="WorldStateScoreButton19"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton19TeamSkill" type="Label" parent="WorldStateScoreButton19"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton19Damage" type="Label" parent="WorldStateScoreButton19"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton19Healing" type="Label" parent="WorldStateScoreButton19"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -5810,7 +7033,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton19RankButton" type="Control" parent="WorldStateScoreButton19"]
+[node name="WorldStateScoreButton19ClassButton" type="Control" parent="WorldStateScoreButton19"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -5818,7 +7041,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton19RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton19/WorldStateScoreButton19RankButton"]
+[node name="WorldStateScoreButton19ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton19/WorldStateScoreButton19ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -5827,19 +7050,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton19NameButton" type="Control" parent="WorldStateScoreButton19"]
+[node name="WorldStateScoreButton19Name" type="Control" parent="WorldStateScoreButton19"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton19NameButtonName" type="Label" parent="WorldStateScoreButton19/WorldStateScoreButton19NameButton"]
+[node name="WorldStateScoreButton19NameText" type="Label" parent="WorldStateScoreButton19/WorldStateScoreButton19Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -5851,9 +7074,9 @@ grow_vertical = 2
 [node name="WorldStateScoreButton20" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 17
-offset_top = 363
+offset_top = 382
 offset_right = 522
-offset_bottom = 379
+offset_bottom = 398
 visible = false
 mouse_filter = 2
 
@@ -5864,7 +7087,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreButton20FactionRight" type="TextureRect" parent="WorldStateScoreButton20"]
@@ -5874,52 +7097,102 @@ offset_top = 0
 offset_right = 505
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
+
+[node name="WorldStateScoreButton20Team" type="Label" parent="WorldStateScoreButton20"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 175
+offset_bottom = 15
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
 
 [node name="WorldStateScoreButton20HonorableKills" type="Label" parent="WorldStateScoreButton20"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton20KillingBlows" type="Label" parent="WorldStateScoreButton20"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton20Deaths" type="Label" parent="WorldStateScoreButton20"]
 unique_name_in_owner = true
 offset_left = 127
-offset_top = 2
+offset_top = 3
 offset_right = 127
-offset_bottom = 14
+offset_bottom = 13
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WorldStateScoreButton20HonorGained" type="Label" parent="WorldStateScoreButton20"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton20TeamSkill" type="Label" parent="WorldStateScoreButton20"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton20Damage" type="Label" parent="WorldStateScoreButton20"]
+unique_name_in_owner = true
+offset_left = 245.5
+offset_top = 3
+offset_right = 245.5
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldStateScoreButton20Healing" type="Label" parent="WorldStateScoreButton20"]
 unique_name_in_owner = true
 offset_left = 245.5
 offset_top = 3
@@ -6086,7 +7359,7 @@ offset_bottom = 17
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton20RankButton" type="Control" parent="WorldStateScoreButton20"]
+[node name="WorldStateScoreButton20ClassButton" type="Control" parent="WorldStateScoreButton20"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -6094,7 +7367,7 @@ offset_right = 16
 offset_bottom = 16
 mouse_filter = 0
 
-[node name="WorldStateScoreButton20RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton20/WorldStateScoreButton20RankButton"]
+[node name="WorldStateScoreButton20ClassButtonIcon" type="TextureRect" parent="WorldStateScoreButton20/WorldStateScoreButton20ClassButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -6103,571 +7376,19 @@ offset_bottom = 16
 mouse_filter = 2
 expand_mode = 1
 
-[node name="WorldStateScoreButton20NameButton" type="Control" parent="WorldStateScoreButton20"]
+[node name="WorldStateScoreButton20Name" type="Control" parent="WorldStateScoreButton20"]
 unique_name_in_owner = true
-offset_left = 15
+offset_left = 20
 offset_top = -1
-offset_right = 175
+offset_right = 235
 offset_bottom = 15
-mouse_filter = 0
+mouse_filter = 2
 
-[node name="WorldStateScoreButton20NameButtonName" type="Label" parent="WorldStateScoreButton20/WorldStateScoreButton20NameButton"]
+[node name="WorldStateScoreButton20NameText" type="Label" parent="WorldStateScoreButton20/WorldStateScoreButton20Name"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 160
-offset_bottom = 16
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="WorldStateScoreButton21" type="Control" parent="."]
-unique_name_in_owner = true
-offset_left = 17
-offset_top = 378
-offset_right = 522
-offset_bottom = 394
-visible = false
-mouse_filter = 2
-
-[node name="WorldStateScoreButton21FactionLeft" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 256
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("WowTexture_9")
-expand_mode = 1
-
-[node name="WorldStateScoreButton21FactionRight" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 256
-offset_top = 0
-offset_right = 505
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("WowTexture_9")
-expand_mode = 1
-
-[node name="WorldStateScoreButton21HonorableKills" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 127
-offset_top = 2
-offset_right = 127
-offset_bottom = 14
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21KillingBlows" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 127
-offset_top = 2
-offset_right = 127
-offset_bottom = 14
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Deaths" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 127
-offset_top = 2
-offset_right = 127
-offset_bottom = 14
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21HonorGained" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 245.5
-offset_top = 3
-offset_right = 245.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Column1Text" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Column1Icon" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton21Column2Text" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Column2Icon" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton21Column3Text" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Column3Icon" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton21Column4Text" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Column4Icon" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton21Column5Text" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Column5Icon" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton21Column6Text" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Column6Icon" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton21Column7Text" type="Label" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton21Column7Icon" type="TextureRect" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton21RankButton" type="Control" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 0
-
-[node name="WorldStateScoreButton21RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton21/WorldStateScoreButton21RankButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton21NameButton" type="Control" parent="WorldStateScoreButton21"]
-unique_name_in_owner = true
-offset_left = 15
-offset_top = -1
-offset_right = 175
-offset_bottom = 15
-mouse_filter = 0
-
-[node name="WorldStateScoreButton21NameButtonName" type="Label" parent="WorldStateScoreButton21/WorldStateScoreButton21NameButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 160
-offset_bottom = 16
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
-vertical_alignment = 1
-grow_horizontal = 1
-grow_vertical = 2
-
-[node name="WorldStateScoreButton22" type="Control" parent="."]
-unique_name_in_owner = true
-offset_left = 17
-offset_top = 393
-offset_right = 522
-offset_bottom = 409
-visible = false
-mouse_filter = 2
-
-[node name="WorldStateScoreButton22FactionLeft" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 256
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("WowTexture_9")
-expand_mode = 1
-
-[node name="WorldStateScoreButton22FactionRight" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 256
-offset_top = 0
-offset_right = 505
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("WowTexture_9")
-expand_mode = 1
-
-[node name="WorldStateScoreButton22HonorableKills" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 127
-offset_top = 2
-offset_right = 127
-offset_bottom = 14
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "26"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22KillingBlows" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 127
-offset_top = 2
-offset_right = 127
-offset_bottom = 14
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "93"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Deaths" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 127
-offset_top = 2
-offset_right = 127
-offset_bottom = 14
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "5"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22HonorGained" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 245.5
-offset_top = 3
-offset_right = 245.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Column1Text" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Column1Icon" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton22Column2Text" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Column2Icon" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton22Column3Text" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Column3Icon" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton22Column4Text" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Column4Icon" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton22Column5Text" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Column5Icon" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton22Column6Text" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Column6Icon" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton22Column7Text" type="Label" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 252.5
-offset_top = 3
-offset_right = 252.5
-offset_bottom = 13
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldStateScoreButton22Column7Icon" type="TextureRect" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 236.5
-offset_top = 1
-offset_right = 252.5
-offset_bottom = 17
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton22RankButton" type="Control" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 0
-
-[node name="WorldStateScoreButton22RankButtonIcon" type="TextureRect" parent="WorldStateScoreButton22/WorldStateScoreButton22RankButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 2
-expand_mode = 1
-
-[node name="WorldStateScoreButton22NameButton" type="Control" parent="WorldStateScoreButton22"]
-unique_name_in_owner = true
-offset_left = 15
-offset_top = -1
-offset_right = 175
-offset_bottom = 15
-mouse_filter = 0
-
-[node name="WorldStateScoreButton22NameButtonName" type="Label" parent="WorldStateScoreButton22/WorldStateScoreButton22NameButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 160
+offset_right = 190
 offset_bottom = 16
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -6678,7 +7399,7 @@ grow_vertical = 2
 
 [node name="WorldStateScoreScrollFrame" type="Control" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2")
+script = ExtResource("3")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -6695,7 +7416,7 @@ offset_top = -3
 offset_right = 325
 offset_bottom = 251
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_22")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="WorldStateScoreScrollFrame"]
@@ -6704,7 +7425,7 @@ offset_top = 251
 offset_right = 325
 offset_bottom = 307
 mouse_filter = 2
-texture = SubResource("AtlasTexture_12")
+texture = SubResource("AtlasTexture_23")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="WorldStateScoreScrollFrame"]
@@ -6713,7 +7434,7 @@ offset_top = 257
 offset_right = 325
 offset_bottom = 362
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_24")
 expand_mode = 1
 
 [node name="WorldStateScoreScrollFrameScrollBar" type="VSlider" parent="WorldStateScoreScrollFrame"]
@@ -6723,111 +7444,111 @@ offset_top = 16
 offset_right = 318
 offset_bottom = 345
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("AtlasTexture_15")
-theme_override_icons/grabber_highlight = SubResource("AtlasTexture_15")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_16")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_16")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_16")
+theme_override_icons/grabber = SubResource("AtlasTexture_26")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_26")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_27")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_27")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_27")
 max_value = 0.0
 step = 0.0
 
 [node name="WorldStateScoreScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar"]
 unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 0
+script = ExtResource("2")
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_18")
+texture = SubResource("AtlasTexture_29")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_20")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollUpButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_22")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollUpButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_24")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_25")
-
-[node name="WorldStateScoreScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar"]
-unique_name_in_owner = true
-script = ExtResource("3")
-offset_left = 0
-offset_top = 329
-offset_right = 16
-offset_bottom = 345
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollDownButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("AtlasTexture_27")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollDownButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_29")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollDownButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollDownButton"]
+[node name="DisabledTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_33")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_25")
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
+
+[node name="WorldStateScoreScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 329
+offset_right = 17
+offset_bottom = 345
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_37")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_39")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_41")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldStateScoreScrollFrame/WorldStateScoreScrollFrameScrollBar/WorldStateScoreScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
 
 [node name="WorldStateScoreScrollFrameClip" type="Control" parent="WorldStateScoreScrollFrame"]
 layout_mode = 1
@@ -6847,7 +7568,7 @@ mouse_filter = 2
 
 [node name="WorldStateScoreFrameCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -6863,7 +7584,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_44")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="WorldStateScoreFrameCloseButton"]
@@ -6873,7 +7594,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_45")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="WorldStateScoreFrameCloseButton"]
@@ -6883,13 +7604,13 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_46")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_25")
+material = SubResource("CanvasItemMaterial_18")
 
 [node name="WorldStateScoreFrameTab1" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
@@ -6906,7 +7627,7 @@ offset_top = -5
 offset_right = 20
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_48")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab1MiddleDisabled" type="TextureRect" parent="WorldStateScoreFrameTab1"]
@@ -6916,7 +7637,7 @@ offset_top = -5
 offset_right = 108
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_39")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab1RightDisabled" type="TextureRect" parent="WorldStateScoreFrameTab1"]
@@ -6926,7 +7647,7 @@ offset_top = -5
 offset_right = 128
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_40")
+texture = SubResource("AtlasTexture_50")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab1Left" type="TextureRect" parent="WorldStateScoreFrameTab1"]
@@ -6936,7 +7657,7 @@ offset_top = -4
 offset_right = 20
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_52")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab1Middle" type="TextureRect" parent="WorldStateScoreFrameTab1"]
@@ -6946,7 +7667,7 @@ offset_top = -4
 offset_right = 108
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_43")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab1Right" type="TextureRect" parent="WorldStateScoreFrameTab1"]
@@ -6956,19 +7677,18 @@ offset_top = -4
 offset_right = 128
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_44")
+texture = SubResource("AtlasTexture_54")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab1Text" type="Label" parent="WorldStateScoreFrameTab1"]
 unique_name_in_owner = true
 offset_left = 57.5
-offset_top = 2
+offset_top = 7
 offset_right = 57.5
-offset_bottom = 12
+offset_bottom = 7
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "All"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -6980,13 +7700,13 @@ offset_right = 105
 offset_bottom = 23
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_45")
+texture = SubResource("WowTexture_55")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_25")
+material = SubResource("CanvasItemMaterial_18")
 
 [node name="WorldStateScoreFrameTab2" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
@@ -7003,7 +7723,7 @@ offset_top = -5
 offset_right = 20
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_48")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab2MiddleDisabled" type="TextureRect" parent="WorldStateScoreFrameTab2"]
@@ -7013,7 +7733,7 @@ offset_top = -5
 offset_right = 108
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_39")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab2RightDisabled" type="TextureRect" parent="WorldStateScoreFrameTab2"]
@@ -7023,7 +7743,7 @@ offset_top = -5
 offset_right = 128
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_40")
+texture = SubResource("AtlasTexture_50")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab2Left" type="TextureRect" parent="WorldStateScoreFrameTab2"]
@@ -7033,7 +7753,7 @@ offset_top = -4
 offset_right = 20
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_52")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab2Middle" type="TextureRect" parent="WorldStateScoreFrameTab2"]
@@ -7043,7 +7763,7 @@ offset_top = -4
 offset_right = 108
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_43")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab2Right" type="TextureRect" parent="WorldStateScoreFrameTab2"]
@@ -7053,19 +7773,18 @@ offset_top = -4
 offset_right = 128
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_44")
+texture = SubResource("AtlasTexture_54")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab2Text" type="Label" parent="WorldStateScoreFrameTab2"]
 unique_name_in_owner = true
 offset_left = 57.5
-offset_top = 2
+offset_top = 7
 offset_right = 57.5
-offset_bottom = 12
+offset_bottom = 7
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Alliance"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -7077,13 +7796,13 @@ offset_right = 105
 offset_bottom = 23
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_45")
+texture = SubResource("WowTexture_55")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_25")
+material = SubResource("CanvasItemMaterial_18")
 
 [node name="WorldStateScoreFrameTab3" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
@@ -7100,7 +7819,7 @@ offset_top = -5
 offset_right = 20
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_48")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab3MiddleDisabled" type="TextureRect" parent="WorldStateScoreFrameTab3"]
@@ -7110,7 +7829,7 @@ offset_top = -5
 offset_right = 108
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_39")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab3RightDisabled" type="TextureRect" parent="WorldStateScoreFrameTab3"]
@@ -7120,7 +7839,7 @@ offset_top = -5
 offset_right = 128
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_40")
+texture = SubResource("AtlasTexture_50")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab3Left" type="TextureRect" parent="WorldStateScoreFrameTab3"]
@@ -7130,7 +7849,7 @@ offset_top = -4
 offset_right = 20
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_52")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab3Middle" type="TextureRect" parent="WorldStateScoreFrameTab3"]
@@ -7140,7 +7859,7 @@ offset_top = -4
 offset_right = 108
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_43")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab3Right" type="TextureRect" parent="WorldStateScoreFrameTab3"]
@@ -7150,19 +7869,18 @@ offset_top = -4
 offset_right = 128
 offset_bottom = 25
 mouse_filter = 2
-texture = SubResource("AtlasTexture_44")
+texture = SubResource("AtlasTexture_54")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameTab3Text" type="Label" parent="WorldStateScoreFrameTab3"]
 unique_name_in_owner = true
 offset_left = 57.5
-offset_top = 2
+offset_top = 7
 offset_right = 57.5
-offset_bottom = 12
+offset_bottom = 7
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Horde"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -7174,13 +7892,13 @@ offset_right = 105
 offset_bottom = 23
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_45")
+texture = SubResource("WowTexture_55")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_25")
+material = SubResource("CanvasItemMaterial_18")
 
 [node name="WorldStateScoreFrameLeaveButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("2")
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 1
@@ -7198,7 +7916,7 @@ offset_top = 0
 offset_right = 153
 offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_47")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="WorldStateScoreFrameLeaveButton"]
@@ -7208,7 +7926,7 @@ offset_right = 153
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_59")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="WorldStateScoreFrameLeaveButton"]
@@ -7218,7 +7936,7 @@ offset_right = 153
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_51")
+texture = SubResource("AtlasTexture_61")
 expand_mode = 1
 
 [node name="WorldStateScoreFrameLeaveButtonText" type="Label" parent="WorldStateScoreFrameLeaveButton"]
@@ -7228,7 +7946,6 @@ offset_top = 0
 offset_right = 153
 offset_bottom = 21
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Leave Battleground"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -7240,9 +7957,9 @@ offset_right = 153
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_25")
+material = SubResource("CanvasItemMaterial_18")
 
 [node name="WorldStateScoreWinnerFrame" type="Control" parent="."]
 unique_name_in_owner = true
@@ -7262,7 +7979,7 @@ offset_top = 0
 offset_right = 256
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="WorldStateScoreWinnerFrameRight" type="TextureRect" parent="WorldStateScoreWinnerFrame"]
@@ -7274,8 +7991,9 @@ offset_top = 0
 offset_right = 0
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
+flip_h = true
 
 [node name="WorldStateScoreWinnerFrameText" type="Label" parent="WorldStateScoreWinnerFrame"]
 unique_name_in_owner = true

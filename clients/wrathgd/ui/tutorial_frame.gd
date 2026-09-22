@@ -17,17 +17,13 @@ const PULSE_HALF_PERIOD: float = 0.5
 
 @onready var _title: Label = %TutorialFrameTitle
 @onready var _text: Label = %TutorialFrameText
-@onready var _enabled: WowButton = %TutorialFrameCheckButton
 @onready var _okay: BaseButton = %TutorialFrameOkayButton
 
 
 func _ready() -> void:
 	_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_text.vertical_alignment = VERTICAL_ALIGNMENT_TOP
-	_enabled.checked = true
 	_okay.pressed.connect(hide)
-	_enabled.pressed.connect(func() -> void: _enabled.checked = not _enabled.checked)
-	visibility_changed.connect(_on_visibility_changed)
 	WowClient.tutorials.queue_changed.connect(_update_alerts)
 	_update_alerts()
 
@@ -68,11 +64,6 @@ func _open(id: Tutorials.Id) -> void:
 func _fit() -> void:
 	_text.size.y = _text.get_minimum_size().y
 	offset_top = offset_bottom - _text.size.y - FRAME_PADDING
-
-
-func _on_visibility_changed() -> void:
-	if not visible and not _enabled.checked:
-		WowClient.tutorials.clear()
 
 
 func _on_alert_hovered(button: WowButton, id: Tutorials.Id) -> void:

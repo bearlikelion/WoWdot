@@ -1155,7 +1155,6 @@ offset_top = 0
 offset_right = 85
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Trade"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1221,7 +1220,6 @@ offset_top = 0
 offset_right = 77
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1343,6 +1341,20 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_30")
 expand_mode = 1
 
+[node name="FontString" type="Label" parent="TradePlayerInputMoneyFrame/TradePlayerInputMoneyFrameGold"]
+offset_left = 60
+offset_top = 1
+offset_right = 78
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "g"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="TradePlayerInputMoneyFrameSilver" type="LineEdit" parent="TradePlayerInputMoneyFrame"]
 unique_name_in_owner = true
 offset_left = 84
@@ -1399,6 +1411,20 @@ show_behind_parent = true
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="TradePlayerInputMoneyFrame/TradePlayerInputMoneyFrameSilver"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "s"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradePlayerInputMoneyFrameCopper" type="LineEdit" parent="TradePlayerInputMoneyFrame"]
 unique_name_in_owner = true
@@ -1457,12 +1483,26 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_32")
 expand_mode = 1
 
+[node name="FontString" type="Label" parent="TradePlayerInputMoneyFrame/TradePlayerInputMoneyFrameCopper"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "c"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="TradeRecipientMoneyFrame" parent="." instance=ExtResource("4")]
 unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
 offset_left = -168
-offset_top = 80
+offset_top = 78
 offset_right = -40
-offset_bottom = 93
+offset_bottom = 91

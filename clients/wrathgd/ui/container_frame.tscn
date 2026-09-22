@@ -21,15 +21,22 @@ atlas = SubResource("WowTexture_1")
 region = Rect2(0, 169, 256, 10)
 
 [sub_resource type="WowTexture" id="WowTexture_5"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+file = "Interface\\ContainerFrame\\UI-Bag-1Slot.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_6"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_5")
+region = Rect2(0, 0, 99, 74)
 
 [sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_10"]
 blend_mode = 1
 
 [node name="ContainerFrameTemplate" type="Control"]
@@ -121,6 +128,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background1Slot" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -99
+offset_top = 0
+offset_right = 0
+offset_bottom = 74
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
 
 [node name="MoneyFrame" parent="." instance=ExtResource("2")]
 unique_name_in_owner = true
@@ -629,7 +650,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_5")
+texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="CloseButton"]
@@ -640,7 +661,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="CloseButton"]
@@ -651,6 +672,6 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_7")
+texture = SubResource("WowTexture_9")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_8")
+material = SubResource("CanvasItemMaterial_10")

@@ -49,7 +49,7 @@ func _ready() -> void:
 		bar.gui_input.connect(_on_bar_input.bind(i))
 		bar.mouse_entered.connect(_on_bar_hovered.bind(i, true))
 		bar.mouse_exited.connect(_on_bar_hovered.bind(i, false))
-		_header(i).pressed.connect(_on_header_pressed.bind(i))
+		_expand_button(i).pressed.connect(_on_header_pressed.bind(i))
 	%ReputationDetailCloseButton.pressed.connect(_detail.hide)
 	%ReputationDetailAtWarCheckBox.pressed.connect(
 		_on_flag_pressed.bind("CMSG_SET_FACTION_ATWAR", FLAG_AT_WAR)
@@ -88,41 +88,34 @@ func refresh() -> void:
 	_offset = mini(_offset, hidden_entries)
 	for i: int in NUM_FACTIONS_DISPLAYED:
 		var index: int = i + _offset
+		var row: Control = get_node("%%ReputationBar%d" % (i + 1))
 		var bar: TextureProgressBar = _bar(i)
-		var header: WowButton = _header(i)
-		bar.hide()
-		header.hide()
-		if index >= _entries.size():
+		var expand: TextureButton = _expand_button(i)
+		row.visible = index < _entries.size()
+		if not row.visible:
 			continue
 		var entry: Dictionary = _entries[index]
+		expand.visible = entry["header"]
+		bar.visible = not entry["header"]
+		(get_node("%%ReputationBar%dFactionName" % (i + 1)) as Label).text = entry["name"]
 		if entry["header"]:
-			header.show()
-			(get_node("%%ReputationHeader%dNormalText" % (i + 1)) as Label).text = entry["name"]
-			var normal: TextureRect = header.get_node("NormalTexture")
+			var normal: TextureRect = expand.get_node("NormalTexture")
 			normal.texture = _textures[PLUS_BUTTON if entry["collapsed"] else MINUS_BUTTON]
 			continue
-		bar.show()
 		_show_faction(i, entry)
 	if _selected < 0:
 		_detail.hide()
 
 
 func _show_faction(i: int, entry: Dictionary) -> void:
-	var prefix: String = "%%ReputationBar%d" % (i + 1)
 	var bar: TextureProgressBar = _bar(i)
 	var standing_id: int = entry["standing_id"]
-	(get_node(prefix + "FactionName") as Label).text = entry["name"]
-	(get_node(prefix + "FactionStanding") as Label).text = _standing_label(standing_id)
-	(get_node(prefix + "AtWarCheck") as CanvasItem).visible = entry["at_war"]
-	(get_node(prefix + "Check") as CanvasItem).hide()
+	_standing(i).text = _standing_label(standing_id)
 	bar.min_value = 0.0
 	bar.max_value = entry["bar_max"]
 	bar.value = entry["bar_value"]
 	bar.tint_progress = BAR_COLORS[standing_id - 1]
-	var selected: bool = entry["index"] == _selected
-	for highlight: String in ["Highlight1", "Highlight2"]:
-		(get_node(prefix + highlight) as CanvasItem).visible = selected
-	if selected and _detail.visible:
+	if entry["index"] == _selected and _detail.visible:
 		%ReputationDetailFactionName.text = entry["name"]
 		%ReputationDetailFactionDescription.text = entry["description"]
 		(%ReputationDetailAtWarCheckBox as WowButton).checked = entry["at_war"]
@@ -266,11 +259,15 @@ func _header_name(header: int) -> String:
 
 
 func _bar(index: int) -> TextureProgressBar:
-	return get_node("%%ReputationBar%d" % (index + 1))
+	return get_node("%%ReputationBar%dReputationBar" % (index + 1))
 
 
-func _header(index: int) -> WowButton:
-	return get_node("%%ReputationHeader%d" % (index + 1))
+func _expand_button(index: int) -> TextureButton:
+	return get_node("%%ReputationBar%dExpandOrCollapseButton" % (index + 1))
+
+
+func _standing(index: int) -> Label:
+	return get_node("%%ReputationBar%dReputationBarFactionStanding" % (index + 1))
 
 
 func _on_header_pressed(index: int) -> void:
@@ -301,13 +298,10 @@ func _on_bar_hovered(index: int, hovered: bool) -> void:
 	if index + _offset >= _entries.size():
 		return
 	var entry: Dictionary = _entries[index + _offset]
-	var prefix: String = "%%ReputationBar%d" % (index + 1)
-	var standing: Label = get_node(prefix + "FactionStanding")
-	standing.text = "%d / %d" % [entry["bar_value"], entry["bar_max"]] if hovered \
+	if entry["header"]:
+		return
+	_standing(index).text = "%d / %d" % [entry["bar_value"], entry["bar_max"]] if hovered \
 	else _standing_label(entry["standing_id"])
-	var lit: bool = hovered or entry["index"] == _selected
-	for highlight: String in ["Highlight1", "Highlight2"]:
-		(get_node(prefix + highlight) as CanvasItem).visible = lit
 
 
 func _on_list_scrolled(value: float) -> void:

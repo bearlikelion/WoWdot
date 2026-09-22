@@ -45,15 +45,15 @@ const EMPTY_SLOT: String = "Interface\\PaperDoll\\UI-PaperDoll-Slot-%s.blp"
 const STAT_COUNT: int = 5
 # MagicResFrame1 to 5 show UNIT_FIELD_RESISTANCES arcane, fire, nature, frost and shadow.
 const RESISTANCE_INDEXES: Array[int] = [6, 2, 3, 4, 5]
-# PaperDollFrame_OnLoad's stat labels.
+# PaperDollFrame_UpdateStats rows: the left column holds base stats, the right melee and ranged.
 const STAT_LABELS: Dictionary[String, String] = {
-	"CharacterAttackFrameLabel": "MELEE_ATTACK",
-	"CharacterDamageFrameLabel": "DAMAGE_COLON",
-	"CharacterAttackPowerFrameLabel": "ATTACK_POWER_COLON",
-	"CharacterRangedAttackFrameLabel": "RANGED_ATTACK",
-	"CharacterRangedDamageFrameLabel": "DAMAGE_COLON",
-	"CharacterRangedAttackPowerFrameLabel": "ATTACK_POWER_COLON",
-	"CharacterArmorFrameLabel": "ARMOR_COLON",
+	"PlayerStatFrameLeft6Label": "ARMOR",
+	"PlayerStatFrameRight1Label": "DAMAGE",
+	"PlayerStatFrameRight2Label": "MELEE_ATTACK",
+	"PlayerStatFrameRight3Label": "ATTACK_POWER",
+	"PlayerStatFrameRight4Label": "DAMAGE",
+	"PlayerStatFrameRight5Label": "RANGED_ATTACK",
+	"PlayerStatFrameRight6Label": "ATTACK_POWER",
 }
 const PORTRAIT: PackedScene = preload("res://ui/unit_portrait.tscn")
 const PORTRAIT_MASK: Shader = preload("res://ui/portrait.gdshader")
@@ -92,12 +92,16 @@ func _ready() -> void:
 		button.right_clicked.connect(func() -> void: item_used.emit(slot))
 	for tab: Tab in TAB_FRAMES:
 		(get_node("%%CharacterFrameTab%d" % tab) as BaseButton).pressed.connect(show_tab.bind(tab))
+	var stat_format: String = WowStrings.get_text("STAT_FORMAT", "%s:")
 	for label_name: String in STAT_LABELS:
 		var label: Label = get_node("%" + label_name)
-		label.text = WowStrings.get_text(STAT_LABELS[label_name])
+		label.text = stat_format % WowStrings.get_text(STAT_LABELS[label_name])
 	for i: int in STAT_COUNT:
-		var stat_label: Label = get_node("%%CharacterStatFrame%dLabel" % (i + 1))
-		stat_label.text = WowStrings.get_text("SPELL_STAT%d_NAME" % i) + ":"
+		var stat_label: Label = get_node("%%PlayerStatFrameLeft%dLabel" % (i + 1))
+		stat_label.text = stat_format % WowStrings.get_text("SPELL_STAT%d_NAME" % (i + 1))
+	# The stat category dropdowns are not offered, so the rows above are fixed.
+	%PlayerStatFrameLeftDropDown.hide()
+	%PlayerStatFrameRightDropDown.hide()
 	%CharacterFrameCloseButton.pressed.connect(close_requested.emit)
 	%SkillFrame.close_requested.connect(close_requested.emit)
 	%SkillFrame.unlearn_requested.connect(unlearn_requested.emit)
@@ -198,7 +202,7 @@ func refresh() -> void:
 func _set_stats(session: WowSession, guid: int) -> void:
 	for i: int in STAT_COUNT:
 		_set_value(
-			get_node("%%CharacterStatFrame%dStatText" % (i + 1)),
+			get_node("%%PlayerStatFrameLeft%dStatText" % (i + 1)),
 			session.get_field(guid, "UNIT_FIELD_STAT%d" % i),
 			session.get_field(guid, "PLAYER_FIELD_POSSTAT%d" % i),
 			_signed(session.get_field(guid, "PLAYER_FIELD_NEGSTAT%d" % i)),
@@ -207,7 +211,7 @@ func _set_stats(session: WowSession, guid: int) -> void:
 	var armor_buff: int = session.field_index("PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE")
 	var armor_debuff: int = session.field_index("PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE")
 	_set_value(
-		%CharacterArmorFrameStatText, session.get_field(guid, resistances),
+		%PlayerStatFrameLeft6StatText, session.get_field(guid, resistances),
 		session.get_field(guid, armor_buff), _signed(session.get_field(guid, armor_debuff)),
 	)
 	for i: int in RESISTANCE_INDEXES.size():
@@ -217,25 +221,25 @@ func _set_stats(session: WowSession, guid: int) -> void:
 	var power_buff: int = _signed_short(power_mods & 0xFFFF)
 	var power_debuff: int = _signed_short(power_mods >> 16)
 	_set_value(
-		%CharacterAttackPowerFrameStatText,
+		%PlayerStatFrameRight3StatText,
 		session.get_field(guid, "UNIT_FIELD_ATTACK_POWER") + power_buff + power_debuff,
 		power_buff, power_debuff,
 	)
-	%CharacterDamageFrameStatText.text = "%d - %d" % [
+	%PlayerStatFrameRight1StatText.text = "%d - %d" % [
 		session.get_field_float(guid, "UNIT_FIELD_MINDAMAGE"),
 		session.get_field_float(guid, "UNIT_FIELD_MAXDAMAGE"),
 	]
-	%CharacterAttackFrameStatText.text = str(_weapon_skill(guid))
+	%PlayerStatFrameRight2StatText.text = str(_weapon_skill(guid))
 	var has_ranged: bool = Inventory.equipped(Inventory.Slot.RANGED) != 0
 	var not_applicable: String = WowStrings.get_text("NOT_APPLICABLE")
 	var ranged_mods: int = session.get_field(guid, "UNIT_FIELD_RANGED_ATTACK_POWER_MODS")
-	%CharacterRangedAttackFrameStatText.text = \
+	%PlayerStatFrameRight5StatText.text = \
 	str(session.get_field(guid, "UNIT_FIELD_LEVEL") * 5) if has_ranged else not_applicable
-	%CharacterRangedAttackPowerFrameStatText.text = str(
+	%PlayerStatFrameRight6StatText.text = str(
 		session.get_field(guid, "UNIT_FIELD_RANGED_ATTACK_POWER")
 		+ _signed_short(ranged_mods & 0xFFFF) + _signed_short(ranged_mods >> 16)
 	) if has_ranged else not_applicable
-	%CharacterRangedDamageFrameStatText.text = "%d - %d" % [
+	%PlayerStatFrameRight4StatText.text = "%d - %d" % [
 		session.get_field_float(guid, "UNIT_FIELD_MINRANGEDDAMAGE"),
 		session.get_field_float(guid, "UNIT_FIELD_MAXRANGEDDAMAGE"),
 	] if has_ranged else not_applicable

@@ -22,9 +22,8 @@ var _progress: Dictionary[int, Array] = {}
 
 
 func _ready() -> void:
-	%QuestWatchQuestName.hide()
-	for i: int in MAX_QUESTWATCH_LINES:
-		_line(i).theme_type_variation = &"GameFontHighlight"
+	%WatchFrameHeader.hide()
+	%WatchFrameCollapseExpandButton.hide()
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)
 	for received: Signal in [
@@ -96,7 +95,7 @@ func refresh() -> void:
 			width = maxf(width, _set_line(index, " - " + line[0], color, y))
 			index += 1
 			y += LINE_HEIGHT
-	for i: int in range(index, MAX_QUESTWATCH_LINES):
+	for i: int in range(index, %WatchFrameLines.get_child_count()):
 		_line(i).hide()
 	visible = index > 0
 	offset_left = offset_right - (width + PADDING)
@@ -119,8 +118,14 @@ func _changed() -> void:
 	refresh()
 
 
+# WatchFrame_GetOrCreateLine: lines are made as needed, since the scene holds only their parent.
 func _line(index: int) -> Label:
-	return get_node("%%QuestWatchLine%d" % (index + 1))
+	var lines: Control = %WatchFrameLines
+	while lines.get_child_count() <= index:
+		var line: Label = Label.new()
+		line.theme_type_variation = &"GameFontHighlight"
+		lines.add_child(line)
+	return lines.get_child(index)
 
 
 func _slot(quest: int) -> int:

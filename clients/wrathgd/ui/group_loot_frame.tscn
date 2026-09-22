@@ -53,9 +53,18 @@ file = "Interface\\Buttons\\UI-GroupLoot-Coin-Down.blp"
 file = "Interface\\Buttons\\UI-GroupLoot-Coin-Highlight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_17"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar.blp"
+file = "Interface\\Buttons\\UI-GroupLoot-DE-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-GroupLoot-DE-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-GroupLoot-DE-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder.blp"
 
 [node name="GroupLootFrameTemplate" type="Control"]
@@ -66,7 +75,7 @@ anchor_right = 0
 anchor_bottom = 0
 offset_left = 0
 offset_top = -0
-offset_right = 243
+offset_right = 253
 offset_bottom = 84
 grow_horizontal = 1
 grow_vertical = 1
@@ -163,6 +172,20 @@ offset_bottom = 34
 mouse_filter = 2
 expand_mode = 1
 
+[node name="Count" type="Label" parent="IconFrame"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 18
+offset_right = 29
+offset_bottom = 32
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="PassButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3")
@@ -211,9 +234,9 @@ script = ExtResource("3")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
-offset_left = -69
+offset_left = -80
 offset_top = 14
-offset_right = -37
+offset_right = -48
 offset_bottom = 46
 ignore_texture_size = true
 
@@ -253,9 +276,9 @@ script = ExtResource("3")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
-offset_left = -71
+offset_left = -82
 offset_top = 44
-offset_right = -39
+offset_right = -50
 offset_bottom = 76
 ignore_texture_size = true
 
@@ -289,6 +312,48 @@ texture = SubResource("WowTexture_16")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_10")
 
+[node name="DisenchantButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -47
+offset_top = 41
+offset_right = -15
+offset_bottom = 73
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="DisenchantButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="DisenchantButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="DisenchantButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
 [node name="Timer" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 offset_left = 16
@@ -296,7 +361,7 @@ offset_top = 57
 offset_right = 168
 offset_bottom = 67
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_17")
+texture_progress = SubResource("WowTexture_20")
 nine_patch_stretch = true
 tint_progress = Color(1, 1, 0, 1)
 max_value = 1.0
@@ -309,5 +374,5 @@ offset_top = -5
 offset_right = 154
 offset_bottom = 15
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_21")
 expand_mode = 1

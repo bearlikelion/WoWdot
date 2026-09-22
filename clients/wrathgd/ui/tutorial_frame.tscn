@@ -1,53 +1,174 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://ui/tutorial_frame.gd" id="1"]
-[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="2"]
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="4"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
-file = "Interface\\TutorialFrame\\TutorialFrameBackground.blp"
+file = "Interface\\TutorialFrame\\UI-TUTORIAL-FRAME.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_2"]
-file = "Interface\\Tooltips\\UI-Tooltip-Border.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0.999987, 0.999987, 363, 79)
 
-[sub_resource type="WowTexture" id="WowTexture_3"]
-file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0.999987, 83, 355, 29)
 
-[sub_resource type="WowTexture" id="WowTexture_4"]
-file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0.999987, 218, 75, 100)
 
-[sub_resource type="WowTexture" id="WowTexture_5"]
-file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0.999987, 321, 75, 100)
 
-[sub_resource type="WowTexture" id="WowTexture_6"]
-file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(79, 115, 75, 100)
 
-[sub_resource type="WowTexture" id="WowTexture_7"]
-file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0.999987, 115, 75, 100)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8"]
-blend_mode = 1
+[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(79, 321, 67, 88)
 
-[sub_resource type="WowTexture" id="WowTexture_9"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(157, 115, 88, 67)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10"]
-atlas = SubResource("WowTexture_9")
+atlas = SubResource("WowTexture_1")
+region = Rect2(157, 185, 65, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(248, 115, 81, 65)
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14"]
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
+atlas = SubResource("WowTexture_17")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_19")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_23"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_26")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_30")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\TutorialFrame\\UI-TutorialFrame-CalloutGlow.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37"]
+atlas = SubResource("WowTexture_36")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_11"]
+[sub_resource type="WowTexture" id="WowTexture_38"]
 file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
-atlas = SubResource("WowTexture_11")
+[sub_resource type="AtlasTexture" id="AtlasTexture_39"]
+atlas = SubResource("WowTexture_38")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_13"]
+[sub_resource type="WowTexture" id="WowTexture_40"]
 file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
-atlas = SubResource("WowTexture_13")
+[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
+atlas = SubResource("WowTexture_40")
 region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_47"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_48"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
 
 [node name="TutorialFrame" type="Control"]
 script = ExtResource("1")
@@ -55,48 +176,371 @@ anchor_left = 0.5
 anchor_top = 1
 anchor_right = 0.5
 anchor_bottom = 1
-offset_left = -115
-offset_top = -228
-offset_right = 115
+offset_left = 0
+offset_top = -100
+offset_right = 0
 offset_bottom = -100
 grow_horizontal = 2
 grow_vertical = 0
 visible = false
 mouse_filter = 0
 
-[node name="Backdrop" type="Control" parent="."]
-script = ExtResource("2")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="TutorialFrameBackground" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = 13
+offset_top = 35
+offset_right = -3
+offset_bottom = -5
 mouse_filter = 2
-background = SubResource("WowTexture_1")
-edge = SubResource("WowTexture_2")
-tile = true
-tile_size = 16
-edge_size = 16
-insets = Vector4(3, 5, 3, 5)
+color = Color(0, 0, 0, 1)
+
+[node name="TutorialFrameTop" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = -182
+offset_top = 0
+offset_right = 182
+offset_bottom = 80
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="TutorialFrameBottom" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 356
+offset_bottom = 30
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="TutorialFrameMouseLeftClick" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 76
+offset_bottom = 101
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="TutorialFrameMouseRightClick" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 76
+offset_bottom = 101
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="TutorialFrameMouseBothClick" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 76
+offset_bottom = 101
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="TutorialFrameMouseWheel" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 76
+offset_bottom = 101
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="TutorialFrameArrowUp" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 68
+offset_bottom = 89
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+
+[node name="TutorialFrameArrowDown" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 68
+offset_bottom = 89
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+flip_v = true
+
+[node name="TutorialFrameArrowRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 89
+offset_bottom = 68
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="TutorialFrameArrowLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 89
+offset_bottom = 68
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+flip_h = true
+
+[node name="TutorialFrameArrowCurveUpRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 66
+offset_bottom = 81
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="TutorialFrameArrowCurveUpLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 66
+offset_bottom = 81
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+flip_h = true
+
+[node name="TutorialFrameArrowCurveDownRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 66
+offset_bottom = 81
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+flip_v = true
+
+[node name="TutorialFrameArrowCurveDownLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 66
+offset_bottom = 81
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="TutorialFrameArrowCurveRightDown" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 82
+offset_bottom = 66
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="TutorialFrameArrowCurveRightUp" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 82
+offset_bottom = 66
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+flip_v = true
+
+[node name="TutorialFrameArrowCurveLeftDown" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 82
+offset_bottom = 66
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+flip_h = true
+
+[node name="TutorialFrameArrowCurveLeftUp" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 82
+offset_bottom = 66
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+flip_h = true
+flip_v = true
 
 [node name="TutorialFrameTitle" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = 10
-offset_top = 9
-offset_right = 220
-offset_bottom = 21
-grow_horizontal = 1
+offset_left = 15
+offset_top = 17
+offset_right = 15
+offset_bottom = 29
+grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlight"
 horizontal_alignment = 0
 vertical_alignment = 0
 
-[node name="TutorialFrameText" type="Label" parent="."]
+[node name="TutorialFrameTextScrollFrame" type="Control" parent="."]
 unique_name_in_owner = true
-offset_left = 10
-offset_top = 23
-offset_right = 220
-offset_bottom = 35
+script = ExtResource("2")
+offset_left = 30
+offset_top = 100
+offset_right = -30
+offset_bottom = -40
+mouse_filter = 0
+
+[node name="TutorialFrameTextScrollFrameScrollBar" type="VSlider" parent="TutorialFrameTextScrollFrame"]
+unique_name_in_owner = true
+offset_left = -54
+offset_top = 16
+offset_right = -38
+offset_bottom = -156
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_13")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_13")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="TutorialFrameTextScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar/TutorialFrameTextScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar/TutorialFrameTextScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_18")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar/TutorialFrameTextScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar/TutorialFrameTextScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="TutorialFrameTextScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -1
+offset_top = -172
+offset_right = 17
+offset_bottom = -156
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar/TutorialFrameTextScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar/TutorialFrameTextScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar/TutorialFrameTextScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameScrollBar/TutorialFrameTextScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="TutorialFrameTextScrollFrameClip" type="Control" parent="TutorialFrameTextScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="TutorialFrameTextScrollChildFrame" type="Control" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 1
+offset_bottom = 1
+mouse_filter = 2
+
+[node name="TutorialFrameText" type="Label" parent="TutorialFrameTextScrollFrame/TutorialFrameTextScrollFrameClip/TutorialFrameTextScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 12
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
@@ -104,107 +548,89 @@ theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="TutorialFrameCheckButton" type="TextureButton" parent="."]
+[node name="TutorialTextBorder" type="Control" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3")
+offset_left = 30
+offset_top = 100
+offset_right = -30
+offset_bottom = -40
+visible = false
+mouse_filter = 2
+
+[node name="tomtest" type="ColorRect" parent="TutorialTextBorder"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = -60
+offset_bottom = -140
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
+
+[node name="TutorialFrameCallOut" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="TutorialFrameCallOut"]
+script = ExtResource("4")
 layout_mode = 1
-anchor_top = 1
-anchor_bottom = 1
-offset_left = 5
-offset_top = -29
-offset_right = 29
-offset_bottom = -5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_32")
+tile = false
+tile_size = 0
+edge_size = 16
+insets = Vector4(0, 0, 0, 0)
+
+[node name="Button" type="TextureButton" parent="."]
+script = ExtResource("3")
+offset_left = -28
+offset_top = 8
+offset_right = 4
+offset_bottom = 40
 ignore_texture_size = true
 
-[node name="TutorialFrameCheckboxText" type="Label" parent="TutorialFrameCheckButton"]
-unique_name_in_owner = true
-offset_left = 24
-offset_top = 7
-offset_right = 24
-offset_bottom = 17
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-text = "Display Tips"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="TutorialFrameCheckButton"]
+[node name="NormalTexture" type="TextureRect" parent="Button"]
 offset_left = 0
 offset_top = 0
-offset_right = 24
-offset_bottom = 24
+offset_right = 32
+offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_3")
+texture = SubResource("WowTexture_33")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="TutorialFrameCheckButton"]
+[node name="PushedTexture" type="TextureRect" parent="Button"]
 offset_left = 0
 offset_top = 0
-offset_right = 24
-offset_bottom = 24
+offset_right = 32
+offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
-[node name="TutorialFrameCheckButtonText" type="Label" parent="TutorialFrameCheckButton"]
-unique_name_in_owner = true
-offset_left = 22
-offset_top = 7
-offset_right = 22
-offset_bottom = 17
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="TutorialFrameCheckButton"]
-unique_name_in_owner = true
+[node name="HighlightTexture" type="TextureRect" parent="Button"]
 offset_left = 0
 offset_top = 0
-offset_right = 24
-offset_bottom = 24
+offset_right = 32
+offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_5")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="TutorialFrameCheckButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_6")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="TutorialFrameCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_7")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_8")
+material = SubResource("CanvasItemMaterial_23")
 
 [node name="TutorialFrameOkayButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3")
-layout_mode = 1
-anchor_left = 1
-anchor_top = 1
-anchor_right = 1
-anchor_bottom = 1
-offset_left = -83
-offset_top = -28
+offset_left = -115
+offset_top = -29
 offset_right = -7
 offset_bottom = -7
 ignore_texture_size = true
@@ -212,41 +638,164 @@ ignore_texture_size = true
 [node name="NormalTexture" type="TextureRect" parent="TutorialFrameOkayButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 76
-offset_bottom = 21
+offset_right = 108
+offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_10")
+texture = SubResource("AtlasTexture_37")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TutorialFrameOkayButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 76
-offset_bottom = 21
+offset_right = 108
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_12")
+texture = SubResource("AtlasTexture_39")
 expand_mode = 1
 
 [node name="TutorialFrameOkayButtonText" type="Label" parent="TutorialFrameOkayButton"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 76
-offset_bottom = 21
+offset_right = 108
+offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-text = "Okay"
+text = "Close"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TutorialFrameOkayButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 76
-offset_bottom = 21
+offset_right = 108
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_14")
+texture = SubResource("AtlasTexture_41")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_8")
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="TutorialFramePrevButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 30
+offset_top = -29
+offset_right = 56
+offset_bottom = -3
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="TutorialFramePrevButton"]
+offset_left = 26
+offset_top = 8
+offset_right = 86
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Prev"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="NormalTexture" type="TextureRect" parent="TutorialFramePrevButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_42")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TutorialFramePrevButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_43")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TutorialFramePrevButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_44")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TutorialFramePrevButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="TutorialFrameNextButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = -158
+offset_top = -29
+offset_right = -132
+offset_bottom = -3
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="TutorialFrameNextButton"]
+offset_left = -60
+offset_top = 8
+offset_right = 0
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Next"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="NormalTexture" type="TextureRect" parent="TutorialFrameNextButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TutorialFrameNextButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_47")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="TutorialFrameNextButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_48")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TutorialFrameNextButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 26
+offset_bottom = 26
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")

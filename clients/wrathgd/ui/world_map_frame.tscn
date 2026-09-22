@@ -2,129 +2,221 @@
 
 [ext_resource type="Script" path="res://ui/world_map_frame.gd" id="1"]
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
-[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="3"]
-[ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="4"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="4"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
-file = "Interface\\WorldMap\\UI-WorldMap-Top1.blp"
+file = "Interface\\WorldMap\\UI-WorldMapSmall-Left.tga.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_2"]
-file = "Interface\\WorldMap\\UI-WorldMap-Top2.blp"
+file = "Interface\\WorldMap\\UI-WorldMapSmall-Right.tga.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_3"]
-file = "Interface\\WorldMap\\UI-WorldMap-Top3.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_4"]
-file = "Interface\\WorldMap\\UI-WorldMap-Top4.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_5"]
-file = "Interface\\WorldMap\\UI-WorldMap-Middle1.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_6"]
-file = "Interface\\WorldMap\\UI-WorldMap-Middle2.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_7"]
-file = "Interface\\WorldMap\\UI-WorldMap-Middle3.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_8"]
-file = "Interface\\WorldMap\\UI-WorldMap-Middle4.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_9"]
-file = "Interface\\WorldMap\\UI-WorldMap-Bottom1.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_10"]
-file = "Interface\\WorldMap\\UI-WorldMap-Bottom2.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_11"]
-file = "Interface\\WorldMap\\UI-WorldMap-Bottom3.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_12"]
-file = "Interface\\WorldMap\\UI-WorldMap-Bottom4.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_13"]
 file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
-atlas = SubResource("WowTexture_13")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_3")
 region = Rect2(0, 0, 25, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
-atlas = SubResource("WowTexture_13")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_3")
 region = Rect2(25, 0, 78, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
-atlas = SubResource("WowTexture_13")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_3")
 region = Rect2(103, 0, 25, 64)
 
-[sub_resource type="WowTexture" id="WowTexture_17"]
+[sub_resource type="WowTexture" id="WowTexture_7"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_18"]
+[sub_resource type="WowTexture" id="WowTexture_8"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_19"]
+[sub_resource type="WowTexture" id="WowTexture_9"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_20"]
+[sub_resource type="WowTexture" id="WowTexture_10"]
 file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_21"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_11"]
 blend_mode = 1
 
-[sub_resource type="WowTexture" id="WowTexture_22"]
+[sub_resource type="WowTexture" id="WowTexture_12"]
 file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
-atlas = SubResource("WowTexture_22")
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_12")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_24"]
+[sub_resource type="WowTexture" id="WowTexture_14"]
 file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
-atlas = SubResource("WowTexture_24")
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_14")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_26"]
+[sub_resource type="WowTexture" id="WowTexture_16"]
 file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
-atlas = SubResource("WowTexture_26")
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_28"]
+[sub_resource type="WowTexture" id="WowTexture_18"]
 file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
-atlas = SubResource("WowTexture_28")
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_30"]
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\Arrow-Up-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\Arrow-Up-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\Arrow-Up-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\Buttons\\Arrow-Down-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\Arrow-Down-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\Buttons\\Arrow-Down-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_26"]
 file = "Interface\\WorldMap\\WorldMap-MagnifyingGlass.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_31"]
+[sub_resource type="WowTexture" id="WowTexture_27"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_32"]
+[sub_resource type="WowTexture" id="WowTexture_28"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_33"]
+[sub_resource type="WowTexture" id="WowTexture_29"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
 
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Buttons\\UI-Panel-SmallerButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-Panel-SmallerButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
+file = "Interface\\Buttons\\UI-Panel-BiggerButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-Panel-BiggerButton-Down.blp"
+
 [sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\WorldMap\\WorldMapPartyIcon.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
 file = "Interface\\Minimap\\POIIcons.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_35"]
-atlas = SubResource("WowTexture_34")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="WowTexture" id="WowTexture_36"]
-file = "Interface\\Tooltips\\UI-Tooltip-Background.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(145, 1, 17, 17)
 
 [sub_resource type="WowTexture" id="WowTexture_37"]
-file = "Interface\\Tooltips\\UI-Tooltip-Border.blp"
+file = "Interface\\WorldMap\\Cosmic\\Cosmic-Outland-Highlight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\WorldMap\\Cosmic\\Cosmic-Azeroth-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_41"]
+
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
+atlas = SubResource("WowTexture_42")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_46")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_48"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
+atlas = SubResource("WowTexture_48")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_50"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
+atlas = SubResource("WowTexture_50")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_52"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
+atlas = SubResource("WowTexture_52")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_54"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55"]
+atlas = SubResource("WowTexture_54")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
+atlas = SubResource("WowTexture_56")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_58"]
+file = "Interface\\QuestFrame\\UI-QuestLogTitleHighlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_59"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_60"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_61"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_62"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_63"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_64"]
+file = "Interface\\Tooltips\\UI-Tooltip-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_65"]
+file = "Interface\\Tooltips\\UI-Tooltip-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_66"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame-BarFill.blp"
 
 [node name="WorldMapFrame" type="Control"]
@@ -134,49 +226,72 @@ anchor_bottom = 1
 grow_horizontal = 2
 grow_vertical = 2
 visible = false
-mouse_filter = 2
+mouse_filter = 0
 
 [node name="BlackoutWorld" type="ColorRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchor_top = 1
+anchor_right = 1
 anchor_bottom = 1
 offset_left = 0
-offset_top = -768
-offset_right = 1024
+offset_top = 0
+offset_right = 0
 offset_bottom = 0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Texture" type="TextureRect" parent="."]
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -512
-offset_top = -384
-offset_right = -256
-offset_bottom = -128
+[node name="WorldMapFrameMiniBorderLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 28
+offset_right = 524
+offset_bottom = 540
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_1")
 expand_mode = 1
 
-[node name="Texture2" type="TextureRect" parent="."]
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256
-offset_top = -384
-offset_right = 0
-offset_bottom = -128
+[node name="WorldMapFrameMiniBorderRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 524
+offset_top = 28
+offset_right = 652
+offset_bottom = 540
+visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_2")
 expand_mode = 1
 
-[node name="Texture3" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture1" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512
+offset_top = -384
+offset_right = -256
+offset_bottom = -128
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFrameTexture2" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256
+offset_top = -384
+offset_right = 0
+offset_bottom = -128
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFrameTexture3" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -187,10 +302,10 @@ offset_top = -384
 offset_right = 256
 offset_bottom = -128
 mouse_filter = 2
-texture = SubResource("WowTexture_3")
 expand_mode = 1
 
-[node name="Texture4" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture4" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -201,10 +316,10 @@ offset_top = -384
 offset_right = 512
 offset_bottom = -128
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
 expand_mode = 1
 
-[node name="Texture5" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture5" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -215,10 +330,10 @@ offset_top = -128
 offset_right = -256
 offset_bottom = 128
 mouse_filter = 2
-texture = SubResource("WowTexture_5")
 expand_mode = 1
 
-[node name="Texture6" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture6" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -229,10 +344,10 @@ offset_top = -128
 offset_right = 0
 offset_bottom = 128
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
 expand_mode = 1
 
-[node name="Texture7" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture7" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -243,10 +358,10 @@ offset_top = -128
 offset_right = 256
 offset_bottom = 128
 mouse_filter = 2
-texture = SubResource("WowTexture_7")
 expand_mode = 1
 
-[node name="Texture8" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture8" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -257,10 +372,10 @@ offset_top = -128
 offset_right = 512
 offset_bottom = 128
 mouse_filter = 2
-texture = SubResource("WowTexture_8")
 expand_mode = 1
 
-[node name="Texture9" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture9" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -271,10 +386,10 @@ offset_top = 128
 offset_right = -256
 offset_bottom = 384
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
 expand_mode = 1
 
-[node name="Texture10" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture10" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -285,10 +400,10 @@ offset_top = 128
 offset_right = 0
 offset_bottom = 384
 mouse_filter = 2
-texture = SubResource("WowTexture_10")
 expand_mode = 1
 
-[node name="Texture11" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture11" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -299,10 +414,10 @@ offset_top = 128
 offset_right = 256
 offset_bottom = 384
 mouse_filter = 2
-texture = SubResource("WowTexture_11")
 expand_mode = 1
 
-[node name="Texture12" type="TextureRect" parent="."]
+[node name="WorldMapFrameTexture12" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -313,10 +428,10 @@ offset_top = 128
 offset_right = 512
 offset_bottom = 384
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
 expand_mode = 1
 
-[node name="FontString" type="Label" parent="."]
+[node name="WorldMapFrameTitle" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -334,6 +449,200 @@ text = "World Map"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="WorldMapFrameTexture13" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -508
+offset_top = 141
+offset_right = -492
+offset_bottom = 157
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFrameTexture14" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 188
+offset_top = 348
+offset_right = 204
+offset_bottom = 364
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFrameTexture15" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 476
+offset_top = 329
+offset_right = 508
+offset_bottom = 361
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFrameTexture16" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 187
+offset_top = -325
+offset_right = 203
+offset_bottom = -309
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFrameTexture17" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 476
+offset_top = -322
+offset_right = 508
+offset_bottom = -290
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapFrameTexture18" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500
+offset_top = 351
+offset_right = 190
+offset_bottom = 355
+visible = false
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WorldMapTitleDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100
+offset_top = 35
+offset_right = -60
+offset_bottom = 67
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapTitleDropDownLeft" type="TextureRect" parent="WorldMapTitleDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="WorldMapTitleDropDownMiddle" type="TextureRect" parent="WorldMapTitleDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="WorldMapTitleDropDownRight" type="TextureRect" parent="WorldMapTitleDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="WorldMapTitleDropDownText" type="Label" parent="WorldMapTitleDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="WorldMapTitleDropDownButton" type="TextureButton" parent="WorldMapTitleDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapTitleDropDown/WorldMapTitleDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapTitleDropDown/WorldMapTitleDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapTitleDropDown/WorldMapTitleDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapTitleDropDown/WorldMapTitleDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
 [node name="WorldMapPositioningGuide" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -347,6 +656,124 @@ offset_right = 512
 offset_bottom = 384
 mouse_filter = 2
 
+[node name="WorldMapZoneMinimapDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492
+offset_top = -349
+offset_right = -452
+offset_bottom = -317
+mouse_filter = 2
+
+[node name="WorldMapZoneMinimapDropDownLeft" type="TextureRect" parent="WorldMapZoneMinimapDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="WorldMapZoneMinimapDropDownMiddle" type="TextureRect" parent="WorldMapZoneMinimapDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="WorldMapZoneMinimapDropDownRight" type="TextureRect" parent="WorldMapZoneMinimapDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="WorldMapZoneMinimapDropDownText" type="Label" parent="WorldMapZoneMinimapDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="FontString" type="Label" parent="WorldMapZoneMinimapDropDown"]
+offset_left = 20
+offset_top = -10
+offset_right = 20
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Zone Map"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapZoneMinimapDropDownButton" type="TextureButton" parent="WorldMapZoneMinimapDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapZoneMinimapDropDown/WorldMapZoneMinimapDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapZoneMinimapDropDown/WorldMapZoneMinimapDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapZoneMinimapDropDown/WorldMapZoneMinimapDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapZoneMinimapDropDown/WorldMapZoneMinimapDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
 [node name="WorldMapContinentDropDown" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -354,9 +781,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100
+offset_left = -90
 offset_top = -349
-offset_right = -60
+offset_right = -50
 offset_bottom = -317
 mouse_filter = 2
 
@@ -367,7 +794,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_14")
+texture = SubResource("AtlasTexture_4")
 expand_mode = 1
 
 [node name="WorldMapContinentDropDownMiddle" type="TextureRect" parent="WorldMapContinentDropDown"]
@@ -377,7 +804,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
 [node name="WorldMapContinentDropDownRight" type="TextureRect" parent="WorldMapContinentDropDown"]
@@ -387,7 +814,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_16")
+texture = SubResource("AtlasTexture_6")
 expand_mode = 1
 
 [node name="WorldMapContinentDropDownText" type="Label" parent="WorldMapContinentDropDown"]
@@ -431,7 +858,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="WorldMapContinentDropDown/WorldMapContinentDropDownButton"]
@@ -441,7 +868,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="WorldMapContinentDropDown/WorldMapContinentDropDownButton"]
@@ -451,7 +878,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_19")
+texture = SubResource("WowTexture_9")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="WorldMapContinentDropDown/WorldMapContinentDropDownButton"]
@@ -461,9 +888,9 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_20")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_21")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="WorldMapZoneDropDown" type="Control" parent="."]
 unique_name_in_owner = true
@@ -472,9 +899,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -93
+offset_left = -70
 offset_top = -349
-offset_right = -53
+offset_right = -30
 offset_bottom = -317
 mouse_filter = 2
 
@@ -485,7 +912,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_14")
+texture = SubResource("AtlasTexture_4")
 expand_mode = 1
 
 [node name="WorldMapZoneDropDownMiddle" type="TextureRect" parent="WorldMapZoneDropDown"]
@@ -495,7 +922,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_5")
 expand_mode = 1
 
 [node name="WorldMapZoneDropDownRight" type="TextureRect" parent="WorldMapZoneDropDown"]
@@ -505,7 +932,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_16")
+texture = SubResource("AtlasTexture_6")
 expand_mode = 1
 
 [node name="WorldMapZoneDropDownText" type="Label" parent="WorldMapZoneDropDown"]
@@ -549,7 +976,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="WorldMapZoneDropDown/WorldMapZoneDropDownButton"]
@@ -559,7 +986,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="WorldMapZoneDropDown/WorldMapZoneDropDownButton"]
@@ -569,7 +996,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_19")
+texture = SubResource("WowTexture_9")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="WorldMapZoneDropDown/WorldMapZoneDropDownButton"]
@@ -579,9 +1006,9 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_20")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_21")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="WorldMapZoomOutButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -591,9 +1018,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -63
+offset_left = -40
 offset_top = -347
-offset_right = 47
+offset_right = 70
 offset_bottom = -325
 ignore_texture_size = true
 
@@ -603,7 +1030,7 @@ offset_top = 0
 offset_right = 110
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_23")
+texture = SubResource("AtlasTexture_13")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="WorldMapZoomOutButton"]
@@ -613,7 +1040,7 @@ offset_right = 110
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_25")
+texture = SubResource("AtlasTexture_15")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="WorldMapZoomOutButton"]
@@ -623,7 +1050,7 @@ offset_right = 110
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_27")
+texture = SubResource("AtlasTexture_17")
 expand_mode = 1
 
 [node name="WorldMapZoomOutButtonText" type="Label" parent="WorldMapZoomOutButton"]
@@ -633,7 +1060,6 @@ offset_top = 0
 offset_right = 110
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Zoom Out"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -645,9 +1071,213 @@ offset_right = 110
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_29")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_21")
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapLevelDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 422
+offset_top = -349
+offset_right = 462
+offset_bottom = -317
+mouse_filter = 2
+
+[node name="WorldMapLevelDropDownLeft" type="TextureRect" parent="WorldMapLevelDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="WorldMapLevelDropDownMiddle" type="TextureRect" parent="WorldMapLevelDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="WorldMapLevelDropDownRight" type="TextureRect" parent="WorldMapLevelDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="WorldMapLevelDropDownText" type="Label" parent="WorldMapLevelDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="FontString" type="Label" parent="WorldMapLevelDropDown"]
+offset_left = 20
+offset_top = -10
+offset_right = 20
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Areas"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapLevelDropDownButton" type="TextureButton" parent="WorldMapLevelDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapLevelDropDown/WorldMapLevelDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapLevelDropDown/WorldMapLevelDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapLevelDropDown/WorldMapLevelDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapLevelDropDown/WorldMapLevelDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapLevelUpButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 452
+offset_top = -357
+offset_right = 468
+offset_bottom = -341
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapLevelUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapLevelUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapLevelUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="WorldMapLevelDownButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 452
+offset_top = -335
+offset_right = 468
+offset_bottom = -319
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapLevelDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_23")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapLevelDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_24")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapLevelDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_25")
+expand_mode = 1
 
 [node name="WorldMapMagnifyingGlassButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -661,6 +1291,7 @@ offset_left = -468
 offset_top = -298
 offset_right = -289
 offset_bottom = -258
+visible = false
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="WorldMapMagnifyingGlassButton"]
@@ -669,7 +1300,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_30")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="WorldMapMagnifyingGlassButtonText" type="Label" parent="WorldMapMagnifyingGlassButton"]
@@ -677,11 +1308,10 @@ unique_name_in_owner = true
 offset_left = 32
 offset_top = 5
 offset_right = 32
-offset_bottom = 15
+offset_bottom = 5
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Right Click On Map To Zoom Out"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -706,7 +1336,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_31")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="WorldMapFrameCloseButton"]
@@ -716,7 +1346,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="WorldMapFrameCloseButton"]
@@ -726,9 +1356,98 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapFrameSizeDownButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 464
+offset_top = -388
+offset_right = 496
+offset_bottom = -356
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapFrameSizeDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_30")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapFrameSizeDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_31")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapFrameSizeDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapFrameSizeUpButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 464
+offset_top = -388
+offset_right = 496
+offset_bottom = -356
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapFrameSizeUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapFrameSizeUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
 texture = SubResource("WowTexture_33")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_21")
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapFrameSizeUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="WorldMapDetailFrame" type="Control" parent="."]
 unique_name_in_owner = true
@@ -737,10 +1456,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -502
-offset_top = -315
-offset_right = 500
-offset_bottom = 353
+offset_left = -726
+offset_top = -285
+offset_right = 276
+offset_bottom = 383
 mouse_filter = 2
 
 [node name="WorldMapDetailTile1" type="TextureRect" parent="WorldMapDetailFrame"]
@@ -860,7 +1579,72 @@ offset_bottom = 128
 visible = false
 mouse_filter = 2
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_21")
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapZoneInfo" type="Label" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 501
+offset_top = 622
+offset_right = 501
+offset_bottom = 648
+grow_horizontal = 2
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"SubZoneTextFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MapFramerateLabel" type="Label" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 501
+offset_top = 592
+offset_right = 501
+offset_bottom = 604
+grow_horizontal = 2
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+theme_type_variation = &"SystemFont_Shadow_Med1"
+text = "FPS:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MapFramerateText" type="Label" parent="WorldMapDetailFrame"]
+unique_name_in_owner = true
+offset_left = 501
+offset_top = 592
+offset_right = 501
+offset_bottom = 604
+grow_horizontal = 1
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"SystemFont_Shadow_Med1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapBlobFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -726
+offset_top = -285
+offset_right = 276
+offset_bottom = 383
+mouse_filter = 2
+
+[node name="WorldMapBlobFrameTexture" type="TextureRect" parent="WorldMapBlobFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 1002
+offset_bottom = 668
+mouse_filter = 2
+expand_mode = 1
 
 [node name="WorldMapButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -870,10 +1654,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -502
-offset_top = -315
-offset_right = 500
-offset_bottom = 353
+offset_left = -726
+offset_top = -285
+offset_right = 276
+offset_bottom = 383
 ignore_texture_size = true
 
 [node name="WorldMapPlayer" type="Control" parent="WorldMapButton"]
@@ -883,6 +1667,107 @@ offset_top = 326
 offset_right = 509
 offset_bottom = 342
 mouse_filter = 2
+
+[node name="WorldMapUnitDropDown" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+
+[node name="WorldMapUnitDropDownLeft" type="TextureRect" parent="WorldMapButton/WorldMapUnitDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="WorldMapUnitDropDownMiddle" type="TextureRect" parent="WorldMapButton/WorldMapUnitDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="WorldMapUnitDropDownRight" type="TextureRect" parent="WorldMapButton/WorldMapUnitDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="WorldMapUnitDropDownText" type="Label" parent="WorldMapButton/WorldMapUnitDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="WorldMapUnitDropDownButton" type="TextureButton" parent="WorldMapButton/WorldMapUnitDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapButton/WorldMapUnitDropDown/WorldMapUnitDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapButton/WorldMapUnitDropDown/WorldMapUnitDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapButton/WorldMapUnitDropDown/WorldMapUnitDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapButton/WorldMapUnitDropDown/WorldMapUnitDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="WorldMapParty1" type="Control" parent="WorldMapButton"]
 unique_name_in_owner = true
@@ -900,6 +1785,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapParty2" type="Control" parent="WorldMapButton"]
@@ -918,6 +1804,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapParty3" type="Control" parent="WorldMapButton"]
@@ -936,6 +1823,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapParty4" type="Control" parent="WorldMapButton"]
@@ -954,6 +1842,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid1" type="Control" parent="WorldMapButton"]
@@ -972,6 +1861,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid2" type="Control" parent="WorldMapButton"]
@@ -990,6 +1880,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid3" type="Control" parent="WorldMapButton"]
@@ -1008,6 +1899,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid4" type="Control" parent="WorldMapButton"]
@@ -1026,6 +1918,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid5" type="Control" parent="WorldMapButton"]
@@ -1044,6 +1937,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid6" type="Control" parent="WorldMapButton"]
@@ -1062,6 +1956,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid7" type="Control" parent="WorldMapButton"]
@@ -1080,6 +1975,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid8" type="Control" parent="WorldMapButton"]
@@ -1098,6 +1994,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid9" type="Control" parent="WorldMapButton"]
@@ -1116,6 +2013,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid10" type="Control" parent="WorldMapButton"]
@@ -1134,6 +2032,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid11" type="Control" parent="WorldMapButton"]
@@ -1152,6 +2051,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid12" type="Control" parent="WorldMapButton"]
@@ -1170,6 +2070,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid13" type="Control" parent="WorldMapButton"]
@@ -1188,6 +2089,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid14" type="Control" parent="WorldMapButton"]
@@ -1206,6 +2108,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid15" type="Control" parent="WorldMapButton"]
@@ -1224,6 +2127,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid16" type="Control" parent="WorldMapButton"]
@@ -1242,6 +2146,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid17" type="Control" parent="WorldMapButton"]
@@ -1260,6 +2165,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid18" type="Control" parent="WorldMapButton"]
@@ -1278,6 +2184,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid19" type="Control" parent="WorldMapButton"]
@@ -1296,6 +2203,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid20" type="Control" parent="WorldMapButton"]
@@ -1314,6 +2222,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid21" type="Control" parent="WorldMapButton"]
@@ -1332,6 +2241,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid22" type="Control" parent="WorldMapButton"]
@@ -1350,6 +2260,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid23" type="Control" parent="WorldMapButton"]
@@ -1368,6 +2279,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid24" type="Control" parent="WorldMapButton"]
@@ -1386,6 +2298,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid25" type="Control" parent="WorldMapButton"]
@@ -1404,6 +2317,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid26" type="Control" parent="WorldMapButton"]
@@ -1422,6 +2336,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid27" type="Control" parent="WorldMapButton"]
@@ -1440,6 +2355,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid28" type="Control" parent="WorldMapButton"]
@@ -1458,6 +2374,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid29" type="Control" parent="WorldMapButton"]
@@ -1476,6 +2393,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid30" type="Control" parent="WorldMapButton"]
@@ -1494,6 +2412,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid31" type="Control" parent="WorldMapButton"]
@@ -1512,6 +2431,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid32" type="Control" parent="WorldMapButton"]
@@ -1530,6 +2450,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid33" type="Control" parent="WorldMapButton"]
@@ -1548,6 +2469,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid34" type="Control" parent="WorldMapButton"]
@@ -1566,6 +2488,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid35" type="Control" parent="WorldMapButton"]
@@ -1584,6 +2507,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid36" type="Control" parent="WorldMapButton"]
@@ -1602,6 +2526,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid37" type="Control" parent="WorldMapButton"]
@@ -1620,6 +2545,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid38" type="Control" parent="WorldMapButton"]
@@ -1638,6 +2564,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid39" type="Control" parent="WorldMapButton"]
@@ -1656,6 +2583,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapRaid40" type="Control" parent="WorldMapButton"]
@@ -1674,6 +2602,7 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="WorldMapFlag1" type="Control" parent="WorldMapButton"]
@@ -1727,15 +2656,33 @@ offset_top = 0
 offset_right = 16
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_35")
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="WorldMapDeathRelease" type="Control" parent="WorldMapButton"]
+unique_name_in_owner = true
+offset_left = 493
+offset_top = 326
+offset_right = 509
+offset_bottom = 342
+visible = false
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="WorldMapButton/WorldMapDeathRelease"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
 expand_mode = 1
 
 [node name="WorldMapPing" type="Control" parent="WorldMapButton"]
 unique_name_in_owner = true
-offset_left = 477
-offset_top = 290
-offset_right = 527
-offset_bottom = 340
+offset_left = 701
+offset_top = 260
+offset_right = 751
+offset_bottom = 310
 visible = false
 mouse_filter = 2
 
@@ -1752,7 +2699,7 @@ unique_name_in_owner = true
 offset_left = 220
 offset_top = 20
 offset_right = 220
-offset_bottom = 122
+offset_bottom = 82
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
@@ -1764,15 +2711,1204 @@ vertical_alignment = 1
 [node name="WorldMapFrameAreaDescription" type="Label" parent="WorldMapButton/WorldMapFrameAreaFrame"]
 unique_name_in_owner = true
 offset_left = 220
-offset_top = 122
+offset_top = 82
 offset_right = 220
-offset_bottom = 148
+offset_bottom = 108
 grow_horizontal = 2
 grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"SubZoneTextFont"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="OutlandButton" type="TextureButton" parent="WorldMapButton"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 115
+offset_top = 90
+offset_right = 435
+offset_bottom = 410
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapButton/OutlandButton"]
+offset_left = -92
+offset_top = -55.5
+offset_right = 764
+offset_bottom = 549.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_37")
+expand_mode = 1
+
+[node name="AzerothButton" type="TextureButton" parent="WorldMapButton"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 593
+offset_top = 255
+offset_right = 959
+offset_bottom = 621
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapButton/AzerothButton"]
+offset_left = -490
+offset_top = -244.5
+offset_right = 408
+offset_bottom = 402.5
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_38")
+expand_mode = 1
+
+[node name="WorldMapPOIFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -726
+offset_top = -285
+offset_right = 276
+offset_bottom = 383
+mouse_filter = 2
+
+[node name="WorldMapQuestScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 282
+offset_top = -285
+offset_right = 565
+offset_bottom = 385
+mouse_filter = 0
+
+[node name="WorldMapQuestScrollFrameScrollBar" type="VSlider" parent="WorldMapQuestScrollFrame"]
+unique_name_in_owner = true
+offset_left = 289
+offset_top = 16
+offset_right = 305
+offset_bottom = 654
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_40")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_40")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_41")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_41")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_41")
+max_value = 0.0
+step = 0.0
+
+[node name="WorldMapQuestScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar/WorldMapQuestScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar/WorldMapQuestScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar/WorldMapQuestScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar/WorldMapQuestScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 638
+offset_right = 17
+offset_bottom = 654
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar/WorldMapQuestScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar/WorldMapQuestScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar/WorldMapQuestScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameScrollBar/WorldMapQuestScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestScrollFrameClip" type="Control" parent="WorldMapQuestScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="WorldMapQuestScrollChildFrame" type="Control" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 283
+offset_bottom = 50
+mouse_filter = 2
+
+[node name="WorldMapQuestSelectedFrame" type="Control" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameClip/WorldMapQuestScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 301
+offset_bottom = 50
+mouse_filter = 2
+
+[node name="WorldMapQuestSelectBar" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameClip/WorldMapQuestScrollChildFrame/WorldMapQuestSelectedFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 301
+offset_bottom = 50
+mouse_filter = 2
+texture = SubResource("WowTexture_58")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestHighlightedFrame" type="Control" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameClip/WorldMapQuestScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 301
+offset_bottom = 50
+mouse_filter = 2
+
+[node name="WorldMapQuestHighlightBar" type="TextureRect" parent="WorldMapQuestScrollFrame/WorldMapQuestScrollFrameClip/WorldMapQuestScrollChildFrame/WorldMapQuestHighlightedFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 301
+offset_bottom = 50
+mouse_filter = 2
+texture = SubResource("WowTexture_58")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestDetailScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -706
+offset_top = 392
+offset_right = -406
+offset_bottom = 591
+mouse_filter = 0
+
+[node name="WorldMapQuestDetailScrollFrameTrack" type="ColorRect" parent="WorldMapQuestDetailScrollFrame"]
+unique_name_in_owner = true
+offset_left = 303
+offset_top = -1
+offset_right = 325
+offset_bottom = 200
+visible = false
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="WorldMapQuestDetailScrollFrameScrollBar" type="VSlider" parent="WorldMapQuestDetailScrollFrame"]
+unique_name_in_owner = true
+offset_left = 306
+offset_top = 16
+offset_right = 322
+offset_bottom = 183
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_40")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_40")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_41")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_41")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_41")
+max_value = 0.0
+step = 0.0
+
+[node name="WorldMapQuestDetailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar/WorldMapQuestDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar/WorldMapQuestDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar/WorldMapQuestDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar/WorldMapQuestDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestDetailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 167
+offset_right = 17
+offset_bottom = 183
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar/WorldMapQuestDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar/WorldMapQuestDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar/WorldMapQuestDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameScrollBar/WorldMapQuestDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestDetailScrollFrameClip" type="Control" parent="WorldMapQuestDetailScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="WorldMapQuestDetailScrollChildFrame" type="Control" parent="WorldMapQuestDetailScrollFrame/WorldMapQuestDetailScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 199
+mouse_filter = 2
+
+[node name="WorldMapQuestRewardScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376
+offset_top = 392
+offset_right = -53
+offset_bottom = 591
+mouse_filter = 0
+
+[node name="WorldMapQuestRewardScrollFrameTrack" type="ColorRect" parent="WorldMapQuestRewardScrollFrame"]
+unique_name_in_owner = true
+offset_left = 324
+offset_top = -1
+offset_right = 346
+offset_bottom = 200
+visible = false
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="WorldMapQuestRewardScrollFrameScrollBar" type="VSlider" parent="WorldMapQuestRewardScrollFrame"]
+unique_name_in_owner = true
+offset_left = 329
+offset_top = 16
+offset_right = 345
+offset_bottom = 183
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_40")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_40")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_41")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_41")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_41")
+max_value = 0.0
+step = 0.0
+
+[node name="WorldMapQuestRewardScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar/WorldMapQuestRewardScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar/WorldMapQuestRewardScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_45")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar/WorldMapQuestRewardScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar/WorldMapQuestRewardScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestRewardScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 167
+offset_right = 17
+offset_bottom = 183
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar/WorldMapQuestRewardScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar/WorldMapQuestRewardScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar/WorldMapQuestRewardScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameScrollBar/WorldMapQuestRewardScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestRewardScrollFrameClip" type="Control" parent="WorldMapQuestRewardScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="WorldMapQuestRewardScrollChildFrame" type="Control" parent="WorldMapQuestRewardScrollFrame/WorldMapQuestRewardScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 323
+offset_bottom = 199
+mouse_filter = 2
+
+[node name="WorldMapTrackQuest" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapTrackQuest"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_59")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapTrackQuest"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_60")
+expand_mode = 1
+
+[node name="WorldMapTrackQuestText" type="Label" parent="WorldMapTrackQuest"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 5
+offset_right = 24
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="WorldMapTrackQuest"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_61")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="WorldMapTrackQuest"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_62")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapTrackQuest"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_63")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapQuestShowObjectives" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="WorldMapQuestShowObjectives"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_59")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="WorldMapQuestShowObjectives"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_60")
+expand_mode = 1
+
+[node name="WorldMapQuestShowObjectivesText" type="Label" parent="WorldMapQuestShowObjectives"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 5
+offset_right = 24
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="WorldMapQuestShowObjectives"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_61")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="WorldMapQuestShowObjectives"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_62")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="WorldMapQuestShowObjectives"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_63")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="WorldMapCompareTooltip1" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="WorldMapCompareTooltip1"]
+script = ExtResource("4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_64")
+edge = SubResource("WowTexture_65")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="WorldMapCompareTooltip1TextLeft1" type="Label" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 10
+offset_right = 10
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip1TextRight1" type="Label" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 9
+offset_right = 50
+offset_bottom = 21
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip1TextLeft2" type="Label" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 22
+offset_right = 10
+offset_bottom = 34
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip1TextRight2" type="Label" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 23
+offset_right = 50
+offset_bottom = 33
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip1TextLeft3" type="Label" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 36
+offset_right = 10
+offset_bottom = 46
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip1TextRight3" type="Label" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 36
+offset_right = 50
+offset_bottom = 46
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip1TextLeft4" type="Label" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 48
+offset_right = 10
+offset_bottom = 58
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipTextSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip1TextRight4" type="Label" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 48
+offset_right = 50
+offset_bottom = 58
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip1Texture1" type="TextureRect" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCompareTooltip1Texture2" type="TextureRect" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCompareTooltip1Texture3" type="TextureRect" parent="WorldMapCompareTooltip1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCompareTooltip2" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="WorldMapCompareTooltip2"]
+script = ExtResource("4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_64")
+edge = SubResource("WowTexture_65")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="WorldMapCompareTooltip2TextLeft1" type="Label" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 10
+offset_right = 10
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip2TextRight1" type="Label" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 9
+offset_right = 50
+offset_bottom = 21
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip2TextLeft2" type="Label" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 22
+offset_right = 10
+offset_bottom = 34
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip2TextRight2" type="Label" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 23
+offset_right = 50
+offset_bottom = 33
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip2TextLeft3" type="Label" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 36
+offset_right = 10
+offset_bottom = 46
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip2TextRight3" type="Label" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 36
+offset_right = 50
+offset_bottom = 46
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip2TextLeft4" type="Label" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 48
+offset_right = 10
+offset_bottom = 58
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipTextSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip2TextRight4" type="Label" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 48
+offset_right = 50
+offset_bottom = 58
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip2Texture1" type="TextureRect" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCompareTooltip2Texture2" type="TextureRect" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCompareTooltip2Texture3" type="TextureRect" parent="WorldMapCompareTooltip2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCompareTooltip3" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="WorldMapCompareTooltip3"]
+script = ExtResource("4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_64")
+edge = SubResource("WowTexture_65")
+tile = true
+tile_size = 16
+edge_size = 16
+insets = Vector4(5, 5, 5, 5)
+
+[node name="WorldMapCompareTooltip3TextLeft1" type="Label" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 10
+offset_right = 10
+offset_bottom = 20
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip3TextRight1" type="Label" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 9
+offset_right = 50
+offset_bottom = 21
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip3TextLeft2" type="Label" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 22
+offset_right = 10
+offset_bottom = 34
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip3TextRight2" type="Label" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 23
+offset_right = 50
+offset_bottom = 33
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip3TextLeft3" type="Label" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 36
+offset_right = 10
+offset_bottom = 46
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip3TextRight3" type="Label" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 36
+offset_right = 50
+offset_bottom = 46
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip3TextLeft4" type="Label" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 48
+offset_right = 10
+offset_bottom = 58
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameTooltipTextSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip3TextRight4" type="Label" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 48
+offset_right = 50
+offset_bottom = 58
+grow_horizontal = 0
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldMapCompareTooltip3Texture1" type="TextureRect" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCompareTooltip3Texture2" type="TextureRect" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapCompareTooltip3Texture3" type="TextureRect" parent="WorldMapCompareTooltip3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
 
 [node name="WorldMapTooltip" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1787,14 +3923,14 @@ visible = false
 mouse_filter = 2
 
 [node name="Backdrop" type="Control" parent="WorldMapTooltip"]
-script = ExtResource("3")
+script = ExtResource("4")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_36")
-edge = SubResource("WowTexture_37")
+background = SubResource("WowTexture_64")
+edge = SubResource("WowTexture_65")
 tile = true
 tile_size = 16
 edge_size = 16
@@ -2024,622 +4160,6 @@ theme_type_variation = &"GameTooltipText"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WorldMapTooltipTextLeft9" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 124
-offset_right = 10
-offset_bottom = 136
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight9" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 124
-offset_right = 50
-offset_bottom = 136
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft10" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 138
-offset_right = 10
-offset_bottom = 150
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight10" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 138
-offset_right = 50
-offset_bottom = 150
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft11" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 152
-offset_right = 10
-offset_bottom = 164
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight11" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 152
-offset_right = 50
-offset_bottom = 164
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft12" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 166
-offset_right = 10
-offset_bottom = 178
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight12" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 166
-offset_right = 50
-offset_bottom = 178
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft13" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 180
-offset_right = 10
-offset_bottom = 192
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight13" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 180
-offset_right = 50
-offset_bottom = 192
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft14" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 194
-offset_right = 10
-offset_bottom = 206
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight14" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 194
-offset_right = 50
-offset_bottom = 206
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft15" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 208
-offset_right = 10
-offset_bottom = 220
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight15" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 208
-offset_right = 50
-offset_bottom = 220
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft16" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 222
-offset_right = 10
-offset_bottom = 234
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight16" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 222
-offset_right = 50
-offset_bottom = 234
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft17" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 236
-offset_right = 10
-offset_bottom = 248
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight17" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 236
-offset_right = 50
-offset_bottom = 248
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft18" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 250
-offset_right = 10
-offset_bottom = 262
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight18" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 250
-offset_right = 50
-offset_bottom = 262
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft19" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 264
-offset_right = 10
-offset_bottom = 276
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight19" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 264
-offset_right = 50
-offset_bottom = 276
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft20" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 278
-offset_right = 10
-offset_bottom = 290
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight20" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 278
-offset_right = 50
-offset_bottom = 290
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft21" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 292
-offset_right = 10
-offset_bottom = 304
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight21" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 292
-offset_right = 50
-offset_bottom = 304
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft22" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 306
-offset_right = 10
-offset_bottom = 318
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight22" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 306
-offset_right = 50
-offset_bottom = 318
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft23" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 320
-offset_right = 10
-offset_bottom = 332
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight23" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 320
-offset_right = 50
-offset_bottom = 332
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft24" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 334
-offset_right = 10
-offset_bottom = 346
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight24" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 334
-offset_right = 50
-offset_bottom = 346
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft25" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 348
-offset_right = 10
-offset_bottom = 360
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight25" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 334
-offset_right = 50
-offset_bottom = 346
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft26" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 362
-offset_right = 10
-offset_bottom = 374
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight26" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 348
-offset_right = 50
-offset_bottom = 360
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft27" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 376
-offset_right = 10
-offset_bottom = 388
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight27" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 362
-offset_right = 50
-offset_bottom = 374
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft28" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 390
-offset_right = 10
-offset_bottom = 402
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight28" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 376
-offset_right = 50
-offset_bottom = 388
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft29" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 404
-offset_right = 10
-offset_bottom = 416
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight29" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 390
-offset_right = 50
-offset_bottom = 402
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextLeft30" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 10
-offset_top = 418
-offset_right = 10
-offset_bottom = 430
-grow_horizontal = 1
-grow_vertical = 1
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WorldMapTooltipTextRight30" type="Label" parent="WorldMapTooltip"]
-unique_name_in_owner = true
-offset_left = 50
-offset_top = 404
-offset_right = 50
-offset_bottom = 416
-grow_horizontal = 0
-grow_vertical = 2
-visible = false
-mouse_filter = 2
-theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="WorldMapTooltipTexture1" type="TextureRect" parent="WorldMapTooltip"]
 unique_name_in_owner = true
 offset_left = 0
@@ -2670,6 +4190,76 @@ visible = false
 mouse_filter = 2
 expand_mode = 1
 
+[node name="WorldMapTooltipTexture4" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipTexture5" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipTexture6" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipTexture7" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipTexture8" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipTexture9" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="WorldMapTooltipTexture10" type="TextureRect" parent="WorldMapTooltip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
 [node name="WorldMapTooltipStatusBar" type="TextureProgressBar" parent="WorldMapTooltip"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -2682,16 +4272,17 @@ offset_right = -2
 offset_bottom = 9
 visible = false
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_38")
+texture_progress = SubResource("WowTexture_66")
 nine_patch_stretch = true
 max_value = 1.0
 step = 0.0
 value = 1.0
 
-[node name="WorldMapTooltipMoneyFrame" parent="WorldMapTooltip" instance=ExtResource("4")]
+[node name="WorldMapTitleButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
-offset_left = 10
-offset_top = 10.5
-offset_right = 138
-offset_bottom = 23.5
-visible = false
+script = ExtResource("2")
+offset_left = 12
+offset_top = 28
+offset_right = 556
+offset_bottom = 50
+ignore_texture_size = true

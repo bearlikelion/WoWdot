@@ -4,7 +4,7 @@ extends Control
 signal close_requested
 signal open_requested
 
-const ZONES_DISPLAYED: int = 12
+const ZONES_DISPLAYED: int = 5
 const ZONE_HEIGHT: float = 16.0
 
 var _map_id: int = 0
@@ -14,6 +14,7 @@ var _selected: int = 0
 var _offset: int = 0
 
 @onready var _scroll: WowScrollFrame = %BattlefieldListScrollFrame
+@onready var _description: Label = %BattlefieldFrameInfoScrollFrameChildFrameDescription
 
 
 func _ready() -> void:
@@ -25,7 +26,7 @@ func _ready() -> void:
 	%BattlefieldFrameGroupJoinButton.pressed.connect(_join.bind(true))
 	%BattlefieldFrameCancelButton.pressed.connect(close_requested.emit)
 	%BattlefieldFrameCloseButton.pressed.connect(close_requested.emit)
-	(%BattlefieldFrameZoneDescription as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	WowClient.battlegrounds.listed.connect(_on_listed)
 
 
@@ -37,7 +38,7 @@ func refresh() -> void:
 	var title: String = WowClient.map_display_name(_map_id)
 	%BattlefieldFrameFrameLabel.text = title
 	%BattlefieldFrameNameHeader.text = WowStrings.get_text("BATTLEFIELD_NAME")
-	%BattlefieldFrameZoneDescription.text = WowStrings.get_text(
+	_description.text = WowStrings.get_text(
 		"FIRST_AVAILABLE_TOOLTIP" if _selected == 0 else "BATTLEGROUND_INSTANCE_TOOLTIP"
 	)
 	_scroll.set_range(maxi(_instances.size() - ZONES_DISPLAYED, 0))
@@ -50,7 +51,6 @@ func refresh() -> void:
 		var text: Label = get_node("%%BattlefieldZone%dText" % (i + 1))
 		text.text = WowStrings.get_text("FIRST_AVAILABLE") if index == 0 \
 		else "%s %d" % [title, _instances[index]]
-		(get_node("%%BattlefieldZone%dStatus" % (i + 1)) as Label).text = ""
 		row.highlight_locked = index == _selected
 	var leads: bool = PartyFrame.in_party() \
 	and PartyFrame.leader == WowClient.session.get_player_guid()

@@ -56,21 +56,12 @@ anchor_right = 0
 anchor_bottom = 0
 offset_left = 0
 offset_top = 104
-offset_right = 384
+offset_right = 425
 offset_bottom = 616
 grow_horizontal = 1
 grow_vertical = 1
 visible = false
 mouse_filter = 0
-
-[node name="BankPortraitTexture" type="TextureRect" parent="."]
-unique_name_in_owner = true
-offset_left = 7
-offset_top = 6
-offset_right = 67
-offset_bottom = 66
-mouse_filter = 2
-expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="."]
 offset_left = 0
@@ -88,9 +79,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 6
+offset_left = -3
 offset_top = -239
-offset_right = 6
+offset_right = -3
 offset_bottom = -227
 grow_horizontal = 2
 grow_vertical = 2
@@ -105,10 +96,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11
-offset_top = -201
-offset_right = -11
-offset_bottom = -189
+offset_left = -3
+offset_top = -206
+offset_right = -3
+offset_bottom = -194
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -123,10 +114,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11
-offset_top = -1
-offset_right = -11
-offset_bottom = 11
+offset_left = -3
+offset_top = -4
+offset_right = -3
+offset_bottom = 8
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -135,15 +126,24 @@ text = "Bag Slots"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BankPortraitTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+expand_mode = 1
+
 [node name="BankCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
-offset_left = -62
+offset_left = -54
 offset_top = 8
-offset_right = -30
+offset_right = -22
 offset_bottom = 40
 ignore_texture_size = true
 
@@ -221,128 +221,156 @@ offset_bottom = 110
 
 [node name="BankFrameItem7" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 40
-offset_top = 117
-offset_right = 77
-offset_bottom = 154
+offset_left = 334
+offset_top = 73
+offset_right = 371
+offset_bottom = 110
 
 [node name="BankFrameItem8" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 89
+offset_left = 40
 offset_top = 117
-offset_right = 126
+offset_right = 77
 offset_bottom = 154
 
 [node name="BankFrameItem9" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 138
+offset_left = 89
 offset_top = 117
-offset_right = 175
+offset_right = 126
 offset_bottom = 154
 
 [node name="BankFrameItem10" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 187
+offset_left = 138
 offset_top = 117
-offset_right = 224
+offset_right = 175
 offset_bottom = 154
 
 [node name="BankFrameItem11" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 236
+offset_left = 187
 offset_top = 117
-offset_right = 273
+offset_right = 224
 offset_bottom = 154
 
 [node name="BankFrameItem12" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
+offset_left = 236
+offset_top = 117
+offset_right = 273
+offset_bottom = 154
+
+[node name="BankFrameItem13" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
 offset_left = 285
 offset_top = 117
 offset_right = 322
 offset_bottom = 154
 
-[node name="BankFrameItem13" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem14" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 334
+offset_top = 117
+offset_right = 371
+offset_bottom = 154
+
+[node name="BankFrameItem15" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 40
 offset_top = 161
 offset_right = 77
-offset_bottom = 198
-
-[node name="BankFrameItem14" parent="." instance=ExtResource("3")]
-unique_name_in_owner = true
-offset_left = 89
-offset_top = 161
-offset_right = 126
-offset_bottom = 198
-
-[node name="BankFrameItem15" parent="." instance=ExtResource("3")]
-unique_name_in_owner = true
-offset_left = 138
-offset_top = 161
-offset_right = 175
 offset_bottom = 198
 
 [node name="BankFrameItem16" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
+offset_left = 89
+offset_top = 161
+offset_right = 126
+offset_bottom = 198
+
+[node name="BankFrameItem17" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 138
+offset_top = 161
+offset_right = 175
+offset_bottom = 198
+
+[node name="BankFrameItem18" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
 offset_left = 187
 offset_top = 161
 offset_right = 224
 offset_bottom = 198
 
-[node name="BankFrameItem17" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem19" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 236
 offset_top = 161
 offset_right = 273
 offset_bottom = 198
 
-[node name="BankFrameItem18" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem20" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 285
 offset_top = 161
 offset_right = 322
 offset_bottom = 198
 
-[node name="BankFrameItem19" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem21" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 334
+offset_top = 161
+offset_right = 371
+offset_bottom = 198
+
+[node name="BankFrameItem22" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 40
 offset_top = 205
 offset_right = 77
 offset_bottom = 242
 
-[node name="BankFrameItem20" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem23" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 89
 offset_top = 205
 offset_right = 126
 offset_bottom = 242
 
-[node name="BankFrameItem21" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem24" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 138
 offset_top = 205
 offset_right = 175
 offset_bottom = 242
 
-[node name="BankFrameItem22" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem25" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 187
 offset_top = 205
 offset_right = 224
 offset_bottom = 242
 
-[node name="BankFrameItem23" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem26" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 236
 offset_top = 205
 offset_right = 273
 offset_bottom = 242
 
-[node name="BankFrameItem24" parent="." instance=ExtResource("3")]
+[node name="BankFrameItem27" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
 offset_left = 285
 offset_top = 205
 offset_right = 322
+offset_bottom = 242
+
+[node name="BankFrameItem28" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 334
+offset_top = 205
+offset_right = 371
 offset_bottom = 242
 
 [node name="BankFrameBag1" parent="." instance=ExtResource("3")]
@@ -387,6 +415,13 @@ offset_top = 274
 offset_right = 322
 offset_bottom = 311
 
+[node name="BankFrameBag7" parent="." instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 334
+offset_top = 274
+offset_right = 371
+offset_bottom = 311
+
 [node name="BankFramePurchaseInfo" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -394,16 +429,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -165
+offset_left = -213
 offset_top = 69
-offset_right = 135
+offset_right = 167
 offset_bottom = 141
 mouse_filter = 2
 
 [node name="FontString" type="Label" parent="BankFramePurchaseInfo"]
-offset_left = 20
+offset_left = 42
 offset_top = 10
-offset_right = 300
+offset_right = 422
 offset_bottom = 22
 grow_horizontal = 2
 grow_vertical = 2
@@ -415,9 +450,9 @@ vertical_alignment = 1
 
 [node name="BankFrameSlotCost" type="Label" parent="BankFramePurchaseInfo"]
 unique_name_in_owner = true
-offset_left = 30
+offset_left = 45
 offset_top = 40
-offset_right = 30
+offset_right = 45
 offset_bottom = 52
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
@@ -430,9 +465,9 @@ grow_vertical = 2
 [node name="BankFramePurchaseButton" type="TextureButton" parent="BankFramePurchaseInfo"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 156
+offset_left = 246
 offset_top = 35.5
-offset_right = 280
+offset_right = 370
 offset_bottom = 56.5
 ignore_texture_size = true
 
@@ -473,7 +508,6 @@ offset_top = 0
 offset_right = 124
 offset_bottom = 21
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Purchase"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -491,9 +525,9 @@ material = SubResource("CanvasItemMaterial_5")
 
 [node name="BankFrameDetailMoneyFrame" parent="BankFramePurchaseInfo" instance=ExtResource("4")]
 unique_name_in_owner = true
-offset_left = 40
+offset_left = 55
 offset_top = 39.5
-offset_right = 168
+offset_right = 183
 offset_bottom = 52.5
 
 [node name="BankFrameMoneyFrame" parent="." instance=ExtResource("4")]
@@ -503,7 +537,7 @@ anchor_left = 1
 anchor_top = 1
 anchor_right = 1
 anchor_bottom = 1
-offset_left = -166
-offset_top = -115
-offset_right = -38
-offset_bottom = -102
+offset_left = -158
+offset_top = -116
+offset_right = -30
+offset_bottom = -103

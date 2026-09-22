@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="2"]
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
 [ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="5"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
@@ -12,67 +13,97 @@ file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
 file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_3"]
-file = "Interface\\DialogFrame\\DialogAlertIcon.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_4"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_5"]
+[sub_resource type="WowTexture" id="WowTexture_4"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_6"]
+[sub_resource type="WowTexture" id="WowTexture_5"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6"]
 blend_mode = 1
 
-[sub_resource type="WowTexture" id="WowTexture_8"]
+[sub_resource type="WowTexture" id="WowTexture_7"]
 file = "Interface\\Buttons\\UI-DialogBox-Button-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
-atlas = SubResource("WowTexture_8")
-region = Rect2(0, 0, 128, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
+atlas = SubResource("WowTexture_7")
+region = Rect2(0, 0, 128, 23)
 
-[sub_resource type="WowTexture" id="WowTexture_10"]
+[sub_resource type="WowTexture" id="WowTexture_9"]
 file = "Interface\\Buttons\\UI-DialogBox-Button-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
-atlas = SubResource("WowTexture_10")
-region = Rect2(0, 0, 128, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(0, 0, 128, 23)
 
-[sub_resource type="WowTexture" id="WowTexture_12"]
+[sub_resource type="WowTexture" id="WowTexture_11"]
 file = "Interface\\Buttons\\UI-DialogBox-Button-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
-atlas = SubResource("WowTexture_12")
-region = Rect2(0, 0, 128, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 0, 128, 23)
 
-[sub_resource type="WowTexture" id="WowTexture_14"]
+[sub_resource type="WowTexture" id="WowTexture_13"]
 file = "Interface\\Buttons\\UI-DialogBox-Button-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
-atlas = SubResource("WowTexture_14")
-region = Rect2(0, 0, 128, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(0, 0, 128, 23)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_15"]
 
-[sub_resource type="WowTexture" id="WowTexture_17"]
+[sub_resource type="WowTexture" id="WowTexture_16"]
 file = "Interface\\ChatFrame\\UI-ChatInputBorder-Left.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_18"]
-atlas = SubResource("WowTexture_17")
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_16")
 region = Rect2(0, 0, 75, 32)
 
-[sub_resource type="WowTexture" id="WowTexture_19"]
+[sub_resource type="WowTexture" id="WowTexture_18"]
 file = "Interface\\ChatFrame\\UI-ChatInputBorder-Right.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
-atlas = SubResource("WowTexture_19")
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
 region = Rect2(181, 0, 75, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
-atlas = SubResource("WowTexture_17")
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_16")
 region = Rect2(75, 0, 181, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Common\\Common-Input-Border.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(0, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(120, 0, 8, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(8, 0, 112, 20)
+
+[sub_resource type="WowTexture" id="WowTexture_25"]
+file = "Interface\\MoneyFrame\\UI-MoneyIcons.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28"]
+atlas = SubResource("WowTexture_25")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\QuestFrame\\UI-QuestItemNameFrame.blp"
 
 [node name="StaticPopup1" type="Control"]
 script = ExtResource("1")
@@ -81,9 +112,9 @@ anchor_top = 0
 anchor_right = 0.5
 anchor_bottom = 0
 offset_left = -160
-offset_top = 128
+offset_top = 135
 offset_right = 160
-offset_bottom = 200
+offset_bottom = 207
 grow_horizontal = 2
 grow_vertical = 1
 visible = false
@@ -124,13 +155,23 @@ unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 12
-offset_top = -32
-offset_right = 76
-offset_bottom = 32
+offset_left = 24
+offset_top = -24
+offset_right = 72
+offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_3")
 expand_mode = 1
+
+[node name="StaticPopup1ExtraFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 0
 
 [node name="StaticPopup1CloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -150,7 +191,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_3")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="StaticPopup1CloseButton"]
@@ -160,7 +201,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_5")
+texture = SubResource("WowTexture_4")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="StaticPopup1CloseButton"]
@@ -170,9 +211,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_5")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_6")
 
 [node name="StaticPopup1Button1" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -180,46 +221,47 @@ script = ExtResource("3")
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="StaticPopup1Button1"]
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_9")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="StaticPopup1Button1"]
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_10")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="StaticPopup1Button1"]
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_12")
 expand_mode = 1
 
 [node name="StaticPopup1Button1Text" type="Label" parent="StaticPopup1Button1"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 20
+offset_left = 64
+offset_top = 9.5
+offset_right = 64
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -227,12 +269,12 @@ vertical_alignment = 1
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_14")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_6")
 
 [node name="StaticPopup1Button2" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -240,46 +282,47 @@ script = ExtResource("3")
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="StaticPopup1Button2"]
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_9")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="StaticPopup1Button2"]
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_10")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="StaticPopup1Button2"]
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_12")
 expand_mode = 1
 
 [node name="StaticPopup1Button2Text" type="Label" parent="StaticPopup1Button2"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 20
+offset_left = 64
+offset_top = 9.5
+offset_right = 64
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -287,12 +330,73 @@ vertical_alignment = 1
 offset_left = 0
 offset_top = 0
 offset_right = 128
-offset_bottom = 20
+offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_14")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_7")
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="StaticPopup1Button3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 21
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="StaticPopup1Button3"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="StaticPopup1Button3"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="StaticPopup1Button3"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="StaticPopup1Button3Text" type="Label" parent="StaticPopup1Button3"]
+unique_name_in_owner = true
+offset_left = 64
+offset_top = 9.5
+offset_right = 64
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="StaticPopup1Button3"]
+offset_left = 0
+offset_top = 0
+offset_right = 128
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_6")
 
 [node name="StaticPopup1EditBox" type="LineEdit" parent="."]
 unique_name_in_owner = true
@@ -309,9 +413,9 @@ visible = false
 mouse_filter = 0
 theme_type_variation = &"ChatFontNormal"
 caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_16")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_16")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_16")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_15")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_15")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_15")
 
 [node name="Texture" type="TextureRect" parent="StaticPopup1EditBox"]
 offset_left = -10
@@ -320,7 +424,7 @@ offset_right = 65
 offset_bottom = 32
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_18")
+texture = SubResource("AtlasTexture_17")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="StaticPopup1EditBox"]
@@ -330,7 +434,7 @@ offset_right = 140
 offset_bottom = 32
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_20")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
 
 [node name="StaticPopup1WideEditBox" type="LineEdit" parent="."]
@@ -348,9 +452,9 @@ visible = false
 mouse_filter = 0
 theme_type_variation = &"ChatFontNormal"
 caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_16")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_16")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_16")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_15")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_15")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_15")
 
 [node name="StaticPopup1WideEditBoxLeft" type="TextureRect" parent="StaticPopup1WideEditBox"]
 unique_name_in_owner = true
@@ -360,7 +464,7 @@ offset_right = 246
 offset_bottom = 48
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_16")
 expand_mode = 1
 
 [node name="StaticPopup1WideEditBoxRight" type="TextureRect" parent="StaticPopup1WideEditBox"]
@@ -371,7 +475,7 @@ offset_right = 360
 offset_bottom = 48
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_20")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="StaticPopup1WideEditBox"]
@@ -381,7 +485,7 @@ offset_right = 285
 offset_bottom = 48
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_21")
+texture = SubResource("AtlasTexture_20")
 expand_mode = 1
 
 [node name="StaticPopup1MoneyFrame" parent="." instance=ExtResource("4")]
@@ -394,3 +498,257 @@ offset_top = 33
 offset_right = 64
 offset_bottom = 46
 visible = false
+
+[node name="StaticPopup1MoneyInputFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88
+offset_top = 33
+offset_right = 88
+offset_bottom = 51
+mouse_filter = 2
+
+[node name="StaticPopup1MoneyInputFrameGold" type="LineEdit" parent="StaticPopup1MoneyInputFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 58
+offset_bottom = 20
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_15")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_15")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_15")
+
+[node name="StaticPopup1MoneyInputFrameGoldLeft" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameGold"]
+unique_name_in_owner = true
+offset_left = -5
+offset_top = 0
+offset_right = 3
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="StaticPopup1MoneyInputFrameGoldRight" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameGold"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 0
+offset_right = 58
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="StaticPopup1MoneyInputFrameGoldMiddle" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameGold"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 50
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameGold"]
+offset_left = 60
+offset_top = 3.5
+offset_right = 73
+offset_bottom = 16.5
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameGold"]
+offset_left = 60
+offset_top = 1
+offset_right = 78
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "g"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StaticPopup1MoneyInputFrameSilver" type="LineEdit" parent="StaticPopup1MoneyInputFrame"]
+unique_name_in_owner = true
+offset_left = 84
+offset_top = 0
+offset_right = 114
+offset_bottom = 20
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+max_length = 2
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_15")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_15")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_15")
+
+[node name="StaticPopup1MoneyInputFrameSilverLeft" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameSilver"]
+unique_name_in_owner = true
+offset_left = -5
+offset_top = 0
+offset_right = 3
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="StaticPopup1MoneyInputFrameSilverRight" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameSilver"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="StaticPopup1MoneyInputFrameSilverMiddle" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameSilver"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 12
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameSilver"]
+offset_left = 22
+offset_top = 3.5
+offset_right = 35
+offset_bottom = 16.5
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameSilver"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "s"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StaticPopup1MoneyInputFrameCopper" type="LineEdit" parent="StaticPopup1MoneyInputFrame"]
+unique_name_in_owner = true
+offset_left = 130
+offset_top = 0
+offset_right = 160
+offset_bottom = 20
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+max_length = 2
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_15")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_15")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_15")
+
+[node name="StaticPopup1MoneyInputFrameCopperLeft" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameCopper"]
+unique_name_in_owner = true
+offset_left = -5
+offset_top = 0
+offset_right = 3
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="StaticPopup1MoneyInputFrameCopperRight" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameCopper"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="StaticPopup1MoneyInputFrameCopperMiddle" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameCopper"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 12
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameCopper"]
+offset_left = 22
+offset_top = 3.5
+offset_right = 35
+offset_bottom = 16.5
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="StaticPopup1MoneyInputFrame/StaticPopup1MoneyInputFrameCopper"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "c"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StaticPopup1ItemFrame" parent="." instance=ExtResource("5")]
+unique_name_in_owner = true
+offset_left = 82
+offset_top = -45
+offset_right = 119
+offset_bottom = -8
+visible = false
+
+[node name="StaticPopup1ItemFrameNameFrame" type="TextureRect" parent="StaticPopup1ItemFrame"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = -12.5
+offset_right = 170
+offset_bottom = 49.5
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+
+[node name="StaticPopup1ItemFrameText" type="Label" parent="StaticPopup1ItemFrame"]
+unique_name_in_owner = true
+offset_left = 45
+offset_top = -0.5
+offset_right = 148
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2

@@ -21,256 +21,259 @@ file = "Interface\\ItemTextFrame\\UI-ItemText-BotLeft.blp"
 file = "Interface\\Spellbook\\UI-SpellbookPanel-BotRight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\DialogFrame\\UI-Dialog-Icon-AlertNew.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
 file = "Interface\\MailFrame\\MailItemBorder.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
-atlas = SubResource("WowTexture_6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
+atlas = SubResource("WowTexture_7")
 region = Rect2(0, 0, 42, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
-atlas = SubResource("WowTexture_6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_7")
 region = Rect2(42, 0, 214, 48)
 
-[sub_resource type="WowTexture" id="WowTexture_9"]
+[sub_resource type="WowTexture" id="WowTexture_10"]
 file = "Interface\\Buttons\\UI-EmptySlot-White.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_10"]
+[sub_resource type="WowTexture" id="WowTexture_11"]
 file = "Interface\\Buttons\\CheckButtonHilight.blp"
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_11"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_12"]
 blend_mode = 1
 
-[sub_resource type="WowTexture" id="WowTexture_12"]
+[sub_resource type="WowTexture" id="WowTexture_13"]
 file = "Interface\\Buttons\\ButtonHilight-Square.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_13"]
+[sub_resource type="WowTexture" id="WowTexture_14"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_14"]
+[sub_resource type="WowTexture" id="WowTexture_15"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_15"]
+[sub_resource type="WowTexture" id="WowTexture_16"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_16"]
+[sub_resource type="WowTexture" id="WowTexture_17"]
 file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_17"]
+[sub_resource type="WowTexture" id="WowTexture_18"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_18"]
+[sub_resource type="WowTexture" id="WowTexture_19"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_19"]
+[sub_resource type="WowTexture" id="WowTexture_20"]
 file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_20"]
+[sub_resource type="WowTexture" id="WowTexture_21"]
 file = "Interface\\MoneyFrame\\UI-MoneyIcons.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
-atlas = SubResource("WowTexture_20")
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_22"]
+[sub_resource type="WowTexture" id="WowTexture_23"]
 file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-HorizontalBar.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
-atlas = SubResource("WowTexture_22")
+[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
+atlas = SubResource("WowTexture_23")
 region = Rect2(0, 0, 256, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
-atlas = SubResource("WowTexture_22")
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_23")
 region = Rect2(0, 16, 75, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_25"]
+[sub_resource type="WowTexture" id="WowTexture_26"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-ScrollBar.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
-atlas = SubResource("WowTexture_25")
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_26")
 region = Rect2(0, 0, 31, 256)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
-atlas = SubResource("WowTexture_25")
+[sub_resource type="AtlasTexture" id="AtlasTexture_28"]
+atlas = SubResource("WowTexture_26")
 region = Rect2(33, 0, 31, 106)
 
-[sub_resource type="WowTexture" id="WowTexture_28"]
+[sub_resource type="WowTexture" id="WowTexture_29"]
 file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
-atlas = SubResource("WowTexture_28")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(6.4, 4, 19.2, 24)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_30"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_31"]
 
-[sub_resource type="WowTexture" id="WowTexture_31"]
+[sub_resource type="WowTexture" id="WowTexture_32"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
-atlas = SubResource("WowTexture_31")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_32")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_33"]
+[sub_resource type="WowTexture" id="WowTexture_34"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
-atlas = SubResource("WowTexture_33")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_35"]
+atlas = SubResource("WowTexture_34")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_35"]
+[sub_resource type="WowTexture" id="WowTexture_36"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
-atlas = SubResource("WowTexture_35")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_37"]
+atlas = SubResource("WowTexture_36")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_37"]
+[sub_resource type="WowTexture" id="WowTexture_38"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
-atlas = SubResource("WowTexture_37")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_39"]
+atlas = SubResource("WowTexture_38")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_39"]
+[sub_resource type="WowTexture" id="WowTexture_40"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
-atlas = SubResource("WowTexture_39")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
+atlas = SubResource("WowTexture_40")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_41"]
+[sub_resource type="WowTexture" id="WowTexture_42"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
-atlas = SubResource("WowTexture_41")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
+atlas = SubResource("WowTexture_42")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_43"]
+[sub_resource type="WowTexture" id="WowTexture_44"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
-atlas = SubResource("WowTexture_43")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_45"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_45"]
+[sub_resource type="WowTexture" id="WowTexture_46"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_46"]
-atlas = SubResource("WowTexture_45")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_46")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_47"]
+[sub_resource type="WowTexture" id="WowTexture_48"]
 file = "Interface\\Common\\Common-Input-Border.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
-atlas = SubResource("WowTexture_47")
+[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
+atlas = SubResource("WowTexture_48")
 region = Rect2(0, 0, 8, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
-atlas = SubResource("WowTexture_47")
+[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
+atlas = SubResource("WowTexture_48")
 region = Rect2(8, 0, 112, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
-atlas = SubResource("WowTexture_47")
+[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
+atlas = SubResource("WowTexture_48")
 region = Rect2(120, 0, 8, 20)
 
-[sub_resource type="WowTexture" id="WowTexture_51"]
+[sub_resource type="WowTexture" id="WowTexture_52"]
 file = "Interface\\Buttons\\UI-Slot-Background.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_52"]
-atlas = SubResource("WowTexture_51")
+[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
+atlas = SubResource("WowTexture_52")
 region = Rect2(0, 0, 41, 41)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
-atlas = SubResource("WowTexture_20")
+[sub_resource type="AtlasTexture" id="AtlasTexture_54"]
+atlas = SubResource("WowTexture_21")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_54"]
-atlas = SubResource("WowTexture_20")
+[sub_resource type="AtlasTexture" id="AtlasTexture_55"]
+atlas = SubResource("WowTexture_21")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_55"]
+[sub_resource type="WowTexture" id="WowTexture_56"]
 file = "Interface\\Buttons\\UI-RadioButton.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_56"]
-atlas = SubResource("WowTexture_55")
+[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
+atlas = SubResource("WowTexture_56")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
-atlas = SubResource("WowTexture_55")
+[sub_resource type="AtlasTexture" id="AtlasTexture_58"]
+atlas = SubResource("WowTexture_56")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_58"]
-atlas = SubResource("WowTexture_55")
+[sub_resource type="AtlasTexture" id="AtlasTexture_59"]
+atlas = SubResource("WowTexture_56")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_59"]
+[sub_resource type="WowTexture" id="WowTexture_60"]
 file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_60"]
-atlas = SubResource("WowTexture_59")
+[sub_resource type="AtlasTexture" id="AtlasTexture_61"]
+atlas = SubResource("WowTexture_60")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_61"]
+[sub_resource type="WowTexture" id="WowTexture_62"]
 file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_62"]
-atlas = SubResource("WowTexture_61")
+[sub_resource type="AtlasTexture" id="AtlasTexture_63"]
+atlas = SubResource("WowTexture_62")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_63"]
+[sub_resource type="WowTexture" id="WowTexture_64"]
 file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_64"]
-atlas = SubResource("WowTexture_63")
+[sub_resource type="AtlasTexture" id="AtlasTexture_65"]
+atlas = SubResource("WowTexture_64")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_65"]
+[sub_resource type="WowTexture" id="WowTexture_66"]
 file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_66"]
-atlas = SubResource("WowTexture_65")
+[sub_resource type="AtlasTexture" id="AtlasTexture_67"]
+atlas = SubResource("WowTexture_66")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_67"]
+[sub_resource type="WowTexture" id="WowTexture_68"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_68"]
+[sub_resource type="WowTexture" id="WowTexture_69"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_69"]
+[sub_resource type="WowTexture" id="WowTexture_70"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_70"]
+[sub_resource type="WowTexture" id="WowTexture_71"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-ActiveTab.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_71"]
-atlas = SubResource("WowTexture_70")
-region = Rect2(0, 0, 20, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_72"]
-atlas = SubResource("WowTexture_70")
-region = Rect2(20, 0, 88, 32)
+atlas = SubResource("WowTexture_71")
+region = Rect2(0, 0, 20, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_73"]
-atlas = SubResource("WowTexture_70")
-region = Rect2(108, 0, 20, 32)
-
-[sub_resource type="WowTexture" id="WowTexture_74"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_75"]
-atlas = SubResource("WowTexture_74")
-region = Rect2(0, 0, 20, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_76"]
-atlas = SubResource("WowTexture_74")
+atlas = SubResource("WowTexture_71")
 region = Rect2(20, 0, 88, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_77"]
-atlas = SubResource("WowTexture_74")
+[sub_resource type="AtlasTexture" id="AtlasTexture_74"]
+atlas = SubResource("WowTexture_71")
 region = Rect2(108, 0, 20, 32)
 
-[sub_resource type="WowTexture" id="WowTexture_78"]
+[sub_resource type="WowTexture" id="WowTexture_75"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76"]
+atlas = SubResource("WowTexture_75")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77"]
+atlas = SubResource("WowTexture_75")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78"]
+atlas = SubResource("WowTexture_75")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_79"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
 
 [node name="MailFrame" type="Control"]
@@ -348,9 +351,9 @@ mouse_filter = 2
 [node name="InboxTitleText" type="Label" parent="InboxFrame"]
 unique_name_in_owner = true
 offset_left = 86
-offset_top = 19
+offset_top = 17
 offset_right = 310
-offset_bottom = 33
+offset_bottom = 31
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 text = "Inbox"
@@ -372,6 +375,38 @@ theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="InboxTooMuchMail" type="Control" parent="InboxFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 38
+offset_right = 384
+offset_bottom = 70
+visible = false
+mouse_filter = 0
+
+[node name="InboxTooMuchMailText" type="Label" parent="InboxFrame/InboxTooMuchMail"]
+unique_name_in_owner = true
+offset_left = 208
+offset_top = 10
+offset_right = 208
+offset_bottom = 22
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Your inbox is full."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture" type="TextureRect" parent="InboxFrame/InboxTooMuchMail"]
+offset_left = 176
+offset_top = 2
+offset_right = 208
+offset_bottom = 34
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
 [node name="MailItem1" type="Control" parent="InboxFrame"]
 unique_name_in_owner = true
 offset_left = 28
@@ -386,7 +421,7 @@ offset_top = 0
 offset_right = 42
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="InboxFrame/MailItem1"]
@@ -395,7 +430,7 @@ offset_top = 0
 offset_right = 305
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_8")
+texture = SubResource("AtlasTexture_9")
 expand_mode = 1
 
 [node name="Texture3" type="ColorRect" parent="InboxFrame/MailItem1"]
@@ -448,7 +483,6 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 16
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -469,7 +503,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="MailItem1ButtonIcon" type="TextureRect" parent="InboxFrame/MailItem1/MailItem1Button"]
@@ -484,15 +518,37 @@ expand_mode = 1
 [node name="MailItem1ButtonCOD" type="Label" parent="InboxFrame/MailItem1/MailItem1Button"]
 unique_name_in_owner = true
 offset_left = 18.5
-offset_top = 25
+offset_top = 2
 offset_right = 18.5
-offset_bottom = 35
+offset_bottom = 12
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "C.O.D."
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MailItem1ButtonCODBackground" type="ColorRect" parent="InboxFrame/MailItem1/MailItem1Button"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 36
+offset_bottom = 14
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="MailItem1ButtonCount" type="Label" parent="InboxFrame/MailItem1/MailItem1Button"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="InboxFrame/MailItem1/MailItem1Button"]
@@ -502,9 +558,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_10")
+texture = SubResource("WowTexture_11")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="HighlightTexture" type="TextureRect" parent="InboxFrame/MailItem1/MailItem1Button"]
 offset_left = 0
@@ -513,9 +569,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_13")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="MailItem2" type="Control" parent="InboxFrame"]
 unique_name_in_owner = true
@@ -531,7 +587,7 @@ offset_top = 0
 offset_right = 42
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="InboxFrame/MailItem2"]
@@ -540,7 +596,7 @@ offset_top = 0
 offset_right = 305
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_8")
+texture = SubResource("AtlasTexture_9")
 expand_mode = 1
 
 [node name="Texture3" type="ColorRect" parent="InboxFrame/MailItem2"]
@@ -593,7 +649,6 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 16
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -614,7 +669,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="MailItem2ButtonIcon" type="TextureRect" parent="InboxFrame/MailItem2/MailItem2Button"]
@@ -629,15 +684,37 @@ expand_mode = 1
 [node name="MailItem2ButtonCOD" type="Label" parent="InboxFrame/MailItem2/MailItem2Button"]
 unique_name_in_owner = true
 offset_left = 18.5
-offset_top = 25
+offset_top = 2
 offset_right = 18.5
-offset_bottom = 35
+offset_bottom = 12
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "C.O.D."
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MailItem2ButtonCODBackground" type="ColorRect" parent="InboxFrame/MailItem2/MailItem2Button"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 36
+offset_bottom = 14
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="MailItem2ButtonCount" type="Label" parent="InboxFrame/MailItem2/MailItem2Button"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="InboxFrame/MailItem2/MailItem2Button"]
@@ -647,9 +724,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_10")
+texture = SubResource("WowTexture_11")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="HighlightTexture" type="TextureRect" parent="InboxFrame/MailItem2/MailItem2Button"]
 offset_left = 0
@@ -658,9 +735,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_13")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="MailItem3" type="Control" parent="InboxFrame"]
 unique_name_in_owner = true
@@ -676,7 +753,7 @@ offset_top = 0
 offset_right = 42
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="InboxFrame/MailItem3"]
@@ -685,7 +762,7 @@ offset_top = 0
 offset_right = 305
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_8")
+texture = SubResource("AtlasTexture_9")
 expand_mode = 1
 
 [node name="Texture3" type="ColorRect" parent="InboxFrame/MailItem3"]
@@ -738,7 +815,6 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 16
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -759,7 +835,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="MailItem3ButtonIcon" type="TextureRect" parent="InboxFrame/MailItem3/MailItem3Button"]
@@ -774,15 +850,37 @@ expand_mode = 1
 [node name="MailItem3ButtonCOD" type="Label" parent="InboxFrame/MailItem3/MailItem3Button"]
 unique_name_in_owner = true
 offset_left = 18.5
-offset_top = 25
+offset_top = 2
 offset_right = 18.5
-offset_bottom = 35
+offset_bottom = 12
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "C.O.D."
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MailItem3ButtonCODBackground" type="ColorRect" parent="InboxFrame/MailItem3/MailItem3Button"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 36
+offset_bottom = 14
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="MailItem3ButtonCount" type="Label" parent="InboxFrame/MailItem3/MailItem3Button"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="InboxFrame/MailItem3/MailItem3Button"]
@@ -792,9 +890,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_10")
+texture = SubResource("WowTexture_11")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="HighlightTexture" type="TextureRect" parent="InboxFrame/MailItem3/MailItem3Button"]
 offset_left = 0
@@ -803,9 +901,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_13")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="MailItem4" type="Control" parent="InboxFrame"]
 unique_name_in_owner = true
@@ -821,7 +919,7 @@ offset_top = 0
 offset_right = 42
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="InboxFrame/MailItem4"]
@@ -830,7 +928,7 @@ offset_top = 0
 offset_right = 305
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_8")
+texture = SubResource("AtlasTexture_9")
 expand_mode = 1
 
 [node name="Texture3" type="ColorRect" parent="InboxFrame/MailItem4"]
@@ -883,7 +981,6 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 16
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -904,7 +1001,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="MailItem4ButtonIcon" type="TextureRect" parent="InboxFrame/MailItem4/MailItem4Button"]
@@ -919,15 +1016,37 @@ expand_mode = 1
 [node name="MailItem4ButtonCOD" type="Label" parent="InboxFrame/MailItem4/MailItem4Button"]
 unique_name_in_owner = true
 offset_left = 18.5
-offset_top = 25
+offset_top = 2
 offset_right = 18.5
-offset_bottom = 35
+offset_bottom = 12
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "C.O.D."
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MailItem4ButtonCODBackground" type="ColorRect" parent="InboxFrame/MailItem4/MailItem4Button"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 36
+offset_bottom = 14
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="MailItem4ButtonCount" type="Label" parent="InboxFrame/MailItem4/MailItem4Button"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="InboxFrame/MailItem4/MailItem4Button"]
@@ -937,9 +1056,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_10")
+texture = SubResource("WowTexture_11")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="HighlightTexture" type="TextureRect" parent="InboxFrame/MailItem4/MailItem4Button"]
 offset_left = 0
@@ -948,9 +1067,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_13")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="MailItem5" type="Control" parent="InboxFrame"]
 unique_name_in_owner = true
@@ -966,7 +1085,7 @@ offset_top = 0
 offset_right = 42
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="InboxFrame/MailItem5"]
@@ -975,7 +1094,7 @@ offset_top = 0
 offset_right = 305
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_8")
+texture = SubResource("AtlasTexture_9")
 expand_mode = 1
 
 [node name="Texture3" type="ColorRect" parent="InboxFrame/MailItem5"]
@@ -1028,7 +1147,6 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 16
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1049,7 +1167,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="MailItem5ButtonIcon" type="TextureRect" parent="InboxFrame/MailItem5/MailItem5Button"]
@@ -1064,15 +1182,37 @@ expand_mode = 1
 [node name="MailItem5ButtonCOD" type="Label" parent="InboxFrame/MailItem5/MailItem5Button"]
 unique_name_in_owner = true
 offset_left = 18.5
-offset_top = 25
+offset_top = 2
 offset_right = 18.5
-offset_bottom = 35
+offset_bottom = 12
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "C.O.D."
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MailItem5ButtonCODBackground" type="ColorRect" parent="InboxFrame/MailItem5/MailItem5Button"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 36
+offset_bottom = 14
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="MailItem5ButtonCount" type="Label" parent="InboxFrame/MailItem5/MailItem5Button"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="InboxFrame/MailItem5/MailItem5Button"]
@@ -1082,9 +1222,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_10")
+texture = SubResource("WowTexture_11")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="HighlightTexture" type="TextureRect" parent="InboxFrame/MailItem5/MailItem5Button"]
 offset_left = 0
@@ -1093,9 +1233,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_13")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="MailItem6" type="Control" parent="InboxFrame"]
 unique_name_in_owner = true
@@ -1111,7 +1251,7 @@ offset_top = 0
 offset_right = 42
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="InboxFrame/MailItem6"]
@@ -1120,7 +1260,7 @@ offset_top = 0
 offset_right = 305
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_8")
+texture = SubResource("AtlasTexture_9")
 expand_mode = 1
 
 [node name="Texture3" type="ColorRect" parent="InboxFrame/MailItem6"]
@@ -1173,7 +1313,6 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 16
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1194,7 +1333,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="MailItem6ButtonIcon" type="TextureRect" parent="InboxFrame/MailItem6/MailItem6Button"]
@@ -1209,15 +1348,37 @@ expand_mode = 1
 [node name="MailItem6ButtonCOD" type="Label" parent="InboxFrame/MailItem6/MailItem6Button"]
 unique_name_in_owner = true
 offset_left = 18.5
-offset_top = 25
+offset_top = 2
 offset_right = 18.5
-offset_bottom = 35
+offset_bottom = 12
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "C.O.D."
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MailItem6ButtonCODBackground" type="ColorRect" parent="InboxFrame/MailItem6/MailItem6Button"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 36
+offset_bottom = 14
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="MailItem6ButtonCount" type="Label" parent="InboxFrame/MailItem6/MailItem6Button"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="InboxFrame/MailItem6/MailItem6Button"]
@@ -1227,9 +1388,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_10")
+texture = SubResource("WowTexture_11")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="HighlightTexture" type="TextureRect" parent="InboxFrame/MailItem6/MailItem6Button"]
 offset_left = 0
@@ -1238,9 +1399,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_13")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="MailItem7" type="Control" parent="InboxFrame"]
 unique_name_in_owner = true
@@ -1256,7 +1417,7 @@ offset_top = 0
 offset_right = 42
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
+texture = SubResource("AtlasTexture_8")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="InboxFrame/MailItem7"]
@@ -1265,7 +1426,7 @@ offset_top = 0
 offset_right = 305
 offset_bottom = 48
 mouse_filter = 2
-texture = SubResource("AtlasTexture_8")
+texture = SubResource("AtlasTexture_9")
 expand_mode = 1
 
 [node name="Texture3" type="ColorRect" parent="InboxFrame/MailItem7"]
@@ -1318,7 +1479,6 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 16
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1339,7 +1499,7 @@ offset_top = -13.5
 offset_right = 50.5
 offset_bottom = 50.5
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="MailItem7ButtonIcon" type="TextureRect" parent="InboxFrame/MailItem7/MailItem7Button"]
@@ -1354,15 +1514,37 @@ expand_mode = 1
 [node name="MailItem7ButtonCOD" type="Label" parent="InboxFrame/MailItem7/MailItem7Button"]
 unique_name_in_owner = true
 offset_left = 18.5
-offset_top = 25
+offset_top = 2
 offset_right = 18.5
-offset_bottom = 35
+offset_bottom = 12
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "C.O.D."
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MailItem7ButtonCODBackground" type="ColorRect" parent="InboxFrame/MailItem7/MailItem7Button"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 2
+offset_right = 36
+offset_bottom = 14
+mouse_filter = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="MailItem7ButtonCount" type="Label" parent="InboxFrame/MailItem7/MailItem7Button"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CheckedTexture" type="TextureRect" parent="InboxFrame/MailItem7/MailItem7Button"]
@@ -1372,9 +1554,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_10")
+texture = SubResource("WowTexture_11")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="HighlightTexture" type="TextureRect" parent="InboxFrame/MailItem7/MailItem7Button"]
 offset_left = 0
@@ -1383,9 +1565,9 @@ offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_13")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="InboxPrevPageButton" type="TextureButton" parent="InboxFrame"]
 unique_name_in_owner = true
@@ -1402,7 +1584,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_13")
+texture = SubResource("WowTexture_14")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="InboxFrame/InboxPrevPageButton"]
@@ -1412,7 +1594,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_14")
+texture = SubResource("WowTexture_15")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="InboxFrame/InboxPrevPageButton"]
@@ -1422,7 +1604,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_15")
+texture = SubResource("WowTexture_16")
 expand_mode = 1
 
 [node name="FontString" type="Label" parent="InboxFrame/InboxPrevPageButton"]
@@ -1445,9 +1627,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_17")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="InboxNextPageButton" type="TextureButton" parent="InboxFrame"]
 unique_name_in_owner = true
@@ -1464,7 +1646,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_18")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="InboxFrame/InboxNextPageButton"]
@@ -1474,7 +1656,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_19")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="InboxFrame/InboxNextPageButton"]
@@ -1484,7 +1666,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_19")
+texture = SubResource("WowTexture_20")
 expand_mode = 1
 
 [node name="FontString" type="Label" parent="InboxFrame/InboxNextPageButton"]
@@ -1507,9 +1689,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_17")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="SendMailFrame" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1556,7 +1738,7 @@ offset_right = 395
 offset_bottom = 11
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_21")
+texture = SubResource("AtlasTexture_22")
 expand_mode = 1
 
 [node name="SendMailHorizontalBarLeft" type="TextureRect" parent="SendMailFrame"]
@@ -1566,7 +1748,7 @@ offset_top = 350
 offset_right = 271
 offset_bottom = 366
 mouse_filter = 2
-texture = SubResource("AtlasTexture_23")
+texture = SubResource("AtlasTexture_24")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="SendMailFrame"]
@@ -1575,7 +1757,26 @@ offset_top = 350
 offset_right = 346
 offset_bottom = 366
 mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="SendMailHorizontalBarLeft2" type="TextureRect" parent="SendMailFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 251
+offset_right = 271
+offset_bottom = 267
+mouse_filter = 2
 texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="SendMailFrame"]
+offset_left = 271
+offset_top = 251
+offset_right = 346
+offset_bottom = 267
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
 expand_mode = 1
 
 [node name="SendMailScrollFrame" type="Control" parent="SendMailFrame"]
@@ -1587,7 +1788,7 @@ offset_right = 317
 offset_bottom = 354
 mouse_filter = 0
 
-[node name="StationeryBackgroundLeft" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame"]
+[node name="SendStationeryBackgroundLeft" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1596,7 +1797,7 @@ offset_bottom = 256
 mouse_filter = 2
 expand_mode = 1
 
-[node name="StationeryBackgroundRight" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame"]
+[node name="SendStationeryBackgroundRight" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame"]
 unique_name_in_owner = true
 offset_left = 252
 offset_top = 0
@@ -1605,22 +1806,23 @@ offset_bottom = 256
 mouse_filter = 2
 expand_mode = 1
 
-[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame"]
+[node name="SendScrollBarBackgroundTop" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame"]
+unique_name_in_owner = true
 offset_left = 294
 offset_top = -5
 offset_right = 325
 offset_bottom = 251
 mouse_filter = 2
-texture = SubResource("AtlasTexture_26")
+texture = SubResource("AtlasTexture_27")
 expand_mode = 1
 
-[node name="Texture2" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame"]
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame"]
 offset_left = 294
 offset_top = 153
 offset_right = 325
 offset_bottom = 259
 mouse_filter = 2
-texture = SubResource("AtlasTexture_27")
+texture = SubResource("AtlasTexture_28")
 expand_mode = 1
 
 [node name="SendMailScrollFrameScrollBar" type="VSlider" parent="SendMailFrame/SendMailScrollFrame"]
@@ -1630,111 +1832,111 @@ offset_top = 16
 offset_right = 318
 offset_bottom = 241
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("AtlasTexture_29")
-theme_override_icons/grabber_highlight = SubResource("AtlasTexture_29")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_30")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_30")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_30")
+theme_override_icons/grabber = SubResource("AtlasTexture_30")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_30")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_31")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_31")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_31")
 max_value = 0.0
 step = 0.0
 
 [node name="SendMailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar/SendMailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar/SendMailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_34")
+texture = SubResource("AtlasTexture_35")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar/SendMailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_36")
+texture = SubResource("AtlasTexture_37")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar/SendMailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_39")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="SendMailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 225
-offset_right = 16
+offset_right = 17
 offset_bottom = 241
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar/SendMailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_40")
+texture = SubResource("AtlasTexture_41")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar/SendMailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_43")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar/SendMailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_44")
+texture = SubResource("AtlasTexture_45")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameScrollBar/SendMailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_46")
+texture = SubResource("AtlasTexture_47")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="SendMailScrollFrameClip" type="Control" parent="SendMailFrame/SendMailScrollFrame"]
 layout_mode = 1
@@ -1752,33 +1954,33 @@ offset_right = 300
 offset_bottom = 255
 mouse_filter = 0
 
-[node name="SendMailBodyEditBox" type="LineEdit" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameClip/SendMailScrollChildFrame"]
+[node name="SendMailBodyEditBox" type="TextEdit" parent="SendMailFrame/SendMailScrollFrame/SendMailScrollFrameClip/SendMailScrollChildFrame"]
 unique_name_in_owner = true
 offset_left = 20
 offset_top = 10
 offset_right = 290
 offset_bottom = 210
 mouse_filter = 0
-theme_type_variation = &"MailTextFontNormal"
-max_length = 500
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_31")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_31")
+wrap_mode = 1
 caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_30")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_30")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_30")
+scroll_fit_content_height = true
 
 [node name="SendMailNameEditBox" type="LineEdit" parent="SendMailFrame"]
 unique_name_in_owner = true
 offset_left = 105
 offset_top = 46
-offset_right = 227
+offset_right = 214
 offset_bottom = 66
 mouse_filter = 0
 theme_type_variation = &"ChatFontNormal"
 max_length = 12
 caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_30")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_30")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_30")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_31")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_31")
 
 [node name="FontString" type="Label" parent="SendMailFrame/SendMailNameEditBox"]
 offset_left = -12
@@ -1802,7 +2004,7 @@ offset_right = 0
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_48")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
 [node name="SendMailNameEditBoxMiddle" type="TextureRect" parent="SendMailFrame/SendMailNameEditBox"]
@@ -1813,7 +2015,7 @@ offset_right = 100
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_50")
 expand_mode = 1
 
 [node name="SendMailNameEditBoxRight" type="TextureRect" parent="SendMailFrame/SendMailNameEditBox"]
@@ -1824,14 +2026,14 @@ offset_right = 108
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_50")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
 
 [node name="SendMailCostMoneyFrame" parent="SendMailFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
-offset_left = 210
+offset_left = 220
 offset_top = 48
-offset_right = 338
+offset_right = 348
 offset_bottom = 61
 
 [node name="FontString" type="Label" parent="SendMailFrame/SendMailCostMoneyFrame"]
@@ -1851,15 +2053,15 @@ vertical_alignment = 1
 unique_name_in_owner = true
 offset_left = 105
 offset_top = 69
-offset_right = 342
+offset_right = 325
 offset_bottom = 89
 mouse_filter = 0
 theme_type_variation = &"ChatFontNormal"
 max_length = 64
 caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_30")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_30")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_30")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_31")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_31")
 
 [node name="FontString" type="Label" parent="SendMailFrame/SendMailSubjectEditBox"]
 offset_left = -12
@@ -1883,7 +2085,7 @@ offset_right = 0
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_48")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
 [node name="SendMailSubjectEditBoxMiddle" type="TextureRect" parent="SendMailFrame/SendMailSubjectEditBox"]
@@ -1894,7 +2096,7 @@ offset_right = 221
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_50")
 expand_mode = 1
 
 [node name="SendMailSubjectEditBoxRight" type="TextureRect" parent="SendMailFrame/SendMailSubjectEditBox"]
@@ -1905,42 +2107,28 @@ offset_right = 229
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_50")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
 
-[node name="SendMailPackageButton" type="TextureButton" parent="SendMailFrame"]
+[node name="SendMailAttachment1" type="TextureButton" parent="SendMailFrame"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 30
-offset_top = 368
-offset_right = 67
-offset_bottom = 405
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
 ignore_texture_size = true
 
-[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton"]
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment1"]
 offset_left = -2
 offset_top = -2
 offset_right = 37
 offset_bottom = 37
 mouse_filter = 2
-texture = SubResource("AtlasTexture_52")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
-[node name="SendMailMoneyText" type="Label" parent="SendMailFrame/SendMailPackageButton"]
-unique_name_in_owner = true
-offset_left = 49
-offset_top = 5
-offset_right = 49
-offset_bottom = 15
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-text = "Send Money"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SendMailPackageButtonCount" type="Label" parent="SendMailFrame/SendMailPackageButton"]
+[node name="SendMailAttachment1Count" type="Label" parent="SendMailFrame/SendMailAttachment1"]
 unique_name_in_owner = true
 offset_left = 32
 offset_top = 21
@@ -1953,26 +2141,678 @@ theme_type_variation = &"NumberFontNormal"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton"]
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment1"]
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_13")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
-[node name="SendMailMoney" type="Control" parent="SendMailFrame/SendMailPackageButton"]
+[node name="SendMailAttachment2" type="TextureButton" parent="SendMailFrame"]
 unique_name_in_owner = true
-offset_left = 52
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment2"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment2Count" type="Label" parent="SendMailFrame/SendMailAttachment2"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment2"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment3" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment3"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment3Count" type="Label" parent="SendMailFrame/SendMailAttachment3"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment3"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment4" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment4"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment4Count" type="Label" parent="SendMailFrame/SendMailAttachment4"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment4"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment5" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment5"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment5Count" type="Label" parent="SendMailFrame/SendMailAttachment5"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment5"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment6" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment6"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment6Count" type="Label" parent="SendMailFrame/SendMailAttachment6"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment6"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment7" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment7"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment7Count" type="Label" parent="SendMailFrame/SendMailAttachment7"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment7"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment8" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment8"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment8Count" type="Label" parent="SendMailFrame/SendMailAttachment8"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment8"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment9" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment9"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment9Count" type="Label" parent="SendMailFrame/SendMailAttachment9"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment9"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment10" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment10"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment10Count" type="Label" parent="SendMailFrame/SendMailAttachment10"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment10"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment11" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment11"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment11Count" type="Label" parent="SendMailFrame/SendMailAttachment11"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment11"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment12" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment12"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment12Count" type="Label" parent="SendMailFrame/SendMailAttachment12"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment12"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment13" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment13"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment13Count" type="Label" parent="SendMailFrame/SendMailAttachment13"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment13"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment14" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment14"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment14Count" type="Label" parent="SendMailFrame/SendMailAttachment14"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment14"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment15" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment15"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment15Count" type="Label" parent="SendMailFrame/SendMailAttachment15"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment15"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailAttachment16" type="TextureButton" parent="SendMailFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+ignore_texture_size = true
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailAttachment16"]
+offset_left = -2
+offset_top = -2
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+texture = SubResource("AtlasTexture_53")
+expand_mode = 1
+
+[node name="SendMailAttachment16Count" type="Label" parent="SendMailFrame/SendMailAttachment16"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 21
+offset_right = 32
+offset_bottom = 35
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailAttachment16"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailMoneyButton" type="Control" parent="SendMailFrame"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 365
+offset_right = 67
+offset_bottom = 402
+mouse_filter = 2
+
+[node name="SendMailMoneyText" type="Label" parent="SendMailFrame/SendMailMoneyButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Send Money"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SendMailMoney" type="Control" parent="SendMailFrame/SendMailMoneyButton"]
+unique_name_in_owner = true
+offset_left = 5
 offset_top = 18
-offset_right = 228
+offset_right = 181
 offset_bottom = 36
 mouse_filter = 2
 
-[node name="SendMailMoneyGold" type="LineEdit" parent="SendMailFrame/SendMailPackageButton/SendMailMoney"]
+[node name="SendMailMoneyGold" type="LineEdit" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
@@ -1981,11 +2821,11 @@ offset_bottom = 20
 mouse_filter = 0
 theme_type_variation = &"ChatFontNormal"
 caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_30")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_30")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_30")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_31")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_31")
 
-[node name="SendMailMoneyGoldLeft" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneyGold"]
+[node name="SendMailMoneyGoldLeft" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyGold"]
 unique_name_in_owner = true
 offset_left = -5
 offset_top = 0
@@ -1993,10 +2833,10 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_48")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
-[node name="SendMailMoneyGoldRight" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneyGold"]
+[node name="SendMailMoneyGoldRight" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyGold"]
 unique_name_in_owner = true
 offset_left = 50
 offset_top = 0
@@ -2004,10 +2844,10 @@ offset_right = 58
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_50")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
 
-[node name="SendMailMoneyGoldMiddle" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneyGold"]
+[node name="SendMailMoneyGoldMiddle" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyGold"]
 unique_name_in_owner = true
 offset_left = 3
 offset_top = 0
@@ -2015,20 +2855,34 @@ offset_right = 50
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_50")
 expand_mode = 1
 
-[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneyGold"]
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyGold"]
 offset_left = 60
 offset_top = 3.5
 offset_right = 73
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_21")
+texture = SubResource("AtlasTexture_22")
 expand_mode = 1
 
-[node name="SendMailMoneySilver" type="LineEdit" parent="SendMailFrame/SendMailPackageButton/SendMailMoney"]
+[node name="FontString" type="Label" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyGold"]
+offset_left = 60
+offset_top = 1
+offset_right = 78
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "g"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SendMailMoneySilver" type="LineEdit" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney"]
 unique_name_in_owner = true
 offset_left = 84
 offset_top = 0
@@ -2038,11 +2892,11 @@ mouse_filter = 0
 theme_type_variation = &"ChatFontNormal"
 max_length = 2
 caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_30")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_30")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_30")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_31")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_31")
 
-[node name="SendMailMoneySilverLeft" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneySilver"]
+[node name="SendMailMoneySilverLeft" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneySilver"]
 unique_name_in_owner = true
 offset_left = -5
 offset_top = 0
@@ -2050,10 +2904,10 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_48")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
-[node name="SendMailMoneySilverRight" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneySilver"]
+[node name="SendMailMoneySilverRight" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneySilver"]
 unique_name_in_owner = true
 offset_left = 12
 offset_top = 0
@@ -2061,10 +2915,10 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_50")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
 
-[node name="SendMailMoneySilverMiddle" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneySilver"]
+[node name="SendMailMoneySilverMiddle" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneySilver"]
 unique_name_in_owner = true
 offset_left = 3
 offset_top = 0
@@ -2072,67 +2926,10 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
-expand_mode = 1
-
-[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneySilver"]
-offset_left = 22
-offset_top = 3.5
-offset_right = 35
-offset_bottom = 16.5
-show_behind_parent = true
-mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
-expand_mode = 1
-
-[node name="SendMailMoneyCopper" type="LineEdit" parent="SendMailFrame/SendMailPackageButton/SendMailMoney"]
-unique_name_in_owner = true
-offset_left = 130
-offset_top = 0
-offset_right = 160
-offset_bottom = 20
-mouse_filter = 0
-theme_type_variation = &"ChatFontNormal"
-max_length = 2
-caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_30")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_30")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_30")
-
-[node name="SendMailMoneyCopperLeft" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneyCopper"]
-unique_name_in_owner = true
-offset_left = -5
-offset_top = 0
-offset_right = 3
-offset_bottom = 20
-show_behind_parent = true
-mouse_filter = 2
-texture = SubResource("AtlasTexture_48")
-expand_mode = 1
-
-[node name="SendMailMoneyCopperRight" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneyCopper"]
-unique_name_in_owner = true
-offset_left = 12
-offset_top = 0
-offset_right = 20
-offset_bottom = 20
-show_behind_parent = true
-mouse_filter = 2
 texture = SubResource("AtlasTexture_50")
 expand_mode = 1
 
-[node name="SendMailMoneyCopperMiddle" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneyCopper"]
-unique_name_in_owner = true
-offset_left = 3
-offset_top = 0
-offset_right = 12
-offset_bottom = 20
-show_behind_parent = true
-mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
-expand_mode = 1
-
-[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailMoney/SendMailMoneyCopper"]
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneySilver"]
 offset_left = 22
 offset_top = 3.5
 offset_right = 35
@@ -2142,16 +2939,101 @@ mouse_filter = 2
 texture = SubResource("AtlasTexture_54")
 expand_mode = 1
 
-[node name="SendMailSendMoneyButton" type="TextureButton" parent="SendMailFrame/SendMailPackageButton"]
+[node name="FontString" type="Label" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneySilver"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "s"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SendMailMoneyCopper" type="LineEdit" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney"]
+unique_name_in_owner = true
+offset_left = 130
+offset_top = 0
+offset_right = 160
+offset_bottom = 20
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+max_length = 2
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_31")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_31")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_31")
+
+[node name="SendMailMoneyCopperLeft" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyCopper"]
+unique_name_in_owner = true
+offset_left = -5
+offset_top = 0
+offset_right = 3
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_49")
+expand_mode = 1
+
+[node name="SendMailMoneyCopperRight" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyCopper"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="SendMailMoneyCopperMiddle" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyCopper"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 12
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyCopper"]
+offset_left = 22
+offset_top = 3.5
+offset_right = 35
+offset_bottom = 16.5
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_55")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="SendMailFrame/SendMailMoneyButton/SendMailMoney/SendMailMoneyCopper"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "c"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SendMailSendMoneyButton" type="TextureButton" parent="SendMailFrame/SendMailMoneyButton"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 222
+offset_left = 181
 offset_top = 6
-offset_right = 238
+offset_right = 197
 offset_bottom = 22
 ignore_texture_size = true
 
-[node name="SendMailSendMoneyButtonText" type="Label" parent="SendMailFrame/SendMailPackageButton/SendMailSendMoneyButton"]
+[node name="SendMailSendMoneyButtonText" type="Label" parent="SendMailFrame/SendMailMoneyButton/SendMailSendMoneyButton"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 3
@@ -2164,26 +3046,16 @@ theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NormalTexture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailSendMoneyButton"]
+[node name="NormalTexture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailSendMoneyButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 16
 offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
-expand_mode = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailSendMoneyButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailSendMoneyButton"]
+[node name="CheckedTexture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailSendMoneyButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 16
@@ -2192,18 +3064,28 @@ visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_58")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
 
-[node name="SendMailCODButton" type="TextureButton" parent="SendMailFrame/SendMailPackageButton"]
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailSendMoneyButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_59")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailCODButton" type="TextureButton" parent="SendMailFrame/SendMailMoneyButton"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 222
+offset_left = 181
 offset_top = 21
-offset_right = 238
+offset_right = 197
 offset_bottom = 37
 ignore_texture_size = true
 
-[node name="SendMailCODButtonText" type="Label" parent="SendMailFrame/SendMailPackageButton/SendMailCODButton"]
+[node name="SendMailCODButtonText" type="Label" parent="SendMailFrame/SendMailMoneyButton/SendMailCODButton"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 3
@@ -2216,26 +3098,16 @@ theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NormalTexture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailCODButton"]
+[node name="NormalTexture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailCODButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 16
 offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
-expand_mode = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailCODButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
-[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailPackageButton/SendMailCODButton"]
+[node name="CheckedTexture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailCODButton"]
 offset_left = 0
 offset_top = 0
 offset_right = 16
@@ -2244,7 +3116,17 @@ visible = false
 mouse_filter = 2
 texture = SubResource("AtlasTexture_58")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+
+[node name="HighlightTexture" type="TextureRect" parent="SendMailFrame/SendMailMoneyButton/SendMailCODButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_59")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="SendMailMoneyFrame" parent="SendMailFrame" instance=ExtResource("4")]
 unique_name_in_owner = true
@@ -2268,7 +3150,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_60")
+texture = SubResource("AtlasTexture_61")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SendMailFrame/SendMailCancelButton"]
@@ -2278,7 +3160,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_62")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SendMailFrame/SendMailCancelButton"]
@@ -2288,7 +3170,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_64")
+texture = SubResource("AtlasTexture_65")
 expand_mode = 1
 
 [node name="SendMailCancelButtonText" type="Label" parent="SendMailFrame/SendMailCancelButton"]
@@ -2298,7 +3180,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2310,9 +3191,9 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_66")
+texture = SubResource("AtlasTexture_67")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="SendMailMailButton" type="TextureButton" parent="SendMailFrame"]
 unique_name_in_owner = true
@@ -2329,7 +3210,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_60")
+texture = SubResource("AtlasTexture_61")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="SendMailFrame/SendMailMailButton"]
@@ -2339,7 +3220,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_62")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="SendMailFrame/SendMailMailButton"]
@@ -2349,7 +3230,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_64")
+texture = SubResource("AtlasTexture_65")
 expand_mode = 1
 
 [node name="SendMailMailButtonText" type="Label" parent="SendMailFrame/SendMailMailButton"]
@@ -2359,7 +3240,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Send"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2371,9 +3251,27 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_66")
+texture = SubResource("AtlasTexture_67")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="SendMailFrameLockSendMail" type="Control" parent="SendMailFrame"]
+unique_name_in_owner = true
+offset_left = -15
+offset_top = -5
+offset_right = 347
+offset_bottom = 434
+visible = false
+mouse_filter = 0
+
+[node name="SendMailFrameLockSendMailBlackFilter" type="ColorRect" parent="SendMailFrame/SendMailFrameLockSendMail"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 362
+offset_bottom = 439
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
 
 [node name="InboxCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -2393,7 +3291,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_67")
+texture = SubResource("WowTexture_68")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="InboxCloseButton"]
@@ -2403,7 +3301,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_68")
+texture = SubResource("WowTexture_69")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="InboxCloseButton"]
@@ -2413,9 +3311,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_69")
+texture = SubResource("WowTexture_70")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="MailFrameTab1" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -2425,7 +3323,7 @@ anchor_top = 1
 anchor_bottom = 1
 offset_left = 24
 offset_top = -76
-offset_right = 139
+offset_right = 34
 offset_bottom = -44
 ignore_texture_size = true
 
@@ -2436,7 +3334,7 @@ offset_top = -5
 offset_right = 20
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_71")
+texture = SubResource("AtlasTexture_72")
 expand_mode = 1
 
 [node name="MailFrameTab1MiddleDisabled" type="TextureRect" parent="MailFrameTab1"]
@@ -2446,7 +3344,7 @@ offset_top = -5
 offset_right = 108
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_72")
+texture = SubResource("AtlasTexture_73")
 expand_mode = 1
 
 [node name="MailFrameTab1RightDisabled" type="TextureRect" parent="MailFrameTab1"]
@@ -2456,7 +3354,7 @@ offset_top = -5
 offset_right = 128
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_73")
+texture = SubResource("AtlasTexture_74")
 expand_mode = 1
 
 [node name="MailFrameTab1Left" type="TextureRect" parent="MailFrameTab1"]
@@ -2466,7 +3364,7 @@ offset_top = 0
 offset_right = 20
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_76")
 expand_mode = 1
 
 [node name="MailFrameTab1Middle" type="TextureRect" parent="MailFrameTab1"]
@@ -2476,7 +3374,7 @@ offset_top = 0
 offset_right = 108
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_77")
 expand_mode = 1
 
 [node name="MailFrameTab1Right" type="TextureRect" parent="MailFrameTab1"]
@@ -2486,33 +3384,32 @@ offset_top = 0
 offset_right = 128
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_77")
+texture = SubResource("AtlasTexture_78")
 expand_mode = 1
 
 [node name="MailFrameTab1Text" type="Label" parent="MailFrameTab1"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Inbox"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MailFrameTab1"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_78")
+texture = SubResource("WowTexture_79")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")
 
 [node name="MailFrameTab2" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -2520,9 +3417,9 @@ script = ExtResource("2")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 131
+offset_left = 26
 offset_top = -76
-offset_right = 246
+offset_right = 36
 offset_bottom = -44
 ignore_texture_size = true
 
@@ -2533,7 +3430,7 @@ offset_top = -5
 offset_right = 20
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_71")
+texture = SubResource("AtlasTexture_72")
 expand_mode = 1
 
 [node name="MailFrameTab2MiddleDisabled" type="TextureRect" parent="MailFrameTab2"]
@@ -2543,7 +3440,7 @@ offset_top = -5
 offset_right = 108
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_72")
+texture = SubResource("AtlasTexture_73")
 expand_mode = 1
 
 [node name="MailFrameTab2RightDisabled" type="TextureRect" parent="MailFrameTab2"]
@@ -2553,7 +3450,7 @@ offset_top = -5
 offset_right = 128
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_73")
+texture = SubResource("AtlasTexture_74")
 expand_mode = 1
 
 [node name="MailFrameTab2Left" type="TextureRect" parent="MailFrameTab2"]
@@ -2563,7 +3460,7 @@ offset_top = 0
 offset_right = 20
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_76")
 expand_mode = 1
 
 [node name="MailFrameTab2Middle" type="TextureRect" parent="MailFrameTab2"]
@@ -2573,7 +3470,7 @@ offset_top = 0
 offset_right = 108
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_77")
 expand_mode = 1
 
 [node name="MailFrameTab2Right" type="TextureRect" parent="MailFrameTab2"]
@@ -2583,30 +3480,29 @@ offset_top = 0
 offset_right = 128
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_77")
+texture = SubResource("AtlasTexture_78")
 expand_mode = 1
 
 [node name="MailFrameTab2Text" type="Label" parent="MailFrameTab2"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Send Mail"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MailFrameTab2"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_78")
+texture = SubResource("WowTexture_79")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_11")
+material = SubResource("CanvasItemMaterial_12")

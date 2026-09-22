@@ -49,35 +49,35 @@ file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14"]
 atlas = SubResource("WowTexture_13")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 4, 19.2, 24)
 
 [sub_resource type="WowTexture" id="WowTexture_15"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16"]
 atlas = SubResource("WowTexture_15")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_17"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_18"]
 atlas = SubResource("WowTexture_17")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_19"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20"]
 atlas = SubResource("WowTexture_19")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_21"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22"]
 atlas = SubResource("WowTexture_21")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_23"]
 blend_mode = 1
@@ -87,64 +87,68 @@ file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25"]
 atlas = SubResource("WowTexture_24")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_26"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27"]
 atlas = SubResource("WowTexture_26")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_29"]
 atlas = SubResource("WowTexture_28")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_30"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
 atlas = SubResource("WowTexture_30")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
 file = "Interface\\Buttons\\UI-EmptySlot-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_33"]
-file = "Interface\\Buttons\\CheckButtonHilight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_32")
+region = Rect2(9, 9, 45, 45)
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
-file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+file = "Interface\\Buttons\\CheckButtonHilight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\ButtonHilight-Square.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
 file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
-atlas = SubResource("WowTexture_35")
+[sub_resource type="AtlasTexture" id="AtlasTexture_37"]
+atlas = SubResource("WowTexture_36")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_37"]
+[sub_resource type="WowTexture" id="WowTexture_38"]
 file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
-atlas = SubResource("WowTexture_37")
+[sub_resource type="AtlasTexture" id="AtlasTexture_39"]
+atlas = SubResource("WowTexture_38")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_39"]
+[sub_resource type="WowTexture" id="WowTexture_40"]
 file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
-atlas = SubResource("WowTexture_39")
+[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
+atlas = SubResource("WowTexture_40")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_41"]
+[sub_resource type="WowTexture" id="WowTexture_42"]
 file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
-atlas = SubResource("WowTexture_41")
+[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
+atlas = SubResource("WowTexture_42")
 region = Rect2(0, 0, 80, 22)
 
 [node name="MacroPopupFrame" type="Control"]
@@ -228,7 +232,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 offset_left = 29
 offset_top = 35
-offset_right = 229
+offset_right = 211
 offset_bottom = 55
 mouse_filter = 0
 theme_type_variation = &"ChatFontNormal"
@@ -319,16 +323,16 @@ step = 0.0
 [node name="MacroPopupScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_16")
@@ -337,7 +341,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -347,7 +351,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -357,7 +361,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -368,16 +372,16 @@ material = SubResource("CanvasItemMaterial_23")
 [node name="MacroPopupScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 0
+offset_left = -1
 offset_top = 163
-offset_right = 16
+offset_right = 17
 offset_bottom = 179
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_25")
@@ -386,7 +390,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -396,7 +400,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -406,7 +410,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="MacroPopupScrollFrame/MacroPopupScrollFrameScrollBar/MacroPopupScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -440,12 +444,12 @@ offset_bottom = 121
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton1"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton1"]
@@ -476,7 +480,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -487,7 +491,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -501,12 +505,12 @@ offset_bottom = 121
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton2"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton2"]
@@ -537,7 +541,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -548,7 +552,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -562,12 +566,12 @@ offset_bottom = 121
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton3"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton3"]
@@ -598,7 +602,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -609,7 +613,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -623,12 +627,12 @@ offset_bottom = 121
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton4"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton4"]
@@ -659,7 +663,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -670,7 +674,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -684,12 +688,12 @@ offset_bottom = 121
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton5"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton5"]
@@ -720,7 +724,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -731,7 +735,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -745,12 +749,12 @@ offset_bottom = 165
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton6"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton6"]
@@ -781,7 +785,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -792,7 +796,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -806,12 +810,12 @@ offset_bottom = 165
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton7"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton7"]
@@ -842,7 +846,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -853,7 +857,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -867,12 +871,12 @@ offset_bottom = 165
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton8"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton8"]
@@ -903,7 +907,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -914,7 +918,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -928,12 +932,12 @@ offset_bottom = 165
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton9"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton9"]
@@ -964,7 +968,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -975,7 +979,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -989,12 +993,12 @@ offset_bottom = 165
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton10"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton10"]
@@ -1025,7 +1029,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1036,7 +1040,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1050,12 +1054,12 @@ offset_bottom = 209
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton11"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton11"]
@@ -1086,7 +1090,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1097,7 +1101,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1111,12 +1115,12 @@ offset_bottom = 209
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton12"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton12"]
@@ -1147,7 +1151,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1158,7 +1162,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1172,12 +1176,12 @@ offset_bottom = 209
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton13"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton13"]
@@ -1208,7 +1212,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1219,7 +1223,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1233,12 +1237,12 @@ offset_bottom = 209
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton14"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton14"]
@@ -1269,7 +1273,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1280,7 +1284,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1294,12 +1298,12 @@ offset_bottom = 209
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton15"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton15"]
@@ -1330,7 +1334,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1341,7 +1345,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1355,12 +1359,12 @@ offset_bottom = 253
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton16"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton16"]
@@ -1391,7 +1395,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1402,7 +1406,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1416,12 +1420,12 @@ offset_bottom = 253
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton17"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton17"]
@@ -1452,7 +1456,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1463,7 +1467,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1477,12 +1481,12 @@ offset_bottom = 253
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton18"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton18"]
@@ -1513,7 +1517,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1524,7 +1528,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1538,12 +1542,12 @@ offset_bottom = 253
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton19"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton19"]
@@ -1574,7 +1578,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1585,7 +1589,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1599,12 +1603,12 @@ offset_bottom = 253
 ignore_texture_size = true
 
 [node name="Texture" type="TextureRect" parent="MacroPopupButton20"]
-offset_left = -14
-offset_top = -13
-offset_right = 50
-offset_bottom = 51
+offset_left = -4.5
+offset_top = -3.5
+offset_right = 40.5
+offset_bottom = 41.5
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MacroPopupButton20"]
@@ -1635,7 +1639,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1646,7 +1650,7 @@ offset_right = 36
 offset_bottom = 36
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1670,7 +1674,7 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_36")
+texture = SubResource("AtlasTexture_37")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MacroPopupCancelButton"]
@@ -1680,7 +1684,7 @@ offset_right = 78
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_39")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MacroPopupCancelButton"]
@@ -1690,7 +1694,7 @@ offset_right = 78
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_40")
+texture = SubResource("AtlasTexture_41")
 expand_mode = 1
 
 [node name="MacroPopupCancelButtonText" type="Label" parent="MacroPopupCancelButton"]
@@ -1700,7 +1704,6 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1712,7 +1715,7 @@ offset_right = 78
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_43")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1736,7 +1739,7 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_36")
+texture = SubResource("AtlasTexture_37")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MacroPopupOkayButton"]
@@ -1746,7 +1749,7 @@ offset_right = 78
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_39")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MacroPopupOkayButton"]
@@ -1756,7 +1759,7 @@ offset_right = 78
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_40")
+texture = SubResource("AtlasTexture_41")
 expand_mode = 1
 
 [node name="MacroPopupOkayButtonText" type="Label" parent="MacroPopupOkayButton"]
@@ -1766,7 +1769,6 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Okay"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1778,6 +1780,6 @@ offset_right = 78
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_43")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")

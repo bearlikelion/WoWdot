@@ -92,16 +92,16 @@ unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -96
+offset_left = -120
 offset_top = 17
-offset_right = 96
-offset_bottom = 29
-grow_horizontal = 2
-grow_vertical = 1
+offset_right = 130
+offset_bottom = 31
 mouse_filter = 2
 theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TaxiMap" type="TextureRect" parent="."]
 unique_name_in_owner = true

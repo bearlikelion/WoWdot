@@ -22,9 +22,9 @@ var _end: float = 0.0
 var _hold_until: float = 0.0
 var _flashing: bool = false
 
-@onready var _text: Label = %CastingBarText
-@onready var _spark: TextureRect = %CastingBarSpark
-@onready var _flash: TextureRect = %CastingBarFlash
+@onready var _text: Label = %CastingBarFrameText
+@onready var _spark: TextureRect = %CastingBarFrameSpark
+@onready var _flash: TextureRect = %CastingBarFrameFlash
 
 
 func _ready() -> void:

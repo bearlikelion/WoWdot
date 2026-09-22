@@ -57,9 +57,9 @@ Most of the WotLK protocol and format code is already in the vendored WoWee sour
 | Animations | Version 264 keeps most sequences in `.anim` files, hundreds per model, which want loading on demand. |
 | Update fields | `tools/update_fields.py` reports 93 classic names WotLK removed; the game reads none of them now except the honor frame's weekly kill counts, which the 3.3.5 PvP frame replaces. |
 | Constants | Movement flags and fixed DBC column numbers (Spell, SoundEntries, Light). |
-| Interface | Every screen past the glue is still the 1.12 conversion; convert each from the 3.3.5a FrameXML with `python3 ../wowgd/tools/framexml/convert.py <dump> . tools/framexml/frames.json`. |
+| Interface | Every screen is converted from the 3.3.5a FrameXML (`python3 ../wowgd/tools/framexml/convert.py <dump> . tools/framexml/frames.json`), with the rows and panels 3.3.5 builds from Lua declared under `rows` and `graft` in `frames.json`. Not yet wired: the options category lists, the honor frame (now the PvP frame), arena scoreboards, and the target aura buttons past what the server sends. |
 
-The order: the 3.3.5a FrameXML, then the animations.
+Next: the animations.
 
 ## Checks
 

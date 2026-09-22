@@ -8,11 +8,18 @@ const DYNAMIC_FLAG_TAPPED: int = 0x04
 const DYNAMIC_FLAG_TAPPED_BY_PLAYER: int = 0x08
 # TargetFrame_CheckLevel shows a skull instead of a level this far above the player.
 const SKULL_LEVEL_GAP: int = 10
+# TargetFrame.lua builds the target of target and the aura buttons from these templates.
+const TARGET_OF_TARGET: PackedScene = preload("res://ui/target_of_target_frame.tscn")
+const BUFF_BUTTON: PackedScene = preload("res://ui/target_buff_frame.tscn")
+const DEBUFF_BUTTON: PackedScene = preload("res://ui/target_debuff_frame.tscn")
+const MAX_TARGET_BUFFS: int = 32
+const MAX_TARGET_DEBUFFS: int = 16
+const AURA_SIZE: int = 17
+const AURA_GAP: int = 3
+const AURA_ROW_WIDTH: int = 122
 const NORMAL_LEVEL: Color = Color(1.0, 0.82, 0.0)
 const TAPPED: Color = Color(0.5, 0.5, 0.5)
 const FRIENDLY_PLAYER: Color = Color(0.0, 0.0, 1.0)
-const TARGET_BUFFS: int = 5
-const TARGET_DEBUFFS: int = 16
 const BORDERS: Dictionary[Rank, String] = {
 	Rank.NORMAL: "Interface\\TargetingFrame\\UI-TargetingFrame.blp",
 	Rank.ELITE: "Interface\\TargetingFrame\\UI-TargetingFrame-Elite.blp",
@@ -22,6 +29,7 @@ const BORDERS: Dictionary[Rank, String] = {
 }
 
 var _border_art: Dictionary[Rank, AtlasTexture] = {}
+var _target_of_target: TargetOfTargetFrame
 var _buffs: Array[Control] = []
 var _buff_icons: Array[TextureRect] = []
 var _debuffs: Array[Control] = []
@@ -29,44 +37,47 @@ var _debuff_icons: Array[TextureRect] = []
 var _debuff_borders: Array[TextureRect] = []
 var _debuff_counts: Array[Label] = []
 var _aura_spells: Dictionary[Control, int] = {}
-var _target_of_target: TargetOfTargetFrame
 
 @onready var _name_background: TextureRect = %TargetFrameNameBackground
-@onready var _border: TextureRect = %TargetFrameTexture
-@onready var _dead_text: Label = %TargetDeadText
-@onready var _skull: TextureRect = %TargetHighLevelTexture
+@onready var _border: TextureRect = %TargetFrameTextureFrameTexture
+@onready var _dead_text: Label = %TargetFrameTextureFrameDeadText
+@onready var _skull: TextureRect = %TargetFrameTextureFrameHighLevelTexture
 
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		super()
 		return
-	_name_label = %TargetName
-	_level_label = %TargetLevelText
+	_name_label = %TargetFrameTextureFrameName
+	_level_label = %TargetFrameTextureFrameLevelText
 	_health_bar = %TargetFrameHealthBar
 	_power_bar = %TargetFrameManaBar
-	_portrait_rect = %TargetPortrait
+	_portrait_rect = %TargetFramePortrait
 	# The level text is tinted like SetVertexColor, so it starts from the white font.
 	_level_label.theme_type_variation = &"GameFontHighlightSmall"
 	# Raid marks and the right-click menu come later.
 	for part: CanvasItem in [
-		%TargetLeaderIcon, %TargetRaidTargetIcon, %TargetPVPIcon, %TargetFrameDropDown,
+		%TargetFrameTextureFrameLeaderIcon, %TargetFrameTextureFrameRaidTargetIcon,
+		%TargetFrameTextureFramePVPIcon, %TargetFrameDropDown,
 	]:
 		part.hide()
-	_target_of_target = %TargetofTargetFrame
+	_target_of_target = TARGET_OF_TARGET.instantiate()
+	_target_of_target.name = "TargetFrameToT"
+	add_child(_target_of_target)
 	_target_of_target.unit_selected.connect(unit_selected.emit)
-	for i: int in range(1, TARGET_BUFFS + 1):
-		_buffs.append(get_node("%%TargetFrameBuff%d" % i))
-		_buff_icons.append(get_node("%%TargetFrameBuff%dIcon" % i))
-	for i: int in range(1, TARGET_DEBUFFS + 1):
-		_debuffs.append(get_node("%%TargetFrameDebuff%d" % i))
+	for i: int in MAX_TARGET_BUFFS:
+		var aura_button: Control = _place_aura(BUFF_BUTTON, %TargetFrameBuffs, i)
+		_buffs.append(aura_button)
+		_buff_icons.append(aura_button.get_node("Icon"))
+	for i: int in MAX_TARGET_DEBUFFS:
+		var aura_button: Control = _place_aura(DEBUFF_BUTTON, %TargetFrameDebuffs, i)
+		_debuffs.append(aura_button)
+		_debuff_icons.append(aura_button.get_node("Icon"))
+		_debuff_borders.append(aura_button.get_node("Border"))
+		_debuff_counts.append(aura_button.get_node("Count"))
 	for aura_button: Control in _buffs + _debuffs:
 		aura_button.mouse_entered.connect(_on_aura_hovered.bind(aura_button))
 		aura_button.mouse_exited.connect(_on_aura_left.bind(aura_button))
-	for i: int in range(1, TARGET_DEBUFFS + 1):
-		_debuff_icons.append(get_node("%%TargetFrameDebuff%dIcon" % i))
-		_debuff_borders.append(get_node("%%TargetFrameDebuff%dBorder" % i))
-		_debuff_counts.append(get_node("%%TargetFrameDebuff%dCount" % i))
 	var normal: AtlasTexture = _border.texture as AtlasTexture
 	for rank: Rank in BORDERS:
 		var art: AtlasTexture = normal.duplicate()
@@ -111,11 +122,25 @@ func _update_unit() -> void:
 	_update_auras()
 
 
-# TargetofTarget_Update: shown only while the target has a target of its own in sight.
 func _update_target_of_target() -> void:
 	var session: WowSession = WowClient.session
 	var of_target: int = session.get_field_guid(guid, "UNIT_FIELD_TARGET")
 	_target_of_target.show_unit(of_target if session.has_object(of_target) else 0)
+
+
+# Rows of small icons under the frame, left to right, as TargetFrame_UpdateAuraPositions lays them.
+func _place_aura(template: PackedScene, holder: Control, index: int) -> Control:
+	var aura_button: Control = template.instantiate()
+	holder.add_child(aura_button)
+	@warning_ignore("integer_division")
+	var per_row: int = AURA_ROW_WIDTH / (AURA_SIZE + AURA_GAP)
+	@warning_ignore("integer_division")
+	aura_button.position = Vector2(
+		(index % per_row) * (AURA_SIZE + AURA_GAP), (index / per_row) * (AURA_SIZE + AURA_GAP)
+	)
+	aura_button.size = Vector2(AURA_SIZE, AURA_SIZE)
+	aura_button.hide()
+	return aura_button
 
 
 func _update_auras() -> void:
@@ -123,12 +148,12 @@ func _update_auras() -> void:
 	var harmful: Array[Dictionary] = []
 	for aura: Dictionary in UnitAuras.read(WowClient.session, guid):
 		(harmful if aura["harmful"] else helpful).append(aura)
-	for i: int in TARGET_BUFFS:
+	for i: int in _buffs.size():
 		_buffs[i].visible = i < helpful.size()
 		if _buffs[i].visible:
 			_buff_icons[i].texture = WowAssets.spells.icon(helpful[i]["spell"])
 			_aura_spells[_buffs[i]] = helpful[i]["spell"]
-	for i: int in TARGET_DEBUFFS:
+	for i: int in _debuffs.size():
 		_debuffs[i].visible = i < harmful.size()
 		if not _debuffs[i].visible:
 			continue

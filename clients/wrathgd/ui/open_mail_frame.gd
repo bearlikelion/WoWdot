@@ -20,7 +20,7 @@ func _ready() -> void:
 	%OpenMailCancelButton.pressed.connect(close_requested.emit)
 	%OpenMailDeleteButton.pressed.connect(_on_delete_pressed)
 	%OpenMailMoneyButton.pressed.connect(_on_money_pressed)
-	%OpenMailPackageButton.pressed.connect(_on_package_pressed)
+	%OpenMailAttachmentButton1.pressed.connect(_on_package_pressed)
 	%OpenMailReplyButton.disabled = true
 	%OpenMailLetterButton.pressed.connect(func() -> void: letter_requested.emit(mail_id()))
 	WowClient.session.packet_received.connect(_on_packet_received)
@@ -41,7 +41,7 @@ func show_mail(mail: Dictionary) -> void:
 		ask.encode_u32(4, mail["id"])
 		WowClient.session.send_packet("CMSG_ITEM_TEXT_QUERY", ask)
 	%OpenMailMoneyButton.visible = mail["money"] > 0
-	%OpenMailPackageButton.visible = mail["item_entry"] != 0
+	%OpenMailAttachmentButton1.visible = mail["item_entry"] != 0
 	%OpenMailLetterButton.visible = mail["text_id"] != 0 or not mail.get("body", "").is_empty()
 	var label: Label = %OpenMailDeleteButton.find_child("*Text", true, false)
 	if label:

@@ -55,7 +55,7 @@ file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16"]
 atlas = SubResource("WowTexture_15")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 4, 19.2, 24)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_17"]
 
@@ -64,56 +64,56 @@ file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_19"]
 atlas = SubResource("WowTexture_18")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_20"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21"]
 atlas = SubResource("WowTexture_20")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_22"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23"]
 atlas = SubResource("WowTexture_22")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_24"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25"]
 atlas = SubResource("WowTexture_24")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_26"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27"]
 atlas = SubResource("WowTexture_26")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_29"]
 atlas = SubResource("WowTexture_28")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_30"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
 atlas = SubResource("WowTexture_30")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33"]
 atlas = SubResource("WowTexture_32")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
 file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
@@ -408,7 +408,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -469,7 +468,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -564,7 +562,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -625,7 +622,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -720,7 +716,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -781,7 +776,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -876,7 +870,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -937,7 +930,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1032,7 +1024,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1093,7 +1084,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1188,7 +1178,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1249,7 +1238,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1344,7 +1332,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1405,7 +1392,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1500,7 +1486,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1561,7 +1546,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1656,7 +1640,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1717,7 +1700,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1812,7 +1794,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1873,7 +1854,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1968,7 +1948,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2029,7 +2008,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2124,7 +2102,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2185,7 +2162,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2280,7 +2256,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2341,7 +2316,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2436,7 +2410,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2497,7 +2470,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2592,7 +2564,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2653,7 +2624,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2748,7 +2718,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2809,7 +2778,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2904,7 +2872,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2965,7 +2932,6 @@ offset_top = 0
 offset_right = 180
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -3007,16 +2973,16 @@ step = 0.0
 [node name="KeyBindingFrameScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_19")
@@ -3025,7 +2991,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3035,7 +3001,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3045,7 +3011,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3056,16 +3022,16 @@ material = SubResource("CanvasItemMaterial_14")
 [node name="KeyBindingFrameScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 358
-offset_right = 16
+offset_right = 17
 offset_bottom = 374
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_27")
@@ -3074,7 +3040,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3084,7 +3050,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3094,7 +3060,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="KeyBindingFrameScrollFrame/KeyBindingFrameScrollFrameScrollBar/KeyBindingFrameScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3243,7 +3209,6 @@ offset_top = 0
 offset_right = 130
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlight"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -3308,7 +3273,6 @@ offset_top = 0
 offset_right = 130
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3374,7 +3338,6 @@ offset_top = 0
 offset_right = 130
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Okay"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3440,7 +3403,6 @@ offset_top = 0
 offset_right = 130
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Unbind Key"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -98,7 +98,7 @@ file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_28"]
 atlas = SubResource("WowTexture_27")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 4, 19.2, 24)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_29"]
 
@@ -107,56 +107,56 @@ file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
 atlas = SubResource("WowTexture_30")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33"]
 atlas = SubResource("WowTexture_32")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35"]
 atlas = SubResource("WowTexture_34")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_36"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37"]
 atlas = SubResource("WowTexture_36")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_38"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_39"]
 atlas = SubResource("WowTexture_38")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_40"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41"]
 atlas = SubResource("WowTexture_40")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_42"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_43"]
 atlas = SubResource("WowTexture_42")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_44"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45"]
 atlas = SubResource("WowTexture_44")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_46"]
 file = "Interface\\FriendsFrame\\WhoFrame-ColumnTabs.blp"
@@ -212,137 +212,144 @@ file = "Interface\\Buttons\\UI-Quickslot-Depress.blp"
 file = "Interface\\Buttons\\ButtonHilight-Square.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_61"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_62"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_63"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_64"]
-file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_65"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_66"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_67"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_68"]
-file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_69"]
-file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_70"]
-file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_71"]
-file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_72"]
-file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_73"]
 file = "Interface\\Common\\Common-Input-Border.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_74"]
-atlas = SubResource("WowTexture_73")
+[sub_resource type="AtlasTexture" id="AtlasTexture_62"]
+atlas = SubResource("WowTexture_61")
 region = Rect2(0, 0, 8, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_75"]
-atlas = SubResource("WowTexture_73")
+[sub_resource type="AtlasTexture" id="AtlasTexture_63"]
+atlas = SubResource("WowTexture_61")
 region = Rect2(120, 0, 8, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_76"]
-atlas = SubResource("WowTexture_73")
+[sub_resource type="AtlasTexture" id="AtlasTexture_64"]
+atlas = SubResource("WowTexture_61")
 region = Rect2(8, 0, 112, 20)
 
-[sub_resource type="WowTexture" id="WowTexture_77"]
+[sub_resource type="WowTexture" id="WowTexture_65"]
 file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_78"]
-atlas = SubResource("WowTexture_77")
+[sub_resource type="AtlasTexture" id="AtlasTexture_66"]
+atlas = SubResource("WowTexture_65")
 region = Rect2(0, 0, 25, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_79"]
-atlas = SubResource("WowTexture_77")
+[sub_resource type="AtlasTexture" id="AtlasTexture_67"]
+atlas = SubResource("WowTexture_65")
 region = Rect2(25, 0, 78, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_80"]
-atlas = SubResource("WowTexture_77")
+[sub_resource type="AtlasTexture" id="AtlasTexture_68"]
+atlas = SubResource("WowTexture_65")
 region = Rect2(103, 0, 25, 64)
 
-[sub_resource type="WowTexture" id="WowTexture_81"]
+[sub_resource type="WowTexture" id="WowTexture_69"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_82"]
+[sub_resource type="WowTexture" id="WowTexture_70"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_83"]
+[sub_resource type="WowTexture" id="WowTexture_71"]
 file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
 
+[sub_resource type="WowTexture" id="WowTexture_72"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_73"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_74"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_75"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_76"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_77"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_78"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_79"]
+atlas = SubResource("WowTexture_78")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_80"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81"]
+atlas = SubResource("WowTexture_80")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_82"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83"]
+atlas = SubResource("WowTexture_82")
+region = Rect2(0, 0, 80, 22)
+
 [sub_resource type="WowTexture" id="WowTexture_84"]
-file = "Interface\\MoneyFrame\\UI-MoneyIcons.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85"]
 atlas = SubResource("WowTexture_84")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_86"]
-atlas = SubResource("WowTexture_84")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_86"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_87"]
-atlas = SubResource("WowTexture_84")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_87"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_88"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_89"]
-atlas = SubResource("WowTexture_88")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_89"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_90"]
-file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_91"]
-atlas = SubResource("WowTexture_90")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_91"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_92"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+file = "Interface\\MoneyFrame\\UI-MoneyIcons.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_93"]
 atlas = SubResource("WowTexture_92")
-region = Rect2(0, 0, 80, 22)
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_94"]
-file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_94"]
+atlas = SubResource("WowTexture_92")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_95"]
-atlas = SubResource("WowTexture_94")
-region = Rect2(0, 0, 80, 22)
+atlas = SubResource("WowTexture_92")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_96"]
-file = "Interface\\Buttons\\UI-RadioButton.blp"
+file = "Interface\\AuctionFrame\\UI-AuctionFrame-ItemSlot.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_97"]
 atlas = SubResource("WowTexture_96")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(40, 11, 173, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_98"]
-atlas = SubResource("WowTexture_96")
-region = Rect2(16, 0, 16, 16)
+atlas = SubResource("WowTexture_78")
+region = Rect2(0, 0, 12, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_99"]
-atlas = SubResource("WowTexture_96")
-region = Rect2(32, 0, 16, 16)
+atlas = SubResource("WowTexture_78")
+region = Rect2(68, 0, 12, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_100"]
+atlas = SubResource("WowTexture_78")
+region = Rect2(12, 0, 56, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_101"]
+file = "Interface\\DialogFrame\\UI-Dialog-Icon-AlertNew.blp"
 
 [node name="AuctionFrame" type="Control"]
 script = ExtResource("1")
@@ -361,10 +368,10 @@ mouse_filter = 0
 
 [node name="AuctionPortraitTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
-offset_left = 12
-offset_top = 8
-offset_right = 70
-offset_bottom = 66
+offset_left = 8
+offset_top = 7
+offset_right = 66
+offset_bottom = 65
 mouse_filter = 2
 expand_mode = 1
 
@@ -436,7 +443,7 @@ anchor_top = 1
 anchor_bottom = 1
 offset_left = 15
 offset_top = -11
-offset_right = 130
+offset_right = 25
 offset_bottom = 21
 ignore_texture_size = true
 
@@ -502,22 +509,21 @@ expand_mode = 1
 
 [node name="AuctionFrameTab1Text" type="Label" parent="AuctionFrameTab1"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Browse"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameTab1"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
@@ -531,9 +537,9 @@ script = ExtResource("2")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 122
+offset_left = 17
 offset_top = -11
-offset_right = 237
+offset_right = 27
 offset_bottom = 21
 ignore_texture_size = true
 
@@ -599,22 +605,21 @@ expand_mode = 1
 
 [node name="AuctionFrameTab2Text" type="Label" parent="AuctionFrameTab2"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Bids"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameTab2"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
@@ -628,9 +633,9 @@ script = ExtResource("2")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 229
+offset_left = 19
 offset_top = -11
-offset_right = 344
+offset_right = 29
 offset_bottom = 21
 ignore_texture_size = true
 
@@ -696,22 +701,21 @@ expand_mode = 1
 
 [node name="AuctionFrameTab3Text" type="Label" parent="AuctionFrameTab3"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Auctions"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameTab3"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
@@ -725,9 +729,9 @@ layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
 offset_left = 53
-offset_top = -31
+offset_top = -33
 offset_right = 181
-offset_bottom = -18
+offset_bottom = -20
 
 [node name="AuctionFrameCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -794,20 +798,6 @@ text = "Browse Auctions"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BrowseTabText" type="Label" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-offset_left = 85
-offset_top = 85
-offset_right = 85
-offset_bottom = 95
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Filters"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BrowseNameText" type="Label" parent="AuctionFrameBrowse"]
 unique_name_in_owner = true
 offset_left = 80
@@ -833,48 +823,6 @@ grow_vertical = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
 text = "Level Range"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BrowseBidText" type="Label" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-offset_left = 304
-offset_top = 416
-offset_right = 304
-offset_bottom = 426
-grow_horizontal = 0
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Bid"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="BrowseIsUsableText" type="Label" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-offset_left = 485
-offset_top = 56
-offset_right = 485
-offset_bottom = 66
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Usable Items"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BrowseShowOnCharacterText" type="Label" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-offset_left = 685
-offset_top = 56
-offset_right = 685
-offset_bottom = 66
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Display on Character"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -954,10 +902,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton1"]
@@ -1006,10 +953,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton2"]
@@ -1058,10 +1004,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton3"]
@@ -1110,10 +1055,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton4"]
@@ -1162,10 +1106,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton5"]
@@ -1214,10 +1157,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton6"]
@@ -1266,10 +1208,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton7"]
@@ -1318,10 +1259,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton8"]
@@ -1370,10 +1310,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton9"]
@@ -1422,10 +1361,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton10"]
@@ -1474,10 +1412,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton11"]
@@ -1526,10 +1463,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton12"]
@@ -1578,10 +1514,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton13"]
@@ -1630,10 +1565,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton14"]
@@ -1682,10 +1616,9 @@ offset_top = 6
 offset_right = 119
 offset_bottom = 14
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/AuctionFilterButton15"]
@@ -1744,16 +1677,16 @@ step = 0.0
 [node name="BrowseFilterScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar/BrowseFilterScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
@@ -1762,7 +1695,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar/BrowseFilterScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1772,7 +1705,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar/BrowseFilterScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1782,7 +1715,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar/BrowseFilterScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1793,16 +1726,16 @@ material = SubResource("CanvasItemMaterial_16")
 [node name="BrowseFilterScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 273
-offset_right = 16
+offset_right = 17
 offset_bottom = 289
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar/BrowseFilterScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_39")
@@ -1811,7 +1744,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar/BrowseFilterScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1821,7 +1754,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar/BrowseFilterScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1831,7 +1764,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseFilterScrollFrame/BrowseFilterScrollFrameScrollBar/BrowseFilterScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1900,16 +1833,16 @@ step = 0.0
 [node name="BrowseScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar/BrowseScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
@@ -1918,7 +1851,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar/BrowseScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1928,7 +1861,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar/BrowseScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1938,7 +1871,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar/BrowseScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1949,16 +1882,16 @@ material = SubResource("CanvasItemMaterial_16")
 [node name="BrowseScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 274
-offset_right = 16
+offset_right = 17
 offset_bottom = 290
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar/BrowseScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_39")
@@ -1967,7 +1900,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar/BrowseScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1977,7 +1910,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar/BrowseScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1987,7 +1920,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseScrollFrame/BrowseScrollFrameScrollBar/BrowseScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2062,13 +1995,12 @@ expand_mode = 1
 [node name="BrowseQualitySortText" type="Label" parent="AuctionFrameBrowse/BrowseQualitySort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Rarity"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2135,13 +2067,12 @@ expand_mode = 1
 [node name="BrowseLevelSortText" type="Label" parent="AuctionFrameBrowse/BrowseLevelSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Lvl"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2208,13 +2139,12 @@ expand_mode = 1
 [node name="BrowseDurationSortText" type="Label" parent="AuctionFrameBrowse/BrowseDurationSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Time Left"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2281,13 +2211,12 @@ expand_mode = 1
 [node name="BrowseHighBidderSortText" type="Label" parent="AuctionFrameBrowse/BrowseHighBidderSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Seller"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2308,7 +2237,7 @@ unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 616
 offset_top = 82
-offset_right = 779
+offset_right = 823
 offset_bottom = 101
 ignore_texture_size = true
 
@@ -2324,9 +2253,9 @@ expand_mode = 1
 
 [node name="BrowseCurrentBidSortRight" type="TextureRect" parent="AuctionFrameBrowse/BrowseCurrentBidSort"]
 unique_name_in_owner = true
-offset_left = 159
+offset_left = 203
 offset_top = 0
-offset_right = 163
+offset_right = 207
 offset_bottom = 19
 mouse_filter = 2
 texture = SubResource("AtlasTexture_48")
@@ -2336,7 +2265,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 159
+offset_right = 203
 offset_bottom = 19
 mouse_filter = 2
 texture = SubResource("AtlasTexture_49")
@@ -2354,13 +2283,12 @@ expand_mode = 1
 [node name="BrowseCurrentBidSortText" type="Label" parent="AuctionFrameBrowse/BrowseCurrentBidSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Current Bid"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2368,7 +2296,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCurrentBidSort"]
 offset_left = 0
 offset_top = -2.5
-offset_right = 167
+offset_right = 211
 offset_bottom = 21.5
 visible = false
 mouse_filter = 2
@@ -2589,34 +2517,38 @@ text = "Your bid:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BrowseButton1BuyoutMoneyFrame" parent="AuctionFrameBrowse/BrowseButton1" instance=ExtResource("3")]
+[node name="BrowseButton1BuyoutFrame" type="Control" parent="AuctionFrameBrowse/BrowseButton1"]
 unique_name_in_owner = true
-offset_left = 479
+offset_left = 425
 offset_top = 23
 offset_right = 607
 offset_bottom = 36
-
-[node name="BrowseButton1BuyoutText" type="TextureButton" parent="AuctionFrameBrowse/BrowseButton1"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 464
-offset_top = 24
-offset_right = 474
-offset_bottom = 35
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton1/BrowseButton1BuyoutText"]
-offset_left = 10
-offset_top = 0
-offset_right = 10
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+
+[node name="BrowseButton1BuyoutFrameMoney" parent="AuctionFrameBrowse/BrowseButton1/BrowseButton1BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 0
+offset_right = 182
+offset_bottom = 13
+
+[node name="BrowseButton1BuyoutFrameText" type="Control" parent="AuctionFrameBrowse/BrowseButton1/BrowseButton1BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton1/BrowseButton1BuyoutFrame/BrowseButton1BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BrowseButton2" type="TextureButton" parent="AuctionFrameBrowse"]
@@ -2832,34 +2764,38 @@ text = "Your bid:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BrowseButton2BuyoutMoneyFrame" parent="AuctionFrameBrowse/BrowseButton2" instance=ExtResource("3")]
+[node name="BrowseButton2BuyoutFrame" type="Control" parent="AuctionFrameBrowse/BrowseButton2"]
 unique_name_in_owner = true
-offset_left = 479
+offset_left = 425
 offset_top = 23
 offset_right = 607
 offset_bottom = 36
-
-[node name="BrowseButton2BuyoutText" type="TextureButton" parent="AuctionFrameBrowse/BrowseButton2"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 464
-offset_top = 24
-offset_right = 474
-offset_bottom = 35
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton2/BrowseButton2BuyoutText"]
-offset_left = 10
-offset_top = 0
-offset_right = 10
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+
+[node name="BrowseButton2BuyoutFrameMoney" parent="AuctionFrameBrowse/BrowseButton2/BrowseButton2BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 0
+offset_right = 182
+offset_bottom = 13
+
+[node name="BrowseButton2BuyoutFrameText" type="Control" parent="AuctionFrameBrowse/BrowseButton2/BrowseButton2BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton2/BrowseButton2BuyoutFrame/BrowseButton2BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BrowseButton3" type="TextureButton" parent="AuctionFrameBrowse"]
@@ -3075,34 +3011,38 @@ text = "Your bid:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BrowseButton3BuyoutMoneyFrame" parent="AuctionFrameBrowse/BrowseButton3" instance=ExtResource("3")]
+[node name="BrowseButton3BuyoutFrame" type="Control" parent="AuctionFrameBrowse/BrowseButton3"]
 unique_name_in_owner = true
-offset_left = 479
+offset_left = 425
 offset_top = 23
 offset_right = 607
 offset_bottom = 36
-
-[node name="BrowseButton3BuyoutText" type="TextureButton" parent="AuctionFrameBrowse/BrowseButton3"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 464
-offset_top = 24
-offset_right = 474
-offset_bottom = 35
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton3/BrowseButton3BuyoutText"]
-offset_left = 10
-offset_top = 0
-offset_right = 10
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+
+[node name="BrowseButton3BuyoutFrameMoney" parent="AuctionFrameBrowse/BrowseButton3/BrowseButton3BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 0
+offset_right = 182
+offset_bottom = 13
+
+[node name="BrowseButton3BuyoutFrameText" type="Control" parent="AuctionFrameBrowse/BrowseButton3/BrowseButton3BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton3/BrowseButton3BuyoutFrame/BrowseButton3BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BrowseButton4" type="TextureButton" parent="AuctionFrameBrowse"]
@@ -3318,34 +3258,38 @@ text = "Your bid:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BrowseButton4BuyoutMoneyFrame" parent="AuctionFrameBrowse/BrowseButton4" instance=ExtResource("3")]
+[node name="BrowseButton4BuyoutFrame" type="Control" parent="AuctionFrameBrowse/BrowseButton4"]
 unique_name_in_owner = true
-offset_left = 479
+offset_left = 425
 offset_top = 23
 offset_right = 607
 offset_bottom = 36
-
-[node name="BrowseButton4BuyoutText" type="TextureButton" parent="AuctionFrameBrowse/BrowseButton4"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 464
-offset_top = 24
-offset_right = 474
-offset_bottom = 35
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton4/BrowseButton4BuyoutText"]
-offset_left = 10
-offset_top = 0
-offset_right = 10
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+
+[node name="BrowseButton4BuyoutFrameMoney" parent="AuctionFrameBrowse/BrowseButton4/BrowseButton4BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 0
+offset_right = 182
+offset_bottom = 13
+
+[node name="BrowseButton4BuyoutFrameText" type="Control" parent="AuctionFrameBrowse/BrowseButton4/BrowseButton4BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton4/BrowseButton4BuyoutFrame/BrowseButton4BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BrowseButton5" type="TextureButton" parent="AuctionFrameBrowse"]
@@ -3561,34 +3505,38 @@ text = "Your bid:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BrowseButton5BuyoutMoneyFrame" parent="AuctionFrameBrowse/BrowseButton5" instance=ExtResource("3")]
+[node name="BrowseButton5BuyoutFrame" type="Control" parent="AuctionFrameBrowse/BrowseButton5"]
 unique_name_in_owner = true
-offset_left = 479
+offset_left = 425
 offset_top = 23
 offset_right = 607
 offset_bottom = 36
-
-[node name="BrowseButton5BuyoutText" type="TextureButton" parent="AuctionFrameBrowse/BrowseButton5"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 464
-offset_top = 24
-offset_right = 474
-offset_bottom = 35
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton5/BrowseButton5BuyoutText"]
-offset_left = 10
-offset_top = 0
-offset_right = 10
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+
+[node name="BrowseButton5BuyoutFrameMoney" parent="AuctionFrameBrowse/BrowseButton5/BrowseButton5BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 0
+offset_right = 182
+offset_bottom = 13
+
+[node name="BrowseButton5BuyoutFrameText" type="Control" parent="AuctionFrameBrowse/BrowseButton5/BrowseButton5BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton5/BrowseButton5BuyoutFrame/BrowseButton5BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BrowseButton6" type="TextureButton" parent="AuctionFrameBrowse"]
@@ -3804,34 +3752,38 @@ text = "Your bid:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BrowseButton6BuyoutMoneyFrame" parent="AuctionFrameBrowse/BrowseButton6" instance=ExtResource("3")]
+[node name="BrowseButton6BuyoutFrame" type="Control" parent="AuctionFrameBrowse/BrowseButton6"]
 unique_name_in_owner = true
-offset_left = 479
+offset_left = 425
 offset_top = 23
 offset_right = 607
 offset_bottom = 36
-
-[node name="BrowseButton6BuyoutText" type="TextureButton" parent="AuctionFrameBrowse/BrowseButton6"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 464
-offset_top = 24
-offset_right = 474
-offset_bottom = 35
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton6/BrowseButton6BuyoutText"]
-offset_left = 10
-offset_top = 0
-offset_right = 10
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+
+[node name="BrowseButton6BuyoutFrameMoney" parent="AuctionFrameBrowse/BrowseButton6/BrowseButton6BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 0
+offset_right = 182
+offset_bottom = 13
+
+[node name="BrowseButton6BuyoutFrameText" type="Control" parent="AuctionFrameBrowse/BrowseButton6/BrowseButton6BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton6/BrowseButton6BuyoutFrame/BrowseButton6BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BrowseButton7" type="TextureButton" parent="AuctionFrameBrowse"]
@@ -4047,34 +3999,38 @@ text = "Your bid:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BrowseButton7BuyoutMoneyFrame" parent="AuctionFrameBrowse/BrowseButton7" instance=ExtResource("3")]
+[node name="BrowseButton7BuyoutFrame" type="Control" parent="AuctionFrameBrowse/BrowseButton7"]
 unique_name_in_owner = true
-offset_left = 479
+offset_left = 425
 offset_top = 23
 offset_right = 607
 offset_bottom = 36
-
-[node name="BrowseButton7BuyoutText" type="TextureButton" parent="AuctionFrameBrowse/BrowseButton7"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 464
-offset_top = 24
-offset_right = 474
-offset_bottom = 35
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton7/BrowseButton7BuyoutText"]
-offset_left = 10
-offset_top = 0
-offset_right = 10
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+
+[node name="BrowseButton7BuyoutFrameMoney" parent="AuctionFrameBrowse/BrowseButton7/BrowseButton7BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 0
+offset_right = 182
+offset_bottom = 13
+
+[node name="BrowseButton7BuyoutFrameText" type="Control" parent="AuctionFrameBrowse/BrowseButton7/BrowseButton7BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton7/BrowseButton7BuyoutFrame/BrowseButton7BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BrowseButton8" type="TextureButton" parent="AuctionFrameBrowse"]
@@ -4290,233 +4246,39 @@ text = "Your bid:"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BrowseButton8BuyoutMoneyFrame" parent="AuctionFrameBrowse/BrowseButton8" instance=ExtResource("3")]
+[node name="BrowseButton8BuyoutFrame" type="Control" parent="AuctionFrameBrowse/BrowseButton8"]
 unique_name_in_owner = true
-offset_left = 479
+offset_left = 425
 offset_top = 23
 offset_right = 607
 offset_bottom = 36
-
-[node name="BrowseButton8BuyoutText" type="TextureButton" parent="AuctionFrameBrowse/BrowseButton8"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 464
-offset_top = 24
-offset_right = 474
-offset_bottom = 35
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton8/BrowseButton8BuyoutText"]
-offset_left = 10
-offset_top = 0
-offset_right = 10
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+
+[node name="BrowseButton8BuyoutFrameMoney" parent="AuctionFrameBrowse/BrowseButton8/BrowseButton8BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 54
+offset_top = 0
+offset_right = 182
+offset_bottom = 13
+
+[node name="BrowseButton8BuyoutFrameText" type="Control" parent="AuctionFrameBrowse/BrowseButton8/BrowseButton8BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseButton8/BrowseButton8BuyoutFrame/BrowseButton8BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 52
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="BrowsePrevPageButton" type="TextureButton" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 200
-offset_top = 371.5
-offset_right = 232
-offset_bottom = 403.5
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
-offset_left = 32
-offset_top = 10
-offset_right = 32
-offset_bottom = 22
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Prev"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_61")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_62")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_63")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_64")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="BrowseNextPageButton" type="TextureButton" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 762
-offset_top = 371.5
-offset_right = 794
-offset_bottom = 403.5
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseNextPageButton"]
-offset_left = 0
-offset_top = 10
-offset_right = 0
-offset_bottom = 22
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Next"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_65")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_66")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_67")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_64")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="IsUsableCheckButton" type="TextureButton" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 487
-offset_top = 49
-offset_right = 511
-offset_bottom = 73
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-mouse_filter = 2
-texture = SubResource("WowTexture_68")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_69")
-expand_mode = 1
-
-[node name="IsUsableCheckButtonText" type="Label" parent="AuctionFrameBrowse/IsUsableCheckButton"]
-unique_name_in_owner = true
-offset_left = 22
-offset_top = 7
-offset_right = 22
-offset_bottom = 17
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_70")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_71")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_72")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
 
 [node name="BrowseName" type="LineEdit" parent="AuctionFrameBrowse"]
 unique_name_in_owner = true
@@ -4539,7 +4301,7 @@ offset_right = 3
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BrowseNameRight" type="TextureRect" parent="AuctionFrameBrowse/BrowseName"]
@@ -4550,7 +4312,7 @@ offset_right = 140
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BrowseNameMiddle" type="TextureRect" parent="AuctionFrameBrowse/BrowseName"]
@@ -4561,7 +4323,7 @@ offset_right = 132
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="BrowseMinLevel" type="LineEdit" parent="AuctionFrameBrowse"]
@@ -4586,7 +4348,7 @@ offset_right = 3
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BrowseMinLevelRight" type="TextureRect" parent="AuctionFrameBrowse/BrowseMinLevel"]
@@ -4597,7 +4359,7 @@ offset_right = 25
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BrowseMinLevelMiddle" type="TextureRect" parent="AuctionFrameBrowse/BrowseMinLevel"]
@@ -4608,7 +4370,7 @@ offset_right = 17
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="BrowseLevelHyphen" type="Label" parent="AuctionFrameBrowse/BrowseMinLevel"]
@@ -4647,7 +4409,7 @@ offset_right = 3
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BrowseMaxLevelRight" type="TextureRect" parent="AuctionFrameBrowse/BrowseMaxLevel"]
@@ -4658,7 +4420,7 @@ offset_right = 25
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BrowseMaxLevelMiddle" type="TextureRect" parent="AuctionFrameBrowse/BrowseMaxLevel"]
@@ -4669,7 +4431,7 @@ offset_right = 17
 offset_bottom = 18
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="BrowseDropDown" type="Control" parent="AuctionFrameBrowse"]
@@ -4687,7 +4449,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_78")
+texture = SubResource("AtlasTexture_66")
 expand_mode = 1
 
 [node name="BrowseDropDownMiddle" type="TextureRect" parent="AuctionFrameBrowse/BrowseDropDown"]
@@ -4697,7 +4459,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_79")
+texture = SubResource("AtlasTexture_67")
 expand_mode = 1
 
 [node name="BrowseDropDownRight" type="TextureRect" parent="AuctionFrameBrowse/BrowseDropDown"]
@@ -4707,7 +4469,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_80")
+texture = SubResource("AtlasTexture_68")
 expand_mode = 1
 
 [node name="BrowseDropDownText" type="Label" parent="AuctionFrameBrowse/BrowseDropDown"]
@@ -4752,7 +4514,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_81")
+texture = SubResource("WowTexture_69")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseDropDown/BrowseDropDownButton"]
@@ -4762,7 +4524,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_82")
+texture = SubResource("WowTexture_70")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseDropDown/BrowseDropDownButton"]
@@ -4772,7 +4534,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_83")
+texture = SubResource("WowTexture_71")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseDropDown/BrowseDropDownButton"]
@@ -4782,7 +4544,515 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_64")
+texture = SubResource("WowTexture_72")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="IsUsableCheckButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 384
+offset_top = 36
+offset_right = 408
+offset_bottom = 60
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_73")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_74")
+expand_mode = 1
+
+[node name="IsUsableCheckButtonText" type="Label" parent="AuctionFrameBrowse/IsUsableCheckButton"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 7
+offset_right = 22
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_75")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_76")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/IsUsableCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ShowOnPlayerCheckButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 384
+offset_top = 58
+offset_right = 408
+offset_bottom = 82
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_73")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_74")
+expand_mode = 1
+
+[node name="ShowOnPlayerCheckButtonText" type="Label" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 7
+offset_right = 22
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_75")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_76")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_77")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="BrowseSearchButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 703
+offset_top = 39
+offset_right = 783
+offset_bottom = 61
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseSearchButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_79")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseSearchButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseSearchButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_83")
+expand_mode = 1
+
+[node name="BrowseSearchButtonText" type="Label" parent="AuctionFrameBrowse/BrowseSearchButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+text = "Search"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseSearchButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_85")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="BrowsePrevPageButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 658
+offset_top = 53
+offset_right = 690
+offset_bottom = 85
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
+offset_left = 32
+offset_top = 11
+offset_right = 92
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Prev"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_86")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_87")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_88")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowsePrevPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_72")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="BrowseNextPageButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 796
+offset_top = 53
+offset_right = 828
+offset_bottom = 85
+ignore_texture_size = true
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseNextPageButton"]
+offset_left = -60
+offset_top = 11
+offset_right = 0
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Next"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseNextPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_89")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseNextPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_90")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseNextPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_91")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseNextPageButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_72")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="BrowseCloseButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 744
+offset_top = 411
+offset_right = 824
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_79")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_83")
+expand_mode = 1
+
+[node name="BrowseCloseButtonText" type="Label" parent="AuctionFrameBrowse/BrowseCloseButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+text = "Close"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_85")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="BrowseBuyoutButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 664
+offset_top = 411
+offset_right = 744
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_79")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_83")
+expand_mode = 1
+
+[node name="BrowseBuyoutButtonText" type="Label" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+text = "Buyout"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_85")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="BrowseBidButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 584
+offset_top = 411
+offset_right = 664
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_79")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_83")
+expand_mode = 1
+
+[node name="BrowseBidButtonText" type="Label" parent="AuctionFrameBrowse/BrowseBidButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+text = "Bid"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -4793,6 +5063,20 @@ offset_top = 411
 offset_right = 492
 offset_bottom = 429
 mouse_filter = 2
+
+[node name="BrowseBidText" type="Label" parent="AuctionFrameBrowse/BrowseBidPrice"]
+unique_name_in_owner = true
+offset_left = -10
+offset_top = 4
+offset_right = -10
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "Bid"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="BrowseBidPriceGold" type="LineEdit" parent="AuctionFrameBrowse/BrowseBidPrice"]
 unique_name_in_owner = true
@@ -4815,7 +5099,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BrowseBidPriceGoldRight" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceGold"]
@@ -4826,7 +5110,7 @@ offset_right = 58
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BrowseBidPriceGoldMiddle" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceGold"]
@@ -4837,7 +5121,7 @@ offset_right = 50
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceGold"]
@@ -4847,8 +5131,22 @@ offset_right = 73
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_85")
+texture = SubResource("AtlasTexture_93")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceGold"]
+offset_left = 60
+offset_top = 1
+offset_right = 78
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "g"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BrowseBidPriceSilver" type="LineEdit" parent="AuctionFrameBrowse/BrowseBidPrice"]
 unique_name_in_owner = true
@@ -4872,7 +5170,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BrowseBidPriceSilverRight" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceSilver"]
@@ -4883,7 +5181,7 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BrowseBidPriceSilverMiddle" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceSilver"]
@@ -4894,7 +5192,7 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceSilver"]
@@ -4904,8 +5202,22 @@ offset_right = 35
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_86")
+texture = SubResource("AtlasTexture_94")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceSilver"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "s"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BrowseBidPriceCopper" type="LineEdit" parent="AuctionFrameBrowse/BrowseBidPrice"]
 unique_name_in_owner = true
@@ -4929,7 +5241,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BrowseBidPriceCopperRight" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceCopper"]
@@ -4940,7 +5252,7 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BrowseBidPriceCopperMiddle" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceCopper"]
@@ -4951,7 +5263,7 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceCopper"]
@@ -4961,322 +5273,80 @@ offset_right = 35
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_87")
-expand_mode = 1
-
-[node name="BrowseCloseButton" type="TextureButton" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 744
-offset_top = 411
-offset_right = 824
-offset_bottom = 433
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCloseButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCloseButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCloseButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
-expand_mode = 1
-
-[node name="BrowseCloseButtonText" type="Label" parent="AuctionFrameBrowse/BrowseCloseButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Close"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseCloseButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
 texture = SubResource("AtlasTexture_95")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
 
-[node name="BrowseBuyoutButton" type="TextureButton" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 664
-offset_top = 411
-offset_right = 744
-offset_bottom = 433
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
-expand_mode = 1
-
-[node name="BrowseBuyoutButtonText" type="Label" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Buyout"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBuyoutButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="BrowseBidButton" type="TextureButton" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 584
-offset_top = 411
-offset_right = 664
-offset_bottom = 433
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
-expand_mode = 1
-
-[node name="BrowseBidButtonText" type="Label" parent="AuctionFrameBrowse/BrowseBidButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Bid"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseBidButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="BrowseSearchButton" type="TextureButton" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 521
-offset_top = 50
-offset_right = 601
-offset_bottom = 72
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseSearchButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseSearchButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseSearchButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
-expand_mode = 1
-
-[node name="BrowseSearchButtonText" type="Label" parent="AuctionFrameBrowse/BrowseSearchButton"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Search"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseSearchButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 80
-offset_bottom = 22
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="ShowOnPlayerCheckButton" type="TextureButton" parent="AuctionFrameBrowse"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 687
-offset_top = 49
-offset_right = 711
-offset_bottom = 73
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-mouse_filter = 2
-texture = SubResource("WowTexture_68")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_69")
-expand_mode = 1
-
-[node name="ShowOnPlayerCheckButtonText" type="Label" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
-unique_name_in_owner = true
+[node name="FontString" type="Label" parent="AuctionFrameBrowse/BrowseBidPrice/BrowseBidPriceCopper"]
 offset_left = 22
-offset_top = 7
-offset_right = 22
-offset_bottom = 17
-grow_horizontal = 1
-grow_vertical = 2
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+text = "c"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BrowseResetButton" type="TextureButton" parent="AuctionFrameBrowse"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 78
+offset_top = 75
+offset_right = 158
+offset_bottom = 97
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseResetButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_79")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseResetButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseResetButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_83")
+expand_mode = 1
+
+[node name="BrowseResetButtonText" type="Label" parent="AuctionFrameBrowse/BrowseResetButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+text = "Reset"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheckedTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/BrowseResetButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 24
-offset_bottom = 24
+offset_right = 80
+offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_70")
-expand_mode = 1
-
-[node name="DisabledCheckedTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_71")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBrowse/ShowOnPlayerCheckButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 24
-offset_bottom = 24
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -5380,13 +5450,12 @@ expand_mode = 1
 [node name="BidQualitySortText" type="Label" parent="AuctionFrameBid/BidQualitySort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Rarity"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -5453,13 +5522,12 @@ expand_mode = 1
 [node name="BidLevelSortText" type="Label" parent="AuctionFrameBid/BidLevelSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Lvl"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -5526,13 +5594,12 @@ expand_mode = 1
 [node name="BidDurationSortText" type="Label" parent="AuctionFrameBid/BidDurationSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Time Left"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -5599,13 +5666,12 @@ expand_mode = 1
 [node name="BidBuyoutSortText" type="Label" parent="AuctionFrameBid/BidBuyoutSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Buyout Price"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -5672,13 +5738,12 @@ expand_mode = 1
 [node name="BidStatusSortText" type="Label" parent="AuctionFrameBid/BidStatusSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Bid Status"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -5745,13 +5810,12 @@ expand_mode = 1
 [node name="BidBidSortText" type="Label" parent="AuctionFrameBid/BidBidSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Current Bid"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -5812,16 +5876,16 @@ step = 0.0
 [node name="BidScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar/BidScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
@@ -5830,7 +5894,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar/BidScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -5840,7 +5904,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar/BidScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -5850,7 +5914,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar/BidScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -5861,16 +5925,16 @@ material = SubResource("CanvasItemMaterial_16")
 [node name="BidScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 303
-offset_right = 16
+offset_right = 17
 offset_bottom = 319
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar/BidScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_39")
@@ -5879,7 +5943,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar/BidScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -5889,7 +5953,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar/BidScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -5899,7 +5963,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBid/BidScrollFrame/BidScrollFrameScrollBar/BidScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -7714,132 +7778,6 @@ offset_top = 12
 offset_right = 795
 offset_bottom = 25
 
-[node name="BidPrevPageButton" type="TextureButton" parent="AuctionFrameBid"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 32
-offset_top = 374.5
-offset_right = 64
-offset_bottom = 406.5
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBid/BidPrevPageButton"]
-offset_left = 32
-offset_top = 10
-offset_right = 32
-offset_bottom = 22
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Prev"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBid/BidPrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_61")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBid/BidPrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_62")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBid/BidPrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_63")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBid/BidPrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_64")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="BidNextPageButton" type="TextureButton" parent="AuctionFrameBid"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 775
-offset_top = 374.5
-offset_right = 807
-offset_bottom = 406.5
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameBid/BidNextPageButton"]
-offset_left = 0
-offset_top = 10
-offset_right = 0
-offset_bottom = 22
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Next"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameBid/BidNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_65")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameBid/BidNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_66")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBid/BidNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_67")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameBid/BidNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_64")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
 [node name="BidBidPrice" type="Control" parent="AuctionFrameBid"]
 unique_name_in_owner = true
 offset_left = 276
@@ -7869,7 +7807,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BidBidPriceGoldRight" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceGold"]
@@ -7880,7 +7818,7 @@ offset_right = 58
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BidBidPriceGoldMiddle" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceGold"]
@@ -7891,7 +7829,7 @@ offset_right = 50
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceGold"]
@@ -7901,8 +7839,22 @@ offset_right = 73
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_85")
+texture = SubResource("AtlasTexture_93")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameBid/BidBidPrice/BidBidPriceGold"]
+offset_left = 60
+offset_top = 1
+offset_right = 78
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "g"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BidBidPriceSilver" type="LineEdit" parent="AuctionFrameBid/BidBidPrice"]
 unique_name_in_owner = true
@@ -7926,7 +7878,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BidBidPriceSilverRight" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceSilver"]
@@ -7937,7 +7889,7 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BidBidPriceSilverMiddle" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceSilver"]
@@ -7948,7 +7900,7 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceSilver"]
@@ -7958,8 +7910,22 @@ offset_right = 35
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_86")
+texture = SubResource("AtlasTexture_94")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameBid/BidBidPrice/BidBidPriceSilver"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "s"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BidBidPriceCopper" type="LineEdit" parent="AuctionFrameBid/BidBidPrice"]
 unique_name_in_owner = true
@@ -7983,7 +7949,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BidBidPriceCopperRight" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceCopper"]
@@ -7994,7 +7960,7 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BidBidPriceCopperMiddle" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceCopper"]
@@ -8005,7 +7971,7 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameBid/BidBidPrice/BidBidPriceCopper"]
@@ -8015,8 +7981,22 @@ offset_right = 35
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_87")
+texture = SubResource("AtlasTexture_95")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameBid/BidBidPrice/BidBidPriceCopper"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "c"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BidCloseButton" type="TextureButton" parent="AuctionFrameBid"]
 unique_name_in_owner = true
@@ -8033,7 +8013,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
+texture = SubResource("AtlasTexture_79")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBid/BidCloseButton"]
@@ -8043,7 +8023,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
+texture = SubResource("AtlasTexture_81")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBid/BidCloseButton"]
@@ -8053,7 +8033,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
+texture = SubResource("AtlasTexture_83")
 expand_mode = 1
 
 [node name="BidCloseButtonText" type="Label" parent="AuctionFrameBid/BidCloseButton"]
@@ -8063,7 +8043,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Close"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -8075,7 +8054,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -8094,7 +8073,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
+texture = SubResource("AtlasTexture_79")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBid/BidBuyoutButton"]
@@ -8104,7 +8083,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
+texture = SubResource("AtlasTexture_81")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBid/BidBuyoutButton"]
@@ -8114,7 +8093,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
+texture = SubResource("AtlasTexture_83")
 expand_mode = 1
 
 [node name="BidBuyoutButtonText" type="Label" parent="AuctionFrameBid/BidBuyoutButton"]
@@ -8124,7 +8103,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -8136,7 +8114,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -8155,7 +8133,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
+texture = SubResource("AtlasTexture_79")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameBid/BidBidButton"]
@@ -8165,7 +8143,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
+texture = SubResource("AtlasTexture_81")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameBid/BidBidButton"]
@@ -8175,7 +8153,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
+texture = SubResource("AtlasTexture_83")
 expand_mode = 1
 
 [node name="BidBidButtonText" type="Label" parent="AuctionFrameBid/BidBidButton"]
@@ -8185,7 +8163,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Bid"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -8197,7 +8174,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -8239,84 +8216,15 @@ vertical_alignment = 1
 
 [node name="AuctionsItemText" type="Label" parent="AuctionFrameAuctions"]
 unique_name_in_owner = true
-offset_left = 28
-offset_top = 83
-offset_right = 28
-offset_bottom = 93
+offset_left = 25
+offset_top = 80
+offset_right = 25
+offset_bottom = 90
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
+theme_type_variation = &"GameFontNormalSmall"
 text = "Auction Item"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AuctionsPriceText" type="Label" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-offset_left = 28
-offset_top = 153
-offset_right = 28
-offset_bottom = 163
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Starting Price"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AuctionsDurationText" type="Label" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-offset_left = 28
-offset_top = 203
-offset_right = 28
-offset_bottom = 213
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Auction Duration"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AuctionsBuyoutText" type="Label" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-offset_left = 28
-offset_top = 297
-offset_right = 28
-offset_bottom = 307
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AuctionsBuyoutErrorText" type="Label" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-offset_left = 28
-offset_top = 284
-offset_right = 28
-offset_bottom = 294
-grow_horizontal = 1
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"GameFontRedSmall"
-text = "(Must be >= the start price)"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AuctionsDepositText" type="Label" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-offset_left = 28
-offset_top = 364
-offset_right = 28
-offset_bottom = 376
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Deposit:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -8330,6 +8238,20 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AuctionsDepositText" type="Label" parent="AuctionFrameAuctions"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = 366
+offset_right = 25
+offset_bottom = 378
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Deposit:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -8384,13 +8306,12 @@ expand_mode = 1
 [node name="AuctionsQualitySortText" type="Label" parent="AuctionFrameAuctions/AuctionsQualitySort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Rarity"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -8457,13 +8378,12 @@ expand_mode = 1
 [node name="AuctionsDurationSortText" type="Label" parent="AuctionFrameAuctions/AuctionsDurationSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Time Left"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -8530,13 +8450,12 @@ expand_mode = 1
 [node name="AuctionsHighBidderSortText" type="Label" parent="AuctionFrameAuctions/AuctionsHighBidderSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "High Bidder"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -8557,7 +8476,7 @@ unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 606
 offset_top = 51
-offset_right = 799
+offset_right = 819
 offset_bottom = 70
 ignore_texture_size = true
 
@@ -8573,9 +8492,9 @@ expand_mode = 1
 
 [node name="AuctionsBidSortRight" type="TextureRect" parent="AuctionFrameAuctions/AuctionsBidSort"]
 unique_name_in_owner = true
-offset_left = 189
+offset_left = 209
 offset_top = 0
-offset_right = 193
+offset_right = 213
 offset_bottom = 19
 mouse_filter = 2
 texture = SubResource("AtlasTexture_48")
@@ -8585,7 +8504,7 @@ expand_mode = 1
 unique_name_in_owner = true
 offset_left = 5
 offset_top = 0
-offset_right = 189
+offset_right = 209
 offset_bottom = 19
 mouse_filter = 2
 texture = SubResource("AtlasTexture_49")
@@ -8603,13 +8522,12 @@ expand_mode = 1
 [node name="AuctionsBidSortText" type="Label" parent="AuctionFrameAuctions/AuctionsBidSort"]
 unique_name_in_owner = true
 offset_left = 8
-offset_top = 4.5
+offset_top = 9.5
 offset_right = 8
-offset_bottom = 14.5
+offset_bottom = 9.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
 text = "Current Bid"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -8617,7 +8535,7 @@ vertical_alignment = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsBidSort"]
 offset_left = 0
 offset_top = -2.5
-offset_right = 197
+offset_right = 217
 offset_bottom = 21.5
 visible = false
 mouse_filter = 2
@@ -8670,16 +8588,16 @@ step = 0.0
 [node name="AuctionsScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar/AuctionsScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_31")
@@ -8688,7 +8606,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar/AuctionsScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -8698,7 +8616,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar/AuctionsScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -8708,7 +8626,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar/AuctionsScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -8719,16 +8637,16 @@ material = SubResource("CanvasItemMaterial_16")
 [node name="AuctionsScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 307
-offset_right = 16
+offset_right = 17
 offset_bottom = 323
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar/AuctionsScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
 texture = SubResource("AtlasTexture_39")
@@ -8737,7 +8655,7 @@ expand_mode = 1
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar/AuctionsScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -8747,7 +8665,7 @@ expand_mode = 1
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar/AuctionsScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -8757,7 +8675,7 @@ expand_mode = 1
 [node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsScrollFrame/AuctionsScrollFrameScrollBar/AuctionsScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -8955,27 +8873,57 @@ grow_vertical = 2
 
 [node name="AuctionsButton1MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton1" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton1BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton1" instance=ExtResource("3")]
+[node name="AuctionsButton1MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton1/AuctionsButton1MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton1/AuctionsButton1BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton1BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton1"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton1BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton1/AuctionsButton1BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton1BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton1/AuctionsButton1BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton1/AuctionsButton1BuyoutFrame/AuctionsButton1BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -9154,27 +9102,57 @@ grow_vertical = 2
 
 [node name="AuctionsButton2MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton2" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton2BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton2" instance=ExtResource("3")]
+[node name="AuctionsButton2MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton2/AuctionsButton2MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton2/AuctionsButton2BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton2BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton2"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton2BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton2/AuctionsButton2BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton2BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton2/AuctionsButton2BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton2/AuctionsButton2BuyoutFrame/AuctionsButton2BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -9353,27 +9331,57 @@ grow_vertical = 2
 
 [node name="AuctionsButton3MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton3" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton3BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton3" instance=ExtResource("3")]
+[node name="AuctionsButton3MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton3/AuctionsButton3MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton3/AuctionsButton3BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton3BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton3"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton3BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton3/AuctionsButton3BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton3BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton3/AuctionsButton3BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton3/AuctionsButton3BuyoutFrame/AuctionsButton3BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -9552,27 +9560,57 @@ grow_vertical = 2
 
 [node name="AuctionsButton4MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton4" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton4BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton4" instance=ExtResource("3")]
+[node name="AuctionsButton4MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton4/AuctionsButton4MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton4/AuctionsButton4BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton4BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton4"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton4BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton4/AuctionsButton4BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton4BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton4/AuctionsButton4BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton4/AuctionsButton4BuyoutFrame/AuctionsButton4BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -9751,27 +9789,57 @@ grow_vertical = 2
 
 [node name="AuctionsButton5MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton5" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton5BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton5" instance=ExtResource("3")]
+[node name="AuctionsButton5MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton5/AuctionsButton5MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton5/AuctionsButton5BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton5BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton5"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton5BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton5/AuctionsButton5BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton5BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton5/AuctionsButton5BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton5/AuctionsButton5BuyoutFrame/AuctionsButton5BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -9950,27 +10018,57 @@ grow_vertical = 2
 
 [node name="AuctionsButton6MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton6" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton6BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton6" instance=ExtResource("3")]
+[node name="AuctionsButton6MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton6/AuctionsButton6MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton6/AuctionsButton6BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton6BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton6"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton6BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton6/AuctionsButton6BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton6BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton6/AuctionsButton6BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton6/AuctionsButton6BuyoutFrame/AuctionsButton6BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -10149,27 +10247,57 @@ grow_vertical = 2
 
 [node name="AuctionsButton7MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton7" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton7BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton7" instance=ExtResource("3")]
+[node name="AuctionsButton7MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton7/AuctionsButton7MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton7/AuctionsButton7BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton7BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton7"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton7BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton7/AuctionsButton7BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton7BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton7/AuctionsButton7BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton7/AuctionsButton7BuyoutFrame/AuctionsButton7BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -10348,27 +10476,57 @@ grow_vertical = 2
 
 [node name="AuctionsButton8MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton8" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton8BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton8" instance=ExtResource("3")]
+[node name="AuctionsButton8MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton8/AuctionsButton8MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton8/AuctionsButton8BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton8BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton8"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton8BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton8/AuctionsButton8BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton8BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton8/AuctionsButton8BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton8/AuctionsButton8BuyoutFrame/AuctionsButton8BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -10547,164 +10705,68 @@ grow_vertical = 2
 
 [node name="AuctionsButton9MoneyFrame" parent="AuctionFrameAuctions/AuctionsButton9" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 448
+offset_left = 458
 offset_top = 9
-offset_right = 576
+offset_right = 586
 offset_bottom = 22
 
-[node name="AuctionsButton9BuyoutMoneyFrame" parent="AuctionFrameAuctions/AuctionsButton9" instance=ExtResource("3")]
+[node name="AuctionsButton9MoneyFrameLabel" type="Label" parent="AuctionFrameAuctions/AuctionsButton9/AuctionsButton9MoneyFrame"]
 unique_name_in_owner = true
-offset_left = 448
-offset_top = 17
-offset_right = 576
-offset_bottom = 30
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton9/AuctionsButton9BuyoutMoneyFrame"]
-offset_left = -10
-offset_top = 1.5
-offset_right = -10
-offset_bottom = 11.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 114
+offset_top = -15
+offset_right = 114
+offset_bottom = -3
+visible = false
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
+text = "Incoming Amount"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsButton9BuyoutFrame" type="Control" parent="AuctionFrameAuctions/AuctionsButton9"]
+unique_name_in_owner = true
+offset_left = 389
+offset_top = 23
+offset_right = 586
+offset_bottom = 36
+visible = false
+mouse_filter = 2
+
+[node name="AuctionsButton9BuyoutFrameMoney" parent="AuctionFrameAuctions/AuctionsButton9/AuctionsButton9BuyoutFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 69
+offset_top = 0
+offset_right = 197
+offset_bottom = 13
+
+[node name="AuctionsButton9BuyoutFrameText" type="Control" parent="AuctionFrameAuctions/AuctionsButton9/AuctionsButton9BuyoutFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsButton9/AuctionsButton9BuyoutFrame/AuctionsButton9BuyoutFrameText"]
+offset_left = 0
+offset_top = 0
+offset_right = 67
+offset_bottom = 13
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmallLeft"
 text = "Buyout"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AuctionsPrevPageButton" type="TextureButton" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 224
-offset_top = 374.5
-offset_right = 256
-offset_bottom = 406.5
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsPrevPageButton"]
-offset_left = 32
-offset_top = 10
-offset_right = 32
-offset_bottom = 22
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Prev"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsPrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_61")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsPrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_62")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsPrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_63")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsPrevPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_64")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="AuctionsNextPageButton" type="TextureButton" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 765
-offset_top = 374.5
-offset_right = 797
-offset_bottom = 406.5
-visible = false
-ignore_texture_size = true
-
-[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsNextPageButton"]
-offset_left = 0
-offset_top = 10
-offset_right = 0
-offset_bottom = 22
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Next"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-mouse_filter = 2
-texture = SubResource("WowTexture_65")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_66")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_67")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNextPageButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 32
-offset_bottom = 32
-visible = false
-mouse_filter = 2
-texture = SubResource("WowTexture_64")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
 [node name="AuctionsItemButton" type="TextureButton" parent="AuctionFrameAuctions"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 28
-offset_top = 98
-offset_right = 65
-offset_bottom = 135
+offset_left = 30
+offset_top = 94
+offset_right = 67
+offset_bottom = 131
 ignore_texture_size = true
 
 [node name="AuctionsItemButtonName" type="Label" parent="AuctionFrameAuctions/AuctionsItemButton"]
@@ -10719,6 +10781,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsItemButton"]
+offset_left = -2
+offset_top = -2
+offset_right = 171
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_97")
+expand_mode = 1
 
 [node name="AuctionsItemButtonCount" type="Label" parent="AuctionFrameAuctions/AuctionsItemButton"]
 unique_name_in_owner = true
@@ -10745,13 +10816,385 @@ texture = SubResource("WowTexture_60")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
+[node name="AuctionsStackSizeEntry" type="LineEdit" parent="AuctionFrameAuctions"]
+unique_name_in_owner = true
+offset_left = 33
+offset_top = 147
+offset_right = 83
+offset_bottom = 167
+visible = false
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+max_length = 4
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_29")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_29")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_29")
+
+[node name="AuctionsStackSizeEntryLeft" type="TextureRect" parent="AuctionFrameAuctions/AuctionsStackSizeEntry"]
+unique_name_in_owner = true
+offset_left = -5
+offset_top = 0
+offset_right = 3
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_62")
+expand_mode = 1
+
+[node name="AuctionsStackSizeEntryRight" type="TextureRect" parent="AuctionFrameAuctions/AuctionsStackSizeEntry"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 0
+offset_right = 40
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_63")
+expand_mode = 1
+
+[node name="AuctionsStackSizeEntryMiddle" type="TextureRect" parent="AuctionFrameAuctions/AuctionsStackSizeEntry"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 32
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_64")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsStackSizeEntry"]
+offset_left = -8
+offset_top = -3
+offset_right = -8
+offset_bottom = -3
+grow_horizontal = 1
+grow_vertical = 0
+show_behind_parent = true
+mouse_filter = 2
+text = "Stack Size"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AuctionsStackSizeMaxButton" type="TextureButton" parent="AuctionFrameAuctions"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 88
+offset_top = 145.5
+offset_right = 188
+offset_bottom = 166.5
+visible = false
+ignore_texture_size = true
+
+[node name="AuctionsStackSizeMaxButtonLeft" type="TextureRect" parent="AuctionFrameAuctions/AuctionsStackSizeMaxButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_98")
+expand_mode = 1
+
+[node name="AuctionsStackSizeMaxButtonRight" type="TextureRect" parent="AuctionFrameAuctions/AuctionsStackSizeMaxButton"]
+unique_name_in_owner = true
+offset_left = 88
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_99")
+expand_mode = 1
+
+[node name="AuctionsStackSizeMaxButtonMiddle" type="TextureRect" parent="AuctionFrameAuctions/AuctionsStackSizeMaxButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 88
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_100")
+expand_mode = 1
+
+[node name="AuctionsStackSizeMaxButtonText" type="Label" parent="AuctionFrameAuctions/AuctionsStackSizeMaxButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+text = "Maximum"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsStackSizeMaxButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_85")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="AuctionsNumStacksEntry" type="LineEdit" parent="AuctionFrameAuctions"]
+unique_name_in_owner = true
+offset_left = 33
+offset_top = 182
+offset_right = 83
+offset_bottom = 202
+visible = false
+mouse_filter = 0
+theme_type_variation = &"ChatFontNormal"
+max_length = 4
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_29")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_29")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_29")
+
+[node name="AuctionsNumStacksEntryLeft" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNumStacksEntry"]
+unique_name_in_owner = true
+offset_left = -5
+offset_top = 0
+offset_right = 3
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_62")
+expand_mode = 1
+
+[node name="AuctionsNumStacksEntryRight" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNumStacksEntry"]
+unique_name_in_owner = true
+offset_left = 32
+offset_top = 0
+offset_right = 40
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_63")
+expand_mode = 1
+
+[node name="AuctionsNumStacksEntryMiddle" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNumStacksEntry"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 32
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_64")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/AuctionsNumStacksEntry"]
+offset_left = -8
+offset_top = -3
+offset_right = -8
+offset_bottom = -3
+grow_horizontal = 1
+grow_vertical = 0
+show_behind_parent = true
+mouse_filter = 2
+text = "Number of Stacks"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AuctionsNumStacksMaxButton" type="TextureButton" parent="AuctionFrameAuctions"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 88
+offset_top = 180.5
+offset_right = 188
+offset_bottom = 201.5
+visible = false
+ignore_texture_size = true
+
+[node name="AuctionsNumStacksMaxButtonLeft" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNumStacksMaxButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_98")
+expand_mode = 1
+
+[node name="AuctionsNumStacksMaxButtonRight" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNumStacksMaxButton"]
+unique_name_in_owner = true
+offset_left = 88
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_99")
+expand_mode = 1
+
+[node name="AuctionsNumStacksMaxButtonMiddle" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNumStacksMaxButton"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 0
+offset_right = 88
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_100")
+expand_mode = 1
+
+[node name="AuctionsNumStacksMaxButtonText" type="Label" parent="AuctionFrameAuctions/AuctionsNumStacksMaxButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+mouse_filter = 2
+text = "Maximum"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsNumStacksMaxButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_85")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="PriceDropDown" type="Control" parent="AuctionFrameAuctions"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 215
+offset_right = 217
+offset_bottom = 247
+mouse_filter = 2
+
+[node name="PriceDropDownLeft" type="TextureRect" parent="AuctionFrameAuctions/PriceDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_66")
+expand_mode = 1
+
+[node name="PriceDropDownMiddle" type="TextureRect" parent="AuctionFrameAuctions/PriceDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_67")
+expand_mode = 1
+
+[node name="PriceDropDownRight" type="TextureRect" parent="AuctionFrameAuctions/PriceDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_68")
+expand_mode = 1
+
+[node name="PriceDropDownText" type="Label" parent="AuctionFrameAuctions/PriceDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/PriceDropDown"]
+offset_left = -152
+offset_top = 8
+offset_right = -152
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Price"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PriceDropDownButton" type="TextureButton" parent="AuctionFrameAuctions/PriceDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/PriceDropDown/PriceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_69")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/PriceDropDown/PriceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_70")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/PriceDropDown/PriceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/PriceDropDown/PriceDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_72")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
 [node name="StartPrice" type="Control" parent="AuctionFrameAuctions"]
 unique_name_in_owner = true
-offset_left = 31
-offset_top = 165
-offset_right = 207
-offset_bottom = 183
+offset_left = 35
+offset_top = 259
+offset_right = 211
+offset_bottom = 277
 mouse_filter = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/StartPrice"]
+offset_left = -10
+offset_top = -13
+offset_right = -10
+offset_bottom = -3
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Starting Price"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartPriceGold" type="LineEdit" parent="AuctionFrameAuctions/StartPrice"]
 unique_name_in_owner = true
@@ -10774,7 +11217,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="StartPriceGoldRight" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceGold"]
@@ -10785,7 +11228,7 @@ offset_right = 58
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="StartPriceGoldMiddle" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceGold"]
@@ -10796,7 +11239,7 @@ offset_right = 50
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceGold"]
@@ -10806,8 +11249,22 @@ offset_right = 73
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_85")
+texture = SubResource("AtlasTexture_93")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/StartPrice/StartPriceGold"]
+offset_left = 60
+offset_top = 1
+offset_right = 78
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "g"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StartPriceSilver" type="LineEdit" parent="AuctionFrameAuctions/StartPrice"]
 unique_name_in_owner = true
@@ -10831,7 +11288,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="StartPriceSilverRight" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceSilver"]
@@ -10842,7 +11299,7 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="StartPriceSilverMiddle" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceSilver"]
@@ -10853,7 +11310,7 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceSilver"]
@@ -10863,8 +11320,22 @@ offset_right = 35
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_86")
+texture = SubResource("AtlasTexture_94")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/StartPrice/StartPriceSilver"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "s"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StartPriceCopper" type="LineEdit" parent="AuctionFrameAuctions/StartPrice"]
 unique_name_in_owner = true
@@ -10888,7 +11359,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="StartPriceCopperRight" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceCopper"]
@@ -10899,7 +11370,7 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="StartPriceCopperMiddle" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceCopper"]
@@ -10910,7 +11381,7 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameAuctions/StartPrice/StartPriceCopper"]
@@ -10920,172 +11391,43 @@ offset_right = 35
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_87")
+texture = SubResource("AtlasTexture_95")
 expand_mode = 1
 
-[node name="AuctionsShortAuctionButton" type="TextureButton" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 31
-offset_top = 215
-offset_right = 47
-offset_bottom = 231
-ignore_texture_size = true
-
-[node name="AuctionsShortAuctionButtonText" type="Label" parent="AuctionFrameAuctions/AuctionsShortAuctionButton"]
-unique_name_in_owner = true
-offset_left = 21
-offset_top = 3
-offset_right = 21
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/StartPrice/StartPriceCopper"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
+text = "c"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsShortAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("AtlasTexture_97")
-expand_mode = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsShortAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_98")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsShortAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_99")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="AuctionsMediumAuctionButton" type="TextureButton" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 31
-offset_top = 231
-offset_right = 47
-offset_bottom = 247
-ignore_texture_size = true
-
-[node name="AuctionsMediumAuctionButtonText" type="Label" parent="AuctionFrameAuctions/AuctionsMediumAuctionButton"]
-unique_name_in_owner = true
-offset_left = 21
-offset_top = 3
-offset_right = 21
-offset_bottom = 13
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsMediumAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("AtlasTexture_97")
-expand_mode = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsMediumAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_98")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsMediumAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_99")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
-
-[node name="AuctionsLongAuctionButton" type="TextureButton" parent="AuctionFrameAuctions"]
-unique_name_in_owner = true
-script = ExtResource("2")
-offset_left = 31
-offset_top = 247
-offset_right = 47
-offset_bottom = 263
-ignore_texture_size = true
-
-[node name="AuctionsLongAuctionButtonText" type="Label" parent="AuctionFrameAuctions/AuctionsLongAuctionButton"]
-unique_name_in_owner = true
-offset_left = 21
-offset_top = 3
-offset_right = 21
-offset_bottom = 13
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsLongAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-mouse_filter = 2
-texture = SubResource("AtlasTexture_97")
-expand_mode = 1
-
-[node name="CheckedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsLongAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_98")
-expand_mode = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsLongAuctionButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 16
-offset_bottom = 16
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_99")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_16")
 
 [node name="BuyoutPrice" type="Control" parent="AuctionFrameAuctions"]
 unique_name_in_owner = true
-offset_left = 30
-offset_top = 309
-offset_right = 206
-offset_bottom = 327
+offset_left = 35
+offset_top = 304
+offset_right = 211
+offset_bottom = 322
 mouse_filter = 2
+
+[node name="AuctionsBuyoutText" type="Label" parent="AuctionFrameAuctions/BuyoutPrice"]
+unique_name_in_owner = true
+offset_left = -10
+offset_top = -13
+offset_right = -10
+offset_bottom = -3
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuyoutPriceGold" type="LineEdit" parent="AuctionFrameAuctions/BuyoutPrice"]
 unique_name_in_owner = true
@@ -11108,7 +11450,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BuyoutPriceGoldRight" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceGold"]
@@ -11119,7 +11461,7 @@ offset_right = 58
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BuyoutPriceGoldMiddle" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceGold"]
@@ -11130,7 +11472,7 @@ offset_right = 50
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceGold"]
@@ -11140,8 +11482,22 @@ offset_right = 73
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_85")
+texture = SubResource("AtlasTexture_93")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceGold"]
+offset_left = 60
+offset_top = 1
+offset_right = 78
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "g"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BuyoutPriceSilver" type="LineEdit" parent="AuctionFrameAuctions/BuyoutPrice"]
 unique_name_in_owner = true
@@ -11165,7 +11521,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BuyoutPriceSilverRight" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceSilver"]
@@ -11176,7 +11532,7 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BuyoutPriceSilverMiddle" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceSilver"]
@@ -11187,7 +11543,7 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceSilver"]
@@ -11197,8 +11553,22 @@ offset_right = 35
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_86")
+texture = SubResource("AtlasTexture_94")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceSilver"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "s"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BuyoutPriceCopper" type="LineEdit" parent="AuctionFrameAuctions/BuyoutPrice"]
 unique_name_in_owner = true
@@ -11222,7 +11592,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_74")
+texture = SubResource("AtlasTexture_62")
 expand_mode = 1
 
 [node name="BuyoutPriceCopperRight" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceCopper"]
@@ -11233,7 +11603,7 @@ offset_right = 20
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_75")
+texture = SubResource("AtlasTexture_63")
 expand_mode = 1
 
 [node name="BuyoutPriceCopperMiddle" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceCopper"]
@@ -11244,7 +11614,7 @@ offset_right = 12
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_76")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceCopper"]
@@ -11254,15 +11624,160 @@ offset_right = 35
 offset_bottom = 16.5
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_87")
+texture = SubResource("AtlasTexture_95")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/BuyoutPrice/BuyoutPriceCopper"]
+offset_left = 22
+offset_top = 1
+offset_right = 40
+offset_bottom = 19
+show_behind_parent = true
+visible = false
+mouse_filter = 2
+text = "c"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AuctionsBuyoutError" type="Control" parent="AuctionFrameAuctions/BuyoutPrice"]
+unique_name_in_owner = true
+offset_left = -4
+offset_top = -20
+offset_right = 16
+offset_bottom = 0
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="AuctionFrameAuctions/BuyoutPrice/AuctionsBuyoutError"]
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("WowTexture_101")
+expand_mode = 1
+
+[node name="DurationDropDown" type="Control" parent="AuctionFrameAuctions"]
+unique_name_in_owner = true
+offset_left = 177
+offset_top = 326
+offset_right = 217
+offset_bottom = 358
+mouse_filter = 2
+
+[node name="DurationDropDownLeft" type="TextureRect" parent="AuctionFrameAuctions/DurationDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_66")
+expand_mode = 1
+
+[node name="DurationDropDownMiddle" type="TextureRect" parent="AuctionFrameAuctions/DurationDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_67")
+expand_mode = 1
+
+[node name="DurationDropDownRight" type="TextureRect" parent="AuctionFrameAuctions/DurationDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_68")
+expand_mode = 1
+
+[node name="DurationDropDownText" type="Label" parent="AuctionFrameAuctions/DurationDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="FontString" type="Label" parent="AuctionFrameAuctions/DurationDropDown"]
+offset_left = -152
+offset_top = 8
+offset_right = -152
+offset_bottom = 18
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Duration"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DurationDropDownButton" type="TextureButton" parent="AuctionFrameAuctions/DurationDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/DurationDropDown/DurationDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_69")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/DurationDropDown/DurationDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_70")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/DurationDropDown/DurationDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_71")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AuctionFrameAuctions/DurationDropDown/DurationDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_72")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
 
 [node name="AuctionsDepositMoneyFrame" parent="AuctionFrameAuctions" instance=ExtResource("3")]
 unique_name_in_owner = true
-offset_left = 33
-offset_top = 363.5
-offset_right = 161
-offset_bottom = 376.5
+offset_left = 30
+offset_top = 366.5
+offset_right = 158
+offset_bottom = 379.5
 
 [node name="AuctionsCloseButton" type="TextureButton" parent="AuctionFrameAuctions"]
 unique_name_in_owner = true
@@ -11279,7 +11794,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
+texture = SubResource("AtlasTexture_79")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCloseButton"]
@@ -11289,7 +11804,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
+texture = SubResource("AtlasTexture_81")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCloseButton"]
@@ -11299,7 +11814,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
+texture = SubResource("AtlasTexture_83")
 expand_mode = 1
 
 [node name="AuctionsCloseButtonText" type="Label" parent="AuctionFrameAuctions/AuctionsCloseButton"]
@@ -11309,7 +11824,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Close"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -11321,7 +11835,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -11334,33 +11848,34 @@ offset_right = 746
 offset_bottom = 433
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCancelAuctionButton"]
+[node name="AuctionsCancelAuctionButtonLeft" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCancelAuctionButton"]
+unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 126
+offset_right = 12
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
+texture = SubResource("AtlasTexture_98")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCancelAuctionButton"]
-offset_left = 0
+[node name="AuctionsCancelAuctionButtonRight" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCancelAuctionButton"]
+unique_name_in_owner = true
+offset_left = 114
 offset_top = 0
 offset_right = 126
 offset_bottom = 22
-visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
+texture = SubResource("AtlasTexture_99")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCancelAuctionButton"]
-offset_left = 0
+[node name="AuctionsCancelAuctionButtonMiddle" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCancelAuctionButton"]
+unique_name_in_owner = true
+offset_left = 12
 offset_top = 0
-offset_right = 126
+offset_right = 114
 offset_bottom = 22
-visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
+texture = SubResource("AtlasTexture_100")
 expand_mode = 1
 
 [node name="AuctionsCancelAuctionButtonText" type="Label" parent="AuctionFrameAuctions/AuctionsCancelAuctionButton"]
@@ -11370,7 +11885,6 @@ offset_top = 0
 offset_right = 126
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel Auction"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -11382,7 +11896,7 @@ offset_right = 126
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
 
@@ -11395,33 +11909,34 @@ offset_right = 209
 offset_bottom = 408
 ignore_texture_size = true
 
-[node name="NormalTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCreateAuctionButton"]
+[node name="AuctionsCreateAuctionButtonLeft" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCreateAuctionButton"]
+unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 191
+offset_right = 12
 offset_bottom = 20
 mouse_filter = 2
-texture = SubResource("AtlasTexture_89")
+texture = SubResource("AtlasTexture_98")
 expand_mode = 1
 
-[node name="PushedTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCreateAuctionButton"]
-offset_left = 0
+[node name="AuctionsCreateAuctionButtonRight" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCreateAuctionButton"]
+unique_name_in_owner = true
+offset_left = 179
 offset_top = 0
 offset_right = 191
 offset_bottom = 20
-visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_91")
+texture = SubResource("AtlasTexture_99")
 expand_mode = 1
 
-[node name="DisabledTexture" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCreateAuctionButton"]
-offset_left = 0
+[node name="AuctionsCreateAuctionButtonMiddle" type="TextureRect" parent="AuctionFrameAuctions/AuctionsCreateAuctionButton"]
+unique_name_in_owner = true
+offset_left = 12
 offset_top = 0
-offset_right = 191
+offset_right = 179
 offset_bottom = 20
-visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_93")
+texture = SubResource("AtlasTexture_100")
 expand_mode = 1
 
 [node name="AuctionsCreateAuctionButtonText" type="Label" parent="AuctionFrameAuctions/AuctionsCreateAuctionButton"]
@@ -11431,7 +11946,6 @@ offset_top = 0
 offset_right = 191
 offset_bottom = 20
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Create Auction"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -11443,6 +11957,23 @@ offset_right = 191
 offset_bottom = 20
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_95")
+texture = SubResource("AtlasTexture_85")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_16")
+
+[node name="AuctionsBlockFrame" type="Control" parent="AuctionFrameAuctions"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 75
+offset_right = 209
+offset_bottom = 383
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="ColorRect" parent="AuctionFrameAuctions/AuctionsBlockFrame"]
+offset_left = 0
+offset_top = 0
+offset_right = 189
+offset_bottom = 308
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)

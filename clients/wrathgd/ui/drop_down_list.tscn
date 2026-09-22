@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
-file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+file = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_2"]
 file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
@@ -69,7 +69,7 @@ edge = SubResource("WowTexture_2")
 tile = true
 tile_size = 32
 edge_size = 32
-insets = Vector4(11, 12, 12, 11)
+insets = Vector4(11, 12, 12, 9)
 
 [node name="DropDownList1MenuBackdrop" type="Control" parent="."]
 unique_name_in_owner = true
@@ -94,14 +94,14 @@ edge = SubResource("WowTexture_4")
 tile = true
 tile_size = 16
 edge_size = 16
-insets = Vector4(5, 5, 5, 5)
+insets = Vector4(5, 5, 5, 4)
 
 [node name="DropDownList1Button1" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -109,7 +109,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -120,40 +120,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button1Check" type="TextureRect" parent="DropDownList1Button1"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button1Icon" type="TextureRect" parent="DropDownList1Button1"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button1NormalText" type="Label" parent="DropDownList1Button1"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button1ColorSwatch" type="TextureButton" parent="DropDownList1Button1"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -179,9 +180,9 @@ expand_mode = 1
 [node name="DropDownList1Button1ExpandArrow" type="TextureButton" parent="DropDownList1Button1"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -200,7 +201,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -210,7 +211,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -218,7 +219,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -229,40 +230,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button2Check" type="TextureRect" parent="DropDownList1Button2"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button2Icon" type="TextureRect" parent="DropDownList1Button2"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button2NormalText" type="Label" parent="DropDownList1Button2"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button2ColorSwatch" type="TextureButton" parent="DropDownList1Button2"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -288,9 +290,9 @@ expand_mode = 1
 [node name="DropDownList1Button2ExpandArrow" type="TextureButton" parent="DropDownList1Button2"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -309,7 +311,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -319,7 +321,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -327,7 +329,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -338,40 +340,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button3Check" type="TextureRect" parent="DropDownList1Button3"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button3Icon" type="TextureRect" parent="DropDownList1Button3"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button3NormalText" type="Label" parent="DropDownList1Button3"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button3ColorSwatch" type="TextureButton" parent="DropDownList1Button3"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -397,9 +400,9 @@ expand_mode = 1
 [node name="DropDownList1Button3ExpandArrow" type="TextureButton" parent="DropDownList1Button3"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -418,7 +421,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -428,7 +431,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -436,7 +439,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -447,40 +450,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button4Check" type="TextureRect" parent="DropDownList1Button4"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button4Icon" type="TextureRect" parent="DropDownList1Button4"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button4NormalText" type="Label" parent="DropDownList1Button4"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button4ColorSwatch" type="TextureButton" parent="DropDownList1Button4"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -506,9 +510,9 @@ expand_mode = 1
 [node name="DropDownList1Button4ExpandArrow" type="TextureButton" parent="DropDownList1Button4"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -527,7 +531,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -537,7 +541,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -545,7 +549,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -556,40 +560,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button5Check" type="TextureRect" parent="DropDownList1Button5"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button5Icon" type="TextureRect" parent="DropDownList1Button5"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button5NormalText" type="Label" parent="DropDownList1Button5"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button5ColorSwatch" type="TextureButton" parent="DropDownList1Button5"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -615,9 +620,9 @@ expand_mode = 1
 [node name="DropDownList1Button5ExpandArrow" type="TextureButton" parent="DropDownList1Button5"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -636,7 +641,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -646,7 +651,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -654,7 +659,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -665,40 +670,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button6Check" type="TextureRect" parent="DropDownList1Button6"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button6Icon" type="TextureRect" parent="DropDownList1Button6"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button6NormalText" type="Label" parent="DropDownList1Button6"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button6ColorSwatch" type="TextureButton" parent="DropDownList1Button6"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -724,9 +730,9 @@ expand_mode = 1
 [node name="DropDownList1Button6ExpandArrow" type="TextureButton" parent="DropDownList1Button6"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -745,7 +751,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -755,7 +761,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -763,7 +769,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -774,40 +780,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button7Check" type="TextureRect" parent="DropDownList1Button7"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button7Icon" type="TextureRect" parent="DropDownList1Button7"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button7NormalText" type="Label" parent="DropDownList1Button7"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button7ColorSwatch" type="TextureButton" parent="DropDownList1Button7"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -833,9 +840,9 @@ expand_mode = 1
 [node name="DropDownList1Button7ExpandArrow" type="TextureButton" parent="DropDownList1Button7"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -854,7 +861,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -864,7 +871,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -872,7 +879,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -883,40 +890,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button8Check" type="TextureRect" parent="DropDownList1Button8"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button8Icon" type="TextureRect" parent="DropDownList1Button8"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button8NormalText" type="Label" parent="DropDownList1Button8"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button8ColorSwatch" type="TextureButton" parent="DropDownList1Button8"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -942,9 +950,9 @@ expand_mode = 1
 [node name="DropDownList1Button8ExpandArrow" type="TextureButton" parent="DropDownList1Button8"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -963,7 +971,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -973,7 +981,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 ignore_texture_size = true
 
@@ -981,7 +989,7 @@ ignore_texture_size = true
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -992,40 +1000,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button9Check" type="TextureRect" parent="DropDownList1Button9"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button9Icon" type="TextureRect" parent="DropDownList1Button9"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button9NormalText" type="Label" parent="DropDownList1Button9"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button9ColorSwatch" type="TextureButton" parent="DropDownList1Button9"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1051,9 +1060,9 @@ expand_mode = 1
 [node name="DropDownList1Button9ExpandArrow" type="TextureButton" parent="DropDownList1Button9"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1072,7 +1081,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1081,16 +1090,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 16
+offset_right = 100
+offset_bottom = 32
 ignore_texture_size = true
 
 [node name="DropDownList1Button10Highlight" type="TextureRect" parent="DropDownList1Button10"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1101,40 +1110,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button10Check" type="TextureRect" parent="DropDownList1Button10"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button10Icon" type="TextureRect" parent="DropDownList1Button10"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button10NormalText" type="Label" parent="DropDownList1Button10"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button10ColorSwatch" type="TextureButton" parent="DropDownList1Button10"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1160,9 +1170,9 @@ expand_mode = 1
 [node name="DropDownList1Button10ExpandArrow" type="TextureButton" parent="DropDownList1Button10"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1181,7 +1191,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1190,16 +1200,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 32
+offset_right = 100
+offset_bottom = 48
 ignore_texture_size = true
 
 [node name="DropDownList1Button11Highlight" type="TextureRect" parent="DropDownList1Button11"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1210,40 +1220,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button11Check" type="TextureRect" parent="DropDownList1Button11"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button11Icon" type="TextureRect" parent="DropDownList1Button11"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button11NormalText" type="Label" parent="DropDownList1Button11"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button11ColorSwatch" type="TextureButton" parent="DropDownList1Button11"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1269,9 +1280,9 @@ expand_mode = 1
 [node name="DropDownList1Button11ExpandArrow" type="TextureButton" parent="DropDownList1Button11"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1290,7 +1301,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1299,16 +1310,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 48
+offset_right = 100
+offset_bottom = 64
 ignore_texture_size = true
 
 [node name="DropDownList1Button12Highlight" type="TextureRect" parent="DropDownList1Button12"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1319,40 +1330,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button12Check" type="TextureRect" parent="DropDownList1Button12"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button12Icon" type="TextureRect" parent="DropDownList1Button12"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button12NormalText" type="Label" parent="DropDownList1Button12"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button12ColorSwatch" type="TextureButton" parent="DropDownList1Button12"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1378,9 +1390,9 @@ expand_mode = 1
 [node name="DropDownList1Button12ExpandArrow" type="TextureButton" parent="DropDownList1Button12"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1399,7 +1411,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1408,16 +1420,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 64
+offset_right = 100
+offset_bottom = 80
 ignore_texture_size = true
 
 [node name="DropDownList1Button13Highlight" type="TextureRect" parent="DropDownList1Button13"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1428,40 +1440,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button13Check" type="TextureRect" parent="DropDownList1Button13"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button13Icon" type="TextureRect" parent="DropDownList1Button13"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button13NormalText" type="Label" parent="DropDownList1Button13"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button13ColorSwatch" type="TextureButton" parent="DropDownList1Button13"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1487,9 +1500,9 @@ expand_mode = 1
 [node name="DropDownList1Button13ExpandArrow" type="TextureButton" parent="DropDownList1Button13"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1508,7 +1521,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1517,16 +1530,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 80
+offset_right = 100
+offset_bottom = 96
 ignore_texture_size = true
 
 [node name="DropDownList1Button14Highlight" type="TextureRect" parent="DropDownList1Button14"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1537,40 +1550,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button14Check" type="TextureRect" parent="DropDownList1Button14"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button14Icon" type="TextureRect" parent="DropDownList1Button14"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button14NormalText" type="Label" parent="DropDownList1Button14"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button14ColorSwatch" type="TextureButton" parent="DropDownList1Button14"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1596,9 +1610,9 @@ expand_mode = 1
 [node name="DropDownList1Button14ExpandArrow" type="TextureButton" parent="DropDownList1Button14"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1617,7 +1631,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1626,16 +1640,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 96
+offset_right = 100
+offset_bottom = 112
 ignore_texture_size = true
 
 [node name="DropDownList1Button15Highlight" type="TextureRect" parent="DropDownList1Button15"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1646,40 +1660,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button15Check" type="TextureRect" parent="DropDownList1Button15"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button15Icon" type="TextureRect" parent="DropDownList1Button15"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button15NormalText" type="Label" parent="DropDownList1Button15"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button15ColorSwatch" type="TextureButton" parent="DropDownList1Button15"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1705,9 +1720,9 @@ expand_mode = 1
 [node name="DropDownList1Button15ExpandArrow" type="TextureButton" parent="DropDownList1Button15"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1726,7 +1741,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1735,16 +1750,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 112
+offset_right = 100
+offset_bottom = 128
 ignore_texture_size = true
 
 [node name="DropDownList1Button16Highlight" type="TextureRect" parent="DropDownList1Button16"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1755,40 +1770,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button16Check" type="TextureRect" parent="DropDownList1Button16"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button16Icon" type="TextureRect" parent="DropDownList1Button16"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button16NormalText" type="Label" parent="DropDownList1Button16"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button16ColorSwatch" type="TextureButton" parent="DropDownList1Button16"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1814,9 +1830,9 @@ expand_mode = 1
 [node name="DropDownList1Button16ExpandArrow" type="TextureButton" parent="DropDownList1Button16"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1835,7 +1851,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1844,16 +1860,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 128
+offset_right = 100
+offset_bottom = 144
 ignore_texture_size = true
 
 [node name="DropDownList1Button17Highlight" type="TextureRect" parent="DropDownList1Button17"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1864,40 +1880,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button17Check" type="TextureRect" parent="DropDownList1Button17"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button17Icon" type="TextureRect" parent="DropDownList1Button17"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button17NormalText" type="Label" parent="DropDownList1Button17"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button17ColorSwatch" type="TextureButton" parent="DropDownList1Button17"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1923,9 +1940,9 @@ expand_mode = 1
 [node name="DropDownList1Button17ExpandArrow" type="TextureButton" parent="DropDownList1Button17"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1944,7 +1961,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -1953,16 +1970,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 144
+offset_right = 100
+offset_bottom = 160
 ignore_texture_size = true
 
 [node name="DropDownList1Button18Highlight" type="TextureRect" parent="DropDownList1Button18"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -1973,40 +1990,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button18Check" type="TextureRect" parent="DropDownList1Button18"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button18Icon" type="TextureRect" parent="DropDownList1Button18"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button18NormalText" type="Label" parent="DropDownList1Button18"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button18ColorSwatch" type="TextureButton" parent="DropDownList1Button18"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2032,9 +2050,9 @@ expand_mode = 1
 [node name="DropDownList1Button18ExpandArrow" type="TextureButton" parent="DropDownList1Button18"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2053,7 +2071,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2062,16 +2080,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 160
+offset_right = 100
+offset_bottom = 176
 ignore_texture_size = true
 
 [node name="DropDownList1Button19Highlight" type="TextureRect" parent="DropDownList1Button19"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2082,40 +2100,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button19Check" type="TextureRect" parent="DropDownList1Button19"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button19Icon" type="TextureRect" parent="DropDownList1Button19"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button19NormalText" type="Label" parent="DropDownList1Button19"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button19ColorSwatch" type="TextureButton" parent="DropDownList1Button19"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2141,9 +2160,9 @@ expand_mode = 1
 [node name="DropDownList1Button19ExpandArrow" type="TextureButton" parent="DropDownList1Button19"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2162,7 +2181,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2171,16 +2190,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 176
+offset_right = 100
+offset_bottom = 192
 ignore_texture_size = true
 
 [node name="DropDownList1Button20Highlight" type="TextureRect" parent="DropDownList1Button20"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2191,40 +2210,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button20Check" type="TextureRect" parent="DropDownList1Button20"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button20Icon" type="TextureRect" parent="DropDownList1Button20"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button20NormalText" type="Label" parent="DropDownList1Button20"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button20ColorSwatch" type="TextureButton" parent="DropDownList1Button20"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2250,9 +2270,9 @@ expand_mode = 1
 [node name="DropDownList1Button20ExpandArrow" type="TextureButton" parent="DropDownList1Button20"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2271,7 +2291,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2280,16 +2300,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 192
+offset_right = 100
+offset_bottom = 208
 ignore_texture_size = true
 
 [node name="DropDownList1Button21Highlight" type="TextureRect" parent="DropDownList1Button21"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2300,40 +2320,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button21Check" type="TextureRect" parent="DropDownList1Button21"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button21Icon" type="TextureRect" parent="DropDownList1Button21"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button21NormalText" type="Label" parent="DropDownList1Button21"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button21ColorSwatch" type="TextureButton" parent="DropDownList1Button21"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2359,9 +2380,9 @@ expand_mode = 1
 [node name="DropDownList1Button21ExpandArrow" type="TextureButton" parent="DropDownList1Button21"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2380,7 +2401,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2389,16 +2410,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 208
+offset_right = 100
+offset_bottom = 224
 ignore_texture_size = true
 
 [node name="DropDownList1Button22Highlight" type="TextureRect" parent="DropDownList1Button22"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2409,40 +2430,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button22Check" type="TextureRect" parent="DropDownList1Button22"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button22Icon" type="TextureRect" parent="DropDownList1Button22"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button22NormalText" type="Label" parent="DropDownList1Button22"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button22ColorSwatch" type="TextureButton" parent="DropDownList1Button22"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2468,9 +2490,9 @@ expand_mode = 1
 [node name="DropDownList1Button22ExpandArrow" type="TextureButton" parent="DropDownList1Button22"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2489,7 +2511,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2498,16 +2520,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 224
+offset_right = 100
+offset_bottom = 240
 ignore_texture_size = true
 
 [node name="DropDownList1Button23Highlight" type="TextureRect" parent="DropDownList1Button23"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2518,40 +2540,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button23Check" type="TextureRect" parent="DropDownList1Button23"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button23Icon" type="TextureRect" parent="DropDownList1Button23"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button23NormalText" type="Label" parent="DropDownList1Button23"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button23ColorSwatch" type="TextureButton" parent="DropDownList1Button23"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2577,9 +2600,9 @@ expand_mode = 1
 [node name="DropDownList1Button23ExpandArrow" type="TextureButton" parent="DropDownList1Button23"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2598,7 +2621,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2607,16 +2630,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 240
+offset_right = 100
+offset_bottom = 256
 ignore_texture_size = true
 
 [node name="DropDownList1Button24Highlight" type="TextureRect" parent="DropDownList1Button24"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2627,40 +2650,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button24Check" type="TextureRect" parent="DropDownList1Button24"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button24Icon" type="TextureRect" parent="DropDownList1Button24"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button24NormalText" type="Label" parent="DropDownList1Button24"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button24ColorSwatch" type="TextureButton" parent="DropDownList1Button24"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2686,9 +2710,9 @@ expand_mode = 1
 [node name="DropDownList1Button24ExpandArrow" type="TextureButton" parent="DropDownList1Button24"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2707,7 +2731,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2716,16 +2740,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 256
+offset_right = 100
+offset_bottom = 272
 ignore_texture_size = true
 
 [node name="DropDownList1Button25Highlight" type="TextureRect" parent="DropDownList1Button25"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2736,40 +2760,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button25Check" type="TextureRect" parent="DropDownList1Button25"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button25Icon" type="TextureRect" parent="DropDownList1Button25"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button25NormalText" type="Label" parent="DropDownList1Button25"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button25ColorSwatch" type="TextureButton" parent="DropDownList1Button25"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2795,9 +2820,9 @@ expand_mode = 1
 [node name="DropDownList1Button25ExpandArrow" type="TextureButton" parent="DropDownList1Button25"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2816,7 +2841,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2825,16 +2850,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 272
+offset_right = 100
+offset_bottom = 288
 ignore_texture_size = true
 
 [node name="DropDownList1Button26Highlight" type="TextureRect" parent="DropDownList1Button26"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2845,40 +2870,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button26Check" type="TextureRect" parent="DropDownList1Button26"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button26Icon" type="TextureRect" parent="DropDownList1Button26"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button26NormalText" type="Label" parent="DropDownList1Button26"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button26ColorSwatch" type="TextureButton" parent="DropDownList1Button26"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2904,9 +2930,9 @@ expand_mode = 1
 [node name="DropDownList1Button26ExpandArrow" type="TextureButton" parent="DropDownList1Button26"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2925,7 +2951,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -2934,16 +2960,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 288
+offset_right = 100
+offset_bottom = 304
 ignore_texture_size = true
 
 [node name="DropDownList1Button27Highlight" type="TextureRect" parent="DropDownList1Button27"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -2954,40 +2980,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button27Check" type="TextureRect" parent="DropDownList1Button27"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button27Icon" type="TextureRect" parent="DropDownList1Button27"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button27NormalText" type="Label" parent="DropDownList1Button27"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button27ColorSwatch" type="TextureButton" parent="DropDownList1Button27"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3013,9 +3040,9 @@ expand_mode = 1
 [node name="DropDownList1Button27ExpandArrow" type="TextureButton" parent="DropDownList1Button27"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3034,7 +3061,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3043,16 +3070,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 304
+offset_right = 100
+offset_bottom = 320
 ignore_texture_size = true
 
 [node name="DropDownList1Button28Highlight" type="TextureRect" parent="DropDownList1Button28"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3063,40 +3090,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button28Check" type="TextureRect" parent="DropDownList1Button28"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button28Icon" type="TextureRect" parent="DropDownList1Button28"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button28NormalText" type="Label" parent="DropDownList1Button28"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button28ColorSwatch" type="TextureButton" parent="DropDownList1Button28"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3122,9 +3150,9 @@ expand_mode = 1
 [node name="DropDownList1Button28ExpandArrow" type="TextureButton" parent="DropDownList1Button28"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3143,7 +3171,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3152,16 +3180,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 320
+offset_right = 100
+offset_bottom = 336
 ignore_texture_size = true
 
 [node name="DropDownList1Button29Highlight" type="TextureRect" parent="DropDownList1Button29"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3172,40 +3200,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button29Check" type="TextureRect" parent="DropDownList1Button29"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button29Icon" type="TextureRect" parent="DropDownList1Button29"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button29NormalText" type="Label" parent="DropDownList1Button29"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button29ColorSwatch" type="TextureButton" parent="DropDownList1Button29"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3231,9 +3260,9 @@ expand_mode = 1
 [node name="DropDownList1Button29ExpandArrow" type="TextureButton" parent="DropDownList1Button29"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3252,7 +3281,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3261,16 +3290,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 336
+offset_right = 100
+offset_bottom = 352
 ignore_texture_size = true
 
 [node name="DropDownList1Button30Highlight" type="TextureRect" parent="DropDownList1Button30"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3281,40 +3310,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button30Check" type="TextureRect" parent="DropDownList1Button30"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button30Icon" type="TextureRect" parent="DropDownList1Button30"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button30NormalText" type="Label" parent="DropDownList1Button30"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button30ColorSwatch" type="TextureButton" parent="DropDownList1Button30"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3340,9 +3370,9 @@ expand_mode = 1
 [node name="DropDownList1Button30ExpandArrow" type="TextureButton" parent="DropDownList1Button30"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3361,7 +3391,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3370,16 +3400,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 352
+offset_right = 100
+offset_bottom = 368
 ignore_texture_size = true
 
 [node name="DropDownList1Button31Highlight" type="TextureRect" parent="DropDownList1Button31"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3390,40 +3420,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button31Check" type="TextureRect" parent="DropDownList1Button31"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button31Icon" type="TextureRect" parent="DropDownList1Button31"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button31NormalText" type="Label" parent="DropDownList1Button31"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button31ColorSwatch" type="TextureButton" parent="DropDownList1Button31"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3449,9 +3480,9 @@ expand_mode = 1
 [node name="DropDownList1Button31ExpandArrow" type="TextureButton" parent="DropDownList1Button31"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3470,7 +3501,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3479,16 +3510,16 @@ ignore_texture_size = true
 unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_top = 368
+offset_right = 100
+offset_bottom = 384
 ignore_texture_size = true
 
 [node name="DropDownList1Button32Highlight" type="TextureRect" parent="DropDownList1Button32"]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 128
+offset_right = 100
 offset_bottom = 16
 visible = false
 mouse_filter = 2
@@ -3499,40 +3530,41 @@ material = SubResource("CanvasItemMaterial_6")
 [node name="DropDownList1Button32Check" type="TextureRect" parent="DropDownList1Button32"]
 unique_name_in_owner = true
 offset_left = 0
-offset_top = -4
-offset_right = 24
-offset_bottom = 20
+offset_top = -1
+offset_right = 18
+offset_bottom = 17
 mouse_filter = 2
 texture = SubResource("WowTexture_7")
 expand_mode = 1
 
 [node name="DropDownList1Button32Icon" type="TextureRect" parent="DropDownList1Button32"]
 unique_name_in_owner = true
-offset_left = 108
-offset_top = 0.5
-offset_right = 123
-offset_bottom = 15.5
+offset_left = 84
+offset_top = 0
+offset_right = 100
+offset_bottom = 16
 visible = false
 mouse_filter = 2
 expand_mode = 1
 
 [node name="DropDownList1Button32NormalText" type="Label" parent="DropDownList1Button32"]
 unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 128
-offset_bottom = 16
+offset_left = -5
+offset_top = 8
+offset_right = -5
+offset_bottom = 8
+grow_horizontal = 1
+grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DropDownList1Button32ColorSwatch" type="TextureButton" parent="DropDownList1Button32"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 78
 offset_top = 0
-offset_right = 122
+offset_right = 94
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3558,9 +3590,9 @@ expand_mode = 1
 [node name="DropDownList1Button32ExpandArrow" type="TextureButton" parent="DropDownList1Button32"]
 unique_name_in_owner = true
 script = ExtResource("3")
-offset_left = 106
+offset_left = 84
 offset_top = 0
-offset_right = 122
+offset_right = 100
 offset_bottom = 16
 visible = false
 ignore_texture_size = true
@@ -3579,7 +3611,7 @@ unique_name_in_owner = true
 script = ExtResource("3")
 offset_left = 0
 offset_top = 0
-offset_right = 106
+offset_right = 78
 offset_bottom = 16
 visible = false
 ignore_texture_size = true

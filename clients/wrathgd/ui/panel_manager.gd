@@ -116,7 +116,9 @@ static func resize_tab(tab: Control, padding: float) -> void:
 	tab.size.x = width + 2.0 * left.size.x
 	text.size.x = text_width
 	text.position.x = (tab.size.x - text_width) / 2.0
-	var highlight: Control = tab.get_node("HighlightTexture")
+	var highlight: Control = tab.get_node_or_null("HighlightTexture")
+	if highlight == null:
+		return
 	highlight.size.x = tab.size.x - 2.0 * highlight.position.x
 
 

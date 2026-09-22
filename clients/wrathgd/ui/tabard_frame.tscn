@@ -347,30 +347,30 @@ expand_mode = 1
 
 [node name="TabardFrameEmblemTopRight" type="TextureRect" parent="."]
 unique_name_in_owner = true
-offset_left = 246
-offset_top = 53
-offset_right = 374
-offset_bottom = 181
+offset_left = 248
+offset_top = 67
+offset_right = 348
+offset_bottom = 186
 mouse_filter = 2
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_17")
 
 [node name="TabardFrameEmblemBottomRight" type="TextureRect" parent="."]
 unique_name_in_owner = true
-offset_left = 246
-offset_top = 181
-offset_right = 374
-offset_bottom = 245
+offset_left = 248
+offset_top = 186
+offset_right = 348
+offset_bottom = 260
 mouse_filter = 2
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_17")
 
 [node name="TabardFrameEmblemTopLeft" type="TextureRect" parent="."]
 unique_name_in_owner = true
-offset_left = 118
-offset_top = 53
-offset_right = 246
-offset_bottom = 181
+offset_left = 148
+offset_top = 67
+offset_right = 248
+offset_bottom = 186
 mouse_filter = 2
 expand_mode = 1
 flip_h = true
@@ -378,10 +378,10 @@ material = SubResource("CanvasItemMaterial_17")
 
 [node name="TabardFrameEmblemBottomLeft" type="TextureRect" parent="."]
 unique_name_in_owner = true
-offset_left = 118
-offset_top = 181
-offset_right = 246
-offset_bottom = 245
+offset_left = 148
+offset_top = 186
+offset_right = 248
+offset_bottom = 260
 mouse_filter = 2
 expand_mode = 1
 flip_h = true
@@ -1415,7 +1415,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Accept"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1476,7 +1475,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1

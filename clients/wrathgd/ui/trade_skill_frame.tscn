@@ -17,241 +17,256 @@ file = "Interface\\TradeSkillFrame\\UI-TradeSkill-BotLeft.blp"
 file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-BotRight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_5"]
-file = "Interface\\TradeSkillFrame\\UI-TradeSkill-SkillBorder.blp"
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-HorizontalBar.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6"]
 atlas = SubResource("WowTexture_5")
-region = Rect2(0, 0, 256, 8)
+region = Rect2(0, 0, 256, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7"]
 atlas = SubResource("WowTexture_5")
-region = Rect2(0, 8, 28, 8)
+region = Rect2(0, 16, 75, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_8"]
-file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-HorizontalBar.blp"
+file = "Interface\\TradeSkillFrame\\UI-TradeSkill-LinkButton.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_9"]
 atlas = SubResource("WowTexture_8")
-region = Rect2(0, 0, 256, 16)
+region = Rect2(0, 0, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10"]
 atlas = SubResource("WowTexture_8")
-region = Rect2(0, 16, 75, 16)
+region = Rect2(0, 16, 32, 16)
 
-[sub_resource type="WowTexture" id="WowTexture_11"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_12"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_13"]
-file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ExpandTab-Left.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_14"]
-file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Middle.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_15"]
-file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Right.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_16"]
-file = "Interface\\Buttons\\UI-MinusButton-UP.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_17"]
-file = "Interface\\Buttons\\UI-PlusButton-Disabled.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_18"]
-file = "Interface\\Buttons\\UI-PlusButton-Hilight.blp"
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_19"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_11"]
 blend_mode = 1
 
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder.blp"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_19"]
+
 [sub_resource type="WowTexture" id="WowTexture_20"]
-file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+file = "Interface\\Common\\Common-Input-Border.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21"]
 atlas = SubResource("WowTexture_20")
-region = Rect2(0, 0, 25, 64)
+region = Rect2(0, 0, 8, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_22"]
 atlas = SubResource("WowTexture_20")
-region = Rect2(25, 0, 78, 64)
+region = Rect2(120, 0, 8, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23"]
 atlas = SubResource("WowTexture_20")
-region = Rect2(103, 0, 25, 64)
+region = Rect2(8, 0, 112, 20)
 
 [sub_resource type="WowTexture" id="WowTexture_24"]
-file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ExpandTab-Left.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_25"]
-file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Middle.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_26"]
-file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Right.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_27"]
-file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+file = "Interface\\Buttons\\UI-MinusButton-UP.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
-file = "Interface\\Buttons\\UI-Listbox-Highlight2.blp"
+file = "Interface\\Buttons\\UI-PlusButton-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_29"]
-file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ScrollBar.blp"
+file = "Interface\\Buttons\\UI-PlusButton-Hilight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
-atlas = SubResource("WowTexture_29")
-region = Rect2(0, 3, 30, 120)
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31"]
-atlas = SubResource("WowTexture_29")
-region = Rect2(34, 4, 30, 124)
+atlas = SubResource("WowTexture_30")
+region = Rect2(0, 0, 25, 64)
 
-[sub_resource type="WowTexture" id="WowTexture_32"]
-file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
+atlas = SubResource("WowTexture_30")
+region = Rect2(25, 0, 78, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33"]
-atlas = SubResource("WowTexture_32")
-region = Rect2(8, 8, 16, 16)
+atlas = SubResource("WowTexture_30")
+region = Rect2(103, 0, 25, 64)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34"]
+[sub_resource type="WowTexture" id="WowTexture_34"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_35"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
-atlas = SubResource("WowTexture_35")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_37"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
-atlas = SubResource("WowTexture_37")
-region = Rect2(8, 8, 16, 16)
+[sub_resource type="WowTexture" id="WowTexture_38"]
+file = "Interface\\Buttons\\UI-Listbox-Highlight2.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_39"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ScrollBar.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40"]
 atlas = SubResource("WowTexture_39")
-region = Rect2(8, 8, 16, 16)
+region = Rect2(0, 3, 30, 120)
 
-[sub_resource type="WowTexture" id="WowTexture_41"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(34, 4, 30, 124)
+
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
+atlas = SubResource("WowTexture_42")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_46")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_48"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
+atlas = SubResource("WowTexture_48")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_50"]
 file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
-atlas = SubResource("WowTexture_41")
-region = Rect2(8, 8, 16, 16)
-
-[sub_resource type="WowTexture" id="WowTexture_43"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
-atlas = SubResource("WowTexture_43")
-region = Rect2(8, 8, 16, 16)
-
-[sub_resource type="WowTexture" id="WowTexture_45"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_46"]
-atlas = SubResource("WowTexture_45")
-region = Rect2(8, 8, 16, 16)
-
-[sub_resource type="WowTexture" id="WowTexture_47"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
-atlas = SubResource("WowTexture_47")
-region = Rect2(8, 8, 16, 16)
-
-[sub_resource type="WowTexture" id="WowTexture_49"]
-file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
-atlas = SubResource("WowTexture_49")
-region = Rect2(8, 8, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_51"]
-atlas = SubResource("WowTexture_29")
-region = Rect2(0, 0, 30, 123)
+atlas = SubResource("WowTexture_50")
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_52"]
-file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-DetailHeaderLeft.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_53"]
-file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-DetailHeaderRight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_53"]
+atlas = SubResource("WowTexture_52")
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_54"]
-file = "Interface\\QuestFrame\\UI-QuestItemNameFrame.blp"
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_55"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_55"]
+atlas = SubResource("WowTexture_54")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_56"]
-atlas = SubResource("WowTexture_55")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_57"]
-file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
+atlas = SubResource("WowTexture_56")
+region = Rect2(6.4, 8, 19.2, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_58"]
-atlas = SubResource("WowTexture_57")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_58"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_59"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_59"]
+atlas = SubResource("WowTexture_58")
+region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60"]
-atlas = SubResource("WowTexture_59")
-region = Rect2(0, 0, 80, 22)
+atlas = SubResource("WowTexture_39")
+region = Rect2(0, 0, 30, 123)
 
 [sub_resource type="WowTexture" id="WowTexture_61"]
-file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-DetailHeaderLeft.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_62"]
-atlas = SubResource("WowTexture_61")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_62"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-DetailHeaderRight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_63"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
+file = "Interface\\QuestFrame\\UI-QuestItemNameFrame.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_64"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_65"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_65"]
+atlas = SubResource("WowTexture_64")
+region = Rect2(0, 0, 80, 22)
 
 [sub_resource type="WowTexture" id="WowTexture_66"]
-file = "Interface\\Common\\Common-Input-Border.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_67"]
 atlas = SubResource("WowTexture_66")
-region = Rect2(0, 0, 8, 20)
+region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_68"]
-atlas = SubResource("WowTexture_66")
-region = Rect2(120, 0, 8, 20)
+[sub_resource type="WowTexture" id="WowTexture_68"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_69"]
-atlas = SubResource("WowTexture_66")
-region = Rect2(8, 0, 112, 20)
+atlas = SubResource("WowTexture_68")
+region = Rect2(0, 0, 80, 22)
 
 [sub_resource type="WowTexture" id="WowTexture_70"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_71"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_71"]
+atlas = SubResource("WowTexture_70")
+region = Rect2(0, 0, 80, 22)
 
 [sub_resource type="WowTexture" id="WowTexture_72"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_73"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_74"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_75"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_76"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_77"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_78"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_79"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_80"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
 
 [node name="TradeSkillFrame" type="Control"]
@@ -278,6 +293,20 @@ offset_bottom = 66
 mouse_filter = 2
 expand_mode = 1
 
+[node name="TradeSkillFrameDummyString" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 12
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Texture" type="TextureRect" parent="."]
 offset_left = 0
 offset_top = 0
@@ -299,7 +328,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_2")
 expand_mode = 1
 
-[node name="Texture3" type="TextureRect" parent="."]
+[node name="TradeSkillFrameBottomLeftTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
@@ -311,7 +341,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_3")
 expand_mode = 1
 
-[node name="Texture4" type="TextureRect" parent="."]
+[node name="TradeSkillFrameBottomRightTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_left = 1
 anchor_top = 1
@@ -342,25 +373,6 @@ text = "Trade Skills"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TradeSkillSkillBorderLeft" type="TextureRect" parent="."]
-unique_name_in_owner = true
-offset_left = 63
-offset_top = 50
-offset_right = 319
-offset_bottom = 58
-mouse_filter = 2
-texture = SubResource("AtlasTexture_6")
-expand_mode = 1
-
-[node name="Texture5" type="TextureRect" parent="."]
-offset_left = 319
-offset_top = 50
-offset_right = 347
-offset_bottom = 58
-mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
-expand_mode = 1
-
 [node name="TradeSkillHorizontalBarLeft" type="TextureRect" parent="."]
 unique_name_in_owner = true
 offset_left = 15
@@ -368,26 +380,132 @@ offset_top = 221
 offset_right = 271
 offset_bottom = 237
 mouse_filter = 2
-texture = SubResource("AtlasTexture_9")
+texture = SubResource("AtlasTexture_6")
 expand_mode = 1
 
-[node name="Texture6" type="TextureRect" parent="."]
+[node name="Texture3" type="TextureRect" parent="."]
 offset_left = 271
 offset_top = 221
 offset_right = 346
 offset_bottom = 237
 mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="TradeSkillLinkButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 5
+offset_top = 15
+offset_right = 37
+offset_bottom = 31
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillLinkButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillLinkButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 16
+visible = false
+mouse_filter = 2
 texture = SubResource("AtlasTexture_10")
 expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="TradeSkillFrameAvailableFilterCheckButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 70
+offset_top = 46
+offset_right = 94
+offset_bottom = 70
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="TradeSkillFrameAvailableFilterCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="TradeSkillFrameAvailableFilterCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="TradeSkillFrameAvailableFilterCheckButtonText" type="Label" parent="TradeSkillFrameAvailableFilterCheckButton"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 7
+offset_right = 22
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="TradeSkillFrameAvailableFilterCheckButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="TradeSkillFrameAvailableFilterCheckButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TradeSkillFrameAvailableFilterCheckButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillRankFrame" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = 73
-offset_top = 37
-offset_right = 341
-offset_bottom = 52
+offset_left = 75
+offset_top = 36
+offset_right = 340
+offset_bottom = 50
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_11")
+texture_progress = SubResource("WowTexture_17")
 nine_patch_stretch = true
 tint_progress = Color(0.25, 0.25, 0.75, 1)
 max_value = 1.0
@@ -398,54 +516,79 @@ value = 1.0
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
-offset_right = 268
-offset_bottom = 15
+offset_right = 265
+offset_bottom = 14
 show_behind_parent = true
 mouse_filter = 2
 color = Color(1, 1, 1, 0.2)
 
-[node name="TradeSkillRankFrameSkillName" type="Label" parent="TradeSkillRankFrame"]
-unique_name_in_owner = true
-offset_left = 6
-offset_top = 1.5
-offset_right = 6
-offset_bottom = 11.5
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="TradeSkillRankFrameSkillRank" type="Label" parent="TradeSkillRankFrame"]
 unique_name_in_owner = true
-offset_left = 19
-offset_top = 1.5
-offset_right = 147
-offset_bottom = 11.5
-grow_horizontal = 1
-grow_vertical = 2
+offset_left = 117
+offset_top = 1
+offset_right = 117
+offset_bottom = 10
 mouse_filter = 2
 theme_type_variation = &"GameFontHighlightSmall"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TradeSkillRankFrameBorder" type="TextureButton" parent="TradeSkillRankFrame"]
+[node name="TradeSkillRankFrameBorder" type="TextureRect" parent="TradeSkillRankFrame"]
 unique_name_in_owner = true
-script = ExtResource("2")
 offset_left = -5
-offset_top = -8.5
-offset_right = 276
-offset_bottom = 23.5
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="TradeSkillRankFrame/TradeSkillRankFrameBorder"]
-offset_left = 0
-offset_top = 0
-offset_right = 281
-offset_bottom = 32
+offset_top = -6.5
+offset_right = 269
+offset_bottom = 20.5
 mouse_filter = 2
-texture = SubResource("WowTexture_12")
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="TradeSkillFrameEditBox" type="LineEdit" parent="."]
+unique_name_in_owner = true
+offset_left = 214
+offset_top = 48
+offset_right = 342
+offset_bottom = 68
+mouse_filter = 0
+theme_type_variation = &"ChatFontSmall"
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_19")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_19")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_19")
+
+[node name="TradeSkillFrameEditBoxLeft" type="TextureRect" parent="TradeSkillFrameEditBox"]
+unique_name_in_owner = true
+offset_left = -5
+offset_top = 0
+offset_right = 3
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_21")
+expand_mode = 1
+
+[node name="TradeSkillFrameEditBoxRight" type="TextureRect" parent="TradeSkillFrameEditBox"]
+unique_name_in_owner = true
+offset_left = 120
+offset_top = 0
+offset_right = 128
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="TradeSkillFrameEditBoxMiddle" type="TextureRect" parent="TradeSkillFrameEditBox"]
+unique_name_in_owner = true
+offset_left = 3
+offset_top = 0
+offset_right = 120
+offset_bottom = 20
+show_behind_parent = true
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
 expand_mode = 1
 
 [node name="TradeSkillExpandButtonFrame" type="Control" parent="."]
@@ -463,7 +606,7 @@ offset_top = 0
 offset_right = 8
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_13")
+texture = SubResource("WowTexture_24")
 expand_mode = 1
 
 [node name="TradeSkillExpandTabMiddle" type="TextureRect" parent="TradeSkillExpandButtonFrame"]
@@ -473,7 +616,7 @@ offset_top = -6
 offset_right = 46
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_14")
+texture = SubResource("WowTexture_25")
 expand_mode = 1
 
 [node name="TradeSkillExpandTabRight" type="TextureRect" parent="TradeSkillExpandButtonFrame"]
@@ -483,7 +626,7 @@ offset_top = -6
 offset_right = 54
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_15")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="TradeSkillCollapseAllButton" type="TextureButton" parent="TradeSkillExpandButtonFrame"]
@@ -512,7 +655,7 @@ offset_top = 3
 offset_right = 19
 offset_bottom = 19
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillExpandButtonFrame/TradeSkillCollapseAllButton"]
@@ -522,20 +665,19 @@ offset_right = 19
 offset_bottom = 19
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="TradeSkillCollapseAllButtonText" type="Label" parent="TradeSkillExpandButtonFrame/TradeSkillCollapseAllButton"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 3.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 16.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillExpandButtonFrame/TradeSkillCollapseAllButton"]
@@ -545,9 +687,9 @@ offset_right = 19
 offset_bottom = 19
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillInvSlotDropDown" type="Control" parent="."]
 unique_name_in_owner = true
@@ -567,7 +709,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_21")
+texture = SubResource("AtlasTexture_31")
 expand_mode = 1
 
 [node name="TradeSkillInvSlotDropDownMiddle" type="TextureRect" parent="TradeSkillInvSlotDropDown"]
@@ -577,7 +719,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_22")
+texture = SubResource("AtlasTexture_32")
 expand_mode = 1
 
 [node name="TradeSkillInvSlotDropDownRight" type="TextureRect" parent="TradeSkillInvSlotDropDown"]
@@ -587,7 +729,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_23")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="TradeSkillInvSlotDropDownText" type="Label" parent="TradeSkillInvSlotDropDown"]
@@ -618,7 +760,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillInvSlotDropDown/TradeSkillInvSlotDropDownButton"]
@@ -628,7 +770,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillInvSlotDropDown/TradeSkillInvSlotDropDownButton"]
@@ -638,7 +780,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillInvSlotDropDown/TradeSkillInvSlotDropDownButton"]
@@ -648,9 +790,9 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillSubClassDropDown" type="Control" parent="."]
 unique_name_in_owner = true
@@ -670,7 +812,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_21")
+texture = SubResource("AtlasTexture_31")
 expand_mode = 1
 
 [node name="TradeSkillSubClassDropDownMiddle" type="TextureRect" parent="TradeSkillSubClassDropDown"]
@@ -680,7 +822,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_22")
+texture = SubResource("AtlasTexture_32")
 expand_mode = 1
 
 [node name="TradeSkillSubClassDropDownRight" type="TextureRect" parent="TradeSkillSubClassDropDown"]
@@ -690,7 +832,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_23")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="TradeSkillSubClassDropDownText" type="Label" parent="TradeSkillSubClassDropDown"]
@@ -721,7 +863,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_34")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillSubClassDropDown/TradeSkillSubClassDropDownButton"]
@@ -731,7 +873,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_35")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSubClassDropDown/TradeSkillSubClassDropDownButton"]
@@ -741,7 +883,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSubClassDropDown/TradeSkillSubClassDropDownButton"]
@@ -751,9 +893,9 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillHighlightFrame" type="Control" parent="."]
 unique_name_in_owner = true
@@ -771,7 +913,7 @@ offset_top = 0
 offset_right = 293
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="TradeSkillSkill1" type="TextureButton" parent="."]
@@ -800,7 +942,7 @@ offset_top = 0
 offset_right = 19
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill1"]
@@ -810,20 +952,32 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
+
+[node name="TradeSkillSkill1Count" type="Label" parent="TradeSkillSkill1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1.5
+offset_right = 0
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeSkillSkill1Text" type="Label" parent="TradeSkillSkill1"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill1"]
@@ -833,9 +987,9 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillSkill2" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -863,7 +1017,7 @@ offset_top = 0
 offset_right = 19
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill2"]
@@ -873,20 +1027,32 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
+
+[node name="TradeSkillSkill2Count" type="Label" parent="TradeSkillSkill2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1.5
+offset_right = 0
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeSkillSkill2Text" type="Label" parent="TradeSkillSkill2"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill2"]
@@ -896,9 +1062,9 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillSkill3" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -926,7 +1092,7 @@ offset_top = 0
 offset_right = 19
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill3"]
@@ -936,20 +1102,32 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
+
+[node name="TradeSkillSkill3Count" type="Label" parent="TradeSkillSkill3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1.5
+offset_right = 0
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeSkillSkill3Text" type="Label" parent="TradeSkillSkill3"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill3"]
@@ -959,9 +1137,9 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillSkill4" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -989,7 +1167,7 @@ offset_top = 0
 offset_right = 19
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill4"]
@@ -999,20 +1177,32 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
+
+[node name="TradeSkillSkill4Count" type="Label" parent="TradeSkillSkill4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1.5
+offset_right = 0
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeSkillSkill4Text" type="Label" parent="TradeSkillSkill4"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill4"]
@@ -1022,9 +1212,9 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillSkill5" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1052,7 +1242,7 @@ offset_top = 0
 offset_right = 19
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill5"]
@@ -1062,20 +1252,32 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
+
+[node name="TradeSkillSkill5Count" type="Label" parent="TradeSkillSkill5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1.5
+offset_right = 0
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeSkillSkill5Text" type="Label" parent="TradeSkillSkill5"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill5"]
@@ -1085,9 +1287,9 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillSkill6" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1115,7 +1317,7 @@ offset_top = 0
 offset_right = 19
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill6"]
@@ -1125,20 +1327,32 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
+
+[node name="TradeSkillSkill6Count" type="Label" parent="TradeSkillSkill6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1.5
+offset_right = 0
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeSkillSkill6Text" type="Label" parent="TradeSkillSkill6"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill6"]
@@ -1148,9 +1362,9 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillSkill7" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1178,7 +1392,7 @@ offset_top = 0
 offset_right = 19
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill7"]
@@ -1188,20 +1402,32 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
+
+[node name="TradeSkillSkill7Count" type="Label" parent="TradeSkillSkill7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1.5
+offset_right = 0
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeSkillSkill7Text" type="Label" parent="TradeSkillSkill7"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill7"]
@@ -1211,9 +1437,9 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillSkill8" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1241,7 +1467,7 @@ offset_top = 0
 offset_right = 19
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("WowTexture_16")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillSkill8"]
@@ -1251,20 +1477,32 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_17")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
+
+[node name="TradeSkillSkill8Count" type="Label" parent="TradeSkillSkill8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1.5
+offset_right = 0
+offset_bottom = 14.5
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TradeSkillSkill8Text" type="Label" parent="TradeSkillSkill8"]
 unique_name_in_owner = true
 offset_left = 21
 offset_top = 0.5
-offset_right = 21
+offset_right = 291
 offset_bottom = 13.5
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 0
+horizontal_alignment = 1
 vertical_alignment = 1
-grow_horizontal = 1
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillSkill8"]
@@ -1274,9 +1512,9 @@ offset_right = 19
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_18")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillListScrollFrame" type="Control" parent="."]
 unique_name_in_owner = true
@@ -1296,7 +1534,7 @@ offset_top = -2
 offset_right = 323
 offset_bottom = 118
 mouse_filter = 2
-texture = SubResource("AtlasTexture_30")
+texture = SubResource("AtlasTexture_40")
 expand_mode = 1
 
 [node name="Texture2" type="TextureRect" parent="TradeSkillListScrollFrame"]
@@ -1305,7 +1543,7 @@ offset_top = 9
 offset_right = 323
 offset_bottom = 132
 mouse_filter = 2
-texture = SubResource("AtlasTexture_31")
+texture = SubResource("AtlasTexture_41")
 expand_mode = 1
 
 [node name="TradeSkillListScrollFrameScrollBar" type="VSlider" parent="TradeSkillListScrollFrame"]
@@ -1315,111 +1553,111 @@ offset_top = 16
 offset_right = 318
 offset_bottom = 114
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("AtlasTexture_33")
-theme_override_icons/grabber_highlight = SubResource("AtlasTexture_33")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_34")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_34")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_34")
+theme_override_icons/grabber = SubResource("AtlasTexture_43")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_43")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_19")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_19")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_19")
 max_value = 0.0
 step = 0.0
 
 [node name="TradeSkillListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_36")
+texture = SubResource("AtlasTexture_45")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_47")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_40")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 98
-offset_right = 16
+offset_right = 17
 offset_bottom = 114
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_44")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_46")
+texture = SubResource("AtlasTexture_55")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_48")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillListScrollFrame/TradeSkillListScrollFrameScrollBar/TradeSkillListScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_50")
+texture = SubResource("AtlasTexture_59")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillListScrollFrameClip" type="Control" parent="TradeSkillListScrollFrame"]
 layout_mode = 1
@@ -1453,7 +1691,7 @@ offset_top = -5
 offset_right = 325
 offset_bottom = 118
 mouse_filter = 2
-texture = SubResource("AtlasTexture_51")
+texture = SubResource("AtlasTexture_60")
 expand_mode = 1
 
 [node name="TradeSkillDetailScrollFrameBottom" type="TextureRect" parent="TradeSkillDetailScrollFrame"]
@@ -1463,7 +1701,7 @@ offset_top = 54
 offset_right = 325
 offset_bottom = 177
 mouse_filter = 2
-texture = SubResource("AtlasTexture_31")
+texture = SubResource("AtlasTexture_41")
 expand_mode = 1
 
 [node name="TradeSkillDetailScrollFrameScrollBar" type="VSlider" parent="TradeSkillDetailScrollFrame"]
@@ -1473,111 +1711,111 @@ offset_top = 16
 offset_right = 319
 offset_bottom = 160
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("AtlasTexture_33")
-theme_override_icons/grabber_highlight = SubResource("AtlasTexture_33")
-theme_override_styles/slider = SubResource("StyleBoxEmpty_34")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_34")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_34")
+theme_override_icons/grabber = SubResource("AtlasTexture_43")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_43")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_19")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_19")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_19")
 max_value = 0.0
 step = 0.0
 
 [node name="TradeSkillDetailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = -16
-offset_right = 16
+offset_right = 17
 offset_bottom = 0
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_36")
+texture = SubResource("AtlasTexture_45")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_47")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_40")
+texture = SubResource("AtlasTexture_49")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollUpButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_51")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillDetailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar"]
 unique_name_in_owner = true
 script = ExtResource("2")
-offset_left = 0
+offset_left = -1
 offset_top = 144
-offset_right = 16
+offset_right = 17
 offset_bottom = 160
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 mouse_filter = 2
-texture = SubResource("AtlasTexture_44")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_46")
+texture = SubResource("AtlasTexture_55")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_48")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameScrollBar/TradeSkillDetailScrollFrameScrollBarScrollDownButton"]
 offset_left = 0
 offset_top = 0
-offset_right = 16
+offset_right = 18
 offset_bottom = 16
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_50")
+texture = SubResource("AtlasTexture_59")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillDetailScrollFrameClip" type="Control" parent="TradeSkillDetailScrollFrame"]
 layout_mode = 1
@@ -1656,7 +1894,7 @@ offset_top = -3
 offset_right = 256
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_52")
+texture = SubResource("WowTexture_61")
 expand_mode = 1
 
 [node name="Texture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
@@ -1665,20 +1903,33 @@ offset_top = -3
 offset_right = 320
 offset_bottom = 61
 mouse_filter = 2
-texture = SubResource("WowTexture_53")
+texture = SubResource("WowTexture_62")
 expand_mode = 1
+
+[node name="TradeSkillDescription" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 50
+offset_right = 295
+offset_bottom = 60
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
 
 [node name="TradeSkillReagentLabel" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame"]
 unique_name_in_owner = true
-offset_left = 8
-offset_top = 47
-offset_right = 8
-offset_bottom = 57
+offset_left = 5
+offset_top = 70
+offset_right = 5
+offset_bottom = 80
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"GameFontNormalSmall"
-text = "Reagents: "
+text = "Reagents: |n"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1708,9 +1959,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 3
-offset_top = 60
+offset_top = 83
 offset_right = 150
-offset_bottom = 101
+offset_bottom = 124
 ignore_texture_size = true
 
 [node name="TradeSkillReagent1IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent1"]
@@ -1729,7 +1980,7 @@ offset_top = -12.5
 offset_right = 157
 offset_bottom = 51.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_63")
 expand_mode = 1
 
 [node name="TradeSkillReagent1Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent1"]
@@ -1747,9 +1998,9 @@ grow_vertical = 2
 
 [node name="TradeSkillReagent1Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent1"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1762,9 +2013,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 150
-offset_top = 60
+offset_top = 83
 offset_right = 297
-offset_bottom = 101
+offset_bottom = 124
 ignore_texture_size = true
 
 [node name="TradeSkillReagent2IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent2"]
@@ -1783,7 +2034,7 @@ offset_top = -12.5
 offset_right = 157
 offset_bottom = 51.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_63")
 expand_mode = 1
 
 [node name="TradeSkillReagent2Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent2"]
@@ -1801,9 +2052,9 @@ grow_vertical = 2
 
 [node name="TradeSkillReagent2Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent2"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1816,9 +2067,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 3
-offset_top = 103
+offset_top = 126
 offset_right = 150
-offset_bottom = 144
+offset_bottom = 167
 ignore_texture_size = true
 
 [node name="TradeSkillReagent3IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent3"]
@@ -1837,7 +2088,7 @@ offset_top = -12.5
 offset_right = 157
 offset_bottom = 51.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_63")
 expand_mode = 1
 
 [node name="TradeSkillReagent3Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent3"]
@@ -1855,9 +2106,9 @@ grow_vertical = 2
 
 [node name="TradeSkillReagent3Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent3"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1870,9 +2121,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 150
-offset_top = 103
+offset_top = 126
 offset_right = 297
-offset_bottom = 144
+offset_bottom = 167
 ignore_texture_size = true
 
 [node name="TradeSkillReagent4IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent4"]
@@ -1891,7 +2142,7 @@ offset_top = -12.5
 offset_right = 157
 offset_bottom = 51.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_63")
 expand_mode = 1
 
 [node name="TradeSkillReagent4Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent4"]
@@ -1909,9 +2160,9 @@ grow_vertical = 2
 
 [node name="TradeSkillReagent4Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent4"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1924,9 +2175,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 3
-offset_top = 146
+offset_top = 169
 offset_right = 150
-offset_bottom = 187
+offset_bottom = 210
 ignore_texture_size = true
 
 [node name="TradeSkillReagent5IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent5"]
@@ -1945,7 +2196,7 @@ offset_top = -12.5
 offset_right = 157
 offset_bottom = 51.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_63")
 expand_mode = 1
 
 [node name="TradeSkillReagent5Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent5"]
@@ -1963,9 +2214,9 @@ grow_vertical = 2
 
 [node name="TradeSkillReagent5Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent5"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -1978,9 +2229,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 150
-offset_top = 146
+offset_top = 169
 offset_right = 297
-offset_bottom = 187
+offset_bottom = 210
 ignore_texture_size = true
 
 [node name="TradeSkillReagent6IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent6"]
@@ -1999,7 +2250,7 @@ offset_top = -12.5
 offset_right = 157
 offset_bottom = 51.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_63")
 expand_mode = 1
 
 [node name="TradeSkillReagent6Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent6"]
@@ -2017,9 +2268,9 @@ grow_vertical = 2
 
 [node name="TradeSkillReagent6Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent6"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2032,9 +2283,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 150
-offset_top = 189
+offset_top = 212
 offset_right = 297
-offset_bottom = 230
+offset_bottom = 253
 ignore_texture_size = true
 
 [node name="TradeSkillReagent7IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent7"]
@@ -2053,7 +2304,7 @@ offset_top = -12.5
 offset_right = 157
 offset_bottom = 51.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_63")
 expand_mode = 1
 
 [node name="TradeSkillReagent7Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent7"]
@@ -2071,9 +2322,9 @@ grow_vertical = 2
 
 [node name="TradeSkillReagent7Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent7"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2086,9 +2337,9 @@ vertical_alignment = 1
 unique_name_in_owner = true
 script = ExtResource("2")
 offset_left = 297
-offset_top = 189
+offset_top = 212
 offset_right = 444
-offset_bottom = 230
+offset_bottom = 253
 ignore_texture_size = true
 
 [node name="TradeSkillReagent8IconTexture" type="TextureRect" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent8"]
@@ -2107,7 +2358,7 @@ offset_top = -12.5
 offset_right = 157
 offset_bottom = 51.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_63")
 expand_mode = 1
 
 [node name="TradeSkillReagent8Name" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent8"]
@@ -2125,9 +2376,9 @@ grow_vertical = 2
 
 [node name="TradeSkillReagent8Count" type="Label" parent="TradeSkillDetailScrollFrame/TradeSkillDetailScrollFrameClip/TradeSkillDetailScrollChildFrame/TradeSkillReagent8"]
 unique_name_in_owner = true
-offset_left = 35
+offset_left = 38
 offset_top = 24
-offset_right = 35
+offset_right = 38
 offset_bottom = 38
 grow_horizontal = 0
 grow_vertical = 0
@@ -2151,7 +2402,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_65")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillCreateButton"]
@@ -2161,7 +2412,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_58")
+texture = SubResource("AtlasTexture_67")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillCreateButton"]
@@ -2171,7 +2422,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_60")
+texture = SubResource("AtlasTexture_69")
 expand_mode = 1
 
 [node name="TradeSkillCreateButtonText" type="Label" parent="TradeSkillCreateButton"]
@@ -2181,7 +2432,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Create"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2193,9 +2443,18 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_62")
+texture = SubResource("AtlasTexture_71")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="TradeSkillCreateButtonMask" type="Control" parent="TradeSkillCreateButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 0
 
 [node name="TradeSkillCancelButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -2212,7 +2471,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_65")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillCancelButton"]
@@ -2222,7 +2481,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_58")
+texture = SubResource("AtlasTexture_67")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillCancelButton"]
@@ -2232,7 +2491,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_60")
+texture = SubResource("AtlasTexture_69")
 expand_mode = 1
 
 [node name="TradeSkillCancelButtonText" type="Label" parent="TradeSkillCancelButton"]
@@ -2242,7 +2501,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Exit"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2254,9 +2512,9 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_62")
+texture = SubResource("AtlasTexture_71")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillCreateAllButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -2273,7 +2531,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_65")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillCreateAllButton"]
@@ -2283,7 +2541,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_58")
+texture = SubResource("AtlasTexture_67")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillCreateAllButton"]
@@ -2293,7 +2551,7 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_60")
+texture = SubResource("AtlasTexture_69")
 expand_mode = 1
 
 [node name="TradeSkillCreateAllButtonText" type="Label" parent="TradeSkillCreateAllButton"]
@@ -2303,7 +2561,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Create All"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2315,9 +2572,18 @@ offset_right = 80
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_62")
+texture = SubResource("AtlasTexture_71")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
+
+[node name="TradeSkillCreateAllButtonMask" type="Control" parent="TradeSkillCreateAllButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 0
 
 [node name="TradeSkillDecrementButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -2334,7 +2600,7 @@ offset_top = 0
 offset_right = 23
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("WowTexture_63")
+texture = SubResource("WowTexture_72")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillDecrementButton"]
@@ -2344,7 +2610,7 @@ offset_right = 23
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_64")
+texture = SubResource("WowTexture_73")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillDecrementButton"]
@@ -2354,7 +2620,7 @@ offset_right = 23
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_65")
+texture = SubResource("WowTexture_74")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillDecrementButton"]
@@ -2364,9 +2630,9 @@ offset_right = 23
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillInputBox" type="LineEdit" parent="."]
 unique_name_in_owner = true
@@ -2378,9 +2644,9 @@ mouse_filter = 0
 theme_type_variation = &"ChatFontNormal"
 max_length = 3
 caret_blink = true
-theme_override_styles/normal = SubResource("StyleBoxEmpty_34")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_34")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_34")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_19")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_19")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_19")
 
 [node name="TradeSkillInputBoxLeft" type="TextureRect" parent="TradeSkillInputBox"]
 unique_name_in_owner = true
@@ -2390,7 +2656,7 @@ offset_right = 3
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_67")
+texture = SubResource("AtlasTexture_21")
 expand_mode = 1
 
 [node name="TradeSkillInputBoxRight" type="TextureRect" parent="TradeSkillInputBox"]
@@ -2401,7 +2667,7 @@ offset_right = 30
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_68")
+texture = SubResource("AtlasTexture_22")
 expand_mode = 1
 
 [node name="TradeSkillInputBoxMiddle" type="TextureRect" parent="TradeSkillInputBox"]
@@ -2412,7 +2678,7 @@ offset_right = 22
 offset_bottom = 20
 show_behind_parent = true
 mouse_filter = 2
-texture = SubResource("AtlasTexture_69")
+texture = SubResource("AtlasTexture_23")
 expand_mode = 1
 
 [node name="TradeSkillIncrementButton" type="TextureButton" parent="."]
@@ -2430,7 +2696,7 @@ offset_top = 0
 offset_right = 23
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("WowTexture_70")
+texture = SubResource("WowTexture_75")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillIncrementButton"]
@@ -2440,7 +2706,7 @@ offset_right = 23
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_71")
+texture = SubResource("WowTexture_76")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="TradeSkillIncrementButton"]
@@ -2450,7 +2716,7 @@ offset_right = 23
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_72")
+texture = SubResource("WowTexture_77")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillIncrementButton"]
@@ -2460,9 +2726,9 @@ offset_right = 23
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")
 
 [node name="TradeSkillFrameCloseButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -2482,7 +2748,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_73")
+texture = SubResource("WowTexture_78")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="TradeSkillFrameCloseButton"]
@@ -2492,7 +2758,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_74")
+texture = SubResource("WowTexture_79")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="TradeSkillFrameCloseButton"]
@@ -2502,6 +2768,6 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_75")
+texture = SubResource("WowTexture_80")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_19")
+material = SubResource("CanvasItemMaterial_11")

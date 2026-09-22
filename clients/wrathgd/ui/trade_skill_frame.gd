@@ -86,7 +86,6 @@ func refresh() -> void:
 		_selected = _recipes[0]["spell"]
 	%TradeSkillFrameTitleText.text = _profession["name"]
 	# The title already names the profession, and at this width the two texts collide.
-	%TradeSkillRankFrameSkillName.text = ""
 	%TradeSkillRankFrameSkillRank.text = "%d/%d" % [_profession["rank"], _profession["max_rank"]]
 	var rank_bar: Range = %TradeSkillRankFrame as Range
 	if rank_bar:

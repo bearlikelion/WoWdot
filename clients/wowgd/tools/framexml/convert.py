@@ -7,6 +7,7 @@ Layout, textures and fonts come from the XML; behaviour stays in the GDScript na
 Generated scenes only hold archive paths and coordinates, never Blizzard pixels.
 """
 
+import copy
 import json
 import re
 import sys
@@ -142,7 +143,10 @@ class Library:
             if tag == "Font" and name:
                 self.fonts[name] = c
             elif name and "$parent" not in name:
-                self.elements.setdefault(name, c)
+                # GlueXML repeats a few FrameXML files whole, so a later copy of a name is dropped.
+                if name in self.elements:
+                    continue
+                self.elements[name] = c
             if top and c.get("parent") and c.get("virtual") != "true":
                 self.parented.setdefault(c.get("parent"), []).append(c)
             if tag in ("Frames", "Layers", "Layer") or tag in FRAME_TAGS:
@@ -252,12 +256,39 @@ class Converter:
         # Frames left out of the port, such as the EULA pages and the billing notices.
         self.exclude = set(config.get("exclude", []))
         # Frames moved under another frame so their anchors resolve inside one scene.
-        for frame, new_parent in config.get("graft", {}).items():
+        for frame, new_parents in config.get("graft", {}).items():
             node = library.elements[frame]
             for children in library.parented.values():
                 if node in children:
                     children.remove(node)
-            library.parented.setdefault(new_parent, []).append(node)
+            if isinstance(new_parents, str):
+                new_parents = [new_parents]
+            # A frame Lua reparents into several panels gets a copy in each scene.
+            for i, new_parent in enumerate(new_parents):
+                library.parented.setdefault(new_parent, []).append(node if i == 0 else copy.deepcopy(node))
+        # Rows that HybridScrollFrame_CreateButtons and its kin build from a template at load time.
+        self.rows = {}
+        for spec in config.get("rows", []):
+            self.rows.setdefault(spec["parent"], []).append(spec)
+
+    # The row buttons a scroll child gains at load time, stacked top down like the Lua does.
+    def row_elements(self, name, ns):
+        rows = []
+        for spec in self.rows.get(name, []):
+            first = spec.get("first", 1)
+            columns = spec.get("columns", 1)
+            names = [spec["name"] % i for i in range(first, first + spec["count"])]
+            for k, row_name in enumerate(names):
+                row = ET.Element(ns + "Button", name=row_name, inherits=spec["template"])
+                anchor = ET.SubElement(ET.SubElement(row, ns + "Anchors"), ns + "Anchor", point="TOPLEFT")
+                if k and k % columns == 0:
+                    anchor.set("relativeTo", names[k - columns])
+                    anchor.set("relativePoint", "BOTTOMLEFT")
+                elif k:
+                    anchor.set("relativeTo", names[k - 1])
+                    anchor.set("relativePoint", "TOPRIGHT")
+                rows.append(row)
+        return rows
 
     # The nodes a written template scene already holds, so instances do not add them twice.
     def template_children(self, out):
@@ -277,14 +308,21 @@ class Converter:
         raw = node.get("name") or ""
         name = raw.replace("$parent", parent_name or "")
         chain = []
-        inherits = node.get("inherits")
         scene_template = None
-        while inherits and inherits in self.lib.elements:
-            if inherits in self.scene_of_template:
-                scene_template = scene_template or inherits
-            base = self.lib.elements[inherits]
-            chain.insert(0, base)
-            inherits = base.get("inherits")
+
+        # 3.3.5 templates may list several parents, comma separated; ancestors come first.
+        def extend(names):
+            nonlocal scene_template
+            for inherits in [n.strip() for n in (names or "").split(",") if n.strip()]:
+                if inherits not in self.lib.elements:
+                    continue
+                if inherits in self.scene_of_template:
+                    scene_template = scene_template or inherits
+                base = self.lib.elements[inherits]
+                extend(base.get("inherits"))
+                chain.append(base)
+
+        extend(node.get("inherits"))
         attrs = {}
         for n in chain + [node]:
             attrs.update(n.attrib)
@@ -340,6 +378,8 @@ class Converter:
         if not node.get("virtual") == "true":
             for c in self.lib.parented.get(name, []):
                 add(c, "FRAME").own = True
+        for c in self.row_elements(name, node.tag[:node.tag.index("}") + 1] if "}" in node.tag else ""):
+            add(c, "FRAME").own = True
         if "ScrollChild" in widget.special:
             for c in widget.special["ScrollChild"]:
                 add(c, "FRAME").scroll_child = True

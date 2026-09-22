@@ -21,6 +21,7 @@ const CONTACT_IGNORED: int = 0x02
 # Flags, a gold limit and six bank tabs of two words each.
 const WOTLK_RANK_WORDS: int = 14
 const ROWS: int = 10
+const IGNORE_ROWS: int = 19
 const GUILD_ROWS: int = 13
 # SMSG_GUILD_QUERY_RESPONSE always carries ten rank names, whatever the guild uses.
 const GUILD_RANKS: int = 10
@@ -80,16 +81,20 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	for i: int in ROWS:
-		var row: BaseButton = get_node("%%FriendsFrameFriendButton%d" % (i + 1))
+		var row: BaseButton = get_node("%%FriendsFrameFriendsScrollFrameButton%d" % (i + 1))
+		row.pressed.connect(_on_row_pressed.bind(i))
+	for i: int in IGNORE_ROWS:
+		var row: BaseButton = get_node("%%FriendsFrameIgnoreButton%d" % (i + 1))
 		row.pressed.connect(_on_row_pressed.bind(i))
 	%FriendsFrameCloseButton.pressed.connect(close_requested.emit)
 	# The right-click menu's anchor frame, which the stock client never draws.
 	%FriendsDropDown.hide()
 	%FriendsFrameTab1.pressed.connect(show_tab.bind(Tab.FRIENDS))
 	%FriendsFrameTab2.pressed.connect(show_tab.bind(Tab.WHO))
-	# The ignore list is the friends list's other face, reached by the toggle at its top.
-	%FriendsFrameToggleTab1.pressed.connect(show_tab.bind(Tab.FRIENDS))
-	%FriendsFrameToggleTab2.pressed.connect(show_tab.bind(Tab.IGNORE))
+	%FriendsTabHeaderTab1.pressed.connect(show_tab.bind(Tab.FRIENDS))
+	%FriendsTabHeaderTab2.pressed.connect(show_tab.bind(Tab.IGNORE))
+	# Battle.net pending invites do not exist on this server.
+	%FriendsTabHeaderTab3.hide()
 	(%WhoFrame as WhoFrame).friend_requested.connect(_on_who_friend_requested)
 	%FriendsFrameTab3.pressed.connect(show_tab.bind(Tab.GUILD))
 	%FriendsFrameTab4.pressed.connect(show_tab.bind(Tab.RAID))
@@ -99,18 +104,19 @@ func _ready() -> void:
 	%GuildFrameAddMemberButton.pressed.connect(
 		func() -> void: name_requested.emit(Tab.GUILD)
 	)
-	%FriendsFrameRemoveFriendButton.pressed.connect(_remove_selected)
+	%FriendsFrameUnsquelchButton.pressed.connect(_remove_selected)
 	var session: WowSession = WowClient.session
 	session.packet_received.connect(_on_packet_received)
 	session.name_received.connect(_on_name_received)
-	%RaidFrame.member_requested.connect(func() -> void: name_requested.emit(Tab.RAID))
 	hide()
 
 
 func show_tab(tab: Tab) -> void:
 	_tab = tab
 	_selected = -1
-	%FriendsListFrame.visible = tab in [Tab.FRIENDS, Tab.IGNORE]
+	%FriendsTabHeader.visible = tab in [Tab.FRIENDS, Tab.IGNORE]
+	%FriendsListFrame.visible = tab == Tab.FRIENDS
+	%IgnoreListFrame.visible = tab == Tab.IGNORE
 	%GuildFrame.visible = tab == Tab.GUILD
 	%RaidFrame.visible = tab == Tab.RAID
 	%WhoFrame.visible = tab == Tab.WHO
@@ -174,22 +180,25 @@ func refresh() -> void:
 		"FRIENDS_LIST" if _tab == Tab.FRIENDS else "IGNORE_LIST"
 	)
 	var session: WowSession = WowClient.session
-	var rows: int = _friends.size() if _tab == Tab.FRIENDS else _ignored.size()
+	if _tab == Tab.IGNORE:
+		for i: int in IGNORE_ROWS:
+			var row: Control = get_node("%%FriendsFrameIgnoreButton%d" % (i + 1))
+			row.visible = i < _ignored.size()
+			if row.visible:
+				var text: Label = get_node("%%FriendsFrameIgnoreButton%dName" % (i + 1))
+				text.text = session.get_object_name(_ignored[i])
+		return
 	for i: int in ROWS:
-		var row: Control = get_node("%%FriendsFrameFriendButton%d" % (i + 1))
-		row.visible = i < rows
+		var row: Control = get_node("%%FriendsFrameFriendsScrollFrameButton%d" % (i + 1))
+		row.visible = i < _friends.size()
 		if not row.visible:
 			continue
-		var text: Label = get_node("%%FriendsFrameFriendButton%dButtonTextNameLocation" % (i + 1))
-		var info: Label = get_node("%%FriendsFrameFriendButton%dButtonTextInfo" % (i + 1))
-		if _tab == Tab.FRIENDS:
-			var entry: Dictionary = _friends[i]
-			text.text = session.get_object_name(entry["guid"])
-			info.text = WowStrings.get_text("FRIENDS_LIST_ONLINE", "Online") \
-			if entry["online"] else WowStrings.get_text("FRIENDS_LIST_OFFLINE", "Offline")
-		else:
-			text.text = session.get_object_name(_ignored[i])
-			info.text = ""
+		var entry: Dictionary = _friends[i]
+		var text: Label = get_node("%%FriendsFrameFriendsScrollFrameButton%dName" % (i + 1))
+		var info: Label = get_node("%%FriendsFrameFriendsScrollFrameButton%dInfo" % (i + 1))
+		text.text = session.get_object_name(entry["guid"])
+		info.text = WowStrings.get_text("FRIENDS_LIST_ONLINE", "Online") \
+		if entry["online"] else WowStrings.get_text("FRIENDS_LIST_OFFLINE", "Offline")
 
 
 func is_ignored(guid: int) -> bool:
@@ -226,20 +235,14 @@ func _on_row_pressed(index: int) -> void:
 	_selected = index
 
 
+# Friends leave through the stock right-click menu, which is not ported.
 func _remove_selected() -> void:
-	var guid: int = 0
-	if _tab == Tab.FRIENDS and _selected >= 0 and _selected < _friends.size():
-		guid = _friends[_selected]["guid"]
-	elif _tab == Tab.IGNORE and _selected >= 0 and _selected < _ignored.size():
-		guid = _ignored[_selected]
-	if guid == 0:
+	if _tab != Tab.IGNORE or _selected < 0 or _selected >= _ignored.size():
 		return
 	var payload: PackedByteArray = []
 	payload.resize(8)
-	payload.encode_u64(0, guid)
-	WowClient.session.send_packet(
-		"CMSG_DEL_FRIEND" if _tab == Tab.FRIENDS else "CMSG_DEL_IGNORE", payload
-	)
+	payload.encode_u64(0, _ignored[_selected])
+	WowClient.session.send_packet("CMSG_DEL_IGNORE", payload)
 
 
 # What the guild's tabard is set to, empty until its query has answered.

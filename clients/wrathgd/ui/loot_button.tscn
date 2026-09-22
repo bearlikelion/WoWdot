@@ -105,7 +105,8 @@ mouse_filter = 2
 texture = SubResource("WowTexture_2")
 expand_mode = 1
 
-[node name="Texture" type="TextureRect" parent="."]
+[node name="NameFrame" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchor_top = 0.5
 anchor_bottom = 0.5

@@ -66,70 +66,74 @@ blend_mode = 1
 atlas = SubResource("WowTexture_14")
 region = Rect2(0, 0, 36, 36)
 
-[sub_resource type="WowTexture" id="WowTexture_20"]
-file = "Interface\\Buttons\\UI-PageButton-Background.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_20"]
+atlas = SubResource("WowTexture_14")
+region = Rect2(72, 0, 36, 36)
 
 [sub_resource type="WowTexture" id="WowTexture_21"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
+file = "Interface\\Buttons\\UI-PageButton-Background.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_22"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_23"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_24"]
-file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_25"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_26"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_27"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_28"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_29"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_30"]
-file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_32"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-ActiveTab.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
-atlas = SubResource("WowTexture_31")
-region = Rect2(0, 0, 20, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_33"]
-atlas = SubResource("WowTexture_31")
-region = Rect2(20, 0, 88, 32)
+atlas = SubResource("WowTexture_32")
+region = Rect2(0, 0, 20, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34"]
-atlas = SubResource("WowTexture_31")
-region = Rect2(108, 0, 20, 32)
-
-[sub_resource type="WowTexture" id="WowTexture_35"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
-atlas = SubResource("WowTexture_35")
-region = Rect2(0, 0, 20, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_37"]
-atlas = SubResource("WowTexture_35")
+atlas = SubResource("WowTexture_32")
 region = Rect2(20, 0, 88, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
-atlas = SubResource("WowTexture_35")
+[sub_resource type="AtlasTexture" id="AtlasTexture_35"]
+atlas = SubResource("WowTexture_32")
 region = Rect2(108, 0, 20, 32)
 
-[sub_resource type="WowTexture" id="WowTexture_39"]
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37"]
+atlas = SubResource("WowTexture_36")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_36")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_39"]
+atlas = SubResource("WowTexture_36")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_40"]
 file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
 
 [node name="MerchantFrame" type="Control"]
@@ -378,6 +382,165 @@ offset_top = 32
 offset_right = 172
 offset_bottom = 45
 
+[node name="MerchantItem1AltCurrencyFrame" type="Control" parent="MerchantItem1"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem1AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem1AltCurrencyFrameHonorText" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem1AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem1AltCurrencyFrameArenaText" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem1AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem1AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem1AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem1AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem1AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem1AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MerchantItem2" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 189
@@ -433,6 +596,165 @@ offset_left = 44
 offset_top = 32
 offset_right = 172
 offset_bottom = 45
+
+[node name="MerchantItem2AltCurrencyFrame" type="Control" parent="MerchantItem2"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem2AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem2AltCurrencyFrameHonorText" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem2AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem2AltCurrencyFrameArenaText" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem2AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem2AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem2AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem2AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem2AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem2AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MerchantItem3" type="Control" parent="."]
 unique_name_in_owner = true
@@ -490,6 +812,165 @@ offset_top = 32
 offset_right = 172
 offset_bottom = 45
 
+[node name="MerchantItem3AltCurrencyFrame" type="Control" parent="MerchantItem3"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem3AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem3AltCurrencyFrameHonorText" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem3AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem3AltCurrencyFrameArenaText" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem3AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem3AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem3AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem3AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem3AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem3AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MerchantItem4" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 189
@@ -545,6 +1026,165 @@ offset_left = 44
 offset_top = 32
 offset_right = 172
 offset_bottom = 45
+
+[node name="MerchantItem4AltCurrencyFrame" type="Control" parent="MerchantItem4"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem4AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem4AltCurrencyFrameHonorText" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem4AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem4AltCurrencyFrameArenaText" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem4AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem4AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem4AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem4AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem4AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem4AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MerchantItem5" type="Control" parent="."]
 unique_name_in_owner = true
@@ -602,6 +1242,165 @@ offset_top = 32
 offset_right = 172
 offset_bottom = 45
 
+[node name="MerchantItem5AltCurrencyFrame" type="Control" parent="MerchantItem5"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem5AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem5AltCurrencyFrameHonorText" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem5AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem5AltCurrencyFrameArenaText" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem5AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem5AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem5AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem5AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem5AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem5AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MerchantItem6" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 189
@@ -657,6 +1456,165 @@ offset_left = 44
 offset_top = 32
 offset_right = 172
 offset_bottom = 45
+
+[node name="MerchantItem6AltCurrencyFrame" type="Control" parent="MerchantItem6"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem6AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem6AltCurrencyFrameHonorText" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem6AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem6AltCurrencyFrameArenaText" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem6AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem6AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem6AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem6AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem6AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem6AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MerchantItem7" type="Control" parent="."]
 unique_name_in_owner = true
@@ -714,6 +1672,165 @@ offset_top = 32
 offset_right = 172
 offset_bottom = 45
 
+[node name="MerchantItem7AltCurrencyFrame" type="Control" parent="MerchantItem7"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem7AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem7AltCurrencyFrameHonorText" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem7AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem7AltCurrencyFrameArenaText" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem7AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem7AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem7AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem7AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem7AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem7AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MerchantItem8" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 189
@@ -769,6 +1886,165 @@ offset_left = 44
 offset_top = 32
 offset_right = 172
 offset_bottom = 45
+
+[node name="MerchantItem8AltCurrencyFrame" type="Control" parent="MerchantItem8"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem8AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem8AltCurrencyFrameHonorText" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem8AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem8AltCurrencyFrameArenaText" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem8AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem8AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem8AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem8AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem8AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem8AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MerchantItem9" type="Control" parent="."]
 unique_name_in_owner = true
@@ -826,6 +2102,165 @@ offset_top = 32
 offset_right = 172
 offset_bottom = 45
 
+[node name="MerchantItem9AltCurrencyFrame" type="Control" parent="MerchantItem9"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem9AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem9AltCurrencyFrameHonorText" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem9AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem9AltCurrencyFrameArenaText" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem9AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem9AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem9AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem9AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem9AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem9AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MerchantItem10" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 189
@@ -881,6 +2316,165 @@ offset_left = 44
 offset_top = 32
 offset_right = 172
 offset_bottom = 45
+
+[node name="MerchantItem10AltCurrencyFrame" type="Control" parent="MerchantItem10"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem10AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem10AltCurrencyFrameHonorText" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem10AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem10AltCurrencyFrameArenaText" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem10AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem10AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem10AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem10AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem10AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem10AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MerchantItem11" type="Control" parent="."]
 unique_name_in_owner = true
@@ -938,6 +2532,165 @@ offset_top = 32
 offset_right = 172
 offset_bottom = 45
 
+[node name="MerchantItem11AltCurrencyFrame" type="Control" parent="MerchantItem11"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem11AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem11AltCurrencyFrameHonorText" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem11AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem11AltCurrencyFrameArenaText" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem11AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem11AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem11AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem11AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem11AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem11AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MerchantItem12" type="Control" parent="."]
 unique_name_in_owner = true
 offset_left = 189
@@ -993,6 +2746,165 @@ offset_left = 44
 offset_top = 32
 offset_right = 172
 offset_bottom = 45
+
+[node name="MerchantItem12AltCurrencyFrame" type="Control" parent="MerchantItem12"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 32
+offset_right = 172
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+
+[node name="MerchantItem12AltCurrencyFrameHonor" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameHonor"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem12AltCurrencyFrameHonorText" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameHonor"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem12AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 13
+offset_top = 0
+offset_right = 45
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameArena"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem12AltCurrencyFrameArenaText" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameArena"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem12AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 45
+offset_top = 0
+offset_right = 77
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem1"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem12AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem1"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem12AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 81
+offset_top = 0
+offset_right = 113
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem2"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem12AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem2"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MerchantItem12AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 117
+offset_top = 0
+offset_right = 149
+offset_bottom = 13
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem3"]
+offset_left = 0
+offset_top = 0
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+expand_mode = 1
+
+[node name="MerchantItem12AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = 6.5
+offset_right = -13
+offset_bottom = 6.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MerchantRepairAllButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1089,6 +3001,58 @@ offset_left = 0
 offset_top = 0
 offset_right = 36
 offset_bottom = 36
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_18")
+
+[node name="MerchantGuildBankRepairButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 176
+offset_top = -125
+offset_right = 208
+offset_bottom = -93
+visible = false
+ignore_texture_size = true
+
+[node name="MerchantGuildBankRepairButtonIcon" type="TextureRect" parent="MerchantGuildBankRepairButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_20")
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="MerchantGuildBankRepairButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="MerchantGuildBankRepairButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="MerchantGuildBankRepairButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
 visible = false
 mouse_filter = 2
 texture = SubResource("WowTexture_17")
@@ -1194,7 +3158,7 @@ offset_top = -1
 offset_right = 32
 offset_bottom = 31
 mouse_filter = 2
-texture = SubResource("WowTexture_20")
+texture = SubResource("WowTexture_21")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MerchantPrevPageButton"]
@@ -1203,7 +3167,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_21")
+texture = SubResource("WowTexture_22")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MerchantPrevPageButton"]
@@ -1213,7 +3177,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_22")
+texture = SubResource("WowTexture_23")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MerchantPrevPageButton"]
@@ -1223,7 +3187,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_23")
+texture = SubResource("WowTexture_24")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MerchantPrevPageButton"]
@@ -1233,7 +3197,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_25")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_18")
 
@@ -1268,7 +3232,7 @@ offset_top = -1
 offset_right = 32
 offset_bottom = 31
 mouse_filter = 2
-texture = SubResource("WowTexture_20")
+texture = SubResource("WowTexture_21")
 expand_mode = 1
 
 [node name="NormalTexture" type="TextureRect" parent="MerchantNextPageButton"]
@@ -1277,7 +3241,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_25")
+texture = SubResource("WowTexture_26")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MerchantNextPageButton"]
@@ -1287,7 +3251,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_26")
+texture = SubResource("WowTexture_27")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="MerchantNextPageButton"]
@@ -1297,7 +3261,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_27")
+texture = SubResource("WowTexture_28")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MerchantNextPageButton"]
@@ -1307,7 +3271,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_24")
+texture = SubResource("WowTexture_25")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_18")
 
@@ -1329,7 +3293,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_28")
+texture = SubResource("WowTexture_29")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="MerchantFrameCloseButton"]
@@ -1339,7 +3303,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_29")
+texture = SubResource("WowTexture_30")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="MerchantFrameCloseButton"]
@@ -1349,7 +3313,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_30")
+texture = SubResource("WowTexture_31")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_18")
 
@@ -1359,9 +3323,9 @@ script = ExtResource("4")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 2.5
+offset_left = 55
 offset_top = -62
-offset_right = 117.5
+offset_right = 65
 offset_bottom = -30
 ignore_texture_size = true
 
@@ -1372,7 +3336,7 @@ offset_top = -5
 offset_right = 20
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="MerchantFrameTab1MiddleDisabled" type="TextureRect" parent="MerchantFrameTab1"]
@@ -1382,7 +3346,7 @@ offset_top = -5
 offset_right = 108
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_33")
+texture = SubResource("AtlasTexture_34")
 expand_mode = 1
 
 [node name="MerchantFrameTab1RightDisabled" type="TextureRect" parent="MerchantFrameTab1"]
@@ -1392,7 +3356,7 @@ offset_top = -5
 offset_right = 128
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_34")
+texture = SubResource("AtlasTexture_35")
 expand_mode = 1
 
 [node name="MerchantFrameTab1Left" type="TextureRect" parent="MerchantFrameTab1"]
@@ -1402,7 +3366,7 @@ offset_top = 0
 offset_right = 20
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_36")
+texture = SubResource("AtlasTexture_37")
 expand_mode = 1
 
 [node name="MerchantFrameTab1Middle" type="TextureRect" parent="MerchantFrameTab1"]
@@ -1412,7 +3376,7 @@ offset_top = 0
 offset_right = 108
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_37")
+texture = SubResource("AtlasTexture_38")
 expand_mode = 1
 
 [node name="MerchantFrameTab1Right" type="TextureRect" parent="MerchantFrameTab1"]
@@ -1422,31 +3386,30 @@ offset_top = 0
 offset_right = 128
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_39")
 expand_mode = 1
 
 [node name="MerchantFrameTab1Text" type="Label" parent="MerchantFrameTab1"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Merchant"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MerchantFrameTab1"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_39")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_18")
 
@@ -1456,9 +3419,9 @@ script = ExtResource("4")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 101.5
+offset_left = 49
 offset_top = -62
-offset_right = 216.5
+offset_right = 59
 offset_bottom = -30
 ignore_texture_size = true
 
@@ -1469,7 +3432,7 @@ offset_top = -5
 offset_right = 20
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_32")
+texture = SubResource("AtlasTexture_33")
 expand_mode = 1
 
 [node name="MerchantFrameTab2MiddleDisabled" type="TextureRect" parent="MerchantFrameTab2"]
@@ -1479,7 +3442,7 @@ offset_top = -5
 offset_right = 108
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_33")
+texture = SubResource("AtlasTexture_34")
 expand_mode = 1
 
 [node name="MerchantFrameTab2RightDisabled" type="TextureRect" parent="MerchantFrameTab2"]
@@ -1489,7 +3452,7 @@ offset_top = -5
 offset_right = 128
 offset_bottom = 27
 mouse_filter = 2
-texture = SubResource("AtlasTexture_34")
+texture = SubResource("AtlasTexture_35")
 expand_mode = 1
 
 [node name="MerchantFrameTab2Left" type="TextureRect" parent="MerchantFrameTab2"]
@@ -1499,7 +3462,7 @@ offset_top = 0
 offset_right = 20
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_36")
+texture = SubResource("AtlasTexture_37")
 expand_mode = 1
 
 [node name="MerchantFrameTab2Middle" type="TextureRect" parent="MerchantFrameTab2"]
@@ -1509,7 +3472,7 @@ offset_top = 0
 offset_right = 108
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_37")
+texture = SubResource("AtlasTexture_38")
 expand_mode = 1
 
 [node name="MerchantFrameTab2Right" type="TextureRect" parent="MerchantFrameTab2"]
@@ -1519,30 +3482,29 @@ offset_top = 0
 offset_right = 128
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("AtlasTexture_38")
+texture = SubResource("AtlasTexture_39")
 expand_mode = 1
 
 [node name="MerchantFrameTab2Text" type="Label" parent="MerchantFrameTab2"]
 unique_name_in_owner = true
-offset_left = 57.5
+offset_left = 5
 offset_top = 9
-offset_right = 57.5
+offset_right = 5
 offset_bottom = 19
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
 text = "Buyback"
 horizontal_alignment = 1
 vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightTexture" type="TextureRect" parent="MerchantFrameTab2"]
 offset_left = 10
 offset_top = -2
-offset_right = 105
+offset_right = 0
 offset_bottom = 30
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_39")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_18")

@@ -201,23 +201,6 @@ text = "Bobby The Fleshripper (Level 99 Raptor)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PetStableLoyaltyText" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 0
-offset_top = 51
-offset_right = 0
-offset_bottom = 61
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-text = "Loyalty: Mans Best Friend"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="PetStableSlotText" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -371,9 +354,9 @@ script = ExtResource("3")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 95
+offset_left = 45
 offset_top = -187
-offset_right = 132
+offset_right = 82
 offset_bottom = -150
 ignore_texture_size = true
 
@@ -456,9 +439,9 @@ script = ExtResource("3")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 185
+offset_left = 135
 offset_top = -187
-offset_right = 222
+offset_right = 172
 offset_bottom = -150
 ignore_texture_size = true
 
@@ -471,19 +454,6 @@ offset_bottom = 51
 mouse_filter = 2
 texture = SubResource("WowTexture_13")
 expand_mode = 1
-
-[node name="FontString" type="Label" parent="PetStableStabledPet1"]
-offset_left = 42.5
-offset_top = -16
-offset_right = 42.5
-offset_bottom = -6
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-text = "Stabled Pets:"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PetStableStabledPet1IconTexture" type="TextureRect" parent="PetStableStabledPet1"]
 unique_name_in_owner = true
@@ -541,9 +511,9 @@ script = ExtResource("3")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
-offset_left = 237
+offset_left = 187
 offset_top = -187
-offset_right = 274
+offset_right = 224
 offset_bottom = -150
 ignore_texture_size = true
 
@@ -556,6 +526,19 @@ offset_bottom = 51
 mouse_filter = 2
 texture = SubResource("WowTexture_13")
 expand_mode = 1
+
+[node name="FontString" type="Label" parent="PetStableStabledPet2"]
+offset_left = 42.5
+offset_top = -16
+offset_right = 42.5
+offset_bottom = -6
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Stabled Pets:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PetStableStabledPet2IconTexture" type="TextureRect" parent="PetStableStabledPet2"]
 unique_name_in_owner = true
@@ -597,6 +580,150 @@ expand_mode = 1
 material = SubResource("CanvasItemMaterial_8")
 
 [node name="HighlightTexture" type="TextureRect" parent="PetStableStabledPet2"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="PetStableStabledPet3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 239
+offset_top = -187
+offset_right = 276
+offset_bottom = -150
+ignore_texture_size = true
+
+[node name="PetStableStabledPet3Background" type="TextureRect" parent="PetStableStabledPet3"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="PetStableStabledPet3IconTexture" type="TextureRect" parent="PetStableStabledPet3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PetStableStabledPet3"]
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStableStabledPet3"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="PetStableStabledPet3"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStableStabledPet3"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="PetStableStabledPet4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 291
+offset_top = -187
+offset_right = 328
+offset_bottom = -150
+ignore_texture_size = true
+
+[node name="PetStableStabledPet4Background" type="TextureRect" parent="PetStableStabledPet4"]
+unique_name_in_owner = true
+offset_left = -13
+offset_top = -13
+offset_right = 51
+offset_bottom = 51
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="PetStableStabledPet4IconTexture" type="TextureRect" parent="PetStableStabledPet4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+mouse_filter = 2
+expand_mode = 1
+
+[node name="NormalTexture" type="TextureRect" parent="PetStableStabledPet4"]
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 50.5
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PetStableStabledPet4"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="PetStableStabledPet4"]
+offset_left = 0
+offset_top = 0
+offset_right = 37
+offset_bottom = 37
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="HighlightTexture" type="TextureRect" parent="PetStableStabledPet4"]
 offset_left = 0
 offset_top = 0
 offset_right = 37
@@ -658,7 +785,6 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
 text = "Purchase"
 horizontal_alignment = 1
 vertical_alignment = 1

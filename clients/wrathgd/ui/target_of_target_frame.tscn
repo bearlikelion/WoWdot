@@ -1,0 +1,302 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/target_of_target_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_cooldown.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\TargetingFrame\\UI-TargetofTargetFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(2, 0, 91, 45)
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-Debuff-Overlays.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(38, 0, 35, 33)
+
+[node name="TargetofTargetFrameTemplate" type="TextureButton"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -35
+offset_right = -35
+offset_bottom = 10
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+ignore_texture_size = true
+
+[node name="Background" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 42
+offset_top = -28
+offset_right = 88
+offset_bottom = -13
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Portrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 5
+offset_right = 40
+offset_bottom = 40
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TextureFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="TextureFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="TextureFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 42
+offset_top = -12
+offset_right = 142
+offset_bottom = -2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="DeadText" type="Label" parent="TextureFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 15
+offset_top = -6
+offset_right = 15
+offset_bottom = 4
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Dead"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -48
+offset_top = 15
+offset_right = -2
+offset_bottom = 22
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_3")
+nine_patch_stretch = true
+tint_progress = Color(0, 1, 0, 1)
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="ManaBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -48
+offset_top = 23
+offset_right = -2
+offset_bottom = 30
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_3")
+nine_patch_stretch = true
+tint_progress = Color(0, 0, 1, 1)
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="Debuff1" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = 4
+offset_top = 10
+offset_right = 16
+offset_bottom = 22
+visible = false
+mouse_filter = 0
+
+[node name="Icon" type="TextureRect" parent="Debuff1"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="Debuff1"]
+offset_left = -1
+offset_top = -1
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="Cooldown" type="Control" parent="Debuff1"]
+script = ExtResource("2")
+offset_left = 6
+offset_top = 7
+offset_right = 6
+offset_bottom = 7
+visible = false
+mouse_filter = 2
+
+[node name="Debuff2" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = 17
+offset_top = 10
+offset_right = 29
+offset_bottom = 22
+visible = false
+mouse_filter = 0
+
+[node name="Icon" type="TextureRect" parent="Debuff2"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="Debuff2"]
+offset_left = -1
+offset_top = -1
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="Cooldown" type="Control" parent="Debuff2"]
+script = ExtResource("2")
+offset_left = 6
+offset_top = 7
+offset_right = 6
+offset_bottom = 7
+visible = false
+mouse_filter = 2
+
+[node name="Debuff3" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = 4
+offset_top = 23
+offset_right = 16
+offset_bottom = 35
+visible = false
+mouse_filter = 0
+
+[node name="Icon" type="TextureRect" parent="Debuff3"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="Debuff3"]
+offset_left = -1
+offset_top = -1
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="Cooldown" type="Control" parent="Debuff3"]
+script = ExtResource("2")
+offset_left = 6
+offset_top = 7
+offset_right = 6
+offset_bottom = 7
+visible = false
+mouse_filter = 2
+
+[node name="Debuff4" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = 17
+offset_top = 23
+offset_right = 29
+offset_bottom = 35
+visible = false
+mouse_filter = 0
+
+[node name="Icon" type="TextureRect" parent="Debuff4"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 12
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Border" type="TextureRect" parent="Debuff4"]
+offset_left = -1
+offset_top = -1
+offset_right = 13
+offset_bottom = 13
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="Cooldown" type="Control" parent="Debuff4"]
+script = ExtResource("2")
+offset_left = 6
+offset_top = 7
+offset_right = 6
+offset_bottom = 7
+visible = false
+mouse_filter = 2

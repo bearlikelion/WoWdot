@@ -59,7 +59,6 @@ func refresh() -> void:
 		chosen["name"], WowStrings.get_text("UNIT_LEVEL_TEMPLATE") % chosen["level"],
 		_family_of(chosen["entry"]),
 	]
-	(%PetStableLoyaltyText as Label).text = "" if chosen.is_empty() else str(chosen["loyalty"])
 	var cost: int = _slot_cost()
 	(%PetStableCostMoneyFrame as MoneyFrame).set_money(cost)
 	(%PetStableMoneyFrame as MoneyFrame).set_money(Inventory.money())
@@ -163,8 +162,7 @@ func _read_pets(reader: PacketReader) -> void:
 		pet["level"] = reader.u32()
 		pet["name"] = reader.cstring()
 		if PacketReader.wotlk:
-			# 3.3.5 dropped loyalty and flags the pet at the player's side instead of numbering slots.
-			pet["loyalty"] = 0
+			# 3.3.5 flags the pet at the player's side instead of numbering slots.
 			pet["slot"] = CURRENT_SLOT if reader.u8() == 1 else CURRENT_SLOT + _pets.size()
 		else:
 			pet["loyalty"] = reader.u32()

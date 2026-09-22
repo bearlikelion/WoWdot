@@ -96,8 +96,8 @@ var _history: PackedStringArray = []
 var _history_index: int = -1
 var _insets: StyleBoxEmpty = StyleBoxEmpty.new()
 
-@onready var _edit_box: LineEdit = %ChatFrameEditBox
-@onready var _header: Label = %ChatFrameEditBoxHeader
+@onready var _edit_box: LineEdit = %ChatFrame1EditBox
+@onready var _header: Label = %ChatFrame1EditBoxHeader
 
 
 func _ready() -> void:
@@ -106,7 +106,7 @@ func _ready() -> void:
 		return
 	WowClient.macros.line_requested.connect(_on_text_submitted)
 	%ChatFrame1TabText.text = WowStrings.get_text("GENERAL")
-	%ChatFrameEditBoxLanguage.hide()
+	%ChatFrame1EditBoxLanguage.hide()
 	_edit_box.theme_type_variation = &"ChatEditBox"
 	# SetTextInsets moves with the header's width, so this one style is the edit box's own.
 	for state: StringName in [&"normal", &"focus", &"read_only"]:

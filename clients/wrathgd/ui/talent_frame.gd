@@ -5,9 +5,9 @@ signal close_requested
 
 enum Branch { NONE, MET, UNMET }
 
-const MAX_TALENT_TABS: int = 5
-const MAX_NUM_TALENTS: int = 20
-const MAX_NUM_TALENT_TIERS: int = 8
+const MAX_TALENT_TABS: int = 3
+const MAX_NUM_TALENTS: int = 40
+const MAX_NUM_TALENT_TIERS: int = 15
 const NUM_TALENT_COLUMNS: int = 4
 const MAX_NUM_BRANCH_TEXTURES: int = 30
 const MAX_NUM_ARROW_TEXTURES: int = 30
@@ -59,11 +59,10 @@ var _points: int = 0
 var _points_spent: int = 0
 var _known: Dictionary[int, bool] = {}
 var _tab_gap: float = 0.0
-var _points_label_right: float = 0.0
 var _desaturate: ShaderMaterial = ShaderMaterial.new()
 var _portrait: UnitPortrait
 
-@onready var _scroll: WowScrollFrame = %TalentFrameScrollFrame
+@onready var _scroll: WowScrollFrame = %PlayerTalentFrameScrollFrame
 
 
 func _ready() -> void:
@@ -81,17 +80,24 @@ func _ready() -> void:
 		button.mouse_entered.connect(_on_talent_entered.bind(i))
 		button.mouse_exited.connect(_hide_tooltip.bind(button))
 	for i: int in MAX_TALENT_TABS:
-		(get_node("%%TalentFrameTab%d" % (i + 1)) as BaseButton).pressed.connect(_select_tab.bind(i))
-	_points_label_right = %TalentFrameTalentPoints.offset_right
-	_tab_gap = %TalentFrameTab2.position.x - %TalentFrameTab1.position.x - %TalentFrameTab1.size.x
-	%TalentFrameCloseButton.pressed.connect(close_requested.emit)
-	%TalentFrameCancelButton.pressed.connect(close_requested.emit)
+		(get_node("%%PlayerTalentFrameTab%d" % (i + 1)) as BaseButton).pressed.connect(
+			_select_tab.bind(i)
+		)
+	_tab_gap = %PlayerTalentFrameTab2.position.x - %PlayerTalentFrameTab1.position.x \
+	- %PlayerTalentFrameTab1.size.x
+	# Glyphs, dual spec and talent previews are not ported.
+	for unported: CanvasItem in [
+		%PlayerTalentFrameTab4, %PlayerSpecTab1, %PlayerSpecTab2, %PlayerSpecTab3,
+		%PlayerTalentFrameStatusFrame, %PlayerTalentFramePreviewBar,
+	]:
+		unported.hide()
+	%PlayerTalentFrameCloseButton.pressed.connect(close_requested.emit)
 	_portrait = PORTRAIT.instantiate()
 	add_child(_portrait)
 	var mask: ShaderMaterial = ShaderMaterial.new()
 	mask.shader = PORTRAIT_MASK
-	%TalentFramePortrait.material = mask
-	%TalentFramePortrait.texture = _portrait.get_texture()
+	%PlayerTalentFramePortrait.material = mask
+	%PlayerTalentFramePortrait.texture = _portrait.get_texture()
 	var session: WowSession = WowClient.session
 	session.spells_changed.connect(refresh)
 	session.object_updated.connect(_on_object_updated)
@@ -108,12 +114,9 @@ func refresh() -> void:
 	for spell: int in session.get_known_spells():
 		_known[spell] = true
 	_points = session.get_field(guid, "PLAYER_CHARACTER_POINTS1")
-	var points_text: Label = %TalentFrameTalentPointsText
-	points_text.text = str(_points)
-	# The label hangs off the left edge of the number, which grows leftwards.
-	var label_right: float = _points_label_right - points_text.get_minimum_size().x
-	%TalentFrameTalentPoints.offset_left = label_right
-	%TalentFrameTalentPoints.offset_right = label_right
+	%PlayerTalentFrameTalentPointsText.text = WowStrings.strip_colors(
+		WowStrings.get_text("UNSPENT_TALENT_POINTS", "%s")
+	) % _points
 	_tabs = _class_tabs((session.get_field(guid, "UNIT_FIELD_BYTES_0") >> 8) & 0xFF)
 	_tab = mini(_tab, maxi(_tabs.size() - 1, 0))
 	_update_tabs()
@@ -121,7 +124,7 @@ func refresh() -> void:
 		return
 	var tab_row: int = _talent_tabs.find(_tabs[_tab])
 	for piece: String in BACKGROUND_PIECES:
-		var background: TextureRect = get_node("%TalentFrameBackground" + piece)
+		var background: TextureRect = get_node("%PlayerTalentFrameBackground" + piece)
 		var file: String = BACKGROUND % [_talent_tabs.get_string(tab_row, "BackgroundFile"), piece]
 		var texture: WowTexture = background.texture as WowTexture
 		if texture == null or texture.file != file:
@@ -133,9 +136,9 @@ func refresh() -> void:
 
 
 func _update_tabs() -> void:
-	var x: float = %TalentFrameTab1.position.x
+	var x: float = %PlayerTalentFrameTab1.position.x
 	for i: int in MAX_TALENT_TABS:
-		var tab: Control = get_node("%%TalentFrameTab%d" % (i + 1))
+		var tab: Control = get_node("%%PlayerTalentFrameTab%d" % (i + 1))
 		tab.visible = i < _tabs.size()
 		if not tab.visible:
 			continue
@@ -143,7 +146,7 @@ func _update_tabs() -> void:
 		var tab_name: String = _talent_tabs.get_string(tab_row, "Name")
 		if i == _tab:
 			_points_spent = _spent(_tabs[i])
-			%TalentFrameSpentPoints.text = "%s %d" % [
+			%PlayerTalentFrameSpentPointsText.text = "%s %d" % [
 				WowStrings.get_text("MASTERY_POINTS_SPENT") % tab_name, _points_spent,
 			]
 		(tab.get_node(tab.name + "Text") as Label).text = tab_name
@@ -257,19 +260,21 @@ func _draw_branches() -> void:
 				_set_branch("down", node.down, offset + Vector2(0.0, 32.0))
 				ignore_up = true
 	for i: int in range(_branch_index, MAX_NUM_BRANCH_TEXTURES):
-		(get_node("%%TalentFrameBranch%d" % (i + 1)) as CanvasItem).hide()
+		(get_node("%%PlayerTalentFrameBranch%d" % (i + 1)) as CanvasItem).hide()
 	for i: int in range(_arrow_index, MAX_NUM_ARROW_TEXTURES):
-		(get_node("%%TalentFrameArrow%d" % (i + 1)) as CanvasItem).hide()
+		(get_node("%%PlayerTalentFrameArrow%d" % (i + 1)) as CanvasItem).hide()
 
 
 func _set_branch(piece: String, state: Branch, offset: Vector2) -> void:
 	_branch_index += 1
-	_place(get_node("%%TalentFrameBranch%d" % _branch_index), BRANCH_COORDS[piece], state, offset)
+	_place(
+		get_node("%%PlayerTalentFrameBranch%d" % _branch_index), BRANCH_COORDS[piece], state, offset,
+	)
 
 
 func _set_arrow(piece: String, state: Branch, offset: Vector2) -> void:
 	_arrow_index += 1
-	_place(get_node("%%TalentFrameArrow%d" % _arrow_index), ARROW_COORDS[piece], state, offset)
+	_place(get_node("%%PlayerTalentFrameArrow%d" % _arrow_index), ARROW_COORDS[piece], state, offset)
 
 
 func _place(rect: TextureRect, coords: Array, state: Branch, offset: Vector2) -> void:
@@ -425,7 +430,7 @@ func _spent(tab_id: int) -> int:
 
 
 func _button(index: int) -> ItemButton:
-	return get_node("%%TalentFrameTalent%d" % (index + 1))
+	return get_node("%%PlayerTalentFrameTalent%d" % (index + 1))
 
 
 func _select_tab(tab: int) -> void:
