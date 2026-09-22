@@ -551,6 +551,9 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 					targets.push_back(static_cast<int64_t>(data.targetGuid));
 				}
 				emit_signal("spell_cast_finished", static_cast<int64_t>(data.casterUnit ? data.casterUnit : data.casterGuid), static_cast<int>(data.spellId), targets);
+				if (data.hasRunes && (data.casterUnit ? data.casterUnit : data.casterGuid) == player_guid) {
+					emit_signal("runes_spent", static_cast<int>(data.runesAfter), PackedByteArray(Array::make(data.runeCooldowns[0], data.runeCooldowns[1], data.runeCooldowns[2], data.runeCooldowns[3], data.runeCooldowns[4], data.runeCooldowns[5])));
+				}
 			}
 			return true;
 		}
@@ -2313,6 +2316,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("transfer_aborted", PropertyInfo(Variant::INT, "reason")));
 	ADD_SIGNAL(MethodInfo("chat_received", PropertyInfo(Variant::DICTIONARY, "line")));
 	ADD_SIGNAL(MethodInfo("spells_changed"));
+	ADD_SIGNAL(MethodInfo("runes_spent", PropertyInfo(Variant::INT, "ready_mask"), PropertyInfo(Variant::PACKED_BYTE_ARRAY, "recharged")));
 	ADD_SIGNAL(MethodInfo("action_buttons_changed"));
 	ADD_SIGNAL(MethodInfo("factions_changed"));
 	ADD_SIGNAL(MethodInfo("player_teleported", PropertyInfo(Variant::VECTOR3, "position"), PropertyInfo(Variant::FLOAT, "orientation")));

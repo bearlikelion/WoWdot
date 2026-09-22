@@ -1965,6 +1965,10 @@ struct SpellGoData {
     uint8_t missCount = 0;
     std::vector<SpellGoMissEntry> missTargets;
     uint64_t targetGuid = 0;  ///< Primary target GUID from SpellCastTargets (0 = none/AoE)
+    bool hasRunes = false;
+    uint8_t runesBefore = 0;
+    uint8_t runesAfter = 0;
+    uint8_t runeCooldowns[6] = {};  ///< Recharge passed out of 255, for each rune the cast spent
 
     bool isValid() const { return spellId != 0; }
 };

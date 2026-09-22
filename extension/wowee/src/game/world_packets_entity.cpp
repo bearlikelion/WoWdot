@@ -1174,12 +1174,12 @@ bool SpellStartParser::parse(network::Packet& packet, SpellStartData& data) {
         return true;
     };
 
-    // UNIT/UNIT_MINIPET/CORPSE_ALLY/GAMEOBJECT share a single object target GUID
-    if (targetFlags & (0x0002u | 0x0004u | 0x0400u | 0x0800u)) {
+    // UNIT, CORPSE_ENEMY, GAMEOBJECT, CORPSE_ALLY and UNIT_MINIPET share a single object target GUID
+    if (targetFlags & (0x0002u | 0x0200u | 0x0800u | 0x8000u | 0x10000u)) {
         readPackedTarget(&data.targetGuid); // best-effort; ignore failure
     }
-    // ITEM/TRADE_ITEM share a single item target GUID
-    if (targetFlags & (0x0010u | 0x0100u)) {
+    // ITEM and TRADE_ITEM share a single item target GUID
+    if (targetFlags & (0x0010u | 0x1000u)) {
         readPackedTarget(nullptr);
     }
     // SOURCE_LOCATION: PackedGuid (transport) + float x,y,z
@@ -1191,7 +1191,7 @@ bool SpellStartParser::parse(network::Packet& packet, SpellStartData& data) {
         skipPackedAndFloats3();
     }
     // STRING: null-terminated
-    if (targetFlags & 0x0200u) {
+    if (targetFlags & 0x2000u) {
         while (packet.hasData() && packet.readUInt8() != 0) {}
     }
 

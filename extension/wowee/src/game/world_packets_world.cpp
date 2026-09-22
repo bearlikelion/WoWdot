@@ -180,12 +180,12 @@ bool SpellGoParser::parse(network::Packet& packet, SpellGoData& data) {
                 return true;
             };
 
-            // UNIT/UNIT_MINIPET/CORPSE_ALLY/GAMEOBJECT share one object target GUID
-            if (targetFlags & (0x0002u | 0x0004u | 0x0400u | 0x0800u)) {
+            // UNIT, CORPSE_ENEMY, GAMEOBJECT, CORPSE_ALLY and UNIT_MINIPET share one object target GUID
+            if (targetFlags & (0x0002u | 0x0200u | 0x0800u | 0x8000u | 0x10000u)) {
                 readPackedTarget(&data.targetGuid);
             }
-            // ITEM/TRADE_ITEM share one item target GUID
-            if (targetFlags & (0x0010u | 0x0100u)) {
+            // ITEM and TRADE_ITEM share one item target GUID
+            if (targetFlags & (0x0010u | 0x1000u)) {
                 readPackedTarget(nullptr);
             }
             // SOURCE_LOCATION: PackedGuid (transport) + float x,y,z
@@ -197,8 +197,22 @@ bool SpellGoParser::parse(network::Packet& packet, SpellGoData& data) {
                 skipPackedAndFloats3();
             }
             // STRING: null-terminated
-            if (targetFlags & 0x0200u) {
+            if (targetFlags & 0x2000u) {
                 while (packet.hasData() && packet.readUInt8() != 0) {}
+            }
+        }
+    }
+    // POWER_LEFT_SELF, then RUNE_LIST: runes ready before and after, and how far each spent one has recharged.
+    if ((data.castFlags & 0x800u) && packet.hasRemaining(4)) {
+        packet.readUInt32();
+    }
+    if ((data.castFlags & 0x200000u) && packet.hasRemaining(2)) {
+        data.hasRunes = true;
+        data.runesBefore = packet.readUInt8();
+        data.runesAfter = packet.readUInt8();
+        for (uint8_t i = 0; i < 6 && packet.hasRemaining(1); ++i) {
+            if ((data.runesBefore & (1u << i)) && !(data.runesAfter & (1u << i))) {
+                data.runeCooldowns[i] = packet.readUInt8();
             }
         }
     }
