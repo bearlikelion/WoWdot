@@ -41,11 +41,10 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: 62fr 38fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
   grid-template-areas:
     "realm roster"
-    "model roster"
-    "build roster";
+    "model roster";
   gap: 0 var(--s-12);
   height: 100vh;
   min-height: 640px;
@@ -439,14 +438,6 @@ h1 {
   fill: var(--gold);
 }
 
-/* Where the client prints its build number. */
-.build {
-  grid-area: build;
-  margin: var(--s-6) 0 0;
-  color: var(--ivory-dim);
-  font-size: 0.9rem;
-}
-
 a {
   color: var(--ivory);
   text-decoration-thickness: 1px;
@@ -629,12 +620,11 @@ footer p {
 @media (max-width: 900px) {
   .glue {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
       "realm"
       "model"
-      "roster"
-      "build";
+      "roster";
     gap: 0;
     height: auto;
     min-height: 0;
