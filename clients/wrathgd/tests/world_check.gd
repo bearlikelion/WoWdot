@@ -23,7 +23,8 @@ const DUMMY_CREATURE: int = 6
 const UNIT_TYPE: int = 3
 
 # Wire values, which WotLK shares with vanilla for these two.
-enum MoveFlag { NONE = 0, FORWARD = 1 }
+enum MoveFlag { NONE = 0, FORWARD = 1, JUMPING = 0x2000 }
+const JUMP_SPEED: float = 7.95
 
 var _session: WowSession = WowSession.new()
 var _realms: Array = []
@@ -76,6 +77,7 @@ func _run() -> void:
 	print("entered map %d at %v" % [_map, start])
 	await _check_update_fields(guid)
 	var walked: Vector3 = await _walk()
+	await _jump(walked)
 	if not await _log_out():
 		return _finish()
 	if not await _enter(guid):
@@ -271,6 +273,18 @@ func _walk() -> Vector3:
 	_send("MSG_MOVE_STOP", at, MoveFlag.NONE)
 	await _wait(STEP_SECONDS)
 	return at
+
+
+# A jump carries the fall time and velocity block, whose flag 3.3.5 renumbered.
+func _jump(at: Vector3) -> void:
+	_session.send_movement("MSG_MOVE_JUMP", at, 0.0, MoveFlag.JUMPING, 0, Vector3(0.0, 0.0, JUMP_SPEED))
+	await _wait(STEP_SECONDS)
+	_session.send_movement("MSG_MOVE_HEARTBEAT", at + Vector3(0.0, 0.0, 1.0), 0.0, MoveFlag.JUMPING,
+			int(STEP_SECONDS * 1000.0), Vector3(0.0, 0.0, JUMP_SPEED))
+	await _wait(STEP_SECONDS)
+	_session.send_movement("MSG_MOVE_FALL_LAND", at, 0.0, MoveFlag.NONE, int(STEP_SECONDS * 2000.0))
+	await _wait(STEP_SECONDS)
+	_check(_session.get_state() == WowSession.STATE_IN_WORLD, "the server takes a jump and its landing")
 
 
 func _send(opcode: String, at: Vector3, flags: MoveFlag) -> void:

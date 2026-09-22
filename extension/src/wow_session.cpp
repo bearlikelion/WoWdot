@@ -48,6 +48,46 @@ constexpr uint8_t TYPEID_UNIT = 3;
 constexpr uint8_t TYPEID_PLAYER = 4;
 constexpr uint8_t MONSTER_MOVE_FACING_ANGLE = 4;
 constexpr uint32_t MOVEFLAG_SPLINE_ELEVATION = 0x4000000;
+
+// The game code keeps 1.12's movement bits; 3.3.5 moved four of them.
+constexpr std::pair<uint32_t, uint32_t> WOTLK_MOVE_BITS[] = {
+	{ 0x1000, 0x800 }, // Root.
+	{ 0x2000, 0x1000 }, // Jumping.
+	{ 0x4000, 0x2000 }, // Falling far.
+	{ 0x2000000, 0x200 }, // On transport.
+};
+
+uint32_t move_flags_to_wire(uint32_t flags) {
+	if (!wow_wotlk()) {
+		return flags;
+	}
+	uint32_t wire = flags;
+	for (const auto &[game, wotlk] : WOTLK_MOVE_BITS) {
+		wire &= ~game & ~wotlk;
+	}
+	for (const auto &[game, wotlk] : WOTLK_MOVE_BITS) {
+		if (flags & game) {
+			wire |= wotlk;
+		}
+	}
+	return wire;
+}
+
+uint32_t move_flags_from_wire(uint32_t wire) {
+	if (!wow_wotlk()) {
+		return wire;
+	}
+	uint32_t flags = wire;
+	for (const auto &[game, wotlk] : WOTLK_MOVE_BITS) {
+		flags &= ~game & ~wotlk;
+	}
+	for (const auto &[game, wotlk] : WOTLK_MOVE_BITS) {
+		if (wire & wotlk) {
+			flags |= game;
+		}
+	}
+	return flags;
+}
 constexpr uint16_t MOVEFLAG2_INTERPOLATED = 0x400;
 
 bool is_player_guid(uint64_t guid) {
@@ -148,8 +188,9 @@ Vector3 wow_vector(float x, float y, float z) {
 }
 
 // Vanilla MovementInfo; the game code already uses vanilla flag bits, which the vendored writer would remap.
-void write_movement_info(network::Packet &packet, uint32_t flags, const Vector3 &position, float orientation, float pitch, uint32_t fall_time, const Vector3 &jump_velocity, uint64_t transport_guid, const Vector3 &transport_offset, float transport_orientation) {
+void write_movement_info(network::Packet &packet, uint32_t game_flags, const Vector3 &position, float orientation, float pitch, uint32_t fall_time, const Vector3 &jump_velocity, uint64_t transport_guid, const Vector3 &transport_offset, float transport_orientation) {
 	const MovementLayout &layout = wow_profile().movement;
+	const uint32_t flags = move_flags_to_wire(game_flags);
 	const uint32_t now = static_cast<uint32_t>(Time::get_singleton()->get_ticks_msec());
 	packet.writeUInt32(flags);
 	if (layout.flags2_size == 2) {
@@ -1957,7 +1998,7 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 	Dictionary move;
 	move["position"] = wow_vector(x, y, z);
 	move["orientation"] = orientation;
-	move["flags"] = flags;
+	move["flags"] = move_flags_from_wire(flags);
 	move["opcode"] = String(name);
 	move["fall_time_msec"] = fall_time;
 	move["jump_velocity"] = jump_velocity;
