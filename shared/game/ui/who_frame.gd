@@ -8,8 +8,11 @@ const ROWS: int = 17
 const COLUMN_WIDTHS: PackedFloat32Array = [83.0, 105.0, 32.0, 92.0]
 const COLUMN_OVERLAP: float = 2.0
 const HEADER_CAPS: float = 9.0
+# What the second column shows, in the order WhoFrameDropDown lists them.
+const COLUMNS: PackedStringArray = ["zone", "guild", "race"]
 
 var _rows: Array[Dictionary] = []
+var _column: int = 0
 var _total: int = 0
 var _selected: int = -1
 var _offset: int = 0
@@ -21,8 +24,8 @@ var _offset: int = 0
 func _ready() -> void:
 	for i: int in ROWS:
 		_row(i).pressed.connect(_on_row_pressed.bind(i))
-	# ponytail: the second column always shows the zone; the guild and race choices wait.
 	%WhoFrameDropDown.hide()
+	%WhoFrameColumnHeader2.pressed.connect(_cycle_column)
 	_size_columns()
 	_scroll.faux = true
 	_scroll.scrolled.connect(_on_scrolled)
@@ -50,7 +53,7 @@ func refresh() -> void:
 			continue
 		var found: Dictionary = _rows[index]
 		(get_node("%%WhoFrameButton%dName" % (i + 1)) as Label).text = found["name"]
-		(get_node("%%WhoFrameButton%dVariable" % (i + 1)) as Label).text = found["zone"]
+		(get_node("%%WhoFrameButton%dVariable" % (i + 1)) as Label).text = found[COLUMNS[_column]]
 		(get_node("%%WhoFrameButton%dLevel" % (i + 1)) as Label).text = str(found["level"])
 		(get_node("%%WhoFrameButton%dClass" % (i + 1)) as Label).text = found["class"]
 		row.highlight_locked = index == _selected
@@ -92,6 +95,15 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	_total = answer["total"]
 	_selected = -1
 	_offset = 0
+	refresh()
+
+
+# The stock drop down picks the column; here the header steps through the same choices.
+func _cycle_column() -> void:
+	_column = (_column + 1) % COLUMNS.size()
+	var header: Label = get_node_or_null("%WhoFrameColumnHeader2Text")
+	if header:
+		header.text = WowStrings.get_text(COLUMNS[_column].to_upper())
 	refresh()
 
 

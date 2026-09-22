@@ -35,7 +35,6 @@ func _ready() -> void:
 	_groups = WowDBC.open(WowAssets.archive, "SpellEffectCameraShakes")
 
 
-# ponytail: the forward axis is dropped; the camera's own offsets only move it sideways and up.
 func _process(_delta: float) -> void:
 	var now: float = Time.get_ticks_msec() / 1000.0
 	var strongest: Dictionary[Direction, float] = {}
@@ -57,6 +56,8 @@ func _process(_delta: float) -> void:
 			strongest[shake.direction] = offset
 	_camera.h_offset = -strongest.get(Direction.LEFT, 0.0)
 	_camera.v_offset = strongest.get(Direction.UP, 0.0)
+	# The spring arm sets the camera's distance, so the forward push rides on its local Z.
+	_camera.position.z = -strongest.get(Direction.FORWARD, 0.0)
 
 
 # A spell visual kit names a group of up to three presets, one for each axis.

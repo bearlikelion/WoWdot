@@ -254,15 +254,23 @@ static func _on_spell_cast_started(caster: int, spell_id: int, _cast_time_msec: 
 		voice._precast = voice.play_entry(_kit_sound(spell_id, Kit.PRECAST))
 
 
-# ponytail: the impact plays at the caster on cast, SMSG_SPELL_GO targets would place it.
+# The impact sounds at each target it lands on, or at the caster of a targetless spell.
 static func _on_spell_cast_finished(
-	caster: int, spell_id: int, _targets: PackedInt64Array,
+	caster: int, spell_id: int, targets: PackedInt64Array,
 ) -> void:
 	var voice: UnitVoice = by_guid.get(caster)
 	if voice:
 		voice._stop_precast()
 		voice.play_entry(_kit_sound(spell_id, Kit.CAST))
-		voice.play_entry(_kit_sound(spell_id, Kit.IMPACT))
+	var impact: int = _kit_sound(spell_id, Kit.IMPACT)
+	var struck: bool = false
+	for target: int in targets:
+		var hit: UnitVoice = by_guid.get(target)
+		if hit:
+			hit.play_entry(impact)
+			struck = true
+	if voice and not struck:
+		voice.play_entry(impact)
 
 
 static func _on_spell_cast_failed(caster: int, _spell_id: int, _reason: int) -> void:

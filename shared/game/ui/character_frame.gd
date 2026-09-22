@@ -58,6 +58,13 @@ const PORTRAIT_MASK: Shader = preload("res://game/ui/portrait.gdshader")
 const ROTATE_DEGREES_PER_SECOND: float = 120.0
 const DRAG_DEGREES_PER_PIXEL: float = 0.6
 
+# ItemSubClass weapon ids to their SkillLine, as the class trainers teach them.
+const WEAPON_SKILLS: Dictionary[int, int] = {
+	0: 44, 1: 172, 2: 45, 3: 46, 4: 54, 5: 160, 6: 229, 7: 43, 8: 55, 10: 136, 13: 473, 15: 173,
+	16: 176, 18: 226, 19: 227,
+}
+const UNARMED_SKILL: int = 162
+
 var _tab: Tab = Tab.CHARACTER
 var _slot_buttons: Dictionary[Inventory.Slot, ItemButton] = {}
 var _empty_icons: Dictionary[Inventory.Slot, Texture2D] = {}
@@ -209,8 +216,7 @@ func _set_stats(session: WowSession, guid: int) -> void:
 		session.get_field_float(guid, "UNIT_FIELD_MINDAMAGE"),
 		session.get_field_float(guid, "UNIT_FIELD_MAXDAMAGE"),
 	]
-	# ponytail: attack rating is the level's skill cap; read the real skill with the skills tab.
-	%CharacterAttackFrameStatText.text = str(session.get_field(guid, "UNIT_FIELD_LEVEL") * 5)
+	%CharacterAttackFrameStatText.text = str(_weapon_skill(guid))
 	var has_ranged: bool = Inventory.equipped(Inventory.Slot.RANGED) != 0
 	var not_applicable: String = WowStrings.get_text("NOT_APPLICABLE")
 	var ranged_mods: int = session.get_field(guid, "UNIT_FIELD_RANGED_ATTACK_POWER_MODS")
@@ -250,3 +256,12 @@ func _on_model_input(event: InputEvent) -> void:
 	var motion: InputEventMouseMotion = event as InputEventMouseMotion
 	if motion and motion.button_mask & MOUSE_BUTTON_MASK_LEFT:
 		_model.facing += motion.relative.x * DRAG_DEGREES_PER_PIXEL
+
+
+# The skill line of the main hand's weapon subclass, unarmed when nothing is wielded.
+func _weapon_skill(guid: int) -> int:
+	var weapon: int = Inventory.equipped(Inventory.Slot.MAIN_HAND)
+	var subclass: int = WowClient.session.get_item_info(Inventory.entry(weapon)).get("subclass", -1)
+	var skill: int = WEAPON_SKILLS.get(subclass, UNARMED_SKILL)
+	var rank: int = SkillFrame.skill_rank(skill)
+	return rank if rank > 0 else WowClient.session.get_field(guid, "UNIT_FIELD_LEVEL") * 5

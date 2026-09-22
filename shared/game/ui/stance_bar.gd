@@ -9,6 +9,9 @@ const AURA_MOD_SHAPESHIFT: int = 36
 const BUTTON_COUNT: int = 10
 
 # Form id and the spell that takes it, ordered by form as ShapeshiftBar_Update reads them.
+const BEAR_FORM: int = 5
+const DIRE_BEAR_FORM: int = 8
+
 var _forms: Array[Vector2i] = []
 var _buttons: Array[ActionButton] = []
 
@@ -24,7 +27,6 @@ func _ready() -> void:
 	_rebuild()
 
 
-# ponytail: a druid gets a button per form, where the stock bar merges Bear into Dire Bear.
 func _rebuild() -> void:
 	var spells: WowDBC = WowDBC.open(WowAssets.archive, "Spell")
 	_forms.clear()
@@ -33,6 +35,12 @@ func _rebuild() -> void:
 		if form > 0:
 			_forms.append(Vector2i(form, spell_id))
 	_forms.sort()
+	# Dire Bear replaces Bear on the bar once learned, as the stock bar merges them.
+	var forms: Array[int] = []
+	for entry: Vector2i in _forms:
+		forms.append(entry.x)
+	if BEAR_FORM in forms and DIRE_BEAR_FORM in forms:
+		_forms.remove_at(forms.find(BEAR_FORM))
 	_refresh()
 
 

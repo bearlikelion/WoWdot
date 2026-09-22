@@ -139,6 +139,20 @@ func _build_entries() -> void:
 			_entries.append(skill)
 
 
+# The rank plus bonuses of a skill line the player knows, or 0.
+static func skill_rank(skill_id: int) -> int:
+	var session: WowSession = WowClient.session
+	var guid: int = session.get_player_guid()
+	var first: int = session.field_index("PLAYER_SKILL_INFO_1_1")
+	for i: int in MAX_SKILLS:
+		if session.get_field(guid, first + i * SKILL_FIELDS) & 0xFFFF != skill_id:
+			continue
+		var bonuses: int = session.get_field(guid, first + i * SKILL_FIELDS + 2)
+		var rank: int = session.get_field(guid, first + i * SKILL_FIELDS + 1) & 0xFFFF
+		return rank + _signed_short(bonuses & 0xFFFF) + _signed_short(bonuses >> 16)
+	return 0
+
+
 # PLAYER_SKILL_INFO slots: id and step, rank and max rank, then temporary and permanent bonus.
 func _player_skills() -> Array[Dictionary]:
 	var session: WowSession = WowClient.session
@@ -224,7 +238,7 @@ func _flags(skill: int) -> int:
 	return _skill_flags.get(skill, 0)
 
 
-func _signed_short(value: int) -> int:
+static func _signed_short(value: int) -> int:
 	return value - 0x10000 if value >= 0x8000 else value
 
 

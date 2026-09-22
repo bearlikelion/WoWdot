@@ -330,8 +330,11 @@ std::vector<uint32_t> visible_batches(const M2Model &model, const PackedInt32Arr
 }
 
 Animation::InterpolationType interpolation(const M2AnimationTrack &track) {
-	// ponytail: hermite and bezier keys play back as linear.
-	return track.interpolationType == 0 ? Animation::INTERPOLATION_NEAREST : Animation::INTERPOLATION_LINEAR;
+	// Hermite and bezier keys curve through Godot's cubic, since the loader keeps no tangents.
+	if (track.interpolationType == 0) {
+		return Animation::INTERPOLATION_NEAREST;
+	}
+	return track.interpolationType >= 2 ? Animation::INTERPOLATION_CUBIC : Animation::INTERPOLATION_LINEAR;
 }
 
 // A batch fades through its colour slot and its texture weight multiplied together.

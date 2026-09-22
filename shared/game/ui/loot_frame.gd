@@ -24,6 +24,11 @@ const COIN_SLOT: int = -1
 const SLOT_TYPE_MASTER: int = 2
 const COIN_SOUND: String = "LOOTWINDOWCOINSOUND"
 const ITEM_SOUND: String = "INTERFACESOUND_CURSORDROPOBJECT"
+const GROUP_SOUND_COLUMN: int = 11
+const PICKUP_KIT_COLUMN: int = 1
+
+static var _displays: WowDBC
+static var _group_sounds: WowDBC
 
 var _guid: int = 0
 var _money: int = 0
@@ -228,9 +233,24 @@ func _on_button_pressed(index: int) -> void:
 	if _items[slot]["master"] and not _candidates.is_empty():
 		master_loot_requested.emit(slot, _candidates)
 		return
-	# ponytail: one sound for every item, where the stock client picks it by the item's material.
-	WowAssets.audio.play_sound(ITEM_SOUND)
+	_play_pickup(_items[slot].get("entry", 0))
 	WowClient.session.send_packet("CMSG_AUTOSTORE_LOOT_ITEM", PackedByteArray([slot]))
+
+
+# The item's ItemDisplayInfo names an ItemGroupSounds row, whose first kit is the pickup.
+func _play_pickup(entry: int) -> void:
+	var display_id: int = WowClient.session.get_item_info(entry).get("display_id", 0)
+	if _displays == null:
+		_displays = WowDBC.open(WowAssets.archive, "ItemDisplayInfo")
+		_group_sounds = WowDBC.open(WowAssets.archive, "ItemGroupSounds")
+	var display_row: int = _displays.find(display_id)
+	var group_row: int = -1
+	if display_row >= 0:
+		group_row = _group_sounds.find(_displays.get_uint(display_row, GROUP_SOUND_COLUMN))
+	if group_row >= 0 and _group_sounds.get_uint(group_row, PICKUP_KIT_COLUMN) != 0:
+		WowAssets.audio.play_entry(_group_sounds.get_uint(group_row, PICKUP_KIT_COLUMN))
+	else:
+		WowAssets.audio.play_sound(ITEM_SOUND)
 
 
 func _on_button_entered(index: int) -> void:

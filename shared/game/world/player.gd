@@ -44,6 +44,8 @@ const FLAG_ACKS: Dictionary[MoveFlag, String] = {
 	MoveFlag.HOVER: "CMSG_MOVE_HOVER_ACK",
 }
 const GRAVITY: float = 19.29
+# Slow Fall and Levitate drift down at this speed rather than under full gravity.
+const FEATHER_FALL_SPEED: float = 7.0
 const JUMP_VELOCITY: float = 7.95797334
 # The tallest lip walked over without a jump; tune against stock stairs and kerbs.
 const STEP_HEIGHT: float = 0.6
@@ -317,7 +319,6 @@ func force_flag(flag: MoveFlag, apply: bool, counter: int) -> void:
 	var tail: PackedByteArray = []
 	tail.resize(4)
 	tail.encode_u32(0, 1 if apply else 0)
-	# ponytail: feather fall and hover are acked (no fall damage) but not simulated.
 	_send(FLAG_ACKS[flag], _flags, counter, tail)
 
 
@@ -440,6 +441,8 @@ func _fly(flags: int, delta: float) -> void:
 	velocity.x = _jump_velocity.x
 	velocity.z = _jump_velocity.z
 	velocity.y -= GRAVITY * delta
+	if _persistent & (MoveFlag.SAFE_FALL | MoveFlag.HOVER):
+		velocity.y = maxf(velocity.y, -FEATHER_FALL_SPEED)
 	move_and_slide()
 	if _swimming():
 		return
