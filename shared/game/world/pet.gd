@@ -127,6 +127,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	actions.clear()
 	spells.clear()
 	if guid != 0:
+		if PacketReader.wotlk:
+			reader.u16()
 		reader.u32()
 		react = reader.u8()
 		command = reader.u8()

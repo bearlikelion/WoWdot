@@ -31,10 +31,14 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 
 func _start_roll(reader: PacketReader) -> void:
 	var target: int = reader.u64()
+	if PacketReader.wotlk:
+		reader.u32()
 	var slot: int = reader.u32()
 	var item_entry: int = reader.u32()
 	reader.u32()
 	reader.u32()
+	if PacketReader.wotlk:
+		reader.u32()
 	var seconds: float = reader.u32() / 1000.0
 	var frame: GroupLootFrame = FRAME.instantiate()
 	add_child(frame)

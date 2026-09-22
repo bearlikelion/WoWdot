@@ -2,6 +2,9 @@ class_name PacketReader
 extends RefCounted
 # Little-endian reads that give 0 past the end instead of erroring on a short packet.
 
+# The 3.3.5 layouts the decoders branch on.
+static var wotlk: bool = String(WowLoader.profile()["id"]) == "wotlk"
+
 var _data: PackedByteArray
 var _offset: int = 0
 
@@ -71,6 +74,10 @@ func packed_guid() -> int:
 
 func skip(count: int) -> void:
 	_take(count)
+
+
+func remaining() -> int:
+	return _data.size() - _offset
 
 
 func _take(count: int) -> int:

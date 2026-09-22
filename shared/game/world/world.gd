@@ -422,6 +422,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		return
 	var counter: int = reader.u32()
 	if SPEED_CHANGES.has(opcode):
+		if PacketReader.wotlk and opcode == "SMSG_FORCE_RUN_SPEED_CHANGE":
+			reader.u8()
 		_player.force_speed(SPEED_CHANGES[opcode], reader.f32(), counter)
 	elif FLAG_CHANGES.has(opcode):
 		_player.force_flag(FLAG_CHANGES[opcode], opcode in FLAGS_APPLIED, counter)

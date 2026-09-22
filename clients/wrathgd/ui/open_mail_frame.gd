@@ -42,7 +42,7 @@ func show_mail(mail: Dictionary) -> void:
 		WowClient.session.send_packet("CMSG_ITEM_TEXT_QUERY", ask)
 	%OpenMailMoneyButton.visible = mail["money"] > 0
 	%OpenMailPackageButton.visible = mail["item_entry"] != 0
-	%OpenMailLetterButton.visible = mail["text_id"] != 0
+	%OpenMailLetterButton.visible = mail["text_id"] != 0 or not mail.get("body", "").is_empty()
 	var label: Label = %OpenMailDeleteButton.find_child("*Text", true, false)
 	if label:
 		label.text = WowStrings.get_text("MAIL_RETURN" if _returns() else "DELETE")

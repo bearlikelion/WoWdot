@@ -26,6 +26,14 @@ const MAX_RAID_MEMBERS: int = 40
 # A member's subgroup sits in the low bits of its flag byte, with assistant in the top one.
 const SUBGROUP_MASK: int = 0x0F
 const ASSISTANT_FLAG: int = 0x80
+static var RAID_FLAG: int = 0x02 if PacketReader.wotlk else 0x01
+const LFG_FLAG: int = 0x08
+const WOTLK_ASSISTANT_FLAG: int = 0x01
+const WOTLK_RESULTS: Dictionary[int, String] = {
+	1: "ERR_BAD_PLAYER_NAME_S", 2: "ERR_TARGET_NOT_IN_GROUP_S", 3: "ERR_TARGET_NOT_IN_INSTANCE_S",
+	4: "ERR_GROUP_FULL", 5: "ERR_ALREADY_IN_GROUP_S", 6: "ERR_NOT_IN_GROUP", 7: "ERR_NOT_LEADER",
+	8: "ERR_PLAYER_WRONG_FACTION", 9: "ERR_IGNORING_YOU_S",
+}
 # MSG_RAID_TARGET_UPDATE: this icon asks for the whole list instead of setting one.
 const ICON_REQUEST: int = 0xFF
 const OPERATION_INVITE: int = 0
@@ -193,7 +201,7 @@ static func _send_name(opcode: String, player_name: String) -> void:
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	match opcode:
 		"SMSG_GROUP_INVITE":
-			invited.emit(_string_at(payload, 0))
+			invited.emit(_string_at(payload, 1 if PacketReader.wotlk else 0))
 		"SMSG_GROUP_LIST":
 			_on_list_received(payload)
 		"SMSG_GROUP_DECLINE":
@@ -208,10 +216,17 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_on_result_received(payload)
 		"MSG_RAID_READY_CHECK":
 			_on_ready_check(payload)
+		"MSG_RAID_READY_CHECK_CONFIRM":
+			_on_ready_answer(PacketReader.new(payload))
 		"MSG_RAID_TARGET_UPDATE":
 			_on_target_icons(payload)
-		"SMSG_PARTY_MEMBER_STATS", "SMSG_PARTY_MEMBER_STATS_FULL":
+		"SMSG_PARTY_MEMBER_STATS":
 			_on_member_stats(PacketReader.new(payload))
+		"SMSG_PARTY_MEMBER_STATS_FULL":
+			var reader: PacketReader = PacketReader.new(payload)
+			if PacketReader.wotlk:
+				reader.u8()
+			_on_member_stats(reader)
 
 
 # Members out of sight have no object, so the server reports their bars; the mask picks the fields.
@@ -221,15 +236,28 @@ func _on_member_stats(reader: PacketReader) -> void:
 	var stats: Dictionary = _remote_stats.get_or_add(member, {})
 	for i: int in STAT_FIELDS.size():
 		if mask & (1 << i):
-			stats[STAT_FIELDS[i]] = reader.u8() if STAT_FIELDS[i] in BYTE_STATS else reader.u16()
+			stats[STAT_FIELDS[i]] = _read_stat(reader, STAT_FIELDS[i])
 	_refresh()
 
 
+# 3.3.5 widened the status to a word and the health pair to double words.
+func _read_stat(reader: PacketReader, field: String) -> int:
+	if PacketReader.wotlk:
+		if field == "status":
+			return reader.u16()
+		if field == "health" or field == "max_health":
+			return reader.u32()
+	return reader.u8() if field in BYTE_STATS else reader.u16()
+
+
 func _on_ready_check(payload: PackedByteArray) -> void:
-	if payload.is_empty():
+	if payload.is_empty() or PacketReader.wotlk:
 		ready_check_started.emit()
 		return
-	var reader: PacketReader = PacketReader.new(payload)
+	_on_ready_answer(PacketReader.new(payload))
+
+
+func _on_ready_answer(reader: PacketReader) -> void:
 	var member: String = WowClient.session.get_object_name(reader.u64())
 	var is_ready: bool = reader.u8() != 0
 	# 1.12 has no ready check of its own, so these lines carry their own words.
@@ -245,21 +273,28 @@ func _on_list_received(payload: PackedByteArray) -> void:
 	var before: Array[Dictionary] = members.duplicate()
 	var was_raid: bool = is_raid
 	members.clear()
-	is_raid = payload.decode_u8(0) & 1 != 0
+	var group_type: int = payload.decode_u8(0)
+	is_raid = group_type & RAID_FLAG != 0
 	own_subgroup = payload.decode_u8(1) & SUBGROUP_MASK
 	var offset: int = 6
-	for i: int in payload.decode_u32(2):
+	if PacketReader.wotlk:
+		# Member flags, roles, an LFG block, the group guid and a counter precede the count.
+		offset = 20 if group_type & LFG_FLAG == 0 else 25
+	for i: int in payload.decode_u32(offset - 4):
 		var member_name: String = _string_at(payload, offset)
 		offset += member_name.to_utf8_buffer().size() + 1
 		var flags: int = payload.decode_u8(offset + 9)
+		var assistant: bool = flags & ASSISTANT_FLAG != 0
+		if PacketReader.wotlk:
+			assistant = payload.decode_u8(offset + 10) & WOTLK_ASSISTANT_FLAG != 0
 		members.append({
 			"name": member_name,
 			"guid": payload.decode_u64(offset),
 			"online": payload.decode_u8(offset + 8) & 1 != 0,
 			"subgroup": flags & SUBGROUP_MASK,
-			"assistant": flags & ASSISTANT_FLAG != 0,
+			"assistant": assistant,
 		})
-		offset += 10
+		offset += 12 if PacketReader.wotlk else 10
 	leader = payload.decode_u64(offset) if offset + 8 <= payload.size() else 0
 	if members.is_empty():
 		is_raid = false
@@ -279,6 +314,8 @@ func _on_list_received(payload: PackedByteArray) -> void:
 func _on_target_icons(payload: PackedByteArray) -> void:
 	var reader: PacketReader = PacketReader.new(payload)
 	if reader.u8() == 0:
+		if PacketReader.wotlk:
+			reader.u64()
 		var icon: int = reader.u8()
 		var guid: int = reader.u64()
 		if guid == 0:
@@ -317,8 +354,9 @@ func _on_result_received(payload: PackedByteArray) -> void:
 		if operation == OPERATION_INVITE:
 			_say("ERR_INVITE_PLAYER_S", player_name)
 		return
-	if RESULTS.has(result):
-		error_raised.emit(_format(RESULTS[result], player_name))
+	var results: Dictionary[int, String] = WOTLK_RESULTS if PacketReader.wotlk else RESULTS
+	if results.has(result):
+		error_raised.emit(_format(results[result], player_name))
 
 
 func _refresh() -> void:

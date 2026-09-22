@@ -12,6 +12,8 @@ const BANK_SLOT_START: int = 39
 const BANK_SLOTS: int = 24
 const BANK_BAGS: int = 6
 const OWN_BAG: int = 255
+# SMSG_BUY_BANK_SLOT_RESULT answers 3 for a bought slot; 0 is the "too many" refusal.
+const BANKSLOT_OK: int = 3
 const BAG_SLOT_ICON: String = "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag.blp"
 
 var _guid: int = 0
@@ -157,7 +159,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			refresh()
 			open_requested.emit()
 		"SMSG_BUY_BANK_SLOT_RESULT":
-			if reader.u32() != 0:
+			if reader.u32() != BANKSLOT_OK:
 				error_raised.emit(WowStrings.get_text("ERR_BANKSLOT_FAILED_TOO_MANY", ""))
 				return
 			_bought_bags = _bought_bag_count()

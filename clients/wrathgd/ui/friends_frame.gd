@@ -16,6 +16,10 @@ enum GuildResult { OK, INTERNAL, ALREADY_IN_GUILD, ALREADY_IN_GUILD_S, INVITED, 
 	NAME_INVALID, NAME_EXISTS_S, PERMISSIONS, NOT_IN_GUILD, NOT_IN_GUILD_S, PLAYER_NOT_FOUND_S,
 	NOT_ALLIED, RANK_TOO_HIGH_S, RANK_TOO_LOW_S }
 
+const CONTACT_FRIEND: int = 0x01
+const CONTACT_IGNORED: int = 0x02
+# Flags, a gold limit and six bank tabs of two words each.
+const WOTLK_RANK_WORDS: int = 14
 const ROWS: int = 10
 const GUILD_ROWS: int = 13
 # SMSG_GUILD_QUERY_RESPONSE always carries ten rank names, whatever the guild uses.
@@ -257,6 +261,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 				_friends.append(entry)
 				WowClient.session.get_object_name(entry["guid"])
 			refresh()
+		"SMSG_CONTACT_LIST":
+			_read_contacts(reader)
 		"SMSG_IGNORE_LIST":
 			_ignored.clear()
 			for i: int in reader.u8():
@@ -301,13 +307,37 @@ func _on_status(reader: PacketReader) -> void:
 	request_lists()
 
 
+# 3.3.5 sends friends and ignores as one list, each contact flagged with what it is.
+func _read_contacts(reader: PacketReader) -> void:
+	_friends.clear()
+	_ignored.clear()
+	reader.u32()
+	for i: int in reader.u32():
+		var guid: int = reader.u64()
+		var flags: int = reader.u32()
+		reader.cstring()
+		WowClient.session.get_object_name(guid)
+		if flags & CONTACT_IGNORED:
+			_ignored.append(guid)
+		if flags & CONTACT_FRIEND == 0:
+			continue
+		var entry: Dictionary = {"guid": guid, "online": reader.u8() != 0}
+		if entry["online"]:
+			entry["area"] = reader.u32()
+			entry["level"] = reader.u32()
+			entry["class"] = reader.u32()
+		_friends.append(entry)
+	refresh()
+
+
 # The roster names every member, their rank and, for those online, where they are.
 func _on_roster(reader: PacketReader) -> void:
 	var count: int = reader.u32()
 	(%GuildFrameNotesText as Label).text = reader.cstring()
 	reader.cstring()
 	for i: int in reader.u32():
-		reader.u32()
+		for word: int in WOTLK_RANK_WORDS if PacketReader.wotlk else 1:
+			reader.u32()
 	_members.clear()
 	for i: int in count:
 		var member: Dictionary = {"guid": reader.u64(), "online": reader.u8() != 0}
@@ -315,6 +345,8 @@ func _on_roster(reader: PacketReader) -> void:
 		member["rank"] = reader.u32()
 		member["level"] = reader.u8()
 		member["class"] = reader.u8()
+		if PacketReader.wotlk:
+			reader.u8()
 		member["zone"] = reader.u32()
 		if not member["online"]:
 			member["days_offline"] = reader.f32()

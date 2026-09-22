@@ -15,9 +15,12 @@ enum AuraType {
 }
 
 const HIT_MISS: int = 0x10
-const HIT_CRITICAL: int = 0x80
-const HIT_GLANCING: int = 0x4000
-const HIT_CRUSHING: int = 0x8000
+static var HIT_CRITICAL: int = 0x200 if PacketReader.wotlk else 0x80
+static var HIT_GLANCING: int = 0x10000 if PacketReader.wotlk else 0x4000
+static var HIT_CRUSHING: int = 0x20000 if PacketReader.wotlk else 0x8000
+const HIT_ABSORB: int = 0x60
+const HIT_RESIST: int = 0x180
+const HIT_BLOCK: int = 0x2000
 const SPELL_CRITICAL: int = 0x02
 const VICTIM_OUTCOMES: Dictionary[int, Outcome] = {
 	2: Outcome.DODGE, 3: Outcome.PARRY, 5: Outcome.BLOCK, 6: Outcome.EVADE,
@@ -55,7 +58,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_read_spell_refusal(reader, Outcome.IMMUNE)
 		"SMSG_SPELLDAMAGESHIELD":
 			_read_damage_shield(reader)
-		"SMSG_ENVIRONMENTALDAMAGELOG":
+		"SMSG_ENVIRONMENTALDAMAGELOG", "SMSG_ENVIRONMENTAL_DAMAGE_LOG":
 			_read_environment(reader)
 		"SMSG_PARTYKILLLOG":
 			var kill: CombatEvent = CombatEvent.new(Kind.KILL)
@@ -71,13 +74,19 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_read_dispel(reader)
 		"SMSG_SPELLINSTAKILLLOG":
 			var death: CombatEvent = CombatEvent.new(Kind.INSTAKILL)
+			if PacketReader.wotlk:
+				death.source = reader.u64()
 			death.target = reader.u64()
 			death.spell = reader.u32()
 			logged.emit(death)
 		"SMSG_ENCHANTMENTLOG":
 			var enchant: CombatEvent = CombatEvent.new(Kind.ENCHANT)
-			enchant.source = reader.u64()
-			enchant.target = reader.u64()
+			if PacketReader.wotlk:
+				enchant.target = reader.packed_guid()
+				enchant.source = reader.packed_guid()
+			else:
+				enchant.source = reader.u64()
+				enchant.target = reader.u64()
 			enchant.item = reader.u32()
 			enchant.spell = reader.u32()
 			logged.emit(enchant)
@@ -89,17 +98,21 @@ func _read_melee(reader: PacketReader) -> void:
 	event.source = reader.packed_guid()
 	event.target = reader.packed_guid()
 	event.amount = reader.i32()
-	for i: int in reader.u8():
-		var school: int = reader.i32()
-		if i == 0:
-			event.school = school
-		reader.skip(8)
-		event.absorbed += reader.i32()
-		event.resisted += reader.i32()
-	var victim_state: int = reader.u32()
+	if PacketReader.wotlk:
+		_read_melee_damage_wotlk(reader, event, hit_info)
+	else:
+		for i: int in reader.u8():
+			var school: int = reader.i32()
+			if i == 0:
+				event.school = school
+			reader.skip(8)
+			event.absorbed += reader.i32()
+			event.resisted += reader.i32()
+	var victim_state: int = reader.u8() if PacketReader.wotlk else reader.u32()
 	reader.skip(4)
 	var melee_spell: int = reader.u32()
-	event.blocked = reader.i32()
+	if not PacketReader.wotlk or hit_info & HIT_BLOCK:
+		event.blocked = reader.i32()
 	if melee_spell != 0:
 		event.kind = Kind.SPELL
 		event.spell = melee_spell
@@ -113,12 +126,31 @@ func _read_melee(reader: PacketReader) -> void:
 	logged.emit(event)
 
 
+# 3.3.5 adds the overkill and lists the absorbs and resists after the schools, each behind a hit flag.
+func _read_melee_damage_wotlk(reader: PacketReader, event: CombatEvent, hit_info: int) -> void:
+	reader.u32()
+	var count: int = reader.u8()
+	for i: int in count:
+		var school: int = reader.i32()
+		if i == 0:
+			event.school = school
+		reader.skip(8)
+	if hit_info & HIT_ABSORB:
+		for i: int in count:
+			event.absorbed += reader.i32()
+	if hit_info & HIT_RESIST:
+		for i: int in count:
+			event.resisted += reader.i32()
+
+
 func _read_spell_damage(reader: PacketReader) -> void:
 	var event: CombatEvent = CombatEvent.new(Kind.SPELL)
 	event.target = reader.packed_guid()
 	event.source = reader.packed_guid()
 	event.spell = reader.u32()
 	event.amount = reader.u32()
+	if PacketReader.wotlk:
+		reader.u32()
 	event.school = reader.u8()
 	event.absorbed = reader.u32()
 	event.resisted = reader.i32()
@@ -141,13 +173,21 @@ func _read_periodic(reader: PacketReader) -> void:
 		match reader.u32():
 			AuraType.PERIODIC_DAMAGE, AuraType.PERIODIC_DAMAGE_PERCENT:
 				event.amount = reader.u32()
+				if PacketReader.wotlk:
+					reader.u32()
 				event.school = reader.u32()
 				event.absorbed = reader.u32()
 				event.resisted = reader.i32()
+				if PacketReader.wotlk:
+					event.critical = reader.u8() != 0
 				event.outcome = _damage_outcome(event)
 			AuraType.PERIODIC_HEAL, AuraType.OBS_MOD_HEALTH:
 				event.kind = Kind.PERIODIC_HEAL
 				event.amount = reader.u32()
+				if PacketReader.wotlk:
+					reader.u32()
+					event.absorbed = reader.u32()
+					event.critical = reader.u8() != 0
 			AuraType.OBS_MOD_MANA, AuraType.PERIODIC_ENERGIZE:
 				event.kind = Kind.PERIODIC_ENERGIZE
 				event.power = reader.u32()
@@ -166,6 +206,9 @@ func _read_heal(reader: PacketReader) -> void:
 	event.source = reader.packed_guid()
 	event.spell = reader.u32()
 	event.amount = reader.u32()
+	if PacketReader.wotlk:
+		reader.u32()
+		event.absorbed = reader.u32()
 	event.critical = reader.u8() != 0
 	logged.emit(event)
 
@@ -207,7 +250,11 @@ func _read_damage_shield(reader: PacketReader) -> void:
 	var event: CombatEvent = CombatEvent.new(Kind.DAMAGE_SHIELD)
 	event.source = reader.u64()
 	event.target = reader.u64()
+	if PacketReader.wotlk:
+		event.spell = reader.u32()
 	event.amount = reader.u32()
+	if PacketReader.wotlk:
+		reader.u32()
 	event.school = reader.u32()
 	logged.emit(event)
 
@@ -215,11 +262,15 @@ func _read_damage_shield(reader: PacketReader) -> void:
 func _read_dispel(reader: PacketReader) -> void:
 	var target: int = reader.packed_guid()
 	var source: int = reader.packed_guid()
+	if PacketReader.wotlk:
+		reader.skip(5)
 	for i: int in reader.u32():
 		var event: CombatEvent = CombatEvent.new(Kind.DISPEL)
 		event.target = target
 		event.source = source
 		event.spell = reader.u32()
+		if PacketReader.wotlk:
+			reader.u8()
 		logged.emit(event)
 
 
@@ -228,8 +279,12 @@ func _read_environment(reader: PacketReader) -> void:
 	event.target = reader.u64()
 	event.environment = reader.u8()
 	event.amount = reader.u32()
-	event.absorbed = reader.u32()
-	event.resisted = reader.i32()
+	if PacketReader.wotlk:
+		event.resisted = reader.i32()
+		event.absorbed = reader.u32()
+	else:
+		event.absorbed = reader.u32()
+		event.resisted = reader.i32()
 	logged.emit(event)
 
 

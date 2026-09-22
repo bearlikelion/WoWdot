@@ -116,6 +116,7 @@ func _read_charters(reader: PacketReader) -> void:
 		reader.u32()
 		var cost: int = reader.u32()
 		reader.u32()
+		reader.u32()
 		if entry == CHARTER_ENTRY:
 			_cost = cost
 

@@ -124,7 +124,10 @@ static func run_command(command: String, words: PackedStringArray) -> bool:
 static func notice(payload: PackedByteArray) -> String:
 	var session: WowSession = WowClient.session
 	var reader: PacketReader = PacketReader.new(payload)
-	var type: Notice = reader.u8() as Notice
+	var raw_type: int = reader.u8()
+	if raw_type >= Notice.size():
+		return ""
+	var type: Notice = raw_type as Notice
 	var channel_name: String = reader.cstring()
 	var at: int = number_of(channel_name) - 1
 	if type == Notice.YOU_JOINED and at < 0:
@@ -155,6 +158,8 @@ static func notice(payload: PackedByteArray) -> String:
 # SMSG_CHANNEL_LIST: the channel, its flags, then each member's guid and flags.
 static func members(payload: PackedByteArray) -> Dictionary:
 	var reader: PacketReader = PacketReader.new(payload)
+	if PacketReader.wotlk:
+		reader.u8()
 	var channel_name: String = reader.cstring()
 	reader.u8()
 	var guids: PackedInt64Array = []

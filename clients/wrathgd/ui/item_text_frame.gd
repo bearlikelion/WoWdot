@@ -45,7 +45,8 @@ func read_letter(title: String, text_id: int, mail_id: int) -> void:
 
 func _ask(page: int) -> void:
 	var payload: PackedByteArray = []
-	payload.resize(4)
+	# 3.3.5 follows the page with the guid of the object it was read from.
+	payload.resize(12 if PacketReader.wotlk else 4)
 	payload.encode_u32(0, page)
 	WowClient.session.send_packet("CMSG_PAGE_TEXT_QUERY", payload)
 
@@ -77,7 +78,12 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		_next = reader.u32()
 		_show_text(text)
 	elif opcode == "SMSG_ITEM_TEXT_QUERY_RESPONSE":
-		reader.u32()
+		if PacketReader.wotlk:
+			if reader.u8() != 0:
+				return
+			reader.u64()
+		else:
+			reader.u32()
 		_next = 0
 		_page = 0
 		_show_text(reader.cstring())

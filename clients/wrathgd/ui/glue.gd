@@ -277,7 +277,9 @@ func _on_characters_received(characters: Array) -> void:
 			_on_character_chosen(character)
 			return
 	var select_guid: int = 0
+	_create.max_level = 0
 	for character: Dictionary in characters:
+		_create.max_level = maxi(_create.max_level, character["level"])
 		if character["name"] == _created_name:
 			select_guid = character["guid"]
 	_created_name = ""

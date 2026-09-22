@@ -4,6 +4,16 @@ extends Control
 signal create_requested(character: Dictionary)
 signal back_requested
 
+const DEATH_KNIGHT: int = 6
+const DEATH_KNIGHT_LEVEL: int = 55
+const PANEL_BUTTONS: PackedStringArray = [
+	"CharCreateOkayButton", "CharCreateBackButton", "CharCreateRandomizeButton",
+]
+const PANEL_ART: Dictionary[String, String] = {
+	"NormalTexture": "Interface\\Glues\\Common\\Glue-Panel-Button-Up",
+	"PushedTexture": "Interface\\Glues\\Common\\Glue-Panel-Button-Down",
+	"HighlightTexture": "Interface\\Glues\\Common\\Glue-Panel-Button-Highlight",
+}
 const CUSTOMIZATIONS: Array[CharacterModels.Option] = [
 	CharacterModels.Option.SKIN,
 	CharacterModels.Option.FACE,
@@ -52,6 +62,8 @@ const DRAG_DEGREES_PER_PIXEL: float = 0.6
 const ROTATE_DEGREES_PER_SECOND: float = 120.0
 
 var _look: Dictionary = {}
+# The highest level on the account, which 3.3.5 gates the Death Knight behind.
+var max_level: int = 0
 var _classes: Array[int] = []
 var _class_id: int = 0
 var _race_buttons: Array[WowButton] = []
@@ -165,6 +177,8 @@ func _choose_race(race: int) -> void:
 		(panel.get_node("Backdrop") as WowBackdrop).background_color = FACTION_BACKGROUNDS[faction]
 	CharacterOptions.apply_scene(_model, race)
 	_classes = CharacterOptions.classes_for(race)
+	if max_level < DEATH_KNIGHT_LEVEL:
+		_classes.erase(DEATH_KNIGHT)
 	for i: int in _class_buttons.size():
 		_class_buttons[i].visible = i < _classes.size()
 		if _class_buttons[i].visible:
@@ -183,6 +197,7 @@ func _choose_class(index: int) -> void:
 	var class_file: String = CharacterOptions.class_file(_class_id)
 	_set_tex_coords(%CharacterCreateClassIcon, _class_icon(class_file))
 	%CharacterCreateClassLabel.text = CharacterOptions.class_label(_class_id)
+	_swap_panel_art(_class_id == DEATH_KNIGHT)
 	%CharacterCreateClassText.text = WowStrings.get_text("CLASS_" + class_file)
 	_show_character()
 	_stack_texts()
@@ -278,6 +293,21 @@ func _name_on_hover(button: WowButton, label: Callable) -> void:
 # 3.3.5a names the chosen race and class elsewhere, so its buttons carry no label of their own.
 func _highlight_text(button: WowButton) -> Label:
 	return get_node_or_null("%" + button.name + "HighlightText") as Label
+
+
+# CharacterCreate_DeathKnightSwap: the panel buttons turn blue while a Death Knight is chosen.
+func _swap_panel_art(blue: bool) -> void:
+	for button_name: String in PANEL_BUTTONS:
+		var button: Control = get_node("%" + button_name)
+		for state: String in PANEL_ART:
+			var rect: TextureRect = button.get_node_or_null(state)
+			if rect == null or not rect.texture is AtlasTexture:
+				continue
+			var atlas: AtlasTexture = rect.texture.duplicate()
+			var art: WowTexture = WowTexture.new()
+			art.file = PANEL_ART[state] + ("-Blue.blp" if blue else ".blp")
+			atlas.atlas = art
+			rect.texture = atlas
 
 
 func _mark(button: WowButton, chosen: bool, label: String) -> void:

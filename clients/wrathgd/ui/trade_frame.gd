@@ -170,6 +170,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 # The other side's window: its money, then a fixed block for every slot, empty or not.
 func _read_offer(reader: PacketReader) -> void:
 	var theirs: bool = reader.u8() == 1
+	if PacketReader.wotlk:
+		reader.u32()
 	reader.u32()
 	reader.u32()
 	var money: int = reader.u32()
@@ -185,6 +187,9 @@ func _read_offer(reader: PacketReader) -> void:
 		reader.u32()
 		reader.u64()
 		reader.u32()
+		if PacketReader.wotlk:
+			for socket: int in 3:
+				reader.u32()
 		reader.u64()
 		for skipped: int in 6:
 			reader.u32()

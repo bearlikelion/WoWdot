@@ -18,6 +18,9 @@ const DEBUFF_SPELL: int = 702
 const LEARN_SPELL: int = 100
 const QUEST: int = 783
 const QUEST_TITLE: String = "A Threat Within"
+const DAMAGE: int = 5
+const DUMMY_CREATURE: int = 6
+const UNIT_TYPE: int = 3
 
 # Wire values, which WotLK shares with vanilla for these two.
 enum MoveFlag { NONE = 0, FORWARD = 1 }
@@ -36,6 +39,9 @@ var _walked_from_teleport: Vector3 = Vector3.ZERO
 var _chat: Array[Dictionary] = []
 var _time_syncs: int = 0
 var _cast_failures: Array[int] = []
+var _combat: CombatEvents = CombatEvents.new(_session)
+var _melee: Array[CombatEvents.CombatEvent] = []
+var _spawned: int = 0
 var _failures: PackedStringArray = []
 
 
@@ -49,6 +55,8 @@ func _ready() -> void:
 	_session.packet_received.connect(_on_packet_received)
 	_session.chat_received.connect(_on_chat_received)
 	_session.spell_cast_failed.connect(_on_spell_cast_failed)
+	_combat.logged.connect(_on_combat_logged)
+	_session.object_created.connect(_on_object_created)
 	_run.call_deferred()
 
 
@@ -129,6 +137,17 @@ func _packets() -> void:
 		var info: Dictionary = _session.get_quest_info(QUEST)
 		_check(info["title"] == QUEST_TITLE, "the quest title reads (%s)" % info["title"])
 		_check(info["objective_list"].size() >= 4, "the objectives read")
+	# The server only logs the blow when it lands on someone else, so a temporary kobold takes it.
+	_session.send_chat(WowSession.CHAT_SAY, ".npc add temp %d" % DUMMY_CREATURE)
+	if not await _until(func() -> bool: return _spawned != 0, "a temporary creature spawns"):
+		return
+	_session.set_selection(_spawned)
+	_session.send_chat(WowSession.CHAT_SAY, ".damage %d" % DAMAGE)
+	if await _until(func() -> bool: return not _melee.is_empty(), "the GM damage lands as a melee log"):
+		_check(_melee[0].amount == DAMAGE and _melee[0].target == _spawned,
+				"the melee log carries the amount and target (%d)" % _melee[0].amount)
+	_session.send_chat(WowSession.CHAT_SAY, ".npc delete")
+	_session.set_selection(0)
 
 
 func _aura(guid: int, spell: int) -> Variant:
@@ -296,6 +315,16 @@ func _on_chat_received(line: Dictionary) -> void:
 func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
 	if opcode == "SMSG_TIME_SYNC_REQ":
 		_time_syncs += 1
+
+
+func _on_object_created(guid: int, type_id: int) -> void:
+	if type_id == UNIT_TYPE and _spawned == 0 and _session.get_field(guid, "OBJECT_FIELD_ENTRY") == DUMMY_CREATURE:
+		_spawned = guid
+
+
+func _on_combat_logged(event: CombatEvents.CombatEvent) -> void:
+	if event.kind == CombatEvents.Kind.MELEE:
+		_melee.append(event)
 
 
 func _on_spell_cast_failed(_caster: int, _spell_id: int, reason: int) -> void:

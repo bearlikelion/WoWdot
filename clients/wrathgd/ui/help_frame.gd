@@ -142,7 +142,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	elif opcode == "SMSG_GMTICKET_GETTICKET":
 		var reader: PacketReader = PacketReader.new(payload)
 		_has_ticket = reader.u32() == HAS_TICKET
+		if _has_ticket and PacketReader.wotlk:
+			reader.u32()
 		var text: String = reader.cstring() if _has_ticket else ""
-		if _has_ticket:
+		if _has_ticket and not PacketReader.wotlk:
 			_category = reader.u8()
 		_show_ticket(text)

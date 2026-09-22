@@ -11,11 +11,14 @@ const MAILS_PER_PAGE: int = 7
 const AUCTION_SENDER: String = "Auction House"
 # Message types, which say how the sender field reads.
 enum Sender { NORMAL = 0, CREATURE = 1, GAMEOBJECT = 2, AUCTION = 3, ITEM = 4 }
+enum SenderWotlk { NORMAL = 0, AUCTION = 2, CREATURE = 3, GAMEOBJECT = 4, CALENDAR = 5 }
 enum Tab { INBOX, SEND }
 # SMSG_SEND_MAIL_RESULT actions, and MAIL_OK.
 enum MailAction { SENT, MONEY_TAKEN, ITEM_TAKEN, RETURNED, DELETED, MADE_PERMANENT }
 
 const MAIL_OK: int = 0
+# Seven enchantment triples, the random property and its suffix factor.
+const WOTLK_ITEM_WORDS: int = 23
 const COPPER_PER_SILVER: int = 100
 const COPPER_PER_GOLD: int = 10000
 const DEFAULT_STATIONERY: int = 41
@@ -190,6 +193,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 
 func _read_mails(payload: PackedByteArray) -> Array[Dictionary]:
 	var reader: PacketReader = PacketReader.new(payload)
+	if PacketReader.wotlk:
+		return _read_mails_wotlk(reader)
 	var mails: Array[Dictionary] = []
 	for i: int in reader.u8():
 		var mail: Dictionary = {"id": reader.u32()}
@@ -212,6 +217,56 @@ func _read_mails(payload: PackedByteArray) -> Array[Dictionary]:
 		mail["days"] = ceili(reader.f32())
 		mails.append(mail)
 	return mails
+
+
+# 3.3.5 carries the body and every attached item in the list itself.
+func _read_mails_wotlk(reader: PacketReader) -> Array[Dictionary]:
+	var mails: Array[Dictionary] = []
+	reader.u32()
+	for i: int in reader.u8():
+		reader.u16()
+		var mail: Dictionary = {"id": reader.u32()}
+		var type: SenderWotlk = reader.u8() as SenderWotlk
+		mail["from_player"] = type == SenderWotlk.NORMAL
+		mail["sender"] = _sender_name_wotlk(type, reader)
+		mail["cod"] = reader.u32()
+		reader.u32()
+		mail["stationery"] = reader.u32()
+		mail["money"] = reader.u32()
+		mail["read"] = reader.u32()
+		mail["days"] = ceili(reader.f32())
+		reader.u32()
+		mail["subject"] = reader.cstring()
+		mail["body"] = reader.cstring()
+		mail["text_id"] = 0
+		mail["item_entry"] = 0
+		mail["stack"] = 0
+		for item: int in reader.u8():
+			reader.u8()
+			reader.u32()
+			var entry: int = reader.u32()
+			for skipped: int in WOTLK_ITEM_WORDS:
+				reader.u32()
+			var stack: int = reader.u32()
+			for skipped: int in 3:
+				reader.u32()
+			reader.u8()
+			if item == 0:
+				mail["item_entry"] = entry
+				mail["stack"] = stack
+		mails.append(mail)
+	return mails
+
+
+func _sender_name_wotlk(type: SenderWotlk, reader: PacketReader) -> String:
+	if type == SenderWotlk.NORMAL:
+		return WowClient.session.get_object_name(reader.u64())
+	var entry: int = reader.u32()
+	if type == SenderWotlk.AUCTION:
+		return WowStrings.get_text("AUCTION_HOUSE", AUCTION_SENDER)
+	if type == SenderWotlk.CREATURE:
+		return WowClient.session.get_creature_template(entry).get("name", "")
+	return ""
 
 
 func _sender_name(type: Sender, reader: PacketReader) -> String:

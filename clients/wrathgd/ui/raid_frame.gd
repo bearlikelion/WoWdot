@@ -147,8 +147,16 @@ func _show_raid_info(payload: PackedByteArray) -> void:
 		if not row.visible:
 			continue
 		var map_name: String = ServerNotices.map_name(reader.u32())
-		var seconds: int = reader.u32()
-		var instance: int = reader.u32()
+		var seconds: int = 0
+		var instance: int = 0
+		if PacketReader.wotlk:
+			reader.u32()
+			instance = reader.u64() & 0xFFFFFFFF
+			reader.u16()
+			seconds = reader.u32()
+		else:
+			seconds = reader.u32()
+			instance = reader.u32()
 		(get_node("%%RaidInfoInstance%dName" % (i + 1)) as Label).text = map_name
 		(get_node("%%RaidInfoInstance%dID" % (i + 1)) as Label).text = str(instance)
 		var left: Label = get_node("%%RaidInfoInstance%dReset" % (i + 1))

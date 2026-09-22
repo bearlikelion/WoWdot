@@ -16,6 +16,8 @@ enum Status { NONE, WAIT_QUEUE, WAIT_JOIN, IN_PROGRESS, WAIT_LEAVE }
 enum Port { LEAVE, ENTER }
 
 # In 1.12 the wire names a battleground by the map it runs on.
+# 3.3.5 names a battleground by its BattlemasterList id where 1.12 named its map.
+const BATTLEGROUND_MAPS: Dictionary[int, int] = {1: 30, 2: 489, 3: 529, 7: 566, 9: 607, 30: 628}
 const ALTERAC_VALLEY: int = 30
 const WARSONG_GULCH: int = 489
 const ARATHI_BASIN: int = 529
@@ -122,8 +124,16 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	match opcode:
 		"SMSG_BATTLEFIELD_LIST":
 			battlemaster = reader.u64()
-			var map_id: int = reader.u32()
-			reader.u8()
+			var map_id: int = 0
+			if PacketReader.wotlk:
+				reader.u8()
+				map_id = BATTLEGROUND_MAPS.get(reader.u32(), 0)
+				reader.skip(15)
+				if reader.u8() != 0:
+					reader.skip(13)
+			else:
+				map_id = reader.u32()
+				reader.u8()
 			var instances: PackedInt32Array = []
 			for i: int in reader.u32():
 				instances.append(reader.u32())
@@ -135,6 +145,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 		"SMSG_INIT_WORLD_STATES":
 			reader.u32()
 			reader.u32()
+			if PacketReader.wotlk:
+				reader.u32()
 			var count: int = reader.u16()
 			for i: int in count:
 				_set_state(reader.u32(), reader.u32())
@@ -151,6 +163,8 @@ func _read_status(reader: PacketReader) -> void:
 	var slot: int = reader.u32()
 	if slot < 0 or slot >= _queues.size():
 		return
+	if PacketReader.wotlk:
+		return _read_status_wotlk(reader, slot)
 	var map_id: int = reader.u32()
 	if map_id == 0:
 		_queues[slot] = {}
@@ -170,15 +184,51 @@ func _read_status(reader: PacketReader) -> void:
 	queue_changed.emit(slot, status, map_id)
 
 
+# 3.3.5 packs the arena type, the battleground type and a marker into the eight bytes a zero clears.
+func _read_status_wotlk(reader: PacketReader, slot: int) -> void:
+	var kind: int = reader.u64()
+	if kind == 0:
+		_queues[slot] = {}
+		queue_changed.emit(slot, Status.NONE, 0)
+		return
+	var map_id: int = BATTLEGROUND_MAPS.get((kind >> 16) & 0xFFFFFFFF, 0)
+	reader.u16()
+	var instance_id: int = reader.u32()
+	reader.u8()
+	var status: Status = reader.u32() as Status
+	var entry: Dictionary = {
+		"status": status, "map_id": map_id, "instance_id": instance_id,
+		"time_one": 0, "time_two": 0,
+	}
+	if status == Status.WAIT_QUEUE:
+		entry["time_one"] = reader.u32()
+		entry["time_two"] = reader.u32()
+	elif status == Status.WAIT_JOIN or status == Status.IN_PROGRESS:
+		entry["map_id"] = reader.u32()
+		reader.u64()
+		entry["time_one"] = reader.u32()
+		if status == Status.IN_PROGRESS:
+			entry["time_two"] = reader.u32()
+	_queues[slot] = entry
+	queue_changed.emit(slot, status, entry["map_id"])
+
+
 func _read_scores(reader: PacketReader) -> void:
+	if PacketReader.wotlk and reader.u8() != 0:
+		# Arena scoreboards carry rating and team blocks this frame does not show.
+		return
 	var ended: bool = reader.u8() != 0
 	winner = (reader.u8() as Winner) if ended else Winner.NONE
 	scores.clear()
 	for i: int in reader.u32():
 		var row: Dictionary = {
-			"guid": reader.u64(), "rank": reader.u32(), "killing_blows": reader.u32(),
-			"honorable_kills": reader.u32(), "deaths": reader.u32(), "honor": reader.u32(),
+			"guid": reader.u64(), "rank": 0 if PacketReader.wotlk else reader.u32(),
+			"killing_blows": reader.u32(), "honorable_kills": reader.u32(), "deaths": reader.u32(),
+			"honor": reader.u32(),
 		}
+		if PacketReader.wotlk:
+			reader.u32()
+			reader.u32()
 		var stats: PackedInt32Array = []
 		for stat: int in reader.u32():
 			stats.append(reader.u32())
@@ -193,7 +243,11 @@ func _read_positions(reader: PacketReader) -> void:
 		var guid: int = reader.u64()
 		positions[guid] = Vector2(reader.f32(), reader.f32())
 	flag_carrier = 0
-	if reader.u8() != 0:
+	if PacketReader.wotlk:
+		for i: int in reader.u32():
+			flag_carrier = reader.u64()
+			positions[flag_carrier] = Vector2(reader.f32(), reader.f32())
+	elif reader.u8() != 0:
 		flag_carrier = reader.u64()
 		positions[flag_carrier] = Vector2(reader.f32(), reader.f32())
 	positions_changed.emit()

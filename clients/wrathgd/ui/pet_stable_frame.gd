@@ -162,8 +162,13 @@ func _read_pets(reader: PacketReader) -> void:
 		var pet: Dictionary = {"number": reader.u32(), "entry": reader.u32()}
 		pet["level"] = reader.u32()
 		pet["name"] = reader.cstring()
-		pet["loyalty"] = reader.u32()
-		pet["slot"] = reader.u8()
+		if PacketReader.wotlk:
+			# 3.3.5 dropped loyalty and flags the pet at the player's side instead of numbering slots.
+			pet["loyalty"] = 0
+			pet["slot"] = CURRENT_SLOT if reader.u8() == 1 else CURRENT_SLOT + _pets.size()
+		else:
+			pet["loyalty"] = reader.u32()
+			pet["slot"] = reader.u8()
 		_pets.append(pet)
 		WowClient.session.get_creature_template(pet["entry"])
 	refresh()

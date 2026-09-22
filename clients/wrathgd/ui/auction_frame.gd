@@ -285,10 +285,12 @@ func _read_listings(reader: PacketReader) -> Array[Dictionary]:
 	var listings: Array[Dictionary] = []
 	for i: int in reader.u32():
 		var listing: Dictionary = {"id": reader.u32(), "item_entry": reader.u32()}
-		for skipped: int in 3:
+		# 3.3.5 lists seven enchantment triples where 1.12 had one enchantment.
+		for skipped: int in 23 if PacketReader.wotlk else 3:
 			reader.u32()
 		listing["count"] = reader.u32()
-		reader.u32()
+		for skipped: int in 2 if PacketReader.wotlk else 1:
+			reader.u32()
 		listing["owner"] = reader.u64()
 		listing["start_bid"] = reader.u32()
 		listing["increment"] = reader.u32()

@@ -843,6 +843,8 @@ func _show_equip_error(reader: PacketReader) -> void:
 		return
 	var key: String = _equip_failures.get(str(reason), "ERR_BAG_FULL")
 	if reason == EQUIP_ERR_LEVEL:
+		# Two item guids and a bag subclass sit before the level.
+		reader.skip(17)
 		show_error(WowStrings.get_text(key) % reader.u32())
 		return
 	show_error(WowStrings.get_text(key))

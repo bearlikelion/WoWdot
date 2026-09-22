@@ -113,6 +113,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	var reader: PacketReader = PacketReader.new(payload)
 	if reader.u64() != _guid:
 		return
+	if PacketReader.wotlk:
+		return _show_wotlk_honor(reader)
 	var session: WowSession = WowClient.session
 	var race: int = session.get_field(_guid, "UNIT_FIELD_BYTES_0") & 0xFF
 	var alliance: bool = CharacterOptions.faction(race) == CharacterOptions.Faction.ALLIANCE
@@ -166,3 +168,14 @@ func _on_object_updated(guid: int) -> void:
 func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 	if _guid != 0 and guids.has(_guid) and is_visible_in_tree():
 		close_requested.emit()
+
+
+# 3.3.5 keeps only honor points, today's and yesterday's kills and contributions, and lifetime kills.
+func _show_wotlk_honor(reader: PacketReader) -> void:
+	reader.u8()
+	var kills: int = reader.u32()
+	%InspectHonorFrameCurrentHKValue.text = str(kills & 0xFFFF)
+	%InspectHonorFrameYesterdayHKValue.text = str((kills >> 16) & 0xFFFF)
+	%InspectHonorFrameThisWeekContributionValue.text = str(reader.u32())
+	%InspectHonorFrameYesterdayContributionValue.text = str(reader.u32())
+	%InspectHonorFrameLifeTimeHKValue.text = str(reader.u32())

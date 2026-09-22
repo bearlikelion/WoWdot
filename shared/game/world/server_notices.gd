@@ -34,7 +34,7 @@ const MEETING_STONE_FAILURES: Dictionary[int, String] = {
 # SMSG_GMTICKET_CREATE, _UPDATETEXT and _DELETETICKET answers.
 const TICKET_ANSWERS: Dictionary[int, String] = {
 	1: "ERR_TICKET_ALREADY_EXISTS", 2: "TICKET_STATUS1", 3: "ERR_TICKET_CREATE_ERROR",
-	5: "ERR_TICKET_UPDATE_ERROR", 7: "ERR_TICKET_DB_ERROR",
+	4: "TICKET_STATUS1", 5: "ERR_TICKET_UPDATE_ERROR", 7: "ERR_TICKET_DB_ERROR",
 }
 const TICKET_HAS_TEXT: int = 6
 # SMSG_RAID_INSTANCE_MESSAGE types.
@@ -156,6 +156,8 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 		"SMSG_GMTICKET_GETTICKET":
 			if reader.u32() != TICKET_HAS_TEXT:
 				return WowStrings.get_text("GM_TICKET_NONE", "You have no open GM ticket.")
+			if PacketReader.wotlk:
+				reader.u32()
 			return "%s %s" % [WowStrings.get_text("TICKET_STATUS1"), reader.cstring()]
 		"SMSG_INSTANCE_RESET":
 			var text: String = WowStrings.get_text("INSTANCE_RESET_SUCCESS")
@@ -166,6 +168,8 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 		"SMSG_RAID_INSTANCE_MESSAGE":
 			var key: String = RAID_MESSAGES.get(reader.u32(), "")
 			var map: String = map_name(reader.u32())
+			if PacketReader.wotlk:
+				reader.u32()
 			var seconds: int = reader.u32()
 			if key == "RAID_INSTANCE_WELCOME":
 				@warning_ignore("integer_division")
@@ -241,8 +245,16 @@ static func raid_lockouts(payload: PackedByteArray) -> PackedStringArray:
 	var lines: PackedStringArray = []
 	for i: int in reader.u32():
 		var map: String = map_name(reader.u32())
-		var seconds: int = reader.u32()
-		var instance: int = reader.u32()
+		var seconds: int = 0
+		var instance: int = 0
+		if PacketReader.wotlk:
+			reader.u32()
+			instance = reader.u64() & 0xFFFFFFFF
+			reader.u16()
+			seconds = reader.u32()
+		else:
+			seconds = reader.u32()
+			instance = reader.u32()
 		@warning_ignore("integer_division")
 		var left: String = "%dd %dh %dm" % [seconds / 86400, seconds / 3600 % 24, seconds / 60 % 60]
 		lines.append("%s (%d): %s" % [map, instance, left])
@@ -264,8 +276,10 @@ static func who_rows(payload: PackedByteArray) -> Dictionary:
 			"level": reader.u32(),
 			"class": CharacterOptions.class_label(reader.u32()),
 			"race": CharacterOptions.race_name(reader.u32()),
-			"zone": AreaInfo.area_name(reader.u32()),
 		})
+		if PacketReader.wotlk:
+			reader.u8()
+		rows[-1]["zone"] = AreaInfo.area_name(reader.u32())
 	return {"rows": rows, "total": total}
 
 
