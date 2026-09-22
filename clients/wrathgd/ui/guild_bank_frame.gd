@@ -12,6 +12,8 @@ const COPPER_PER_GOLD: int = 10000
 # GetGuildBankTabCost: each next tab's price in gold.
 const TAB_PRICES: Array[int] = [100, 250, 500, 1000, 2500, 5000]
 const ICON_PATH: String = "Interface\\Icons\\%s"
+# A tab bought but not yet given an icon.
+const UNNAMED_TAB_ICON: String = "INV_Misc_QuestionMark"
 const NEW_TAB_ICON: String = "Interface\\GuildBankFrame\\UI-GuildBankFrame-NewTab"
 const MONEY_UNITS: Dictionary[String, int] = {"g": COPPER_PER_GOLD, "s": 100, "c": 1}
 
@@ -76,8 +78,11 @@ func refresh() -> void:
 		tab_frame.visible = i <= bought
 		if i <= bought:
 			var icon: TextureRect = get_node("%%GuildBankTab%dButtonIconTexture" % (i + 1))
+			var tab_icon: String = _bank.tabs[i]["icon"] if i < bought else ""
+			if i < bought and tab_icon.is_empty():
+				tab_icon = UNNAMED_TAB_ICON
 			icon.texture = WowAssets.spells.icon_texture(
-				ICON_PATH % _bank.tabs[i]["icon"] if i < bought else NEW_TAB_ICON
+				ICON_PATH % tab_icon if i < bought else NEW_TAB_ICON
 			)
 			(get_node("%%GuildBankTab%dButton" % (i + 1)) as WowButton).checked = i == tab
 	%GuildBankFrameBuyInfo.visible = buying
