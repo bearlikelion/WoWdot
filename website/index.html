@@ -23,7 +23,7 @@
 
     <figure class="model" id="model" data-client="wowgd">
       <div class="model-slot">
-        <img id="model-image" src="wowgd/northshire-valley.png" alt="WoWGD in Northshire Valley, running inside the Godot editor" width="1920" height="1080">
+        <img id="model-image" src="wowgd/wowgd-login.png" alt="WoWGD login screen" width="1920" height="1080">
         <p class="model-empty" id="model-empty">No capture yet. WrathGD logs in, makes a character and walks around Shadowglen; the first screenshot will land here.</p>
         <button class="model-arrow model-prev" id="model-prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg></button>
         <button class="model-arrow model-next" id="model-next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
@@ -256,9 +256,9 @@
       var rows = document.querySelectorAll(".row");
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      // The folder name becomes the caption: wowgd/northshire-valley.png reads Northshire Valley.
+      // The file name becomes the caption: wowgd/wowgd-create-character.png reads Create Character.
       function caption(path) {
-        var name = path.split("/").pop().replace(/\.[a-z]+$/i, "").replace(/[-_]+/g, " ");
+        var name = path.split("/").pop().replace(/\.[a-z]+$/i, "").replace(/^(wowgd|wrathgd)[-_]/i, "").replace(/[-_]+/g, " ");
         return name.replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
       }
 
