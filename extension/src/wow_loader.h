@@ -92,6 +92,7 @@ public:
 
 	Dictionary get_map_info(const String &map_name);
 	Node3D *load_adt(const String &map_name, int tile_x, int tile_y);
+	Ref<ArrayMesh> load_wdl(const String &map_name, const PackedVector2Array &skipped_tiles);
 };
 
 } // namespace godot

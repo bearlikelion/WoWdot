@@ -205,6 +205,7 @@ void WowLoader::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("build_static_models", "placements"), &WowLoader::build_static_models);
 	ClassDB::bind_method(D_METHOD("get_map_info", "map_name"), &WowLoader::get_map_info);
 	ClassDB::bind_method(D_METHOD("load_adt", "map_name", "tile_x", "tile_y"), &WowLoader::load_adt);
+	ClassDB::bind_method(D_METHOD("load_wdl", "map_name", "skipped_tiles"), &WowLoader::load_wdl);
 	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "archive", PROPERTY_HINT_RESOURCE_TYPE, "WowArchive"), "set_archive", "get_archive");
 	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "terrain_shader", PROPERTY_HINT_RESOURCE_TYPE, "Shader"), "set_terrain_shader", "get_terrain_shader");
 	ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "liquid_materials", PROPERTY_HINT_ARRAY_TYPE, "Material"), "set_liquid_materials", "get_liquid_materials");

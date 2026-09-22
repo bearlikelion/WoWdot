@@ -3,6 +3,7 @@ class_name WowMap
 extends Node3D
 
 signal tile_loaded(tile: Vector2i)
+signal tile_unloaded(tile: Vector2i)
 
 const TILE_SIZE: float = 1600.0 / 3.0
 const FOCUS_MARKER_SIZE: float = 60.0
@@ -342,6 +343,7 @@ func _unload(tile: Vector2i) -> void:
 	)
 	_tiles[tile].queue_free()
 	_tiles.erase(tile)
+	tile_unloaded.emit(tile)
 	for unique_id: int in _streamer.release(_tile_placements.get(tile, PackedInt64Array())):
 		if _placement_nodes.has(unique_id):
 			_placement_nodes[unique_id].queue_free()

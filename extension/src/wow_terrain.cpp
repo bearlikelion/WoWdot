@@ -9,6 +9,7 @@
 #include "pipeline/wdt_loader.hpp"
 
 #include <godot_cpp/classes/collision_shape3d.hpp>
+#include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/height_map_shape3d.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/classes/shader_material.hpp>
@@ -403,6 +404,71 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 	root->set_meta("area_ids", area_ids);
 	root->set_meta("ground_effects", ground_effects(mesh));
 	return root;
+}
+
+// The map's low detail horizon: a WDL holds a 17x17 grid of heights for each tile, drawn where the
+// detailed tiles are not loaded.
+Ref<ArrayMesh> WowLoader::load_wdl(const String &map_name, const PackedVector2Array &skipped_tiles) {
+	ERR_FAIL_COND_V(archive.is_null(), Ref<ArrayMesh>());
+	std::vector<uint8_t> data;
+	if (!archive->read_bytes(WowArchive::normalize(map_dir(map_name) + ".wdl"), data)) {
+		return Ref<ArrayMesh>();
+	}
+	constexpr int TILES = 64;
+	constexpr int OUTER = 17;
+	constexpr size_t MARE_BYTES = (17 * 17 + 16 * 16) * 2;
+	std::vector<uint32_t> offsets(TILES * TILES, 0);
+	for (size_t at = 0; at + 8 <= data.size();) {
+		uint32_t size;
+		std::memcpy(&size, data.data() + at + 4, 4);
+		// Chunk names are stored reversed, so MAOF reads as FOAM.
+		if (std::memcmp(data.data() + at, "FOAM", 4) == 0 && size >= offsets.size() * 4 && at + 8 + size <= data.size()) {
+			std::memcpy(offsets.data(), data.data() + at + 8, offsets.size() * 4);
+			break;
+		}
+		at += 8 + size;
+	}
+	PackedVector3Array vertices;
+	PackedInt32Array indices;
+	const float step = core::coords::TILE_SIZE / 16.0f;
+	for (int ty = 0; ty < TILES; ty++) {
+		for (int tx = 0; tx < TILES; tx++) {
+			const uint32_t at = offsets[ty * TILES + tx];
+			if (at == 0 || at + 8 + MARE_BYTES > data.size() || skipped_tiles.has(Vector2(tx, ty))) {
+				continue;
+			}
+			const int16_t *heights = reinterpret_cast<const int16_t *>(data.data() + at + 8);
+			const int base = vertices.size();
+			const float north = (32.0f - ty) * core::coords::TILE_SIZE;
+			const float west = (32.0f - tx) * core::coords::TILE_SIZE;
+			for (int row = 0; row < OUTER; row++) {
+				for (int col = 0; col < OUTER; col++) {
+					vertices.push_back(wow_to_godot(glm::vec3(north - row * step, west - col * step, heights[row * OUTER + col])));
+				}
+			}
+			for (int row = 0; row < OUTER - 1; row++) {
+				for (int col = 0; col < OUTER - 1; col++) {
+					const int a = base + row * OUTER + col;
+					const int b = a + 1;
+					const int c = a + OUTER;
+					const int d = c + 1;
+					indices.push_back(a); indices.push_back(c); indices.push_back(b);
+					indices.push_back(b); indices.push_back(c); indices.push_back(d);
+				}
+			}
+		}
+	}
+	Ref<ArrayMesh> mesh;
+	mesh.instantiate();
+	if (vertices.is_empty()) {
+		return mesh;
+	}
+	Array arrays;
+	arrays.resize(Mesh::ARRAY_MAX);
+	arrays[Mesh::ARRAY_VERTEX] = vertices;
+	arrays[Mesh::ARRAY_INDEX] = indices;
+	mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, arrays);
+	return mesh;
 }
 
 } // namespace godot
