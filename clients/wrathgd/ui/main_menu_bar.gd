@@ -7,7 +7,7 @@ signal bottom_bars_toggled(shown: bool)
 signal bag_toggled(bag: int)
 
 enum GamePanel {
-	CHARACTER, SPELLBOOK, TALENTS, QUEST_LOG, SOCIAL, WORLD_MAP, GAME_MENU, HELP, BAGS, LFD, ACHIEVEMENTS,
+	CHARACTER, SPELLBOOK, TALENTS, QUEST_LOG, SOCIAL, WORLD_MAP, GAME_MENU, HELP, BAGS, LFD, ACHIEVEMENTS, PVP,
 }
 enum RestState { RESTED = 1, NORMAL = 2 }
 
@@ -39,6 +39,7 @@ const PANEL_TIPS: Dictionary[GamePanel, Array] = {
 	GamePanel.HELP: ["HELP_BUTTON", "NEWBIE_TOOLTIP_HELP", ""],
 	GamePanel.BAGS: ["BACKPACK_TOOLTIP", "", "toggle_bags"],
 	GamePanel.LFD: ["DUNGEONS_BUTTON", "NEWBIE_TOOLTIP_LFGPARENT", "toggle_lfd"],
+	GamePanel.PVP: ["PLAYER_V_PLAYER", "NEWBIE_TOOLTIP_PVP", "toggle_pvp"],
 	GamePanel.ACHIEVEMENTS: [
 		"ACHIEVEMENT_BUTTON", "NEWBIE_TOOLTIP_ACHIEVEMENT", "toggle_achievements",
 	],
@@ -84,6 +85,7 @@ var _portrait: AtlasTexture = AtlasTexture.new()
 	%HelpMicroButton: GamePanel.HELP,
 	%LFDMicroButton: GamePanel.LFD,
 	%AchievementMicroButton: GamePanel.ACHIEVEMENTS,
+	%PVPMicroButton: GamePanel.PVP,
 	%MainMenuBarBackpackButton: GamePanel.BAGS,
 }
 

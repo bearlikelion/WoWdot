@@ -464,6 +464,11 @@
    "script": "res://ui/achievement_frame.gd"
   },
   {
+   "frame": "PVPParentFrame",
+   "out": "ui/pvp_parent_frame.tscn",
+   "script": "res://ui/pvp_parent_frame.gd"
+  },
+  {
    "frame": "TargetDebuffFrameTemplate",
    "out": "ui/target_debuff_frame.tscn",
    "template": true

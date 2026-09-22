@@ -90,6 +90,7 @@ var _chat_hover_time: float = 0.0
 @onready var _friends: FriendsFrame = _panels.get_node("%FriendsFrame")
 @onready var _lfd: LFDParentFrame = _panels.get_node("%LFDParentFrame")
 @onready var _achievement_frame: AchievementFrame = _panels.get_node("%AchievementFrame")
+@onready var _pvp: PVPParentFrame = _panels.get_node("%PVPParentFrame")
 @onready var _open_mail: OpenMailFrame = _panels.get_node("%OpenMailFrame")
 @onready var _item_text: ItemTextFrame = _panels.get_node_or_null("%ItemTextFrame")
 @onready var _game_menu: Control = _panels.get_node("%GameMenuFrame")
@@ -160,6 +161,8 @@ func _ready() -> void:
 	_friends.message_added.connect(add_system_line)
 	_minimap.lfd_toggled.connect(_panels.toggle_panel.bind(_lfd))
 	WowClient.dungeon_finder.failed.connect(show_error)
+	WowClient.arena_teams.message.connect(add_system_line)
+	WowClient.arena_teams.invited.connect(_on_arena_team_invited)
 	_friends.name_requested.connect(_on_friend_name_requested)
 	_friends.guild_invited.connect(_on_guild_invited)
 	_duel = Duel.new(WowClient.session)
@@ -271,6 +274,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_panels.toggle_panel(_lfd)
 	elif _exact(event, "toggle_achievements"):
 		_panels.toggle_panel(_achievement_frame)
+	elif _exact(event, "toggle_pvp"):
+		_panels.toggle_panel(_pvp)
 	elif _exact(event, "toggle_scores") and WowClient.battlegrounds.in_battle():
 		_panels.toggle_panel(_panels.get_node("%WorldStateScoreFrame"))
 	elif _exact(event, "toggle_world_map"):
@@ -628,6 +633,8 @@ func _on_panel_toggled(panel: MainMenuBar.GamePanel) -> void:
 			_panels.toggle_panel(_lfd)
 		MainMenuBar.GamePanel.ACHIEVEMENTS:
 			_panels.toggle_panel(_achievement_frame)
+		MainMenuBar.GamePanel.PVP:
+			_panels.toggle_panel(_pvp)
 		MainMenuBar.GamePanel.HELP:
 			_panels.toggle_panel(_panels.get_node("%HelpFrame"))
 		MainMenuBar.GamePanel.GAME_MENU:
@@ -663,6 +670,14 @@ func _on_pet_changed() -> void:
 		return
 	_named_pet = pet.guid
 	_popup.ask_name(WowStrings.get_text("PET_RENAME_LABEL", "Name your pet"), pet.rename)
+
+
+func _on_arena_team_invited(inviter: String, team_name: String) -> void:
+	_popup.ask(
+		WowStrings.get_text("ARENA_TEAM_INVITATION") % [inviter, team_name],
+		WowClient.arena_teams.accept_invite, "ACCEPT", "DECLINE",
+		WowClient.arena_teams.decline_invite,
+	)
 
 
 func _on_guild_invited(inviter: String, guild_name: String) -> void:

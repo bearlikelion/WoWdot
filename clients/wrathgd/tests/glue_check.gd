@@ -2,6 +2,7 @@ class_name GlueCheck
 extends Node
 
 # Can I Keep Him?, which a GM can grant outright.
+const ARENA_TEAM: String = "Wrathglue Arena"
 const ACHIEVEMENT: int = 1017
 # CharTitles 1, Private, whose known-titles bit is also 1.
 const TITLE: int = 1
@@ -87,7 +88,36 @@ func _run() -> void:
 	await _gear_manager()
 	await _dungeon_finder()
 	await _achievements()
+	await _arena_team()
 	_finish()
+
+
+# A GM-made 2v2 team shows on the PvP frame with its roster, then the captain disbands it.
+func _arena_team() -> void:
+	var arena: ArenaTeams = WowClient.arena_teams
+	WowClient.session.send_chat(WowSession.CHAT_SAY, '.arena create "%s" 2' % ARENA_TEAM)
+	if not await _until(func() -> bool: return not arena.slot_info(0).is_empty(),
+			"the new arena team fills the first team slot"):
+		return
+	var team_id: int = arena.slot_info(0)[ArenaTeams.Info.ID]
+	var press: InputEventAction = InputEventAction.new()
+	press.action = "toggle_pvp"
+	press.pressed = true
+	Input.parse_input_event(press)
+	var frame: PVPParentFrame = get_tree().root.find_child("PVPParentFrame", true, false)
+	var team_name: Label = frame.get_node("%PVPTeam1DataName")
+	if await _until(func() -> bool: return frame.visible and team_name.text == ARENA_TEAM,
+			"the PvP frame names the 2v2 team"):
+		(frame.get_node("%PVPTeam1") as BaseButton).pressed.emit()
+		var member: Label = frame.get_node("%PVPTeamDetailsButton1NameText")
+		await _until(func() -> bool: return member.text == CHARACTER,
+				"the team roster lists the captain")
+		await _frames(30)
+		_capture("user://wotlk_pvp.png")
+	frame.close_requested.emit()
+	arena.disband(team_id)
+	await _until(func() -> bool: return arena.slot_info(0).is_empty(),
+			"the disbanded team leaves the slot")
 
 
 # A GM-granted achievement lands in the list or arrives as earned, and a granted title can be worn.
@@ -123,7 +153,8 @@ func _achievements() -> void:
 	var frame: AchievementFrame = get_tree().root.find_child("AchievementFrame", true, false)
 	_check(frame.visible, "the achievement key opens the achievement frame")
 	var points: Label = frame.get_node("%AchievementFrameHeaderPoints")
-	_check(points.text == str(achievements.points()), "the achievement frame shows the points earned")
+	_check(points.text == str(achievements.points()),
+			"the achievement frame shows the points earned")
 	var latest: Label = frame.get_node("%AchievementFrameSummaryAchievement1Label")
 	_check(not latest.text.is_empty(), "the summary lists the latest achievement")
 	_capture("user://wotlk_achievements.png")

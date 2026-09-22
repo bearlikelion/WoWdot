@@ -1,0 +1,5300 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/pvp_parent_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="4"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-General-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-General-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-General-BottomLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-General-BottomRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\PVPFrame\\UI-Character-PVP.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\PVPFrame\\PVP-ArenaPoints-Icon.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\PVPFrame\\UI-Character-PVP-Elements.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 390, 212, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 466, 51, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 435, 279, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(285, 361, 10, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(295, 361, 10, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 446, 279, 18)
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\PVPFrame\\UI-Character-PVP-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 0, 360, 355)
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(103, 0, 25, 64)
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_30"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\FriendsFrame\\WhoFrame-ColumnTabs.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(0, 0, 5, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(5, 0, 53, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(58, 0, 4, 24)
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_36"]
+file = "Interface\\QuestFrame\\UI-QuestTitleHighlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44"]
+atlas = SubResource("WowTexture_43")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-ActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46"]
+atlas = SubResource("WowTexture_45")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_45")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
+atlas = SubResource("WowTexture_45")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-InActiveTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(0, 0, 20, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(20, 0, 88, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(108, 0, 20, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_53"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-Icon.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_54"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_55"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\BattlefieldFrame\\UI-QueueFromAnywhere-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_57"]
+file = "Interface\\BattlefieldFrame\\UI-QueueFromAnywhere-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_58"]
+file = "Interface\\PVPFrame\\PvpRandomBg.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_59"]
+atlas = SubResource("WowTexture_58")
+region = Rect2(0, 0, 333.005, 240.998)
+
+[sub_resource type="WowTexture" id="WowTexture_60"]
+file = "Interface\\PVPFrame\\Icons\\PVP-WintergraspTimerIcon.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_61"]
+file = "Interface\\Buttons\\UI-Listbox-Highlight2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_62"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63"]
+atlas = SubResource("WowTexture_62")
+region = Rect2(0, 0, 30, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64"]
+atlas = SubResource("WowTexture_62")
+region = Rect2(34, 44, 30, 84)
+
+[sub_resource type="WowTexture" id="WowTexture_65"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66"]
+atlas = SubResource("WowTexture_65")
+region = Rect2(6.4, 4, 19.2, 24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_67"]
+
+[sub_resource type="WowTexture" id="WowTexture_68"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_69"]
+atlas = SubResource("WowTexture_68")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_70"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71"]
+atlas = SubResource("WowTexture_70")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_72"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73"]
+atlas = SubResource("WowTexture_72")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_74"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75"]
+atlas = SubResource("WowTexture_74")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_76"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77"]
+atlas = SubResource("WowTexture_76")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_78"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_79"]
+atlas = SubResource("WowTexture_78")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_80"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81"]
+atlas = SubResource("WowTexture_80")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_82"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83"]
+atlas = SubResource("WowTexture_82")
+region = Rect2(6.4, 8, 19.2, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84"]
+atlas = SubResource("WowTexture_62")
+region = Rect2(0, 0, 30, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85"]
+atlas = SubResource("WowTexture_62")
+region = Rect2(34, 0, 30, 128)
+
+[sub_resource type="WowTexture" id="WowTexture_86"]
+file = "Interface\\PVPFrame\\PVP-Currency-Horde.blp"
+
+[node name="PVPParentFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 384
+offset_bottom = 616
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="PVPParentFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -61
+offset_top = 9
+offset_right = -29
+offset_bottom = 41
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPParentFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPParentFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPParentFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 0
+
+[node name="PVPFramePortrait" type="TextureRect" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="PVPFrame"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122
+offset_top = 16
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Player vs. Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="PVPFrame"]
+offset_left = 2
+offset_top = 1
+offset_right = 258
+offset_bottom = 257
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="PVPFrame"]
+offset_left = 258
+offset_top = 1
+offset_right = 386
+offset_bottom = 257
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="PVPFrame"]
+offset_left = 2
+offset_top = 257
+offset_right = 258
+offset_bottom = 513
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="PVPFrame"]
+offset_left = 258
+offset_top = 257
+offset_right = 386
+offset_bottom = 513
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+
+[node name="PVPFrameBackground" type="TextureRect" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 14
+offset_top = 36
+offset_right = 526
+offset_bottom = 548
+mouse_filter = 2
+texture = SubResource("WowTexture_9")
+expand_mode = 1
+
+[node name="PVPFrameBlackFilter" type="ColorRect" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 156
+offset_right = 342
+offset_bottom = 431
+visible = false
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="PVPFrameOffSeason" type="Control" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 156
+offset_right = 342
+offset_bottom = 431
+visible = false
+mouse_filter = 2
+
+[node name="PVPFrameOffSeasonText" type="Label" parent="PVPFrame/PVPFrameOffSeason"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 15
+offset_right = 306
+offset_bottom = 31
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLarge"
+text = "CANHAZDUMMYTEXT"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PVPFrameHonor" type="Control" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 132
+offset_top = 38
+offset_right = 432
+offset_bottom = 58
+mouse_filter = 2
+
+[node name="PVPFrameHonorLabel" type="Label" parent="PVPFrame/PVPFrameHonor"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "HONOR:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPFrameHonorPoints" type="Label" parent="PVPFrame/PVPFrameHonor"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 4
+offset_right = 15
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "12,123,213"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PVPFrameHonorIcon" type="TextureRect" parent="PVPFrame/PVPFrameHonor"]
+unique_name_in_owner = true
+offset_left = 19
+offset_top = 2
+offset_right = 47
+offset_bottom = 30
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPFrameArena" type="Control" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 134
+offset_top = 131
+offset_right = 434
+offset_bottom = 151
+mouse_filter = 2
+
+[node name="PVPFrameArenaLabel" type="Label" parent="PVPFrame/PVPFrameArena"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 5
+offset_right = 0
+offset_bottom = 15
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "ARENA:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPFrameArenaPoints" type="Label" parent="PVPFrame/PVPFrameArena"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 4
+offset_right = 15
+offset_bottom = 16
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "12,123,213"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PVPFrameArenaIcon" type="TextureRect" parent="PVPFrame/PVPFrameArena"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 2.5
+offset_right = 37
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PVPHonor" type="Control" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 64
+offset_right = 329
+offset_bottom = 164
+mouse_filter = 2
+
+[node name="PVPHonorKillsLabel" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 24
+offset_right = 60
+offset_bottom = 36
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Kills"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPHonorHonorLabel" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 44
+offset_right = 60
+offset_bottom = 56
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Honor"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPFrameLine1" type="TextureRect" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 17
+offset_right = 300
+offset_bottom = 20
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="PVPHonorTodayLabel" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 80
+offset_top = 4
+offset_right = 80
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Today"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPHonorTodayKills" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 55
+offset_top = 24
+offset_right = 105
+offset_bottom = 38
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPHonorTodayHonor" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 55
+offset_top = 43
+offset_right = 105
+offset_bottom = 57
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPHonorYesterdayLabel" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 150
+offset_top = 4
+offset_right = 150
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Yesterday"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPHonorYesterdayKills" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 125
+offset_top = 24
+offset_right = 175
+offset_bottom = 38
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPHonorYesterdayHonor" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 125
+offset_top = 43
+offset_right = 175
+offset_bottom = 57
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPHonorLifetimeLabel" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 230
+offset_top = 4
+offset_right = 230
+offset_bottom = 14
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Lifetime"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPHonorLifetimeKills" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 205
+offset_top = 24
+offset_right = 255
+offset_bottom = 38
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPHonorLifetimeHonor" type="Label" parent="PVPFrame/PVPHonor"]
+unique_name_in_owner = true
+offset_left = 205
+offset_top = 43
+offset_right = 255
+offset_bottom = 57
+mouse_filter = 2
+theme_type_variation = &"GameFontDisable"
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam1Standard" type="Control" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 175
+offset_right = 91
+offset_bottom = 239
+mouse_filter = 2
+
+[node name="PVPTeam1StandardBar" type="TextureRect" parent="PVPFrame/PVPTeam1Standard"]
+unique_name_in_owner = true
+offset_left = -8
+offset_top = -6
+offset_right = 42
+offset_bottom = 7
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="PVPTeam1StandardBanner" type="TextureRect" parent="PVPFrame/PVPTeam1Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam1StandardBorder" type="TextureRect" parent="PVPFrame/PVPTeam1Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam1StandardEmblem" type="TextureRect" parent="PVPFrame/PVPTeam1Standard"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 12
+offset_right = 29
+offset_bottom = 36
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam1" type="TextureButton" parent="PVPFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 60
+offset_top = 168
+offset_right = 360
+offset_bottom = 246
+ignore_texture_size = true
+
+[node name="PVPTeam1Top" type="TextureRect" parent="PVPFrame/PVPTeam1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 279
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="PVPTeam1Left" type="TextureRect" parent="PVPFrame/PVPTeam1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 12
+offset_right = 10
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="PVPTeam1Background" type="ColorRect" parent="PVPFrame/PVPTeam1"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = 8
+offset_right = 274
+offset_bottom = 73
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PVPTeam1Right" type="TextureRect" parent="PVPFrame/PVPTeam1"]
+unique_name_in_owner = true
+offset_left = 269
+offset_top = 12
+offset_right = 279
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="PVPTeam1Bottom" type="TextureRect" parent="PVPFrame/PVPTeam1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 66
+offset_right = 279
+offset_bottom = 83
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="PVPTeam1TeamType" type="Label" parent="PVPFrame/PVPTeam1"]
+unique_name_in_owner = true
+offset_left = 142
+offset_top = 31
+offset_right = 142
+offset_bottom = 47
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam1Highlight" type="Control" parent="PVPFrame/PVPTeam1"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -6
+offset_right = 287
+offset_bottom = 87
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="PVPFrame/PVPTeam1/PVPTeam1Highlight"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_18")
+tile = true
+tile_size = 0
+edge_size = 32
+insets = Vector4(0, 0, 0, 0)
+
+[node name="PVPTeam1Data" type="Control" parent="PVPFrame/PVPTeam1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 280
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+
+[node name="PVPTeam1DataName" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 165
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeam1DataRatingLabel" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 163
+offset_top = 15
+offset_right = 238
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Team Rating"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeam1DataRating" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 15
+offset_right = 280
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+offset_left = 17
+offset_top = 32
+offset_right = 267
+offset_bottom = 34
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="PVPTeam1DataTypeLabel" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 41
+offset_right = 78
+offset_bottom = 65
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "This Week"
+horizontal_alignment = 0
+vertical_alignment = 2
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="PVPTeam1DataGamesLabel" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 37
+offset_right = 128
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam1DataGames" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 100.5
+offset_top = 55
+offset_right = 100.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam1DataWinLossLabel" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 128
+offset_top = 37
+offset_right = 203
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Win - Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam1Data_" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam1DataWins" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam1DataLoss" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam1DataPlayedLabel" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 203
+offset_top = 37
+offset_right = 270
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Played"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam1DataPlayed" type="Label" parent="PVPFrame/PVPTeam1/PVPTeam1Data"]
+unique_name_in_owner = true
+offset_left = 236.5
+offset_top = 55
+offset_right = 236.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam2Standard" type="Control" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 260
+offset_right = 91
+offset_bottom = 324
+mouse_filter = 2
+
+[node name="PVPTeam2StandardBar" type="TextureRect" parent="PVPFrame/PVPTeam2Standard"]
+unique_name_in_owner = true
+offset_left = -8
+offset_top = -6
+offset_right = 42
+offset_bottom = 7
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="PVPTeam2StandardBanner" type="TextureRect" parent="PVPFrame/PVPTeam2Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam2StandardBorder" type="TextureRect" parent="PVPFrame/PVPTeam2Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam2StandardEmblem" type="TextureRect" parent="PVPFrame/PVPTeam2Standard"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 12
+offset_right = 29
+offset_bottom = 36
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam2" type="TextureButton" parent="PVPFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 60
+offset_top = 253
+offset_right = 360
+offset_bottom = 331
+ignore_texture_size = true
+
+[node name="PVPTeam2Top" type="TextureRect" parent="PVPFrame/PVPTeam2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 279
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="PVPTeam2Left" type="TextureRect" parent="PVPFrame/PVPTeam2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 12
+offset_right = 10
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="PVPTeam2Background" type="ColorRect" parent="PVPFrame/PVPTeam2"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = 8
+offset_right = 274
+offset_bottom = 73
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PVPTeam2Right" type="TextureRect" parent="PVPFrame/PVPTeam2"]
+unique_name_in_owner = true
+offset_left = 269
+offset_top = 12
+offset_right = 279
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="PVPTeam2Bottom" type="TextureRect" parent="PVPFrame/PVPTeam2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 66
+offset_right = 279
+offset_bottom = 83
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="PVPTeam2TeamType" type="Label" parent="PVPFrame/PVPTeam2"]
+unique_name_in_owner = true
+offset_left = 142
+offset_top = 31
+offset_right = 142
+offset_bottom = 47
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam2Highlight" type="Control" parent="PVPFrame/PVPTeam2"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -6
+offset_right = 287
+offset_bottom = 87
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="PVPFrame/PVPTeam2/PVPTeam2Highlight"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_18")
+tile = true
+tile_size = 0
+edge_size = 32
+insets = Vector4(0, 0, 0, 0)
+
+[node name="PVPTeam2Data" type="Control" parent="PVPFrame/PVPTeam2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 280
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+
+[node name="PVPTeam2DataName" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 165
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeam2DataRatingLabel" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 163
+offset_top = 15
+offset_right = 238
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Team Rating"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeam2DataRating" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 15
+offset_right = 280
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+offset_left = 17
+offset_top = 32
+offset_right = 267
+offset_bottom = 34
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="PVPTeam2DataTypeLabel" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 41
+offset_right = 78
+offset_bottom = 65
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "This Week"
+horizontal_alignment = 0
+vertical_alignment = 2
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="PVPTeam2DataGamesLabel" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 37
+offset_right = 128
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam2DataGames" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 100.5
+offset_top = 55
+offset_right = 100.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam2DataWinLossLabel" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 128
+offset_top = 37
+offset_right = 203
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Win - Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam2Data_" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam2DataWins" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam2DataLoss" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam2DataPlayedLabel" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 203
+offset_top = 37
+offset_right = 270
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Played"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam2DataPlayed" type="Label" parent="PVPFrame/PVPTeam2/PVPTeam2Data"]
+unique_name_in_owner = true
+offset_left = 236.5
+offset_top = 55
+offset_right = 236.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam3Standard" type="Control" parent="PVPFrame"]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 345
+offset_right = 91
+offset_bottom = 409
+mouse_filter = 2
+
+[node name="PVPTeam3StandardBar" type="TextureRect" parent="PVPFrame/PVPTeam3Standard"]
+unique_name_in_owner = true
+offset_left = -8
+offset_top = -6
+offset_right = 42
+offset_bottom = 7
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="PVPTeam3StandardBanner" type="TextureRect" parent="PVPFrame/PVPTeam3Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam3StandardBorder" type="TextureRect" parent="PVPFrame/PVPTeam3Standard"]
+unique_name_in_owner = true
+offset_left = -0.5
+offset_top = -4
+offset_right = 44.5
+offset_bottom = 86
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam3StandardEmblem" type="TextureRect" parent="PVPFrame/PVPTeam3Standard"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 12
+offset_right = 29
+offset_bottom = 36
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPTeam3" type="TextureButton" parent="PVPFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 60
+offset_top = 338
+offset_right = 360
+offset_bottom = 416
+ignore_texture_size = true
+
+[node name="PVPTeam3Top" type="TextureRect" parent="PVPFrame/PVPTeam3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 1
+offset_right = 279
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="PVPTeam3Left" type="TextureRect" parent="PVPFrame/PVPTeam3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 12
+offset_right = 10
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_15")
+expand_mode = 1
+
+[node name="PVPTeam3Background" type="ColorRect" parent="PVPFrame/PVPTeam3"]
+unique_name_in_owner = true
+offset_left = 9
+offset_top = 8
+offset_right = 274
+offset_bottom = 73
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PVPTeam3Right" type="TextureRect" parent="PVPFrame/PVPTeam3"]
+unique_name_in_owner = true
+offset_left = 269
+offset_top = 12
+offset_right = 279
+offset_bottom = 67
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+
+[node name="PVPTeam3Bottom" type="TextureRect" parent="PVPFrame/PVPTeam3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 66
+offset_right = 279
+offset_bottom = 83
+mouse_filter = 2
+texture = SubResource("AtlasTexture_17")
+expand_mode = 1
+
+[node name="PVPTeam3TeamType" type="Label" parent="PVPFrame/PVPTeam3"]
+unique_name_in_owner = true
+offset_left = 142
+offset_top = 31
+offset_right = 142
+offset_bottom = 47
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableLarge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam3Highlight" type="Control" parent="PVPFrame/PVPTeam3"]
+unique_name_in_owner = true
+offset_left = -3
+offset_top = -6
+offset_right = 287
+offset_bottom = 87
+visible = false
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="PVPFrame/PVPTeam3/PVPTeam3Highlight"]
+script = ExtResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+edge = SubResource("WowTexture_18")
+tile = true
+tile_size = 0
+edge_size = 32
+insets = Vector4(0, 0, 0, 0)
+
+[node name="PVPTeam3Data" type="Control" parent="PVPFrame/PVPTeam3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 280
+offset_bottom = 70
+visible = false
+mouse_filter = 2
+
+[node name="PVPTeam3DataName" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 165
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeam3DataRatingLabel" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 163
+offset_top = 15
+offset_right = 238
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Team Rating"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeam3DataRating" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 15
+offset_right = 280
+offset_bottom = 27
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+offset_left = 17
+offset_top = 32
+offset_right = 267
+offset_bottom = 34
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="PVPTeam3DataTypeLabel" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 41
+offset_right = 78
+offset_bottom = 65
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "This Week"
+horizontal_alignment = 0
+vertical_alignment = 2
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="PVPTeam3DataGamesLabel" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 37
+offset_right = 128
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam3DataGames" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 100.5
+offset_top = 55
+offset_right = 100.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam3DataWinLossLabel" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 128
+offset_top = 37
+offset_right = 203
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Win - Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam3Data_" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam3DataWins" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam3DataLoss" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 163.5
+offset_top = 55
+offset_right = 163.5
+offset_bottom = 65
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeam3DataPlayedLabel" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 203
+offset_top = 37
+offset_right = 270
+offset_bottom = 49
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Played"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPTeam3DataPlayed" type="Label" parent="PVPFrame/PVPTeam3/PVPTeam3Data"]
+unique_name_in_owner = true
+offset_left = 236.5
+offset_top = 55
+offset_right = 236.5
+offset_bottom = 65
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPFrameToggleButton" type="TextureButton" parent="PVPFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -59
+offset_top = -96
+offset_right = -44
+offset_bottom = -81
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPFrame/PVPFrameToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 15
+offset_bottom = 15
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPFrame/PVPFrameToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 15
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPFrame/PVPFrameToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 15
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PVPFrameToggleButtonText" type="Label" parent="PVPFrame/PVPFrameToggleButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 6.5
+offset_right = 0
+offset_bottom = 6.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+text = "Show Season Stats"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPFrame/PVPFrameToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 15
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetails" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -30
+offset_top = 40
+offset_right = 370
+offset_bottom = 395
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="PVPTeamDetails"]
+offset_left = 0
+offset_top = 0
+offset_right = 400
+offset_bottom = 355
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="PVPTeamDetailsName" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 20
+offset_right = 22
+offset_bottom = 32
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsSize" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 27
+offset_top = 21
+offset_right = 27
+offset_bottom = 31
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Texture2" type="TextureRect" parent="PVPTeamDetails"]
+offset_left = 63
+offset_top = 40
+offset_right = 343
+offset_bottom = 43
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="PVPTeamDetailsStatsType" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 22
+offset_top = 42
+offset_right = 122
+offset_bottom = 92
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsGamesLabel" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 170
+offset_top = 50
+offset_right = 170
+offset_bottom = 60
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsGames" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 170
+offset_top = 66
+offset_right = 170
+offset_bottom = 76
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "45"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsWinLossLabel" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 222
+offset_top = 50
+offset_right = 222
+offset_bottom = 60
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Win - Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetails_" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 220
+offset_top = 66
+offset_right = 220
+offset_bottom = 76
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsWins" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 220
+offset_top = 66
+offset_right = 220
+offset_bottom = 76
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsLoss" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 220
+offset_top = 66
+offset_right = 220
+offset_bottom = 76
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsRankLabel" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 274
+offset_top = 50
+offset_right = 274
+offset_bottom = 60
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Rank"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsRank" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 274
+offset_top = 66
+offset_right = 274
+offset_bottom = 76
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsRatingLabel" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 326
+offset_top = 50
+offset_right = 326
+offset_bottom = 60
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontDisableSmall"
+text = "Team Rating"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsRating" type="Label" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 326
+offset_top = 66
+offset_right = 326
+offset_bottom = 76
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPDropDown" type="Control" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 32
+mouse_filter = 2
+
+[node name="PVPDropDownLeft" type="TextureRect" parent="PVPTeamDetails/PVPDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="PVPDropDownMiddle" type="TextureRect" parent="PVPTeamDetails/PVPDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="PVPDropDownRight" type="TextureRect" parent="PVPTeamDetails/PVPDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_27")
+expand_mode = 1
+
+[node name="PVPDropDownText" type="Label" parent="PVPTeamDetails/PVPDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+grow_horizontal = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="PVPDropDownButton" type="TextureButton" parent="PVPTeamDetails/PVPDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPTeamDetails/PVPDropDown/PVPDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPTeamDetails/PVPDropDown/PVPDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_29")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPTeamDetails/PVPDropDown/PVPDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_30")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPDropDown/PVPDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsCloseButton" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 369
+offset_top = -1
+offset_right = 401
+offset_bottom = 31
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsFrameColumnHeader1" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 17
+offset_top = 89
+offset_right = 127
+offset_bottom = 113
+ignore_texture_size = true
+
+[node name="PVPTeamDetailsFrameColumnHeader1Left" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader1Middle" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader1"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 106
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader1Right" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader1"]
+unique_name_in_owner = true
+offset_left = 106
+offset_top = 0
+offset_right = 110
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader1Text" type="Label" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader1"]
+unique_name_in_owner = true
+offset_left = 55.5
+offset_top = 12
+offset_right = 55.5
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader1"]
+offset_left = -2
+offset_top = -5
+offset_right = 112
+offset_bottom = 31
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsFrameColumnHeader2" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 89
+offset_right = 205
+offset_bottom = 113
+ignore_texture_size = true
+
+[node name="PVPTeamDetailsFrameColumnHeader2Left" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader2Middle" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader2"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 76
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader2Right" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader2"]
+unique_name_in_owner = true
+offset_left = 76
+offset_top = 0
+offset_right = 80
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader2Text" type="Label" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader2"]
+unique_name_in_owner = true
+offset_left = 40.5
+offset_top = 12
+offset_right = 40.5
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Class"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader2"]
+offset_left = -2
+offset_top = -5
+offset_right = 82
+offset_bottom = 31
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsFrameColumnHeader3" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 203
+offset_top = 89
+offset_right = 258
+offset_bottom = 113
+ignore_texture_size = true
+
+[node name="PVPTeamDetailsFrameColumnHeader3Left" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader3Middle" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader3"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 51
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader3Right" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader3"]
+unique_name_in_owner = true
+offset_left = 51
+offset_top = 0
+offset_right = 55
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader3Text" type="Label" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader3"]
+unique_name_in_owner = true
+offset_left = 28
+offset_top = 12
+offset_right = 28
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Played"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader3"]
+offset_left = -2
+offset_top = -5
+offset_right = 57
+offset_bottom = 31
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsFrameColumnHeader4" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 256
+offset_top = 89
+offset_right = 331
+offset_bottom = 113
+ignore_texture_size = true
+
+[node name="PVPTeamDetailsFrameColumnHeader4Left" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader4Middle" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader4"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 71
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader4Right" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader4"]
+unique_name_in_owner = true
+offset_left = 71
+offset_top = 0
+offset_right = 75
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader4Text" type="Label" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader4"]
+unique_name_in_owner = true
+offset_left = 38
+offset_top = 12
+offset_right = 38
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Win - Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader4"]
+offset_left = -2
+offset_top = -5
+offset_right = 77
+offset_bottom = 31
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsFrameColumnHeader5" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 329
+offset_top = 89
+offset_right = 388
+offset_bottom = 113
+ignore_texture_size = true
+
+[node name="PVPTeamDetailsFrameColumnHeader5Left" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 5
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader5Middle" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader5"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 0
+offset_right = 55
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader5Right" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader5"]
+unique_name_in_owner = true
+offset_left = 55
+offset_top = 0
+offset_right = 59
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+
+[node name="PVPTeamDetailsFrameColumnHeader5Text" type="Label" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader5"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 12
+offset_right = 30
+offset_bottom = 12
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "Rating"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsFrameColumnHeader5"]
+offset_left = -2
+offset_top = -5
+offset_right = 61
+offset_bottom = 31
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton1" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 115
+offset_right = 395
+offset_bottom = 131
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton1"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton1Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton1"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton1NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton1/PVPTeamDetailsButton1Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton1Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton1"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton1ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton1/PVPTeamDetailsButton1Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton1Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton1"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton1PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton1/PVPTeamDetailsButton1Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton1WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton1"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton1WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton1/PVPTeamDetailsButton1WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton1WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton1/PVPTeamDetailsButton1WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton1WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton1/PVPTeamDetailsButton1WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton1Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton1"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton1RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton1/PVPTeamDetailsButton1Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton2" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 134
+offset_right = 395
+offset_bottom = 150
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton2"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton2Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton2"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton2NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton2/PVPTeamDetailsButton2Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton2Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton2"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton2ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton2/PVPTeamDetailsButton2Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton2Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton2"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton2PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton2/PVPTeamDetailsButton2Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton2WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton2"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton2WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton2/PVPTeamDetailsButton2WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton2WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton2/PVPTeamDetailsButton2WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton2WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton2/PVPTeamDetailsButton2WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton2Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton2"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton2RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton2/PVPTeamDetailsButton2Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton3" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 153
+offset_right = 395
+offset_bottom = 169
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton3"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton3Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton3"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton3NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton3/PVPTeamDetailsButton3Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton3Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton3"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton3ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton3/PVPTeamDetailsButton3Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton3Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton3"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton3PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton3/PVPTeamDetailsButton3Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton3WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton3"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton3WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton3/PVPTeamDetailsButton3WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton3WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton3/PVPTeamDetailsButton3WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton3WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton3/PVPTeamDetailsButton3WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton3Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton3"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton3RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton3/PVPTeamDetailsButton3Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton4" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 172
+offset_right = 395
+offset_bottom = 188
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton4"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton4Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton4"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton4NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton4/PVPTeamDetailsButton4Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton4Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton4"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton4ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton4/PVPTeamDetailsButton4Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton4Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton4"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton4PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton4/PVPTeamDetailsButton4Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton4WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton4"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton4WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton4/PVPTeamDetailsButton4WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton4WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton4/PVPTeamDetailsButton4WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton4WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton4/PVPTeamDetailsButton4WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton4Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton4"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton4RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton4/PVPTeamDetailsButton4Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton5" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 191
+offset_right = 395
+offset_bottom = 207
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton5"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton5Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton5"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton5NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton5/PVPTeamDetailsButton5Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton5Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton5"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton5ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton5/PVPTeamDetailsButton5Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton5Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton5"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton5PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton5/PVPTeamDetailsButton5Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton5WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton5"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton5WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton5/PVPTeamDetailsButton5WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton5WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton5/PVPTeamDetailsButton5WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton5WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton5/PVPTeamDetailsButton5WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton5Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton5"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton5RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton5/PVPTeamDetailsButton5Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton6" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 210
+offset_right = 395
+offset_bottom = 226
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton6"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton6Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton6"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton6NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton6/PVPTeamDetailsButton6Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton6Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton6"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton6ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton6/PVPTeamDetailsButton6Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton6Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton6"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton6PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton6/PVPTeamDetailsButton6Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton6WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton6"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton6WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton6/PVPTeamDetailsButton6WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton6WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton6/PVPTeamDetailsButton6WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton6WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton6/PVPTeamDetailsButton6WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton6Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton6"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton6RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton6/PVPTeamDetailsButton6Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton7" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 229
+offset_right = 395
+offset_bottom = 245
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton7"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton7Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton7"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton7NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton7/PVPTeamDetailsButton7Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton7Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton7"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton7ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton7/PVPTeamDetailsButton7Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton7Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton7"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton7PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton7/PVPTeamDetailsButton7Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton7WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton7"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton7WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton7/PVPTeamDetailsButton7WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton7WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton7/PVPTeamDetailsButton7WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton7WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton7/PVPTeamDetailsButton7WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton7Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton7"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton7RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton7/PVPTeamDetailsButton7Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton8" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 248
+offset_right = 395
+offset_bottom = 264
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton8"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton8Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton8"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton8NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton8/PVPTeamDetailsButton8Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton8Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton8"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton8ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton8/PVPTeamDetailsButton8Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton8Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton8"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton8PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton8/PVPTeamDetailsButton8Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton8WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton8"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton8WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton8/PVPTeamDetailsButton8WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton8WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton8/PVPTeamDetailsButton8WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton8WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton8/PVPTeamDetailsButton8WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton8Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton8"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton8RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton8/PVPTeamDetailsButton8Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton9" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 267
+offset_right = 395
+offset_bottom = 283
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton9"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton9Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton9"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton9NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton9/PVPTeamDetailsButton9Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton9Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton9"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton9ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton9/PVPTeamDetailsButton9Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton9Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton9"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton9PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton9/PVPTeamDetailsButton9Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton9WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton9"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton9WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton9/PVPTeamDetailsButton9WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton9WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton9/PVPTeamDetailsButton9WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton9WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton9/PVPTeamDetailsButton9WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton9Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton9"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton9RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton9/PVPTeamDetailsButton9Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton10" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 15
+offset_top = 286
+offset_right = 395
+offset_bottom = 302
+visible = false
+ignore_texture_size = true
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsButton10"]
+offset_left = 5
+offset_top = 2
+offset_right = 335
+offset_bottom = 18
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_36")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsButton10Name" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton10"]
+unique_name_in_owner = true
+offset_left = 10
+offset_top = 1
+offset_right = 114
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton10NameText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton10/PVPTeamDetailsButton10Name"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 104
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton10Class" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton10"]
+unique_name_in_owner = true
+offset_left = 118
+offset_top = 1
+offset_right = 191
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton10ClassText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton10/PVPTeamDetailsButton10Class"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 70
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton10Played" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton10"]
+unique_name_in_owner = true
+offset_left = 195
+offset_top = 1
+offset_right = 240
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton10PlayedText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton10/PVPTeamDetailsButton10Played"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 45
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsButton10WinLoss" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton10"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 1
+offset_right = 312
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton10WinLossWin" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton10/PVPTeamDetailsButton10WinLoss"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 30
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton10WinLoss_" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton10/PVPTeamDetailsButton10WinLoss"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = 0
+offset_right = 41
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = " - "
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton10WinLossLoss" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton10/PVPTeamDetailsButton10WinLoss"]
+unique_name_in_owner = true
+offset_left = 41
+offset_top = 0
+offset_right = 71
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPTeamDetailsButton10Rating" type="Control" parent="PVPTeamDetails/PVPTeamDetailsButton10"]
+unique_name_in_owner = true
+offset_left = 316
+offset_top = 1
+offset_right = 370
+offset_bottom = 15
+mouse_filter = 2
+
+[node name="PVPTeamDetailsButton10RatingText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsButton10/PVPTeamDetailsButton10Rating"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 54
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPTeamDetailsAddTeamMember" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 20
+offset_top = 312
+offset_right = 120
+offset_bottom = 334
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsAddTeamMember"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsAddTeamMember"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsAddTeamMember"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="PVPTeamDetailsAddTeamMemberText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsAddTeamMember"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+mouse_filter = 2
+text = "Add Member"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsAddTeamMember"]
+offset_left = 0
+offset_top = 0
+offset_right = 100
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPTeamDetailsToggleButton" type="TextureButton" parent="PVPTeamDetails"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 351
+offset_top = 306
+offset_right = 383
+offset_bottom = 338
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="PVPTeamDetailsToggleButtonText" type="Label" parent="PVPTeamDetails/PVPTeamDetailsToggleButton"]
+unique_name_in_owner = true
+offset_left = -180
+offset_top = 4
+offset_right = 0
+offset_bottom = 28
+mouse_filter = 2
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPTeamDetails/PVPTeamDetailsToggleButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPParentFrameTab1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 11
+offset_top = -78
+offset_right = 21
+offset_bottom = -46
+ignore_texture_size = true
+
+[node name="PVPParentFrameTab1LeftDisabled" type="TextureRect" parent="PVPParentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_46")
+expand_mode = 1
+
+[node name="PVPParentFrameTab1MiddleDisabled" type="TextureRect" parent="PVPParentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="PVPParentFrameTab1RightDisabled" type="TextureRect" parent="PVPParentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="PVPParentFrameTab1Left" type="TextureRect" parent="PVPParentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="PVPParentFrameTab1Middle" type="TextureRect" parent="PVPParentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="PVPParentFrameTab1Right" type="TextureRect" parent="PVPParentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="PVPParentFrameTab1Text" type="Label" parent="PVPParentFrameTab1"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 9
+offset_right = 5
+offset_bottom = 19
+grow_horizontal = 2
+mouse_filter = 2
+text = "PvP"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPParentFrameTab1"]
+offset_left = 10
+offset_top = -2
+offset_right = 0
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPParentFrameTab2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 6
+offset_top = -78
+offset_right = 16
+offset_bottom = -46
+ignore_texture_size = true
+
+[node name="PVPParentFrameTab2LeftDisabled" type="TextureRect" parent="PVPParentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -5
+offset_right = 20
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_46")
+expand_mode = 1
+
+[node name="PVPParentFrameTab2MiddleDisabled" type="TextureRect" parent="PVPParentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = -5
+offset_right = 108
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_47")
+expand_mode = 1
+
+[node name="PVPParentFrameTab2RightDisabled" type="TextureRect" parent="PVPParentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = -5
+offset_right = 128
+offset_bottom = 27
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="PVPParentFrameTab2Left" type="TextureRect" parent="PVPParentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 20
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="PVPParentFrameTab2Middle" type="TextureRect" parent="PVPParentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 0
+offset_right = 108
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_51")
+expand_mode = 1
+
+[node name="PVPParentFrameTab2Right" type="TextureRect" parent="PVPParentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 108
+offset_top = 0
+offset_right = 128
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="PVPParentFrameTab2Text" type="Label" parent="PVPParentFrameTab2"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 9
+offset_right = 5
+offset_bottom = 19
+grow_horizontal = 2
+mouse_filter = 2
+text = "Battlegrounds"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPParentFrameTab2"]
+offset_left = 10
+offset_top = -2
+offset_right = 0
+offset_bottom = 30
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPBattlegroundFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 2
+offset_top = 1
+offset_right = 2
+offset_bottom = 1
+visible = false
+mouse_filter = 0
+
+[node name="PVPBattlegroundFramePortrait" type="TextureRect" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+texture = SubResource("WowTexture_53")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="PVPBattlegroundFrame"]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_54")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="PVPBattlegroundFrame"]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_55")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="PVPBattlegroundFrame"]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -256
+offset_right = 256
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_56")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="PVPBattlegroundFrame"]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -256
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_57")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameFrameLabel" type="Label" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 17
+offset_right = 0
+offset_bottom = 29
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Battlegrounds"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPBattlegroundFrameNameHeader" type="Label" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 55
+offset_right = 70
+offset_bottom = 67
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Battleground"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PVPBattlegroundFrameBGTex" type="TextureRect" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -177.5
+offset_top = -346
+offset_right = 155.5
+offset_bottom = -105
+mouse_filter = 2
+texture = SubResource("AtlasTexture_59")
+expand_mode = 1
+
+[node name="WintergraspTimer" type="Control" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -72
+offset_top = 39
+offset_right = -40
+offset_bottom = 71
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="PVPBattlegroundFrame/WintergraspTimer"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_60")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="PVPBattlegroundFrame/WintergraspTimer"]
+offset_left = -3
+offset_top = 9
+offset_right = -3
+offset_bottom = 21
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BattlegroundType1" type="TextureButton" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 79
+offset_right = 318
+offset_bottom = 95
+ignore_texture_size = true
+
+[node name="BattlegroundType1Text" type="Label" parent="PVPBattlegroundFrame/BattlegroundType1"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType1"]
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_61")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Frame" type="Control" parent="PVPBattlegroundFrame/BattlegroundType1"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType1/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
+
+[node name="BattlegroundType2" type="TextureButton" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 95
+offset_right = 318
+offset_bottom = 111
+ignore_texture_size = true
+
+[node name="BattlegroundType2Text" type="Label" parent="PVPBattlegroundFrame/BattlegroundType2"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType2"]
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_61")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Frame" type="Control" parent="PVPBattlegroundFrame/BattlegroundType2"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType2/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
+
+[node name="BattlegroundType3" type="TextureButton" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 111
+offset_right = 318
+offset_bottom = 127
+ignore_texture_size = true
+
+[node name="BattlegroundType3Text" type="Label" parent="PVPBattlegroundFrame/BattlegroundType3"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType3"]
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_61")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Frame" type="Control" parent="PVPBattlegroundFrame/BattlegroundType3"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType3/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
+
+[node name="BattlegroundType4" type="TextureButton" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 127
+offset_right = 318
+offset_bottom = 143
+ignore_texture_size = true
+
+[node name="BattlegroundType4Text" type="Label" parent="PVPBattlegroundFrame/BattlegroundType4"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType4"]
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_61")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Frame" type="Control" parent="PVPBattlegroundFrame/BattlegroundType4"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType4/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
+
+[node name="BattlegroundType5" type="TextureButton" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 143
+offset_right = 318
+offset_bottom = 159
+ignore_texture_size = true
+
+[node name="BattlegroundType5Text" type="Label" parent="PVPBattlegroundFrame/BattlegroundType5"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 7
+offset_right = 20
+offset_bottom = 7
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType5"]
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_61")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Frame" type="Control" parent="PVPBattlegroundFrame/BattlegroundType5"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="PVPBattlegroundFrame/BattlegroundType5/Frame"]
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 18.5
+offset_bottom = 18.5
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameTypeScrollFrame" type="Control" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 23
+offset_top = 77
+offset_right = 318
+offset_bottom = 164
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame"]
+offset_left = 292
+offset_top = -5
+offset_right = 322
+offset_bottom = 79
+mouse_filter = 2
+texture = SubResource("AtlasTexture_63")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame"]
+offset_left = 292
+offset_top = 5
+offset_right = 322
+offset_bottom = 89
+mouse_filter = 2
+texture = SubResource("AtlasTexture_64")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameTypeScrollFrameScrollBar" type="VSlider" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame"]
+unique_name_in_owner = true
+offset_left = 301
+offset_top = 16
+offset_right = 317
+offset_bottom = 71
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_66")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_66")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_67")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_67")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_67")
+max_value = 0.0
+step = 0.0
+
+[node name="PVPBattlegroundFrameTypeScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar/PVPBattlegroundFrameTypeScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_69")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar/PVPBattlegroundFrameTypeScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_71")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar/PVPBattlegroundFrameTypeScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_73")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar/PVPBattlegroundFrameTypeScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_75")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPBattlegroundFrameTypeScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 55
+offset_right = 17
+offset_bottom = 71
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar/PVPBattlegroundFrameTypeScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar/PVPBattlegroundFrameTypeScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_79")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar/PVPBattlegroundFrameTypeScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameScrollBar/PVPBattlegroundFrameTypeScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_83")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPBattlegroundFrameTypeScrollFrameClip" type="Control" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="PVPBattlegroundFrameTypeScrollFrameScrollChildFrame" type="Control" parent="PVPBattlegroundFrame/PVPBattlegroundFrameTypeScrollFrame/PVPBattlegroundFrameTypeScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="PVPBattlegroundFrameCancelButton" type="TextureButton" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 263.5
+offset_top = 408
+offset_right = 346.5
+offset_bottom = 430
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameCancelButtonText" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+mouse_filter = 2
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPBattlegroundFrameInfoScrollFrame" type="Control" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 20
+offset_top = -337
+offset_right = 318
+offset_bottom = -105
+mouse_filter = 0
+
+[node name="Texture" type="ColorRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame"]
+offset_left = 298
+offset_top = -5
+offset_right = 323
+offset_bottom = 234
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Texture2" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame"]
+offset_left = 295
+offset_top = -5
+offset_right = 325
+offset_bottom = 123
+mouse_filter = 2
+texture = SubResource("AtlasTexture_84")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame"]
+offset_left = 295
+offset_top = 106
+offset_right = 325
+offset_bottom = 234
+mouse_filter = 2
+texture = SubResource("AtlasTexture_85")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameInfoScrollFrameScrollBar" type="VSlider" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame"]
+unique_name_in_owner = true
+offset_left = 304
+offset_top = 16
+offset_right = 320
+offset_bottom = 216
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_66")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_66")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_67")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_67")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_67")
+max_value = 0.0
+step = 0.0
+
+[node name="PVPBattlegroundFrameInfoScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = -16
+offset_right = 17
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar/PVPBattlegroundFrameInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_69")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar/PVPBattlegroundFrameInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_71")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar/PVPBattlegroundFrameInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_73")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar/PVPBattlegroundFrameInfoScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_75")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPBattlegroundFrameInfoScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -1
+offset_top = 200
+offset_right = 17
+offset_bottom = 216
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar/PVPBattlegroundFrameInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_77")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar/PVPBattlegroundFrameInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_79")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar/PVPBattlegroundFrameInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_81")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameScrollBar/PVPBattlegroundFrameInfoScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 18
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_83")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPBattlegroundFrameInfoScrollFrameClip" type="Control" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrame" type="Control" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 1
+offset_bottom = 1
+mouse_filter = 2
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameDescription" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 15
+offset_right = 290
+offset_bottom = 31
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontBlackMedium"
+text = "BATTLEGROUND_LORETEXT_1"
+horizontal_alignment = 0
+vertical_alignment = 0
+autowrap_mode = 3
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo" type="Control" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 298
+offset_bottom = 232
+mouse_filter = 2
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoTitle" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 15
+offset_right = 20
+offset_bottom = 33
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestTitleFontBlackShadow"
+text = "Random Battleground"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoDescription" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 38
+offset_right = 300
+offset_bottom = 51
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestFont"
+text = "Completing Random Battlegrounds will earn you extra rewards."
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoRewardsLabel" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 20
+offset_top = 61
+offset_right = 20
+offset_bottom = 79
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"QuestTitleFontBlackShadow"
+text = "Rewards"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinReward" type="Control" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 94
+offset_right = 320
+offset_bottom = 134
+mouse_filter = 2
+
+[node name="Texture" type="ColorRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+offset_left = 0
+offset_top = 0
+offset_right = 319
+offset_bottom = 40
+mouse_filter = 2
+color = Color(0, 0.439, 0, 0.2)
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinRewardLabel" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 15
+offset_right = 95
+offset_bottom = 25
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightMedium"
+text = "Win"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinRewardHonorSymbol" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 4
+offset_right = 132
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("WowTexture_86")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinRewardHonorAmount" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 135
+offset_top = 14
+offset_right = 200
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinRewardArenaSymbol" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 205
+offset_top = 4
+offset_right = 237
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinRewardArenaAmount" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoWinReward"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 14
+offset_right = 305
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossReward" type="Control" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo"]
+unique_name_in_owner = true
+offset_left = 1
+offset_top = 136
+offset_right = 320
+offset_bottom = 176
+mouse_filter = 2
+
+[node name="Texture" type="ColorRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+offset_left = 0
+offset_top = 0
+offset_right = 319
+offset_bottom = 40
+mouse_filter = 2
+color = Color(0.5608, 0, 0, 0.2)
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossRewardLabel" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 15
+offset_right = 95
+offset_bottom = 25
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightMedium"
+text = "Loss"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossRewardHonorSymbol" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 100
+offset_top = 4
+offset_right = 132
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("WowTexture_86")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossRewardHonorAmount" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 135
+offset_top = 14
+offset_right = 200
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossRewardArenaSymbol" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 205
+offset_top = 4
+offset_right = 237
+offset_bottom = 36
+mouse_filter = 2
+texture = SubResource("WowTexture_10")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossRewardArenaAmount" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameInfoScrollFrame/PVPBattlegroundFrameInfoScrollFrameClip/PVPBattlegroundFrameInfoScrollFrameChildFrame/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo/PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfoLossReward"]
+unique_name_in_owner = true
+offset_left = 240
+offset_top = 14
+offset_right = 305
+offset_bottom = 26
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormalLarge"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="PVPBattlegroundFrameJoinButton" type="TextureButton" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 152.5
+offset_top = 408
+offset_right = 261.5
+offset_bottom = 430
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameJoinButtonText" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameJoinButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+mouse_filter = 2
+text = "Join Battle"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="PVPBattlegroundFrameGroupJoinButton" type="TextureButton" parent="PVPBattlegroundFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 16.5
+offset_top = 408
+offset_right = 152.5
+offset_bottom = 430
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameGroupJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameGroupJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameGroupJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+
+[node name="PVPBattlegroundFrameGroupJoinButtonText" type="Label" parent="PVPBattlegroundFrame/PVPBattlegroundFrameGroupJoinButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+mouse_filter = 2
+text = "Join as Group"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="PVPBattlegroundFrame/PVPBattlegroundFrameGroupJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_44")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")

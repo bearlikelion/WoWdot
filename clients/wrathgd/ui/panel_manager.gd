@@ -36,6 +36,7 @@ const PANELS: Dictionary[StringName, Array] = {
 	&"MacroFrame": [Area.LEFT, 0],
 	&"LFDParentFrame": [Area.LEFT, 0],
 	&"AchievementFrame": [Area.LEFT, 0],
+	&"PVPParentFrame": [Area.LEFT, 0],
 	&"BattlefieldFrame": [Area.LEFT, 0],
 	&"WorldStateScoreFrame": [Area.CENTER, 0],
 	&"HelpFrame": [Area.CENTER, 0],
