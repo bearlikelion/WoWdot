@@ -1,6 +1,8 @@
 class_name GlueCheck
 extends Node
 
+const WATER: int = 159
+const DRINK_SPELL: int = 430
 const MAIN: PackedScene = preload("res://game/main.tscn")
 const STEP_TIMEOUT_MSEC: int = 120000
 # The local AzerothCore stack answers on the shifted ports.
@@ -69,7 +71,27 @@ func _run() -> void:
 			"the session reports being in the world")
 	await _frames(60)
 	_capture("user://wotlk_world.png")
+	await _use_item()
 	_finish()
+
+
+# CMSG_USE_ITEM in the 3.3.5 layout: a drink the server accepts puts its aura on the player.
+func _use_item() -> void:
+	var session: WowSession = WowClient.session
+	session.send_chat(WowSession.CHAT_SAY, ".additem %d" % WATER)
+	if not await _until(func() -> bool: return Inventory.find_item(WATER).x >= 0, "the water arrives"):
+		return
+	var at: Vector2i = Inventory.find_item(WATER)
+	if not await _until(func() -> bool: return not session.get_item_info(WATER).is_empty(),
+			"the water's item query answers"):
+		return
+	ItemTargeting.use_item(Inventory.wire_address(at.x, at.y))
+	var me: int = session.get_player_guid()
+	await _until(func() -> bool:
+		for aura: Dictionary in session.get_auras(me):
+			if aura["spell"] == DRINK_SPELL:
+				return true
+		return false, "using the water starts the drink")
 
 
 # Every race 3.3.5 offers, its classes out of CharBaseInfo and the scene behind it.

@@ -727,8 +727,7 @@ func use_container_item(bag: int, slot: int) -> void:
 	if session.get_item_info(item_entry).get("inventory_type", 0) != 0:
 		session.send_packet("CMSG_AUTOEQUIP_ITEM", PackedByteArray([address.x, address.y]))
 	else:
-		# Bag and slot, spell slot 0, and a target mask of 0, which is the player.
-		session.send_packet("CMSG_USE_ITEM", PackedByteArray([address.x, address.y, 0, 0, 0]))
+		ItemTargeting.use_item(address)
 
 
 func _on_container_item_hovered(bag: int, slot: int, button: ItemButton) -> void:

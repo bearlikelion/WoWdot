@@ -44,26 +44,52 @@ func cancel() -> bool:
 
 
 func apply(item_guid: int) -> void:
-	var payload: PackedByteArray = PackedByteArray()
+	var target: PackedByteArray = targets(TARGET_FLAG_ITEM, item_guid)
 	if _spell != 0:
-		payload.resize(4)
-		payload.encode_u32(0, _spell)
-		payload.append_array(_item_target(item_guid))
+		var payload: PackedByteArray = PackedByteArray()
+		if PacketReader.wotlk:
+			payload.append(0)
+		payload.resize(payload.size() + 4)
+		payload.encode_u32(payload.size() - 4, _spell)
+		if PacketReader.wotlk:
+			payload.append(0)
+		payload.append_array(target)
 		_session.send_packet("CMSG_CAST_SPELL", payload)
 	else:
-		# The third byte picks which of the item's spells to cast; the first is the only one in use.
-		payload = PackedByteArray([_used.x, _used.y, 0])
-		payload.append_array(_item_target(item_guid))
-		_session.send_packet("CMSG_USE_ITEM", payload)
+		use_item(_used, target)
 	cancel()
 
 
-# A packed guid is a mask of which bytes are not zero, followed by just those bytes.
-func _item_target(item_guid: int) -> PackedByteArray:
-	var target: PackedByteArray = PackedByteArray([TARGET_FLAG_ITEM, 0, 0])
+# CMSG_USE_ITEM; 3.3.5 adds a cast count, the item's spell and guid, a glyph slot and cast flags.
+static func use_item(
+	address: Vector2i, target: PackedByteArray = targets(0), glyph_slot: int = 0,
+) -> void:
+	var payload: PackedByteArray = PackedByteArray([address.x, address.y, 0])
+	if PacketReader.wotlk:
+		var item: int = Inventory.item_at(address)
+		var spells: PackedInt32Array = WowClient.session.get_item_info(Inventory.entry(item)) \
+				.get("use_spells", PackedInt32Array())
+		payload.resize(20)
+		payload.encode_u32(3, spells[0] if not spells.is_empty() else 0)
+		payload.encode_u64(7, item)
+		payload.encode_u32(15, glyph_slot)
+		payload[19] = 0
+	payload.append_array(target)
+	WowClient.session.send_packet("CMSG_USE_ITEM", payload)
+
+
+# SpellCastTargets: a flag mask, four bytes in 3.3.5 and two before, then a packed guid if one is named.
+static func targets(mask: int, guid: int = 0) -> PackedByteArray:
+	var target: PackedByteArray = PackedByteArray()
+	target.resize(4 if PacketReader.wotlk else 2)
+	target.encode_u16(0, mask)
+	if mask == 0:
+		return target
+	var guid_mask: int = target.size()
+	target.append(0)
 	for i: int in 8:
-		var byte: int = (item_guid >> (i * 8)) & 0xFF
+		var byte: int = (guid >> (i * 8)) & 0xFF
 		if byte != 0:
-			target[2] |= 1 << i
+			target[guid_mask] |= 1 << i
 			target.append(byte)
 	return target
