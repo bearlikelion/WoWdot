@@ -4,6 +4,11 @@ extends Node3D
 enum ObjectType { UNIT = 3, PLAYER = 4, GAMEOBJECT = 5 }
 
 const NAMEPLATE: PackedScene = preload("res://game/world/nameplate.tscn")
+const RAID_MARK: PackedScene = preload("res://game/world/raid_mark.tscn")
+const RAID_MARKS_TEXTURE: String = "Interface\\TargetingFrame\\UI-RaidTargetingIcons.blp"
+# The eight raid marks share one texture, four 64 pixel cells to a row.
+const RAID_MARK_PIXELS: float = 64.0
+const RAID_MARK_COLUMNS: int = 4
 const BLOB_SHADOW: PackedScene = preload("res://game/world/blob_shadow.tscn")
 # Server paths faster than this (yards per second) play the run animation.
 const RUN_SPEED_THRESHOLD: float = 4.0
@@ -63,6 +68,9 @@ var _riding: Dictionary[int, Dictionary] = {}
 var _game_object_displays: WowDBC
 var _quest_givers: Dictionary[int, bool] = {}
 var _markers: Dictionary[int, Node3D] = {}
+var _raid_marks: Array[Sprite3D] = []
+var _raid_marks_hash: int = 0
+var _raid_mark_frames: Array[AtlasTexture] = []
 # What quest givers offer depends on the quest log and level, so either changing asks again.
 var _quest_state: Array = []
 
@@ -127,6 +135,8 @@ func _process(delta: float) -> void:
 	for guid: int in _victims:
 		if not _paths.has(guid) and not _motions.has(guid) and _nodes.has(guid):
 			_face(_nodes[guid], _victims[guid])
+	if PartyFrame.target_icons.hash() != _raid_marks_hash:
+		_show_raid_marks()
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	if camera:
 		for marker: Node3D in _markers.values():
@@ -183,6 +193,8 @@ func _on_object_created(guid: int, type_id: int) -> void:
 		add_nameplate(guid, node)
 		UnitVoice.attach(node, guid, display, mount_display)
 		_on_object_updated(guid)
+		if PartyFrame.target_icons.values().has(guid):
+			_show_raid_marks()
 		if type_id == ObjectType.UNIT and NpcDialog.is_quest_giver(guid):
 			_quest_givers[guid] = true
 			_query_quest_givers(guid)
@@ -533,11 +545,50 @@ func _on_quest_giver_status(guid: int, status: int) -> void:
 
 # Above the nameplate's top line, however many lines it has.
 func _place_marker(guid: int) -> void:
-	if not _markers.has(guid) or not _nodes.has(guid):
-		return
+	if _markers.has(guid) and _nodes.has(guid):
+		_markers[guid].position.y = _above_name(guid)
+
+
+func _above_name(guid: int) -> float:
 	var lines: int = _nameplates[guid].text.count("\n") + 1 if _nameplates.has(guid) else 0
 	var above: float = NAMEPLATE_GAP + lines * NAMEPLATE_LINE_HEIGHT + MARKER_GAP
-	_markers[guid].position.y = _bounds[guid].end.y + above / _nodes[guid].scale.y
+	return _bounds[guid].end.y + above / _nodes[guid].scale.y
+
+
+# Raid target icons hang over the marked units, above their names.
+func _show_raid_marks() -> void:
+	_raid_marks_hash = PartyFrame.target_icons.hash()
+	for mark: Sprite3D in _raid_marks:
+		if is_instance_valid(mark):
+			mark.queue_free()
+	_raid_marks.clear()
+	for icon: int in PartyFrame.target_icons:
+		var guid: int = PartyFrame.target_icons[icon]
+		if not _nodes.has(guid) or not _bounds.has(guid):
+			continue
+		var mark: Sprite3D = RAID_MARK.instantiate()
+		mark.texture = _raid_mark_frame(icon)
+		_nodes[guid].add_child(mark)
+		mark.scale = Vector3.ONE / _nodes[guid].scale
+		mark.position.y = _above_name(guid) + mark.pixel_size * RAID_MARK_PIXELS / 2.0 \
+				/ _nodes[guid].scale.y
+		_raid_marks.append(mark)
+
+
+func _raid_mark_frame(icon: int) -> AtlasTexture:
+	if _raid_mark_frames.is_empty():
+		var sheet: WowTexture = WowTexture.new()
+		sheet.file = RAID_MARKS_TEXTURE
+		for i: int in RAID_MARK_COLUMNS * RAID_MARK_COLUMNS:
+			var frame: AtlasTexture = AtlasTexture.new()
+			frame.atlas = sheet
+			frame.region = Rect2(
+				i % RAID_MARK_COLUMNS * RAID_MARK_PIXELS,
+				floori(i / float(RAID_MARK_COLUMNS)) * RAID_MARK_PIXELS,
+				RAID_MARK_PIXELS, RAID_MARK_PIXELS,
+			)
+			_raid_mark_frames.append(frame)
+	return _raid_mark_frames[icon]
 
 
 func _on_melee_swing(
