@@ -4,6 +4,7 @@ extends Node
 # Can I Keep Him?, which a GM can grant outright.
 # Barbershop Chair, gameobject type 32.
 # Searing Totem and Stoneskin Totem, for the totem frame's order.
+const HEARTHSTONE_SPELL: int = 8690
 const FIRE_TOTEM_SPELL: int = 3599
 const EARTH_TOTEM_SPELL: int = 8071
 const BARBER_CHAIR: int = 190683
@@ -104,6 +105,10 @@ func _run() -> void:
 	await _barbershop()
 	await _calendar()
 	_totems()
+	var home: String = SpellText.describe(HEARTHSTONE_SPELL)
+	var area: String = AreaInfo.area_name(WowClient.home_area)
+	_check(not area.is_empty() and not home.contains("$") and home.contains(area),
+			"the hearthstone names the bound home (%s)" % home)
 	_finish()
 
 

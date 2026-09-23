@@ -19,10 +19,13 @@ var guild_bank: GuildBank = GuildBank.new(session)
 var barbershop: Barbershop = Barbershop.new(session)
 var calendar: Calendar = Calendar.new(session)
 var battlefield: BattlefieldManager = BattlefieldManager.new(session)
+# SMSG_BINDPOINTUPDATE's area, the home a hearthstone's $z names.
+var home_area: int = 0
 
 
 func _ready() -> void:
 	KeyBindings.apply()
+	session.packet_received.connect(_on_packet_received)
 
 
 func _process(_delta: float) -> void:
@@ -40,3 +43,8 @@ func map_name(map_id: int) -> String:
 	var maps: WowDBC = WowDBC.open(WowAssets.archive, "Map")
 	var row: int = maps.find(map_id)
 	return maps.get_string(row, "InternalName") if row >= 0 else ""
+
+
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "SMSG_BINDPOINTUPDATE" and payload.size() >= 20:
+		home_area = payload.decode_u32(16)

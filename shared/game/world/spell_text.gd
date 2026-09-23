@@ -140,6 +140,8 @@ static func _value(spell_id: int, token: String, index: int, divisor: int) -> St
 			return str(_spells.get_uint(row, "ProcCharges"))
 		"x":
 			return str(_spells.get_uint(row, "EffectChainTarget%d" % index))
+		"z":
+			return AreaInfo.area_name(WowClient.home_area)
 	return ""
 
 
