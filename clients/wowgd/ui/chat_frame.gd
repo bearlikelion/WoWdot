@@ -127,7 +127,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	WowClient.macros.line_requested.connect(_on_text_submitted)
-	%ChatFrame1TabText.text = WowStrings.get_text("GENERAL")
+	window_name = WowStrings.get_text("GENERAL")
 	%ChatFrameEditBoxLanguage.hide()
 	_edit_box.theme_type_variation = &"ChatEditBox"
 	# SetTextInsets moves with the header's width, so this one style is the edit box's own.

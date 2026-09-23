@@ -61,6 +61,7 @@ var _menu_guid: int = 0
 # Set when a panel opens the shared menu for itself, which then gets the chosen id.
 var _menu_callback: Callable = Callable()
 var _pullouts: Array[RaidPulloutFrame] = []
+var _chat_windows: ChatWindows
 var _duel: Duel
 var _named_pet: int = 0
 var _spell_failures: Dictionary = {}
@@ -262,10 +263,11 @@ func _ready() -> void:
 	ItemButton.insert_link = _chat.insert_link
 	_chat.item_ref_requested.connect(_on_item_ref_requested)
 	WowClient.session.item_info_received.connect(_on_item_ref_info)
-	var tab_at: Vector2 = _chat_frames[0].tab_position()
 	for frame: DockedChatFrame in _chat_frames:
-		tab_at.x += frame.dock_tab(tab_at)
 		frame.tab_selected.connect(_select_chat_frame.bind(frame))
+	_chat_windows = ChatWindows.new(_chat_frames, _open_menu, _popup.ask_name)
+	_chat_windows.layout_changed.connect(_dock_chat_tabs)
+	_dock_chat_tabs()
 	_select_chat_frame(_chat_frames[0])
 
 
@@ -897,6 +899,13 @@ func _on_bottom_bars_toggled(shown: bool) -> void:
 
 
 # FCF_SelectDockFrame: the docked frames share one area and show only the chosen one.
+# FCF_DockUpdate: each docked tab follows the one before it.
+func _dock_chat_tabs() -> void:
+	var tab_at: Vector2 = _chat_frames[0].tab_position()
+	for frame: DockedChatFrame in _chat_frames:
+		tab_at.x += frame.dock_tab(tab_at)
+
+
 func _select_chat_frame(selected: DockedChatFrame) -> void:
 	for frame: DockedChatFrame in _chat_frames:
 		frame.set_selected(frame == selected)

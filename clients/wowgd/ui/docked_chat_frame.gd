@@ -3,6 +3,7 @@ class_name DockedChatFrame
 extends WowScrollingMessageFrame
 
 signal tab_selected
+signal tab_menu_requested
 
 # DEFAULT_CHATFRAME_ALPHA and CHAT_FRAME_FADE_TIME from FloatingChatFrame.lua.
 const HOVER_ALPHA: float = 0.25
@@ -16,13 +17,22 @@ const UNUSED: Array[String] = [
 ]
 const SCROLL_BUTTONS: Array[String] = ["UpButton", "DownButton", "BottomButton"]
 
+## The node names' prefix when it is not the frame's own name, as for an extra chat window.
+@export var stem: String = ""
+
 var selected: bool = true
+## FCF_SetWindowName: the tab's text; the HUD lines the tabs up again after a change.
+var window_name: String = "":
+	set(value):
+		window_name = value
+		if is_node_ready():
+			(get_node("%" + _stem() + "TabText") as Label).text = value
 
 var _hovered: bool = false
 var _fade: Tween
 
-@onready var _tab: TextureButton = get_node("%" + name + "Tab")
-@onready var _background: TextureRect = get_node("%" + name + "Background")
+@onready var _tab: TextureButton = get_node("%" + _stem() + "Tab")
+@onready var _background: TextureRect = get_node("%" + _stem() + "Background")
 
 
 func _ready() -> void:
@@ -30,16 +40,18 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	for unused: String in UNUSED:
-		var node: CanvasItem = get_node_or_null("%" + name + unused)
+		var node: CanvasItem = get_node_or_null("%" + _stem() + unused)
 		if node:
 			node.hide()
 	_background.self_modulate = Color(0.0, 0.0, 0.0, 0.0)
 	_tab.modulate.a = 0.0
 	_tab.hide()
 	_tab.pressed.connect(tab_selected.emit)
-	(get_node("%" + name + "UpButton") as BaseButton).pressed.connect(scroll_up)
-	(get_node("%" + name + "DownButton") as BaseButton).pressed.connect(scroll_down)
-	(get_node("%" + name + "BottomButton") as BaseButton).pressed.connect(scroll_to_bottom)
+	_tab.gui_input.connect(_on_tab_input)
+	window_name = (get_node("%" + _stem() + "TabText") as Label).text
+	(get_node("%" + _stem() + "UpButton") as BaseButton).pressed.connect(scroll_up)
+	(get_node("%" + _stem() + "DownButton") as BaseButton).pressed.connect(scroll_down)
+	(get_node("%" + _stem() + "BottomButton") as BaseButton).pressed.connect(scroll_to_bottom)
 
 
 # MouseIsOver(chatFrame, 45, -10, -5, 5): the area reaches up over the tabs.
@@ -66,7 +78,7 @@ func set_selected(value: bool) -> void:
 	mouse_filter = Control.MOUSE_FILTER_PASS if value else Control.MOUSE_FILTER_IGNORE
 	_lines.get_parent().visible = value
 	for button: String in SCROLL_BUTTONS:
-		(get_node("%" + name + button) as CanvasItem).visible = value
+		(get_node("%" + _stem() + button) as CanvasItem).visible = value
 	_fade_to(_hovered)
 
 
@@ -89,3 +101,14 @@ func _fade_to(shown: bool) -> void:
 	)
 	if not shown:
 		_fade.chain().tween_callback(_tab.hide)
+
+
+func _stem() -> String:
+	return stem if not stem.is_empty() else String(name)
+
+
+# FCF_Tab_OnClick: a right click opens the window's options.
+func _on_tab_input(event: InputEvent) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click and click.button_index == MOUSE_BUTTON_RIGHT and not click.pressed:
+		tab_menu_requested.emit()

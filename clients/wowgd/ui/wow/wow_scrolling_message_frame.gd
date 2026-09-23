@@ -12,6 +12,14 @@ const FADE_SECONDS: float = 3.0
 @export var display_duration: float = 120.0
 @export var max_lines: int = 128
 
+## The chat window's own font size, or 0 for the theme's.
+var font_size: int = 0:
+	set(value):
+		font_size = value
+		if is_node_ready():
+			for line: RichTextLabel in _lines.get_children():
+				line.theme_type_variation = _line_variation()
+
 # How many of the newest lines are scrolled out of view below.
 var _scrolled: int = 0
 
@@ -37,7 +45,7 @@ func _process(_delta: float) -> void:
 func add_message(text: String, color: Color = Color.WHITE) -> void:
 	var line: RichTextLabel = LINE.instantiate()
 	line.text = "[color=#%s]%s[/color]" % [color.to_html(false), WowStrings.to_bbcode(text)]
-	line.theme_type_variation = StringName(font_variation + "Rich")
+	line.theme_type_variation = _line_variation()
 	line.set_meta(&"added", Time.get_ticks_msec() / 1000.0)
 	# Only lines with a link catch the mouse, so clicks elsewhere still reach the world.
 	if line.text.contains("[url="):
@@ -84,3 +92,9 @@ func _apply_scroll() -> void:
 	var count: int = _lines.get_child_count()
 	for i: int in count:
 		(_lines.get_child(i) as CanvasItem).visible = i < count - _scrolled
+
+
+func _line_variation() -> StringName:
+	if font_size > 0:
+		return WowFonts.sized_rich(font_variation, font_size)
+	return StringName(font_variation + "Rich")

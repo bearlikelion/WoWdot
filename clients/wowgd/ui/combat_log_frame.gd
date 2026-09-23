@@ -30,7 +30,7 @@ func _ready() -> void:
 	super()
 	if Engine.is_editor_hint():
 		return
-	%ChatFrame2TabText.text = WowStrings.get_text("COMBAT_LOG")
+	window_name = WowStrings.get_text("COMBAT_LOG")
 	WowClient.combat.logged.connect(_on_logged)
 
 

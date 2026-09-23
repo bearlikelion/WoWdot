@@ -11,6 +11,7 @@ const BORDER_HEIGHT: float = 15.0
 const TEXT_PADDING: float = 30.0
 const LEFT_INSET: float = 15.0
 const TITLE_COLOR: Color = Color(1.0, 0.82, 0.0)
+const DISABLED_COLOR: Color = Color(0.5, 0.5, 0.5)
 
 var _ids: PackedInt32Array = []
 
@@ -37,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		hide()
 
 
-# Each entry takes "text" and "id", and optionally "title" for a heading that cannot be picked.
+# Each entry takes "text" and "id", and optionally "title", "checked" or "disabled".
 # UIDropDownMenu_SetWidth on a converted dropdown: the middle stretches, the rest follows it.
 static func set_width(frame: Control, width: float) -> void:
 	const CAP: float = 25.0
@@ -69,10 +70,13 @@ func open(entries: Array[Dictionary], at: Vector2) -> void:
 			continue
 		var entry: Dictionary = entries[i]
 		var is_title: bool = entry.get("title", false)
+		var disabled: bool = entry.get("disabled", false)
 		var label: Label = get_node("%%DropDownList1Button%dNormalText" % (i + 1))
 		label.text = entry["text"]
-		label.modulate = TITLE_COLOR if is_title else Color.WHITE
-		(button as BaseButton).disabled = is_title
+		label.modulate = TITLE_COLOR if is_title else (DISABLED_COLOR if disabled else Color.WHITE)
+		(button as BaseButton).disabled = is_title or disabled
+		(get_node("%%DropDownList1Button%dCheck" % (i + 1)) as CanvasItem).visible = \
+				entry.get("checked", false)
 		_ids.append(entry["id"] if entry.has("id") else -1)
 		widest = maxf(widest, label.get_minimum_size().x + TEXT_PADDING)
 	size = Vector2(widest + LEFT_INSET * 2.0, entries.size() * BUTTON_HEIGHT + BORDER_HEIGHT * 2.0)

@@ -36,6 +36,16 @@ static func font(file: String) -> FontFile:
 	return _fonts[file]
 
 
+# A <name>Rich twin at another size, for chat windows set to their own font size.
+static func sized_rich(variation: StringName, size: int) -> StringName:
+	var sized: StringName = StringName("%s%dRich" % [variation, size])
+	if not THEME.has_theme_item(Theme.DATA_TYPE_FONT_SIZE, "normal_font_size", sized):
+		var rich: StringName = StringName(variation + "Rich")
+		THEME.set_type_variation(sized, rich)
+		THEME.set_font_size("normal_font_size", sized, size)
+	return sized
+
+
 # RichTextLabels read other theme items than Labels, so each font also gets a <name>Rich twin.
 static func _add_rich_variation(theme: Theme, variation: String) -> void:
 	var rich: StringName = StringName(variation + "Rich")
