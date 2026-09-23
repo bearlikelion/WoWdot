@@ -1,6 +1,9 @@
 class_name TaxiNodes
 extends RefCounted
 
+# The creature LoadDBCStores treats as no mount for that faction.
+const NO_MOUNT: int = 32981
+
 # The flight points this character has found, as SMSG_SHOWTAXINODES' eight mask words.
 const MASK_WORDS: int = 8
 const SAVE_PATH: String = "user://taxi_nodes.cfg"
@@ -44,11 +47,14 @@ static func all_on_map(map_id: int) -> Array[int]:
 	return ids
 
 
-# Flight points have a mount per faction; the other faction's have none.
+# Flight points have a mount per faction; the other faction's have none, or the placeholder.
 static func serves(node: int, alliance: bool) -> bool:
 	_open()
 	var row: int = _nodes.find(node)
-	return row >= 0 and _nodes.get_uint(row, "MountAlliance" if alliance else "MountHorde") != 0
+	if row < 0:
+		return false
+	var mount: int = _nodes.get_uint(row, "MountAlliance" if alliance else "MountHorde")
+	return mount != 0 and mount != NO_MOUNT
 
 
 static func node_name(node: int) -> String:

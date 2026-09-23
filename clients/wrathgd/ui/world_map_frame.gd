@@ -19,6 +19,8 @@ const WORLD_CONTINENTS: Array[int] = [1, 0]
 const LABELLED_IMPORTANCE: int = 1
 const MAJOR_IMPORTANCE: int = 2
 const LABEL_OFFSET: Vector2 = Vector2(10.0, -8.0)
+const OBJECTIVES_MARGIN: float = 15.0
+const OBJECTIVES_RAISE: float = 4.0
 
 # The WorldMapArea row shown: a continent (area 0), a zone, or -1 for the world.
 var _shown: int = -1
@@ -40,6 +42,7 @@ var _markers: Array[Control] = []
 var _position_wait: float = 0.0
 var _labels: Array[Label] = []
 var _arrow: TextureRect
+var _blob: QuestBlob
 
 @onready var _detail: Control = %WorldMapDetailFrame
 @onready var _button: BaseButton = %WorldMapButton
@@ -75,6 +78,28 @@ func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
 	WowAssets.interface.changed.connect(_update_markers)
 	WowClient.battlegrounds.positions_changed.connect(_update_markers)
+	WowClient.quest_pois.changed.connect(_update_markers)
+	_blob = QuestBlob.new()
+	_button.add_child(_blob)
+	_button.move_child(_blob, 0)
+	var objectives: WowButton = %WorldMapQuestShowObjectives
+	objectives.checked = true
+	# Its OnLoad pins it to the guide's bottom right, left of its own label.
+	var objectives_text: Label = %WorldMapQuestShowObjectivesText
+	objectives_text.text = WowStrings.get_text("SHOW_QUEST_OBJECTIVES_ON_MAP_TEXT")
+	var guide: Control = %WorldMapPositioningGuide
+	objectives.position = guide.position + guide.size - objectives.size \
+			+ Vector2(-OBJECTIVES_MARGIN - objectives_text.get_minimum_size().x, -OBJECTIVES_RAISE)
+	# The quest list beside the map belongs to its maximized quest mode, which is not ported.
+	for quest_part: String in [
+		"WorldMapQuestScrollFrame", "WorldMapQuestDetailScrollFrame",
+		"WorldMapQuestRewardScrollFrame", "WorldMapTrackQuest",
+	]:
+		(get_node("%" + quest_part) as CanvasItem).hide()
+	objectives.pressed.connect(func() -> void:
+		objectives.checked = not objectives.checked
+		_update_markers()
+	)
 
 
 func _process(delta: float) -> void:
@@ -177,6 +202,8 @@ func _update_markers() -> void:
 		label.queue_free()
 	_markers.clear()
 	_labels.clear()
+	_blob.outline = PackedVector2Array()
+	_blob.size = _button.size
 	if _shown < 0:
 		return
 	var map_id: int = _areas.get_uint(_areas.find(_shown), "MapID")
@@ -210,12 +237,42 @@ func _update_markers() -> void:
 				WorldMapMarker.Kind.FLAG_CARRIER if carrier else WorldMapMarker.Kind.TEAM_MATE,
 				session.get_object_name(guid), "",
 			)
+	if zone_level and (%WorldMapQuestShowObjectives as WowButton).checked:
+		_add_quest_pois(map_id)
 	if map_id == _player_map:
 		for guid: int in NpcDialog.quest_givers_offering():
 			_add_marker(
 				map_id, session.get_object_position(guid), WorldMapMarker.Kind.QUEST,
 				session.get_object_name(guid), "",
 			)
+
+
+# WorldMapFrame_UpdateQuests: turn-ins for finished quests, numbered objectives for the rest.
+func _add_quest_pois(map_id: int) -> void:
+	var number: int = 0
+	for slot: int in QuestLog.slots():
+		var quest_id: int = QuestLog.quest_id(slot)
+		var complete: bool = QuestLog.state(slot) == QuestLog.State.COMPLETE
+		var poi: Dictionary = WowClient.quest_pois.poi_on(quest_id, _shown, complete)
+		if poi.is_empty() or poi["points"].is_empty():
+			continue
+		var center: Vector2 = Vector2.ZERO
+		for point: Vector2 in poi["points"]:
+			center += point / poi["points"].size()
+		var title: String = WowClient.session.get_quest_info(quest_id).get("title", "")
+		var kind: WorldMapMarker.Kind = WorldMapMarker.Kind.QUEST_TURN_IN if complete \
+				else WorldMapMarker.Kind.QUEST_POI
+		var at: Vector3 = Vector3(center.x, center.y, 0.0)
+		var marker: WorldMapMarker = _add_marker(map_id, at, kind, title, "")
+		if marker == null or complete:
+			continue
+		number += 1
+		marker.number = number
+		if number == 1:
+			var outline: PackedVector2Array = []
+			for point: Vector2 in poi["points"]:
+				outline.append(_map_point(map_id, Vector3(point.x, point.y, 0.0)) * _button.size)
+			_blob.outline = outline
 
 
 # AreaPOI landmarks: inns, towns and the like, which the interface options can turn off.
@@ -389,4 +446,8 @@ func _on_marker_exited(marker: WorldMapMarker) -> void:
 # WorldMapFrame_OnShow: the map opens on the player's zone.
 func _on_visibility_changed() -> void:
 	if visible:
+		var quests: Array[int] = []
+		for slot: int in QuestLog.slots():
+			quests.append(QuestLog.quest_id(slot))
+		WowClient.quest_pois.query(quests)
 		show_area(_player_zone())

@@ -53,6 +53,8 @@ const HEROIC_DUNGEON: int = 1
 const GUILD_BANK_TEXT: String = "Tab info from glue_check"
 const GUILD_INFO_TEXT: String = "Guild info from glue_check"
 const RENAMED: String = "Wrathrenamed"
+# The Hunt Begins, whose objective and turn-in both have POIs on Mulgore's map.
+const POI_QUEST: int = 747
 const MACRO_NAME: String = "GlueMacro"
 const MACRO_BODY: String = "/say glue_check macro"
 const HEROIC_STRIKE: int = 78
@@ -141,6 +143,7 @@ func _run() -> void:
 	await _channel_pane()
 	await _macro_account_data()
 	await _binding_account_data()
+	await _quest_pois()
 	_combat_log_text()
 	var home: String = SpellText.describe(HEARTHSTONE_SPELL)
 	var area: String = AreaInfo.area_name(WowClient.home_area)
@@ -231,6 +234,30 @@ func _combat_log_text() -> void:
 	line = CombatLogFrame.format(hit)
 	_check(line == "%s's attack was dodged by %s." % [CHARACTER, CHARACTER],
 			"a dodge reads as the stock full text line (%s)" % line)
+
+
+# A Mulgore quest's objective shows on the world map as a numbered POI over its shaded area.
+func _quest_pois() -> void:
+	var session: WowSession = WowClient.session
+	session.send_chat(WowSession.CHAT_SAY, ".quest add %d" % POI_QUEST)
+	await _until(func() -> bool: return QuestLog.slots().any(
+		func(slot: int) -> bool: return QuestLog.quest_id(slot) == POI_QUEST
+	), "the POI quest enters the log")
+	var press: InputEventAction = InputEventAction.new()
+	press.action = "toggle_world_map"
+	press.pressed = true
+	Input.parse_input_event(press)
+	var map: WorldMapFrame = get_tree().root.find_child("WorldMapFrame", true, false)
+	var numbered: Callable = func() -> bool:
+		return map.visible and map.find_children("*", "WorldMapMarker", true, false).any(
+			func(marker: WorldMapMarker) -> bool:
+				return marker.kind == WorldMapMarker.Kind.QUEST_POI
+		)
+	if await _until(numbered, "the world map numbers the quest's objective"):
+		await _frames(30)
+		_capture("user://wotlk_quest_poi.png")
+	map.close_requested.emit()
+	session.send_chat(WowSession.CHAT_SAY, ".quest remove %d" % POI_QUEST)
 
 
 # Saving the key bindings stores the stock bindings cache, W moving forward among them.

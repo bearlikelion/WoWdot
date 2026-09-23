@@ -23,6 +23,7 @@ var battlefield: BattlefieldManager = BattlefieldManager.new(session)
 var vehicle: Vehicle = Vehicle.new(session)
 var difficulty: InstanceDifficulty = InstanceDifficulty.new(session)
 var spell_modifiers: SpellModifiers = SpellModifiers.new(session)
+var quest_pois: QuestPOIs = QuestPOIs.new(session)
 # SMSG_BINDPOINTUPDATE's area, the home a hearthstone's $z names.
 var home_area: int = 0
 
