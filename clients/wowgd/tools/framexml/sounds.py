@@ -18,6 +18,8 @@ EVENTS = {"OnClick": "click", "OnShow": "show", "OnHide": "hide"}
 PLAY_SOUND = re.compile(r'PlaySound\("([^"]+)"\)')
 CALL = re.compile(r"\b([A-Za-z_]\w*)\s*\(")
 FUNCTION = re.compile(r"^function\s+(\w+)\s*\([^)]*\)(.*?)^end", re.M | re.S)
+# Frames whose script picks between sounds by state; their GDScript plays the right one.
+STATEFUL = {"MinimapToggleButton"}
 
 
 def lua_functions(dump):
@@ -61,7 +63,7 @@ def visit(library, functions, node, parent, out):
             sound = sound_of(script.text or "", functions) if event else None
             if sound:
                 sounds.setdefault(event, sound)
-    if name and sounds and node.get("virtual") != "true":
+    if name and sounds and node.get("virtual") != "true" and name not in STATEFUL:
         out[name] = sounds
     for source in nodes:
         frames = child(source, "Frames")

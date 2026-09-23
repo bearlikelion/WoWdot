@@ -23,7 +23,7 @@ func _ready() -> void:
 	_zone_text.theme_type_variation = &"GameFontHighlight"
 	_zoom_in.pressed.connect(func() -> void: _view.zoom += 1)
 	_zoom_out.pressed.connect(func() -> void: _view.zoom -= 1)
-	_toggle.pressed.connect(func() -> void: _view.visible = not _view.visible)
+	_toggle.pressed.connect(_toggle_minimap)
 	_view.zoom_changed.connect(_on_zoom_changed)
 	_on_zoom_changed(_view.zoom)
 	var indicator: AtlasTexture = AtlasTexture.new()
@@ -73,6 +73,12 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			%MiniMapMailFrame.show()
 		"SMSG_MAIL_LIST_RESULT":
 			WowClient.session.send_packet("MSG_QUERY_NEXT_MAIL_TIME", PackedByteArray())
+
+
+# ToggleMinimap: closing and opening each have their own sound.
+func _toggle_minimap() -> void:
+	_view.visible = not _view.visible
+	WowAssets.audio.play_sound("igMiniMapOpen" if _view.visible else "igMiniMapClose")
 
 
 # PLAYER_AURAS_CHANGED: the frame shows the icon of whichever tracking aura is up.
