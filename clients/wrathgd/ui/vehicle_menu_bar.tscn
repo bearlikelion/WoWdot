@@ -1,0 +1,731 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/vehicle_menu_bar.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="PackedScene" path="res://ui/action_button_template.tscn" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Vehicles\\UI-Vehicles-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(8.36, 8.36, 47.92, 47.92)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Vehicles\\UI-Vehicles-Endcap.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(120, 81, 9, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(120, 115.2, 9, 25.6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(99, 81, 20, 78)
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[node name="VehicleMenuBar" type="Control"]
+script = ExtResource("1")
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = -485
+offset_top = -53
+offset_right = 485
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+
+[node name="VehicleMenuBarPitchUpButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VehicleMenuBarPitchUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VehicleMenuBarPitchUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VehicleMenuBarPitchUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_3")
+
+[node name="VehicleMenuBarPitchDownButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VehicleMenuBarPitchDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VehicleMenuBarPitchDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VehicleMenuBarPitchDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_3")
+
+[node name="VehicleMenuBarLeaveButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VehicleMenuBarLeaveButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+mouse_filter = 2
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VehicleMenuBarLeaveButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VehicleMenuBarLeaveButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 40
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_3")
+
+[node name="VehicleMenuBarActionButtonFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -1
+offset_right = 1
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="VehicleMenuBarActionButton1" parent="VehicleMenuBarActionButtonFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -59
+offset_right = 60
+offset_bottom = 1
+
+[node name="VehicleMenuBarActionButton2" parent="VehicleMenuBarActionButtonFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 62
+offset_top = -59
+offset_right = 122
+offset_bottom = 1
+
+[node name="VehicleMenuBarActionButton3" parent="VehicleMenuBarActionButtonFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 124
+offset_top = -59
+offset_right = 184
+offset_bottom = 1
+
+[node name="VehicleMenuBarActionButton4" parent="VehicleMenuBarActionButtonFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 186
+offset_top = -59
+offset_right = 246
+offset_bottom = 1
+
+[node name="VehicleMenuBarActionButton5" parent="VehicleMenuBarActionButtonFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 248
+offset_top = -59
+offset_right = 308
+offset_bottom = 1
+
+[node name="VehicleMenuBarActionButton6" parent="VehicleMenuBarActionButtonFrame" instance=ExtResource("3")]
+unique_name_in_owner = true
+offset_left = 310
+offset_top = -59
+offset_right = 370
+offset_bottom = 1
+
+[node name="VehicleMenuBarPitchSlider" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 192
+offset_top = -83
+offset_right = 223
+offset_bottom = -5
+ignore_texture_size = true
+
+[node name="VehicleMenuBarPitchSliderBG" type="TextureRect" parent="VehicleMenuBarPitchSlider"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 31
+offset_bottom = 78
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="VehicleMenuBarPitchSliderMarker" type="TextureRect" parent="VehicleMenuBarPitchSlider"]
+unique_name_in_owner = true
+offset_left = 0.5
+offset_top = 31.5
+offset_right = 30.5
+offset_bottom = 46.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="VehicleMenuBarPitchSliderOverlayThing" type="TextureRect" parent="VehicleMenuBarPitchSlider"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 31
+offset_bottom = 78
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrame" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+
+[node name="VehicleMenuBarArtFrameBACKGROUND1" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBACKGROUND2" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBACKGROUND3" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBORDER1" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBORDER2" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBORDER3" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBORDER4" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBORDER5" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBORDER6" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameBORDER7" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK1" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK2" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK3" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK4" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK5" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK6" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK7" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK8" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK9" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameARTWORK10" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameOVERLAY1" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameOVERLAY2" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameOVERLAY3" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarArtFrameOVERLAY4" type="TextureRect" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarHealthBar" type="TextureProgressBar" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_8")
+nine_patch_stretch = true
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 3
+
+[node name="VehicleMenuBarHealthBarBackground" type="TextureRect" parent="VehicleMenuBarArtFrame/VehicleMenuBarHealthBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+show_behind_parent = true
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarHealthBarOverlay" type="TextureRect" parent="VehicleMenuBarArtFrame/VehicleMenuBarHealthBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarHealthBarText" type="Label" parent="VehicleMenuBarArtFrame/VehicleMenuBarHealthBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0
+offset_top = -9
+offset_right = 0
+offset_bottom = 3
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"VehicleMenuBarStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VehicleMenuBarPowerBar" type="TextureProgressBar" parent="VehicleMenuBarArtFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_8")
+nine_patch_stretch = true
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 3
+
+[node name="VehicleMenuBarPowerBarBackground" type="TextureRect" parent="VehicleMenuBarArtFrame/VehicleMenuBarPowerBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+show_behind_parent = true
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarPowerBarOverlay" type="TextureRect" parent="VehicleMenuBarArtFrame/VehicleMenuBarPowerBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 1
+anchor_right = 0.5
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleMenuBarPowerBarText" type="Label" parent="VehicleMenuBarArtFrame/VehicleMenuBarPowerBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 0
+offset_top = -9
+offset_right = 0
+offset_bottom = 3
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"VehicleMenuBarStatusBarText"
+horizontal_alignment = 1
+vertical_alignment = 1

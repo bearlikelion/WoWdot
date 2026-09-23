@@ -265,6 +265,13 @@ func head_position(guid: int) -> Vector3:
 	return _nodes[guid].global_transform * Vector3(0.0, _bounds[guid].end.y, 0.0)
 
 
+# The unit's height as drawn, or 0 for a unit that is not shown.
+func unit_height(guid: int) -> float:
+	if not _nodes.has(guid) or not _bounds.has(guid):
+		return 0.0
+	return _bounds[guid].end.y * _nodes[guid].scale.y
+
+
 # Half the unit's footprint across, scaled as drawn, or 0 for a unit that is not shown.
 func unit_radius(guid: int) -> float:
 	if not _nodes.has(guid) or not _bounds.has(guid):

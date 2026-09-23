@@ -49,7 +49,6 @@ const PANEL_TIPS: Dictionary[GamePanel, Array] = {
 const LOW_LATENCY: int = 300
 const MEDIUM_LATENCY: int = 600
 const LATENCY_INTERVAL: float = 10.0
-const VEHICLE_EXIT_ICON: String = "Interface\\Icons\\Spell_Shadow_SacrificialShield.blp"
 const PORTRAIT_NORMAL: Rect2 = Rect2(0.2, 0.0666, 0.6, 0.8334)
 const PORTRAIT_PUSHED: Rect2 = Rect2(0.2666, 0.0, 0.6, 0.8333)
 
@@ -101,15 +100,7 @@ func _ready() -> void:
 		button.pressed.connect(panel_toggled.emit.bind(_micro_buttons[button]))
 		button.mouse_entered.connect(_on_micro_button_hovered.bind(button))
 		button.mouse_exited.connect(_on_micro_button_left.bind(button))
-	# PossessBar_UpdateState: a driven vehicle shows only the cancel slot, which gets out.
-	var leave: ActionButton = %PossessButton2
-	leave.command_icon = VEHICLE_EXIT_ICON
-	leave.pressed.connect(WowClient.vehicle.leave)
-	%PossessButton1.hide()
-	%PossessBackground1.hide()
-	WowClient.vehicle.changed.connect(
-		func() -> void: %PossessBarFrame.visible = WowClient.vehicle.driving != 0
-	)
+	WowClient.vehicle.changed.connect(func() -> void: visible = WowClient.vehicle.driving == 0)
 	%CharacterMicroButton.button_down.connect(_set_portrait_pushed.bind(true))
 	%CharacterMicroButton.button_up.connect(_set_portrait_pushed.bind(false))
 	for bag: int in range(1, Inventory.BAG_COUNT + 1):

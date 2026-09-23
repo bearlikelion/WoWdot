@@ -192,6 +192,7 @@ func _on_vehicle_changed() -> void:
 	_player.controllable = true
 	if _player.model():
 		_player.model().visible = driving == 0
+	_player.frame_vehicle(_entities.unit_height(driving), _entities.unit_radius(driving))
 
 
 func _unhandled_input(event: InputEvent) -> void:

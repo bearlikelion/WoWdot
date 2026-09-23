@@ -127,7 +127,7 @@ func _run() -> void:
 	_finish()
 
 
-# A spawned demolisher taken by spellclick is driven forward, then left from the possess bar.
+# A spawned demolisher taken by spellclick is driven forward, then left from the vehicle bar.
 func _vehicle() -> void:
 	var session: WowSession = WowClient.session
 	var me: int = session.get_player_guid()
@@ -158,8 +158,10 @@ func _vehicle() -> void:
 	_capture("user://wotlk_vehicle.png")
 	_check(WowClient.vehicle.driving == vehicles[0],
 			"the demolisher is still driven after the drive")
-	var leave: BaseButton = get_tree().root.find_child("PossessButton2", true, false)
-	_check(leave.is_visible_in_tree(), "the possess bar offers a way out of the vehicle")
+	var leave: BaseButton = get_tree().root.find_child("VehicleMenuBarLeaveButton", true, false)
+	_check(leave.is_visible_in_tree(), "the vehicle bar offers a way out of the vehicle")
+	var main_bar: Control = get_tree().root.find_child("MainMenuBar", true, false)
+	_check(not main_bar.visible, "the vehicle bar replaces the main action bar")
 	leave.pressed.emit()
 	if await _until(func() -> bool: return WowClient.vehicle.driving == 0, "the player gets out"):
 		await _frames(60)

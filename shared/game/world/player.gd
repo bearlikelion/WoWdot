@@ -75,6 +75,8 @@ const MIN_ZOOM: float = 1.5
 # The stock default; its Max Camera Distance slider doubles this at most.
 const MAX_ZOOM: float = 15.0
 const ZOOM_STEP: float = 1.2
+# A driven vehicle keeps the camera this many of its radii back, so it never sits inside the hull.
+const VEHICLE_ZOOM: float = 2.5
 const CLICK_SLOP: float = 4.0
 const LONGITUDINAL: int = MoveFlag.FORWARD | MoveFlag.BACKWARD
 const STRAFE: int = MoveFlag.STRAFE_LEFT | MoveFlag.STRAFE_RIGHT
@@ -120,6 +122,8 @@ var _ascending: bool = false
 var _press_position: Vector2 = Vector2.ZERO
 var _right_press_position: Vector2 = Vector2.ZERO
 var _drag_distance: float = 0.0
+var _min_zoom: float = MIN_ZOOM
+var _pivot_height: float = 0.0
 var _model: Node3D
 var _auto_run: bool = false
 # The liquid surface over the player, set by the world each frame, NAN where there is none.
@@ -167,9 +171,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				elif _drag_distance < CLICK_SLOP:
 					clicked.emit(_press_position)
 			MOUSE_BUTTON_WHEEL_UP:
-				_arm.spring_length = maxf(_arm.spring_length / ZOOM_STEP, MIN_ZOOM)
+				_arm.spring_length = maxf(_arm.spring_length / ZOOM_STEP, _min_zoom)
 			MOUSE_BUTTON_WHEEL_DOWN:
-				_arm.spring_length = minf(_arm.spring_length * ZOOM_STEP, MAX_ZOOM)
+				_arm.spring_length = minf(_arm.spring_length * ZOOM_STEP, maxf(MAX_ZOOM, _min_zoom))
 		if not (_mouse_turning or _orbiting):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		return
@@ -358,6 +362,15 @@ func force_flag(flag: MoveFlag, apply: bool, counter: int) -> void:
 func knock_back(take_off_velocity: Vector3, counter: int) -> void:
 	_take_off(_flags & ~(LONGITUDINAL | STRAFE), take_off_velocity)
 	_send("CMSG_MOVE_KNOCK_BACK_ACK", _flags, counter)
+
+
+# Frames a driven vehicle from its top and past its radius; zero sizes put the player's view back.
+func frame_vehicle(height: float, radius: float) -> void:
+	if _pivot_height == 0.0:
+		_pivot_height = _pivot.position.y
+	_pivot.position.y = height if height > 0.0 else _pivot_height
+	_min_zoom = maxf(radius * VEHICLE_ZOOM, MIN_ZOOM)
+	_arm.spring_length = clampf(_arm.spring_length, _min_zoom, maxf(MAX_ZOOM, _min_zoom))
 
 
 func set_model(body: Node3D) -> void:

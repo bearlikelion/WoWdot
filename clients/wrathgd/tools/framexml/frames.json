@@ -499,6 +499,11 @@
    "script": "res://ui/temporary_enchant_frame.gd"
   },
   {
+   "frame": "VehicleMenuBar",
+   "out": "ui/vehicle_menu_bar.tscn",
+   "script": "res://ui/vehicle_menu_bar.gd"
+  },
+  {
    "frame": "TargetDebuffFrameTemplate",
    "out": "ui/target_debuff_frame.tscn",
    "template": true

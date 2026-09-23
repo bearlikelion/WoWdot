@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://bam1m4uuy3pl5" path="res://ui/theme.tres" id="2_theme"]
 [ext_resource type="Theme" uid="uid://03nk5nhbqtxc" path="res://ui/fonts.tres" id="4_fonts"]
 [ext_resource type="PackedScene" uid="uid://bnfpuen12o1q6" path="res://ui/main_menu_bar.tscn" id="5_bar"]
+[ext_resource type="PackedScene" path="res://ui/vehicle_menu_bar.tscn" id="5_vehicle"]
 [ext_resource type="PackedScene" path="res://ui/player_frame.tscn" id="6_player"]
 [ext_resource type="PackedScene" path="res://ui/target_frame.tscn" id="7_target"]
 [ext_resource type="PackedScene" uid="uid://t55ke7okpvwe" path="res://ui/casting_bar_frame.tscn" id="8_cast"]
@@ -53,6 +54,10 @@ mouse_filter = 2
 theme = ExtResource("4_fonts")
 
 [node name="MainMenuBar" parent="UIParent" unique_id=83189476 instance=ExtResource("5_bar")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="VehicleMenuBar" parent="UIParent" instance=ExtResource("5_vehicle")]
 unique_name_in_owner = true
 layout_mode = 1
 
