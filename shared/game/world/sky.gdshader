@@ -9,7 +9,7 @@ uniform vec3 sky_horizon : source_color;
 uniform vec3 fog_color : source_color;
 uniform vec3 disc_color : source_color;
 uniform vec3 halo_color : source_color;
-// Light.dbc's cloud bands, left in the gamma space the stock client adds them in.
+// Light.dbc's cloud bands, raw bytes blended as linear like benilla, which keeps them pale.
 uniform vec3 cloud_sun;
 uniform vec3 cloud_slope;
 uniform vec3 cloud_base;
@@ -21,9 +21,9 @@ uniform float halo_size : hint_range(0.0, 1.0) = 0.35;
 uniform vec2 wind = vec2(0.004, 0.0015);
 uniform sampler2D cloud_noise : repeat_enable, filter_linear_mipmap;
 
-// The stock cloud dome spans 45 degrees down from the zenith as a 128 cell tile.
+// The stock cloud tile spans 45 degrees down from the zenith, and anything lower sits on its rim.
 vec2 dome_cells(vec3 direction) {
-	float polar = acos(clamp(direction.y, -1.0, 1.0));
+	float polar = min(acos(clamp(direction.y, -1.0, 1.0)), PI / 4.0);
 	vec2 across = length(direction.xz) > 0.0001 ? normalize(direction.xz) : vec2(0.0);
 	return across * polar / (PI / 4.0) * 64.0;
 }
@@ -59,8 +59,7 @@ void sky() {
 			vec2 toward = dome_cells(LIGHT0_DIRECTION) - cells;
 			cloud += cloud_sun * lift / sqrt(dot(toward, toward) + lift * lift) * cloud_glow;
 		}
-		vec3 sky_gamma = pow(max(color, vec3(0.0)), vec3(1.0 / 2.2));
-		color = pow(mix(sky_gamma, min(cloud, vec3(1.0)), cover * 0.9), vec3(2.2));
+		color = mix(color, min(cloud, vec3(1.0)), cover * 0.9);
 	}
 	COLOR = color;
 }
