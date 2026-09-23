@@ -553,13 +553,25 @@
     "SpecialEffect2": 13
   },
   "Talent": {
-    "Column": 3,
     "ID": 0,
-    "PrereqRank0": 12,
-    "PrereqTalent0": 9,
-    "RankSpell0": 4,
+    "TabID": 1,
     "Row": 2,
-    "TabID": 1
+    "Column": 3,
+    "RankSpell0": 4,
+    "RankSpell1": 5,
+    "RankSpell2": 6,
+    "RankSpell3": 7,
+    "RankSpell4": 8,
+    "RankSpell5": 9,
+    "RankSpell6": 10,
+    "RankSpell7": 11,
+    "RankSpell8": 12,
+    "PrereqTalent0": 13,
+    "PrereqTalent1": 14,
+    "PrereqTalent2": 15,
+    "PrereqRank0": 16,
+    "PrereqRank1": 17,
+    "PrereqRank2": 18
   },
   "TalentTab": {
     "BackgroundFile": 23,

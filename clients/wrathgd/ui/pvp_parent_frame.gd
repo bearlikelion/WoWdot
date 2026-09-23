@@ -5,6 +5,7 @@ signal close_requested
 
 # PVPTeam_Update lists the teams by size, one button each.
 const TEAM_SIZES: Array[int] = [2, 3, 5]
+const TAB_OVERLAP: float = -16.0
 const MEMBERS_SHOWN: int = 10
 const LOW_PLAYED_PERCENT: int = 10
 const BANNER: String = "Interface\\PVPFrame\\PVP-Banner-%d.blp"
@@ -49,8 +50,16 @@ func _ready() -> void:
 	%PVPFrameToggleButton.pressed.connect(_toggle_season)
 	%PVPTeamDetailsToggleButton.pressed.connect(_toggle_season)
 	%PVPTeamDetailsCloseButton.pressed.connect(%PVPTeamDetails.hide)
+	var tabs: Array[Control] = []
 	for tab: int in [1, 2]:
-		(get_node("%%PVPParentFrameTab%d" % tab) as BaseButton).pressed.connect(show_tab.bind(tab))
+		var button: BaseButton = get_node("%%PVPParentFrameTab%d" % tab)
+		button.pressed.connect(show_tab.bind(tab))
+		tabs.append(button)
+	PanelManager.chain_tabs(tabs, TAB_OVERLAP)
+	for i: int in TEAM_SIZES.size():
+		var data: String = "%%PVPTeam%dData" % (i + 1)
+		space_around(get_node(data + "_"), get_node(data + "Wins"), get_node(data + "Loss"))
+	space_around(%PVPTeamDetails_, %PVPTeamDetailsWins, %PVPTeamDetailsLoss)
 	%PVPBattlegroundFrame.close_requested.connect(close_requested.emit)
 	%PVPFrameOffSeason.hide()
 	%PVPTeamDetailsAddTeamMember.hide()
@@ -98,8 +107,8 @@ func _show_honor() -> void:
 	faction.file = FACTION_ICON % ("Horde" if race in [2, 5, 6, 8, 10] else "Alliance")
 	%PVPFrameHonorIcon.texture = faction
 	for prefix: String in ["%PVPFrameHonor", "%PVPFrameArena"]:
-		_place_after(get_node(prefix + "Points"), get_node(prefix + "Label"), POINTS_GAP)
-		_place_after(get_node(prefix + "Icon"), get_node(prefix + "Points"), ICON_GAP)
+		place_after(get_node(prefix + "Points"), get_node(prefix + "Label"), POINTS_GAP)
+		place_after(get_node(prefix + "Icon"), get_node(prefix + "Points"), ICON_GAP)
 
 
 func _show_teams() -> void:
@@ -128,8 +137,9 @@ func _show_teams() -> void:
 		type_label.visible = not shown
 		type_label.text = WowStrings.get_text("PVP_TEAMSIZE") % [team_size, team_size]
 		var banner: TextureRect = get_node(prefix + "StandardBanner")
-		banner.texture = _texture(BANNER % team_size)
-		banner.self_modulate = _color(team.get("background", 0xFFFFFF)) if shown else Color.WHITE
+		banner.texture = load_texture(BANNER % team_size)
+		var background: int = team.get("background", 0xFFFFFF)
+		banner.self_modulate = team_color(background) if shown else Color.WHITE
 		if shown:
 			_show_team_data(prefix, team_size, info, team)
 
@@ -158,11 +168,11 @@ func _show_team_data(prefix: String, team_size: int, info: Dictionary, team: Dic
 				LOW_PLAYED_COLOR if percent < LOW_PLAYED_PERCENT else Color.WHITE
 		played_caption.text = WowStrings.get_text("PLAYED")
 	var border: TextureRect = get_node(prefix + "StandardBorder")
-	border.texture = _texture(BANNER_BORDER % [team_size, team["border"]])
-	border.self_modulate = _color(team["border_color"])
+	border.texture = load_texture(BANNER_BORDER % [team_size, team["border"]])
+	border.self_modulate = team_color(team["border_color"])
 	var emblem: TextureRect = get_node(prefix + "StandardEmblem")
-	emblem.texture = _texture(EMBLEM % team["emblem"])
-	emblem.self_modulate = _color(team["emblem_color"])
+	emblem.texture = load_texture(EMBLEM % team["emblem"])
+	emblem.self_modulate = team_color(team["emblem_color"])
 	%PVPFrameToggleButtonText.text = WowStrings.get_text(
 		"ARENA_THIS_WEEK_TOGGLE" if season else "ARENA_THIS_SEASON_TOGGLE"
 	)
@@ -176,7 +186,7 @@ func _show_details() -> void:
 	var wins: int = team.get("wins_season" if season else "wins_week", 0)
 	%PVPTeamDetailsName.text = team.get("name", "")
 	%PVPTeamDetailsSize.text = WowStrings.get_text("PVP_TEAMSIZE") % [team_size, team_size]
-	_place_after(%PVPTeamDetailsSize, %PVPTeamDetailsName, TEAM_SIZE_GAP)
+	place_after(%PVPTeamDetailsSize, %PVPTeamDetailsName, TEAM_SIZE_GAP)
 	%PVPTeamDetailsRank.text = str(team.get("rank", 0))
 	%PVPTeamDetailsRating.text = str(team.get("rating", 0))
 	%PVPTeamDetailsGames.text = str(played)
@@ -218,18 +228,28 @@ func _show_member(prefix: String, member: Dictionary, team_played: int) -> void:
 
 
 # A LEFT to RIGHT anchor on a FontString sized by its text, which the converter cannot measure.
-static func _place_after(node: Control, label: Label, gap: float) -> void:
+static func place_after(node: Control, label: Label, gap: float) -> void:
 	label.size.x = label.get_combined_minimum_size().x
 	node.position.x = label.position.x + label.size.x + gap
 
 
-static func _texture(path: String) -> WowTexture:
+# A " - " FontString between two numbers anchored to its sides, spaced once its text has a width.
+static func space_around(separator: Label, left: Label, right: Label) -> void:
+	var center: float = (separator.offset_left + separator.offset_right) / 2.0
+	var half: float = separator.get_minimum_size().x / 2.0
+	left.offset_left = center - half
+	left.offset_right = center - half
+	right.offset_left = center + half
+	right.offset_right = center + half
+
+
+static func load_texture(path: String) -> WowTexture:
 	var texture: WowTexture = WowTexture.new()
 	texture.file = path
 	return texture
 
 
-static func _color(argb: int) -> Color:
+static func team_color(argb: int) -> Color:
 	return Color8((argb >> 16) & 0xFF, (argb >> 8) & 0xFF, argb & 0xFF)
 
 

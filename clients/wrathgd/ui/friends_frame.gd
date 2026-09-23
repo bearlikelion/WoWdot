@@ -18,6 +18,7 @@ enum GuildResult { OK, INTERNAL, ALREADY_IN_GUILD, ALREADY_IN_GUILD_S, INVITED, 
 	NOT_ALLIED, RANK_TOO_HIGH_S, RANK_TOO_LOW_S }
 
 const CONTACT_FRIEND: int = 0x01
+const TAB_OVERLAP: float = -14.0
 const CONTACT_IGNORED: int = 0x02
 # Flags, a gold limit and six bank tabs of two words each.
 const WOTLK_RANK_WORDS: int = 14
@@ -108,7 +109,12 @@ func _ready() -> void:
 	%FriendsTabHeaderTab3.hide()
 	(%WhoFrame as WhoFrame).friend_requested.connect(_on_who_friend_requested)
 	%FriendsFrameTab3.pressed.connect(show_tab.bind(Tab.GUILD))
-	%FriendsFrameTab4.pressed.connect(show_tab.bind(Tab.RAID))
+	%FriendsFrameTab5.pressed.connect(show_tab.bind(Tab.RAID))
+	# The Chat tab's channel list is not ported.
+	%FriendsFrameTab4.hide()
+	PanelManager.chain_tabs(
+		[%FriendsFrameTab1, %FriendsFrameTab2, %FriendsFrameTab3, %FriendsFrameTab5], TAB_OVERLAP
+	)
 	%FriendsFrameAddFriendButton.pressed.connect(
 		func() -> void: name_requested.emit(_tab)
 	)

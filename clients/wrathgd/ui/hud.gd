@@ -427,6 +427,10 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_BINDER_CONFIRM":
 		_ask_bind(PacketReader.new(payload).u64())
 		return
+	# A cast count and the spell come before the SpellCastResult.
+	if opcode == "SMSG_PET_CAST_FAILED" and payload.size() >= 6:
+		_show_cast_failure(WowClient.pet.guid, payload[5])
+		return
 	if opcode == "SMSG_SUMMON_REQUEST":
 		_ask_summon(PacketReader.new(payload))
 		return
@@ -932,9 +936,12 @@ func _fit_ui_parent() -> void:
 
 # Interrupts arrive with reason -1 and are shown by the casting bar instead.
 func _on_spell_cast_failed(caster: int, _spell_id: int, reason: int) -> void:
+	if caster == WowClient.session.get_player_guid() and reason >= 0:
+		_show_cast_failure(caster, reason)
+
+
+func _show_cast_failure(caster: int, reason: int) -> void:
 	var session: WowSession = WowClient.session
-	if caster != session.get_player_guid() or reason < 0:
-		return
 	var key: String = _spell_failures.get(str(reason), "")
 	if key == "SPELL_FAILED_NO_POWER":
 		var power: int = (session.get_field(caster, "UNIT_FIELD_BYTES_0") >> 24) & 0xFF

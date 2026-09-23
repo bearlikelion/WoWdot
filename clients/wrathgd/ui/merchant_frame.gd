@@ -9,6 +9,7 @@ signal error_raised(text: String)
 enum Tab { MERCHANT = 1, BUYBACK }
 
 const MERCHANT_ITEMS_PER_PAGE: int = 10
+const TAB_OVERLAP: float = -16.0
 const BUYBACK_ITEMS_PER_PAGE: int = 12
 const UNLIMITED: int = -1
 const NPC_FLAG_REPAIR: int = 0x4000
@@ -55,6 +56,7 @@ func _ready() -> void:
 	buyback_button.mouse_exited.connect(_hide_tooltip.bind(buyback_button))
 	for tab: Tab in [Tab.MERCHANT, Tab.BUYBACK]:
 		(get_node("%%MerchantFrameTab%d" % tab) as BaseButton).pressed.connect(_show_tab.bind(tab))
+	PanelManager.chain_tabs([%MerchantFrameTab1, %MerchantFrameTab2], TAB_OVERLAP)
 	%MerchantPrevPageButton.pressed.connect(_turn_page.bind(-1))
 	%MerchantNextPageButton.pressed.connect(_turn_page.bind(1))
 	%MerchantRepairAllButton.pressed.connect(_repair_all)

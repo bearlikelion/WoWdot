@@ -12,6 +12,7 @@ enum Tab { BROWSE, BID, AUCTIONS }
 enum Duration { SHORT = 120, MEDIUM = 480, LONG = 1440 }
 
 const ROWS: int = 8
+const TAB_OVERLAP: float = -8.0
 const AUCTION_OK: int = 0
 const NO_FILTER: int = 0xFFFFFFFF
 # SMSG_AUCTION_COMMAND_RESULT actions.
@@ -55,6 +56,7 @@ func _ready() -> void:
 	%AuctionFrameTab1.pressed.connect(show_tab.bind(Tab.BROWSE))
 	%AuctionFrameTab2.pressed.connect(show_tab.bind(Tab.BID))
 	%AuctionFrameTab3.pressed.connect(show_tab.bind(Tab.AUCTIONS))
+	PanelManager.chain_tabs([%AuctionFrameTab1, %AuctionFrameTab2, %AuctionFrameTab3], TAB_OVERLAP)
 	%BrowseSearchButton.pressed.connect(search)
 	%BrowseBidButton.pressed.connect(_bid)
 	%BrowseBuyoutButton.pressed.connect(_buyout)

@@ -107,6 +107,15 @@ static func select_tab(tab: Control, selected: bool) -> void:
 	label.theme_type_variation = &"GameFontHighlightSmall" if selected else &"GameFontNormalSmall"
 
 
+# Tabs anchored LEFT of the previous tab's RIGHT, placed once their text has sized them.
+static func chain_tabs(tabs: Array, overlap: float, padding: float = 0.0) -> void:
+	var x: float = tabs[0].position.x
+	for tab: Control in tabs:
+		resize_tab(tab, padding)
+		tab.position.x = x
+		x += tab.size.x + overlap
+
+
 # PanelTemplates_TabResize: the middle piece grows to the tab's text plus padding.
 static func resize_tab(tab: Control, padding: float) -> void:
 	var text: Label = tab.get_node(tab.name + "Text")

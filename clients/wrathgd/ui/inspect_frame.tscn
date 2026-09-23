@@ -5,8 +5,9 @@
 [ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="3"]
 [ext_resource type="PackedScene" path="res://ui/wow/wow_model_frame.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://ui/item_button.tscn" id="5"]
-[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="6"]
-[ext_resource type="PackedScene" path="res://ui/talent_button.tscn" id="7"]
+[ext_resource type="Script" path="res://ui/inspect_talent_frame.gd" id="6"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="7"]
+[ext_resource type="PackedScene" path="res://ui/talent_button.tscn" id="8"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
@@ -2923,6 +2924,7 @@ offset_bottom = -90
 
 [node name="InspectTalentFrame" type="Control" parent="."]
 unique_name_in_owner = true
+script = ExtResource("6")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1
@@ -3434,7 +3436,7 @@ grow_vertical = 2
 
 [node name="InspectTalentFrameScrollFrame" type="Control" parent="InspectTalentFrame"]
 unique_name_in_owner = true
-script = ExtResource("6")
+script = ExtResource("7")
 layout_mode = 1
 anchor_left = 1
 anchor_right = 1
@@ -3900,280 +3902,280 @@ mouse_filter = 2
 texture = SubResource("WowTexture_77")
 expand_mode = 1
 
-[node name="InspectTalentFrameTalent1" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent1" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent2" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent2" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent3" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent3" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent4" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent4" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent5" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent5" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent6" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent6" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent7" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent7" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent8" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent8" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent9" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent9" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent10" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent10" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent11" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent11" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent12" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent12" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent13" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent13" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent14" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent14" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent15" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent15" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent16" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent16" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent17" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent17" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent18" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent18" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent19" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent19" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent20" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent20" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent21" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent21" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent22" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent22" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent23" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent23" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent24" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent24" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent25" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent25" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent26" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent26" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent27" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent27" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent28" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent28" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent29" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent29" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent30" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent30" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent31" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent31" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent32" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent32" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent33" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent33" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent34" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent34" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent35" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent35" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent36" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent36" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent37" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent37" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent38" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent38" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent39" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent39" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0
 offset_right = 37
 offset_bottom = 37
 
-[node name="InspectTalentFrameTalent40" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("7")]
+[node name="InspectTalentFrameTalent40" parent="InspectTalentFrame/InspectTalentFrameScrollFrame/InspectTalentFrameScrollFrameClip/InspectTalentFrameScrollChildFrame" instance=ExtResource("8")]
 unique_name_in_owner = true
 offset_left = 0
 offset_top = 0

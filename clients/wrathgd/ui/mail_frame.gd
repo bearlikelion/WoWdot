@@ -8,6 +8,7 @@ signal mail_opened(mail: Dictionary)
 signal message_added(text: String)
 
 const MAILS_PER_PAGE: int = 7
+const TAB_OVERLAP: float = -8.0
 const AUCTION_SENDER: String = "Auction House"
 # Message types, which say how the sender field reads.
 enum Sender { NORMAL = 0, CREATURE = 1, GAMEOBJECT = 2, AUCTION = 3, ITEM = 4 }
@@ -42,6 +43,7 @@ func _ready() -> void:
 	%InboxCloseButton.pressed.connect(close_requested.emit)
 	%MailFrameTab1.pressed.connect(show_tab.bind(Tab.INBOX))
 	%MailFrameTab2.pressed.connect(show_tab.bind(Tab.SEND))
+	PanelManager.chain_tabs([%MailFrameTab1, %MailFrameTab2], TAB_OVERLAP)
 	%SendMailCancelButton.pressed.connect(show_tab.bind(Tab.INBOX))
 	%SendMailMailButton.pressed.connect(send)
 	WowClient.session.packet_received.connect(_on_packet_received)

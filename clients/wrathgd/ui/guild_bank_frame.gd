@@ -57,13 +57,12 @@ func _ready() -> void:
 	%GuildBankFrameDepositButton.pressed.connect(money_requested.emit.bind(true))
 	%GuildBankFrameWithdrawButton.pressed.connect(money_requested.emit.bind(false))
 	%GuildBankFramePurchaseButton.pressed.connect(func() -> void: _bank.buy_tab(tab))
-	var x: float = %GuildBankFrameTab1.position.x
+	var bottom_tabs: Array[Control] = []
 	for i: int in Mode.size():
 		var bottom_tab: BaseButton = get_node("%%GuildBankFrameTab%d" % (i + 1))
 		bottom_tab.pressed.connect(_set_mode.bind(i as Mode))
-		PanelManager.resize_tab(bottom_tab, 0.0)
-		bottom_tab.position.x = x
-		x += bottom_tab.size.x + TAB_OVERLAP
+		bottom_tabs.append(bottom_tab)
+	PanelManager.chain_tabs(bottom_tabs, TAB_OVERLAP)
 	var limit: Label = %GuildBankMoneyLimitLabel
 	var limit_right: float = limit.position.x + limit.get_minimum_size().x
 	%GuildBankMoneyUnlimitedLabel.position.x = limit_right + UNLIMITED_GAP

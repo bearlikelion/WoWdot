@@ -49,6 +49,8 @@ const ANNOUNCEMENT: String = "WrathGD announcement check"
 const HEROIC_DUNGEON: int = 1
 const GUILD_BANK_TEXT: String = "Tab info from glue_check"
 const GUILD_INFO_TEXT: String = "Guild info from glue_check"
+# TalentTab.dbc's warrior Arms tree.
+const ARMS_TAB: int = 161
 
 var _failures: PackedStringArray = []
 var _main: Main
@@ -409,6 +411,43 @@ func _guild_popups() -> void:
 	), "/ginfo names the guild")
 
 
+# Inspecting oneself shows a learned talent's rank and the arena team on the PvP tab.
+func _inspect_self() -> void:
+	var session: WowSession = WowClient.session
+	var me: int = session.get_player_guid()
+	var talents: WowDBC = WowDBC.open(WowAssets.archive, "Talent")
+	var talent: int = 0
+	var first_rank: int = 0
+	for row: int in talents.row_count():
+		if talents.get_uint(row, "TabID") == ARMS_TAB and talents.get_uint(row, "Row") == 0 \
+		and talents.get_uint(row, "Column") == 0:
+			talent = talents.get_uint(row, "ID")
+			first_rank = talents.get_uint(row, "RankSpell0")
+	if first_rank not in session.get_known_spells():
+		var payload: PackedByteArray = []
+		payload.resize(8)
+		payload.encode_u32(0, talent)
+		session.send_packet("CMSG_LEARN_TALENT", payload)
+		await _until(func() -> bool: return first_rank in session.get_known_spells(),
+				"the first Arms talent is learned")
+	var inspect: InspectFrame = get_tree().root.find_child("InspectFrame", true, false)
+	inspect.inspect(me)
+	(inspect.get_node("%InspectFrameTab3") as BaseButton).pressed.emit()
+	var rank: Label = inspect.get_node("%InspectTalentFrameTalent1").get_node("%Rank")
+	if await _until(func() -> bool: return rank.text == "1" and rank.is_visible_in_tree(),
+			"the inspected talent tree shows the learned rank"):
+		await _frames(30)
+		_capture("user://wotlk_inspect_talents.png")
+	(inspect.get_node("%InspectFrameTab2") as BaseButton).pressed.emit()
+	var team_name: Label = inspect.get_node("%InspectPVPTeam1DataName")
+	var named: Callable = func() -> bool:
+		return team_name.text == ARENA_TEAM and team_name.is_visible_in_tree()
+	if await _until(named, "the inspected PvP tab names the arena team"):
+		await _frames(30)
+		_capture("user://wotlk_inspect_pvp.png")
+	inspect.close_requested.emit()
+
+
 # A GM-made 2v2 team shows on the PvP frame with its roster, then the captain disbands it.
 func _arena_team() -> void:
 	var arena: ArenaTeams = WowClient.arena_teams
@@ -445,6 +484,7 @@ func _arena_team() -> void:
 		if await _until(queued, "joining from the PvP frame queues the character"):
 			battlegrounds.abandon(battlegrounds.queue(0)["map_id"])
 	frame.close_requested.emit()
+	await _inspect_self()
 	arena.disband(team_id)
 	await _until(func() -> bool: return arena.slot_info(0).is_empty(),
 			"the disbanded team leaves the slot")

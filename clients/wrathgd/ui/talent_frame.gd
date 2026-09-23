@@ -62,10 +62,24 @@ var _tab_gap: float = 0.0
 var _desaturate: ShaderMaterial = ShaderMaterial.new()
 var _portrait: UnitPortrait
 
-@onready var _scroll: WowScrollFrame = %PlayerTalentFrameScrollFrame
+@onready var _scroll: WowScrollFrame = _part("ScrollFrame")
 
 
 func _ready() -> void:
+	_setup()
+	# Dual spec and talent previews are not ported.
+	for unported: CanvasItem in [
+		%PlayerSpecTab1, %PlayerSpecTab2, %PlayerSpecTab3,
+		_part("StatusFrame"), _part("PreviewBar"),
+	]:
+		unported.hide()
+	(_part("Tab4") as BaseButton).pressed.connect(show_glyphs)
+	%GlyphFrame.hide()
+	WowClient.session.spells_changed.connect(refresh)
+
+
+# What the player's and an inspected unit's trees share.
+func _setup() -> void:
 	_talents = WowDBC.open(WowAssets.archive, "Talent")
 	_talent_tabs = WowDBC.open(WowAssets.archive, "TalentTab")
 	_desaturate.shader = DESATURATE
@@ -80,29 +94,17 @@ func _ready() -> void:
 		button.mouse_entered.connect(_on_talent_entered.bind(i))
 		button.mouse_exited.connect(_hide_tooltip.bind(button))
 	for i: int in MAX_TALENT_TABS:
-		(get_node("%%PlayerTalentFrameTab%d" % (i + 1)) as BaseButton).pressed.connect(
-			_select_tab.bind(i)
-		)
-	_tab_gap = %PlayerTalentFrameTab2.position.x - %PlayerTalentFrameTab1.position.x \
-	- %PlayerTalentFrameTab1.size.x
-	# Dual spec and talent previews are not ported.
-	for unported: CanvasItem in [
-		%PlayerSpecTab1, %PlayerSpecTab2, %PlayerSpecTab3,
-		%PlayerTalentFrameStatusFrame, %PlayerTalentFramePreviewBar,
-	]:
-		unported.hide()
-	%PlayerTalentFrameTab4.pressed.connect(show_glyphs)
-	%GlyphFrame.hide()
-	%PlayerTalentFrameCloseButton.pressed.connect(close_requested.emit)
+		(_part_n("Tab", i + 1) as BaseButton).pressed.connect(_select_tab.bind(i))
+	_tab_gap = _part("Tab2").position.x - _part("Tab1").position.x - _part("Tab1").size.x
+	(_part("CloseButton") as BaseButton).pressed.connect(close_requested.emit)
 	_portrait = PORTRAIT.instantiate()
 	add_child(_portrait)
 	var mask: ShaderMaterial = ShaderMaterial.new()
 	mask.shader = PORTRAIT_MASK
-	%PlayerTalentFramePortrait.material = mask
-	%PlayerTalentFramePortrait.texture = _portrait.get_texture()
-	var session: WowSession = WowClient.session
-	session.spells_changed.connect(refresh)
-	session.object_updated.connect(_on_object_updated)
+	var portrait: TextureRect = _part("Portrait")
+	portrait.material = mask
+	portrait.texture = _portrait.get_texture()
+	WowClient.session.object_updated.connect(_on_object_updated)
 	visibility_changed.connect(_on_visibility_changed)
 
 
@@ -111,12 +113,11 @@ func refresh() -> void:
 	if not is_visible_in_tree():
 		return
 	var session: WowSession = WowClient.session
-	var guid: int = session.get_player_guid()
-	_known.clear()
-	for spell: int in session.get_known_spells():
-		_known[spell] = true
-	_points = session.get_field(guid, "PLAYER_CHARACTER_POINTS1")
-	%PlayerTalentFrameTalentPointsText.text = WowStrings.strip_colors(
+	var guid: int = _unit()
+	if not session.has_object(guid):
+		return
+	_load_ranks()
+	(_part("TalentPointsText") as Label).text = WowStrings.strip_colors(
 		WowStrings.get_text("UNSPENT_TALENT_POINTS", "%s")
 	) % _points
 	_tabs = _class_tabs((session.get_field(guid, "UNIT_FIELD_BYTES_0") >> 8) & 0xFF)
@@ -126,7 +127,7 @@ func refresh() -> void:
 		return
 	var tab_row: int = _talent_tabs.find(_tabs[_tab])
 	for piece: String in BACKGROUND_PIECES:
-		var background: TextureRect = get_node("%PlayerTalentFrameBackground" + piece)
+		var background: TextureRect = _part("Background" + piece)
 		var file: String = BACKGROUND % [_talent_tabs.get_string(tab_row, "BackgroundFile"), piece]
 		var texture: WowTexture = background.texture as WowTexture
 		if texture == null or texture.file != file:
@@ -138,9 +139,9 @@ func refresh() -> void:
 
 
 func _update_tabs() -> void:
-	var x: float = %PlayerTalentFrameTab1.position.x
+	var x: float = _part("Tab1").position.x
 	for i: int in MAX_TALENT_TABS:
-		var tab: Control = get_node("%%PlayerTalentFrameTab%d" % (i + 1))
+		var tab: Control = _part_n("Tab", i + 1)
 		tab.visible = i < _tabs.size()
 		if not tab.visible:
 			continue
@@ -148,16 +149,18 @@ func _update_tabs() -> void:
 		var tab_name: String = _talent_tabs.get_string(tab_row, "Name")
 		if i == _tab:
 			_points_spent = _spent(_tabs[i])
-			%PlayerTalentFrameSpentPointsText.text = "%s %d" % [
-				WowStrings.get_text("MASTERY_POINTS_SPENT") % tab_name, _points_spent,
-			]
+			(_part("SpentPointsText") as Label).text = WowStrings.format(
+				WowStrings.get_text("MASTERY_POINTS_SPENT"), [tab_name, _points_spent]
+			)
 		(tab.get_node(tab.name + "Text") as Label).text = tab_name
 		PanelManager.resize_tab(tab, TAB_PADDING)
 		tab.position.x = x
 		x += tab.size.x + _tab_gap
-		PanelManager.select_tab(tab, i == _tab and not %GlyphFrame.visible)
-	var glyph_tab: Control = %PlayerTalentFrameTab4
-	(glyph_tab.get_node("PlayerTalentFrameTab4Text") as Label).text = WowStrings.get_text("GLYPHS")
+		PanelManager.select_tab(tab, i == _tab and not _showing_glyphs())
+	var glyph_tab: Control = get_node_or_null("%" + _prefix() + "Tab4")
+	if glyph_tab == null:
+		return
+	(glyph_tab.get_node(glyph_tab.name + "Text") as Label).text = WowStrings.get_text("GLYPHS")
 	PanelManager.resize_tab(glyph_tab, TAB_PADDING)
 	glyph_tab.position.x = x
 	PanelManager.select_tab(glyph_tab, %GlyphFrame.visible)
@@ -267,21 +270,21 @@ func _draw_branches() -> void:
 				_set_branch("down", node.down, offset + Vector2(0.0, 32.0))
 				ignore_up = true
 	for i: int in range(_branch_index, MAX_NUM_BRANCH_TEXTURES):
-		(get_node("%%PlayerTalentFrameBranch%d" % (i + 1)) as CanvasItem).hide()
+		(_part_n("Branch", i + 1) as CanvasItem).hide()
 	for i: int in range(_arrow_index, MAX_NUM_ARROW_TEXTURES):
-		(get_node("%%PlayerTalentFrameArrow%d" % (i + 1)) as CanvasItem).hide()
+		(_part_n("Arrow", i + 1) as CanvasItem).hide()
 
 
 func _set_branch(piece: String, state: Branch, offset: Vector2) -> void:
 	_branch_index += 1
 	_place(
-		get_node("%%PlayerTalentFrameBranch%d" % _branch_index), BRANCH_COORDS[piece], state, offset,
+		_part_n("Branch", _branch_index), BRANCH_COORDS[piece], state, offset,
 	)
 
 
 func _set_arrow(piece: String, state: Branch, offset: Vector2) -> void:
 	_arrow_index += 1
-	_place(get_node("%%PlayerTalentFrameArrow%d" % _arrow_index), ARROW_COORDS[piece], state, offset)
+	_place(_part_n("Arrow", _arrow_index), ARROW_COORDS[piece], state, offset)
 
 
 func _place(rect: TextureRect, coords: Array, state: Branch, offset: Vector2) -> void:
@@ -412,6 +415,36 @@ func _rank(row: int) -> int:
 	return 0
 
 
+# The node names' first part, which the inspect tree swaps for its own.
+func _prefix() -> String:
+	return "PlayerTalentFrame"
+
+
+func _unit() -> int:
+	return WowClient.session.get_player_guid()
+
+
+# The player's ranks are the talent spells they know.
+func _load_ranks() -> void:
+	var session: WowSession = WowClient.session
+	_known.clear()
+	for spell: int in session.get_known_spells():
+		_known[spell] = true
+	_points = session.get_field(_unit(), "PLAYER_CHARACTER_POINTS1")
+
+
+func _showing_glyphs() -> bool:
+	return has_node("%GlyphFrame") and %GlyphFrame.visible
+
+
+func _part(piece: String) -> Control:
+	return get_node("%" + _prefix() + piece)
+
+
+func _part_n(piece: String, number: int) -> Control:
+	return get_node("%%%s%s%d" % [_prefix(), piece, number])
+
+
 func _max_rank(row: int) -> int:
 	var ranks: int = 0
 	while ranks < MAX_RANKS and _talents.get_uint(row, "RankSpell%d" % ranks):
@@ -437,7 +470,7 @@ func _spent(tab_id: int) -> int:
 
 
 func _button(index: int) -> ItemButton:
-	return get_node("%%PlayerTalentFrameTalent%d" % (index + 1))
+	return _part_n("Talent", index + 1)
 
 
 func _select_tab(tab: int) -> void:
@@ -454,7 +487,7 @@ func show_glyphs() -> void:
 
 func _show_glyph_frame(shown: bool) -> void:
 	%GlyphFrame.visible = shown
-	%PlayerTalentFrameScrollFrame.visible = not shown
+	_part("ScrollFrame").visible = not shown
 
 
 func _learnable(row: int) -> bool:
@@ -525,13 +558,13 @@ func _hide_tooltip(tooltip_owner: Control) -> void:
 
 
 func _on_object_updated(guid: int) -> void:
-	if guid == WowClient.session.get_player_guid():
+	if guid == _unit():
 		refresh()
 
 
 func _on_visibility_changed() -> void:
 	if is_visible_in_tree():
-		_portrait.show_unit(WowClient.session.get_player_guid())
+		_portrait.show_unit(_unit())
 	refresh()
 
 
