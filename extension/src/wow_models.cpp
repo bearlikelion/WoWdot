@@ -905,8 +905,9 @@ void WowLoader::add_particles(Node3D *root, Skeleton3D *skeleton, const M2Model 
 		// The emitter's colour and alpha arrive as the particle's vertex colour.
 		material->set_flag(StandardMaterial3D::FLAG_ALBEDO_FROM_VERTEX_COLOR, true);
 		material->set_flag(StandardMaterial3D::FLAG_SRGB_VERTEX_COLOR, true);
-		// Only BILLBOARD_PARTICLES keeps the particle's scale and walks the texture's tiles.
+		// BILLBOARD_PARTICLES walks the texture's tiles, and drops each particle's size without keep scale.
 		material->set_billboard_mode(StandardMaterial3D::BILLBOARD_PARTICLES);
+		material->set_flag(StandardMaterial3D::FLAG_BILLBOARD_KEEP_SCALE, true);
 		material->set_particles_anim_h_frames(emitter.textureCols);
 		material->set_particles_anim_v_frames(emitter.textureRows);
 		material->set_particles_anim_loop(false);
