@@ -9,8 +9,11 @@ uniform vec3 sky_horizon : source_color;
 uniform vec3 fog_color : source_color;
 uniform vec3 disc_color : source_color;
 uniform vec3 halo_color : source_color;
-uniform vec3 cloud_color : source_color;
-uniform vec3 cloud_shade_color : source_color;
+// Light.dbc's cloud bands: the glow facing the sun, then the shading slope and base.
+uniform vec3 cloud_sun : source_color;
+uniform vec3 cloud_slope : source_color;
+uniform vec3 cloud_base : source_color;
+uniform float cloud_glow : hint_range(0.0, 1.0) = 1.0;
 uniform float cloud_density : hint_range(0.0, 1.0) = 0.5;
 uniform float disc_size : hint_range(0.0, 0.2) = 0.04;
 uniform float halo_size : hint_range(0.0, 1.0) = 0.35;
@@ -29,8 +32,9 @@ void sky() {
 	vec3 color = height < 0.0 ? mix(sky_horizon, fog_color, smoothstep(0.0, -0.1, height)) : gradient(height);
 	if (LIGHT0_ENABLED) {
 		float angle = acos(clamp(dot(EYEDIR, LIGHT0_DIRECTION), -1.0, 1.0));
+		// The disc and glare add onto the sky, so a warm sun still burns out to white.
 		color += halo_color * pow(1.0 - smoothstep(0.0, halo_size, angle), 3.0) * 0.6;
-		color = mix(color, disc_color, 1.0 - smoothstep(disc_size * 0.85, disc_size, angle));
+		color += disc_color * (1.0 - smoothstep(disc_size * 0.85, disc_size, angle));
 	}
 	if (height > 0.0) {
 		vec2 plane = EYEDIR.xz / (height + 0.12);
@@ -39,8 +43,12 @@ void sky() {
 		float threshold = mix(0.65, 0.3, cloud_density);
 		float cover = smoothstep(threshold, threshold + 0.2, shape * 0.7 + detail * 0.3);
 		cover *= smoothstep(0.0, 0.12, height);
-		vec3 cloud = mix(cloud_color, cloud_shade_color, smoothstep(0.5, 1.0, cover) * 0.35);
-		color = mix(color, cloud, cover * 0.9);
+		// Thicker cloud takes less of the slope, and it glows where it faces the sun.
+		vec3 cloud = cloud_slope * (0.75 - 0.5 * cover) + cloud_base;
+		if (LIGHT0_ENABLED) {
+			cloud += cloud_sun * max(dot(EYEDIR, LIGHT0_DIRECTION), 0.0) * cloud_glow;
+		}
+		color = mix(color, min(cloud, vec3(1.0)), cover * 0.9);
 	}
 	COLOR = color;
 }

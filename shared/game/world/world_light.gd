@@ -12,8 +12,9 @@ enum ColorBand {
 	SKY_HORIZON = 6,
 	FOG = 7,
 	SUN = 9,
-	SUN_HALO = 10,
-	CLOUD_SHADE = 11,
+	CLOUD_SUN = 10,
+	CLOUD_SLOPE = 11,
+	CLOUD_BASE = 12,
 }
 # LightFloatBand channels.
 enum FloatBand { FOG_END = 0, FOG_START_SCALE = 1, CLOUD_DENSITY = 3 }

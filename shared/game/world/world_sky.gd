@@ -14,7 +14,8 @@ const MOON_HALO_COLOR: Color = Color(0.12, 0.16, 0.26)
 # Stock night light is nearly as strong as daylight, which reads as day on lit, shadowed terrain.
 const NIGHT_SUN_ENERGY: float = 0.3
 # The cloud colour band stays near white at night, when it is the moon's.
-const NIGHT_CLOUD_DIMMING: float = 0.75
+# Storms take this much of the sun's glow off the clouds.
+const STORM_CLOUD_DIMMING: float = 0.75
 # Weather below this grade is too light to see, as on the server.
 const VISIBLE_WEATHER_GRADE: float = 0.27
 # How much of a full weather change one refresh makes.
@@ -28,7 +29,9 @@ const SKY_UNIFORMS: Dictionary[StringName, WorldLight.ColorBand] = {
 	&"sky_above_horizon": WorldLight.ColorBand.SKY_ABOVE_HORIZON,
 	&"sky_horizon": WorldLight.ColorBand.SKY_HORIZON,
 	&"fog_color": WorldLight.ColorBand.FOG,
-	&"cloud_shade_color": WorldLight.ColorBand.CLOUD_SHADE,
+	&"cloud_sun": WorldLight.ColorBand.CLOUD_SUN,
+	&"cloud_slope": WorldLight.ColorBand.CLOUD_SLOPE,
+	&"cloud_base": WorldLight.ColorBand.CLOUD_BASE,
 }
 
 @export var sun: DirectionalLight3D
@@ -94,10 +97,9 @@ func update() -> void:
 	for uniform: StringName in SKY_UNIFORMS:
 		sky.set_shader_parameter(uniform, sample.color(SKY_UNIFORMS[uniform]))
 	sky.set_shader_parameter(&"cloud_density", lerpf(sample.cloud_density, 1.0, _storm))
-	var cloud: Color = sample.color(WorldLight.ColorBand.SUN).darkened(NIGHT_CLOUD_DIMMING * night)
-	sky.set_shader_parameter(&"cloud_color", cloud)
+	sky.set_shader_parameter(&"cloud_glow", (1.0 - night) * (1.0 - STORM_CLOUD_DIMMING * _storm))
 	var disc: Color = sample.color(WorldLight.ColorBand.SUN).lerp(MOON_COLOR, night)
-	var halo: Color = sample.color(WorldLight.ColorBand.SUN_HALO).lerp(MOON_HALO_COLOR, night)
+	var halo: Color = sample.color(WorldLight.ColorBand.SUN).lerp(MOON_HALO_COLOR, night)
 	sky.set_shader_parameter(&"disc_color", disc)
 	sky.set_shader_parameter(&"halo_color", halo)
 	var stars: bool = sample.skybox.is_empty() and sample.stars
