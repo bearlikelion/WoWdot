@@ -1,0 +1,2161 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/craft_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_scroll_frame.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\TradeSkillFrame\\UI-TradeSkill-SkillBorder.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_5")
+region = Rect2(0, 0, 256, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_5")
+region = Rect2(0, 8, 28, 8)
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-HorizontalBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 256, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 16, 75, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-BarBorder.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ExpandTab-Left.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Middle.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\QuestFrame\\UI-QuestLogSortTab-Right.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-MinusButton-UP.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-PlusButton-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-PlusButton-Hilight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_19"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\UI-Listbox-Highlight2.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-ScrollBar.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(0, 3, 30, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(34, 4, 30, 124)
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
+file = "Interface\\Buttons\\UI-ScrollBar-Knob.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_26"]
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28"]
+atlas = SubResource("WowTexture_27")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_29"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_29")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_31"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32"]
+atlas = SubResource("WowTexture_31")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_33"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollUpButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34"]
+atlas = SubResource("WowTexture_33")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_35"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36"]
+atlas = SubResource("WowTexture_35")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_37"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38"]
+atlas = SubResource("WowTexture_37")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_39"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40"]
+atlas = SubResource("WowTexture_39")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-ScrollBar-ScrollDownButton-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
+atlas = SubResource("WowTexture_41")
+region = Rect2(8, 8, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
+atlas = SubResource("WowTexture_21")
+region = Rect2(0, 0, 30, 123)
+
+[sub_resource type="WowTexture" id="WowTexture_44"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-DetailHeaderLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_45"]
+file = "Interface\\ClassTrainerFrame\\UI-ClassTrainer-DetailHeaderRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_46"]
+file = "Interface\\QuestFrame\\UI-QuestItemNameFrame.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_47"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48"]
+atlas = SubResource("WowTexture_47")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50"]
+atlas = SubResource("WowTexture_49")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_51"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52"]
+atlas = SubResource("WowTexture_51")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_53"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54"]
+atlas = SubResource("WowTexture_53")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_55"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_57"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[node name="CraftFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 384
+offset_bottom = 616
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="CraftFramePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -256
+offset_right = 256
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -256
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="CraftFrameTitleText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 17
+offset_right = 0
+offset_bottom = 29
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CraftSkillBorderLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 63
+offset_top = 50
+offset_right = 319
+offset_bottom = 58
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="CraftSkillBorderRight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 319
+offset_top = 50
+offset_right = 347
+offset_bottom = 58
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CraftHorizontalBarLeft" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 221
+offset_right = 271
+offset_bottom = 237
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="Texture5" type="TextureRect" parent="."]
+offset_left = 271
+offset_top = 221
+offset_right = 346
+offset_bottom = 237
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="CraftFramePointsText" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 170
+offset_top = -96
+offset_right = 170
+offset_bottom = -86
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CraftFramePointsLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 165
+offset_top = -96
+offset_right = 165
+offset_bottom = -86
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Training Points:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CraftRankFrame" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 73
+offset_top = 37
+offset_right = 341
+offset_bottom = 52
+mouse_filter = 2
+texture_progress = SubResource("WowTexture_11")
+nine_patch_stretch = true
+tint_progress = Color(0.25, 0.25, 0.75, 1)
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="CraftRankFrameBackground" type="ColorRect" parent="CraftRankFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 268
+offset_bottom = 15
+show_behind_parent = true
+mouse_filter = 2
+color = Color(1, 1, 1, 0.2)
+
+[node name="CraftRankFrameSkillName" type="Label" parent="CraftRankFrame"]
+unique_name_in_owner = true
+offset_left = 6
+offset_top = 1.5
+offset_right = 6
+offset_bottom = 11.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CraftRankFrameSkillRank" type="Label" parent="CraftRankFrame"]
+unique_name_in_owner = true
+offset_left = 19
+offset_top = 1.5
+offset_right = 147
+offset_bottom = 11.5
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CraftRankFrameBorder" type="TextureButton" parent="CraftRankFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -5
+offset_top = -8.5
+offset_right = 276
+offset_bottom = 23.5
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CraftRankFrame/CraftRankFrameBorder"]
+offset_left = 0
+offset_top = 0
+offset_right = 281
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="CraftExpandButtonFrame" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 15
+offset_top = 71
+offset_right = 69
+offset_bottom = 103
+mouse_filter = 2
+
+[node name="CraftExpandTabLeft" type="TextureRect" parent="CraftExpandButtonFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 8
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="CraftExpandTabMiddle" type="TextureRect" parent="CraftExpandButtonFrame"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = -6
+offset_right = 46
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="CraftExpandTabRight" type="TextureRect" parent="CraftExpandButtonFrame"]
+unique_name_in_owner = true
+offset_left = 46
+offset_top = -6
+offset_right = 54
+offset_bottom = 26
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="CraftCollapseAllButton" type="TextureButton" parent="CraftExpandButtonFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 8
+offset_top = 2
+offset_right = 30
+offset_bottom = 24
+ignore_texture_size = true
+
+[node name="CraftCollapseAllButtonSubText" type="Label" parent="CraftExpandButtonFrame/CraftCollapseAllButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 22
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="CraftExpandButtonFrame/CraftCollapseAllButton"]
+offset_left = 3
+offset_top = 3
+offset_right = 19
+offset_bottom = 19
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CraftExpandButtonFrame/CraftCollapseAllButton"]
+offset_left = 3
+offset_top = 3
+offset_right = 19
+offset_bottom = 19
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="CraftCollapseAllButtonText" type="Label" parent="CraftExpandButtonFrame/CraftCollapseAllButton"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 3.5
+offset_right = 21
+offset_bottom = 16.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="CraftExpandButtonFrame/CraftCollapseAllButton"]
+offset_left = 3
+offset_top = 3
+offset_right = 19
+offset_bottom = 19
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="CraftHighlightFrame" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+
+[node name="CraftHighlight" type="TextureRect" parent="CraftHighlightFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="Craft1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 96
+offset_right = 315
+offset_bottom = 112
+ignore_texture_size = true
+
+[node name="Craft1SubText" type="Label" parent="Craft1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Craft1Cost" type="Label" parent="Craft1"]
+unique_name_in_owner = true
+offset_left = 278
+offset_top = 2
+offset_right = 278
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="Craft1"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Craft1"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="Craft1Text" type="Label" parent="Craft1"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="Craft1"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="Craft2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 112
+offset_right = 315
+offset_bottom = 128
+ignore_texture_size = true
+
+[node name="Craft2SubText" type="Label" parent="Craft2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Craft2Cost" type="Label" parent="Craft2"]
+unique_name_in_owner = true
+offset_left = 278
+offset_top = 2
+offset_right = 278
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="Craft2"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Craft2"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="Craft2Text" type="Label" parent="Craft2"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="Craft2"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="Craft3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 128
+offset_right = 315
+offset_bottom = 144
+ignore_texture_size = true
+
+[node name="Craft3SubText" type="Label" parent="Craft3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Craft3Cost" type="Label" parent="Craft3"]
+unique_name_in_owner = true
+offset_left = 278
+offset_top = 2
+offset_right = 278
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="Craft3"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Craft3"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="Craft3Text" type="Label" parent="Craft3"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="Craft3"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="Craft4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 144
+offset_right = 315
+offset_bottom = 160
+ignore_texture_size = true
+
+[node name="Craft4SubText" type="Label" parent="Craft4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Craft4Cost" type="Label" parent="Craft4"]
+unique_name_in_owner = true
+offset_left = 278
+offset_top = 2
+offset_right = 278
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="Craft4"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Craft4"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="Craft4Text" type="Label" parent="Craft4"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="Craft4"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="Craft5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 160
+offset_right = 315
+offset_bottom = 176
+ignore_texture_size = true
+
+[node name="Craft5SubText" type="Label" parent="Craft5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Craft5Cost" type="Label" parent="Craft5"]
+unique_name_in_owner = true
+offset_left = 278
+offset_top = 2
+offset_right = 278
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="Craft5"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Craft5"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="Craft5Text" type="Label" parent="Craft5"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="Craft5"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="Craft6" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 176
+offset_right = 315
+offset_bottom = 192
+ignore_texture_size = true
+
+[node name="Craft6SubText" type="Label" parent="Craft6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Craft6Cost" type="Label" parent="Craft6"]
+unique_name_in_owner = true
+offset_left = 278
+offset_top = 2
+offset_right = 278
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="Craft6"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Craft6"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="Craft6Text" type="Label" parent="Craft6"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="Craft6"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="Craft7" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 192
+offset_right = 315
+offset_bottom = 208
+ignore_texture_size = true
+
+[node name="Craft7SubText" type="Label" parent="Craft7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Craft7Cost" type="Label" parent="Craft7"]
+unique_name_in_owner = true
+offset_left = 278
+offset_top = 2
+offset_right = 278
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="Craft7"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Craft7"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="Craft7Text" type="Label" parent="Craft7"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="Craft7"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="Craft8" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 22
+offset_top = 208
+offset_right = 315
+offset_bottom = 224
+ignore_texture_size = true
+
+[node name="Craft8SubText" type="Label" parent="Craft8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 293
+offset_bottom = 16
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="Craft8Cost" type="Label" parent="Craft8"]
+unique_name_in_owner = true
+offset_left = 278
+offset_top = 2
+offset_right = 278
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NormalTexture" type="TextureRect" parent="Craft8"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="Craft8"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="Craft8Text" type="Label" parent="Craft8"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = 0.5
+offset_right = 21
+offset_bottom = 13.5
+grow_horizontal = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="Craft8"]
+offset_left = 3
+offset_top = 0
+offset_right = 19
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="CraftListScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -363
+offset_top = 96
+offset_right = -67
+offset_bottom = 226
+mouse_filter = 0
+
+[node name="Texture" type="TextureRect" parent="CraftListScrollFrame"]
+offset_left = 293
+offset_top = -2
+offset_right = 323
+offset_bottom = 118
+mouse_filter = 2
+texture = SubResource("AtlasTexture_22")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="CraftListScrollFrame"]
+offset_left = 293
+offset_top = 9
+offset_right = 323
+offset_bottom = 132
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="CraftListScrollFrameScrollBar" type="VSlider" parent="CraftListScrollFrame"]
+unique_name_in_owner = true
+offset_left = 302
+offset_top = 16
+offset_right = 318
+offset_bottom = 114
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_25")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_25")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_26")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_26")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_26")
+max_value = 0.0
+step = 0.0
+
+[node name="CraftListScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar/CraftListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar/CraftListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar/CraftListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar/CraftListScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="CraftListScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 98
+offset_right = 16
+offset_bottom = 114
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar/CraftListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar/CraftListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar/CraftListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CraftListScrollFrame/CraftListScrollFrameScrollBar/CraftListScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="CraftListScrollFrameClip" type="Control" parent="CraftListScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="CraftListScrollFrameScrollChildFrame" type="Control" parent="CraftListScrollFrame/CraftListScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 300
+offset_bottom = 334
+mouse_filter = 2
+
+[node name="CraftDetailScrollFrame" type="Control" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 20
+offset_top = 234
+offset_right = 317
+offset_bottom = 410
+mouse_filter = 0
+
+[node name="CraftDetailScrollFrameTop" type="TextureRect" parent="CraftDetailScrollFrame"]
+unique_name_in_owner = true
+offset_left = 295
+offset_top = -5
+offset_right = 325
+offset_bottom = 118
+mouse_filter = 2
+texture = SubResource("AtlasTexture_43")
+expand_mode = 1
+
+[node name="CraftDetailScrollFrameBottom" type="TextureRect" parent="CraftDetailScrollFrame"]
+unique_name_in_owner = true
+offset_left = 295
+offset_top = 54
+offset_right = 325
+offset_bottom = 177
+mouse_filter = 2
+texture = SubResource("AtlasTexture_23")
+expand_mode = 1
+
+[node name="CraftDetailScrollFrameScrollBar" type="VSlider" parent="CraftDetailScrollFrame"]
+unique_name_in_owner = true
+offset_left = 303
+offset_top = 16
+offset_right = 319
+offset_bottom = 160
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_25")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_25")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_26")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_26")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_26")
+max_value = 0.0
+step = 0.0
+
+[node name="CraftDetailScrollFrameScrollBarScrollUpButton" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = -16
+offset_right = 16
+offset_bottom = 0
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar/CraftDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_28")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar/CraftDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar/CraftDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_32")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar/CraftDetailScrollFrameScrollBarScrollUpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_34")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="CraftDetailScrollFrameScrollBarScrollDownButton" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 144
+offset_right = 16
+offset_bottom = 160
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar/CraftDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_36")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar/CraftDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_38")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar/CraftDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_40")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameScrollBar/CraftDetailScrollFrameScrollBarScrollDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_42")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="CraftDetailScrollFrameClip" type="Control" parent="CraftDetailScrollFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="CraftDetailScrollChildFrame" type="Control" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 297
+offset_bottom = 150
+mouse_filter = 2
+
+[node name="CraftName" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 5
+offset_right = 294
+offset_bottom = 17
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Skill Name"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CraftRequirements" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 17
+offset_right = 50
+offset_bottom = 27
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CraftCost" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 50
+offset_top = 27
+offset_right = 50
+offset_bottom = 37
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CraftDetailHeaderLeft" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -3
+offset_right = 256
+offset_bottom = 61
+mouse_filter = 2
+texture = SubResource("WowTexture_44")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+offset_left = 256
+offset_top = -3
+offset_right = 320
+offset_bottom = 61
+mouse_filter = 2
+texture = SubResource("WowTexture_45")
+expand_mode = 1
+
+[node name="CraftDescription" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 50
+offset_right = 295
+offset_bottom = 60
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 0
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CraftReagentLabel" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 70
+offset_right = 5
+offset_bottom = 80
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Reagents: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CraftIcon" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 8
+offset_top = 3
+offset_right = 45
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="CraftReagent1" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 5
+offset_top = 83
+offset_right = 152
+offset_bottom = 124
+ignore_texture_size = true
+
+[node name="CraftReagent1IconTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="CraftReagent1NameFrame" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent1"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="CraftReagent1Name" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent1"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CraftReagent1Count" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent1"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CraftReagent2" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 152
+offset_top = 83
+offset_right = 299
+offset_bottom = 124
+ignore_texture_size = true
+
+[node name="CraftReagent2IconTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="CraftReagent2NameFrame" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent2"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="CraftReagent2Name" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent2"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CraftReagent2Count" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent2"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CraftReagent3" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 5
+offset_top = 126
+offset_right = 152
+offset_bottom = 167
+ignore_texture_size = true
+
+[node name="CraftReagent3IconTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="CraftReagent3NameFrame" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent3"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="CraftReagent3Name" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent3"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CraftReagent3Count" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent3"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CraftReagent4" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 152
+offset_top = 126
+offset_right = 299
+offset_bottom = 167
+ignore_texture_size = true
+
+[node name="CraftReagent4IconTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="CraftReagent4NameFrame" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent4"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="CraftReagent4Name" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent4"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CraftReagent4Count" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent4"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CraftReagent5" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 5
+offset_top = 169
+offset_right = 152
+offset_bottom = 210
+ignore_texture_size = true
+
+[node name="CraftReagent5IconTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="CraftReagent5NameFrame" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent5"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="CraftReagent5Name" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent5"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CraftReagent5Count" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent5"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CraftReagent6" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 152
+offset_top = 169
+offset_right = 299
+offset_bottom = 210
+ignore_texture_size = true
+
+[node name="CraftReagent6IconTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="CraftReagent6NameFrame" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent6"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="CraftReagent6Name" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent6"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CraftReagent6Count" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent6"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CraftReagent7" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 152
+offset_top = 212
+offset_right = 299
+offset_bottom = 253
+ignore_texture_size = true
+
+[node name="CraftReagent7IconTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="CraftReagent7NameFrame" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent7"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="CraftReagent7Name" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent7"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CraftReagent7Count" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent7"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CraftReagent8" type="TextureButton" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 299
+offset_top = 212
+offset_right = 446
+offset_bottom = 253
+ignore_texture_size = true
+
+[node name="CraftReagent8IconTexture" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 39
+offset_bottom = 39
+mouse_filter = 2
+expand_mode = 1
+
+[node name="CraftReagent8NameFrame" type="TextureRect" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent8"]
+unique_name_in_owner = true
+offset_left = 29
+offset_top = -12.5
+offset_right = 157
+offset_bottom = 51.5
+mouse_filter = 2
+texture = SubResource("WowTexture_46")
+expand_mode = 1
+
+[node name="CraftReagent8Name" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent8"]
+unique_name_in_owner = true
+offset_left = 44
+offset_top = 1.5
+offset_right = 134
+offset_bottom = 37.5
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 1
+grow_vertical = 2
+
+[node name="CraftReagent8Count" type="Label" parent="CraftDetailScrollFrame/CraftDetailScrollFrameClip/CraftDetailScrollChildFrame/CraftReagent8"]
+unique_name_in_owner = true
+offset_left = 35
+offset_top = 24
+offset_right = 35
+offset_bottom = 38
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"NumberFontNormal"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CraftCreateButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 184
+offset_top = 411
+offset_right = 264
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CraftCreateButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CraftCreateButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CraftCreateButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="CraftCreateButtonText" type="Label" parent="CraftCreateButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Create"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CraftCreateButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="CraftCancelButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 265
+offset_top = 411
+offset_right = 345
+offset_bottom = 433
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CraftCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_48")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CraftCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_50")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CraftCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_52")
+expand_mode = 1
+
+[node name="CraftCancelButtonText" type="Label" parent="CraftCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CraftCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 80
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_54")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")
+
+[node name="CraftFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -61
+offset_top = 8
+offset_right = -29
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CraftFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_55")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CraftFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_56")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CraftFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_57")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_19")

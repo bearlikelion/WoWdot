@@ -110,6 +110,7 @@ var _item_ref_pending: int = 0
 @onready var _merchant: MerchantFrame = _panels.get_node("%MerchantFrame")
 @onready var _trainer: ClassTrainerFrame = _panels.get_node("%ClassTrainerFrame")
 @onready var _trade_skill: TradeSkillFrame = _panels.get_node("%TradeSkillFrame")
+@onready var _craft: CraftFrame = _panels.get_node("%CraftFrame")
 @onready var _dress_up: DressUpFrame = _panels.get_node("%DressUpFrame")
 @onready var _inspect: InspectFrame = _panels.get_node("%InspectFrame")
 @onready var _taxi: TaxiFrame = _panels.get_node("%TaxiFrame")
@@ -197,6 +198,7 @@ func _ready() -> void:
 	_trainer.open_requested.connect(_panels.show_panel.bind(_trainer))
 	_trade_skill.open_requested.connect(_panels.show_panel.bind(_trade_skill))
 	_trade_skill.filter_menu_requested.connect(_open_menu)
+	_craft.open_requested.connect(_panels.show_panel.bind(_craft))
 	_dress_up.open_requested.connect(_panels.show_panel.bind(_dress_up))
 	ItemButton.dress_up = _dress_up.try_on
 	_inspect.open_requested.connect(_panels.show_panel.bind(_inspect))
@@ -225,6 +227,7 @@ func _ready() -> void:
 	_player_frame.unit_selected.connect(unit_selected.emit)
 	_main_menu_bar.set_portrait(_player_frame.portrait_texture())
 	_trade_skill.set_portrait(_player_frame.portrait_texture())
+	_craft.set_portrait(_player_frame.portrait_texture())
 	_dress_up.set_portrait(_player_frame.portrait_texture())
 	_party.unit_selected.connect(unit_selected.emit)
 	_party.invited.connect(_on_party_invited)
@@ -308,7 +311,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # False when the spell is not a profession's, and should be cast as usual.
 func open_trade_skill(spell_id: int) -> bool:
-	return WowAssets.spells.opens_trade_skill(spell_id) and _trade_skill.open_for_spell(spell_id)
+	return _craft.open_for_spell(spell_id) \
+	or (WowAssets.spells.opens_trade_skill(spell_id) and _trade_skill.open_for_spell(spell_id))
 
 
 func show_player(guid: int) -> void:

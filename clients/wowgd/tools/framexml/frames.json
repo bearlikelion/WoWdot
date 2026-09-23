@@ -352,6 +352,11 @@
    "script": "res://ui/trade_skill_frame.gd"
   },
   {
+   "frame": "CraftFrame",
+   "out": "ui/craft_frame.tscn",
+   "script": "res://ui/craft_frame.gd"
+  },
+  {
    "frame": "DressUpFrame",
    "out": "ui/dress_up_frame.tscn",
    "script": "res://ui/dress_up_frame.gd"

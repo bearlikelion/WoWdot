@@ -262,7 +262,8 @@
   "SpellID": 2,
   "MinRank": 7,
   "TrivialRankHigh": 10,
-  "TrivialRankLow": 11
+  "TrivialRankLow": 11,
+  "ReqTrainPoints": 14
  },
  "SkillLineCategory": {
   "ID": 0,
@@ -349,7 +350,11 @@
   "EffectTriggerSpell0": 109,
   "EffectTriggerSpell1": 110,
   "EffectTriggerSpell2": 111,
-  "Speed": 37
+  "Speed": 37,
+  "SpellLevel": 29,
+  "EffectImplicitTargetA0": 82,
+  "EffectImplicitTargetA1": 83,
+  "EffectImplicitTargetA2": 84
  },
  "SpellCastTimes": {
   "ID": 0,
