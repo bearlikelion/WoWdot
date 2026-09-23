@@ -50,6 +50,9 @@ static func cost(spell_id: int) -> String:
 	var amount: int = _spells.get_uint(row, "ManaCost") if row >= 0 else 0
 	if amount == 0:
 		return ""
+	amount = maxi(roundi(WowClient.spell_modifiers.apply(
+		spell_id, SpellModifiers.Op.COST, amount
+	)), 0)
 	var power: PowerType = _spells.get_uint(row, "PowerType") as PowerType
 	if power == PowerType.RAGE:
 		amount = floori(amount / float(RAGE_SCALE))
@@ -79,6 +82,9 @@ static func cast_text(spell_id: int) -> String:
 		return WowStrings.get_text("SPELL_CAST_CHANNELED")
 	var cast_row: int = _casts.find(_spells.get_uint(row, "CastingTimeIndex"))
 	var msec: int = _casts.get_uint(cast_row, "Base") if cast_row >= 0 else 0
+	msec = maxi(roundi(WowClient.spell_modifiers.apply(
+		spell_id, SpellModifiers.Op.CASTING_TIME, msec
+	)), 0)
 	if msec == 0:
 		return WowStrings.get_text("SPELL_CAST_TIME_INSTANT_NO_MANA")
 	return _format("SPELL_CAST_TIME_SEC", msec / 1000.0)
@@ -90,6 +96,9 @@ static func cooldown_text(spell_id: int) -> String:
 	var msec: int = 0
 	if row >= 0:
 		msec = maxi(_spells.get_uint(row, "RecoveryTime"), _spells.get_uint(row, "CategoryRecoveryTime"))
+		msec = maxi(roundi(WowClient.spell_modifiers.apply(
+			spell_id, SpellModifiers.Op.COOLDOWN, msec
+		)), 0)
 	if msec == 0:
 		return ""
 	if msec >= 60000:

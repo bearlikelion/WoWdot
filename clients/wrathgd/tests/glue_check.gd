@@ -55,6 +55,8 @@ const GUILD_INFO_TEXT: String = "Guild info from glue_check"
 const RENAMED: String = "Wrathrenamed"
 const MACRO_NAME: String = "GlueMacro"
 const MACRO_BODY: String = "/say glue_check macro"
+const HEROIC_STRIKE: int = 78
+const HEROIC_STRIKE_RAGE: int = 15
 # TalentTab.dbc's warrior Arms tree.
 const ARMS_TAB: int = 161
 
@@ -656,6 +658,10 @@ func _arena_team() -> void:
 			battlegrounds.abandon(battlegrounds.queue(0)["map_id"])
 	frame.close_requested.emit()
 	await _inspect_self()
+	# Improved Heroic Strike, learned just above, takes a rage off Heroic Strike.
+	var strike: String = SpellText.cost(HEROIC_STRIKE)
+	_check(strike == WowStrings.get_text("RAGE_COST") % (HEROIC_STRIKE_RAGE - 1),
+			"the talent's spell modifier lowers Heroic Strike's cost (%s)" % strike)
 	arena.disband(team_id)
 	await _until(func() -> bool: return arena.slot_info(0).is_empty(),
 			"the disbanded team leaves the slot")
