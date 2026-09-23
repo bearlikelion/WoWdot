@@ -139,7 +139,38 @@ static func set_keys(action: String, texts: PackedStringArray) -> void:
 			InputMap.action_add_event(action, event)
 
 
+# The stock client's bindings-cache.wtf, which 3.3.5 keeps in the server's account data.
+static func to_cache() -> String:
+	var text: String = "BINDINGMODE 0\n"
+	for entry: Dictionary in listed():
+		if not entry.has("action"):
+			continue
+		for slot: int in 2:
+			var key: String = binding_text(entry["action"], slot)
+			if not key.is_empty():
+				text += "bind %s %s\n" % [key, entry["name"]]
+	return text
+
+
+# Each "bind KEY NAME" line of a cache puts the key on the binding of that name.
+static func from_cache(text: String) -> void:
+	var keys: Dictionary[String, PackedStringArray] = {}
+	for line: String in text.split("\n", false):
+		var words: PackedStringArray = line.strip_edges().split(" ", false)
+		if words.size() != 3 or words[0] != "bind":
+			continue
+		var action: String = action_of(words[2])
+		if not action.is_empty():
+			if not keys.has(action):
+				keys[action] = PackedStringArray()
+			keys[action].append(words[1])
+	for action: String in keys:
+		set_keys(action, keys[action])
+
+
 static func save() -> void:
+	if PacketReader.wotlk:
+		WowClient.account_data.save(AccountData.Type.GLOBAL_BINDINGS, to_cache())
 	var saved: ConfigFile = ConfigFile.new()
 	for entry: Dictionary in listed():
 		if not entry.has("action"):

@@ -1515,6 +1515,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 				d["map"] = c.mapId;
 				d["position"] = wow_vector(c.x, c.y, c.z);
 				d["flags"] = c.flags;
+				d["customization"] = c.customization;
 				d["guild"] = c.guildId;
 				// Display ids by inventory slot, head (0) through tabard (18) and the first bag.
 				PackedInt32Array equipment;
@@ -2102,6 +2103,7 @@ void WowSession::handle_monster_move(network::Packet &packet, uint64_t transport
 			it->second.orientation = data.facingAngle;
 		}
 	}
+	emit_signal("object_moved", static_cast<int64_t>(data.guid), move);
 }
 
 // SMSG_SPLINE_SET_*_SPEED names another unit and its new speed; the flight and pitch rates have no slot.

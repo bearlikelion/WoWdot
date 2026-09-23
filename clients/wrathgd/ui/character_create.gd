@@ -2,7 +2,11 @@ class_name CharacterCreate
 extends Control
 
 signal create_requested(character: Dictionary)
+signal service_accepted(character: Dictionary, service: Service)
 signal back_requested
+
+# PAID_CHARACTER_CUSTOMIZATION, PAID_RACE_CHANGE and PAID_FACTION_CHANGE.
+enum Service { NONE, CUSTOMIZE, RACE_CHANGE, FACTION_CHANGE }
 
 const DEATH_KNIGHT: int = 6
 const DEATH_KNIGHT_LEVEL: int = 55
@@ -55,6 +59,7 @@ const FACTION_KEYS: Array[String] = ["ALLIANCE", "HORDE"]
 # FACTION_BACKDROP_COLOR_TABLE: the info panels' background by faction.
 const FACTION_BACKGROUNDS: Array[Color] = [Color(0.09, 0.09, 0.19), Color(0.19, 0.05, 0.05)]
 const NAME_BORDER: Color = Color(0.5, 0.5, 0.5)
+const LOCKED_TINT: Color = Color(0.4, 0.4, 0.4)
 # FontStrings in the info panels hang two units under the one above them.
 const TEXT_GAP: float = 2.0
 const INITIAL_FACING: float = -15.0
@@ -64,6 +69,9 @@ const ROTATE_DEGREES_PER_SECOND: float = 120.0
 var _look: Dictionary = {}
 # The highest level on the account, which 3.3.5 gates the Death Knight behind.
 var max_level: int = 0
+var _service: Service = Service.NONE
+# The existing character a paid service reshapes, as the character list gave it.
+var _customizing: Dictionary = {}
 var _classes: Array[int] = []
 var _class_id: int = 0
 var _race_buttons: Array[WowButton] = []
@@ -146,14 +154,50 @@ func _unhandled_input(event: InputEvent) -> void:
 		_accept()
 
 
+# CustomizeExistingCharacter: the next showing starts from this character instead of a new one.
+func customize(character: Dictionary, service: Service) -> void:
+	_customizing = character
+	_service = service
+
+
 # CharacterCreate_OnShow: a random race and look, the race's first class and a blank name.
 func _on_visibility_changed() -> void:
 	if not is_visible_in_tree():
+		_service = Service.NONE
+		return
+	if _service != Service.NONE:
+		_show_existing()
 		return
 	_look = {"gender": randi_range(0, 1)}
 	_name_edit.text = ""
+	for button: WowButton in _race_buttons + _class_buttons:
+		_lock(button, false)
 	_choose_race(CharacterOptions.race_order().pick_random())
 	_name_edit.grab_focus.call_deferred()
+
+
+# The service's character with its look, the races the service allows and its class locked.
+func _show_existing() -> void:
+	var race: int = _customizing["race"]
+	var faction: CharacterOptions.Faction = CharacterOptions.faction(race)
+	var order: Array[int] = CharacterOptions.race_order()
+	for i: int in _race_buttons.size():
+		var other: int = order[i]
+		var allowed: bool = other == race
+		if _service == Service.RACE_CHANGE:
+			allowed = CharacterOptions.faction(other) == faction
+		elif _service == Service.FACTION_CHANGE:
+			allowed = CharacterOptions.faction(other) != faction
+		_lock(_race_buttons[i], not allowed \
+				or _customizing["class"] not in CharacterOptions.classes_for(other))
+	for button: WowButton in _class_buttons:
+		_lock(button, true)
+	_name_edit.text = _customizing["name"]
+	_look = {"gender": _customizing["gender"]}
+	_choose_race(race)
+	for key: String in OPTION_KEYS.values():
+		_look[key] = _customizing.get(key, 0)
+	_show_character()
 
 
 func _choose_race(race: int) -> void:
@@ -177,16 +221,23 @@ func _choose_race(race: int) -> void:
 		(panel.get_node("Backdrop") as WowBackdrop).background_color = FACTION_BACKGROUNDS[faction]
 	CharacterOptions.apply_scene(_model, race)
 	_classes = CharacterOptions.classes_for(race)
-	if max_level < DEATH_KNIGHT_LEVEL:
+	if max_level < DEATH_KNIGHT_LEVEL and _service == Service.NONE:
 		_classes.erase(DEATH_KNIGHT)
 	for i: int in _class_buttons.size():
 		_class_buttons[i].visible = i < _classes.size()
 		if _class_buttons[i].visible:
 			_set_button_icon(_class_buttons[i], _class_icon(CharacterOptions.class_file(_classes[i])))
-	_choose_class(0)
+	var kept: int = _classes.find(_customizing.get("class", 0)) if _service != Service.NONE else -1
+	_choose_class(maxi(kept, 0))
 	_refresh_gender()
 	_model.facing = INITIAL_FACING
 	_stack_texts()
+
+
+# A race or class a paid service keeps fixed shows dimmed, as the stock disabled buttons are.
+func _lock(button: WowButton, locked: bool) -> void:
+	button.disabled = locked
+	button.modulate = LOCKED_TINT if locked else Color.WHITE
 
 
 func _choose_class(index: int) -> void:
@@ -258,6 +309,10 @@ func _accept() -> void:
 	var character: Dictionary = _look.duplicate()
 	character["name"] = _name_edit.text.strip_edges()
 	character["class"] = _class_id
+	if _service != Service.NONE:
+		character["guid"] = _customizing["guid"]
+		service_accepted.emit(character, _service)
+		return
 	create_requested.emit(character)
 
 

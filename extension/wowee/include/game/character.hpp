@@ -133,6 +133,7 @@ struct Character {
 
     // State
     uint32_t flags;             // Character flags (PvP, dead, etc.)
+    uint32_t customization = 0; // Paid service the server has granted: customize, race or faction change
 
     // Optional data
     PetData pet;                                // Pet information (if exists)

@@ -514,7 +514,7 @@ bool CharEnumParser::parse(network::Packet& packet, CharEnumResponse& response) 
         if (!packet.hasRemaining(4)) {
             // Customization missing, skip unknown
         } else {
-            packet.readUInt32();  // Customization
+            character.customization = packet.readUInt32();
             if (!packet.hasRemaining(1)) {
                 // Unknown missing
             } else {

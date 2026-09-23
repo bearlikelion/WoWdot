@@ -12,6 +12,7 @@ const UI_HEIGHT: float = 768.0
 # GlueParent_OnLoad pillarboxes screens wider than 16:9.
 const MAX_ASPECT: float = 16.0 / 9.0
 # The 1.12.1 ResponseCodes from CHAR_LIST_RETRIEVING on, each named as its GlueStrings key.
+const RESPONSE_SUCCESS: int = 0
 const FIRST_CHARACTER_RESPONSE: int = 42
 const CHARACTER_RESPONSES: PackedStringArray = [
 	"CHAR_LIST_RETRIEVING", "CHAR_LIST_RETRIEVED", "CHAR_LIST_FAILED",
@@ -81,6 +82,9 @@ func _ready() -> void:
 	_select.realm_change_requested.connect(_on_realm_change_requested)
 	_select.back_requested.connect(_log_out)
 	_create.create_requested.connect(_on_create_requested)
+	_create.service_accepted.connect(_on_service_accepted)
+	_select.service_requested.connect(_on_service_requested)
+	_select.rename_requested.connect(_on_rename_requested)
 	_create.back_requested.connect(_show_screen.bind(Screen.CHARACTER_SELECT))
 	_dialog.status_cancelled.connect(_log_out)
 	var session: WowSession = WowClient.session
@@ -90,6 +94,7 @@ func _ready() -> void:
 	session.character_created.connect(_on_character_created)
 	session.character_deleted.connect(_on_character_deleted)
 	session.character_login_failed.connect(_on_character_login_failed)
+	session.packet_received.connect(_on_packet_received)
 	_show_screen(Screen.LOGIN)
 
 
@@ -305,6 +310,51 @@ func _on_character_created(success: bool, code: int) -> void:
 	else:
 		_created_name = ""
 		_message(_response_text(code))
+
+
+func _on_service_requested(character: Dictionary, service: CharacterCreate.Service) -> void:
+	_create.customize(character, service)
+	_show_screen(Screen.CHARACTER_CREATE)
+
+
+# CMSG_CHAR_CUSTOMIZE, or CMSG_CHAR_FACTION_CHANGE for a race or faction change, which adds the race.
+func _on_service_accepted(character: Dictionary, service: CharacterCreate.Service) -> void:
+	_created_name = character["name"]
+	var buffer: StreamPeerBuffer = StreamPeerBuffer.new()
+	buffer.put_u64(character["guid"])
+	buffer.put_data(character["name"].to_utf8_buffer())
+	buffer.put_u8(0)
+	for key: String in ["gender", "skin", "hair_color", "hair_style", "facial_hair", "face"]:
+		buffer.put_u8(character.get(key, 0))
+	var opcode: String = "CMSG_CHAR_CUSTOMIZE"
+	if service != CharacterCreate.Service.CUSTOMIZE:
+		opcode = "CMSG_CHAR_FACTION_CHANGE"
+		buffer.put_u8(character["race"])
+	_status("CHAR_CUSTOMIZE_IN_PROGRESS")
+	WowClient.session.send_packet(opcode, buffer.data_array)
+
+
+func _on_rename_requested(guid: int, new_name: String) -> void:
+	_created_name = new_name
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, guid)
+	payload.append_array(new_name.to_utf8_buffer())
+	payload.append(0)
+	_status("CHAR_RENAME_IN_PROGRESS")
+	WowClient.session.send_packet("CMSG_CHAR_RENAME", payload)
+
+
+# Each answer starts with a ResponseCodes value, success being 0.
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode not in ["SMSG_CHAR_RENAME", "SMSG_CHAR_CUSTOMIZE", "SMSG_CHAR_FACTION_CHANGE"]:
+		return
+	var code: int = payload[0] if not payload.is_empty() else -1
+	if code == RESPONSE_SUCCESS:
+		WowClient.session.request_characters()
+		return
+	_created_name = ""
+	_message(_response_text(code))
 
 
 func _on_delete_requested(guid: int) -> void:

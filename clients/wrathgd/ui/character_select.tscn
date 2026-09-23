@@ -2733,3 +2733,245 @@ show_behind_parent = true
 mouse_filter = 2
 texture = SubResource("AtlasTexture_33")
 expand_mode = 1
+
+[node name="CharacterRenameDialog" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+visible = false
+mouse_filter = 0
+
+[node name="CharacterRenameBackground" type="Control" parent="CharacterRenameDialog"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256
+offset_top = -128
+offset_right = 256
+offset_bottom = 128
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="CharacterRenameDialog/CharacterRenameBackground"]
+script = ExtResource("4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_26")
+edge = SubResource("WowTexture_27")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="CharacterRenameText1" type="Label" parent="CharacterRenameDialog/CharacterRenameBackground"]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 16
+offset_right = 456
+offset_bottom = 34
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalLarge"
+text = "Your name has been flagged for rename"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CharacterRenameText2" type="Label" parent="CharacterRenameDialog/CharacterRenameBackground"]
+unique_name_in_owner = true
+offset_left = 56
+offset_top = 54
+offset_right = 456
+offset_bottom = 66
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Please enter a new name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CharacterRenameAlertIcon" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground"]
+unique_name_in_owner = true
+offset_left = 24
+offset_top = 94
+offset_right = 72
+offset_bottom = 142
+mouse_filter = 2
+texture = SubResource("WowTexture_28")
+expand_mode = 1
+
+[node name="CharacterRenameButton1" type="TextureButton" parent="CharacterRenameDialog/CharacterRenameBackground"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 30
+offset_top = 200
+offset_right = 250
+offset_bottom = 240
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharacterRenameButton1Text" type="Label" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton1"]
+unique_name_in_owner = true
+offset_left = 110
+offset_top = 10.5
+offset_right = 110
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton1"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterRenameButton2" type="TextureButton" parent="CharacterRenameDialog/CharacterRenameBackground"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 263
+offset_top = 200
+offset_right = 483
+offset_bottom = 240
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="CharacterRenameButton2Text" type="Label" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton2"]
+unique_name_in_owner = true
+offset_left = 110
+offset_top = 10.5
+offset_right = 110
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameBackground/CharacterRenameButton2"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 40
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_10")
+
+[node name="CharacterRenameEditBox" type="LineEdit" parent="CharacterRenameDialog"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65
+offset_top = -57
+offset_right = 65
+offset_bottom = -25
+mouse_filter = 0
+theme_type_variation = &"GlueFontHighlight"
+max_length = 12
+caret_blink = true
+theme_override_styles/normal = SubResource("StyleBoxEmpty_29")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_29")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_29")
+
+[node name="Texture" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameEditBox"]
+offset_left = -10
+offset_top = 0
+offset_right = 65
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="CharacterRenameDialog/CharacterRenameEditBox"]
+offset_left = 65
+offset_top = 0
+offset_right = 140
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_33")
+expand_mode = 1

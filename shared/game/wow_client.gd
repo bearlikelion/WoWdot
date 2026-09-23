@@ -28,6 +28,7 @@ var home_area: int = 0
 
 func _ready() -> void:
 	KeyBindings.apply()
+	account_data.received.connect(_on_account_data_received)
 	session.packet_received.connect(_on_packet_received)
 
 
@@ -46,6 +47,11 @@ func map_name(map_id: int) -> String:
 	var maps: WowDBC = WowDBC.open(WowAssets.archive, "Map")
 	var row: int = maps.find(map_id)
 	return maps.get_string(row, "InternalName") if row >= 0 else ""
+
+
+func _on_account_data_received(type: AccountData.Type, text: String) -> void:
+	if type == AccountData.Type.GLOBAL_BINDINGS or type == AccountData.Type.CHARACTER_BINDINGS:
+		KeyBindings.from_cache(text)
 
 
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:

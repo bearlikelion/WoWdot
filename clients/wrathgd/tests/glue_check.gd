@@ -52,6 +52,7 @@ const ANNOUNCEMENT: String = "WrathGD announcement check"
 const HEROIC_DUNGEON: int = 1
 const GUILD_BANK_TEXT: String = "Tab info from glue_check"
 const GUILD_INFO_TEXT: String = "Guild info from glue_check"
+const RENAMED: String = "Wrathrenamed"
 const MACRO_NAME: String = "GlueMacro"
 const MACRO_BODY: String = "/say glue_check macro"
 # TalentTab.dbc's warrior Arms tree.
@@ -137,12 +138,80 @@ func _run() -> void:
 	await _server_notices()
 	await _channel_pane()
 	await _macro_account_data()
+	await _binding_account_data()
 	_combat_log_text()
 	var home: String = SpellText.describe(HEARTHSTONE_SPELL)
 	var area: String = AreaInfo.area_name(WowClient.home_area)
 	_check(not area.is_empty() and not home.contains("$") and home.contains(area),
 			"the hearthstone names the bound home (%s)" % home)
+	await _character_services()
 	_finish()
+
+
+# A GM flags the character for a customize and a rename, which the character screen then runs.
+func _character_services() -> void:
+	var session: WowSession = WowClient.session
+	session.send_chat(WowSession.CHAT_SAY, ".character customize %s" % CHARACTER)
+	session.send_chat(WowSession.CHAT_SAY, ".character rename %s" % CHARACTER)
+	await _frames(60)
+	if not await _log_out():
+		return
+	var index: int = _names().find(CHARACTER)
+	var customize: BaseButton = _select.get_node("%%CharSelectCharacterCustomize%d" % (index + 1))
+	if not _check(customize.visible, "the character list offers the customize service"):
+		return
+	var style: int = _character()["hair_style"]
+	customize.pressed.emit()
+	if not await _until(func() -> bool: return _create.visible, "customizing opens creation"):
+		return
+	var next_style: BaseButton = _create.get_node("%CharacterCustomizationButtonFrame3RightButton")
+	next_style.pressed.emit()
+	await _frames(30)
+	_capture("user://wotlk_customize.png")
+	var seen: int = _enumerations
+	(_create.get_node("%CharCreateOkayButton") as BaseButton).pressed.emit()
+	if await _until(func() -> bool: return _enumerations > seen, "the customized list returns"):
+		_check(_character()["hair_style"] != style, "the new hair style is saved")
+	if not await _rename(CHARACTER, RENAMED):
+		return
+	# The rename cleared the flag, so it is set again in the world to put the old name back.
+	if not await _enter(RENAMED):
+		return
+	session.send_chat(WowSession.CHAT_SAY, ".character rename %s" % RENAMED)
+	await _frames(60)
+	if await _log_out():
+		await _rename(RENAMED, CHARACTER)
+
+
+# Entering the world as a character flagged for rename asks for the new name first.
+func _rename(from: String, to: String) -> bool:
+	_select.select(_names().find(from))
+	_select.enter_world()
+	var dialog: Control = _select.get_node("%CharacterRenameDialog")
+	if not _check(dialog.visible, "entering %s asks for a new name" % from):
+		return false
+	await _frames(30)
+	_capture("user://wotlk_rename.png")
+	(_select.get_node("%CharacterRenameEditBox") as LineEdit).text = to
+	(_select.get_node("%CharacterRenameButton1") as BaseButton).pressed.emit()
+	return await _until(func() -> bool: return _names().has(to), "%s is renamed %s" % [from, to])
+
+
+func _log_out() -> bool:
+	var seen: int = _enumerations
+	WowClient.session.logout()
+	return await _until(func() -> bool: return _select.visible and _enumerations > seen,
+			"logging out returns to the character list")
+
+
+func _enter(character_name: String) -> bool:
+	_select.select(_names().find(character_name))
+	_select.enter_world()
+	return await _until(
+		func() -> bool: return WowClient.session.get_state() == WowSession.STATE_IN_WORLD \
+				and _main.world != null and _main.world.player().active,
+		"%s enters the world" % character_name,
+	)
 
 
 # A melee hit and a dodge read as the 3.3.5 combat log's full text lines.
@@ -160,6 +229,22 @@ func _combat_log_text() -> void:
 	line = CombatLogFrame.format(hit)
 	_check(line == "%s's attack was dodged by %s." % [CHARACTER, CHARACTER],
 			"a dodge reads as the stock full text line (%s)" % line)
+
+
+# Saving the key bindings stores the stock bindings cache, W moving forward among them.
+func _binding_account_data() -> void:
+	var stored: Array[String] = [""]
+	var on_received: Callable = func(type: AccountData.Type, text: String) -> void:
+		if type == AccountData.Type.GLOBAL_BINDINGS:
+			stored[0] = text
+	WowClient.account_data.received.connect(on_received)
+	KeyBindings.save()
+	WowClient.account_data.request(AccountData.Type.GLOBAL_BINDINGS)
+	await _until(func() -> bool: return stored[0].contains("bind W MOVEFORWARD"),
+			"the key bindings are stored in the server's account data")
+	WowClient.account_data.received.disconnect(on_received)
+	_check(KeyBindings.binding_text("move_forward", 0) == "W",
+			"reading the stored bindings back keeps W on moving forward")
 
 
 # A new account macro reaches the server's account data and reads back from it.

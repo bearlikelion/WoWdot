@@ -6,9 +6,23 @@ signal create_requested
 signal delete_requested(guid: int)
 signal realm_change_requested
 signal back_requested
+signal rename_requested(guid: int, new_name: String)
+signal service_requested(character: Dictionary, service: CharacterCreate.Service)
 
 const MAX_CHARACTERS: int = 10
 const CHARACTER_FLAG_GHOST: int = 0x2000
+const CHARACTER_FLAG_RENAME: int = 0x4000
+# CHAR_CUSTOMIZE_FLAG values, and the button CharacterSelect_UpdateModel shows for each.
+const SERVICE_FLAGS: Dictionary[CharacterCreate.Service, int] = {
+	CharacterCreate.Service.FACTION_CHANGE: 0x10000,
+	CharacterCreate.Service.RACE_CHANGE: 0x100000,
+	CharacterCreate.Service.CUSTOMIZE: 0x1,
+}
+const SERVICE_BUTTONS: Dictionary[CharacterCreate.Service, String] = {
+	CharacterCreate.Service.FACTION_CHANGE: "%%CharSelectFactionChange%d",
+	CharacterCreate.Service.RACE_CHANGE: "%%CharSelectRaceChange%d",
+	CharacterCreate.Service.CUSTOMIZE: "%%CharSelectCharacterCustomize%d",
+}
 # CHARACTER_ROTATION_CONSTANT, and CHARACTER_FACING_INCREMENT at the stock 60 updates a second.
 const DRAG_DEGREES_PER_PIXEL: float = 0.6
 const ROTATE_DEGREES_PER_SECOND: float = 120.0
@@ -51,6 +65,10 @@ func _ready() -> void:
 		_buttons.append(button)
 		button.pressed.connect(select.bind(i))
 		button.gui_input.connect(_on_button_input.bind(i))
+		for service: CharacterCreate.Service in SERVICE_BUTTONS:
+			(get_node(SERVICE_BUTTONS[service] % (i + 1)) as BaseButton).pressed.connect(
+				func() -> void: service_requested.emit(_characters[i], service)
+			)
 	_enter.pressed.connect(enter_world)
 	_create.pressed.connect(create_requested.emit)
 	_delete.pressed.connect(_open_delete_dialog)
@@ -63,6 +81,13 @@ func _ready() -> void:
 	_delete_edit.text_submitted.connect(func(_text: String) -> void: _confirm_delete())
 	_delete_confirm.pressed.connect(_confirm_delete)
 	_delete_cancel.pressed.connect(_delete_dialog.hide)
+	%CharacterRenameDialog.hide()
+	(%CharacterRenameText1 as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	%CharacterRenameButton1.pressed.connect(_confirm_rename)
+	%CharacterRenameButton2.pressed.connect(%CharacterRenameDialog.hide)
+	(%CharacterRenameEditBox as LineEdit).text_submitted.connect(
+		func(_text: String) -> void: _confirm_rename()
+	)
 	CharacterOptions.apply_scene(_model, DEFAULT_RACE, false)
 
 
@@ -101,6 +126,13 @@ func show_characters(characters: Array, realm_label: String, select_guid: int = 
 		_buttons[i].visible = i < _characters.size()
 		if _buttons[i].visible:
 			_fill_button(i, _characters[i])
+		# CharacterSelect_UpdateModel shows at most one paid service button per character.
+		var offered: int = _characters[i].get("customization", 0) if i < _characters.size() else 0
+		var shown: bool = false
+		for service: CharacterCreate.Service in SERVICE_BUTTONS:
+			var service_button: CanvasItem = get_node(SERVICE_BUTTONS[service] % (i + 1))
+			service_button.visible = not shown and offered & SERVICE_FLAGS[service] != 0
+			shown = shown or service_button.visible
 	_create.visible = _characters.size() < MAX_CHARACTERS
 	_enter.disabled = _characters.is_empty()
 	_delete.disabled = _characters.is_empty()
@@ -126,9 +158,28 @@ func select(index: int) -> void:
 	_model.show_character(CharacterOptions.character_model(CharacterModels.listed_look(character)))
 
 
+# FORCE_RENAME_CHARACTER: a character the server flagged asks for a new name before it plays.
 func enter_world() -> void:
-	if _selected >= 0 and _selected < _characters.size():
-		character_chosen.emit(_characters[_selected])
+	if _selected < 0 or _selected >= _characters.size():
+		return
+	var character: Dictionary = _characters[_selected]
+	if character.get("flags", 0) & CHARACTER_FLAG_RENAME:
+		(%CharacterRenameText1 as Label).text = WowStrings.get_text("CHAR_RENAME_DESCRIPTION")
+		(%CharacterRenameText2 as Label).text = WowStrings.get_text("CHAR_RENAME_INSTRUCTIONS")
+		var edit: LineEdit = %CharacterRenameEditBox
+		edit.text = ""
+		%CharacterRenameDialog.show()
+		edit.grab_focus.call_deferred()
+		return
+	character_chosen.emit(character)
+
+
+func _confirm_rename() -> void:
+	var new_name: String = (%CharacterRenameEditBox as LineEdit).text.strip_edges()
+	if new_name.is_empty() or _selected < 0 or _selected >= _characters.size():
+		return
+	%CharacterRenameDialog.hide()
+	rename_requested.emit(_characters[_selected]["guid"], new_name)
 
 
 func _fill_button(index: int, character: Dictionary) -> void:
