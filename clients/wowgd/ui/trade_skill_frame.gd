@@ -3,6 +3,7 @@ extends Control
 
 signal close_requested
 signal open_requested
+signal filter_menu_requested(entries: Array[Dictionary], chosen: Callable)
 
 const SKILLS_DISPLAYED: int = 8
 const SKILL_HEIGHT: float = 16.0
@@ -15,6 +16,9 @@ const DIFFICULTY_COLORS: Dictionary[TradeSkills.Difficulty, Color] = {
 	TradeSkills.Difficulty.TRIVIAL: Color(0.5, 0.5, 0.5),
 }
 const LACKING_COLOR: Color = Color(0.5, 0.5, 0.5)
+const FILTER_WIDTH: float = 120.0
+# The subclass filter overlaps the slot filter's left cap by this much.
+const FILTER_OVERLAP: float = 35.0
 
 var _profession: Dictionary = {}
 var _recipes: Array[Dictionary] = []
@@ -22,6 +26,9 @@ var _selected: int = 0
 var _offset: int = 0
 # Casts still owed to a Create All, each sent as the one before it lands.
 var _queued: int = 0
+# The chosen filter menu ids; 0 shows everything, a subclass is (class << 8 | subclass) + 1.
+var _subclass_filter: int = 0
+var _slot_filter: int = 0
 
 @onready var _list_scroll: WowScrollFrame = %TradeSkillListScrollFrame
 @onready var _create: BaseButton = %TradeSkillCreateButton
@@ -32,11 +39,15 @@ var _queued: int = 0
 func _ready() -> void:
 	for i: int in SKILLS_DISPLAYED:
 		_row(i).pressed.connect(_on_row_pressed.bind(i))
-	# ponytail: one flat list; the subclass and slot filters wait on recipe subclass data.
-	for filter: Control in [
-		%TradeSkillInvSlotDropDown, %TradeSkillSubClassDropDown, %TradeSkillExpandButtonFrame,
-	]:
-		filter.hide()
+	# ponytail: one flat list without the stock category headers.
+	%TradeSkillExpandButtonFrame.hide()
+	var slot_filter: Control = %TradeSkillInvSlotDropDown
+	var subclass_filter: Control = %TradeSkillSubClassDropDown
+	DropDownList.set_width(slot_filter, FILTER_WIDTH)
+	subclass_filter.offset_right = slot_filter.offset_left + FILTER_OVERLAP
+	DropDownList.set_width(subclass_filter, FILTER_WIDTH)
+	%TradeSkillSubClassDropDownButton.pressed.connect(_open_subclass_menu)
+	%TradeSkillInvSlotDropDownButton.pressed.connect(_open_slot_menu)
 	_create.pressed.connect(func() -> void: _make(_typed_count()))
 	_create_all.pressed.connect(func() -> void: _make(_makeable(_recipe())))
 	%TradeSkillCancelButton.pressed.connect(close_requested.emit)
@@ -69,6 +80,8 @@ func open_for_spell(spell_id: int) -> bool:
 		_selected = 0
 		_offset = 0
 		_queued = 0
+		_subclass_filter = 0
+		_slot_filter = 0
 		open_requested.emit()
 		refresh()
 		return true
@@ -81,7 +94,9 @@ func refresh() -> void:
 	for profession: Dictionary in TradeSkills.professions():
 		if profession["skill_line"] == _profession["skill_line"]:
 			_profession = profession
-	_recipes = TradeSkills.recipes(_profession["skill_line"])
+	_recipes.assign(TradeSkills.recipes(_profession["skill_line"]).filter(_passes_filters))
+	%TradeSkillSubClassDropDownText.text = _filter_text(_subclass_filter, "ALL_SUBCLASSES")
+	%TradeSkillInvSlotDropDownText.text = _filter_text(_slot_filter, "ALL_INVENTORY_SLOTS")
 	if _recipe().is_empty() and not _recipes.is_empty():
 		_selected = _recipes[0]["spell"]
 	%TradeSkillFrameTitleText.text = _profession["name"]
@@ -120,6 +135,74 @@ func refresh() -> void:
 			(%TradeSkillHighlight as CanvasItem).self_modulate = color
 			highlight.show()
 	_update_details()
+
+
+# SetTradeSkillSubClassFilter and SetTradeSkillInvSlotFilter, keyed by the product item.
+func _passes_filters(recipe: Dictionary) -> bool:
+	var info: Dictionary = WowClient.session.get_item_info(recipe["product"]) \
+			if recipe["product"] else {}
+	if _subclass_filter and (info.is_empty() or _subclass_id(info) != _subclass_filter):
+		return false
+	return not _slot_filter or (not info.is_empty() and _slot(info) == _slot_filter)
+
+
+# Robes go in the chest slot, so they file under Chest with the rest.
+func _slot(info: Dictionary) -> int:
+	const INVTYPE_CHEST: int = 5
+	const INVTYPE_ROBE: int = 20
+	var slot: int = info["inventory_type"]
+	return INVTYPE_CHEST if slot == INVTYPE_ROBE else slot
+
+
+func _subclass_id(info: Dictionary) -> int:
+	return (info["class"] << 8 | info["subclass"]) + 1
+
+
+func _filter_text(id: int, all_key: String) -> String:
+	for entry: Dictionary in _filter_entries(all_key):
+		if entry["id"] == id:
+			return entry["text"]
+	return WowStrings.get_text(all_key)
+
+
+# The subclasses or slots this profession's products come in, after the "All" entry.
+func _filter_entries(all_key: String) -> Array[Dictionary]:
+	var found: Dictionary[int, String] = {}
+	for recipe: Dictionary in TradeSkills.recipes(_profession["skill_line"]):
+		var info: Dictionary = WowClient.session.get_item_info(recipe["product"]) \
+				if recipe["product"] else {}
+		if info.is_empty():
+			continue
+		if all_key == "ALL_SUBCLASSES":
+			found[_subclass_id(info)] = WowClient.proficiencies.subclass_name(
+				info["class"], info["subclass"]
+			)
+		elif _slot(info) < GameTooltip.INVENTORY_TYPES.size() \
+		and not GameTooltip.INVENTORY_TYPES[_slot(info)].is_empty():
+			found[_slot(info)] = WowStrings.get_text(GameTooltip.INVENTORY_TYPES[_slot(info)])
+	var entries: Array[Dictionary] = [{"text": WowStrings.get_text(all_key), "id": 0}]
+	for id: int in found:
+		entries.append({"text": found[id], "id": id})
+	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return a["id"] == 0 or (b["id"] != 0 and a["text"] < b["text"])
+	)
+	return entries
+
+
+func _open_subclass_menu() -> void:
+	filter_menu_requested.emit(_filter_entries("ALL_SUBCLASSES"), func(id: int) -> void:
+		_subclass_filter = id
+		_offset = 0
+		refresh()
+	)
+
+
+func _open_slot_menu() -> void:
+	filter_menu_requested.emit(_filter_entries("ALL_INVENTORY_SLOTS"), func(id: int) -> void:
+		_slot_filter = id
+		_offset = 0
+		refresh()
+	)
 
 
 func _update_details() -> void:

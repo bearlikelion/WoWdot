@@ -57,6 +57,8 @@ var _loot_slot: int = 0
 var _loot_candidates: PackedInt64Array = []
 var _menu_name: String = ""
 var _menu_guid: int = 0
+# Set when a panel opens the shared menu for itself, which then gets the chosen id.
+var _menu_callback: Callable = Callable()
 var _duel: Duel
 var _named_pet: int = 0
 var _spell_failures: Dictionary = {}
@@ -194,6 +196,7 @@ func _ready() -> void:
 	_merchant.error_raised.connect(show_error)
 	_trainer.open_requested.connect(_panels.show_panel.bind(_trainer))
 	_trade_skill.open_requested.connect(_panels.show_panel.bind(_trade_skill))
+	_trade_skill.filter_menu_requested.connect(_open_menu)
 	_dress_up.open_requested.connect(_panels.show_panel.bind(_dress_up))
 	ItemButton.dress_up = _dress_up.try_on
 	_inspect.open_requested.connect(_panels.show_panel.bind(_inspect))
@@ -983,7 +986,7 @@ func _show_unit_menu(guid: int) -> void:
 		return
 	entries.push_front({"text": _menu_name, "title": true})
 	entries.append({"text": WowStrings.get_text("CANCEL", "Cancel")})
-	_unit_menu.open(entries, get_viewport().get_mouse_position())
+	_open_menu(entries)
 
 
 func _show_master_loot_menu(slot: int, candidates: PackedInt64Array) -> void:
@@ -994,10 +997,18 @@ func _show_master_loot_menu(slot: int, candidates: PackedInt64Array) -> void:
 		var receiver: String = WowClient.session.get_object_name(candidates[i])
 		entries.append({"text": receiver, "id": MASTER_LOOT_ID + i})
 	entries.append({"text": WowStrings.get_text("CANCEL", "Cancel")})
+	_open_menu(entries)
+
+
+func _open_menu(entries: Array[Dictionary], chosen: Callable = Callable()) -> void:
+	_menu_callback = chosen
 	_unit_menu.open(entries, get_viewport().get_mouse_position())
 
 
 func _on_unit_menu_pressed(id: int) -> void:
+	if _menu_callback.is_valid():
+		_menu_callback.call(id)
+		return
 	if id >= MASTER_LOOT_ID:
 		_loot.give(_loot_slot, _loot_candidates[id - MASTER_LOOT_ID])
 		return

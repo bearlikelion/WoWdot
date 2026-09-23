@@ -38,6 +38,27 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 # Each entry takes "text" and "id", and optionally "title" for a heading that cannot be picked.
+# UIDropDownMenu_SetWidth on a converted dropdown: the middle stretches, the rest follows it.
+static func set_width(frame: Control, width: float) -> void:
+	const CAP: float = 25.0
+	# UIDropDownMenuTemplate pins the text and button this far in from the right cap's edge.
+	const TEXT_INSET: float = 43.0
+	const BUTTON_INSET: float = 16.0
+	const BUTTON_SIZE: float = 24.0
+	var middle: Control = frame.get_node(String(frame.name) + "Middle")
+	middle.offset_right = middle.offset_left + width
+	var right: Control = frame.get_node(String(frame.name) + "Right")
+	right.offset_left = middle.offset_right
+	right.offset_right = right.offset_left + CAP
+	var text: Control = frame.get_node(String(frame.name) + "Text")
+	text.offset_right = right.offset_right - TEXT_INSET
+	text.offset_left = text.offset_right - (width - CAP)
+	var button: Control = frame.get_node(String(frame.name) + "Button")
+	button.offset_right = right.offset_right - BUTTON_INSET
+	button.offset_left = button.offset_right - BUTTON_SIZE
+	frame.offset_left = frame.offset_right - (width + CAP * 2.0)
+
+
 func open(entries: Array[Dictionary], at: Vector2) -> void:
 	_ids.clear()
 	var widest: float = 0.0
