@@ -180,6 +180,8 @@ func _ready() -> void:
 	_duel.finished.connect(add_system_line)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
+	_chat.menu_requested.connect(_open_menu)
+	_chat.macro_requested.connect(func() -> void: _panels.show_panel(_panels.get_node("%MacroFrame")))
 	(_panels.get_node("%HelpFrame") as HelpFrame).ticket_requested.connect(ticket_requested.emit)
 	_chat.ticket_requested.connect(ticket_requested.emit.bind(HelpFrame.DEFAULT_CATEGORY))
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))

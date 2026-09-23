@@ -5,6 +5,8 @@ extends RefCounted
 const STRING_FILES: PackedStringArray = [
 	"Interface\\FrameXML\\GlobalStrings.lua",
 	"Interface\\GlueXML\\GlueStrings.lua",
+	# The EMOTEn_TOKEN names each text emote's slash command belongs to.
+	"Interface\\FrameXML\\ChatFrame.lua",
 ]
 
 static var _strings: Dictionary[String, String] = {}

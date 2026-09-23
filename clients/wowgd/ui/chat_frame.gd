@@ -5,6 +5,10 @@ extends DockedChatFrame
 signal emote_requested(text_emote: int)
 signal ticket_requested(text: String)
 signal item_ref_requested(link: String)
+signal menu_requested(entries: Array[Dictionary], chosen: Callable)
+signal macro_requested
+
+enum ChatMenuItem { SAY = 1, PARTY, GUILD, YELL, WHISPER, EMOTE, REPLY, VOICE_EMOTE, MACRO }
 
 # GlobalStrings key stem per chat type: CHAT_<stem>_GET formats lines, CHAT_<stem>_SEND the header.
 const TYPE_KEYS: Dictionary[WowSession.ChatType, String] = {
@@ -84,6 +88,21 @@ const STICKY: Array[WowSession.ChatType] = [
 	WowSession.CHAT_OFFICER, WowSession.CHAT_RAID, WowSession.CHAT_CHANNEL,
 ]
 const HISTORY_LINES: int = 32
+# EmoteList and TextEmoteSpeechList in ChatFrame.lua: the emotes that animate and those that speak.
+const EMOTE_MENU: PackedStringArray = [
+	"WAVE", "BOW", "DANCE", "APPLAUD", "BEG", "CHICKEN", "CRY", "EAT", "FLEX", "KISS", "LAUGH",
+	"POINT", "ROAR", "RUDE", "SALUTE", "SHY", "TALK", "STAND", "SIT", "SLEEP", "KNEEL",
+]
+const VOICE_MENU: PackedStringArray = [
+	"HELPME", "INCOMING", "CHARGE", "FLEE", "ATTACKMYTARGET", "OOM", "FOLLOW", "WAIT", "HEALME",
+	"CHEER", "OPENFIRE", "RASP", "HELLO", "BYE", "NOD", "NO", "THANK", "WELCOME", "CONGRATULATE",
+	"FLIRT", "JOKE", "TRAIN",
+]
+# ChatMenu_SetChatType: each chat entry opens the edit box on its slash command.
+const MENU_COMMANDS: Dictionary[ChatMenuItem, String] = {
+	ChatMenuItem.SAY: "/s ", ChatMenuItem.PARTY: "/p ", ChatMenuItem.GUILD: "/g ",
+	ChatMenuItem.YELL: "/y ", ChatMenuItem.WHISPER: "/w ",
+}
 # ChatEdit_UpdateHeader: SetTextInsets(15 + header width, 13, 0, 0).
 const INSET_LEFT: float = 15.0
 const INSET_RIGHT: float = 13.0
@@ -120,6 +139,7 @@ func _ready() -> void:
 	_edit_box.hide()
 	WowClient.session.chat_received.connect(_on_chat_received)
 	link_clicked.connect(_on_link_clicked)
+	%ChatFrameMenuButton.pressed.connect(_open_chat_menu)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -425,3 +445,51 @@ func _on_link_clicked(link: String) -> void:
 			ItemButton.dress_up.call(item_entry)
 		else:
 			item_ref_requested.emit(link)
+
+
+# ChatMenu_OnLoad; the stock Emote and Voice Emote submenus open as a menu of their own here.
+func _open_chat_menu() -> void:
+	var entries: Array[Dictionary] = []
+	for item: Array in [
+		[ChatMenuItem.SAY, "SAY_MESSAGE"], [ChatMenuItem.PARTY, "PARTY_MESSAGE"],
+		[ChatMenuItem.GUILD, "GUILD_MESSAGE"], [ChatMenuItem.YELL, "YELL_MESSAGE"],
+		[ChatMenuItem.WHISPER, "WHISPER_MESSAGE"], [ChatMenuItem.EMOTE, "EMOTE_MESSAGE"],
+		[ChatMenuItem.REPLY, "REPLY_MESSAGE"], [ChatMenuItem.VOICE_EMOTE, "VOICEMACRO_LABEL"],
+		[ChatMenuItem.MACRO, "MACRO"],
+	]:
+		entries.append({"text": WowStrings.get_text(item[1]), "id": item[0]})
+	menu_requested.emit(entries, _on_chat_menu_chosen)
+
+
+func _on_chat_menu_chosen(id: int) -> void:
+	var item: ChatMenuItem = id as ChatMenuItem
+	if MENU_COMMANDS.has(item):
+		open(MENU_COMMANDS[item])
+	elif item == ChatMenuItem.EMOTE:
+		_open_emote_menu.call_deferred(EMOTE_MENU)
+	elif item == ChatMenuItem.VOICE_EMOTE:
+		_open_emote_menu.call_deferred(VOICE_MENU)
+	elif item == ChatMenuItem.REPLY and not _last_whisperer.is_empty():
+		open_whisper(_last_whisperer)
+	elif item == ChatMenuItem.MACRO:
+		macro_requested.emit()
+
+
+# OnMenuLoad: each emote listed by its slash command, sorted as TextEmoteSort does.
+func _open_emote_menu(tokens: PackedStringArray) -> void:
+	var entries: Array[Dictionary] = []
+	for token: String in tokens:
+		var text_emote: int = Emotes.find(token)
+		if text_emote != 0:
+			entries.append({"text": _emote_command(token), "id": text_emote})
+	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a["text"] < b["text"])
+	menu_requested.emit(entries, func(text_emote: int) -> void: emote_requested.emit(text_emote))
+
+
+func _emote_command(token: String) -> String:
+	var i: int = 1
+	while WowStrings.has_text("EMOTE%d_TOKEN" % i):
+		if WowStrings.get_text("EMOTE%d_TOKEN" % i) == token:
+			return WowStrings.get_text("EMOTE%d_CMD1" % i)
+		i += 1
+	return token.to_lower()
