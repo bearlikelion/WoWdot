@@ -11,8 +11,8 @@ const BARBER_CHAIR: int = 190683
 const GUILD: String = "Wrathglue Bank"
 # A Guild Vault, gameobject type 34.
 const GUILD_VAULT: int = 187289
-# Enough for the first tab's hundred gold.
-const GUILD_BANK_MONEY: int = 1000000
+# The first tab's hundred gold, with enough left for the deposit and a haircut.
+const GUILD_BANK_MONEY: int = 2000000
 const COPPER: int = 1234
 const ARENA_TEAM: String = "Wrathglue Arena"
 const ACHIEVEMENT: int = 1017
@@ -104,7 +104,7 @@ func _run() -> void:
 	await _guild_bank()
 	await _barbershop()
 	await _calendar()
-	_totems()
+	await _totems()
 	var home: String = SpellText.describe(HEARTHSTONE_SPELL)
 	var area: String = AreaInfo.area_name(WowClient.home_area)
 	_check(not area.is_empty() and not home.contains("$") and home.contains(area),
@@ -125,6 +125,8 @@ func _totems() -> void:
 		WowClient.session.packet_received.emit("SMSG_TOTEM_CREATED", payload)
 	_check(frame.visible and (frame.get_node("%TotemFrameTotem2") as CanvasItem).visible,
 			"two totems fill two totem buttons")
+	await _frames(30)
+	_capture("user://wotlk_totems.png")
 	var first: TextureRect = frame.get_node("%TotemFrameTotem1IconTexture")
 	_check(first.texture == WowAssets.spells.icon(EARTH_TOTEM_SPELL),
 			"the earth totem takes the first button")
@@ -153,6 +155,8 @@ func _calendar() -> void:
 	print("calendar: %d holidays, %d events, %d days with holiday art" % [
 		WowClient.calendar.holidays.size(), WowClient.calendar.events.size(), festive,
 	])
+	await _frames(30)
+	_capture("user://wotlk_calendar.png")
 	frame.close_requested.emit()
 
 

@@ -5,58 +5,65 @@
 [ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="3"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
+file = "Interface\\Barbershop\\UI-Barbershop.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_2"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0, 0, 265, 319)
 
 [sub_resource type="WowTexture" id="WowTexture_3"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_4"]
-file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Down.blp"
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5"]
-blend_mode = 1
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\Buttons\\UI-SpellbookIcon-PrevPage-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_6"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_7"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7"]
+blend_mode = 1
 
 [sub_resource type="WowTexture" id="WowTexture_8"]
-file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_9"]
-file = "Interface\\MoneyFrame\\UI-MoneyFrame-Border.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_10"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+file = "Interface\\Buttons\\UI-SpellbookIcon-NextPage-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
-atlas = SubResource("WowTexture_10")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\MoneyFrame\\UI-MoneyFrame-Border.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_12"]
-file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13"]
 atlas = SubResource("WowTexture_12")
 region = Rect2(0, 0, 80, 22)
 
 [sub_resource type="WowTexture" id="WowTexture_14"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15"]
 atlas = SubResource("WowTexture_14")
 region = Rect2(0, 0, 80, 22)
 
 [sub_resource type="WowTexture" id="WowTexture_16"]
-file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_17"]
 atlas = SubResource("WowTexture_16")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
 region = Rect2(0, 0, 80, 22)
 
 [node name="BarberShopFrame" type="Control"]
@@ -84,6 +91,7 @@ offset_top = 0
 offset_right = 0
 offset_bottom = 0
 mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
 expand_mode = 1
 
 [node name="BarberShopFrameSelector1" type="Control" parent="."]
@@ -126,7 +134,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_1")
+texture = SubResource("WowTexture_3")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Prev"]
@@ -136,7 +144,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_2")
+texture = SubResource("WowTexture_4")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Prev"]
@@ -146,7 +154,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_3")
+texture = SubResource("WowTexture_5")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Prev"]
@@ -156,9 +164,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_6")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameSelector1Next" type="TextureButton" parent="BarberShopFrameSelector1"]
 unique_name_in_owner = true
@@ -175,7 +183,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Next"]
@@ -185,7 +193,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_7")
+texture = SubResource("WowTexture_9")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Next"]
@@ -195,7 +203,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_8")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector1/BarberShopFrameSelector1Next"]
@@ -205,9 +213,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_6")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameSelector2" type="Control" parent="."]
 unique_name_in_owner = true
@@ -249,7 +257,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_1")
+texture = SubResource("WowTexture_3")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Prev"]
@@ -259,7 +267,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_2")
+texture = SubResource("WowTexture_4")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Prev"]
@@ -269,7 +277,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_3")
+texture = SubResource("WowTexture_5")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Prev"]
@@ -279,9 +287,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_6")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameSelector2Next" type="TextureButton" parent="BarberShopFrameSelector2"]
 unique_name_in_owner = true
@@ -298,7 +306,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Next"]
@@ -308,7 +316,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_7")
+texture = SubResource("WowTexture_9")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Next"]
@@ -318,7 +326,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_8")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector2/BarberShopFrameSelector2Next"]
@@ -328,9 +336,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_6")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameSelector3" type="Control" parent="."]
 unique_name_in_owner = true
@@ -372,7 +380,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_1")
+texture = SubResource("WowTexture_3")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Prev"]
@@ -382,7 +390,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_2")
+texture = SubResource("WowTexture_4")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Prev"]
@@ -392,7 +400,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_3")
+texture = SubResource("WowTexture_5")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Prev"]
@@ -402,9 +410,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_6")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameSelector3Next" type="TextureButton" parent="BarberShopFrameSelector3"]
 unique_name_in_owner = true
@@ -421,7 +429,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Next"]
@@ -431,7 +439,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_7")
+texture = SubResource("WowTexture_9")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Next"]
@@ -441,7 +449,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_8")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector3/BarberShopFrameSelector3Next"]
@@ -451,9 +459,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_6")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameSelector4" type="Control" parent="."]
 unique_name_in_owner = true
@@ -496,7 +504,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_1")
+texture = SubResource("WowTexture_3")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Prev"]
@@ -506,7 +514,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_2")
+texture = SubResource("WowTexture_4")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Prev"]
@@ -516,7 +524,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_3")
+texture = SubResource("WowTexture_5")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Prev"]
@@ -526,9 +534,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_6")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameSelector4Next" type="TextureButton" parent="BarberShopFrameSelector4"]
 unique_name_in_owner = true
@@ -545,7 +553,7 @@ offset_top = 0
 offset_right = 32
 offset_bottom = 32
 mouse_filter = 2
-texture = SubResource("WowTexture_6")
+texture = SubResource("WowTexture_8")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Next"]
@@ -555,7 +563,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_7")
+texture = SubResource("WowTexture_9")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Next"]
@@ -565,7 +573,7 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_8")
+texture = SubResource("WowTexture_10")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BarberShopFrameSelector4/BarberShopFrameSelector4Next"]
@@ -575,9 +583,9 @@ offset_right = 32
 offset_bottom = 32
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_4")
+texture = SubResource("WowTexture_6")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameMoneyFrame" parent="." instance=ExtResource("3")]
 unique_name_in_owner = true
@@ -595,7 +603,7 @@ offset_top = -3.5
 offset_right = 120
 offset_bottom = 28.5
 mouse_filter = 2
-texture = SubResource("WowTexture_9")
+texture = SubResource("WowTexture_11")
 expand_mode = 1
 
 [node name="BarberShopFrameOkayButton" type="TextureButton" parent="."]
@@ -616,7 +624,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_13")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameOkayButton"]
@@ -626,7 +634,7 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_15")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameOkayButton"]
@@ -636,7 +644,7 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_17")
 expand_mode = 1
 
 [node name="BarberShopFrameOkayButtonText" type="Label" parent="BarberShopFrameOkayButton"]
@@ -657,9 +665,9 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameCancelButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -679,7 +687,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_13")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameCancelButton"]
@@ -689,7 +697,7 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_15")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameCancelButton"]
@@ -699,7 +707,7 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_17")
 expand_mode = 1
 
 [node name="BarberShopFrameCancelButtonText" type="Label" parent="BarberShopFrameCancelButton"]
@@ -720,9 +728,9 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")
 
 [node name="BarberShopFrameResetButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -744,7 +752,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_13")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="BarberShopFrameResetButton"]
@@ -754,7 +762,7 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_15")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="BarberShopFrameResetButton"]
@@ -764,7 +772,7 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_17")
 expand_mode = 1
 
 [node name="BarberShopFrameResetButtonText" type="Label" parent="BarberShopFrameResetButton"]
@@ -785,6 +793,6 @@ offset_right = 80
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
-material = SubResource("CanvasItemMaterial_5")
+material = SubResource("CanvasItemMaterial_7")

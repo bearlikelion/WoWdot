@@ -22,9 +22,11 @@ const WEEKDAY_KEYS: PackedStringArray = [
 const WEEKDAY_CELL: Vector2 = Vector2(90, 28)
 const WEEKDAY_TOP: float = 180.0
 const DAY_CELL: float = 90.0
-# The holiday art fills 182 of each 256 pixel texture.
-const HOLIDAY_ART: Rect2 = Rect2(0, 0, 182, 182)
+# The EventTexture's TexCoords: the holiday art fills this share of its texture.
+const HOLIDAY_ART_SHARE: float = 0.7109375
 const HOLIDAY_PATH: String = "Interface\\Calendar\\Holidays\\%s%s.blp"
+# DARKDAY_TOP_TCOORDS' plain tile on CalendarShadows; the bottom half is the same tile flipped.
+const DARK_TILE: Rect2 = Rect2(90, 0, 90, 45)
 
 var viewed_month: int = 0
 var viewed_year: int = 0
@@ -46,9 +48,14 @@ func _ready() -> void:
 				WowStrings.get_text(WEEKDAY_KEYS[i])
 	for i: int in DAYS_SHOWN:
 		var button: BaseButton = _day(i)
-		_crop(button.get_node("NormalTexture"), Rect2(
-			Vector2(randi() % 2, randi() % 2) * DAY_CELL, Vector2.ONE * DAY_CELL
-		))
+		var normal: TextureRect = button.get_node("NormalTexture")
+		_crop(normal, Rect2(Vector2(randi() % 2, randi() % 2) * DAY_CELL, Vector2.ONE * DAY_CELL))
+		# CalendarFrame_InitDay puts the parchment on the BACKGROUND layer, under the day's art.
+		button.move_child(normal, 0)
+		var prefix: String = "%%CalendarDayButton%dDarkFrame" % (i + 1)
+		_crop(get_node(prefix + "Top"), DARK_TILE)
+		_crop(get_node(prefix + "Bottom"), DARK_TILE)
+		(get_node(prefix + "Bottom") as TextureRect).flip_v = true
 		button.mouse_entered.connect(_on_day_hovered.bind(i))
 		button.mouse_exited.connect(func() -> void: day_left.emit(button))
 	%CalendarPrevMonthButton.pressed.connect(_step_month.bind(-1))
@@ -102,7 +109,7 @@ func _show_day(index: int, date: Dictionary) -> void:
 		texture.file = HOLIDAY_PATH % [holiday[0]["texture"], holiday[0]["part"]]
 		var atlas: AtlasTexture = AtlasTexture.new()
 		atlas.atlas = texture
-		atlas.region = HOLIDAY_ART
+		atlas.region = Rect2(Vector2.ZERO, texture.get_size() * HOLIDAY_ART_SHARE)
 		art.texture = atlas
 	var events: Array[Dictionary] = _events_on(date)
 	(get_node(prefix + "EventBackgroundTexture") as CanvasItem).visible = not events.is_empty()

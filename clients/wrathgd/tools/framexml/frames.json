@@ -8,6 +8,12 @@
   "SpellButtonTemplate": "res://ui/spell_button.gd"
  },
  "inject": {
+  "BarberShopFrame": {
+   "Background": "Interface\\Barbershop\\UI-Barbershop"
+  },
+  "BarberShopBannerFrame": {
+   "BGTexture": "Interface\\Barbershop\\UI-Barbershop-Banner"
+  },
   "CharacterMicroButton": {
    "NormalTexture": "Interface\\Buttons\\UI-MicroButtonCharacter-Up",
    "PushedTexture": "Interface\\Buttons\\UI-MicroButtonCharacter-Down",

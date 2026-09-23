@@ -5,7 +5,6 @@ signal caption_changed(text: String)
 
 enum Selector { HAIR_STYLE, HAIR_COLOR, FACIAL_HAIR }
 
-const BACKGROUND: String = "Interface\\Barbershop\\UI-Barbershop.blp"
 # GetBarberShopCost: a new colour on the old style is half price, new facial hair three quarters.
 const COLOR_COST: float = 0.5
 const FACIAL_HAIR_COST: float = 0.75
@@ -28,9 +27,6 @@ func _ready() -> void:
 	%BarberShopFrameOkayButton.pressed.connect(_on_okay_pressed)
 	%BarberShopFrameCancelButton.pressed.connect(_barbershop.leave)
 	%BarberShopFrameResetButton.pressed.connect(_reset)
-	var background: WowTexture = WowTexture.new()
-	background.file = BACKGROUND
-	%BarberShopFrameBackground.texture = background
 	_barbershop.opened.connect(_on_opened)
 	_barbershop.closed.connect(hide)
 
