@@ -17,16 +17,27 @@ static func get_text(key: String, fallback: String = "") -> String:
 	return _strings.get(key, fallback if not fallback.is_empty() else key)
 
 
+static func has_text(key: String) -> bool:
+	if _strings.is_empty():
+		_load()
+	return _strings.has(key)
+
+
 # Lua's string.format: %s and %d in order, %2$s by position, arguments left over ignored.
 static func format(template: String, args: Array) -> String:
 	var out: String = ""
 	var next: int = 0
 	var from: int = 0
-	for found: RegExMatch in RegEx.create_from_string("%(?:(\\d+)\\$)?[sd]").search_all(template):
+	var pattern: RegEx = RegEx.create_from_string("%(?:(\\d+)\\$)?(\\d*)([sd])")
+	for found: RegExMatch in pattern.search_all(template):
 		var at: int = found.get_string(1).to_int() - 1 if not found.get_string(1).is_empty() else next
 		next += 1
 		out += template.substr(from, found.get_start() - from)
-		out += str(args[at]) if at < args.size() else ""
+		if at < args.size():
+			# A width such as the 02 in SHORTDATE's %1$02d pads a number with zeros.
+			var width: String = found.get_string(2)
+			out += ("%" + width + "d") % int(args[at]) if found.get_string(3) == "d" and width \
+					else str(args[at])
 		from = found.get_end()
 	return _plurals(out + template.substr(from))
 

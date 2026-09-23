@@ -253,12 +253,13 @@ expand_mode = 1
 [node name="SpellBookFrameTabButton1Text" type="Label" parent="SpellBookFrameTabButton1"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 29
+offset_top = 24
 offset_right = 64
-offset_bottom = 29
+offset_bottom = 34
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -308,12 +309,13 @@ expand_mode = 1
 [node name="SpellBookFrameTabButton2Text" type="Label" parent="SpellBookFrameTabButton2"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 29
+offset_top = 24
 offset_right = 64
-offset_bottom = 29
+offset_bottom = 34
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -363,12 +365,13 @@ expand_mode = 1
 [node name="SpellBookFrameTabButton3Text" type="Label" parent="SpellBookFrameTabButton3"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 29
+offset_top = 24
 offset_right = 64
-offset_bottom = 29
+offset_bottom = 34
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 horizontal_alignment = 1
 vertical_alignment = 1
 

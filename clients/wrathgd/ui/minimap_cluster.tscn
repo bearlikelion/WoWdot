@@ -1330,12 +1330,13 @@ material = SubResource("CanvasItemMaterial_8")
 [node name="GameTimeFrameText" type="Label" parent="Minimap/GameTimeFrame"]
 unique_name_in_owner = true
 offset_left = 19
-offset_top = 21
+offset_top = 15
 offset_right = 19
-offset_bottom = 21
+offset_bottom = 27
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontBlack"
 horizontal_alignment = 1
 vertical_alignment = 1
 

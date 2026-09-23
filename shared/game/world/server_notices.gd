@@ -73,9 +73,9 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 			if _server_messages == null:
 				_server_messages = WowDBC.open(WowAssets.archive, "ServerMessages")
 			var row: int = _server_messages.find(reader.u32())
+			# ServerMessages.dbc's text already starts with the [SERVER] prefix.
 			var text: String = _server_messages.get_string(row, "Text") if row >= 0 else "%s"
-			var prefix: String = WowStrings.get_text("SERVER_MESSAGE_PREFIX", "[SERVER]")
-			return "%s %s" % [prefix, WowStrings.format(text, [reader.cstring()])]
+			return WowStrings.format(text, [reader.cstring()])
 		"SMSG_SERVER_FIRST_ACHIEVEMENT":
 			var earner: String = reader.cstring()
 			reader.u64()

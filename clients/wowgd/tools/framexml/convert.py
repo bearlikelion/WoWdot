@@ -178,6 +178,8 @@ class Library:
             font["shadow"] = (dimension(child(shadow, "Offset")) or (1, -1), color(child(shadow, "Color")))
         if node.get("outline"):
             font["outline"] = node.get("outline")
+        if node.get("justifyH"):
+            font["justifyH"] = node.get("justifyH")
         return font
 
 
@@ -431,7 +433,9 @@ class Converter:
 
     def _button_font(self, widget):
         normal = widget.special.get("NormalFont")
-        return normal.get("inherits") if normal is not None else "GameFontNormal"
+        if normal is None:
+            return "GameFontNormal"
+        return normal.get("inherits") or normal.get("style") or "GameFontNormal"
 
     # ---- layout ----
 
@@ -861,7 +865,10 @@ class SceneWriter:
             if text:
                 props.append(("text", quote(self.lib.strings.get(text, text))))
             justify = {"LEFT": "0", "CENTER": "1", "RIGHT": "2"}
-            props.append(("horizontal_alignment", justify.get(w.attrs.get("justifyH", "CENTER").upper(), "1")))
+            # A FontString without its own justifyH takes the one its font object declares.
+            font_justify = (self.lib.font(w.font) or {}).get("justifyH") if w.font else None
+            justify_h = w.attrs.get("justifyH") or font_justify or "CENTER"
+            props.append(("horizontal_alignment", justify.get(justify_h.upper(), "1")))
             vjustify = {"TOP": "0", "MIDDLE": "1", "BOTTOM": "2"}
             props.append(("vertical_alignment", vjustify.get(w.attrs.get("justifyV", "MIDDLE").upper(), "1")))
             if w.size and w.size[0] and not w.size[1]:

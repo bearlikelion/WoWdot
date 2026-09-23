@@ -9,16 +9,20 @@ const SETTINGS_PATH: String = "user://macros.cfg"
 const MAX_MACROS: int = 18
 const MAX_BODY: int = 255
 const CAST_COMMANDS: PackedStringArray = ["/cast", "/spell"]
+const ICON_PATH: String = "Interface\\Icons\\"
 
 var _session: WowSession
 # Slot to {"name", "icon", "body"}; the slot is the id an action button stores.
 var _macros: Dictionary[int, Dictionary] = {}
 var _character: String = ""
+var _account_data: AccountData
 
 
-func _init(session: WowSession) -> void:
+func _init(session: WowSession, account_data: AccountData) -> void:
 	_session = session
+	_account_data = account_data
 	session.world_entered.connect(func(_map: int, _at: Vector3, _facing: float) -> void: _load())
+	account_data.received.connect(_on_account_data_received)
 	_load()
 
 
@@ -116,7 +120,70 @@ func _known_spell(wanted: String) -> int:
 	return best
 
 
+# 3.3.5 keeps macros on the server as the text of the stock client's macros-cache.txt.
+static func write_cache(macros: Dictionary[int, Dictionary]) -> String:
+	var text: String = ""
+	for slot: int in macros:
+		var macro: Dictionary = macros[slot]
+		text += 'MACRO %d "%s" %s\n%s\nEND\n' % [
+			slot, macro["name"], String(macro["icon"]).trim_prefix(ICON_PATH), macro["body"],
+		]
+	return text
+
+
+# Slot, counted from 1 within the account's or the character's set, to {name, icon, body}.
+static func parse_cache(text: String) -> Dictionary[int, Dictionary]:
+	var macros: Dictionary[int, Dictionary] = {}
+	var header: RegEx = RegEx.create_from_string('^MACRO (\\d+) "(.*)" (\\S+)$')
+	var slot: int = 0
+	var current: Dictionary = {}
+	var body: PackedStringArray = []
+	for line: String in text.split("\n"):
+		var found: RegExMatch = header.search(line.strip_edges(false, true))
+		if found:
+			slot = found.get_string(1).to_int()
+			current = {"name": found.get_string(2), "icon": ICON_PATH + found.get_string(3)}
+			body.clear()
+		elif line.strip_edges() == "END" and not current.is_empty():
+			current["body"] = "\n".join(body)
+			macros[slot] = current
+			current = {}
+		elif not current.is_empty():
+			body.append(line)
+	return macros
+
+
+func _cache(of_character: bool) -> Dictionary[int, Dictionary]:
+	var first: int = MAX_MACROS + 1 if of_character else 1
+	var macros: Dictionary[int, Dictionary] = {}
+	for id: int in ids(of_character):
+		macros[id - first + 1] = _macros[id]
+	return macros
+
+
+# The server's macros replace the account's or the character's own set.
+func _on_account_data_received(type: AccountData.Type, text: String) -> void:
+	if type != AccountData.Type.GLOBAL_MACROS and type != AccountData.Type.CHARACTER_MACROS:
+		return
+	var of_character: bool = type == AccountData.Type.CHARACTER_MACROS
+	for id: int in ids(of_character):
+		_macros.erase(id)
+	var first: int = MAX_MACROS + 1 if of_character else 1
+	var parsed: Dictionary[int, Dictionary] = parse_cache(text)
+	for slot: int in parsed:
+		if slot >= 1 and slot <= MAX_MACROS:
+			_macros[first + slot - 1] = parsed[slot]
+	_save_locally()
+
+
 func _save() -> void:
+	if PacketReader.wotlk:
+		_account_data.save(AccountData.Type.GLOBAL_MACROS, write_cache(_cache(false)))
+		_account_data.save(AccountData.Type.CHARACTER_MACROS, write_cache(_cache(true)))
+	_save_locally()
+
+
+func _save_locally() -> void:
 	var saved: ConfigFile = ConfigFile.new()
 	saved.load(SETTINGS_PATH)
 	# Other characters' sections stay as they are; this one's and the account's are rewritten.

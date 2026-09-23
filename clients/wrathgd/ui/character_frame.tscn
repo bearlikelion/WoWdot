@@ -892,6 +892,7 @@ offset_right = 5
 offset_bottom = 19
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Character"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -988,6 +989,7 @@ offset_right = 5
 offset_bottom = 19
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Pets"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1084,6 +1086,7 @@ offset_right = 5
 offset_bottom = 19
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Reputation"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1180,6 +1183,7 @@ offset_right = 5
 offset_bottom = 19
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Skills"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1277,6 +1281,7 @@ offset_right = 5
 offset_bottom = 19
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Currency"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3538,6 +3543,7 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Delete"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3598,6 +3604,7 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Equip"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3658,6 +3665,7 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Save"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3992,6 +4000,7 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -4052,6 +4061,7 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Okay"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -5897,6 +5907,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Close"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -6697,6 +6708,7 @@ offset_top = 0
 offset_right = 150
 offset_bottom = 25
 mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
 text = "Summon"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -7637,6 +7649,7 @@ offset_right = 57.5
 offset_bottom = 27
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Pet"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -7730,6 +7743,7 @@ offset_right = 57.5
 offset_bottom = 27
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Companions"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -7823,6 +7837,7 @@ offset_right = 57.5
 offset_bottom = 27
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Mounts"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -7987,13 +8002,14 @@ expand_mode = 1
 [node name="SkillFrameCollapseAllButtonText" type="Label" parent="SkillFrame/SkillFrameExpandButtonFrame/SkillFrameCollapseAllButton"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 11
+offset_top = 5
 offset_right = 25
-offset_bottom = 11
+offset_bottom = 17
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillFrameExpandButtonFrame/SkillFrameCollapseAllButton"]
@@ -8052,6 +8068,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Close"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -8098,13 +8115,14 @@ expand_mode = 1
 [node name="SkillTypeLabel1Text" type="Label" parent="SkillFrame/SkillTypeLabel1"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel1"]
@@ -8149,13 +8167,14 @@ expand_mode = 1
 [node name="SkillTypeLabel2Text" type="Label" parent="SkillFrame/SkillTypeLabel2"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel2"]
@@ -8200,13 +8219,14 @@ expand_mode = 1
 [node name="SkillTypeLabel3Text" type="Label" parent="SkillFrame/SkillTypeLabel3"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel3"]
@@ -8251,13 +8271,14 @@ expand_mode = 1
 [node name="SkillTypeLabel4Text" type="Label" parent="SkillFrame/SkillTypeLabel4"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel4"]
@@ -8302,13 +8323,14 @@ expand_mode = 1
 [node name="SkillTypeLabel5Text" type="Label" parent="SkillFrame/SkillTypeLabel5"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel5"]
@@ -8353,13 +8375,14 @@ expand_mode = 1
 [node name="SkillTypeLabel6Text" type="Label" parent="SkillFrame/SkillTypeLabel6"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel6"]
@@ -8404,13 +8427,14 @@ expand_mode = 1
 [node name="SkillTypeLabel7Text" type="Label" parent="SkillFrame/SkillTypeLabel7"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel7"]
@@ -8455,13 +8479,14 @@ expand_mode = 1
 [node name="SkillTypeLabel8Text" type="Label" parent="SkillFrame/SkillTypeLabel8"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel8"]
@@ -8506,13 +8531,14 @@ expand_mode = 1
 [node name="SkillTypeLabel9Text" type="Label" parent="SkillFrame/SkillTypeLabel9"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel9"]
@@ -8557,13 +8583,14 @@ expand_mode = 1
 [node name="SkillTypeLabel10Text" type="Label" parent="SkillFrame/SkillTypeLabel10"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel10"]
@@ -8608,13 +8635,14 @@ expand_mode = 1
 [node name="SkillTypeLabel11Text" type="Label" parent="SkillFrame/SkillTypeLabel11"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel11"]
@@ -8659,13 +8687,14 @@ expand_mode = 1
 [node name="SkillTypeLabel12Text" type="Label" parent="SkillFrame/SkillTypeLabel12"]
 unique_name_in_owner = true
 offset_left = 25
-offset_top = 7
+offset_top = 1
 offset_right = 25
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="SkillFrame/SkillTypeLabel12"]
@@ -14621,6 +14650,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Close"
 horizontal_alignment = 1
 vertical_alignment = 1

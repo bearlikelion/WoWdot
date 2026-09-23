@@ -47,6 +47,7 @@ const AREA_FLAG_CAPITAL: int = 0x100
 static var joined: PackedStringArray = []
 
 static var _zone_channels: PackedStringArray = []
+static var _display_requests: Dictionary[String, int] = {}
 
 
 static func join(channel_name: String, password: String = "") -> void:
@@ -169,10 +170,28 @@ static func members(payload: PackedByteArray) -> Dictionary:
 	var channel_name: String = reader.cstring()
 	reader.u8()
 	var guids: PackedInt64Array = []
+	var flags: PackedByteArray = []
 	for i: int in reader.u32():
 		guids.append(reader.u64())
-		reader.u8()
-	return {"channel": channel_name, "guids": guids}
+		flags.append(reader.u8())
+	return {"channel": channel_name, "guids": guids, "flags": flags}
+
+
+# CMSG_CHANNEL_DISPLAY_LIST gets the same answer as /chatlist, which only the latter prints.
+static func request_display(channel_name: String) -> void:
+	_display_requests[channel_name] = _display_requests.get(channel_name, 0) + 1
+	var payload: PackedByteArray = channel_name.to_utf8_buffer()
+	payload.append(0)
+	WowClient.session.send_packet("CMSG_CHANNEL_DISPLAY_LIST", payload)
+
+
+# True, once, for a list the channel pane asked for.
+static func take_display_request(channel_name: String) -> bool:
+	var pending: int = _display_requests.get(channel_name, 0)
+	if pending == 0:
+		return false
+	_display_requests[channel_name] = pending - 1
+	return true
 
 
 static func forget() -> void:

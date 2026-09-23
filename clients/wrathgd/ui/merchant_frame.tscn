@@ -413,13 +413,14 @@ expand_mode = 1
 [node name="MerchantItem1AltCurrencyFrameHonorText" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem1AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
@@ -443,13 +444,14 @@ expand_mode = 1
 [node name="MerchantItem1AltCurrencyFrameArenaText" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem1AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
@@ -473,13 +475,14 @@ expand_mode = 1
 [node name="MerchantItem1AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem1AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
@@ -503,13 +506,14 @@ expand_mode = 1
 [node name="MerchantItem1AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem1AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem1/MerchantItem1AltCurrencyFrame"]
@@ -533,13 +537,14 @@ expand_mode = 1
 [node name="MerchantItem1AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem1/MerchantItem1AltCurrencyFrame/MerchantItem1AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem2" type="Control" parent="."]
@@ -628,13 +633,14 @@ expand_mode = 1
 [node name="MerchantItem2AltCurrencyFrameHonorText" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem2AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
@@ -658,13 +664,14 @@ expand_mode = 1
 [node name="MerchantItem2AltCurrencyFrameArenaText" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem2AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
@@ -688,13 +695,14 @@ expand_mode = 1
 [node name="MerchantItem2AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem2AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
@@ -718,13 +726,14 @@ expand_mode = 1
 [node name="MerchantItem2AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem2AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem2/MerchantItem2AltCurrencyFrame"]
@@ -748,13 +757,14 @@ expand_mode = 1
 [node name="MerchantItem2AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem2/MerchantItem2AltCurrencyFrame/MerchantItem2AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem3" type="Control" parent="."]
@@ -843,13 +853,14 @@ expand_mode = 1
 [node name="MerchantItem3AltCurrencyFrameHonorText" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem3AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
@@ -873,13 +884,14 @@ expand_mode = 1
 [node name="MerchantItem3AltCurrencyFrameArenaText" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem3AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
@@ -903,13 +915,14 @@ expand_mode = 1
 [node name="MerchantItem3AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem3AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
@@ -933,13 +946,14 @@ expand_mode = 1
 [node name="MerchantItem3AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem3AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem3/MerchantItem3AltCurrencyFrame"]
@@ -963,13 +977,14 @@ expand_mode = 1
 [node name="MerchantItem3AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem3/MerchantItem3AltCurrencyFrame/MerchantItem3AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem4" type="Control" parent="."]
@@ -1058,13 +1073,14 @@ expand_mode = 1
 [node name="MerchantItem4AltCurrencyFrameHonorText" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem4AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
@@ -1088,13 +1104,14 @@ expand_mode = 1
 [node name="MerchantItem4AltCurrencyFrameArenaText" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem4AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
@@ -1118,13 +1135,14 @@ expand_mode = 1
 [node name="MerchantItem4AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem4AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
@@ -1148,13 +1166,14 @@ expand_mode = 1
 [node name="MerchantItem4AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem4AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem4/MerchantItem4AltCurrencyFrame"]
@@ -1178,13 +1197,14 @@ expand_mode = 1
 [node name="MerchantItem4AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem4/MerchantItem4AltCurrencyFrame/MerchantItem4AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem5" type="Control" parent="."]
@@ -1273,13 +1293,14 @@ expand_mode = 1
 [node name="MerchantItem5AltCurrencyFrameHonorText" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem5AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
@@ -1303,13 +1324,14 @@ expand_mode = 1
 [node name="MerchantItem5AltCurrencyFrameArenaText" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem5AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
@@ -1333,13 +1355,14 @@ expand_mode = 1
 [node name="MerchantItem5AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem5AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
@@ -1363,13 +1386,14 @@ expand_mode = 1
 [node name="MerchantItem5AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem5AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem5/MerchantItem5AltCurrencyFrame"]
@@ -1393,13 +1417,14 @@ expand_mode = 1
 [node name="MerchantItem5AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem5/MerchantItem5AltCurrencyFrame/MerchantItem5AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem6" type="Control" parent="."]
@@ -1488,13 +1513,14 @@ expand_mode = 1
 [node name="MerchantItem6AltCurrencyFrameHonorText" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem6AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
@@ -1518,13 +1544,14 @@ expand_mode = 1
 [node name="MerchantItem6AltCurrencyFrameArenaText" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem6AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
@@ -1548,13 +1575,14 @@ expand_mode = 1
 [node name="MerchantItem6AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem6AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
@@ -1578,13 +1606,14 @@ expand_mode = 1
 [node name="MerchantItem6AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem6AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem6/MerchantItem6AltCurrencyFrame"]
@@ -1608,13 +1637,14 @@ expand_mode = 1
 [node name="MerchantItem6AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem6/MerchantItem6AltCurrencyFrame/MerchantItem6AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem7" type="Control" parent="."]
@@ -1703,13 +1733,14 @@ expand_mode = 1
 [node name="MerchantItem7AltCurrencyFrameHonorText" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem7AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
@@ -1733,13 +1764,14 @@ expand_mode = 1
 [node name="MerchantItem7AltCurrencyFrameArenaText" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem7AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
@@ -1763,13 +1795,14 @@ expand_mode = 1
 [node name="MerchantItem7AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem7AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
@@ -1793,13 +1826,14 @@ expand_mode = 1
 [node name="MerchantItem7AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem7AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem7/MerchantItem7AltCurrencyFrame"]
@@ -1823,13 +1857,14 @@ expand_mode = 1
 [node name="MerchantItem7AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem7/MerchantItem7AltCurrencyFrame/MerchantItem7AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem8" type="Control" parent="."]
@@ -1918,13 +1953,14 @@ expand_mode = 1
 [node name="MerchantItem8AltCurrencyFrameHonorText" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem8AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
@@ -1948,13 +1984,14 @@ expand_mode = 1
 [node name="MerchantItem8AltCurrencyFrameArenaText" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem8AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
@@ -1978,13 +2015,14 @@ expand_mode = 1
 [node name="MerchantItem8AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem8AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
@@ -2008,13 +2046,14 @@ expand_mode = 1
 [node name="MerchantItem8AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem8AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem8/MerchantItem8AltCurrencyFrame"]
@@ -2038,13 +2077,14 @@ expand_mode = 1
 [node name="MerchantItem8AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem8/MerchantItem8AltCurrencyFrame/MerchantItem8AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem9" type="Control" parent="."]
@@ -2133,13 +2173,14 @@ expand_mode = 1
 [node name="MerchantItem9AltCurrencyFrameHonorText" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem9AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
@@ -2163,13 +2204,14 @@ expand_mode = 1
 [node name="MerchantItem9AltCurrencyFrameArenaText" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem9AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
@@ -2193,13 +2235,14 @@ expand_mode = 1
 [node name="MerchantItem9AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem9AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
@@ -2223,13 +2266,14 @@ expand_mode = 1
 [node name="MerchantItem9AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem9AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem9/MerchantItem9AltCurrencyFrame"]
@@ -2253,13 +2297,14 @@ expand_mode = 1
 [node name="MerchantItem9AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem9/MerchantItem9AltCurrencyFrame/MerchantItem9AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem10" type="Control" parent="."]
@@ -2348,13 +2393,14 @@ expand_mode = 1
 [node name="MerchantItem10AltCurrencyFrameHonorText" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem10AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
@@ -2378,13 +2424,14 @@ expand_mode = 1
 [node name="MerchantItem10AltCurrencyFrameArenaText" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem10AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
@@ -2408,13 +2455,14 @@ expand_mode = 1
 [node name="MerchantItem10AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem10AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
@@ -2438,13 +2486,14 @@ expand_mode = 1
 [node name="MerchantItem10AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem10AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem10/MerchantItem10AltCurrencyFrame"]
@@ -2468,13 +2517,14 @@ expand_mode = 1
 [node name="MerchantItem10AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem10/MerchantItem10AltCurrencyFrame/MerchantItem10AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem11" type="Control" parent="."]
@@ -2563,13 +2613,14 @@ expand_mode = 1
 [node name="MerchantItem11AltCurrencyFrameHonorText" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem11AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
@@ -2593,13 +2644,14 @@ expand_mode = 1
 [node name="MerchantItem11AltCurrencyFrameArenaText" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem11AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
@@ -2623,13 +2675,14 @@ expand_mode = 1
 [node name="MerchantItem11AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem11AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
@@ -2653,13 +2706,14 @@ expand_mode = 1
 [node name="MerchantItem11AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem11AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem11/MerchantItem11AltCurrencyFrame"]
@@ -2683,13 +2737,14 @@ expand_mode = 1
 [node name="MerchantItem11AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem11/MerchantItem11AltCurrencyFrame/MerchantItem11AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem12" type="Control" parent="."]
@@ -2778,13 +2833,14 @@ expand_mode = 1
 [node name="MerchantItem12AltCurrencyFrameHonorText" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameHonor"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem12AltCurrencyFrameArena" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
@@ -2808,13 +2864,14 @@ expand_mode = 1
 [node name="MerchantItem12AltCurrencyFrameArenaText" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameArena"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem12AltCurrencyFrameItem1" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
@@ -2838,13 +2895,14 @@ expand_mode = 1
 [node name="MerchantItem12AltCurrencyFrameItem1Text" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem1"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem12AltCurrencyFrameItem2" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
@@ -2868,13 +2926,14 @@ expand_mode = 1
 [node name="MerchantItem12AltCurrencyFrameItem2Text" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem2"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantItem12AltCurrencyFrameItem3" type="TextureButton" parent="MerchantItem12/MerchantItem12AltCurrencyFrame"]
@@ -2898,13 +2957,14 @@ expand_mode = 1
 [node name="MerchantItem12AltCurrencyFrameItem3Text" type="Label" parent="MerchantItem12/MerchantItem12AltCurrencyFrame/MerchantItem12AltCurrencyFrameItem3"]
 unique_name_in_owner = true
 offset_left = -13
-offset_top = 6.5
+offset_top = -0.5
 offset_right = -13
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MerchantRepairAllButton" type="TextureButton" parent="."]
@@ -3398,6 +3458,7 @@ offset_right = 5
 offset_bottom = 19
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Merchant"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3494,6 +3555,7 @@ offset_right = 5
 offset_bottom = 19
 grow_horizontal = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
 text = "Buyback"
 horizontal_alignment = 1
 vertical_alignment = 1

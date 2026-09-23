@@ -337,6 +337,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_panels.toggle_panel(_achievement_frame)
 	elif _exact(event, "toggle_pvp"):
 		_panels.toggle_panel(_pvp)
+	elif _exact(event, "toggle_social"):
+		_on_panel_toggled(MainMenuBar.GamePanel.SOCIAL)
 	elif _exact(event, "toggle_scores") and WowClient.battlegrounds.in_battle():
 		_panels.toggle_panel(_panels.get_node("%WorldStateScoreFrame"))
 	elif _exact(event, "toggle_world_map"):
@@ -420,7 +422,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			add_system_line(lockout)
 		return
 	if opcode == "SMSG_CHANNEL_LIST":
-		_list_channel(Channels.members(payload))
+		var list: Dictionary = Channels.members(payload)
+		if not Channels.take_display_request(list["channel"]):
+			_list_channel(list)
 		return
 	if ServerNotices.play(opcode, payload):
 		return

@@ -57,13 +57,14 @@ expand_mode = 1
 
 [node name="Text" type="Label" parent="CopperButton"]
 offset_left = 19
-offset_top = 6.5
+offset_top = -0.5
 offset_right = 19
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="SilverButton" type="TextureButton" parent="."]
@@ -91,13 +92,14 @@ expand_mode = 1
 
 [node name="Text" type="Label" parent="SilverButton"]
 offset_left = 19
-offset_top = 6.5
+offset_top = -0.5
 offset_right = 19
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="GoldButton" type="TextureButton" parent="."]
@@ -125,11 +127,12 @@ expand_mode = 1
 
 [node name="Text" type="Label" parent="GoldButton"]
 offset_left = 19
-offset_top = 6.5
+offset_top = -0.5
 offset_right = 19
-offset_bottom = 6.5
+offset_bottom = 13.5
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"NumberFontNormalRight"
+horizontal_alignment = 2
 vertical_alignment = 1

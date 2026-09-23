@@ -11,6 +11,9 @@ const DEMOLISHER: int = 28094
 const LIEUTENANT_SPELL: int = 55629
 const DRIVE_SECONDS: float = 2.0
 const DRIVE_MIN_YARDS: float = 4.0
+const KALIMDOR: int = 1
+const NORTHREND: int = 571
+const TELEPORT_SETTLE_SECONDS: float = 5.0
 const SHARPENING_STONE: int = 2862
 const WEIGHTSTONE: int = 3239
 const MACE_SUBCLASSES: Array[int] = [4, 5]
@@ -49,6 +52,8 @@ const ANNOUNCEMENT: String = "WrathGD announcement check"
 const HEROIC_DUNGEON: int = 1
 const GUILD_BANK_TEXT: String = "Tab info from glue_check"
 const GUILD_INFO_TEXT: String = "Guild info from glue_check"
+const MACRO_NAME: String = "GlueMacro"
+const MACRO_BODY: String = "/say glue_check macro"
 # TalentTab.dbc's warrior Arms tree.
 const ARMS_TAB: int = 161
 
@@ -125,13 +130,80 @@ func _run() -> void:
 	await _calendar()
 	await _totems()
 	await _weapon_enchant()
-	await _vehicle()
+	# The drive needs open ground ahead, which wherever the last run left the character may lack.
+	if await _teleport("Wintergrasp", NORTHREND):
+		await _vehicle()
+		await _teleport("CampNarache", KALIMDOR)
 	await _server_notices()
+	await _channel_pane()
+	await _macro_account_data()
+	_combat_log_text()
 	var home: String = SpellText.describe(HEARTHSTONE_SPELL)
 	var area: String = AreaInfo.area_name(WowClient.home_area)
 	_check(not area.is_empty() and not home.contains("$") and home.contains(area),
 			"the hearthstone names the bound home (%s)" % home)
 	_finish()
+
+
+# A melee hit and a dodge read as the 3.3.5 combat log's full text lines.
+func _combat_log_text() -> void:
+	var me: int = WowClient.session.get_player_guid()
+	var hit: CombatEvents.CombatEvent = CombatEvents.CombatEvent.new(CombatEvents.Kind.MELEE)
+	hit.source = me
+	hit.target = me
+	hit.amount = 7
+	hit.school = 1
+	var line: String = CombatLogFrame.format(hit)
+	_check(line == "%s's melee swing hits %s for 7 Physical." % [CHARACTER, CHARACTER],
+			"a melee hit reads as the stock full text line (%s)" % line)
+	hit.outcome = CombatEvents.Outcome.DODGE
+	line = CombatLogFrame.format(hit)
+	_check(line == "%s's attack was dodged by %s." % [CHARACTER, CHARACTER],
+			"a dodge reads as the stock full text line (%s)" % line)
+
+
+# A new account macro reaches the server's account data and reads back from it.
+func _macro_account_data() -> void:
+	var macros: Macros = WowClient.macros
+	var id: int = macros.create(MACRO_NAME, ActionButton.MISSING_MACRO_ICON, false)
+	macros.set_body(id, MACRO_BODY)
+	var stored: Array[String] = [""]
+	var on_received: Callable = func(type: AccountData.Type, text: String) -> void:
+		if type == AccountData.Type.GLOBAL_MACROS:
+			stored[0] = text
+	WowClient.account_data.received.connect(on_received)
+	WowClient.account_data.request(AccountData.Type.GLOBAL_MACROS)
+	var saved: Callable = func() -> bool:
+		return stored[0].contains(MACRO_NAME) and stored[0].contains(MACRO_BODY)
+	await _until(saved, "the macro is stored in the server's account data")
+	WowClient.account_data.received.disconnect(on_received)
+	var kept: bool = macros.ids(false).any(
+		func(macro: int) -> bool: return macros.info(macro).get("name", "") == MACRO_NAME
+	)
+	_check(kept, "the macro survives the server's copy replacing the local set")
+	for macro: int in macros.ids(false):
+		if macros.info(macro).get("name", "") == MACRO_NAME:
+			macros.delete(macro)
+
+
+# The social window's Chat tab lists the joined channels and the first one's members.
+func _channel_pane() -> void:
+	var press: InputEventAction = InputEventAction.new()
+	press.action = "toggle_social"
+	press.pressed = true
+	Input.parse_input_event(press)
+	var social: FriendsFrame = get_tree().root.find_child("FriendsFrame", true, false)
+	if not await _until(func() -> bool: return social.visible, "the social window opens"):
+		return
+	(social.get_node("%FriendsFrameTab4") as BaseButton).pressed.emit()
+	var first: Label = social.get_node("%ChannelButton1Text")
+	var member: Label = social.get_node("%ChannelMemberButton1").get_node("Frame/Name")
+	var listed: Callable = func() -> bool:
+		return first.is_visible_in_tree() and member.text == CHARACTER
+	if await _until(listed, "the Chat tab lists a channel and its roster names the character"):
+		await _frames(30)
+		_capture("user://wotlk_channels.png")
+	social.close_requested.emit()
 
 
 # An announcement, a new dungeon difficulty and a drink each print their stock chat line.
@@ -159,6 +231,16 @@ func _chat_has(fragment: String) -> bool:
 		if line.get_parsed_text().contains(fragment):
 			return true
 	return false
+
+
+func _teleport(place: String, map_id: int) -> bool:
+	WowClient.session.send_chat(WowSession.CHAT_SAY, ".tele " + place)
+	if not await _until(func() -> bool: return WowClient.difficulty.map_id == map_id,
+			"the GM teleport reaches %s" % place):
+		return false
+	# The ground under the new position streams in over the next second or two.
+	await get_tree().create_timer(TELEPORT_SETTLE_SECONDS).timeout
+	return true
 
 
 # A spawned demolisher taken by spellclick is driven forward, then left from the vehicle bar.
@@ -203,6 +285,10 @@ func _vehicle() -> void:
 		print("vehicle: the player stepped out %.1f yards from where the drive began" % moved)
 		_check(moved > DRIVE_MIN_YARDS, "the server took the drive")
 	session.send_chat(WowSession.CHAT_SAY, ".unaura %d" % LIEUTENANT_SPELL)
+	# Temporary spawns outlive the run, and a pile of them at the start blocks the next drive.
+	session.set_selection(vehicles[0])
+	session.send_chat(WowSession.CHAT_SAY, ".npc delete")
+	session.set_selection(0)
 
 
 # A sharpening stone or weightstone used on the main hand shows a temporary enchant and its time.

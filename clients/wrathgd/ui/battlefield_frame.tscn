@@ -292,13 +292,14 @@ ignore_texture_size = true
 [node name="BattlefieldZone1Text" type="Label" parent="BattlefieldZone1"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 7
+offset_top = 1
 offset_right = 20
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone1"]
@@ -340,13 +341,14 @@ ignore_texture_size = true
 [node name="BattlefieldZone2Text" type="Label" parent="BattlefieldZone2"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 7
+offset_top = 1
 offset_right = 20
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone2"]
@@ -388,13 +390,14 @@ ignore_texture_size = true
 [node name="BattlefieldZone3Text" type="Label" parent="BattlefieldZone3"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 7
+offset_top = 1
 offset_right = 20
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone3"]
@@ -436,13 +439,14 @@ ignore_texture_size = true
 [node name="BattlefieldZone4Text" type="Label" parent="BattlefieldZone4"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 7
+offset_top = 1
 offset_right = 20
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone4"]
@@ -484,13 +488,14 @@ ignore_texture_size = true
 [node name="BattlefieldZone5Text" type="Label" parent="BattlefieldZone5"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 7
+offset_top = 1
 offset_right = 20
-offset_bottom = 7
+offset_bottom = 13
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="BattlefieldZone5"]
@@ -1108,6 +1113,7 @@ offset_top = 0
 offset_right = 83
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Cancel"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1168,6 +1174,7 @@ offset_top = 0
 offset_right = 109
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Join Battle"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1228,6 +1235,7 @@ offset_top = 0
 offset_right = 136
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Join as Group"
 horizontal_alignment = 1
 vertical_alignment = 1

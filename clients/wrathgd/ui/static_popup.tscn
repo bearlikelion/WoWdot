@@ -257,12 +257,13 @@ expand_mode = 1
 [node name="StaticPopup1Button1Text" type="Label" parent="StaticPopup1Button1"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 9.5
+offset_top = 3.5
 offset_right = 64
-offset_bottom = 9.5
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -318,12 +319,13 @@ expand_mode = 1
 [node name="StaticPopup1Button2Text" type="Label" parent="StaticPopup1Button2"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 9.5
+offset_top = 3.5
 offset_right = 64
-offset_bottom = 9.5
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -379,12 +381,13 @@ expand_mode = 1
 [node name="StaticPopup1Button3Text" type="Label" parent="StaticPopup1Button3"]
 unique_name_in_owner = true
 offset_left = 64
-offset_top = 9.5
+offset_top = 3.5
 offset_right = 64
-offset_bottom = 9.5
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 

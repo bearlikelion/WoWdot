@@ -259,18 +259,22 @@ func _read_damage_shield(reader: PacketReader) -> void:
 	logged.emit(event)
 
 
+# 3.3.5 adds the dispelling spell up front and whether each removed aura was a buff.
 func _read_dispel(reader: PacketReader) -> void:
 	var target: int = reader.packed_guid()
 	var source: int = reader.packed_guid()
+	var dispeller: int = 0
 	if PacketReader.wotlk:
-		reader.skip(5)
+		dispeller = reader.u32()
+		reader.u8()
 	for i: int in reader.u32():
 		var event: CombatEvent = CombatEvent.new(Kind.DISPEL)
 		event.target = target
 		event.source = source
 		event.spell = reader.u32()
+		event.extra_spell = dispeller
 		if PacketReader.wotlk:
-			reader.u8()
+			event.positive = reader.u8() != 0
 		logged.emit(event)
 
 
@@ -318,6 +322,9 @@ class CombatEvent:
 	var absorbed: int = 0
 	var resisted: int = 0
 	var blocked: int = 0
+	# A dispel's own spell, where spell names the aura it removed.
+	var extra_spell: int = 0
+	var positive: bool = false
 
 
 	func _init(event_kind: CombatEvents.Kind) -> void:

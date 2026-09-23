@@ -355,6 +355,7 @@ offset_top = 0
 offset_right = 78
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Goodbye"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -545,13 +546,14 @@ expand_mode = 1
 [node name="GossipTitleButton1Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton1"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -588,13 +590,14 @@ expand_mode = 1
 [node name="GossipTitleButton2Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton2"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -631,13 +634,14 @@ expand_mode = 1
 [node name="GossipTitleButton3Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton3"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -674,13 +678,14 @@ expand_mode = 1
 [node name="GossipTitleButton4Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton4"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -717,13 +722,14 @@ expand_mode = 1
 [node name="GossipTitleButton5Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton5"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -760,13 +766,14 @@ expand_mode = 1
 [node name="GossipTitleButton6Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton6"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -803,13 +810,14 @@ expand_mode = 1
 [node name="GossipTitleButton7Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton7"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -846,13 +854,14 @@ expand_mode = 1
 [node name="GossipTitleButton8Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton8"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -889,13 +898,14 @@ expand_mode = 1
 [node name="GossipTitleButton9Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton9"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -932,13 +942,14 @@ expand_mode = 1
 [node name="GossipTitleButton10Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton10"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -975,13 +986,14 @@ expand_mode = 1
 [node name="GossipTitleButton11Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton11"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1018,13 +1030,14 @@ expand_mode = 1
 [node name="GossipTitleButton12Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton12"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1061,13 +1074,14 @@ expand_mode = 1
 [node name="GossipTitleButton13Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton13"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1104,13 +1118,14 @@ expand_mode = 1
 [node name="GossipTitleButton14Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton14"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1147,13 +1162,14 @@ expand_mode = 1
 [node name="GossipTitleButton15Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton15"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1190,13 +1206,14 @@ expand_mode = 1
 [node name="GossipTitleButton16Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton16"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1233,13 +1250,14 @@ expand_mode = 1
 [node name="GossipTitleButton17Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton17"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1276,13 +1294,14 @@ expand_mode = 1
 [node name="GossipTitleButton18Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton18"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1319,13 +1338,14 @@ expand_mode = 1
 [node name="GossipTitleButton19Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton19"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1362,13 +1382,14 @@ expand_mode = 1
 [node name="GossipTitleButton20Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton20"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1405,13 +1426,14 @@ expand_mode = 1
 [node name="GossipTitleButton21Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton21"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1448,13 +1470,14 @@ expand_mode = 1
 [node name="GossipTitleButton22Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton22"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1491,13 +1514,14 @@ expand_mode = 1
 [node name="GossipTitleButton23Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton23"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1534,13 +1558,14 @@ expand_mode = 1
 [node name="GossipTitleButton24Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton24"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1577,13 +1602,14 @@ expand_mode = 1
 [node name="GossipTitleButton25Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton25"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1620,13 +1646,14 @@ expand_mode = 1
 [node name="GossipTitleButton26Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton26"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1663,13 +1690,14 @@ expand_mode = 1
 [node name="GossipTitleButton27Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton27"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1706,13 +1734,14 @@ expand_mode = 1
 [node name="GossipTitleButton28Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton28"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1749,13 +1778,14 @@ expand_mode = 1
 [node name="GossipTitleButton29Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton29"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1792,13 +1822,14 @@ expand_mode = 1
 [node name="GossipTitleButton30Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton30"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1835,13 +1866,14 @@ expand_mode = 1
 [node name="GossipTitleButton31Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton31"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1878,13 +1910,14 @@ expand_mode = 1
 [node name="GossipTitleButton32Text" type="Label" parent="GossipFrameGreetingPanel/GossipGreetingScrollFrame/GossipGreetingScrollFrameClip/GossipGreetingScrollChildFrame/GossipTitleButton32"]
 unique_name_in_owner = true
 offset_left = 20
-offset_top = 8
+offset_top = 1.5
 offset_right = 295
-offset_bottom = 8
+offset_bottom = 14.5
 grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
-horizontal_alignment = 1
+theme_type_variation = &"QuestFontLeft"
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 

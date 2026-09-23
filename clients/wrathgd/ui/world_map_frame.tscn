@@ -1060,6 +1060,7 @@ offset_top = 0
 offset_right = 110
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Zoom Out"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1308,10 +1309,11 @@ unique_name_in_owner = true
 offset_left = 32
 offset_top = 5
 offset_right = 32
-offset_bottom = 5
+offset_bottom = 15
 grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
 text = "Right Click On Map To Zoom Out"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -3527,7 +3529,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipTextSmall"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapCompareTooltip1TextRight4" type="Label" parent="WorldMapCompareTooltip1"]
@@ -3695,7 +3697,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipTextSmall"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapCompareTooltip2TextRight4" type="Label" parent="WorldMapCompareTooltip2"]
@@ -3863,7 +3865,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipTextSmall"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapCompareTooltip3TextRight4" type="Label" parent="WorldMapCompareTooltip3"]
@@ -3947,7 +3949,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipHeaderText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextRight1" type="Label" parent="WorldMapTooltip"]
@@ -3961,7 +3963,7 @@ grow_vertical = 2
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipHeaderText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextLeft2" type="Label" parent="WorldMapTooltip"]
@@ -3975,7 +3977,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextRight2" type="Label" parent="WorldMapTooltip"]
@@ -3989,7 +3991,7 @@ grow_vertical = 2
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextLeft3" type="Label" parent="WorldMapTooltip"]
@@ -4003,7 +4005,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextRight3" type="Label" parent="WorldMapTooltip"]
@@ -4017,7 +4019,7 @@ grow_vertical = 2
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextLeft4" type="Label" parent="WorldMapTooltip"]
@@ -4031,7 +4033,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextRight4" type="Label" parent="WorldMapTooltip"]
@@ -4045,7 +4047,7 @@ grow_vertical = 2
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextLeft5" type="Label" parent="WorldMapTooltip"]
@@ -4059,7 +4061,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextRight5" type="Label" parent="WorldMapTooltip"]
@@ -4073,7 +4075,7 @@ grow_vertical = 2
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextLeft6" type="Label" parent="WorldMapTooltip"]
@@ -4087,7 +4089,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextRight6" type="Label" parent="WorldMapTooltip"]
@@ -4101,7 +4103,7 @@ grow_vertical = 2
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextLeft7" type="Label" parent="WorldMapTooltip"]
@@ -4115,7 +4117,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextRight7" type="Label" parent="WorldMapTooltip"]
@@ -4129,7 +4131,7 @@ grow_vertical = 2
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextLeft8" type="Label" parent="WorldMapTooltip"]
@@ -4143,7 +4145,7 @@ grow_vertical = 1
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTextRight8" type="Label" parent="WorldMapTooltip"]
@@ -4157,7 +4159,7 @@ grow_vertical = 2
 visible = false
 mouse_filter = 2
 theme_type_variation = &"GameTooltipText"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="WorldMapTooltipTexture1" type="TextureRect" parent="WorldMapTooltip"]

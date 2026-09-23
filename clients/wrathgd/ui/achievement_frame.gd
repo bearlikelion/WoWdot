@@ -19,6 +19,7 @@ const FEAT_OF_STRENGTH: int = 81
 # The summary page's progress bars, by the category id each XML bar carries.
 const SUMMARY_CATEGORIES: Array[int] = [92, 96, 97, 95, 168, 169, 201, 155]
 const CHILD_TINT: Color = Color(0.6, 0.6, 0.6)
+const DATE_OFFSET: Vector2 = Vector2(-3.0, -6.0)
 const DIM_TEXT: Color = Color(0.65, 0.65, 0.65)
 const PARCHMENT: String = "Interface\\AchievementFrame\\UI-Achievement-Parchment-Horizontal.blp"
 const PARCHMENT_DESATURATED: String = \
@@ -216,7 +217,14 @@ func _show_achievement(prefix: String, entry: Dictionary) -> void:
 	date.visible = done
 	if done:
 		var when: Dictionary = Achievements.unpack_date(_achievements.completed[entry["id"]])
-		date.text = "%d/%02d/%02d" % [when["month"], when["day"], when["year"] % 100]
+		date.text = WowStrings.format(
+			WowStrings.get_text("SHORTDATE"), [when["day"], when["month"], when["year"] % 100]
+		)
+		# AchievementButton_OnLoad hangs the date under the shield.
+		var shield: Control = get_node(prefix + "Shield")
+		date.position = shield.position + Vector2(
+			(shield.size.x - date.size.x) / 2.0 + DATE_OFFSET.x, shield.size.y + DATE_OFFSET.y
+		)
 	var reward: Label = get_node_or_null(prefix + "Reward")
 	if reward:
 		reward.visible = not entry["reward"].is_empty()

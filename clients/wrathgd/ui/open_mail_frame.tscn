@@ -374,6 +374,7 @@ offset_top = 0
 offset_right = 110
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Report Spam"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -574,7 +575,7 @@ grow_horizontal = 1
 grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"MailTextFontNormal"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -597,7 +598,7 @@ grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "Item Sold:"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -612,7 +613,7 @@ grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "Purchased By:"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailInvoiceBuyMode" type="Label" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
@@ -625,7 +626,7 @@ grow_horizontal = 1
 grow_vertical = 2
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontSmall"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailInvoiceSalePrice" type="Label" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
@@ -639,7 +640,7 @@ grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "Sale Price:"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailInvoiceDeposit" type="Label" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
@@ -653,7 +654,7 @@ grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "Deposit:"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailInvoiceHouseCut" type="Label" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
@@ -667,7 +668,7 @@ grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "Auction House Cut:"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailInvoiceAmountReceived" type="Label" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
@@ -681,7 +682,7 @@ grow_vertical = 1
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "Amount Received:"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailArithmeticLine" type="TextureRect" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
@@ -705,7 +706,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "Amount not yet sent"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailInvoiceMoneyDelay" type="Label" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame"]
@@ -718,7 +719,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailTransactionAmountMoneyFrame" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame" instance=ExtResource("4")]
@@ -745,7 +746,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "+"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailHouseCutMoneyFrame" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame" instance=ExtResource("4")]
@@ -765,7 +766,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_type_variation = &"InvoiceTextFontNormal"
 text = "-"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="OpenMailSalePriceMoneyFrame" parent="OpenMailScrollFrame/OpenMailScrollFrameClip/OpenMailScrollChildFrame/OpenMailInvoiceFrame" instance=ExtResource("4")]
@@ -973,6 +974,7 @@ offset_top = 0
 offset_right = 80
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Close"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1038,6 +1040,7 @@ offset_top = 0
 offset_right = 82
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Delete"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1103,6 +1106,7 @@ offset_top = 0
 offset_right = 82
 offset_bottom = 22
 mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
 text = "Reply"
 horizontal_alignment = 1
 vertical_alignment = 1

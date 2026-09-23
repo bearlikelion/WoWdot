@@ -7,7 +7,7 @@ signal name_requested(tab: Tab)
 signal message_added(text: String)
 signal guild_invited(inviter: String, guild_name: String)
 
-enum Tab { FRIENDS, IGNORE, GUILD, RAID, WHO }
+enum Tab { FRIENDS, IGNORE, GUILD, RAID, WHO, CHAT }
 enum EventLogType { INVITE = 1, JOIN, PROMOTE, DEMOTE, REMOVE, QUIT }
 # SMSG_GUILD_EVENT, as GuildEvents numbers them.
 enum GuildEvent { PROMOTION, DEMOTION, MOTD, JOINED, LEFT, REMOVED, LEADER_IS, LEADER_CHANGED,
@@ -109,12 +109,12 @@ func _ready() -> void:
 	%FriendsTabHeaderTab3.hide()
 	(%WhoFrame as WhoFrame).friend_requested.connect(_on_who_friend_requested)
 	%FriendsFrameTab3.pressed.connect(show_tab.bind(Tab.GUILD))
+	%FriendsFrameTab4.pressed.connect(show_tab.bind(Tab.CHAT))
 	%FriendsFrameTab5.pressed.connect(show_tab.bind(Tab.RAID))
-	# The Chat tab's channel list is not ported.
-	%FriendsFrameTab4.hide()
-	PanelManager.chain_tabs(
-		[%FriendsFrameTab1, %FriendsFrameTab2, %FriendsFrameTab3, %FriendsFrameTab5], TAB_OVERLAP
-	)
+	PanelManager.chain_tabs([
+		%FriendsFrameTab1, %FriendsFrameTab2, %FriendsFrameTab3, %FriendsFrameTab4,
+		%FriendsFrameTab5,
+	], TAB_OVERLAP)
 	%FriendsFrameAddFriendButton.pressed.connect(
 		func() -> void: name_requested.emit(_tab)
 	)
@@ -143,6 +143,7 @@ func show_tab(tab: Tab) -> void:
 	%IgnoreListFrame.visible = tab == Tab.IGNORE
 	%GuildFrame.visible = tab == Tab.GUILD
 	%RaidFrame.visible = tab == Tab.RAID
+	%ChannelFrame.visible = tab == Tab.CHAT
 	%WhoFrame.visible = tab == Tab.WHO
 	if tab == Tab.GUILD:
 		request_roster()
@@ -205,6 +206,10 @@ func refresh() -> void:
 		return
 	if _tab == Tab.WHO:
 		%FriendsFrameTitleText.text = WowStrings.get_text("WHO_LIST")
+		return
+	if _tab == Tab.CHAT:
+		%FriendsFrameTitleText.text = WowStrings.get_text("CHAT_CHANNELS")
+		(%ChannelFrame as ChannelFrame).refresh()
 		return
 	%FriendsFrameTitleText.text = WowStrings.get_text(
 		"FRIENDS_LIST" if _tab == Tab.FRIENDS else "IGNORE_LIST"

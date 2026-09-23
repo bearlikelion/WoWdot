@@ -173,12 +173,13 @@ expand_mode = 1
 [node name="GlueDialogButton1Text" type="Label" parent="GlueDialogBackground/GlueDialogButton1"]
 unique_name_in_owner = true
 offset_left = 110
-offset_top = 18
+offset_top = 10.5
 offset_right = 110
-offset_bottom = 18
+offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -234,12 +235,13 @@ expand_mode = 1
 [node name="GlueDialogButton2Text" type="Label" parent="GlueDialogBackground/GlueDialogButton2"]
 unique_name_in_owner = true
 offset_left = 110
-offset_top = 18
+offset_top = 10.5
 offset_right = 110
-offset_bottom = 18
+offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -295,12 +297,13 @@ expand_mode = 1
 [node name="GlueDialogButton3Text" type="Label" parent="GlueDialogBackground/GlueDialogButton3"]
 unique_name_in_owner = true
 offset_left = 110
-offset_top = 18
+offset_top = 10.5
 offset_right = 110
-offset_bottom = 18
+offset_bottom = 25.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
