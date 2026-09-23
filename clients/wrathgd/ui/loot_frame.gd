@@ -5,6 +5,7 @@ signal close_requested
 signal open_requested
 signal error_raised(text: String)
 signal message_added(text: String)
+signal money_looted(text: String)
 signal master_loot_requested(slot: int, candidates: PackedInt64Array)
 
 const BUTTON_COUNT: int = 4
@@ -98,7 +99,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_on_item_pushed(payload)
 		"SMSG_LOOT_MONEY_NOTIFY":
 			var text: String = WowStrings.get_text("YOU_LOOT_MONEY")
-			message_added.emit(text % money_text(payload.decode_u32(0)))
+			money_looted.emit(text % money_text(payload.decode_u32(0)))
 
 
 # The chat line for SMSG_ITEM_PUSH_RESULT, or "" when the server asks for none.

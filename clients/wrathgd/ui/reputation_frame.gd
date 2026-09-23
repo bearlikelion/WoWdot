@@ -2,6 +2,7 @@ class_name ReputationFrame
 extends Control
 
 signal watched_changed(entry: Dictionary)
+signal message_added(text: String)
 
 const NUM_FACTIONS_DISPLAYED: int = 15
 const REPUTATIONFRAME_FACTIONHEIGHT: float = 26.0
@@ -61,6 +62,7 @@ func _ready() -> void:
 	(%ReputationDetailFactionDescription as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_list_scroll.scrolled.connect(_on_list_scrolled)
 	WowClient.session.factions_changed.connect(_on_factions_changed)
+	WowClient.session.faction_standing_changed.connect(_on_standing_changed)
 	WowClient.session.object_updated.connect(_on_object_updated)
 	visibility_changed.connect(refresh)
 	_update_watch()
@@ -198,6 +200,16 @@ func watched_entry() -> Dictionary:
 func _on_factions_changed() -> void:
 	refresh()
 	_update_watch()
+
+
+func _on_standing_changed(index: int, delta: int) -> void:
+	for row: int in _factions.row_count():
+		if _factions.get_int(row, "ReputationIndex") == index:
+			var key: String = "FACTION_STANDING_INCREASED" if delta > 0 \
+					else "FACTION_STANDING_DECREASED"
+			var faction_name: String = _factions.get_string(row, "Name")
+			message_added.emit(WowStrings.get_text(key) % [faction_name, absi(delta)])
+			return
 
 
 func _on_object_updated(guid: int) -> void:

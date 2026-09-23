@@ -96,7 +96,7 @@ bool is_player_guid(uint64_t guid) {
 }
 
 // WotLK's wire number for each chat type the session knows, which vanilla sends as it is.
-constexpr std::array<std::pair<uint8_t, uint8_t>, 24> WOTLK_CHAT_TYPES = { {
+constexpr std::array<std::pair<uint8_t, uint8_t>, 27> WOTLK_CHAT_TYPES = { {
 	{ WowSession::CHAT_SYSTEM, 0x00 }, { WowSession::CHAT_SAY, 0x01 },
 	{ WowSession::CHAT_PARTY, 0x02 }, { WowSession::CHAT_RAID, 0x03 },
 	{ WowSession::CHAT_GUILD, 0x04 }, { WowSession::CHAT_OFFICER, 0x05 },
@@ -109,6 +109,8 @@ constexpr std::array<std::pair<uint8_t, uint8_t>, 24> WOTLK_CHAT_TYPES = { {
 	{ WowSession::CHAT_AFK, 0x17 }, { WowSession::CHAT_DND, 0x18 },
 	{ WowSession::CHAT_RAID_LEADER, 0x27 }, { WowSession::CHAT_RAID_WARNING, 0x28 },
 	{ WowSession::CHAT_BATTLEGROUND, 0x2C }, { WowSession::CHAT_BATTLEGROUND_LEADER, 0x2D },
+	{ WowSession::CHAT_BG_SYSTEM_NEUTRAL, 0x24 }, { WowSession::CHAT_BG_SYSTEM_ALLIANCE, 0x25 },
+	{ WowSession::CHAT_BG_SYSTEM_HORDE, 0x26 },
 } };
 
 uint32_t chat_to_wire(uint8_t type) {
@@ -1409,6 +1411,14 @@ void WowSession::read_wide_chat(network::Packet &packet, uint8_t type, uint64_t 
 			line["channel"] = String::utf8(packet.readString().c_str());
 			packet.readUInt64();
 			break;
+		case CHAT_BG_SYSTEM_NEUTRAL:
+		case CHAT_BG_SYSTEM_ALLIANCE:
+		case CHAT_BG_SYSTEM_HORDE:
+			if (const uint64_t receiver = packet.readUInt64(); receiver != 0 && !is_player_guid(receiver)) {
+				packet.readUInt32();
+				packet.readString();
+			}
+			break;
 		default:
 			packet.readUInt64();
 			break;
@@ -1822,11 +1832,18 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			return;
 		}
 		case LogicalOpcode::SMSG_SET_FACTION_STANDING: {
+			if (wow_wotlk()) {
+				packet.readFloat(); // Refer-A-Friend bonus.
+				packet.readUInt8();
+			}
 			const uint32_t count = packet.readUInt32();
 			for (uint32_t i = 0; i < count && packet.hasRemaining(8); ++i) {
 				const int64_t index = packet.readUInt32();
 				const int32_t standing = static_cast<int32_t>(packet.readUInt32());
 				if (index < faction_standings.size()) {
+					if (standing != faction_standings[index]) {
+						emit_signal("faction_standing_changed", index, standing - faction_standings[index]);
+					}
 					faction_standings.set(index, standing);
 					// A standing change makes the faction show in the list.
 					faction_flags.set(index, faction_flags[index] | 0x01);
@@ -2357,6 +2374,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("runes_spent", PropertyInfo(Variant::INT, "ready_mask"), PropertyInfo(Variant::PACKED_BYTE_ARRAY, "recharged")));
 	ADD_SIGNAL(MethodInfo("action_buttons_changed"));
 	ADD_SIGNAL(MethodInfo("factions_changed"));
+	ADD_SIGNAL(MethodInfo("faction_standing_changed", PropertyInfo(Variant::INT, "index"), PropertyInfo(Variant::INT, "delta")));
 	ADD_SIGNAL(MethodInfo("player_teleported", PropertyInfo(Variant::VECTOR3, "position"), PropertyInfo(Variant::FLOAT, "orientation")));
 	ADD_SIGNAL(MethodInfo("spell_cast_started", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cast_time_msec")));
 	ADD_SIGNAL(MethodInfo("spell_cast_finished", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::PACKED_INT64_ARRAY, "targets")));
@@ -2443,6 +2461,9 @@ void WowSession::_bind_methods() {
 	BIND_ENUM_CONSTANT(CHAT_RAID_WARNING);
 	BIND_ENUM_CONSTANT(CHAT_BATTLEGROUND);
 	BIND_ENUM_CONSTANT(CHAT_BATTLEGROUND_LEADER);
+	BIND_ENUM_CONSTANT(CHAT_BG_SYSTEM_NEUTRAL);
+	BIND_ENUM_CONSTANT(CHAT_BG_SYSTEM_ALLIANCE);
+	BIND_ENUM_CONSTANT(CHAT_BG_SYSTEM_HORDE);
 }
 
 } // namespace godot

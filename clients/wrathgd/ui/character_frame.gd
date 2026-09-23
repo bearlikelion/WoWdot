@@ -7,6 +7,7 @@ signal item_left(button: ItemButton)
 signal item_used(slot: Inventory.Slot)
 signal unlearn_requested(skill_id: int, skill_name: String)
 signal watched_changed(entry: Dictionary)
+signal reputation_changed(text: String)
 
 enum Tab { CHARACTER = 1, PET, REPUTATION, SKILLS, HONOR }
 
@@ -106,6 +107,7 @@ func _ready() -> void:
 	%SkillFrame.close_requested.connect(close_requested.emit)
 	%SkillFrame.unlearn_requested.connect(unlearn_requested.emit)
 	%ReputationFrame.watched_changed.connect(watched_changed.emit)
+	%ReputationFrame.message_added.connect(reputation_changed.emit)
 	%PlayerTitleFrameButton.pressed.connect(
 		func() -> void: %PlayerTitlePickerFrame.visible = not %PlayerTitlePickerFrame.visible
 	)

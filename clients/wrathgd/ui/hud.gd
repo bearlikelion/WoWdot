@@ -17,6 +17,8 @@ const MIN_STOCK_SCALE: float = 0.9
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
 const ERROR_COLOR: Color = Color(1.0, 0.1, 0.1)
 const NOTICE_COLOR: Color = Color(1.0, 0.82, 0.0)
+const LOOT_COLOR: Color = Color(0.0, 0.67, 0.0)
+const FACTION_COLOR: Color = Color(0.5, 0.5, 1.0)
 # TYPEID_ITEM and TYPEID_CONTAINER.
 const ITEM_TYPES: Array[int] = [1, 2]
 # UIParent_ManageFramePositions lifts the casting bar clear of the bottom action bars.
@@ -131,6 +133,7 @@ func _ready() -> void:
 	_quest_log.abandon_requested.connect(_on_abandon_requested)
 	_character.unlearn_requested.connect(_on_unlearn_requested)
 	_character.watched_changed.connect(_main_menu_bar.show_reputation)
+	_character.reputation_changed.connect(add_chat_line.bind(FACTION_COLOR))
 	_quest_log.share_answered.connect(show_notice)
 	_bank.open_requested.connect(_panels.show_panel.bind(_bank))
 	_bank.error_raised.connect(show_error)
@@ -245,7 +248,8 @@ func _ready() -> void:
 	_taxi.error_raised.connect(show_error)
 	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
 	_loot.error_raised.connect(show_error)
-	_loot.message_added.connect(add_system_line)
+	_loot.message_added.connect(add_chat_line.bind(LOOT_COLOR))
+	_loot.money_looted.connect(add_system_line)
 	_loot.master_loot_requested.connect(_show_master_loot_menu)
 	WowClient.session.taxi_path_discovered.connect(
 		func() -> void: show_notice(WowStrings.get_text("ERR_NEWTAXIPATH"))
@@ -281,7 +285,7 @@ func _ready() -> void:
 	_party.message_added.connect(add_system_line)
 	_party.error_raised.connect(show_error)
 	_party.ready_check_started.connect(_on_ready_check_started)
-	(%LootRolls as LootRolls).message_added.connect(add_system_line)
+	(%LootRolls as LootRolls).message_added.connect(add_chat_line.bind(LOOT_COLOR))
 	var pet_frame: PetFrame = _player_frame.get_node("%PetFrame")
 	pet_frame.unit_selected.connect(unit_selected.emit)
 	pet_frame.unit_menu_requested.connect(_show_unit_menu)
@@ -411,7 +415,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_CHANNEL_NOTIFY":
 		var notice: String = Channels.notice(payload)
 		if not notice.is_empty():
-			add_system_line(notice)
+			add_chat_line(notice, ChatFrame.COLORS[WowSession.CHAT_CHANNEL])
 		return
 	if opcode == "SMSG_WHO":
 		for who: String in ServerNotices.who_lines(payload):
@@ -567,7 +571,10 @@ func _list_channel(list: Dictionary) -> void:
 	var names: PackedStringArray = []
 	for member: int in list["guids"]:
 		names.append(session.get_object_name(member))
-	add_system_line("[%s] %s" % [list["channel"], ", ".join(names)])
+	add_chat_line(
+		"[%s] %s" % [list["channel"], ", ".join(names)],
+		ChatFrame.COLORS[WowSession.CHAT_CHANNEL],
+	)
 
 
 func add_chat_line(text: String, color: Color = Color.WHITE) -> void:

@@ -50,6 +50,9 @@ const COLORS: Dictionary[WowSession.ChatType, Color] = {
 	WowSession.CHAT_RAID_WARNING: Color(1.0, 0.28, 0.0),
 	WowSession.CHAT_BATTLEGROUND: Color(1.0, 0.5, 0.0),
 	WowSession.CHAT_BATTLEGROUND_LEADER: Color(1.0, 0.86, 0.72),
+	WowSession.CHAT_BG_SYSTEM_NEUTRAL: Color(1.0, 0.47, 0.04),
+	WowSession.CHAT_BG_SYSTEM_ALLIANCE: Color(0.0, 0.68, 0.94),
+	WowSession.CHAT_BG_SYSTEM_HORDE: Color(1.0, 0.0, 0.0),
 }
 # Player names in these lines are shown as [Name] links, as ChatFrame_OnEvent writes them.
 const PLAYER_TYPES: Array[WowSession.ChatType] = [
@@ -209,7 +212,8 @@ static func format_line(line: Dictionary) -> String:
 	var sender: String = line.get("sender_name", "")
 	var text: String = line.get("text", "")
 	match chat_type:
-		WowSession.CHAT_SYSTEM, WowSession.CHAT_TEXT_EMOTE:
+		WowSession.CHAT_SYSTEM, WowSession.CHAT_TEXT_EMOTE, WowSession.CHAT_BG_SYSTEM_NEUTRAL, \
+		WowSession.CHAT_BG_SYSTEM_ALLIANCE, WowSession.CHAT_BG_SYSTEM_HORDE:
 			return text
 		WowSession.CHAT_MONSTER_EMOTE, WowSession.CHAT_RAID_BOSS_EMOTE:
 			return text.replace("%s", sender)
