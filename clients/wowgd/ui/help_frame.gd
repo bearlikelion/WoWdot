@@ -20,6 +20,7 @@ var _offset: int = 0
 var _category: int = DEFAULT_CATEGORY
 var _has_ticket: bool = false
 var _categories: WowDBC
+var _flowed: bool = false
 
 @onready var _pages: Dictionary[Page, Control] = {
 	Page.HOME: %HelpFrameHome, Page.GM: %HelpFrameGM, Page.OPEN_TICKET: %HelpFrameOpenTicket,
@@ -43,7 +44,6 @@ func _ready() -> void:
 	%HelpFrameOpenTicketSubmit.pressed.connect(_on_submit_pressed)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	visibility_changed.connect(_on_visibility_changed)
-	_flow.call_deferred(%HelpFrameHome)
 	hide()
 
 
@@ -68,7 +68,11 @@ func _flow(page: Control) -> void:
 		if label:
 			label.text = WowStrings.strip_colors(label.text)
 			label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-			label.size.x = page.size.x - label.position.x - TEXT_MARGIN
+	# Until wrapping lands, a label's minimum width is its whole line and holds any narrower size.
+	await get_tree().process_frame
+	for child: Control in page.get_children():
+		if child is Label:
+			child.size.x = page.size.x - child.position.x - TEXT_MARGIN
 	# A label only reports its wrapped height once it has been laid out at the new width.
 	await get_tree().process_frame
 	var pushed: float = 0.0
@@ -131,6 +135,10 @@ func _on_submit_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if is_visible_in_tree():
+		# Labels only settle their wrapped size while shown, so the page flows on first sight.
+		if not _flowed:
+			_flowed = true
+			_flow(%HelpFrameHome)
 		_show_page(Page.HOME)
 		WowClient.session.send_packet("CMSG_GMTICKET_GETTICKET", PackedByteArray())
 

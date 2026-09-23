@@ -90,6 +90,10 @@ func _ready() -> void:
 	(%WhoFrame as WhoFrame).friend_requested.connect(_on_who_friend_requested)
 	%FriendsFrameTab3.pressed.connect(show_tab.bind(Tab.GUILD))
 	%FriendsFrameTab4.pressed.connect(show_tab.bind(Tab.RAID))
+	var tabs: Array[Control] = [
+		%FriendsFrameTab1, %FriendsFrameTab2, %FriendsFrameTab3, %FriendsFrameTab4,
+	]
+	PanelManager.chain_tabs(tabs, 0.0)
 	%FriendsFrameAddFriendButton.pressed.connect(
 		func() -> void: name_requested.emit(_tab)
 	)

@@ -103,6 +103,19 @@ static func select_tab(tab: Control, selected: bool) -> void:
 	label.theme_type_variation = &"GameFontHighlightSmall" if selected else &"GameFontNormalSmall"
 
 
+# CharacterFrameTabButtonTemplate's OnShow resize, then the anchors that chain each tab to the last.
+static func chain_tabs(tabs: Array[Control], padding: float) -> void:
+	var shown: Array[Control] = tabs.filter(func(tab: Control) -> bool: return tab.visible)
+	if shown.size() < 2:
+		return
+	var gap: float = shown[1].position.x - shown[0].position.x - shown[0].size.x
+	var x: float = shown[0].position.x
+	for tab: Control in shown:
+		resize_tab(tab, padding)
+		tab.position.x = x
+		x += tab.size.x + gap
+
+
 # PanelTemplates_TabResize: the middle piece grows to the tab's text plus padding.
 static func resize_tab(tab: Control, padding: float) -> void:
 	var text: Label = tab.get_node(tab.name + "Text")

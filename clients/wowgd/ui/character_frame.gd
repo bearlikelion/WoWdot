@@ -112,17 +112,11 @@ func _ready() -> void:
 	%CharacterFramePortrait.texture = _portrait.get_texture()
 	%CharacterModelFrame.gui_input.connect(_on_model_input)
 	# The pet tab waits on the pet paper doll; the rest size to their text and close up.
-	%CharacterFrameTab2.hide()
-	var gap: float = %CharacterFrameTab2.position.x - %CharacterFrameTab1.position.x \
-			- %CharacterFrameTab1.size.x
-	var x: float = %CharacterFrameTab1.position.x
+	var tabs: Array[Control] = []
 	for tab: Tab in TAB_FRAMES:
-		var button: Control = get_node("%%CharacterFrameTab%d" % tab)
-		if not button.visible:
-			continue
-		PanelManager.resize_tab(button, TAB_PADDING)
-		button.position.x = x
-		x += button.size.x + gap
+		tabs.append(get_node("%%CharacterFrameTab%d" % tab))
+	%CharacterFrameTab2.hide()
+	PanelManager.chain_tabs(tabs, TAB_PADDING)
 	visibility_changed.connect(refresh)
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)
