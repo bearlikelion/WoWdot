@@ -20,8 +20,17 @@ const POWER_COLORS: Dictionary[PowerType, Color] = {
 const HEALTH_COLOR: Color = Color(0.0, 1.0, 0.0)
 # Rage is stored at ten times the value the bar shows.
 const RAGE_SCALE: int = 10
+const UNIT_FLAG_PVP: int = 0x1000
+const PLAYER_FLAGS_FFA_PVP: int = 0x80
+const FFA_PVP_ICON: String = "Interface\\TargetingFrame\\UI-PVP-FFA.blp"
+const PVP_ICONS: Dictionary[AreaInfo.FactionGroup, String] = {
+	AreaInfo.FactionGroup.ALLIANCE: "Interface\\TargetingFrame\\UI-PVP-Alliance.blp",
+	AreaInfo.FactionGroup.HORDE: "Interface\\TargetingFrame\\UI-PVP-Horde.blp",
+}
 
 var guid: int = 0
+
+static var _pvp_textures: Dictionary[String, WowTexture] = {}
 
 var _display: int = 0
 # Set by each frame's _ready from its own scene's nodes before calling super().
@@ -72,6 +81,30 @@ func _gui_input(event: InputEvent) -> void:
 
 
 # A guid of 0, or one the session no longer knows, hides the frame.
+# TargetFrame_CheckFaction: a free-for-all player shows that icon, else a flagged one its faction's.
+static func pvp_texture(unit: int) -> Texture2D:
+	var session: WowSession = WowClient.session
+	if session.get_object_type(unit) != Entities.ObjectType.PLAYER:
+		return null
+	var path: String = ""
+	if session.get_field(unit, "PLAYER_FLAGS") & PLAYER_FLAGS_FFA_PVP:
+		path = FFA_PVP_ICON
+	elif session.get_field(unit, "UNIT_FIELD_FLAGS") & UNIT_FLAG_PVP:
+		var race: int = session.get_field(unit, "UNIT_FIELD_BYTES_0") & 0xFF
+		path = PVP_ICONS[AreaInfo.player_group(race)]
+	if path.is_empty():
+		return null
+	if not _pvp_textures.has(path):
+		var texture: WowTexture = WowTexture.new()
+		texture.file = path
+		_pvp_textures[path] = texture
+	return _pvp_textures[path]
+
+
+static func is_group_leader(unit: int) -> bool:
+	return PartyFrame.in_party() and PartyFrame.leader == unit
+
+
 func show_unit(unit: int) -> void:
 	guid = unit
 	_display = 0

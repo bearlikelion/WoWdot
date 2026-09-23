@@ -19,6 +19,9 @@ const COMBO_FADE_IN: float = 0.3
 const COMBO_HIGHLIGHT_FADE_IN: float = 0.4
 const COMBO_SHINE_FADE_IN: float = 0.3
 const COMBO_SHINE_FADE_OUT: float = 0.4
+# RAID_TARGET_ICON_DIMENSION: the eight marks share one texture, four to a row.
+const RAID_TARGET_SIZE: float = 64.0
+const RAID_TARGET_COLUMNS: int = 4
 const BORDERS: Dictionary[Rank, String] = {
 	Rank.NORMAL: "Interface\\TargetingFrame\\UI-TargetingFrame.blp",
 	Rank.ELITE: "Interface\\TargetingFrame\\UI-TargetingFrame-Elite.blp",
@@ -39,12 +42,16 @@ var _target_of_target: TargetOfTargetFrame
 var _combo_highlights: Array[TextureRect] = []
 var _combo_shines: Array[TextureRect] = []
 var _combo_points: int = 0
+var _raid_marks: Array[AtlasTexture] = []
 
 @onready var _name_background: TextureRect = %TargetFrameNameBackground
 @onready var _border: TextureRect = %TargetFrameTexture
 @onready var _dead_text: Label = %TargetDeadText
 @onready var _skull: TextureRect = %TargetHighLevelTexture
 @onready var _combo_frame: Control = %ComboFrame
+@onready var _leader_icon: TextureRect = %TargetLeaderIcon
+@onready var _pvp_icon: TextureRect = %TargetPVPIcon
+@onready var _raid_icon: TextureRect = %TargetRaidTargetIcon
 
 
 func _ready() -> void:
@@ -58,11 +65,17 @@ func _ready() -> void:
 	_portrait_rect = %TargetPortrait
 	# The level text is tinted like SetVertexColor, so it starts from the white font.
 	_level_label.theme_type_variation = &"GameFontHighlightSmall"
-	# Raid marks and the right-click menu come later.
-	for part: CanvasItem in [
-		%TargetLeaderIcon, %TargetRaidTargetIcon, %TargetPVPIcon, %TargetFrameDropDown,
-	]:
-		part.hide()
+	%TargetFrameDropDown.hide()
+	var marks: Texture2D = _raid_icon.texture
+	for i: int in PartyFrame.TargetIcon.size():
+		var mark: AtlasTexture = AtlasTexture.new()
+		mark.atlas = marks
+		mark.region = Rect2(
+			i % RAID_TARGET_COLUMNS * RAID_TARGET_SIZE,
+			floori(i / float(RAID_TARGET_COLUMNS)) * RAID_TARGET_SIZE,
+			RAID_TARGET_SIZE, RAID_TARGET_SIZE,
+		)
+		_raid_marks.append(mark)
 	_target_of_target = %TargetofTargetFrame
 	_target_of_target.unit_selected.connect(unit_selected.emit)
 	for i: int in range(1, TARGET_BUFFS + 1):
@@ -122,6 +135,13 @@ func _update_unit() -> void:
 	var rank: Rank = session.get_creature_info(guid).get("rank", Rank.NORMAL) as Rank
 	_border.texture = _border_art.get(rank, _border_art[Rank.NORMAL])
 	_dead_text.visible = session.get_field(guid, "UNIT_FIELD_HEALTH") == 0
+	_leader_icon.visible = UnitFrame.is_group_leader(guid)
+	_pvp_icon.texture = UnitFrame.pvp_texture(guid)
+	_pvp_icon.visible = _pvp_icon.texture != null
+	var mark: Variant = PartyFrame.target_icons.find_key(guid)
+	_raid_icon.visible = mark != null
+	if mark != null:
+		_raid_icon.texture = _raid_marks[mark]
 	_update_target_of_target()
 	_update_auras()
 	_update_combo_points()

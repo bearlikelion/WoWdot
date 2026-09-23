@@ -236,6 +236,9 @@ func _ready() -> void:
 	_player_frame.unit_menu_requested.connect(_show_unit_menu)
 	_target_frame.unit_menu_requested.connect(_show_unit_menu)
 	_party.unit_menu_requested.connect(_show_unit_menu)
+	for changed: Signal in [_party.group_changed, _party.target_icons_changed]:
+		changed.connect(_target_frame.refresh)
+		changed.connect(_player_frame.refresh)
 	_unit_menu.entry_selected.connect(_on_unit_menu_pressed)
 	WowClient.session.spell_cast_failed.connect(_on_spell_cast_failed)
 	WowClient.session.attack_swing_error.connect(_on_attack_swing_error)

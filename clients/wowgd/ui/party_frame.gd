@@ -9,6 +9,7 @@ signal unit_menu_requested(guid: int)
 signal ready_check_started
 signal raid_changed
 signal target_icons_changed
+signal group_changed
 
 enum LootMethod { FREE_FOR_ALL, ROUND_ROBIN, MASTER_LOOT, GROUP_LOOT, NEED_BEFORE_GREED }
 # The eight marks a raid leader can hang on a target, in the order the wire numbers them.
@@ -273,6 +274,7 @@ func _on_list_received(payload: PackedByteArray) -> void:
 		ask.encode_u64(0, member["guid"])
 		WowClient.session.send_packet("CMSG_REQUEST_PARTY_MEMBER_STATS", ask)
 	_refresh()
+	group_changed.emit()
 
 
 # Mode 0 carries one changed mark, mode 1 the whole set after a request or a group list reset.

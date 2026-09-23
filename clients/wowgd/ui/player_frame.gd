@@ -16,6 +16,8 @@ var _feedback: CombatFeedback
 @onready var _attack_icon: TextureRect = %PlayerAttackIcon
 @onready var _attack_glow: TextureRect = %PlayerAttackGlow
 @onready var _attack_background: TextureRect = %PlayerAttackBackground
+@onready var _leader_icon: TextureRect = %PlayerLeaderIcon
+@onready var _pvp_icon: TextureRect = %PlayerPVPIcon
 
 
 func _ready() -> void:
@@ -31,8 +33,8 @@ func _ready() -> void:
 	_portrait_rect = %PlayerPortrait
 	# Pets, groups and the play-time warning have their own phases; the frame starts without them.
 	for part: CanvasItem in [
-		%PetFrame, %PlayerFrameGroupIndicator, %PlayerLeaderIcon, %PlayerMasterIcon,
-		%PlayerFrameDropDown, %PlayerPlayTime, %PlayerPVPIcon,
+		%PetFrame, %PlayerFrameGroupIndicator, %PlayerMasterIcon, %PlayerFrameDropDown,
+		%PlayerPlayTime,
 	]:
 		part.hide()
 	super()
@@ -52,6 +54,9 @@ func _update_unit() -> void:
 	_rest_glow.visible = resting
 	_status.visible = in_combat or resting
 	_status.self_modulate = COMBAT_TINT if in_combat else RESTING_TINT
+	_leader_icon.visible = UnitFrame.is_group_leader(guid)
+	_pvp_icon.texture = UnitFrame.pvp_texture(guid)
+	_pvp_icon.visible = _pvp_icon.texture != null
 
 
 # PlayerFrame_OnEvent passes UNIT_COMBAT for the player to CombatFeedback.
