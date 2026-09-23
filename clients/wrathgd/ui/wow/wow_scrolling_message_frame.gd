@@ -57,6 +57,13 @@ func scroll_down() -> void:
 	_apply_scroll()
 
 
+func clear() -> void:
+	for line: Node in _lines.get_children():
+		_lines.remove_child(line)
+		line.queue_free()
+	_scrolled = 0
+
+
 func scroll_to_bottom() -> void:
 	_scrolled = 0
 	_apply_scroll()

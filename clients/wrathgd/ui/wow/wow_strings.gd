@@ -28,7 +28,7 @@ static func format(template: String, args: Array) -> String:
 		out += template.substr(from, found.get_start() - from)
 		out += str(args[at]) if at < args.size() else ""
 		from = found.get_end()
-	return out + template.substr(from)
+	return _plurals(out + template.substr(from))
 
 
 # Drops the |cAARRGGBB and |r colour escapes for text shown in a plain label.
@@ -105,3 +105,13 @@ static func _unescape(text: String) -> String:
 		at = found.get_end()
 	out += text.substr(at)
 	return out.replace('\\"', '"').replace("\\n", "\n").replace("|n", "\n")
+
+
+# The |4singular:plural; grammar, which picks by the number just before it.
+static func _plurals(text: String) -> String:
+	var out: String = text
+	var pattern: RegEx = RegEx.create_from_string("(\\d+)(\\s*)\\|4([^:;]*):([^;]*);")
+	for found: RegExMatch in pattern.search_all(text):
+		var word: String = found.get_string(3 if found.get_string(1) == "1" else 4)
+		out = out.replace(found.get_string(), found.get_string(1) + found.get_string(2) + word)
+	return out

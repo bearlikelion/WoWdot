@@ -47,6 +47,8 @@ const PASSWORD: String = "wowgd"
 const CHARACTER: String = "Wrathglue"
 const ANNOUNCEMENT: String = "WrathGD announcement check"
 const HEROIC_DUNGEON: int = 1
+const GUILD_BANK_TEXT: String = "Tab info from glue_check"
+const GUILD_INFO_TEXT: String = "Guild info from glue_check"
 
 var _failures: PackedStringArray = []
 var _main: Main
@@ -354,9 +356,57 @@ func _guild_bank() -> void:
 			bank.withdraw_item(0, slot)
 			await _until(func() -> bool: return bank.items[0][slot].is_empty(),
 					"the stack comes back out of the bank")
+	await _guild_bank_tabs(frame)
 	frame.close_requested.emit()
+	await _guild_popups()
 	session.object_created.disconnect(on_created)
 	session.send_chat(WowSession.CHAT_SAY, '.guild delete "%s"' % GUILD)
+
+
+# The log, money log and info tabs read back what the bank step just did.
+func _guild_bank_tabs(frame: GuildBankFrame) -> void:
+	var log_frame: WowScrollingMessageFrame = frame.get_node("%GuildBankMessageFrame")
+	var deposited: String = WowStrings.get_text("GUILDBANK_DEPOSIT_FORMAT").split("%s")[1]
+	(frame.get_node("%GuildBankFrameTab2") as BaseButton).pressed.emit()
+	await _until(func() -> bool: return log_frame.all_text().contains(deposited),
+			"the bank log lists the deposited stack")
+	await _frames(30)
+	_capture("user://wotlk_guild_bank_log.png")
+	(frame.get_node("%GuildBankFrameTab3") as BaseButton).pressed.emit()
+	await _until(func() -> bool: return log_frame.all_text().contains(deposited),
+			"the money log lists the deposited money")
+	(frame.get_node("%GuildBankFrameTab4") as BaseButton).pressed.emit()
+	var info: TextEdit = frame.get_node("%GuildBankTabInfoEditBox")
+	info.text = GUILD_BANK_TEXT
+	(frame.get_node("%GuildBankInfoSaveButton") as BaseButton).pressed.emit()
+	info.text = ""
+	WowClient.guild_bank.query_text(0)
+	await _until(func() -> bool: return info.text == GUILD_BANK_TEXT,
+			"the tab info text saves and reads back")
+	(frame.get_node("%GuildBankFrameTab1") as BaseButton).pressed.emit()
+
+
+# The guild's information text saves, the event log shows the founder joining and /ginfo answers.
+func _guild_popups() -> void:
+	var social: FriendsFrame = get_tree().root.find_child("FriendsFrame", true, false)
+	social.show_tab(FriendsFrame.Tab.GUILD)
+	(social.get_node("%GuildFrameGuildInformationButton") as BaseButton).pressed.emit()
+	(social.get_node("%GuildInfoEditBox") as TextEdit).text = GUILD_INFO_TEXT
+	(social.get_node("%GuildInfoSaveButton") as BaseButton).pressed.emit()
+	(social.get_node("%GuildFrameGuildInformationButton") as BaseButton).pressed.emit()
+	var info: TextEdit = social.get_node("%GuildInfoEditBox")
+	await _until(func() -> bool: return info.text == GUILD_INFO_TEXT,
+			"the guild information text saves")
+	(social.get_node("%GuildInfoGuildEventButton") as BaseButton).pressed.emit()
+	var events: Label = social.get_node("%GuildEventMessage")
+	var joined: String = WowStrings.format(WowStrings.get_text("GUILDEVENT_TYPE_JOIN"), [CHARACTER])
+	await _until(func() -> bool: return events.text.contains(joined),
+			"the guild event log shows the founder joining")
+	(social.get_node("%GuildEventLogCloseButton") as BaseButton).pressed.emit()
+	WowClient.session.send_packet("CMSG_GUILD_INFO", PackedByteArray())
+	await _until(func() -> bool: return _chat_has(
+		WowStrings.format(WowStrings.get_text("GUILD_NAME_TEMPLATE"), [GUILD])
+	), "/ginfo names the guild")
 
 
 # A GM-made 2v2 team shows on the PvP frame with its roster, then the captain disbands it.

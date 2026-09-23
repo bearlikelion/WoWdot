@@ -341,6 +341,9 @@ func _run_channel_command(text: String) -> bool:
 		else:
 			ticket_requested.emit(" ".join(rest))
 		return true
+	if command in ["guildinfo", "ginfo"]:
+		WowClient.session.send_packet("CMSG_GUILD_INFO", PackedByteArray())
+		return true
 	if command == "raidinfo":
 		WowClient.session.send_packet("CMSG_REQUEST_RAID_INFO", PackedByteArray())
 		return true

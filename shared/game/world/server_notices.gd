@@ -96,6 +96,14 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 			return WowStrings.get_text("RESET_FAILED_NOTIFY")
 		"SMSG_WHOIS":
 			return reader.cstring()
+		"SMSG_GUILD_INFO":
+			var guild: String = WowStrings.format(WowStrings.get_text("GUILD_NAME_TEMPLATE"),
+					[reader.cstring()])
+			var created: Dictionary = Calendar.unpack_time(reader.u32())
+			var counts: Array = [created["month"], created["day"], created["year"], reader.i32(),
+					reader.i32()]
+			var info: String = WowStrings.get_text("GUILD_INFO_TEMPLATE")
+			return guild + "\n" + WowStrings.format(info, counts)
 		"SMSG_ZONE_UNDER_ATTACK":
 			var text: String = WowStrings.get_text("ZONE_UNDER_ATTACK")
 			return WowStrings.format(text, [AreaInfo.area_name(reader.u32())])
@@ -226,7 +234,8 @@ static func error(opcode: String, payload: PackedByteArray) -> String:
 		"SMSG_ARENA_ERROR":
 			reader.u32()
 			var team_size: int = reader.u8()
-			return WowStrings.format(WowStrings.get_text("ERR_ARENA_NO_TEAM_II"), [team_size, team_size])
+			var no_team: String = WowStrings.get_text("ERR_ARENA_NO_TEAM_II")
+			return WowStrings.format(no_team, [team_size, team_size])
 		"SMSG_PET_ACTION_FEEDBACK":
 			var reason: int = reader.u8()
 			return WowStrings.get_text(PET_FEEDBACK[reason]) if PET_FEEDBACK.has(reason) else ""

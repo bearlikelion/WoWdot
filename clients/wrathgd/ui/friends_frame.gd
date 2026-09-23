@@ -8,6 +8,7 @@ signal message_added(text: String)
 signal guild_invited(inviter: String, guild_name: String)
 
 enum Tab { FRIENDS, IGNORE, GUILD, RAID, WHO }
+enum EventLogType { INVITE = 1, JOIN, PROMOTE, DEMOTE, REMOVE, QUIT }
 # SMSG_GUILD_EVENT, as GuildEvents numbers them.
 enum GuildEvent { PROMOTION, DEMOTION, MOTD, JOINED, LEFT, REMOVED, LEADER_IS, LEADER_CHANGED,
 	DISBANDED, TABARD_CHANGED, RANK_RENAMED, ROSTER_UPDATE, SIGNED_ON, SIGNED_OFF }
@@ -25,6 +26,11 @@ const IGNORE_ROWS: int = 19
 const GUILD_ROWS: int = 13
 # SMSG_GUILD_QUERY_RESPONSE always carries ten rank names, whatever the guild uses.
 const GUILD_RANKS: int = 10
+const EVENT_LOG_TEXT: Dictionary[EventLogType, String] = {
+	EventLogType.INVITE: "GUILDEVENT_TYPE_INVITE", EventLogType.JOIN: "GUILDEVENT_TYPE_JOIN",
+	EventLogType.PROMOTE: "GUILDEVENT_TYPE_PROMOTE", EventLogType.DEMOTE: "GUILDEVENT_TYPE_DEMOTE",
+	EventLogType.REMOVE: "GUILDEVENT_TYPE_REMOVE", EventLogType.QUIT: "GUILDEVENT_TYPE_QUIT",
+}
 # SMSG_FRIEND_STATUS results, as SocialMgr's FriendsResult numbers them.
 enum Result { DB_ERROR, LIST_FULL, ONLINE, OFFLINE, NOT_FOUND, REMOVED, ADDED_ONLINE,
 	ADDED_OFFLINE, ALREADY, SELF, ENEMY, IGNORE_FULL, IGNORE_SELF, IGNORE_NOT_FOUND,
@@ -75,6 +81,11 @@ var _awaiting_name: Dictionary[int, String] = {}
 var _members: Array[Dictionary] = []
 var _guild_name: String = ""
 var _emblem: PackedInt32Array = []
+var _rank_names: PackedStringArray = []
+# The roster's guild information text, which GuildInfoFrame edits.
+var _info_text: String = ""
+# MSG_GUILD_EVENT_LOG_QUERY entries oldest first, each {type, player, other, rank, seconds}.
+var _events: Array[Dictionary] = []
 
 
 func _ready() -> void:
@@ -105,6 +116,13 @@ func _ready() -> void:
 		func() -> void: name_requested.emit(Tab.GUILD)
 	)
 	%FriendsFrameUnsquelchButton.pressed.connect(_remove_selected)
+	%GuildFrameGuildInformationButton.pressed.connect(_toggle_popup.bind(%GuildInfoFrame))
+	%GuildInfoGuildEventButton.pressed.connect(_toggle_popup.bind(%GuildEventLogFrame))
+	%GuildInfoCancelButton.pressed.connect(%GuildInfoFrame.hide)
+	%GuildInfoCloseButton.pressed.connect(%GuildInfoFrame.hide)
+	%GuildEventLogCancelButton.pressed.connect(%GuildEventLogFrame.hide)
+	%GuildEventLogCloseButton.pressed.connect(%GuildEventLogFrame.hide)
+	%GuildInfoSaveButton.pressed.connect(_save_guild_info)
 	var session: WowSession = WowClient.session
 	session.packet_received.connect(_on_packet_received)
 	session.name_received.connect(_on_name_received)
@@ -295,6 +313,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			_on_guild_event(reader)
 		"SMSG_GUILD_COMMAND_RESULT":
 			_on_guild_result(reader)
+		"MSG_GUILD_EVENT_LOG_QUERY":
+			_read_events(reader)
 
 
 # The ignore list only comes at login, so its changes are followed here.
@@ -343,7 +363,7 @@ func _read_contacts(reader: PacketReader) -> void:
 func _on_roster(reader: PacketReader) -> void:
 	var count: int = reader.u32()
 	(%GuildFrameNotesText as Label).text = reader.cstring()
-	reader.cstring()
+	_info_text = reader.cstring()
 	for i: int in reader.u32():
 		for word: int in WOTLK_RANK_WORDS if PacketReader.wotlk else 1:
 			reader.u32()
@@ -382,8 +402,9 @@ func _query_guild() -> void:
 
 # The ten rank names come before the five numbers a tabard vendor saved on the guild.
 func _read_emblem(reader: PacketReader) -> void:
+	_rank_names.clear()
 	for rank: int in GUILD_RANKS:
-		reader.cstring()
+		_rank_names.append(reader.cstring())
 	_emblem = PackedInt32Array()
 	for part: int in TabardFrame.Part.size():
 		_emblem.append(reader.u32())
@@ -433,3 +454,65 @@ func _on_name_received(guid: int, player_name: String) -> void:
 		message_added.emit(_line(_awaiting_name[guid], player_name))
 		_awaiting_name.erase(guid)
 	refresh()
+	_write_events()
+
+
+# GuildFramePopup_Show: one guild popup at a time.
+func _toggle_popup(popup: Control) -> void:
+	var showing: bool = not popup.visible
+	for other: CanvasItem in [
+		%GuildEventLogFrame, %GuildInfoFrame, %GuildMemberDetailFrame, %GuildControlPopupFrame,
+	]:
+		other.hide()
+	popup.visible = showing
+	if not showing:
+		return
+	if popup == %GuildInfoFrame:
+		(%GuildInfoEditBox as TextEdit).text = _info_text
+	else:
+		WowClient.session.send_packet("MSG_GUILD_EVENT_LOG_QUERY", PackedByteArray())
+
+
+# GuildInfoSaveButton's OnClick keeps the new text until the next roster brings it back.
+func _save_guild_info() -> void:
+	_info_text = (%GuildInfoEditBox as TextEdit).text
+	var payload: PackedByteArray = _info_text.to_utf8_buffer()
+	payload.append(0)
+	WowClient.session.send_packet("CMSG_GUILD_INFO_TEXT", payload)
+	request_roster()
+	%GuildInfoFrame.hide()
+
+
+# GuildEventLogTypes; joins and leaves name no second player, promotions and demotions add a rank.
+func _read_events(reader: PacketReader) -> void:
+	_events.clear()
+	for i: int in reader.u8():
+		var event: Dictionary = {"type": reader.u8() as EventLogType, "player": reader.u64()}
+		if event["type"] not in [EventLogType.JOIN, EventLogType.QUIT]:
+			event["other"] = reader.u64()
+		if event["type"] in [EventLogType.PROMOTE, EventLogType.DEMOTE]:
+			event["rank"] = reader.u8()
+		event["seconds"] = reader.u32()
+		_events.push_front(event)
+	_write_events()
+
+
+# GuildEventLog_Update.
+func _write_events() -> void:
+	if not %GuildEventLogFrame.visible:
+		return
+	var lines: PackedStringArray = []
+	for event: Dictionary in _events:
+		var names: Array = [_event_name(event["player"]), _event_name(event.get("other", 0))]
+		var rank: int = event.get("rank", 0)
+		names.append(_rank_names[rank] if rank < _rank_names.size() else "")
+		var ago: String = WowStrings.format(WowStrings.get_text("GUILD_BANK_LOG_TIME"),
+				[GuildBankFrame.time_ago(event["seconds"])])
+		lines.append(WowStrings.format(WowStrings.get_text(EVENT_LOG_TEXT[event["type"]]), names)
+				+ "   " + ago)
+	(%GuildEventMessage as Label).text = "\n".join(lines)
+
+
+func _event_name(guid: int) -> String:
+	var player_name: String = WowClient.session.get_object_name(guid) if guid else ""
+	return player_name if player_name else WowStrings.get_text("UNKNOWN")

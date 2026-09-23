@@ -3,20 +3,35 @@ extends RefCounted
 
 signal opened
 signal changed
+signal log_received(tab: int)
+signal text_received(tab: int)
+
+# GuildBankEventLogTypes.
+enum LogType {
+	DEPOSIT_ITEM = 1, WITHDRAW_ITEM, MOVE_ITEM, DEPOSIT_MONEY, WITHDRAW_MONEY, REPAIR_MONEY,
+	MOVE_ITEM2, WITHDRAW_FOR_TAB, BUY_SLOT,
+}
 
 const MAX_TABS: int = 6
 const SLOTS: int = 98
 # GuildEvents GE_BANK_TAB_PURCHASED to GE_BANK_TAB_AND_MONEY_UPDATED, after which the list is stale.
 const BANK_EVENTS: Array[int] = [15, 16, 17, 18]
+# QueryGuildBankLog(MAX_GUILDBANK_TABS + 1) asks for the money log, which the wire numbers 6.
+const MONEY_LOG: int = MAX_TABS
 
 # The vault in use, which every bank packet names.
 var banker: int = 0
 var money: int = 0
 var withdrawals_remaining: int = 0
+# Copper the player may still take out today, or -1 for no limit.
+var money_remaining: int = -1
 # Each bought tab as {name, icon}.
 var tabs: Array[Dictionary] = []
 # Tab index to its slots, each {item, count} or {} when empty.
 var items: Dictionary[int, Array] = {}
+# Tab, or MONEY_LOG, to its entries oldest first: {type, player, item, count, tab, money, seconds}.
+var logs: Dictionary[int, Array] = {}
+var texts: Dictionary[int, String] = {}
 
 var _session: WowSession
 
@@ -30,11 +45,28 @@ func activate(vault: int) -> void:
 	banker = vault
 	items.clear()
 	_send("CMSG_GUILD_BANKER_ACTIVATE", PackedByteArray([1]))
+	_session.send_packet("MSG_GUILD_BANK_MONEY_WITHDRAWN", PackedByteArray())
 	opened.emit()
 
 
 func query_tab(tab: int) -> void:
 	_send("CMSG_GUILD_BANK_QUERY_TAB", PackedByteArray([tab, 1]))
+
+
+func query_log(tab: int) -> void:
+	_session.send_packet("MSG_GUILD_BANK_LOG_QUERY", PackedByteArray([tab]))
+
+
+func query_text(tab: int) -> void:
+	_session.send_packet("MSG_QUERY_GUILD_BANK_TEXT", PackedByteArray([tab]))
+
+
+func set_text(tab: int, text: String) -> void:
+	var payload: PackedByteArray = [tab]
+	payload.append_array(text.to_utf8_buffer())
+	payload.append(0)
+	_session.send_packet("CMSG_SET_GUILD_BANK_TEXT", payload)
+	texts[tab] = text
 
 
 func buy_tab(tab: int) -> void:
@@ -101,6 +133,18 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	var reader: PacketReader = PacketReader.new(payload)
 	if opcode == "SMSG_GUILD_EVENT" and banker and reader.u8() in BANK_EVENTS:
 		_send("CMSG_GUILD_BANKER_ACTIVATE", PackedByteArray([1]))
+	if opcode == "MSG_GUILD_BANK_LOG_QUERY":
+		_read_log(reader)
+		return
+	if opcode == "MSG_QUERY_GUILD_BANK_TEXT":
+		var tab: int = reader.u8()
+		texts[tab] = reader.cstring()
+		text_received.emit(tab)
+		return
+	if opcode == "MSG_GUILD_BANK_MONEY_WITHDRAWN":
+		money_remaining = reader.i32()
+		changed.emit()
+		return
 	if opcode != "SMSG_GUILD_BANK_LIST":
 		return
 	money = reader.u64()
@@ -131,3 +175,25 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			slots[slot] = stack
 	items[tab] = slots
 	changed.emit()
+
+
+# The server sends the newest entry first.
+func _read_log(reader: PacketReader) -> void:
+	var tab: int = reader.u8()
+	var entries: Array[Dictionary] = []
+	for i: int in reader.u8():
+		var entry: Dictionary = {"type": reader.u8(), "player": reader.u64()}
+		match entry["type"]:
+			LogType.DEPOSIT_ITEM, LogType.WITHDRAW_ITEM:
+				entry["item"] = reader.u32()
+				entry["count"] = reader.u32()
+			LogType.MOVE_ITEM, LogType.MOVE_ITEM2:
+				entry["item"] = reader.u32()
+				entry["count"] = reader.u32()
+				entry["tab"] = reader.u8()
+			_:
+				entry["money"] = reader.u32()
+		entry["seconds"] = reader.u32()
+		entries.push_front(entry)
+	logs[tab] = entries
+	log_received.emit(tab)
