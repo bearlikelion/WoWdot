@@ -21,6 +21,10 @@ const SCROLL_BUTTONS: Array[String] = ["UpButton", "DownButton", "BottomButton"]
 @export var stem: String = ""
 
 var selected: bool = true
+## ChatTypeGroup names this window shows, such as SAY or LOOT.
+var message_groups: PackedStringArray = []
+## The channels it shows; "*" stands for every channel.
+var channels: PackedStringArray = []
 ## FCF_SetWindowName: the tab's text; the HUD lines the tabs up again after a change.
 var window_name: String = "":
 	set(value):

@@ -216,7 +216,7 @@ func _ready() -> void:
 	_taxi.error_raised.connect(show_error)
 	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
 	_loot.error_raised.connect(show_error)
-	_loot.message_added.connect(add_system_line)
+	_loot.message_added.connect(_add_loot_line)
 	_loot.master_loot_requested.connect(_show_master_loot_menu)
 	WowClient.session.taxi_path_discovered.connect(
 		func() -> void: show_notice(WowStrings.get_text("ERR_NEWTAXIPATH"))
@@ -240,7 +240,7 @@ func _ready() -> void:
 	_party.message_added.connect(add_system_line)
 	_party.error_raised.connect(show_error)
 	_party.ready_check_started.connect(_on_ready_check_started)
-	(%LootRolls as LootRolls).message_added.connect(add_system_line)
+	(%LootRolls as LootRolls).message_added.connect(_add_loot_line)
 	var pet_frame: PetFrame = _player_frame.get_node("%PetFrame")
 	pet_frame.unit_selected.connect(unit_selected.emit)
 	pet_frame.unit_menu_requested.connect(_show_unit_menu)
@@ -267,6 +267,7 @@ func _ready() -> void:
 		frame.tab_selected.connect(_select_chat_frame.bind(frame))
 	_chat_windows = ChatWindows.new(_chat_frames, _open_menu, _popup.ask_name)
 	_chat_windows.layout_changed.connect(_dock_chat_tabs)
+	WowClient.session.chat_received.connect(_chat_windows.add_chat)
 	_dock_chat_tabs()
 	_select_chat_frame(_chat_frames[0])
 
@@ -324,6 +325,7 @@ func open_trade_skill(spell_id: int) -> bool:
 
 func show_player(guid: int) -> void:
 	_player_frame.show_unit(guid)
+	_load_chat_windows(guid)
 
 
 func show_target(guid: int) -> void:
@@ -518,12 +520,12 @@ func _list_channel(list: Dictionary) -> void:
 	add_system_line("[%s] %s" % [list["channel"], ", ".join(names)])
 
 
-func add_chat_line(text: String, color: Color = Color.WHITE) -> void:
-	_chat.add_message(text, color)
+func add_chat_line(text: String, color: Color = Color.WHITE, group: String = "SAY") -> void:
+	_chat_windows.add_line(text, color, group)
 
 
 func add_system_line(text: String) -> void:
-	_chat.add_message(text, ChatFrame.COLORS[WowSession.CHAT_SYSTEM])
+	_chat_windows.add_line(text, ChatFrame.COLORS[WowSession.CHAT_SYSTEM], "SYSTEM")
 
 
 func show_location(map_dir: String, wow_position: Vector3, facing: float) -> void:
@@ -899,6 +901,22 @@ func _on_bottom_bars_toggled(shown: bool) -> void:
 
 
 # FCF_SelectDockFrame: the docked frames share one area and show only the chosen one.
+# The player's name can still be on its way when the player object arrives.
+func _load_chat_windows(guid: int) -> void:
+	var session: WowSession = WowClient.session
+	if not session.get_object_name(guid).is_empty():
+		_chat_windows.load_for(session.get_object_name(guid))
+		return
+	session.name_received.connect(func(named: int, player_name: String) -> void:
+		if named == guid and _chat_windows.character().is_empty():
+			_chat_windows.load_for(player_name)
+	)
+
+
+func _add_loot_line(text: String) -> void:
+	_chat_windows.add_line(text, ChatFrame.COLORS[WowSession.CHAT_SYSTEM], "LOOT")
+
+
 # FCF_DockUpdate: each docked tab follows the one before it.
 func _dock_chat_tabs() -> void:
 	var tab_at: Vector2 = _chat_frames[0].tab_position()

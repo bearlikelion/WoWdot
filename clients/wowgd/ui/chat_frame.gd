@@ -204,7 +204,7 @@ func insert_link(link: String) -> bool:
 	return true
 
 
-func format_line(line: Dictionary) -> String:
+static func format_line(line: Dictionary) -> String:
 	var chat_type: WowSession.ChatType = line["type"] as WowSession.ChatType
 	var sender: String = line.get("sender_name", "")
 	var text: String = line.get("text", "")
@@ -420,11 +420,10 @@ func _on_edit_box_input(event: InputEvent) -> void:
 		_edit_box.caret_column = _edit_box.text.length()
 
 
+# The chat windows print the line; this frame only remembers who to reply to.
 func _on_chat_received(line: Dictionary) -> void:
-	var chat_type: WowSession.ChatType = line["type"] as WowSession.ChatType
-	if chat_type == WowSession.CHAT_WHISPER:
+	if line["type"] == WowSession.CHAT_WHISPER:
 		_last_whisperer = line.get("sender_name", "")
-	add_message(format_line(line), COLORS.get(chat_type, Color.WHITE))
 
 
 # SetItemRef: a name whispers, or asks /who with Shift; an item shows ItemRefTooltip.
