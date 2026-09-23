@@ -75,6 +75,10 @@ func _ready() -> void:
 	for i: int in QuestRewards.MAX_NUM_ITEMS:
 		var item: BaseButton = _item(i)
 		item.mouse_entered.connect(_on_item_entered.bind(i))
+		item.pressed.connect(func() -> void:
+			if i < _reward_items.size() and _reward_items[i] > 0:
+				ItemButton.shift_link(Inventory.item_link(_reward_items[i]))
+		)
 		item.mouse_exited.connect(_hide_tooltip.bind(item))
 	_list_scroll.scrolled.connect(_on_list_scrolled)
 	var session: WowSession = WowClient.session

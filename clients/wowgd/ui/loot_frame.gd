@@ -160,6 +160,7 @@ func _on_loot_received(payload: PackedByteArray) -> void:
 			"entry": payload.decode_u32(offset + 1),
 			"count": payload.decode_u32(offset + 5),
 			"display_id": payload.decode_u32(offset + 9),
+			"random_property": payload.decode_u32(offset + 17),
 			"master": payload.decode_u8(offset + 21) == SLOT_TYPE_MASTER,
 		}
 		_slots.append(slot)
@@ -229,6 +230,10 @@ func _on_button_pressed(index: int) -> void:
 	if slot == COIN_SLOT:
 		WowAssets.audio.play_sound(COIN_SOUND)
 		WowClient.session.send_packet("CMSG_LOOT_MONEY", PackedByteArray())
+		return
+	if ItemButton.shift_link(Inventory.item_link(
+		_items[slot]["entry"], 0, _items[slot]["random_property"]
+	)):
 		return
 	if _items[slot]["master"] and not _candidates.is_empty():
 		master_loot_requested.emit(slot, _candidates)

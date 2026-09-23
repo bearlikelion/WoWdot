@@ -233,6 +233,8 @@ func _on_item_clicked(index: int, right_click: bool) -> void:
 	var item_index: int = _page * MERCHANT_ITEMS_PER_PAGE + index
 	if item_index >= _items.size():
 		return
+	if not right_click and ItemButton.shift_link(Inventory.item_link(_items[item_index]["entry"])):
+		return
 	# MerchantItemButton_OnClick: a Ctrl click tries the item on in the dressing room.
 	if not right_click and Input.is_key_pressed(KEY_CTRL) and ItemButton.dress_up.is_valid():
 		ItemButton.dress_up.call(_items[item_index]["entry"])

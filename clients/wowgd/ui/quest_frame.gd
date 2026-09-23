@@ -61,10 +61,14 @@ func _ready() -> void:
 			var item: BaseButton = QuestRewards.item(self, prefix, i)
 			item.mouse_entered.connect(_on_reward_entered.bind(item, i))
 			item.mouse_exited.connect(_hide_tooltip.bind(item))
-		(QuestRewards.item(self, "QuestReward", i) as BaseButton).pressed.connect(_choose.bind(i))
+			item.pressed.connect(_on_reward_pressed.bind(prefix, i))
 	for i: int in MAX_REQUIRED_ITEMS:
 		var item: BaseButton = get_node("%%QuestProgressItem%d" % (i + 1))
 		item.mouse_entered.connect(_on_required_entered.bind(item, i))
+		item.pressed.connect(func() -> void:
+			if i < _progress_items.size():
+				ItemButton.shift_link(Inventory.item_link(_progress_items[i].x))
+		)
 		item.mouse_exited.connect(_hide_tooltip.bind(item))
 	%QuestRewardItemHighlight.hide()
 	%QuestSpacerFrame.hide()
@@ -286,7 +290,16 @@ func _on_title_pressed(index: int) -> void:
 	NpcDialog.send(opcode, _guid, [quest["id"]])
 
 
-# QuestRewardItem_OnClick: only choices can be picked.
+# QuestRewardItem_OnClick: Shift links an item reward, otherwise a choice is picked.
+func _on_reward_pressed(prefix: String, index: int) -> void:
+	var reward: int = _reward_items[index] if index < _reward_items.size() else 0
+	if reward > 0 and ItemButton.shift_link(Inventory.item_link(reward)):
+		return
+	if prefix == "QuestReward":
+		_choose(index)
+
+
+# Only choices can be picked.
 func _choose(index: int) -> void:
 	if index >= _choices:
 		return

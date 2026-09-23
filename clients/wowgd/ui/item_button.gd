@@ -33,9 +33,14 @@ func _gui_input(event: InputEvent) -> void:
 	and dress_up.is_valid() and address.x >= 0 and Inventory.item_at(address) != 0:
 		accept_event()
 		dress_up.call(Inventory.entry(Inventory.item_at(address)))
-	elif click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT \
-	and click.shift_pressed and _link_to_chat():
+	elif click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT and _link_to_chat():
 		accept_event()
+
+
+# Shift clicking any item puts its link in the chat edit box while that is open.
+static func shift_link(link: String) -> bool:
+	return Input.is_key_pressed(KEY_SHIFT) and not link.is_empty() and insert_link.is_valid() \
+	and insert_link.call(link)
 
 
 # PickupContainerItem: dragging lifts the item, and dropping swaps it with what is there.
@@ -71,4 +76,4 @@ func set_item(texture: Texture2D, count: int = 0) -> void:
 
 func _link_to_chat() -> bool:
 	var item: int = Inventory.item_at(address) if address.x >= 0 else 0
-	return item != 0 and insert_link.is_valid() and insert_link.call(Inventory.link(item))
+	return item != 0 and shift_link(Inventory.link(item))
