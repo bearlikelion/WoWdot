@@ -101,6 +101,7 @@ var active: bool = false:
 	set(value):
 		active = value
 		set_physics_process(value)
+		set_process(value)
 
 var _flags: int = MoveFlag.NONE
 var _persistent: int = MoveFlag.NONE
@@ -197,17 +198,23 @@ func _unhandled_input(event: InputEvent) -> void:
 			_pivot.rotation.y -= motion.relative.x * MOUSE_TURN
 
 
-func _physics_process(delta: float) -> void:
+# Keyboard turning runs every frame, so the camera it carries does not step at the physics rate.
+func _process(delta: float) -> void:
 	if not _path.is_empty():
-		_ride(delta)
 		return
-	_ride_transport()
 	var flags: int = _input_flags()
 	if flags & MoveFlag.TURN_LEFT:
 		rotation.y += _speeds[SpeedKind.TURN_RATE] * delta
 	elif flags & MoveFlag.TURN_RIGHT:
 		rotation.y -= _speeds[SpeedKind.TURN_RATE] * delta
 
+
+func _physics_process(delta: float) -> void:
+	if not _path.is_empty():
+		_ride(delta)
+		return
+	_ride_transport()
+	var flags: int = _input_flags()
 	if flags & MoveFlag.ROOT:
 		_send_changes(_flags, flags)
 		_flags = flags
