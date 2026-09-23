@@ -50,6 +50,7 @@ const SERVER_MESSAGE_KEYS: Dictionary[int, String] = {
 const CHAT_RESTRICTED_KEYS: Dictionary[int, String] = {
 	0: "ERR_CHAT_RESTRICTED", 1: "ERR_CHAT_THROTTLED", 2: "ERR_USER_SQUELCHED",
 }
+const RAID_PULLOUT: PackedScene = preload("res://ui/raid_pullout_frame.tscn")
 
 var _area: int = 0
 var _away: int = 0
@@ -59,6 +60,7 @@ var _menu_name: String = ""
 var _menu_guid: int = 0
 # Set when a panel opens the shared menu for itself, which then gets the chosen id.
 var _menu_callback: Callable = Callable()
+var _pullouts: Array[RaidPulloutFrame] = []
 var _duel: Duel
 var _named_pet: int = 0
 var _spell_failures: Dictionary = {}
@@ -169,6 +171,7 @@ func _ready() -> void:
 	_friends.message_added.connect(add_system_line)
 	_friends.name_requested.connect(_on_friend_name_requested)
 	_friends.guild_invited.connect(_on_guild_invited)
+	_friends.pullout_requested.connect(_on_pullout_requested)
 	_duel = Duel.new(WowClient.session)
 	_duel.challenged.connect(_on_duel_challenged)
 	_duel.counted_down.connect(func(seconds: int) -> void:
@@ -621,6 +624,23 @@ func _place_buffs(enchants: int) -> void:
 	var width: float = _buffs.size.x
 	_buffs.offset_right = right
 	_buffs.offset_left = right - width
+
+
+# RaidPullout_GetFrame: a group already pulled out stays put, otherwise a free pullout takes it.
+func _on_pullout_requested(group: int) -> void:
+	var free: RaidPulloutFrame = null
+	for pullout: RaidPulloutFrame in _pullouts:
+		if pullout.visible and pullout.group == group:
+			return
+		if not pullout.visible and free == null:
+			free = pullout
+	if free == null:
+		free = RAID_PULLOUT.instantiate()
+		_ui_parent.add_child(free)
+		free.unit_selected.connect(unit_selected.emit)
+		free.menu_requested.connect(_open_menu)
+		_pullouts.append(free)
+	free.show_group(group)
 
 
 func _on_quest_timer_selected(slot: int) -> void:

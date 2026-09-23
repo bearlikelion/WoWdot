@@ -387,6 +387,18 @@
    "out": "ui/raid_group_button.tscn"
   },
   {
+   "frame": "RaidPulloutFrameTemplate",
+   "template": true,
+   "out": "ui/raid_pullout_frame.tscn",
+   "script": "res://ui/raid_pullout_frame.gd"
+  },
+  {
+   "frame": "RaidPulloutButtonTemplate",
+   "template": true,
+   "out": "ui/raid_pullout_button.tscn",
+   "script": "res://ui/raid_pullout_button.gd"
+  },
+  {
    "frame": "BattlefieldFrame",
    "out": "ui/battlefield_frame.tscn",
    "script": "res://ui/battlefield_frame.gd"

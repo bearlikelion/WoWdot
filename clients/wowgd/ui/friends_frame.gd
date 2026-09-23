@@ -6,6 +6,7 @@ signal close_requested
 signal name_requested(tab: Tab)
 signal message_added(text: String)
 signal guild_invited(inviter: String, guild_name: String)
+signal pullout_requested(group: int)
 
 enum Tab { FRIENDS, IGNORE, GUILD, RAID, WHO }
 # SMSG_GUILD_EVENT, as GuildEvents numbers them.
@@ -100,6 +101,7 @@ func _ready() -> void:
 	session.packet_received.connect(_on_packet_received)
 	session.name_received.connect(_on_name_received)
 	%RaidFrame.member_requested.connect(func() -> void: name_requested.emit(Tab.RAID))
+	%RaidFrame.pullout_requested.connect(pullout_requested.emit)
 	hide()
 
 

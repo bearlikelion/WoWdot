@@ -2,6 +2,7 @@ class_name RaidFrame
 extends Control
 
 signal member_requested
+signal pullout_requested(group: int)
 
 const GROUP: PackedScene = preload("res://ui/raid_group.tscn")
 const MEMBER: PackedScene = preload("res://ui/raid_group_button.tscn")
@@ -14,9 +15,12 @@ const ROW_GAP: float = 14.0
 const OFFLINE_COLOR: Color = Color(0.5, 0.5, 0.5)
 const RAID_INFOS: int = 10
 const RESET_UNITS: PackedStringArray = ["DAYS_ABBR", "HOURS_ABBR", "MINUTES_ABBR"]
+# How far a group label has to be dragged before it pulls the group out.
+const PULLOUT_DRAG: float = 4.0
 
 var _groups: Array[Control] = []
 var _buttons: Array[Control] = []
+var _label_press: Vector2 = Vector2.INF
 
 
 func _ready() -> void:
@@ -28,6 +32,7 @@ func _ready() -> void:
 		)
 		(group.get_node("Label/Text") as Label).text = "%s %d" % [WowStrings.get_text("GROUP"), i + 1]
 		group.set_drag_forwarding(Callable(), _can_drop_member, _drop_member.bind(i))
+		(group.get_node("Label") as Control).gui_input.connect(_on_group_label_input.bind(i))
 		for slot: Node in group.get_children():
 			if slot is Control:
 				(slot as Control).set_drag_forwarding(Callable(), _can_drop_member, _drop_member.bind(i))
@@ -92,6 +97,18 @@ func _can_drop_member(_at_position: Vector2, data: Variant) -> bool:
 
 func _drop_member(_at_position: Vector2, data: Variant, group_index: int) -> void:
 	PartyFrame.move_to_subgroup(data["raid_member"], group_index)
+
+
+# RaidGroup label OnDragStart: dragging a group's label pulls it out onto the screen.
+func _on_group_label_input(event: InputEvent, group_index: int) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click and click.button_index == MOUSE_BUTTON_LEFT:
+		_label_press = click.global_position if click.pressed else Vector2.INF
+	var motion: InputEventMouseMotion = event as InputEventMouseMotion
+	if motion and _label_press != Vector2.INF \
+	and motion.global_position.distance_to(_label_press) > PULLOUT_DRAG:
+		_label_press = Vector2.INF
+		pullout_requested.emit(group_index)
 
 
 func member_count() -> int:

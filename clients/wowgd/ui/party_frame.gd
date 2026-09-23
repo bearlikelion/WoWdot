@@ -58,9 +58,10 @@ static var is_raid: bool = false
 static var own_subgroup: int = 0
 ## Marked targets: icon index 0 to 7 against the guid wearing it.
 static var target_icons: Dictionary[int, int] = {}
+## What the server last reported for each member, for those out of sight.
+static var member_stats: Dictionary[int, Dictionary] = {}
 
 var _frames: Array[PartyMemberFrame] = []
-var _remote_stats: Dictionary[int, Dictionary] = {}
 
 
 func _ready() -> void:
@@ -232,7 +233,7 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 func _on_member_stats(reader: PacketReader) -> void:
 	var member: int = reader.packed_guid()
 	var mask: int = reader.u32()
-	var stats: Dictionary = _remote_stats.get_or_add(member, {})
+	var stats: Dictionary = member_stats.get_or_add(member, {})
 	for i: int in STAT_FIELDS.size():
 		if mask & (1 << i):
 			stats[STAT_FIELDS[i]] = reader.u8() if STAT_FIELDS[i] in BYTE_STATS else reader.u16()
@@ -371,7 +372,7 @@ func _on_result_received(payload: PackedByteArray) -> void:
 func _refresh() -> void:
 	for i: int in MAX_MEMBERS:
 		var member: Dictionary = members[i] if i < members.size() else {}
-		_frames[i].remote_stats = _remote_stats.get(member.get("guid", 0), {})
+		_frames[i].remote_stats = member_stats.get(member.get("guid", 0), {})
 		_frames[i].show_member(member, not member.is_empty() and member["guid"] == leader)
 
 
