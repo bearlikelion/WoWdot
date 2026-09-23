@@ -6,12 +6,16 @@ const FRIENDLY: Color = Color(0.1, 1.0, 0.1)
 const HOSTILE: Color = Color(1.0, 0.1, 0.1)
 const CONTESTED: Color = Color(1.0, 0.7, 0.0)
 
+var _tracking_spell: int = 0
+
 @onready var _view: MinimapView = %Minimap
 @onready var _zone_text: Label = %MinimapZoneText
 @onready var _zoom_in: BaseButton = %MinimapZoomIn
 @onready var _zoom_out: BaseButton = %MinimapZoomOut
 @onready var _toggle: BaseButton = %MinimapToggleButton
 @onready var _game_time: TextureRect = %GameTimeTexture
+@onready var _tracking: Control = %MiniMapTrackingFrame
+@onready var _tracking_icon: TextureRect = %MiniMapTrackingIcon
 
 
 func _ready() -> void:
@@ -27,6 +31,10 @@ func _ready() -> void:
 	_game_time.texture = indicator
 	WowClient.session.packet_received.connect(_on_packet_received)
 	WowClient.session.send_packet("MSG_QUERY_NEXT_MAIL_TIME", PackedByteArray())
+	WowClient.session.object_updated.connect(_on_object_updated)
+	_tracking.gui_input.connect(_on_tracking_input)
+	_tracking.mouse_entered.connect(_on_tracking_entered)
+	_tracking.mouse_exited.connect(_on_tracking_exited)
 
 
 # GameTimeFrame_Update: the day face is the left half of the texture, the night face the right.
@@ -65,6 +73,40 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			%MiniMapMailFrame.show()
 		"SMSG_MAIL_LIST_RESULT":
 			WowClient.session.send_packet("MSG_QUERY_NEXT_MAIL_TIME", PackedByteArray())
+
+
+# PLAYER_AURAS_CHANGED: the frame shows the icon of whichever tracking aura is up.
+func _on_object_updated(guid: int) -> void:
+	var session: WowSession = WowClient.session
+	if guid != session.get_player_guid():
+		return
+	_tracking_spell = 0
+	for aura: Dictionary in UnitAuras.read(session, guid):
+		if WowAssets.spells.is_tracking(aura["spell"]):
+			_tracking_spell = aura["spell"]
+	_tracking.visible = _tracking_spell != 0
+	if _tracking.visible:
+		_tracking_icon.texture = WowAssets.spells.icon(_tracking_spell)
+
+
+# CancelTrackingBuff on a right click.
+func _on_tracking_input(event: InputEvent) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click and not click.pressed and click.button_index == MOUSE_BUTTON_RIGHT \
+	and _tracking_spell != 0:
+		WowClient.session.cancel_aura(_tracking_spell)
+
+
+func _on_tracking_entered() -> void:
+	if _tracking_spell != 0 and GameTooltip.current:
+		GameTooltip.current.set_spell(
+			_tracking, _tracking_spell, GameTooltip.TooltipAnchor.BOTTOM_LEFT
+		)
+
+
+func _on_tracking_exited() -> void:
+	if GameTooltip.current:
+		GameTooltip.current.hide_for(_tracking)
 
 
 func _on_zoom_changed(zoom: int) -> void:

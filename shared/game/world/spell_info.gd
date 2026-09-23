@@ -112,6 +112,15 @@ func dispel_type(spell_id: int) -> int:
 	return _uint(spell_id, "DispelType")
 
 
+# GetTrackingTexture: Find Herbs, Track Beasts and the like apply a tracking aura.
+func is_tracking(spell_id: int) -> bool:
+	const TRACKING_AURAS: Array[int] = [44, 45]
+	for effect: int in 3:
+		if _uint(spell_id, "EffectAura%d" % effect) in TRACKING_AURAS:
+			return true
+	return false
+
+
 func is_passive(spell_id: int) -> bool:
 	const SPELL_ATTR_PASSIVE: int = 0x40
 	return _uint(spell_id, "Attributes") & SPELL_ATTR_PASSIVE != 0
