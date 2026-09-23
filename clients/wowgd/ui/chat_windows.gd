@@ -4,13 +4,16 @@ extends RefCounted
 ## The tabs need lining up again, because a window was renamed, opened or closed.
 signal layout_changed
 
-enum MenuItem { RENAME = 1, FONT_SIZE, CHANNELS, SYSTEM, OTHER }
+enum MenuItem { RENAME = 1, NEW_WINDOW, REMOVE_WINDOW, FONT_SIZE, CHANNELS, SYSTEM, OTHER }
 
 const SETTINGS_PATH: String = "user://chat_windows.cfg"
 # CHAT_FONT_HEIGHTS from Fonts.xml.
 const FONT_SIZES: Array[int] = [12, 14, 16, 18]
 const DEFAULT_FONT_SIZE: int = 14
 const ALL_CHANNELS: String = "*"
+# NUM_CHAT_WINDOWS; General and the Combat Log are the first two.
+const MAX_WINDOWS: int = 7
+const FIXED_WINDOWS: int = 2
 # ChatTypeGroup: which group each chat type files under.
 const TYPE_GROUPS: Dictionary[WowSession.ChatType, String] = {
 	WowSession.CHAT_SAY: "SAY", WowSession.CHAT_EMOTE: "SAY", WowSession.CHAT_TEXT_EMOTE: "SAY",
@@ -35,6 +38,8 @@ const OTHER_GROUPS: Dictionary[String, String] = {
 }
 # The stock client offers no toggle for these; here they can move to another window too.
 const SYSTEM_GROUPS: Dictionary[String, String] = {"SYSTEM": "CHAT_MSG_SYSTEM"}
+# FCF_OpenNewWindow: what a new window listens to.
+const NEW_WINDOW_GROUPS: PackedStringArray = ["SAY", "YELL", "GUILD", "WHISPER", "PARTY", "CHANNEL"]
 # What the General window listens to before anything is changed.
 const GENERAL_GROUPS: PackedStringArray = [
 	"SYSTEM", "SAY", "YELL", "WHISPER", "PARTY", "GUILD", "CREATURE", "CHANNEL", "SKILL", "LOOT",
@@ -44,14 +49,22 @@ var frames: Array[DockedChatFrame] = []
 
 var _open_menu: Callable
 var _ask_name: Callable
+var _add_window: Callable
+var _remove_window: Callable
 var _character: String = ""
 
 
 # open_menu takes the entries and a Callable for the chosen id; ask_name a prompt and its answer.
-func _init(chat_frames: Array[DockedChatFrame], open_menu: Callable, ask_name: Callable) -> void:
+# add_window makes a docked window and returns it, remove_window takes one away again.
+func _init(
+	chat_frames: Array[DockedChatFrame], open_menu: Callable, ask_name: Callable,
+	add_window: Callable, remove_window: Callable,
+) -> void:
 	frames = chat_frames
 	_open_menu = open_menu
 	_ask_name = ask_name
+	_add_window = add_window
+	_remove_window = remove_window
 	for frame: DockedChatFrame in frames:
 		frame.tab_menu_requested.connect(show_tab_menu.bind(frame))
 	frames[0].message_groups = GENERAL_GROUPS
@@ -85,6 +98,9 @@ func load_for(character: String) -> void:
 	var settings: ConfigFile = ConfigFile.new()
 	if settings.load(SETTINGS_PATH) != OK or not settings.has_section(character):
 		return
+	var count: int = clampi(settings.get_value(character, "windows", frames.size()), 0, MAX_WINDOWS)
+	while frames.size() < count:
+		_open_window("")
 	for i: int in frames.size():
 		var key: String = "window%d_" % (i + 1)
 		var frame: DockedChatFrame = frames[i]
@@ -99,17 +115,34 @@ func load_for(character: String) -> void:
 func show_tab_menu(frame: DockedChatFrame) -> void:
 	var entries: Array[Dictionary] = [
 		{"text": WowStrings.get_text("RENAME_CHAT_WINDOW"), "id": MenuItem.RENAME},
+		{
+			"text": WowStrings.get_text("NEW_CHAT_WINDOW"), "id": MenuItem.NEW_WINDOW,
+			"disabled": frames.size() >= MAX_WINDOWS,
+		},
+	]
+	if frames.find(frame) >= FIXED_WINDOWS:
+		entries.append({
+			"text": WowStrings.get_text("CLOSE_CHAT_WINDOW"), "id": MenuItem.REMOVE_WINDOW,
+		})
+	entries.append_array([
 		{"text": WowStrings.get_text("DISPLAY"), "title": true},
 		{"text": WowStrings.get_text("FONT_SIZE"), "id": MenuItem.FONT_SIZE},
 		{"text": WowStrings.get_text("FILTERS"), "title": true},
 		{"text": WowStrings.get_text("CHANNELS"), "id": MenuItem.CHANNELS},
 		{"text": WowStrings.get_text("SYSTEM_MESSAGES"), "id": MenuItem.SYSTEM},
 		{"text": WowStrings.get_text("OTHER_MESSAGES"), "id": MenuItem.OTHER},
-	]
+	])
 	_open_menu.call(entries, func(id: int) -> void:
 		match id as MenuItem:
 			MenuItem.RENAME:
 				_rename(frame)
+			MenuItem.NEW_WINDOW:
+				_ask_name.call(WowStrings.get_text("NAME_CHAT_WINDOW"), _on_new_window_named)
+			MenuItem.REMOVE_WINDOW:
+				frames.erase(frame)
+				_remove_window.call(frame)
+				layout_changed.emit()
+				_save()
 			MenuItem.FONT_SIZE:
 				_show_font_menu.call_deferred(frame)
 			MenuItem.CHANNELS:
@@ -119,6 +152,24 @@ func show_tab_menu(frame: DockedChatFrame) -> void:
 			MenuItem.OTHER:
 				_show_filter_menu.call_deferred(frame, "OTHER_MESSAGES", OTHER_GROUPS, false)
 	)
+
+
+func _on_new_window_named(window_name: String) -> void:
+	_open_window(window_name.strip_edges())
+	_save()
+
+
+# FCF_OpenNewWindow: an unnamed window takes CHAT_NAME_TEMPLATE with its number.
+func _open_window(window_name: String) -> void:
+	if frames.size() >= MAX_WINDOWS:
+		return
+	var frame: DockedChatFrame = _add_window.call()
+	frame.window_name = window_name if not window_name.is_empty() \
+			else WowStrings.get_text("CHAT_NAME_TEMPLATE") % frames.size()
+	frame.message_groups = NEW_WINDOW_GROUPS
+	frame.channels = []
+	frame.tab_menu_requested.connect(show_tab_menu.bind(frame))
+	layout_changed.emit()
 
 
 func _shows(frame: DockedChatFrame, group: String, channel: String) -> bool:
@@ -206,6 +257,7 @@ func _save() -> void:
 		return
 	var settings: ConfigFile = ConfigFile.new()
 	settings.load(SETTINGS_PATH)
+	settings.set_value(_character, "windows", frames.size())
 	for i: int in frames.size():
 		var key: String = "window%d_" % (i + 1)
 		settings.set_value(_character, key + "name", frames[i].window_name)

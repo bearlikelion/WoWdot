@@ -1,0 +1,693 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/docked_chat_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\ChatFrame\\ChatFrameBackground.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\ChatFrame\\ChatFrameBorder.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 93, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(48, 93, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(16, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(16, 93, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(0, 16, 16, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_2")
+region = Rect2(48, 16, 16, 77)
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollEnd-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_12"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollEnd-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollEnd-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_14"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-BlinkHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_16"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_21"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollUp-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_23"]
+file = "Interface\\ChatFrame\\ChatFrameTab.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24"]
+atlas = SubResource("WowTexture_23")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_23")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26"]
+atlas = SubResource("WowTexture_23")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="WowTexture" id="WowTexture_27"]
+file = "Interface\\PaperDollInfoFrame\\UI-Character-Tab-Highlight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_28"]
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_29"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(0, 0, 25, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(25, 0, 78, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31"]
+atlas = SubResource("WowTexture_28")
+region = Rect2(103, 0, 25, 64)
+
+[node name="ChatFrame3" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 1
+anchor_right = 0
+anchor_bottom = 1
+offset_left = 100
+offset_top = -228
+offset_right = 530
+offset_bottom = -100
+grow_horizontal = 1
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+font_variation = &"ChatFontNormal"
+display_duration = 120
+max_lines = 128
+
+[node name="ChatFrame3Background" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -2
+offset_top = -3
+offset_right = 3
+offset_bottom = 6
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="ChatFrame3ResizeTopLeft" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = -4
+offset_top = -5
+offset_right = 12
+offset_bottom = 11
+ignore_texture_size = true
+
+[node name="ChatFrame3ResizeTopLeftTexture" type="TextureRect" parent="ChatFrame3ResizeTopLeft"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="ChatFrame3ResizeTopRight" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -11
+offset_top = -5
+offset_right = 5
+offset_bottom = 11
+ignore_texture_size = true
+
+[node name="ChatFrame3ResizeTopRightTexture" type="TextureRect" parent="ChatFrame3ResizeTopRight"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="ChatFrame3ResizeBottomLeft" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -4
+offset_top = -7
+offset_right = 12
+offset_bottom = 9
+ignore_texture_size = true
+
+[node name="ChatFrame3ResizeBottomLeftTexture" type="TextureRect" parent="ChatFrame3ResizeBottomLeft"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="ChatFrame3ResizeBottomRight" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -11
+offset_top = -7
+offset_right = 5
+offset_bottom = 9
+ignore_texture_size = true
+
+[node name="ChatFrame3ResizeBottomRightTexture" type="TextureRect" parent="ChatFrame3ResizeBottomRight"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6")
+expand_mode = 1
+
+[node name="ChatFrame3ResizeTop" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_right = 1
+offset_left = 12
+offset_top = -5
+offset_right = -11
+offset_bottom = 11
+ignore_texture_size = true
+
+[node name="ChatFrame3ResizeTopTexture" type="TextureRect" parent="ChatFrame3ResizeTop"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="ChatFrame3ResizeBottom" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 12
+offset_top = -7
+offset_right = -11
+offset_bottom = 9
+ignore_texture_size = true
+
+[node name="ChatFrame3ResizeBottomTexture" type="TextureRect" parent="ChatFrame3ResizeBottom"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_8")
+expand_mode = 1
+
+[node name="ChatFrame3ResizeLeft" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_bottom = 1
+offset_left = -4
+offset_top = 11
+offset_right = 12
+offset_bottom = -7
+ignore_texture_size = true
+
+[node name="ChatFrame3ResizeLeftTexture" type="TextureRect" parent="ChatFrame3ResizeLeft"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="ChatFrame3ResizeRight" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -11
+offset_top = 11
+offset_right = 5
+offset_bottom = -7
+ignore_texture_size = true
+
+[node name="ChatFrame3ResizeRightTexture" type="TextureRect" parent="ChatFrame3ResizeRight"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="ChatFrame3BottomButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -32
+offset_top = -28
+offset_right = 0
+offset_bottom = 4
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame3BottomButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_11")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame3BottomButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_12")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ChatFrame3BottomButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_13")
+expand_mode = 1
+
+[node name="ChatFrame3BottomButtonFlash" type="TextureRect" parent="ChatFrame3BottomButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame3BottomButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame3DownButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -32
+offset_top = -58
+offset_right = 0
+offset_bottom = -26
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame3DownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame3DownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ChatFrame3DownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame3DownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame3UpButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = -32
+offset_top = -90
+offset_right = 0
+offset_bottom = -58
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame3UpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_20")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame3UpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_21")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ChatFrame3UpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_22")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame3UpButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame3Tab" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -34
+offset_right = 64
+offset_bottom = -2
+visible = false
+ignore_texture_size = true
+
+[node name="ChatFrame3TabLeft" type="TextureRect" parent="ChatFrame3Tab"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 16
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_24")
+expand_mode = 1
+
+[node name="ChatFrame3TabMiddle" type="TextureRect" parent="ChatFrame3Tab"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 0
+offset_right = 60
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_25")
+expand_mode = 1
+
+[node name="ChatFrame3TabRight" type="TextureRect" parent="ChatFrame3Tab"]
+unique_name_in_owner = true
+offset_left = 60
+offset_top = 0
+offset_right = 76
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("AtlasTexture_26")
+expand_mode = 1
+
+[node name="ChatFrame3TabText" type="Label" parent="ChatFrame3Tab"]
+unique_name_in_owner = true
+offset_left = 16
+offset_top = 17
+offset_right = 66
+offset_bottom = 25
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame3Tab"]
+offset_left = 0
+offset_top = 7
+offset_right = 76
+offset_bottom = 39
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame3TabFlash" type="Control" parent="ChatFrame3Tab"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 7
+offset_right = 76
+offset_bottom = 39
+visible = false
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="ChatFrame3Tab/ChatFrame3TabFlash"]
+offset_left = 0
+offset_top = 0
+offset_right = 76
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_27")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame3TabDropDown" type="Control" parent="ChatFrame3Tab"]
+unique_name_in_owner = true
+offset_left = -68
+offset_top = 35
+offset_right = -28
+offset_bottom = 67
+visible = false
+mouse_filter = 2
+
+[node name="ChatFrame3TabDropDownLeft" type="TextureRect" parent="ChatFrame3Tab/ChatFrame3TabDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_29")
+expand_mode = 1
+
+[node name="ChatFrame3TabDropDownMiddle" type="TextureRect" parent="ChatFrame3Tab/ChatFrame3TabDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_30")
+expand_mode = 1
+
+[node name="ChatFrame3TabDropDownRight" type="TextureRect" parent="ChatFrame3Tab/ChatFrame3TabDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_31")
+expand_mode = 1
+
+[node name="ChatFrame3TabDropDownText" type="Label" parent="ChatFrame3Tab/ChatFrame3TabDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+grow_horizontal = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="ChatFrame3TabDropDownButton" type="TextureButton" parent="ChatFrame3Tab/ChatFrame3TabDropDown"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ChatFrame3Tab/ChatFrame3TabDropDown/ChatFrame3TabDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ChatFrame3Tab/ChatFrame3TabDropDown/ChatFrame3TabDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ChatFrame3Tab/ChatFrame3TabDropDown/ChatFrame3TabDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ChatFrame3Tab/ChatFrame3TabDropDown/ChatFrame3TabDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_16")
+
+[node name="ChatFrame3Clip" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+clip_contents = true
+
+[node name="MessageLines" type="VBoxContainer" parent="ChatFrame3Clip"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+grow_vertical = 0
+alignment = 2

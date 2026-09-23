@@ -128,6 +128,11 @@
    "script": "res://ui/combat_log_frame.gd"
   },
   {
+   "frame": "ChatFrame3",
+   "out": "ui/extra_chat_frame.tscn",
+   "script": "res://ui/docked_chat_frame.gd"
+  },
+  {
    "frame": "AccountLogin",
    "out": "ui/account_login.tscn",
    "script": "res://ui/login_screen.gd"
@@ -467,7 +472,8 @@
   "ChatFrame2Tab": "ChatFrame2",
   "ChatFrameEditBox": "ChatFrame1",
   "ChatFrameMenuButton": "ChatFrame1",
-  "CharacterDeleteDialog": "CharacterSelect"
+  "CharacterDeleteDialog": "CharacterSelect",
+  "ChatFrame3Tab": "ChatFrame3"
  },
  "frame_scripts": {
   "Minimap": "res://ui/minimap_view.gd",

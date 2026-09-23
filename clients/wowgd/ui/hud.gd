@@ -51,6 +51,9 @@ const CHAT_RESTRICTED_KEYS: Dictionary[int, String] = {
 	0: "ERR_CHAT_RESTRICTED", 1: "ERR_CHAT_THROTTLED", 2: "ERR_USER_SQUELCHED",
 }
 const RAID_PULLOUT: PackedScene = preload("res://ui/raid_pullout_frame.tscn")
+const EXTRA_CHAT_FRAME: PackedScene = preload("res://ui/extra_chat_frame.tscn")
+# Extra chat windows reuse ChatFrame3's converted nodes, whatever number they take.
+const EXTRA_CHAT_STEM: String = "ChatFrame3"
 
 var _area: int = 0
 var _away: int = 0
@@ -265,7 +268,9 @@ func _ready() -> void:
 	WowClient.session.item_info_received.connect(_on_item_ref_info)
 	for frame: DockedChatFrame in _chat_frames:
 		frame.tab_selected.connect(_select_chat_frame.bind(frame))
-	_chat_windows = ChatWindows.new(_chat_frames, _open_menu, _popup.ask_name)
+	_chat_windows = ChatWindows.new(
+		_chat_frames, _open_menu, _popup.ask_name, _add_chat_window, _remove_chat_window
+	)
 	_chat_windows.layout_changed.connect(_dock_chat_tabs)
 	WowClient.session.chat_received.connect(_chat_windows.add_chat)
 	_dock_chat_tabs()
@@ -915,6 +920,33 @@ func _load_chat_windows(guid: int) -> void:
 
 func _add_loot_line(text: String) -> void:
 	_chat_windows.add_line(text, ChatFrame.COLORS[WowSession.CHAT_SYSTEM], "LOOT")
+
+
+# FCF_OpenNewWindow's frame: docked where the Combat Log is, under the first free number.
+func _add_chat_window() -> DockedChatFrame:
+	var frame: DockedChatFrame = EXTRA_CHAT_FRAME.instantiate()
+	frame.stem = EXTRA_CHAT_STEM
+	var number: int = ChatWindows.FIXED_WINDOWS + 1
+	while _ui_parent.has_node("ChatFrame%d" % number):
+		number += 1
+	frame.name = "ChatFrame%d" % number
+	var docked: Control = _chat_frames[1]
+	_ui_parent.add_child(frame)
+	_ui_parent.move_child(frame, docked.get_index() + 1)
+	for side: Side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:
+		frame.set_anchor(side, docked.get_anchor(side))
+		frame.set_offset(side, docked.get_offset(side))
+	frame.show()
+	frame.tab_selected.connect(_select_chat_frame.bind(frame))
+	_chat_frames.append(frame)
+	_select_chat_frame(frame)
+	return frame
+
+
+func _remove_chat_window(frame: DockedChatFrame) -> void:
+	_chat_frames.erase(frame)
+	frame.queue_free()
+	_select_chat_frame(_chat_frames[0])
 
 
 # FCF_DockUpdate: each docked tab follows the one before it.
