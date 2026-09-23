@@ -44,17 +44,14 @@ void sky() {
 		color += halo_color * pow(1.0 - smoothstep(0.0, halo_size, angle), 3.0) * 0.6;
 		color += disc_color * (1.0 - smoothstep(disc_size * 0.85, disc_size, angle));
 	}
-	// The dome's rings are opaque down to ring 9, half at ring 10 and clear from ring 11.
-	float ring = acos(clamp(height, -1.0, 1.0)) / (PI / 4.0) * 12.0;
-	float dome = ring < 9.0 ? 1.0 : ring < 10.0 ? mix(1.0, 0.5, ring - 9.0)
-			: max(0.5 * (11.0 - ring), 0.0);
-	if (dome > 0.0) {
+	if (height > 0.0) {
 		vec2 cells = dome_cells(EYEDIR);
-		float shape = texture(cloud_noise, cells / 128.0 + TIME * wind).r;
-		float detail = texture(cloud_noise, cells / 40.0 + TIME * wind * 1.7).r;
-		// The stock tone curve: coverage past the density threshold thickens slowly, 1 - 0.96^i.
-		float over = (shape * 0.7 + detail * 0.3 - (1.0 - cloud_density)) * 255.0;
-		float cover = over > 0.0 ? 1.0 - pow(0.96, over * 0.6015625) : 0.0;
+		vec2 plane = EYEDIR.xz / (height + 0.12);
+		float shape = texture(cloud_noise, plane * 0.22 + TIME * wind).r;
+		float detail = texture(cloud_noise, plane * 0.7 + TIME * wind * 1.7).r;
+		float threshold = mix(0.65, 0.3, cloud_density);
+		float cover = smoothstep(threshold, threshold + 0.2, shape * 0.7 + detail * 0.3);
+		cover *= smoothstep(0.0, 0.12, height);
 		// Thicker cloud takes less of the slope, and it glows as it faces the sun.
 		vec3 cloud = cloud_slope * (0.75 - 0.5 * cover) + cloud_base;
 		if (LIGHT0_ENABLED) {
@@ -63,7 +60,7 @@ void sky() {
 			cloud += cloud_sun * lift / sqrt(dot(toward, toward) + lift * lift) * cloud_glow;
 		}
 		vec3 sky_gamma = pow(max(color, vec3(0.0)), vec3(1.0 / 2.2));
-		color = pow(mix(sky_gamma, min(cloud, vec3(1.0)), cover * dome), vec3(2.2));
+		color = pow(mix(sky_gamma, min(cloud, vec3(1.0)), cover * 0.9), vec3(2.2));
 	}
 	COLOR = color;
 }
