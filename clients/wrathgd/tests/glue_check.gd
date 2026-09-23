@@ -45,6 +45,8 @@ const REALMLIST: String = "127.0.0.1:3725"
 const ACCOUNT: String = "wowgd"
 const PASSWORD: String = "wowgd"
 const CHARACTER: String = "Wrathglue"
+const ANNOUNCEMENT: String = "WrathGD announcement check"
+const HEROIC_DUNGEON: int = 1
 
 var _failures: PackedStringArray = []
 var _main: Main
@@ -120,11 +122,39 @@ func _run() -> void:
 	await _totems()
 	await _weapon_enchant()
 	await _vehicle()
+	await _server_notices()
 	var home: String = SpellText.describe(HEARTHSTONE_SPELL)
 	var area: String = AreaInfo.area_name(WowClient.home_area)
 	_check(not area.is_empty() and not home.contains("$") and home.contains(area),
 			"the hearthstone names the bound home (%s)" % home)
 	_finish()
+
+
+# An announcement, a new dungeon difficulty and a drink each print their stock chat line.
+func _server_notices() -> void:
+	var session: WowSession = WowClient.session
+	session.send_chat(WowSession.CHAT_SAY, ".announce %s" % ANNOUNCEMENT)
+	await _until(func() -> bool: return _chat_has("[SERVER]") and _chat_has(ANNOUNCEMENT),
+			"an announcement prints as a server message")
+	WowClient.difficulty.set_dungeon(HEROIC_DUNGEON)
+	var heroic: String = WowStrings.format(WowStrings.get_text("ERR_DUNGEON_DIFFICULTY_CHANGED_S"),
+			[WowStrings.get_text("DUNGEON_DIFFICULTY2")])
+	_check(_chat_has(heroic), "choosing heroic dungeons prints the new difficulty")
+	WowClient.difficulty.set_dungeon(0)
+	session.set_selection(session.get_player_guid())
+	session.send_chat(WowSession.CHAT_SAY, ".modify drunk 100")
+	await _until(func() -> bool: return _chat_has(WowStrings.get_text("DRUNK_MESSAGE_SELF4")),
+			"getting drunk prints the stock line")
+	session.send_chat(WowSession.CHAT_SAY, ".modify drunk 0")
+	session.set_selection(0)
+
+
+func _chat_has(fragment: String) -> bool:
+	var chat: Node = get_tree().root.find_child("ChatFrame1", true, false)
+	for line: RichTextLabel in chat.find_children("*", "RichTextLabel", true, false):
+		if line.get_parsed_text().contains(fragment):
+			return true
+	return false
 
 
 # A spawned demolisher taken by spellclick is driven forward, then left from the vehicle bar.

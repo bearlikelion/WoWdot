@@ -4,6 +4,7 @@ extends RefCounted
 signal challenged(challenger_name: String)
 signal counted_down(seconds: int)
 signal finished(text: String)
+signal ended
 
 # The Duel spell a challenge is cast as, which plants the flag both players fight over.
 const DUEL_SPELL: int = 7266
@@ -50,6 +51,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 				challenged.emit(_session.get_object_name(challenger))
 		"SMSG_DUEL_COUNTDOWN":
 			counted_down.emit(reader.u32())
+		"SMSG_DUEL_COMPLETE":
+			_flag = 0
+			ended.emit()
 		"SMSG_DUEL_WINNER":
 			var fled: bool = reader.u8() != 0
 			var winner: String = reader.cstring()

@@ -58,6 +58,7 @@ const PET_FEEDBACK: Dictionary[int, String] = {
 const DUEL_FORFEIT_SECONDS: int = 10
 
 static var _maps: WowDBC
+static var _server_messages: WowDBC
 # The area queued for at a meeting stone, or 0.
 static var meeting_stone_area: int = 0
 
@@ -68,6 +69,33 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 	match opcode:
 		"SMSG_INSTANCE_SAVE_CREATED":
 			return WowStrings.get_text("INSTANCE_SAVED", "You are now saved to this instance.")
+		"SMSG_CHAT_SERVER_MESSAGE":
+			if _server_messages == null:
+				_server_messages = WowDBC.open(WowAssets.archive, "ServerMessages")
+			var row: int = _server_messages.find(reader.u32())
+			var text: String = _server_messages.get_string(row, "Text") if row >= 0 else "%s"
+			var prefix: String = WowStrings.get_text("SERVER_MESSAGE_PREFIX", "[SERVER]")
+			return "%s %s" % [prefix, WowStrings.format(text, [reader.cstring()])]
+		"SMSG_SERVER_FIRST_ACHIEVEMENT":
+			var earner: String = reader.cstring()
+			reader.u64()
+			var title: String = WowClient.achievements.title(reader.u32())
+			var text: String = WowStrings.get_text("SERVER_FIRST_ACHIEVEMENT")
+			return WowStrings.format(text, [earner]).replace("$a", "[%s]" % title)
+		"SMSG_CROSSED_INEBRIATION_THRESHOLD":
+			var drinker: int = reader.u64()
+			var stage: int = reader.u32() + 1
+			var item_name: String = WowClient.session.get_item_info(reader.u32()).get("name", "")
+			var who: String = "SELF" if drinker == WowClient.session.get_player_guid() else "OTHER"
+			var key: String = "DRUNK_MESSAGE_%s%s%d" % ["ITEM_" if item_name else "", who, stage]
+			var args: Array = [] if who == "SELF" else [WowClient.session.get_object_name(drinker)]
+			if item_name:
+				args.append(item_name)
+			return WowStrings.format(WowStrings.get_text(key), args)
+		"SMSG_RESET_FAILED_NOTIFY":
+			return WowStrings.get_text("RESET_FAILED_NOTIFY")
+		"SMSG_WHOIS":
+			return reader.cstring()
 		"SMSG_ZONE_UNDER_ATTACK":
 			var text: String = WowStrings.get_text("ZONE_UNDER_ATTACK")
 			return WowStrings.format(text, [AreaInfo.area_name(reader.u32())])
@@ -193,6 +221,12 @@ static func error(opcode: String, payload: PackedByteArray) -> String:
 			return WowStrings.format(WowStrings.get_text("ERR_CHAT_PLAYER_AMBIGUOUS_S"), [reader.cstring()])
 		"SMSG_QUESTLOG_FULL":
 			return WowStrings.get_text("ERR_QUEST_LOG_FULL")
+		"SMSG_CORPSE_NOT_IN_INSTANCE":
+			return WowStrings.get_text("ERR_CORPSE_IS_NOT_IN_INSTANCE")
+		"SMSG_ARENA_ERROR":
+			reader.u32()
+			var team_size: int = reader.u8()
+			return WowStrings.format(WowStrings.get_text("ERR_ARENA_NO_TEAM_II"), [team_size, team_size])
 		"SMSG_PET_ACTION_FEEDBACK":
 			var reason: int = reader.u8()
 			return WowStrings.get_text(PET_FEEDBACK[reason]) if PET_FEEDBACK.has(reason) else ""

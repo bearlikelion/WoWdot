@@ -102,6 +102,12 @@ func _lay_out(
 	show()
 
 
+# StaticPopup_Hide: closes the popup only while it is still the question that accept answers.
+func dismiss(on_accept: Callable) -> void:
+	if visible and _on_accept == on_accept:
+		hide()
+
+
 # StaticPopup_EscapePressed: false when there was nothing to close.
 func cancel() -> bool:
 	if not visible:

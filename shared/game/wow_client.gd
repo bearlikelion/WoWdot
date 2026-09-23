@@ -20,6 +20,7 @@ var barbershop: Barbershop = Barbershop.new(session)
 var calendar: Calendar = Calendar.new(session)
 var battlefield: BattlefieldManager = BattlefieldManager.new(session)
 var vehicle: Vehicle = Vehicle.new(session)
+var difficulty: InstanceDifficulty = InstanceDifficulty.new(session)
 # SMSG_BINDPOINTUPDATE's area, the home a hearthstone's $z names.
 var home_area: int = 0
 

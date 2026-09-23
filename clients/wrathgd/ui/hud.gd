@@ -39,6 +39,8 @@ const OUT_OF_POWER: Array[String] = [
 const CHAT_TAB_SHOW_DELAY: float = 0.2
 # Unit menu ids from here up name a master loot candidate.
 const MASTER_LOOT_ID: int = 100
+const DUNGEON_DIFFICULTY_ID: int = 50
+const RAID_DIFFICULTY_ID: int = 60
 const PLAYER_FLAG_AFK: int = 0x02
 const PLAYER_FLAG_DND: int = 0x04
 const CHANNEL_LIST_WAIT: float = 1.0
@@ -215,6 +217,8 @@ func _ready() -> void:
 		show_notice(WowStrings.get_text("DUEL_COUNTDOWN", "%d") % seconds)
 	)
 	_duel.finished.connect(add_system_line)
+	_duel.ended.connect(func() -> void: _popup.dismiss(_duel.accept))
+	WowClient.difficulty.announced.connect(add_system_line)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
 	(_panels.get_node("%HelpFrame") as HelpFrame).ticket_requested.connect(ticket_requested.emit)
@@ -1011,6 +1015,7 @@ func _show_unit_menu(guid: int) -> void:
 		if PartyFrame.in_party():
 			entries.append({"text": WowStrings.get_text("PARTY_LEAVE"), "id": UnitMenuItem.LEAVE})
 		if may_change:
+			_add_difficulty_entries(entries)
 			entries.append({
 				"text": WowStrings.get_text("RESET_INSTANCES"), "id": UnitMenuItem.RESET_INSTANCES,
 			})
@@ -1033,6 +1038,23 @@ func _show_unit_menu(guid: int) -> void:
 	_unit_menu.open(entries, get_viewport().get_mouse_position())
 
 
+# UnitPopup's DUNGEON_DIFFICULTY and RAID_DIFFICULTY menus, laid out flat under their headings.
+func _add_difficulty_entries(entries: Array[Dictionary]) -> void:
+	var difficulty: InstanceDifficulty = WowClient.difficulty
+	entries.append({"text": WowStrings.get_text("DUNGEON_DIFFICULTY"), "title": true})
+	for mode: int in InstanceDifficulty.DUNGEON_MODES:
+		entries.append({
+			"text": WowStrings.get_text("DUNGEON_DIFFICULTY%d" % (mode + 1)),
+			"id": DUNGEON_DIFFICULTY_ID + mode, "checked": mode == difficulty.dungeon,
+		})
+	entries.append({"text": WowStrings.get_text("RAID_DIFFICULTY"), "title": true})
+	for mode: int in InstanceDifficulty.RAID_MODES:
+		entries.append({
+			"text": WowStrings.get_text("RAID_DIFFICULTY%d" % (mode + 1)),
+			"id": RAID_DIFFICULTY_ID + mode, "checked": mode == difficulty.raid,
+		})
+
+
 func _show_master_loot_menu(slot: int, candidates: PackedInt64Array) -> void:
 	_loot_slot = slot
 	_loot_candidates = candidates
@@ -1047,6 +1069,12 @@ func _show_master_loot_menu(slot: int, candidates: PackedInt64Array) -> void:
 func _on_unit_menu_pressed(id: int) -> void:
 	if id >= MASTER_LOOT_ID:
 		_loot.give(_loot_slot, _loot_candidates[id - MASTER_LOOT_ID])
+		return
+	if id >= RAID_DIFFICULTY_ID:
+		WowClient.difficulty.set_raid(id - RAID_DIFFICULTY_ID)
+		return
+	if id >= DUNGEON_DIFFICULTY_ID:
+		WowClient.difficulty.set_dungeon(id - DUNGEON_DIFFICULTY_ID)
 		return
 	match id as UnitMenuItem:
 		UnitMenuItem.INVITE:

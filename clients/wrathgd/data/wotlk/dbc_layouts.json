@@ -401,7 +401,8 @@
     "LoadingScreenID": 57,
     "MapName": 5,
     "HordeDescription": 23,
-    "AllianceDescription": 40
+    "AllianceDescription": 40,
+    "InstanceType": 2
   },
   "QuestInfo": {
     "ID": 0,
@@ -653,5 +654,15 @@
   },
   "gtBarberShopCostBase": {
     "Cost": 0
+  },
+  "MapDifficulty": {
+    "ID": 0,
+    "MapID": 1,
+    "Difficulty": 2,
+    "MaxPlayers": 21
+  },
+  "ServerMessages": {
+    "ID": 0,
+    "Text": 1
   }
 }

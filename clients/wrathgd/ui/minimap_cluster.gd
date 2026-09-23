@@ -8,6 +8,11 @@ signal calendar_toggled
 const FRIENDLY: Color = Color(0.1, 1.0, 0.1)
 const HOSTILE: Color = Color(1.0, 0.1, 0.1)
 const CONTESTED: Color = Color(1.0, 0.7, 0.0)
+# MiniMapInstanceDifficulty_OnEvent's crops of the banner, and where the count sits on each.
+const HEROIC_FLAG: Rect2 = Rect2(0.0, 0.0703125, 0.25, 0.34375)
+const NORMAL_FLAG: Rect2 = Rect2(0.0, 0.5703125, 0.25, 0.34375)
+const HEROIC_TEXT_Y: float = -9.0
+const NORMAL_TEXT_Y: float = 5.0
 
 @onready var _view: MinimapView = %Minimap
 @onready var _zone_text: Label = %MinimapZoneText
@@ -38,6 +43,8 @@ func _ready() -> void:
 		%MiniMapLFGFrame.visible = WowClient.dungeon_finder.state != DungeonFinder.State.NONE)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	WowClient.session.send_packet("MSG_QUERY_NEXT_MAIL_TIME", PackedByteArray())
+	WowClient.difficulty.changed.connect(_update_difficulty)
+	_update_difficulty()
 
 
 # GameTimeFrame_Update: the day face is the left half of the texture, the night face the right.
@@ -96,3 +103,24 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 func _on_zoom_changed(zoom: int) -> void:
 	_zoom_out.disabled = zoom == 0
 	_zoom_in.disabled = zoom == MinimapView.ZOOM_DIAMETERS.size() - 1
+
+
+# MiniMapInstanceDifficulty_OnEvent: the player cap, hidden in normal five-player dungeons.
+func _update_difficulty() -> void:
+	var difficulty: InstanceDifficulty = WowClient.difficulty
+	var type: InstanceDifficulty.InstanceType = difficulty.instance_type()
+	var players: int = difficulty.max_players()
+	var raid: bool = type == InstanceDifficulty.InstanceType.RAID
+	%MiniMapInstanceDifficulty.visible = (raid or type == InstanceDifficulty.InstanceType.PARTY) \
+			and not (difficulty.instance == 0 and players == 5)
+	if not %MiniMapInstanceDifficulty.visible:
+		return
+	var heroic: bool = difficulty.instance >= 2 if raid else difficulty.instance == 1
+	var flag: TextureRect = %MiniMapInstanceDifficultyTexture
+	var atlas: AtlasTexture = flag.texture as AtlasTexture
+	var crop: Rect2 = HEROIC_FLAG if heroic else NORMAL_FLAG
+	atlas.region = Rect2(crop.position * atlas.atlas.get_size(), crop.size * atlas.atlas.get_size())
+	var text: Label = %MiniMapInstanceDifficultyText
+	text.text = str(players)
+	text.position.y = %MiniMapInstanceDifficulty.size.y / 2.0 - text.size.y / 2.0 \
+			- (HEROIC_TEXT_Y if heroic else NORMAL_TEXT_Y)
