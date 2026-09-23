@@ -5,6 +5,12 @@ extends Node
 # Barbershop Chair, gameobject type 32.
 # Searing Totem and Stoneskin Totem, for the totem frame's order.
 # Rough Sharpening Stone for blades and Rough Weightstone for maces, whichever the warrior holds.
+# Wintergrasp Demolisher, whose spellclick anyone can use; its script ejects a driver
+# without the battle's Lieutenant rank, which a GM aura grants.
+const DEMOLISHER: int = 28094
+const LIEUTENANT_SPELL: int = 55629
+const DRIVE_SECONDS: float = 2.0
+const DRIVE_MIN_YARDS: float = 4.0
 const SHARPENING_STONE: int = 2862
 const WEIGHTSTONE: int = 3239
 const MACE_SUBCLASSES: Array[int] = [4, 5]
@@ -111,11 +117,54 @@ func _run() -> void:
 	await _calendar()
 	await _totems()
 	await _weapon_enchant()
+	await _vehicle()
 	var home: String = SpellText.describe(HEARTHSTONE_SPELL)
 	var area: String = AreaInfo.area_name(WowClient.home_area)
 	_check(not area.is_empty() and not home.contains("$") and home.contains(area),
 			"the hearthstone names the bound home (%s)" % home)
 	_finish()
+
+
+# A spawned demolisher taken by spellclick is driven forward, then left from the possess bar.
+func _vehicle() -> void:
+	var session: WowSession = WowClient.session
+	var me: int = session.get_player_guid()
+	var vehicles: Array[int] = []
+	var on_created: Callable = func(guid: int, _type_id: int) -> void:
+		if session.get_field(guid, "OBJECT_FIELD_ENTRY") == DEMOLISHER:
+			vehicles.append(guid)
+	session.object_created.connect(on_created)
+	session.send_chat(WowSession.CHAT_SAY, ".aura %d" % LIEUTENANT_SPELL)
+	session.send_chat(WowSession.CHAT_SAY, ".npc add temp %d" % DEMOLISHER)
+	var spawned: bool = await _until(func() -> bool: return not vehicles.is_empty(),
+			"a demolisher spawns")
+	session.object_created.disconnect(on_created)
+	if not spawned:
+		return
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, vehicles[0])
+	session.send_packet("CMSG_SPELLCLICK", payload)
+	if not await _until(func() -> bool: return WowClient.vehicle.driving == vehicles[0],
+			"the spellclick hands the demolisher to the player"):
+		return
+	var start: Vector3 = session.get_object_position(vehicles[0])
+	Input.action_press("move_forward")
+	await get_tree().create_timer(DRIVE_SECONDS).timeout
+	Input.action_release("move_forward")
+	await _frames(30)
+	_capture("user://wotlk_vehicle.png")
+	_check(WowClient.vehicle.driving == vehicles[0],
+			"the demolisher is still driven after the drive")
+	var leave: BaseButton = get_tree().root.find_child("PossessButton2", true, false)
+	_check(leave.is_visible_in_tree(), "the possess bar offers a way out of the vehicle")
+	leave.pressed.emit()
+	if await _until(func() -> bool: return WowClient.vehicle.driving == 0, "the player gets out"):
+		await _frames(60)
+		var moved: float = session.get_object_position(me).distance_to(start)
+		print("vehicle: the player stepped out %.1f yards from where the drive began" % moved)
+		_check(moved > DRIVE_MIN_YARDS, "the server took the drive")
+	session.send_chat(WowSession.CHAT_SAY, ".unaura %d" % LIEUTENANT_SPELL)
 
 
 # A sharpening stone or weightstone used on the main hand shows a temporary enchant and its time.

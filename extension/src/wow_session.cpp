@@ -378,6 +378,7 @@ void WowSession::delete_character(int64_t guid) {
 void WowSession::enter_world(int64_t guid) {
 	ERR_FAIL_COND(!world);
 	player_guid = static_cast<uint64_t>(guid);
+	mover_guid = 0;
 	objects.clear();
 	world->send(game::PlayerLoginPacket::build(player_guid));
 	set_state(STATE_ENTERING_WORLD);
@@ -395,10 +396,11 @@ void WowSession::send_movement(const String &opcode, const Vector3 &position, do
 	const auto op = game::OpcodeTable::nameToLogical(opcode.utf8().get_data());
 	ERR_FAIL_COND_MSG(!op, "WowSession: unknown opcode " + opcode);
 	network::Packet packet(game::wireOpcode(*op));
+	const uint64_t mover = mover_guid ? mover_guid : player_guid;
 	if (wow_profile().movement.names_mover) {
-		packet.writePackedGuid(player_guid);
+		packet.writePackedGuid(mover);
 	} else if (ack_counter >= 0) {
-		packet.writeUInt64(player_guid);
+		packet.writeUInt64(mover);
 	}
 	if (ack_counter >= 0) {
 		packet.writeUInt32(static_cast<uint32_t>(ack_counter));
@@ -406,7 +408,7 @@ void WowSession::send_movement(const String &opcode, const Vector3 &position, do
 	write_movement_info(packet, static_cast<uint32_t>(flags), position, static_cast<float>(orientation), static_cast<float>(pitch), static_cast<uint32_t>(fall_time_msec), jump_velocity, static_cast<uint64_t>(transport_guid), transport_offset, static_cast<float>(transport_orientation));
 	packet.writeBytes(ack_tail.ptr(), static_cast<size_t>(ack_tail.size()));
 	world->send(packet);
-	if (auto it = objects.find(player_guid); it != objects.end()) {
+	if (auto it = objects.find(mover); it != objects.end()) {
 		it->second.position = position;
 		it->second.orientation = static_cast<float>(orientation);
 	}
@@ -549,6 +551,9 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 				}
 				if (targets.is_empty() && data.targetGuid) {
 					targets.push_back(static_cast<int64_t>(data.targetGuid));
+				}
+				if (data.ammoDisplayId) {
+					emit_signal("spell_ammo_received", static_cast<int64_t>(data.casterUnit ? data.casterUnit : data.casterGuid), static_cast<int>(data.ammoDisplayId));
 				}
 				emit_signal("spell_cast_finished", static_cast<int64_t>(data.casterUnit ? data.casterUnit : data.casterGuid), static_cast<int>(data.spellId), targets);
 				if (data.hasRunes && (data.casterUnit ? data.casterUnit : data.casterGuid) == player_guid) {
@@ -1425,6 +1430,7 @@ void WowSession::disconnect() {
 	npc_text_queries.clear();
 	chat_waiting.clear();
 	player_guid = 0;
+	mover_guid = 0;
 	player_path = Dictionary();
 	state = STATE_DISCONNECTED;
 }
@@ -1534,6 +1540,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		case LogicalOpcode::SMSG_CHARACTER_LOGIN_FAILED: {
 			const uint8_t code = packet.getSize() > 0 ? packet.readUInt8() : 0;
 			player_guid = 0;
+			mover_guid = 0;
 			player_path = Dictionary();
 			set_state(STATE_CHARACTER_LIST);
 			emit_signal("character_login_failed", code);
@@ -1877,6 +1884,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			objects.clear();
 			auras.clear();
 			player_guid = 0;
+			mover_guid = 0;
 			player_path = Dictionary();
 			set_state(STATE_CHARACTER_LIST);
 			request_characters();
@@ -1920,6 +1928,8 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 		WorldObject &object = objects[block.guid];
 		if (created) {
 			object.type_id = static_cast<uint8_t>(block.objectType);
+			// A create carries every set field, so a respawn on a known guid must not keep the corpse's.
+			object.fields.clear();
 		}
 		for (const auto &[index, value] : block.fields) {
 			object.fields[index] = value;
@@ -2263,6 +2273,8 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("delete_character", "guid"), &WowSession::delete_character);
 	ClassDB::bind_method(D_METHOD("enter_world", "guid"), &WowSession::enter_world);
 	ClassDB::bind_method(D_METHOD("logout"), &WowSession::logout);
+	ClassDB::bind_method(D_METHOD("set_mover", "guid"), &WowSession::set_mover);
+	ClassDB::bind_method(D_METHOD("get_mover"), &WowSession::get_mover);
 	ClassDB::bind_method(D_METHOD("send_movement", "opcode", "position", "orientation", "flags", "fall_time_msec", "jump_velocity", "pitch", "ack_counter", "ack_tail", "transport_guid", "transport_offset", "transport_orientation"), &WowSession::send_movement, DEFVAL(0), DEFVAL(Vector3()), DEFVAL(0.0), DEFVAL(-1), DEFVAL(PackedByteArray()), DEFVAL(0), DEFVAL(Vector3()), DEFVAL(0.0));
 	ClassDB::bind_method(D_METHOD("send_packet", "opcode", "payload"), &WowSession::send_packet);
 	ClassDB::bind_method(D_METHOD("send_chat", "type", "message", "target"), &WowSession::send_chat, DEFVAL(String()));
@@ -2326,6 +2338,7 @@ void WowSession::_bind_methods() {
 	ADD_SIGNAL(MethodInfo("player_teleported", PropertyInfo(Variant::VECTOR3, "position"), PropertyInfo(Variant::FLOAT, "orientation")));
 	ADD_SIGNAL(MethodInfo("spell_cast_started", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "cast_time_msec")));
 	ADD_SIGNAL(MethodInfo("spell_cast_finished", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::PACKED_INT64_ARRAY, "targets")));
+	ADD_SIGNAL(MethodInfo("spell_ammo_received", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "display_id")));
 	ADD_SIGNAL(MethodInfo("spell_cast_failed", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "reason")));
 	ADD_SIGNAL(MethodInfo("spell_cast_delayed", PropertyInfo(Variant::INT, "caster"), PropertyInfo(Variant::INT, "delay_msec")));
 	ADD_SIGNAL(MethodInfo("spell_channel_started", PropertyInfo(Variant::INT, "spell_id"), PropertyInfo(Variant::INT, "duration_msec")));

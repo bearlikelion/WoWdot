@@ -20,6 +20,7 @@ const HIDDEN_GEAR_FLAGS: int = CharacterModels.PLAYER_FLAG_HIDE_HELM \
 const STAND_STATE_STAND: int = 0
 const STAND_STATE_SIT: int = 1
 const UNIT_DYNFLAG_LOOTABLE: int = 0x1
+const UNIT_DYNFLAG_DEAD: int = 0x20
 # The golden rings the stock client plays on the player when they gain a level.
 const LEVEL_UP_EFFECT: String = "Spells\\LevelUp\\LevelUp.m2"
 const LEVEL_UP_SECONDS: float = 3.0
@@ -62,6 +63,7 @@ const FLAGS_APPLIED: PackedStringArray = [
 ]
 
 var _auto_attacking: bool = false
+var _target_alive: bool = false
 # The enemy targeted before the current target, for TargetLastEnemy.
 var _last_hostile: int = 0
 var _worn: PackedInt32Array = []
@@ -123,6 +125,7 @@ func _ready() -> void:
 	WowClient.session.melee_swing.connect(_on_melee_swing)
 	WowClient.session.object_updated.connect(_on_object_updated)
 	WowClient.barbershop.preview_changed.connect(_dress_player)
+	WowClient.vehicle.changed.connect(_on_vehicle_changed)
 	WowClient.session.item_info_received.connect(_on_item_info_received)
 	WowClient.session.object_created.connect(_on_object_created)
 	WowClient.session.player_teleported.connect(_on_player_teleported)
@@ -157,6 +160,7 @@ func _process(_delta: float) -> void:
 	_sky.underwater = eye.y < _map.liquid_height_at(eye)
 	_weather.visible = not _sky.underwater
 	_offer_reclaim()
+	_carry_vehicle()
 	var area: int = _map.area_id_at(_player.global_position)
 	if area != 0 and area != _area:
 		_area = area
@@ -166,6 +170,29 @@ func _process(_delta: float) -> void:
 		WowAssets.audio.play_zone(area)
 		var zone: int = AreaInfo.zone_of(area)
 		Channels.enter_zone(AreaInfo.area_name(zone), AreaInfo.flags(zone))
+
+
+# The server does not echo a driven vehicle's movement back, so its model rides the controller.
+func _carry_vehicle() -> void:
+	var node: Node3D = _entities.unit_node(WowClient.vehicle.driving)
+	if node:
+		node.global_position = _player.global_position
+		node.rotation.y = _player.rotation.y
+
+
+# The controller takes the vehicle's place, and the player's own model sits hidden in its seat.
+func _on_vehicle_changed() -> void:
+	var driving: int = WowClient.vehicle.driving
+	var session: WowSession = WowClient.session
+	if driving:
+		_player.place(
+			WowCoords.to_godot(session.get_object_position(driving)),
+			session.get_object_orientation(driving),
+		)
+	_player.controllable = true
+	print("DEBUG vehicle changed ", driving, " model ", _player.model())
+	if _player.model():
+		_player.model().visible = driving == 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -203,6 +230,8 @@ func _binding_pressed(event: InputEvent) -> bool:
 	elif _exact(event, "attack_target"):
 		if target == 0:
 			_hud.show_error(WowStrings.get_text("ERR_GENERIC_NO_TARGET"))
+		elif not _alive(target):
+			_hud.show_error(WowStrings.get_text("ERR_INVALID_ATTACK_TARGET"))
 		elif not _auto_attacking:
 			session.attack(target)
 	elif _exact(event, "sit_stand"):
@@ -254,6 +283,13 @@ func _cycle_target(friendly: bool, step: int) -> void:
 		select(candidates[0] if step > 0 else candidates[candidates.size() - 1])
 	else:
 		select(candidates[posmod(index + step, candidates.size())])
+
+
+# Feign death reads as dead but can still be attacked.
+func _alive(guid: int) -> bool:
+	var session: WowSession = WowClient.session
+	return session.get_field(guid, "UNIT_FIELD_HEALTH") > 0 \
+	or session.get_field(guid, "UNIT_DYNAMIC_FLAGS") & UNIT_DYNFLAG_DEAD != 0
 
 
 func _unit_guid(guid: int, field: String) -> int:
@@ -325,6 +361,8 @@ func select(guid: int) -> void:
 	_hud.show_target(guid)
 	_selection.target = guid
 	_name_plates.target = guid
+	_entities.target = guid
+	_target_alive = _alive(guid)
 
 
 func _on_player_movement_changed(
@@ -437,7 +475,8 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if not (knock_back or SPEED_CHANGES.has(opcode) or FLAG_CHANGES.has(opcode)):
 		return
 	var reader: PacketReader = PacketReader.new(payload)
-	if reader.packed_guid() != WowClient.session.get_player_guid():
+	# A driven vehicle's speeds and flags come to the player to apply and acknowledge.
+	if reader.packed_guid() != WowClient.session.get_mover():
 		return
 	var counter: int = reader.u32()
 	if SPEED_CHANGES.has(opcode):
@@ -507,6 +546,8 @@ func _use_spell(spell: int) -> void:
 		session.cast_spell(spell, target)
 	elif _auto_attacking:
 		session.stop_attack()
+	elif _hud.target() != 0 and not _alive(_hud.target()):
+		_hud.show_error(WowStrings.get_text("ERR_INVALID_ATTACK_TARGET"))
 	elif _hud.target() != 0:
 		_face(_hud.target())
 		session.attack(_hud.target())
@@ -558,6 +599,10 @@ func _on_melee_swing(
 
 func _on_object_updated(guid: int) -> void:
 	var session: WowSession = WowClient.session
+	if guid == _hud.target() and guid != session.get_player_guid():
+		if _target_alive and not _alive(guid):
+			select(0)
+		_target_alive = _alive(guid)
 	if guid != session.get_player_guid():
 		return
 	var dead: bool = session.get_field(guid, "UNIT_FIELD_HEALTH") == 0
@@ -608,6 +653,7 @@ func _dress_player() -> void:
 		model = mount
 	if model:
 		_player.set_model(model)
+		model.visible = WowClient.vehicle.driving == 0
 		UnitVoice.attach(model, guid, display, _mount_display)
 		_entities.add_nameplate(guid, model)
 
@@ -753,7 +799,7 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 		return
 	var me: int = session.get_player_guid()
 	var hostile: bool = UnitReaction.between(session, me, guid) == UnitReaction.Reaction.HOSTILE
-	if hostile and not _auto_attacking:
+	if hostile and not _auto_attacking and _alive(guid):
 		_face(guid)
 		session.attack(guid)
 

@@ -70,6 +70,21 @@ file = "Interface\\TargetingFrame\\UI-TargetofTargetFrame.blp"
 atlas = SubResource("WowTexture_19")
 region = Rect2(2, 0, 91, 45)
 
+[sub_resource type="WowTexture" id="WowTexture_combo"]
+file = "Interface\\ComboFrame\\ComboPoint.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_combo_point"]
+atlas = SubResource("WowTexture_combo")
+region = Rect2(0, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_combo_highlight"]
+atlas = SubResource("WowTexture_combo")
+region = Rect2(12, 0, 6, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_combo_shine"]
+atlas = SubResource("WowTexture_combo")
+region = Rect2(18, 0, 14, 16)
+
 [node name="TargetFrame" type="TextureButton" unique_id=601313318]
 offset_left = 250.0
 offset_top = 4.0
@@ -1318,3 +1333,203 @@ offset_bottom = 14.5
 mouse_filter = 2
 texture = SubResource("AtlasTexture_18")
 expand_mode = 1
+
+[node name="ComboFrame" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -68.0
+offset_top = 9.0
+offset_right = 188.0
+offset_bottom = 41.0
+mouse_filter = 2
+
+[node name="ComboPoint1" type="Control" parent="ComboFrame"]
+unique_name_in_owner = true
+offset_left = 244
+offset_top = 0
+offset_right = 256
+offset_bottom = 12
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="ComboFrame/ComboPoint1"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_point")
+expand_mode = 1
+
+[node name="ComboPoint1Highlight" type="TextureRect" parent="ComboFrame/ComboPoint1"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 0
+offset_right = 10
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_highlight")
+expand_mode = 1
+
+[node name="ComboPoint1Shine" type="TextureRect" parent="ComboFrame/ComboPoint1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 14
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_shine")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="ComboPoint2" type="Control" parent="ComboFrame"]
+unique_name_in_owner = true
+offset_left = 251
+offset_top = 8
+offset_right = 263
+offset_bottom = 20
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="ComboFrame/ComboPoint2"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_point")
+expand_mode = 1
+
+[node name="ComboPoint2Highlight" type="TextureRect" parent="ComboFrame/ComboPoint2"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 0
+offset_right = 10
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_highlight")
+expand_mode = 1
+
+[node name="ComboPoint2Shine" type="TextureRect" parent="ComboFrame/ComboPoint2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 14
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_shine")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="ComboPoint3" type="Control" parent="ComboFrame"]
+unique_name_in_owner = true
+offset_left = 256
+offset_top = 18
+offset_right = 268
+offset_bottom = 30
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="ComboFrame/ComboPoint3"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_point")
+expand_mode = 1
+
+[node name="ComboPoint3Highlight" type="TextureRect" parent="ComboFrame/ComboPoint3"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 0
+offset_right = 10
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_highlight")
+expand_mode = 1
+
+[node name="ComboPoint3Shine" type="TextureRect" parent="ComboFrame/ComboPoint3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 14
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_shine")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="ComboPoint4" type="Control" parent="ComboFrame"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = 29
+offset_right = 270
+offset_bottom = 41
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="ComboFrame/ComboPoint4"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_point")
+expand_mode = 1
+
+[node name="ComboPoint4Highlight" type="TextureRect" parent="ComboFrame/ComboPoint4"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 0
+offset_right = 10
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_highlight")
+expand_mode = 1
+
+[node name="ComboPoint4Shine" type="TextureRect" parent="ComboFrame/ComboPoint4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 14
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_shine")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")
+
+[node name="ComboPoint5" type="Control" parent="ComboFrame"]
+unique_name_in_owner = true
+offset_left = 256.5
+offset_top = 40
+offset_right = 271.5
+offset_bottom = 58
+mouse_filter = 2
+
+[node name="Texture" type="TextureRect" parent="ComboFrame/ComboPoint5"]
+offset_left = 0
+offset_top = 0
+offset_right = 12
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_point")
+expand_mode = 1
+
+[node name="ComboPoint5Highlight" type="TextureRect" parent="ComboFrame/ComboPoint5"]
+unique_name_in_owner = true
+offset_left = 2
+offset_top = 0
+offset_right = 10
+offset_bottom = 16
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_highlight")
+expand_mode = 1
+
+[node name="ComboPoint5Shine" type="TextureRect" parent="ComboFrame/ComboPoint5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -4
+offset_right = 14
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("AtlasTexture_combo_shine")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_15")

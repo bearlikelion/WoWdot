@@ -19,6 +19,7 @@ var guild_bank: GuildBank = GuildBank.new(session)
 var barbershop: Barbershop = Barbershop.new(session)
 var calendar: Calendar = Calendar.new(session)
 var battlefield: BattlefieldManager = BattlefieldManager.new(session)
+var vehicle: Vehicle = Vehicle.new(session)
 # SMSG_BINDPOINTUPDATE's area, the home a hearthstone's $z names.
 var home_area: int = 0
 

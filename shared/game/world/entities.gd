@@ -11,6 +11,7 @@ const NAMEPLATE_GAP: float = 0.3
 # The gold the stock client draws your own name in.
 const OWN_NAME_COLOR: Color = Color(1.0, 0.9, 0.55)
 const UNFLAGGED_PLAYER_COLOR: Color = Color(0.3, 0.3, 1.0)
+const DEAD_NAME_COLOR: Color = Color(0.498, 0.498, 0.498)
 const UNIT_FLAG_PVP: int = 0x1000
 # The quest marker floats this far over the top line of the nameplate.
 const MARKER_GAP: float = 0.3
@@ -22,8 +23,16 @@ const GROUND_PROBE_DOWN: float = 4.0
 const LOOK_AHEAD: float = 0.02
 # SMSG_ATTACKERSTATEUPDATE victim state for a blow that landed.
 const VICTIM_STATE_HIT: int = 1
+const DESPAWN_FADE_SECONDS: float = 2.0
 
 @export var shake: CameraShake
+
+var target: int = 0:
+	set(value):
+		var previous: int = target
+		target = value
+		_show_name(previous)
+		_show_name(value)
 
 var _nodes: Dictionary[int, Node3D] = {}
 # Model-space bounds of units and players, used for picking.
@@ -120,8 +129,11 @@ func _process(delta: float) -> void:
 
 func _on_object_created(guid: int, type_id: int) -> void:
 	var session: WowSession = WowClient.session
-	if guid == session.get_player_guid() or _nodes.has(guid):
+	if guid == session.get_player_guid():
 		return
+	# A respawn can re-create a guid whose corpse node is still standing.
+	if _nodes.has(guid):
+		_on_objects_destroyed(PackedInt64Array([guid]))
 	var node: Node3D = null
 	var display: int = session.get_field(guid, "UNIT_FIELD_DISPLAYID")
 	match type_id:
@@ -320,8 +332,12 @@ func _color_name(guid: int) -> void:
 	)
 	var color: Color = UnitReaction.COLORS.get(reaction, OWN_NAME_COLOR)
 	var flagged: bool = session.get_field(guid, "UNIT_FIELD_FLAGS") & UNIT_FLAG_PVP != 0
-	if session.get_object_type(guid) == ObjectType.PLAYER and not flagged:
+	var player: bool = session.get_object_type(guid) == ObjectType.PLAYER
+	if player and not flagged:
 		color = UNFLAGGED_PLAYER_COLOR
+	elif session.get_object_type(guid) == ObjectType.UNIT \
+	and session.get_field(guid, "UNIT_FIELD_HEALTH") == 0:
+		color = DEAD_NAME_COLOR
 	_nameplates[guid].modulate = color
 
 
@@ -334,7 +350,10 @@ func _show_name(guid: int) -> void:
 	if guid != session.get_player_guid():
 		option = &"show_player_names" if session.get_object_type(guid) == ObjectType.PLAYER \
 		else &"show_npc_names"
-	_nameplates[guid].visible = WowAssets.interface.is_on(option) and not _plated.has(guid)
+	var hidden_corpse: bool = session.get_object_type(guid) == ObjectType.UNIT \
+	and guid != target and session.get_field(guid, "UNIT_FIELD_HEALTH") == 0
+	_nameplates[guid].visible = WowAssets.interface.is_on(option) and not _plated.has(guid) \
+	and not hidden_corpse
 
 
 # The name, and under it the creature's title such as <Paladin Trainer>.
@@ -376,6 +395,7 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_riding.erase(guid)
 		_bounds.erase(guid)
 		_nameplates.erase(guid)
+		_plated.erase(guid)
 		_victims.erase(guid)
 		_worn.erase(guid)
 		_dressing.erase(guid)
@@ -387,8 +407,15 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_markers.erase(guid)
 		NpcDialog.statuses.erase(guid)
 		if _nodes.has(guid):
-			_nodes[guid].queue_free()
+			_fade_out(_nodes[guid])
 			_nodes.erase(guid)
+
+
+func _fade_out(node: Node3D) -> void:
+	var tween: Tween = node.create_tween().set_parallel()
+	for mesh: GeometryInstance3D in node.find_children("*", "GeometryInstance3D", true, false):
+		tween.tween_property(mesh, "transparency", 1.0, DESPAWN_FADE_SECONDS)
+	tween.chain().tween_callback(node.queue_free)
 
 
 # The player's own model is not one of these entities, so world.gd asks for its plate itself.
@@ -428,6 +455,8 @@ func _on_object_updated(guid: int) -> void:
 	if _sheath_states.has(guid) \
 	and _sheath_states[guid] != ItemModels.sheath_state(WowClient.session, guid):
 		_arm(guid)
+	_color_name(guid)
+	_show_name(guid)
 	var alive: bool = WowClient.session.get_field(guid, "UNIT_FIELD_HEALTH") > 0
 	if not alive:
 		if not UnitAnimations.is_dead(node) and shake:

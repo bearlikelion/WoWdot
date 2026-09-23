@@ -123,6 +123,8 @@ private:
 	std::vector<wowee::auth::Realm> realms;
 	uint32_t realm_id = 1;
 	uint64_t player_guid = 0;
+	// The unit whose movement the client sends, when the server hands it a vehicle or a charm.
+	uint64_t mover_guid = 0;
 	std::unordered_map<uint64_t, WorldObject> objects;
 	// 3.3.5 sends a unit's buffs and debuffs as their own packets rather than as update fields.
 	std::unordered_map<uint64_t, std::map<uint8_t, wowee::game::AuraSlot>> auras;
@@ -220,6 +222,8 @@ public:
 
 	State get_state() const { return state; }
 	int64_t get_player_guid() const { return static_cast<int64_t>(player_guid); }
+	void set_mover(int64_t guid) { mover_guid = static_cast<uint64_t>(guid) == player_guid ? 0 : static_cast<uint64_t>(guid); }
+	int64_t get_mover() const { return static_cast<int64_t>(mover_guid ? mover_guid : player_guid); }
 	PackedInt64Array get_object_guids() const;
 	bool has_object(int64_t guid) const { return find(guid) != nullptr; }
 	int get_object_type(int64_t guid) const;

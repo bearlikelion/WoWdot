@@ -31,7 +31,8 @@ var _visuals: WowDBC
 var _kits: WowDBC
 var _names: WowDBC
 var _anims: WowDBC
-var _kit_cache: Dictionary[int, Array] = {}
+var _displays: WowDBC
+var _kit_cache: Dictionary[Vector3i, Array] = {}
 
 
 func _init(archive: WowArchive) -> void:
@@ -40,14 +41,15 @@ func _init(archive: WowArchive) -> void:
 	_kits = WowDBC.open(archive, "SpellVisualKit")
 	_names = WowDBC.open(archive, "SpellVisualEffectName")
 	_anims = WowDBC.open(archive, "AnimationData")
+	_displays = WowDBC.open(archive, "ItemDisplayInfo")
 
 
 # What a stage of the cast hangs on the unit, as {path, points} per filled slot.
-func effects(spell_id: int, kit: Kit) -> Array[Dictionary]:
-	var key: int = spell_id * KIT_COLUMNS.size() + int(kit)
+func effects(spell_id: int, kit: Kit, weapon_display: int = 0) -> Array[Dictionary]:
+	var key: Vector3i = Vector3i(spell_id, kit, weapon_display)
 	if _kit_cache.has(key):
 		return _kit_cache[key]
-	var found: Array[Dictionary] = _row_effects(_kit_row(spell_id, kit))
+	var found: Array[Dictionary] = _row_effects(_kit_row(spell_id, kit, weapon_display))
 	_kit_cache[key] = found
 	return found
 
@@ -58,8 +60,8 @@ func kit_effects(kit_id: int) -> Array[Dictionary]:
 
 
 # The clip the unit plays for a stage, such as ReadySpellDirected while a fireball is cast.
-func animation(spell_id: int, kit: Kit) -> String:
-	var kit_row: int = _kit_row(spell_id, kit)
+func animation(spell_id: int, kit: Kit, weapon_display: int = 0) -> String:
+	var kit_row: int = _kit_row(spell_id, kit, weapon_display)
 	if kit_row < 0:
 		return ""
 	var id: int = _kits.get_int(kit_row, ANIM_COLUMN)
@@ -67,14 +69,13 @@ func animation(spell_id: int, kit: Kit) -> String:
 	return _anims.get_string(anim_row, ANIM_NAME_COLUMN) if anim_row >= 0 else ""
 
 
-func has_missile(spell_id: int) -> bool:
-	var row: int = _visual_row(spell_id)
-	return row >= 0 and _visuals.get_uint(row, "HasMissile") != 0 and not missile(spell_id).is_empty()
+func has_missile(spell_id: int, weapon_display: int = 0) -> bool:
+	return _field(spell_id, "HasMissile", weapon_display) != 0 \
+	and not missile(spell_id, weapon_display).is_empty()
 
 
-func missile(spell_id: int) -> String:
-	var row: int = _visual_row(spell_id)
-	return _model(_visuals.get_uint(row, "MissileModel")) if row >= 0 else ""
+func missile(spell_id: int, weapon_display: int = 0) -> String:
+	return _model(_field(spell_id, "MissileModel", weapon_display))
 
 
 # Yards a second the missile travels; a spell with no speed of its own lands at once.
@@ -88,8 +89,8 @@ func loot_sparkle() -> String:
 
 
 # The SpellEffectCameraShakes group a kit jolts the camera with, or 0.
-func shake_group(spell_id: int, kit: Kit) -> int:
-	var row: int = _kit_row(spell_id, kit)
+func shake_group(spell_id: int, kit: Kit, weapon_display: int = 0) -> int:
+	var row: int = _kit_row(spell_id, kit, weapon_display)
 	return _kits.get_uint(row, KIT_SHAKE_COLUMN) if row >= 0 else 0
 
 
@@ -103,9 +104,22 @@ func _row_effects(kit_row: int) -> Array[Dictionary]:
 	return found
 
 
-func _kit_row(spell_id: int, kit: Kit) -> int:
+func _kit_row(spell_id: int, kit: Kit, weapon_display: int) -> int:
+	var kit_id: int = _field(spell_id, KIT_COLUMNS[kit], weapon_display)
+	return _kits.find(kit_id) if kit_id != 0 else -1
+
+
+# A ranged shot such as Auto Shot fills each empty field of its visual from the weapon's own.
+func _field(spell_id: int, column: String, weapon_display: int) -> int:
 	var row: int = _visual_row(spell_id)
-	return _kits.find(_visuals.get_uint(row, KIT_COLUMNS[kit])) if row >= 0 else -1
+	var value: int = _visuals.get_uint(row, column) if row >= 0 else 0
+	if value != 0 or weapon_display == 0 or not WowAssets.spells.uses_ranged_slot(spell_id):
+		return value
+	var display_row: int = _displays.find(weapon_display)
+	if display_row < 0:
+		return 0
+	var weapon_row: int = _visuals.find(_displays.get_uint(display_row, "SpellVisualID"))
+	return _visuals.get_uint(weapon_row, column) if weapon_row >= 0 else 0
 
 
 func _visual_row(spell_id: int) -> int:

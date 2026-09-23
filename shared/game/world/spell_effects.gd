@@ -17,11 +17,16 @@ var _casting: Dictionary[int, Array] = {}
 var _posing: Dictionary[int, String] = {}
 var _sparkles: Dictionary[int, Node3D] = {}
 var _missiles: Array[Dictionary] = []
+# Caster guid to the ammo display its next ranged shot flies as.
+var _ammo: Dictionary[int, int] = {}
 
 
 func _ready() -> void:
 	var session: WowSession = WowClient.session
 	session.spell_cast_started.connect(_on_cast_started)
+	session.spell_ammo_received.connect(func(caster: int, display: int) -> void:
+		_ammo[caster] = display
+	)
 	session.spell_cast_finished.connect(_on_cast_finished)
 	session.spell_cast_failed.connect(_on_cast_failed)
 	session.object_updated.connect(_on_object_updated)
@@ -52,22 +57,28 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 
 func _on_cast_started(caster: int, spell_id: int, _cast_time_msec: int) -> void:
 	_drop_precast(caster)
-	_casting[caster] = _hang(caster, spell_id, SpellVisuals.Kit.PRECAST, 0.0)
-	var pose: String = WowAssets.spell_visuals.animation(spell_id, SpellVisuals.Kit.PRECAST)
+	var weapon: int = _ranged_display(caster, spell_id)
+	_casting[caster] = _hang(caster, spell_id, SpellVisuals.Kit.PRECAST, 0.0, weapon)
+	var pose: String = WowAssets.spell_visuals.animation(
+		spell_id, SpellVisuals.Kit.PRECAST, weapon
+	)
 	if not pose.is_empty():
 		_posing[caster] = pose
 
 
 func _on_cast_finished(caster: int, spell_id: int, targets: PackedInt64Array) -> void:
 	_drop_precast(caster)
-	_hang(caster, spell_id, SpellVisuals.Kit.CAST, FALLBACK_SECONDS)
-	_play(caster, WowAssets.spell_visuals.animation(spell_id, SpellVisuals.Kit.CAST))
+	var weapon: int = _ranged_display(caster, spell_id)
+	var ammo: int = _ammo.get(caster, 0)
+	_ammo.erase(caster)
 	var visuals: SpellVisuals = WowAssets.spell_visuals
+	_hang(caster, spell_id, SpellVisuals.Kit.CAST, FALLBACK_SECONDS, weapon)
+	_play(caster, visuals.animation(spell_id, SpellVisuals.Kit.CAST, weapon))
 	for target: int in targets:
-		if visuals.has_missile(spell_id) and target != caster:
-			_launch(caster, target, spell_id)
+		if (ammo or visuals.has_missile(spell_id, weapon)) and target != caster:
+			_launch(caster, target, spell_id, weapon, ammo)
 		else:
-			_impact(target, spell_id)
+			_impact(target, spell_id, weapon)
 
 
 func _on_cast_failed(caster: int, _spell_id: int, _reason: int) -> void:
@@ -92,6 +103,7 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 	for guid: int in guids:
 		_clear_sparkle(guid)
 		_casting.erase(guid)
+		_ammo.erase(guid)
 
 
 # A model played once on the unit and taken down when its sequence ends, such as the level up glow.
@@ -103,9 +115,9 @@ func flourish(guid: int, path: String, seconds: float) -> Node3D:
 
 
 # What landing on the target looks like: the kit's effects and the flinch it names.
-func _impact(target: int, spell_id: int) -> void:
-	_hang(target, spell_id, SpellVisuals.Kit.IMPACT, FALLBACK_SECONDS)
-	_play(target, WowAssets.spell_visuals.animation(spell_id, SpellVisuals.Kit.IMPACT))
+func _impact(target: int, spell_id: int, weapon: int) -> void:
+	_hang(target, spell_id, SpellVisuals.Kit.IMPACT, FALLBACK_SECONDS, weapon)
+	_play(target, WowAssets.spell_visuals.animation(spell_id, SpellVisuals.Kit.IMPACT, weapon))
 
 
 # Plays a clip once on whatever the unit is drawn as.
@@ -116,11 +128,28 @@ func _play(guid: int, clip: String) -> void:
 
 
 # Hangs a stage's models on the unit, giving them back so a precast can be taken down again.
-func _hang(guid: int, spell_id: int, kit: SpellVisuals.Kit, seconds: float) -> Array:
+func _hang(
+	guid: int, spell_id: int, kit: SpellVisuals.Kit, seconds: float, weapon: int
+) -> Array:
+	var visuals: SpellVisuals = WowAssets.spell_visuals
 	var shaken: Node3D = _model_of(guid)
 	if shaken and shake:
-		shake.add_group(WowAssets.spell_visuals.shake_group(spell_id, kit), shaken.global_position)
-	return _hang_effects(guid, WowAssets.spell_visuals.effects(spell_id, kit), seconds)
+		shake.add_group(visuals.shake_group(spell_id, kit, weapon), shaken.global_position)
+	return _hang_effects(guid, visuals.effects(spell_id, kit, weapon), seconds)
+
+
+# The display of the ranged weapon a shot takes its visual from, or 0 for other spells.
+func _ranged_display(caster: int, spell_id: int) -> int:
+	var session: WowSession = WowClient.session
+	if not WowAssets.spells.uses_ranged_slot(spell_id):
+		return 0
+	var weapons: Array[ItemModels.Weapon] = []
+	if session.get_object_type(caster) == Entities.ObjectType.PLAYER:
+		weapons = CharacterModels.player_look(session, caster)["weapons"]
+	else:
+		weapons = ItemModels.unit_weapons(session, caster)
+	var ranged: int = ItemModels.WEAPON_SLOTS.find(ItemModels.Slot.RANGED)
+	return weapons[ranged].display if ranged < weapons.size() else 0
 
 
 func _hang_effects(guid: int, effects: Array[Dictionary], seconds: float) -> Array:
@@ -160,23 +189,28 @@ func _mount(guid: int, path: String, points: Array) -> Node3D:
 	return model
 
 
-func _launch(caster: int, target: int, spell_id: int) -> void:
+func _launch(caster: int, target: int, spell_id: int, weapon: int, ammo: int) -> void:
 	var visuals: SpellVisuals = WowAssets.spell_visuals
 	var speed: float = visuals.missile_speed(spell_id)
 	var from: Vector3 = _point_position(caster, SpellVisuals.SLOT_POINTS["RightHandEffect"])
 	if speed <= INSTANT_SPEED or from == Vector3.ZERO or _model_of(target) == null:
-		_impact(target, spell_id)
+		_impact(target, spell_id, weapon)
 		return
-	var missile: Node3D = WowAssets.loader.load_m2(visuals.missile(spell_id))
+	var path: String = visuals.missile(spell_id, weapon)
+	var missile: Node3D = WowAssets.loader.load_m2(path) if not path.is_empty() \
+	else WowAssets.characters.item_models.load_ammo(ammo)
 	if missile == null:
-		_impact(target, spell_id)
+		_impact(target, spell_id, weapon)
 		return
-	RibbonTrail.attach(missile, visuals.missile(spell_id))
+	if not path.is_empty():
+		RibbonTrail.attach(missile, path)
 	CreatureModels.mark_unit(missile)
 	UnitAnimations.set_base(missile, ["Stand"])
 	add_child(missile)
 	missile.global_position = from
-	_missiles.append({"node": missile, "target": target, "spell": spell_id, "speed": speed})
+	_missiles.append({
+		"node": missile, "target": target, "spell": spell_id, "speed": speed, "weapon": weapon,
+	})
 
 
 # Moves a missile a frame on, returning false once it has landed or lost its target.
@@ -190,9 +224,11 @@ func _advance(missile: Dictionary, delta: float) -> bool:
 		return false
 	var step: Vector3 = goal - node.global_position
 	if step.length() <= missile["speed"] * delta:
-		_impact(missile["target"], missile["spell"])
+		_impact(missile["target"], missile["spell"], missile["weapon"])
 		node.queue_free()
 		return false
+	if not step.cross(Vector3.UP).is_zero_approx():
+		node.look_at(goal)
 	node.global_position += step.normalized() * missile["speed"] * delta
 	return true
 

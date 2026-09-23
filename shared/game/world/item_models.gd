@@ -17,6 +17,8 @@ enum WeaponSubclass { BOW = 2, GUN = 3, THROWN = 16, CROSSBOW = 18, WAND = 19 }
 const COMPONENTS: String = "Item\\ObjectComponents\\"
 # Item models take their ItemDisplayInfo texture as texture type 2.
 const ITEM_SKIN: int = 2
+const AMMO_FOLDER: String = "Ammo\\"
+const WEAPON_FOLDER: String = "Weapon\\"
 const GENDERS: Array[String] = ["M", "F"]
 const WEAPON_SLOTS: Array[Slot] = [Slot.MAIN_HAND, Slot.OFF_HAND, Slot.RANGED]
 # Where a sheathed weapon hangs, x for the main hand and y for the off hand.
@@ -60,6 +62,25 @@ func attach(
 			_mount(model, points.get(Attachment.SHOULDER_RIGHT, {}), row, "Right", "Shoulder\\")
 
 
+# The arrow, bullet or thrown weapon a ranged shot flies as; ammo keeps its model on the right.
+func load_ammo(display_id: int) -> Node3D:
+	var row: int = _displays.find(display_id) if display_id > 0 else -1
+	if row < 0:
+		return null
+	var side: String = "Right"
+	var folder: String = AMMO_FOLDER
+	if _exists(row, "Left", WEAPON_FOLDER):
+		side = "Left"
+		folder = WEAPON_FOLDER
+	elif not _exists(row, side, folder):
+		return null
+	var skins: Dictionary = {}
+	var texture: String = _displays.get_string(row, side + "ModelTexture")
+	if not texture.is_empty():
+		skins[ITEM_SKIN] = COMPONENTS + folder + texture + ".blp"
+	return _loader.load_m2(_path(row, side, folder, ""), skins)
+
+
 # Hangs the unit's main hand, off hand and ranged weapons where its sheath state puts them.
 func arm(model: Node3D, model_path: String, weapons: Array, state: SheathState) -> void:
 	var skeleton: Skeleton3D = model.find_child("Skeleton", true, false)
@@ -76,7 +97,7 @@ func arm(model: Node3D, model_path: String, weapons: Array, state: SheathState) 
 		var row: int = _displays.find(weapon.display) if weapon.display > 0 else -1
 		if row < 0:
 			continue
-		var folder: String = "Shield\\" if _exists(row, "Left", "Shield\\") else "Weapon\\"
+		var folder: String = "Shield\\" if _exists(row, "Left", "Shield\\") else WEAPON_FOLDER
 		var main_sheath: Sheath = (weapons[0] as Weapon).sheath
 		var point: Attachment = _weapon_point(slot, weapon, state, folder, main_sheath)
 		var holder: Node3D = _mount(model, points.get(point, {}), row, "Left", folder)

@@ -751,6 +751,12 @@ bool ClassicPacketParsers::parseSpellGo(network::Packet& packet, SpellGoData& da
     // any subsequent fields (e.g. castFlags extras) are not misaligned.
     skipClassicSpellCastTargets(packet, &data.targetGuid);
 
+    // CAST_FLAG_AMMO: the ammo a ranged shot draws as its missile, then its inventory type.
+    if ((data.castFlags & 0x20) && rem() >= 8) {
+        data.ammoDisplayId = packet.readUInt32();
+        packet.readUInt32();
+    }
+
     LOG_DEBUG("[Classic] Spell go: spell=", data.spellId, " hits=", static_cast<int>(data.hitCount),
               " misses=", static_cast<int>(data.missCount));
     return true;

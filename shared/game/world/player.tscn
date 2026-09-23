@@ -25,4 +25,5 @@ spring_length = 7.0
 margin = 0.3
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+fov = 45.0
 far = 8000.0

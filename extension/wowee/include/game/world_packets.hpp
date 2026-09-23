@@ -1960,6 +1960,7 @@ struct SpellGoData {
     uint8_t castCount = 0;
     uint32_t spellId = 0;
     uint32_t castFlags = 0;
+    uint32_t ammoDisplayId = 0;
     uint8_t hitCount = 0;
     std::vector<uint64_t>       hitTargets;
     uint8_t missCount = 0;

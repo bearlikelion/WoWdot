@@ -13,6 +13,12 @@ const TAPPED: Color = Color(0.5, 0.5, 0.5)
 const FRIENDLY_PLAYER: Color = Color(0.0, 0.0, 1.0)
 const TARGET_BUFFS: int = 5
 const TARGET_DEBUFFS: int = 16
+const MAX_COMBO_POINTS: int = 5
+# ComboFrame.lua fade times, in seconds.
+const COMBO_FADE_IN: float = 0.3
+const COMBO_HIGHLIGHT_FADE_IN: float = 0.4
+const COMBO_SHINE_FADE_IN: float = 0.3
+const COMBO_SHINE_FADE_OUT: float = 0.4
 const BORDERS: Dictionary[Rank, String] = {
 	Rank.NORMAL: "Interface\\TargetingFrame\\UI-TargetingFrame.blp",
 	Rank.ELITE: "Interface\\TargetingFrame\\UI-TargetingFrame-Elite.blp",
@@ -30,11 +36,15 @@ var _debuff_borders: Array[TextureRect] = []
 var _debuff_counts: Array[Label] = []
 var _aura_spells: Dictionary[Control, int] = {}
 var _target_of_target: TargetOfTargetFrame
+var _combo_highlights: Array[TextureRect] = []
+var _combo_shines: Array[TextureRect] = []
+var _combo_points: int = 0
 
 @onready var _name_background: TextureRect = %TargetFrameNameBackground
 @onready var _border: TextureRect = %TargetFrameTexture
 @onready var _dead_text: Label = %TargetDeadText
 @onready var _skull: TextureRect = %TargetHighLevelTexture
+@onready var _combo_frame: Control = %ComboFrame
 
 
 func _ready() -> void:
@@ -67,6 +77,11 @@ func _ready() -> void:
 		_debuff_icons.append(get_node("%%TargetFrameDebuff%dIcon" % i))
 		_debuff_borders.append(get_node("%%TargetFrameDebuff%dBorder" % i))
 		_debuff_counts.append(get_node("%%TargetFrameDebuff%dCount" % i))
+	for i: int in range(1, MAX_COMBO_POINTS + 1):
+		_combo_highlights.append(get_node("%%ComboPoint%dHighlight" % i))
+		_combo_shines.append(get_node("%%ComboPoint%dShine" % i))
+	for light: TextureRect in _combo_highlights + _combo_shines:
+		light.modulate.a = 0.0
 	var normal: AtlasTexture = _border.texture as AtlasTexture
 	for rank: Rank in BORDERS:
 		var art: AtlasTexture = normal.duplicate()
@@ -109,6 +124,37 @@ func _update_unit() -> void:
 	_dead_text.visible = session.get_field(guid, "UNIT_FIELD_HEALTH") == 0
 	_update_target_of_target()
 	_update_auras()
+	_update_combo_points()
+
+
+# Combo points live on the player, so their changes never reach this frame's own unit.
+func _on_object_updated(unit: int) -> void:
+	super(unit)
+	if unit == WowClient.session.get_player_guid() and guid != 0:
+		_update_combo_points()
+
+
+# ComboPointsFrame_OnEvent: GetComboPoints counts only on the unit they were built on.
+func _update_combo_points() -> void:
+	var session: WowSession = WowClient.session
+	var player: int = session.get_player_guid()
+	var points: int = 0
+	if session.get_field_guid(player, "PLAYER_FIELD_COMBO_TARGET") == guid:
+		points = (session.get_field(player, "PLAYER_FIELD_BYTES") >> 8) & 0xFF
+	if points > 0 and not _combo_frame.visible:
+		_combo_frame.modulate.a = 0.0
+		create_tween().tween_property(_combo_frame, "modulate:a", 1.0, COMBO_FADE_IN)
+	_combo_frame.visible = points > 0
+	for i: int in MAX_COMBO_POINTS:
+		if i >= points:
+			_combo_highlights[i].modulate.a = 0.0
+			_combo_shines[i].modulate.a = 0.0
+		elif i >= _combo_points:
+			var tween: Tween = create_tween()
+			tween.tween_property(_combo_highlights[i], "modulate:a", 1.0, COMBO_HIGHLIGHT_FADE_IN)
+			tween.tween_property(_combo_shines[i], "modulate:a", 1.0, COMBO_SHINE_FADE_IN)
+			tween.tween_property(_combo_shines[i], "modulate:a", 0.0, COMBO_SHINE_FADE_OUT)
+	_combo_points = points
 
 
 # TargetofTarget_Update: shown only while the target has a target of its own in sight.
