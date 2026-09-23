@@ -7,9 +7,6 @@ signal player_ready
 const TAB_RANGE: float = 40.0
 const UNIT_FLAG_NON_ATTACKABLE: int = 0x2
 const UNIT_FLAG_NOT_SELECTABLE: int = 0x2000000
-const NPC_FLAG_VENDOR: int = 0x4
-const NPC_FLAG_FLIGHTMASTER: int = 0x8
-const NPC_FLAG_TRAINER: int = 0x10
 # Beyond this the stock cursor greys out, as the thing is too far to use.
 const INTERACT_DISTANCE: float = 5.0
 const WALKING_FLAGS: int = Player.MoveFlag.FORWARD | Player.MoveFlag.BACKWARD \
@@ -29,8 +26,6 @@ const GAMEOBJECT_TYPE_MEETING_STONE: int = 23
 const GAMEOBJECT_TYPE_GUILD_BANK: int = 34
 # Which data field of a readable game object's template holds its first page, by type.
 const GAMEOBJECT_PAGE_FIELDS: Dictionary[int, int] = {9: 0, 10: 7}
-const NPC_FLAG_AUCTIONEER: int = 0x1000
-const NPC_FLAG_STABLEMASTER: int = 0x2000
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
 const SPEED_CHANGES: Dictionary[String, Player.SpeedKind] = {
 	"SMSG_FORCE_WALK_SPEED_CHANGE": Player.SpeedKind.WALK,
@@ -754,11 +749,11 @@ func _update_cursor(guid: int) -> void:
 		session, session.get_player_guid(), guid
 	) == UnitReaction.Reaction.HOSTILE:
 		kind = WowCursor.Kind.ATTACK
-	elif flags & NPC_FLAG_VENDOR:
+	elif NpcDialog.offers(guid, NpcDialog.Service.VENDOR):
 		kind = WowCursor.Kind.BUY
-	elif flags & NPC_FLAG_FLIGHTMASTER:
+	elif NpcDialog.offers(guid, NpcDialog.Service.FLIGHTMASTER):
 		kind = WowCursor.Kind.TAXI
-	elif flags & NPC_FLAG_TRAINER:
+	elif NpcDialog.offers(guid, NpcDialog.Service.TRAINER):
 		kind = WowCursor.Kind.TRAINER
 	elif flags != 0:
 		kind = WowCursor.Kind.SPEAK
@@ -788,10 +783,10 @@ func _on_player_interacted(screen_position: Vector2) -> void:
 	if session.get_object_type(guid) == Entities.ObjectType.GAMEOBJECT:
 		_use_game_object(guid)
 		return
-	if session.get_field(guid, "UNIT_NPC_FLAGS") & NPC_FLAG_AUCTIONEER:
+	if NpcDialog.offers(guid, NpcDialog.Service.AUCTIONEER):
 		_hud.open_auction_house(guid)
 		return
-	if session.get_field(guid, "UNIT_NPC_FLAGS") & NPC_FLAG_STABLEMASTER:
+	if NpcDialog.offers(guid, NpcDialog.Service.STABLEMASTER):
 		_hud.open_stable(guid)
 		return
 	if NpcDialog.interact(guid):

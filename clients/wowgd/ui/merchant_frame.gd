@@ -11,7 +11,6 @@ enum Tab { MERCHANT = 1, BUYBACK }
 const MERCHANT_ITEMS_PER_PAGE: int = 10
 const BUYBACK_ITEMS_PER_PAGE: int = 12
 const UNLIMITED: int = -1
-const NPC_FLAG_REPAIR: int = 0x4000
 # Buyback slots come after the equipment, bag, backpack and bank slots.
 const BUYBACK_SLOT_START: int = 69
 # SMSG_BUY_FAILED and SMSG_SELL_ITEM reasons, as the error line words them.
@@ -137,7 +136,7 @@ func _update_merchant() -> void:
 	%MerchantPageText.text = WowStrings.get_text("PAGE_NUMBER") % (_page + 1)
 	(%MerchantPrevPageButton as BaseButton).disabled = _page == 0
 	(%MerchantNextPageButton as BaseButton).disabled = _page == pages - 1
-	var repairs: bool = session.get_field(_guid, "UNIT_NPC_FLAGS") & NPC_FLAG_REPAIR != 0
+	var repairs: bool = NpcDialog.offers(_guid, NpcDialog.Service.REPAIR)
 	%MerchantRepairText.visible = repairs
 	%MerchantRepairAllButton.visible = repairs
 	var buyback: Array[int] = _buyback_items()

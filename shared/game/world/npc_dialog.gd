@@ -3,8 +3,18 @@ extends RefCounted
 
 # SMSG_QUESTGIVER_STATUS values.
 enum Status { NONE, UNAVAILABLE, CHAT, INCOMPLETE, REWARD_REP, AVAILABLE, REWARD_OLD, REWARD2 }
+enum Service { VENDOR, FLIGHTMASTER, TRAINER, AUCTIONEER, STABLEMASTER, REPAIR }
 
 const NPC_FLAG_QUESTGIVER: int = 0x02
+# The UNIT_NPC_FLAGS bit for each service, 1.12 then 3.3.5, which renumbered most of them.
+const SERVICE_FLAGS: Dictionary[Service, Vector2i] = {
+	Service.VENDOR: Vector2i(0x4, 0x80),
+	Service.FLIGHTMASTER: Vector2i(0x8, 0x2000),
+	Service.TRAINER: Vector2i(0x10, 0x10),
+	Service.AUCTIONEER: Vector2i(0x1000, 0x200000),
+	Service.STABLEMASTER: Vector2i(0x2000, 0x400000),
+	Service.REPAIR: Vector2i(0x4000, 0x1000),
+}
 # The talk-to-me models that float over quest givers.
 const MARKERS: Dictionary[Status, String] = {
 	Status.UNAVAILABLE: "Interface\\Buttons\\TalkToMeGrey.m2",
@@ -50,6 +60,12 @@ static func query_quest(guid: int, quest_id: int) -> void:
 	payload.encode_u32(8, quest_id)
 	payload.encode_u8(12, 1)
 	WowClient.session.send_packet("CMSG_QUESTGIVER_QUERY_QUEST", payload)
+
+
+static func offers(guid: int, service: Service) -> bool:
+	var bits: Vector2i = SERVICE_FLAGS[service]
+	return WowClient.session.get_field(guid, "UNIT_NPC_FLAGS") \
+			& (bits.y if PacketReader.wotlk else bits.x) != 0
 
 
 static func is_quest_giver(guid: int) -> bool:
