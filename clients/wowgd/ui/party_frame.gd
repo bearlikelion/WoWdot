@@ -40,6 +40,7 @@ const RESULTS: Dictionary[int, String] = {
 # The other members, each a name, guid, online flag, subgroup and assistant flag.
 static var members: Array[Dictionary] = []
 static var leader: int = 0
+static var master_looter: int = 0
 ## Set once the party has been made a raid, which is what allows subgroups and target icons.
 static var is_raid: bool = false
 ## The player's own subgroup, counted from zero as the wire does.
@@ -63,6 +64,7 @@ func _ready() -> void:
 	session.objects_destroyed.connect(_on_objects_changed.unbind(1))
 	members.clear()
 	leader = 0
+	master_looter = 0
 	is_raid = false
 	target_icons.clear()
 	_refresh()
@@ -262,6 +264,10 @@ func _on_list_received(payload: PackedByteArray) -> void:
 		})
 		offset += 10
 	leader = payload.decode_u64(offset) if offset + 8 <= payload.size() else 0
+	# The loot method and master looter follow the leader.
+	master_looter = 0
+	if offset + 17 <= payload.size() and payload.decode_u8(offset + 8) == LootMethod.MASTER_LOOT:
+		master_looter = payload.decode_u64(offset + 9)
 	if members.is_empty():
 		is_raid = false
 		target_icons.clear()

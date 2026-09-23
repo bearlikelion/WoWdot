@@ -105,6 +105,10 @@ static func is_group_leader(unit: int) -> bool:
 	return PartyFrame.in_party() and PartyFrame.leader == unit
 
 
+static func is_master_looter(unit: int) -> bool:
+	return PartyFrame.in_party() and unit != 0 and PartyFrame.master_looter == unit
+
+
 func show_unit(unit: int) -> void:
 	guid = unit
 	_display = 0

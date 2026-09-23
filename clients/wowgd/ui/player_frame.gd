@@ -18,6 +18,7 @@ var _feedback: CombatFeedback
 @onready var _attack_background: TextureRect = %PlayerAttackBackground
 @onready var _leader_icon: TextureRect = %PlayerLeaderIcon
 @onready var _pvp_icon: TextureRect = %PlayerPVPIcon
+@onready var _master_icon: TextureRect = %PlayerMasterIcon
 
 
 func _ready() -> void:
@@ -33,8 +34,7 @@ func _ready() -> void:
 	_portrait_rect = %PlayerPortrait
 	# Pets, groups and the play-time warning have their own phases; the frame starts without them.
 	for part: CanvasItem in [
-		%PetFrame, %PlayerFrameGroupIndicator, %PlayerMasterIcon, %PlayerFrameDropDown,
-		%PlayerPlayTime,
+		%PetFrame, %PlayerFrameGroupIndicator, %PlayerFrameDropDown, %PlayerPlayTime,
 	]:
 		part.hide()
 	super()
@@ -55,6 +55,7 @@ func _update_unit() -> void:
 	_status.visible = in_combat or resting
 	_status.self_modulate = COMBAT_TINT if in_combat else RESTING_TINT
 	_leader_icon.visible = UnitFrame.is_group_leader(guid)
+	_master_icon.visible = UnitFrame.is_master_looter(guid)
 	_pvp_icon.texture = UnitFrame.pvp_texture(guid)
 	_pvp_icon.visible = _pvp_icon.texture != null
 

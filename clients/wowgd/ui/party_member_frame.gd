@@ -15,6 +15,8 @@ var _debuffs: Array[Control] = []
 @onready var _member_label: Label = $Frame/Frame/Name
 @onready var _leader_icon: TextureRect = %LeaderIcon
 @onready var _disconnect_icon: TextureRect = %Disconnect
+@onready var _pvp_icon: TextureRect = %PVPIcon
+@onready var _master_icon: TextureRect = %MasterIcon
 
 
 func _ready() -> void:
@@ -25,8 +27,8 @@ func _ready() -> void:
 	_health_bar = $HealthBar
 	_power_bar = %ManaBar
 	_portrait_rect = $Portrait
-	# ponytail: no party pets or status icons yet.
-	for unused: String in ["%DropDown", "%PetFrame", "%Status", "%PVPIcon", "%MasterIcon"]:
+	# ponytail: no party pets yet.
+	for unused: String in ["%DropDown", "%PetFrame", "%Status"]:
 		(get_node(unused) as Control).hide()
 	for i: int in DEBUFFS:
 		_debuffs.append(get_node("Debuff%d" % (i + 1)))
@@ -75,4 +77,7 @@ func _update_debuffs() -> void:
 
 func _update_status() -> void:
 	_disconnect_icon.visible = not online
+	_master_icon.visible = UnitFrame.is_master_looter(guid)
+	_pvp_icon.texture = UnitFrame.pvp_texture(guid)
+	_pvp_icon.visible = _pvp_icon.texture != null
 	modulate = Color.WHITE if online else OFFLINE_TINT
