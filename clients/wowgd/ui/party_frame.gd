@@ -23,6 +23,17 @@ const STAT_FIELDS: PackedStringArray = [
 	"status", "health", "max_health", "power_type", "power", "max_power",
 ]
 const BYTE_STATS: PackedStringArray = ["status", "power_type"]
+# GROUP_UPDATE_FLAG bits past the member's own bars, which the pet's fields follow.
+const LEVEL_FLAG: int = 0x40
+const ZONE_FLAG: int = 0x80
+const POSITION_FLAG: int = 0x100
+const AURAS_FLAG: int = 0x200
+const NEGATIVE_AURAS_FLAG: int = 0x400
+const PET_GUID_FLAG: int = 0x800
+const PET_NAME_FLAG: int = 0x1000
+const PET_MODEL_FLAG: int = 0x2000
+const PET_HEALTH_FLAG: int = 0x4000
+const PET_MAX_HEALTH_FLAG: int = 0x8000
 const MAX_RAID_MEMBERS: int = 40
 # A member's subgroup sits in the low bits of its flag byte, with assistant in the top one.
 const SUBGROUP_MASK: int = 0x0F
@@ -225,7 +236,35 @@ func _on_member_stats(reader: PacketReader) -> void:
 	for i: int in STAT_FIELDS.size():
 		if mask & (1 << i):
 			stats[STAT_FIELDS[i]] = reader.u8() if STAT_FIELDS[i] in BYTE_STATS else reader.u16()
+	for skipped: int in [LEVEL_FLAG, ZONE_FLAG]:
+		if mask & skipped:
+			reader.u16()
+	if mask & POSITION_FLAG:
+		reader.skip(4)
+	# Each aura mask is followed by a spell id for every bit it has set.
+	if mask & AURAS_FLAG:
+		reader.skip(2 * _bit_count(reader.u32()))
+	if mask & NEGATIVE_AURAS_FLAG:
+		reader.skip(2 * _bit_count(reader.u16()))
+	if mask & PET_GUID_FLAG:
+		stats["pet_guid"] = reader.u64()
+	if mask & PET_NAME_FLAG:
+		stats["pet_name"] = reader.cstring()
+	if mask & PET_MODEL_FLAG:
+		reader.u16()
+	if mask & PET_HEALTH_FLAG:
+		stats["pet_health"] = reader.u16()
+	if mask & PET_MAX_HEALTH_FLAG:
+		stats["pet_max_health"] = reader.u16()
 	_refresh()
+
+
+func _bit_count(bits: int) -> int:
+	var count: int = 0
+	while bits:
+		count += bits & 1
+		bits >>= 1
+	return count
 
 
 func _on_ready_check(payload: PackedByteArray) -> void:
