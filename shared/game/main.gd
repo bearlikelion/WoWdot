@@ -3,7 +3,7 @@ extends Node
 
 signal world_ready(world: World)
 
-const WORLD: PackedScene = preload("res://game/world/world.tscn")
+const WORLD_PATH: String = "res://game/world/world.tscn"
 
 ## From `--realm`, `--account`, `--password` and `--character`; no character enters the first.
 @export var auto_realmlist: String = ""
@@ -13,6 +13,7 @@ const WORLD: PackedScene = preload("res://game/world/world.tscn")
 
 var world: World
 
+var _world_scene: PackedScene
 var _map_id: int = 0
 var _intro: bool = false
 var _bench: bool = false
@@ -24,7 +25,14 @@ var _bench_camera: Vector2 = Vector2.ZERO
 @onready var _glue: Glue = %Glue
 
 
+func _enter_tree() -> void:
+	print("TIMING %d main enter_tree" % Time.get_ticks_msec())
+
+
 func _ready() -> void:
+	print("TIMING %d main _ready" % Time.get_ticks_msec())
+	# The world scene is most of startup, so it loads while the player logs in.
+	ResourceLoader.load_threaded_request(WORLD_PATH)
 	WowAssets.video.apply()
 	WowCursor.show(WowCursor.Kind.POINT)
 	_read_command_line()
@@ -37,6 +45,7 @@ func _ready() -> void:
 		_glue.auto_login(auto_realmlist, auto_account, auto_password, auto_character)
 	if _bench:
 		_bench_mark("main ready")
+		_frames()
 		if _bench_size != Vector2i.ZERO:
 			_bench_window()
 		WowClient.session.characters_received.connect(_on_bench_characters)
@@ -124,7 +133,9 @@ func _on_world_entered(map_id: int, position: Vector3, orientation: float) -> vo
 	if _bench:
 		_bench_mark("world entered map %d" % map_id)
 	if world == null:
-		world = WORLD.instantiate()
+		if _world_scene == null:
+			_world_scene = ResourceLoader.load_threaded_get(WORLD_PATH)
+		world = _world_scene.instantiate()
 		add_child(world)
 	world.enter(map_id, position, orientation)
 
@@ -181,3 +192,15 @@ func _bench_settle() -> void:
 	while world == null or _glue.visible or not world.player().active \
 	or not world.get_node("WowMap").is_idle():
 		await get_tree().process_frame
+
+
+func _frames() -> void:
+	var vp: RID = get_viewport().get_viewport_rid()
+	RenderingServer.viewport_set_measure_render_time(vp, true)
+	for f: int in 8:
+		await get_tree().process_frame
+		print("TIMING %d frame %d process %.1f render_cpu %.1f gpu %.1f textures %d" % [Time.get_ticks_msec(), f,
+			Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0,
+			RenderingServer.viewport_get_measured_render_time_cpu(vp),
+			RenderingServer.viewport_get_measured_render_time_gpu(vp),
+			Performance.get_monitor(Performance.RENDER_TEXTURE_MEM_USED) / 1048576.0])

@@ -5,6 +5,7 @@ extends Control
 signal close_requested
 signal name_requested(tab: Tab)
 signal message_added(text: String)
+signal guild_motd_received(text: String)
 signal guild_invited(inviter: String, guild_name: String)
 signal pullout_requested(group: int)
 
@@ -361,7 +362,9 @@ func _on_guild_event(reader: PacketReader) -> void:
 		params.append(reader.cstring())
 	if event == GuildEvent.LEADER_CHANGED and params.size() > 1:
 		params = params.slice(1)
-	if GUILD_MESSAGES.has(event):
+	if event == GuildEvent.MOTD:
+		guild_motd_received.emit(_fill(WowStrings.get_text(GUILD_MESSAGES[event], ""), params))
+	elif GUILD_MESSAGES.has(event):
 		message_added.emit(_fill(WowStrings.get_text(GUILD_MESSAGES[event], ""), params))
 	if _tab == Tab.GUILD:
 		request_roster()

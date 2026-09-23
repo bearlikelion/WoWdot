@@ -1,7 +1,10 @@
 extends Node
 
+var _t0: int = _tp("client init start")
 var session: WowSession = WowSession.new()
+var _t1: int = _tp("before spells")
 var cooldowns: Cooldowns = Cooldowns.new(session, WowAssets.spells)
+var _t2: int = _tp("after spells")
 var clock: GameClock = GameClock.new(session)
 var weather: WeatherState = WeatherState.new(session)
 var combat: CombatEvents = CombatEvents.new(session)
@@ -28,14 +31,24 @@ var quest_pois: QuestPOIs = QuestPOIs.new(session)
 var home_area: int = 0
 
 
+static func _tp(what: String) -> int:
+	print("TIMING %d %s" % [Time.get_ticks_msec(), what])
+	return 0
+
+
 func _ready() -> void:
+	_tp("client ready")
 	KeyBindings.apply()
 	account_data.received.connect(_on_account_data_received)
 	session.packet_received.connect(_on_packet_received)
 
 
 func _process(_delta: float) -> void:
+	var t: int = Time.get_ticks_usec()
 	session.poll()
+	var d: int = Time.get_ticks_usec() - t
+	if d > 5000:
+		print("TIMING %d poll took %.1f ms state %d" % [Time.get_ticks_msec(), d / 1000.0, session.get_state()])
 
 
 # The name players see, such as Warsong Gulch, where map_name gives the folder the map loads from.

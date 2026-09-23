@@ -178,6 +178,7 @@ func _ready() -> void:
 	_trade.message_added.connect(add_system_line)
 	_trade.trade_offered.connect(_on_trade_offered)
 	_friends.message_added.connect(add_system_line)
+	_friends.guild_motd_received.connect(_add_guild_motd)
 	_friends.name_requested.connect(_on_friend_name_requested)
 	_friends.guild_invited.connect(_on_guild_invited)
 	_friends.pullout_requested.connect(_on_pullout_requested)
@@ -932,6 +933,11 @@ func _load_chat_windows(guid: int) -> void:
 
 func _add_loot_line(text: String) -> void:
 	_chat_windows.add_line(text, LOOT_COLOR, "LOOT")
+
+
+# ChatFrame_OnEvent shows GUILD_MOTD in the guild colour, to frames showing guild chat.
+func _add_guild_motd(text: String) -> void:
+	_chat_windows.add_line(text, ChatFrame.COLORS[WowSession.CHAT_GUILD], "GUILD")
 
 
 # FCF_OpenNewWindow's frame: docked where the Combat Log is, under the first free number.

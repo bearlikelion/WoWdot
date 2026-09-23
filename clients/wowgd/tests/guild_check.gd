@@ -34,6 +34,7 @@ func _run() -> void:
 	var hud: Hud = _main.world.hud()
 	var friends: FriendsFrame = hud.find_child("FriendsFrame", true, false)
 	friends.message_added.connect(func(text: String) -> void: _lines.append(text))
+	friends.guild_motd_received.connect(func(text: String) -> void: _lines.append(text))
 	session.send_chat(WowSession.CHAT_SAY, '.guild create %s "%s"' % [player_name, GUILD_NAME])
 	await _frames(60)
 	hud.find_child("MainMenuBar", true, false).panel_toggled.emit(
