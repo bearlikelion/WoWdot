@@ -181,6 +181,25 @@ func _ready() -> void:
 		func() -> void: %BarberShopBannerFrame.visible = %BarberShopFrame.visible
 	)
 	WowClient.barbershop.refused.connect(_on_barber_shop_refused)
+	var battlefield: BattlefieldManager = WowClient.battlefield
+	battlefield.invited_to_queue.connect(func(warmup: bool) -> void:
+		_popup.ask(
+			WowStrings.get_text("WORLD_PVP_INVITED_WARMUP" if warmup else "WORLD_PVP_INVITED"),
+			battlefield.answer_queue_invite.bind(true), "ACCEPT", "DECLINE",
+			battlefield.answer_queue_invite.bind(false),
+		))
+	battlefield.invited_to_enter.connect(_on_battlefield_entry_invited)
+	battlefield.queued.connect(func(accepted: bool, has_room: bool, warmup: bool) -> void:
+		var key: String = "WORLD_PVP_FAIL"
+		if accepted:
+			key = "WORLD_PVP_QUEUED_WARMUP" if warmup and has_room else "WORLD_PVP_QUEUED"
+		add_system_line(WowStrings.get_text(key)))
+	battlefield.eject_pending.connect(
+		func() -> void: add_system_line(WowStrings.get_text("WORLD_PVP_PENDING"))
+	)
+	battlefield.ejected.connect(
+		func() -> void: add_system_line(WowStrings.get_text("WORLD_PVP_EXITED_BATTLE"))
+	)
 	_guild_bank.money_requested.connect(_on_guild_bank_money_requested)
 	_guild_bank.item_hovered.connect(func(button: ItemButton, item_entry: int) -> void:
 		if GameTooltip.current:
@@ -695,6 +714,18 @@ func _on_pet_changed() -> void:
 		return
 	_named_pet = pet.guid
 	_popup.ask_name(WowStrings.get_text("PET_RENAME_LABEL", "Name your pet"), pet.rename)
+
+
+# BFMGR_INVITED_TO_ENTER: the time left reads as SecondsToTimeAbbrev gives it.
+func _on_battlefield_entry_invited(seconds_left: int) -> void:
+	var minutes: bool = seconds_left >= 60
+	var text: String = WowStrings.get_text("WORLD_PVP_ENTER") % [
+		ceili(seconds_left / 60.0) if minutes else seconds_left, "m" if minutes else "s",
+	]
+	_popup.ask(
+		text, WowClient.battlefield.answer_entry_invite.bind(true), "ACCEPT", "CANCEL",
+		WowClient.battlefield.answer_entry_invite.bind(false),
+	)
 
 
 func _on_barber_shop_refused(result: Barbershop.Result) -> void:

@@ -1,6 +1,9 @@
 class_name WorldCheck
 extends Node
 
+const NORTHREND: int = 571
+# Enough levels to lift a new character past Wintergrasp's minimum of 75.
+const WINTERGRASP_LEVELS: int = 79
 const STEP_TIMEOUT_MSEC: int = 60000
 const REALMLIST: String = "127.0.0.1"
 const AUTH_PORT: int = 3725
@@ -107,14 +110,39 @@ func _run() -> void:
 				"the server took movement after the teleport was acknowledged")
 		var gear_set: Dictionary = _gear_sets.find(GEAR_SET)
 		if _check(not gear_set.is_empty(), "the equipment set list names the saved set"):
-			_check(gear_set["icon"] == GEAR_ICON and gear_set["items"].size() == EquipmentSets.SLOTS,
+			var slots: int = gear_set["items"].size()
+			_check(gear_set["icon"] == GEAR_ICON and slots == EquipmentSets.SLOTS,
 					"the listed set carries its icon and every slot")
 			_gear_sets.delete(gear_set)
 	_check(_time_syncs > 0, "the server asked for a time sync while in the world")
 	await _flight(guid)
+	await _wintergrasp()
 	if await _log_out():
 		await _remove_character(guid)
 	_finish()
+
+
+# A GM-started Wintergrasp battle invites a high enough character in the zone, who joins it.
+func _wintergrasp() -> void:
+	var battlefield: BattlefieldManager = BattlefieldManager.new(_session)
+	var invited: Array[int] = []
+	battlefield.invited_to_enter.connect(
+		func(seconds_left: int) -> void: invited.append(seconds_left)
+	)
+	var joined: Array[bool] = []
+	battlefield.entered.connect(func() -> void: joined.append(true))
+	_session.send_chat(WowSession.CHAT_SAY, ".levelup %d" % WINTERGRASP_LEVELS)
+	var maps_before: int = _map
+	_session.send_chat(WowSession.CHAT_SAY, ".tele Wintergrasp")
+	if not await _until(func() -> bool: return _map == NORTHREND and _map != maps_before,
+			"the character is sent to Wintergrasp"):
+		return
+	_session.send_chat(WowSession.CHAT_SAY, ".bf start %d" % BattlefieldManager.WINTERGRASP)
+	if await _until(func() -> bool: return not invited.is_empty(),
+			"the battle invites the character in the zone"):
+		battlefield.answer_entry_invite(true)
+		await _until(func() -> bool: return not joined.is_empty(), "accepting enters the battle")
+	_session.send_chat(WowSession.CHAT_SAY, ".bf stop %d" % BattlefieldManager.WINTERGRASP)
 
 
 # 3.3.5 sends a unit's auras as their own packets, so the buff bars read them off the session.

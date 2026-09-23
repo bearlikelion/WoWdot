@@ -18,6 +18,7 @@ var arena_teams: ArenaTeams = ArenaTeams.new(session)
 var guild_bank: GuildBank = GuildBank.new(session)
 var barbershop: Barbershop = Barbershop.new(session)
 var calendar: Calendar = Calendar.new(session)
+var battlefield: BattlefieldManager = BattlefieldManager.new(session)
 
 
 func _ready() -> void:
