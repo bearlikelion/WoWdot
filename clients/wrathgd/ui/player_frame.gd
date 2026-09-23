@@ -7,6 +7,7 @@ const UNIT_FLAG_IN_COMBAT: int = 0x80000
 # PlayerFrame_UpdateStatus tints the status texture yellow while resting and red in combat.
 const RESTING_TINT: Color = Color(1.0, 0.88, 0.25)
 const COMBAT_TINT: Color = Color(1.0, 0.0, 0.0)
+const DRUID: int = 11
 
 var _feedback: CombatFeedback
 
@@ -52,6 +53,22 @@ func _update_unit() -> void:
 	_rest_glow.visible = resting
 	_status.visible = in_combat or resting
 	_status.self_modulate = COMBAT_TINT if in_combat else RESTING_TINT
+	_update_alternate_mana(session)
+
+
+# AlternatePowerBar: a druid in a form that runs on rage or energy still sees their mana.
+func _update_alternate_mana(session: WowSession) -> void:
+	var bytes_0: int = session.get_field(guid, "UNIT_FIELD_BYTES_0")
+	var shifted: bool = (bytes_0 >> 8) & 0xFF == DRUID \
+			and (bytes_0 >> 24) & 0xFF != PowerType.MANA
+	var bar: TextureProgressBar = %PlayerFrameAlternateManaBar
+	bar.visible = shifted
+	if shifted:
+		var mana: int = session.get_field(guid, "UNIT_FIELD_POWER1")
+		var max_mana: int = session.get_field(guid, "UNIT_FIELD_MAXPOWER1")
+		bar.max_value = maxi(max_mana, 1)
+		bar.value = mana
+		(%PlayerFrameAlternateManaBarText as Label).text = "%d / %d" % [mana, max_mana]
 
 
 # PlayerFrame_OnEvent passes UNIT_COMBAT for the player to CombatFeedback.

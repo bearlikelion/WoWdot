@@ -5,6 +5,8 @@ extends DockedChatFrame
 # Template parts in order; a side that is "you" is written into the template and dropped.
 enum Slot { SOURCE, TARGET, SPELL, AMOUNT, SCHOOL, POWER }
 
+# Blizzard_CombatLog.lua hangs the filter bar across the log's top and shortens the log under it.
+const QUICK_BAR_HEIGHT: float = 24.0
 const COMBAT_COLOR: Color = Color(1.0, 1.0, 1.0)
 const XP_COLOR: Color = Color(0.435, 0.435, 1.0)
 const POWER_NAMES: Array[String] = ["MANA", "RAGE", "FOCUS", "ENERGY", "HAPPINESS"]
@@ -32,6 +34,17 @@ func _ready() -> void:
 		return
 	%ChatFrame2TabText.text = WowStrings.get_text("COMBAT_LOG")
 	WowClient.combat.logged.connect(_on_logged)
+	var bar: Control = %CombatLogQuickButtonFrame_Custom
+	for side: Side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:
+		bar.set_anchor(side, 0.0)
+	bar.position = Vector2.ZERO
+	bar.size = Vector2(size.x, QUICK_BAR_HEIGHT)
+	(_lines.get_parent() as Control).offset_top += QUICK_BAR_HEIGHT
+
+
+func set_selected(value: bool) -> void:
+	super(value)
+	%CombatLogQuickButtonFrame_Custom.visible = value
 
 
 # The line the stock client's combat log prints for an event, or "" when it prints none.

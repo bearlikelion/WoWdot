@@ -155,6 +155,9 @@ static func notice(payload: PackedByteArray) -> String:
 		args.append_array([session.get_object_name(affected), session.get_object_name(reader.u64())])
 	var key: String = "CHAT_%s_NOTICE" % Notice.keys()[type]
 	var text: String = WowStrings.get_text(key, "")
+	# 3.3.5 links the channel by number first: "Joined Channel: |Hchannel:%d|h[%s]|h".
+	if text.contains("|Hchannel:%d"):
+		args.push_front(number)
 	return WowStrings.format(text, args) if text != key else ""
 
 

@@ -190,7 +190,6 @@ func _on_vehicle_changed() -> void:
 			session.get_object_orientation(driving),
 		)
 	_player.controllable = true
-	print("DEBUG vehicle changed ", driving, " model ", _player.model())
 	if _player.model():
 		_player.model().visible = driving == 0
 

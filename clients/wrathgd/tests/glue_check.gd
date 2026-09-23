@@ -104,6 +104,8 @@ func _run() -> void:
 	])
 	_check(WowClient.session.get_state() == WowSession.STATE_IN_WORLD,
 			"the session reports being in the world")
+	# A run cut short can leave the character dead, which every later step would trip over.
+	WowClient.session.send_chat(WowSession.CHAT_SAY, ".revive")
 	await _frames(60)
 	_capture("user://wotlk_world.png")
 	await _use_item()

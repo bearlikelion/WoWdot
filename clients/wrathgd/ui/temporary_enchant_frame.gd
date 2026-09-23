@@ -24,6 +24,7 @@ func _ready() -> void:
 		button.mouse_exited.connect(func() -> void: weapon_left.emit(button))
 	WowClient.session.packet_received.connect(_on_packet_received)
 	WowClient.session.object_updated.connect(_on_object_updated)
+	WowClient.session.item_info_received.connect(func(_entry: int) -> void: refresh())
 	refresh()
 
 

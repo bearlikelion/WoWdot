@@ -13,8 +13,13 @@ const TAB_PADDING: float = 5.0
 const UNUSED: Array[String] = [
 	"ResizeTopLeft", "ResizeTopRight", "ResizeBottomLeft", "ResizeBottomRight", "ResizeTop",
 	"ResizeBottom", "ResizeLeft", "ResizeRight", "TabDropDown", "TabFlash",
+	"ButtonFrameMinimizeButton",
 ]
 const SCROLL_BUTTONS: Array[String] = ["UpButton", "DownButton", "BottomButton"]
+# FCF_SetButtonSide("left") keeps the buttons this far outside the frame's left edge.
+const BUTTON_GAP: float = 4.0
+# FCF_UpdateButtonSide anchors the tab's bottom left this far into the background's top left.
+const TAB_INSET: float = 2.0
 
 const WINDOW_ART: PackedStringArray = [
 	"Background", "TopLeftTexture", "TopRightTexture", "BottomLeftTexture", "BottomRightTexture",
@@ -45,6 +50,7 @@ func _ready() -> void:
 		var art: CanvasItem = get_node_or_null("%" + name + part)
 		if art:
 			art.self_modulate = WINDOW_TINT
+	_place_outside()
 	_tab.modulate.a = 0.0
 	_tab.hide()
 	_tab.pressed.connect(tab_selected.emit)
@@ -53,6 +59,19 @@ func _ready() -> void:
 	(get_node("%" + name + "ButtonFrameBottomButton") as BaseButton).pressed.connect(
 		scroll_to_bottom
 	)
+
+
+# FloatingChatFrame.lua anchors the button column and the tab from Lua, outside the frame.
+func _place_outside() -> void:
+	var buttons: Control = get_node("%" + name + "ButtonFrame")
+	var width: float = buttons.size.x
+	buttons.anchor_left = 0.0
+	buttons.anchor_right = 0.0
+	buttons.offset_left = -BUTTON_GAP - width
+	buttons.offset_right = -BUTTON_GAP
+	for side: Side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:
+		_tab.set_anchor(side, 0.0)
+	_tab.position = Vector2(TAB_INSET, -_tab.size.y)
 
 
 # MouseIsOver(chatFrame, 45, -10, -5, 5): the area reaches up over the tabs.

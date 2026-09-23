@@ -109,6 +109,11 @@ func _ready() -> void:
 	WowClient.macros.line_requested.connect(_on_text_submitted)
 	%ChatFrame1TabText.text = WowStrings.get_text("GENERAL")
 	%ChatFrame1EditBoxLanguage.hide()
+	# ChatFrameMenuButton sits on top of the up button, wherever FCF_SetButtonSide put the column.
+	var up: Control = %ChatFrame1ButtonFrameUpButton
+	var menu: Control = %ChatFrameMenuButton
+	var top: Vector2 = (%ChatFrame1ButtonFrame as Control).position + up.position
+	menu.position = top + Vector2((up.size.x - menu.size.x) / 2.0, -menu.size.y)
 	_edit_box.theme_type_variation = &"ChatEditBox"
 	# SetTextInsets moves with the header's width, so this one style is the edit box's own.
 	for state: StringName in [&"normal", &"focus", &"read_only"]:

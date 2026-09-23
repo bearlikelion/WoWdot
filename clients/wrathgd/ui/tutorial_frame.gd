@@ -2,11 +2,12 @@ class_name TutorialFrame
 extends Control
 
 const ALERT: PackedScene = preload("res://ui/tutorial_alert_button.tscn")
-const MAX_ALERTS: int = 10
+# 3.3.5 shows one alert button, not the row 1.12 queues up.
+const MAX_ALERTS: int = 1
 const ALERT_SPACING: float = 36.0
 # TutorialFrameParent sits this far above the bottom of the screen.
 const ALERT_BOTTOM: float = 55.0
-const ALERT_SIZE: Vector2 = Vector2(34.0, 42.0)
+const ALERT_SIZE: Vector2 = Vector2(116.0, 71.0)
 # TutorialFrame_Update: the text's height plus the title, button and border.
 const FRAME_PADDING: float = 62.0
 const PULSE_SECONDS: float = 10.0
