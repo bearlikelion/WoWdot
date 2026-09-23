@@ -1,15 +1,23 @@
 class_name SpellInfo
 extends RefCounted
 
+enum RangeCheck { NO_RANGE, IN_RANGE, OUT_OF_RANGE }
+
 const QUESTION_MARK_ICON: String = "Interface\\Icons\\INV_Misc_QuestionMark"
 const GENERAL_TAB_ICON: String = "Interface\\Icons\\INV_Misc_Book_09"
 const EFFECT_TRADE_SKILL: int = 47
 const SKILL_CATEGORY_CLASS: int = 7
 const SPELL_ATTR_DO_NOT_DISPLAY: int = 0x80
+const RANGE_SELF: int = 1
+const RANGE_FLAG_MELEE: int = 0x1
+# Melee reach is both units' combat reach plus this, and never under MELEE_RANGE.
+const MELEE_LEEWAY: float = 4.0 / 3.0
+const MELEE_RANGE: float = 5.0
 
 var _spells: WowDBC
 var _icons: WowDBC
 var _cast_times: WowDBC
+var _ranges: WowDBC
 var _icon_textures: Dictionary[String, WowTexture] = {}
 var _skill_lines: WowDBC
 # Each spell's class skill line, such as Arms, from SkillLineAbility.
@@ -22,6 +30,7 @@ func _init(archive: WowArchive) -> void:
 	_spells = WowDBC.open(archive, "Spell")
 	_icons = WowDBC.open(archive, "SpellIcon")
 	_cast_times = WowDBC.open(archive, "SpellCastTimes")
+	_ranges = WowDBC.open(archive, "SpellRange")
 
 
 func spell_name(spell_id: int) -> String:
@@ -58,6 +67,29 @@ func icon_texture(path: String) -> WowTexture:
 		texture.file = path + ".blp"
 		_icon_textures[path] = texture
 	return _icon_textures[path]
+
+
+# IsActionInRange, measured between the units' edges like the server's range check.
+func range_check(spell_id: int, caster: int, target: int) -> RangeCheck:
+	var session: WowSession = WowClient.session
+	var row: int = _spells.find(spell_id)
+	var range_row: int = _ranges.find(_spells.get_uint(row, "RangeIndex")) if row >= 0 else -1
+	if target == 0 or not session.has_object(target) or range_row < 0 \
+	or _ranges.get_uint(range_row, "ID") == RANGE_SELF:
+		return RangeCheck.NO_RANGE
+	var distance: float = session.get_object_position(caster).distance_to(
+		session.get_object_position(target)
+	)
+	var reach: float = session.get_field_float(caster, "UNIT_FIELD_COMBATREACH") \
+			+ session.get_field_float(target, "UNIT_FIELD_COMBATREACH")
+	var in_range: bool = false
+	if _ranges.get_uint(range_row, "Flags") & RANGE_FLAG_MELEE:
+		in_range = distance <= maxf(reach + MELEE_LEEWAY, MELEE_RANGE)
+	else:
+		distance -= reach
+		in_range = distance >= _ranges.get_float(range_row, "MinRange") \
+				and distance <= _ranges.get_float(range_row, "MaxRange")
+	return RangeCheck.IN_RANGE if in_range else RangeCheck.OUT_OF_RANGE
 
 
 func cast_time_msec(spell_id: int) -> int:

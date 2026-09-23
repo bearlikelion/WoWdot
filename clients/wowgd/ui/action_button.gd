@@ -12,6 +12,13 @@ const SPELL_ATTACK: int = 6603
 const UNUSABLE_TINT: Color = Color(0.4, 0.4, 0.4)
 # A slot naming a macro this machine does not have, such as one made on another computer.
 const MISSING_MACRO_ICON: String = "Interface\\Icons\\INV_Misc_QuestionMark"
+# ActionButton_OnUpdate checks range every TOOLTIP_UPDATE_TIME.
+const RANGE_UPDATE_SECONDS: float = 0.2
+const HOTKEY_FONT: StringName = &"NumberFontNormalSmallGray"
+const OUT_OF_RANGE_HOTKEY_FONT: StringName = &"NumberFontNormalSmallRed"
+
+## The HUD's target, which range is measured to.
+static var target: int = 0
 
 var slot: int = -1:
 	set(value):
@@ -39,6 +46,7 @@ var hotkey: String = "":
 
 var _casting_spell: int = 0
 var _attacking: bool = false
+var _range_elapsed: float = 0.0
 
 @onready var _icon: TextureRect = %Icon
 @onready var _count: Label = %Count
@@ -68,6 +76,20 @@ func _ready() -> void:
 	WowClient.macros.changed.connect(refresh)
 	_hotkey.text = hotkey
 	refresh()
+
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	_range_elapsed += delta
+	if _range_elapsed < RANGE_UPDATE_SECONDS:
+		return
+	_range_elapsed = 0.0
+	var check: SpellInfo.RangeCheck = SpellInfo.RangeCheck.NO_RANGE
+	if spell() != 0:
+		check = WowAssets.spells.range_check(spell(), WowClient.session.get_player_guid(), target)
+	_hotkey.theme_type_variation = OUT_OF_RANGE_HOTKEY_FONT \
+			if check == SpellInfo.RangeCheck.OUT_OF_RANGE else HOTKEY_FONT
 
 
 # PickupAction: dragging an action lifts it off the bar, and dropping it places it.

@@ -20,6 +20,8 @@ shape = SubResource("Capsule_player")
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
+[node name="Ear" type="AudioListener3D" parent="CameraPivot"]
+
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
 spring_length = 7.0
 margin = 0.3

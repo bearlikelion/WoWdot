@@ -9,6 +9,7 @@ polyphony = 8
 stream = SubResource("1")
 unit_size = 8.0
 max_distance = 45.0
+attenuation_filter_db = 0.0
 bus = &"Effects"
 script = ExtResource("1")
 

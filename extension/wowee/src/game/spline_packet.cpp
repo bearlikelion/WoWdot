@@ -113,7 +113,7 @@ bool parseMonsterMoveSplineBodyVanilla(
     network::Packet& packet,
     SplineBlockData& out,
     uint32_t splineFlags,
-    const glm::vec3& startPos)
+    const glm::vec3& /*startPos*/)
 {
     out.splineFlags = splineFlags;
 
@@ -171,11 +171,11 @@ bool parseMonsterMoveSplineBodyVanilla(
     out.destination.z = packet.readFloat();
     out.hasDest = true;
 
+    // Unlike TBC and WotLK, vanilla servers pack each point as an offset from the destination.
     if (pointCount > 1) {
-        glm::vec3 mid = (startPos + out.destination) * 0.5f;
         for (uint32_t i = 0; i + 1 < pointCount; ++i) {
             uint32_t packed = packet.readUInt32();
-            out.waypoints.push_back(decodePackedDelta(packed, mid));
+            out.waypoints.push_back(decodePackedDelta(packed, out.destination));
         }
     }
 

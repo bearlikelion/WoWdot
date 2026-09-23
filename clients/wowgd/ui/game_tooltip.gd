@@ -2,7 +2,7 @@ class_name GameTooltip
 extends Control
 
 # LEFT and RIGHT are WoW's ANCHOR_LEFT and ANCHOR_RIGHT, which sit above the owner.
-enum TooltipAnchor { DEFAULT, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT, RIGHT }
+enum TooltipAnchor { DEFAULT, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT, RIGHT, TOP_LEFT }
 
 const LINE: PackedScene = preload("res://ui/tooltip_line.tscn")
 const PADDING: Vector2 = Vector2(10.0, 10.0)
@@ -41,6 +41,9 @@ const ITEM_STATS: Dictionary[String, String] = {
 const CREATURE_TYPE_NOT_SPECIFIED: int = 10
 const SKULL_LEVEL_GAP: int = 10
 
+## Off for ItemRefTooltip, which must not replace the shared one as current.
+@export var shared: bool = true
+
 # The HUD's tooltip; like WoW's GameTooltip there is one, shared by every frame.
 static var current: GameTooltip
 
@@ -55,7 +58,8 @@ var _classes: WowDBC
 
 
 func _ready() -> void:
-	current = self
+	if shared:
+		current = self
 	var archive: WowArchive = WowAssets.archive
 	_creature_types = WowDBC.open(archive, "CreatureType")
 	_races = WowDBC.open(archive, "ChrRaces")
@@ -287,4 +291,6 @@ func _fit() -> void:
 				at = owner_rect.position - size
 			TooltipAnchor.RIGHT:
 				at = owner_rect.position + Vector2(owner_rect.size.x, -size.y)
+			TooltipAnchor.TOP_LEFT:
+				at = owner_rect.position - Vector2(0.0, size.y)
 	position = at.clamp(Vector2.ZERO, (parent.size - size).max(Vector2.ZERO))

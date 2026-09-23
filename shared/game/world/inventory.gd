@@ -25,15 +25,48 @@ const WIRE_BANK_BAG_START: int = 63
 const WIRE_BANK_BAGS: int = 6
 const ICON_PATH: String = "Interface\\Icons\\%s.blp"
 const ITEM_FLAG_SOULBOUND: int = 0x1
+# ITEM_QUALITY_COLORS, which the server's strict link check compares exactly.
+const QUALITY_HEX: PackedStringArray = [
+	"9d9d9d", "ffffff", "1eff00", "0070dd", "a335ee", "ff8000", "e6cc80",
+]
+const RANDOM_SUFFIX_COLUMN: int = 7
 
 static var _displays: WowDBC
 static var _icons: Dictionary[int, Texture2D] = {}
+static var _random_properties: WowDBC
 
 
 static func equipped(slot: Slot) -> int:
 	var session: WowSession = WowClient.session
 	var first: int = session.field_index("PLAYER_FIELD_INV_SLOT_HEAD")
 	return _guid(session.get_player_guid(), first + slot * 2)
+
+
+# GetContainerItemLink: a held item's link, carrying its enchant and random suffix.
+static func link(item: int) -> String:
+	var session: WowSession = WowClient.session
+	return item_link(
+		entry(item), session.get_field(item, "ITEM_FIELD_ENCHANTMENT"),
+		session.get_field(item, "ITEM_FIELD_RANDOM_PROPERTIES_ID"),
+	)
+
+
+# Empty until the item query has answered.
+static func item_link(item_entry: int, enchant: int = 0, random_property: int = 0) -> String:
+	var info: Dictionary = WowClient.session.get_item_info(item_entry)
+	if info.is_empty():
+		return ""
+	var item_name: String = info["name"]
+	if random_property > 0:
+		if _random_properties == null:
+			_random_properties = WowDBC.open(WowAssets.archive, "ItemRandomProperties")
+		var row: int = _random_properties.find(random_property)
+		if row >= 0:
+			item_name += " " + _random_properties.get_string(row, RANDOM_SUFFIX_COLUMN)
+	var quality: String = QUALITY_HEX[clampi(info["quality"], 0, QUALITY_HEX.size() - 1)]
+	return "|cff%s|Hitem:%d:%d:%d:0|h[%s]|h|r" % [
+		quality, item_entry, enchant, random_property, item_name,
+	]
 
 
 static func bank_bag(index: int) -> int:

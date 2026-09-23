@@ -364,6 +364,11 @@ NumberFontNormalSmallGray/colors/font_color = Color(0.6, 0.6, 0.6, 1)
 NumberFontNormalSmallGray/colors/font_outline_color = Color(0, 0, 0, 1)
 NumberFontNormalSmallGray/constants/outline_size = 2
 NumberFontNormalSmallGray/font_sizes/font_size = 12
+NumberFontNormalSmallRed/base_type = &"Label"
+NumberFontNormalSmallRed/colors/font_color = Color(1, 0.1, 0.1, 1)
+NumberFontNormalSmallRed/colors/font_outline_color = Color(0, 0, 0, 1)
+NumberFontNormalSmallRed/constants/outline_size = 2
+NumberFontNormalSmallRed/font_sizes/font_size = 12
 NumberFontNormalYellow/base_type = &"Label"
 NumberFontNormalYellow/colors/font_color = Color(1, 0.82, 0, 1)
 NumberFontNormalYellow/colors/font_outline_color = Color(0, 0, 0, 1)
@@ -490,6 +495,7 @@ metadata/wow_fonts = {
 "NumberFontNormalLarge": "Fonts\\ARIALN.TTF",
 "NumberFontNormalSmall": "Fonts\\ARIALN.TTF",
 "NumberFontNormalSmallGray": "Fonts\\ARIALN.TTF",
+"NumberFontNormalSmallRed": "Fonts\\ARIALN.TTF",
 "NumberFontNormalYellow": "Fonts\\ARIALN.TTF",
 "QuestFont": "Fonts\\FRIZQT__.TTF",
 "QuestFontHighlight": "Fonts\\FRIZQT__.TTF",

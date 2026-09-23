@@ -63,6 +63,9 @@ var _spell_failures: Dictionary = {}
 var _equip_failures: Dictionary = {}
 var _casting_bar_top: float = 0.0
 var _chat_hover_time: float = 0.0
+var _item_ref_link: String = ""
+# An ItemRefTooltip entry still waiting on its item query.
+var _item_ref_pending: int = 0
 
 @onready var _ui_parent: Control = %UIParent
 @onready var _main_menu_bar: MainMenuBar = %MainMenuBar
@@ -76,6 +79,7 @@ var _chat_hover_time: float = 0.0
 @onready var _minimap: MinimapCluster = %MinimapCluster
 @onready var _chat: ChatFrame = %ChatFrame1
 @onready var _chat_frames: Array[DockedChatFrame] = [_chat, %ChatFrame2]
+@onready var _item_ref: GameTooltip = %ItemRefTooltip
 @onready var _panels: PanelManager = %UIPanels
 @onready var _character: CharacterFrame = _panels.get_node("%CharacterFrame")
 @onready var _bank: BankFrame = _panels.get_node("%BankFrame")
@@ -228,6 +232,9 @@ func _ready() -> void:
 	_spell_failures = WowLoader.data_table("spell_failures.json")
 	_equip_failures = WowLoader.data_table("equip_failures.json")
 	ItemButton.split_prompt = _ask_split
+	ItemButton.insert_link = _chat.insert_link
+	_chat.item_ref_requested.connect(_on_item_ref_requested)
+	WowClient.session.item_info_received.connect(_on_item_ref_info)
 	var tab_at: Vector2 = _chat_frames[0].tab_position()
 	for frame: DockedChatFrame in _chat_frames:
 		tab_at.x += frame.dock_tab(tab_at)
@@ -291,6 +298,7 @@ func show_player(guid: int) -> void:
 
 func show_target(guid: int) -> void:
 	_target_frame.show_unit(guid)
+	ActionButton.target = guid
 
 
 func target() -> int:
@@ -551,6 +559,8 @@ func _escape() -> void:
 		pass
 	elif _popup.cancel():
 		pass
+	elif _item_ref.visible:
+		_item_ref.hide()
 	elif _game_menu.visible:
 		_panels.hide_panel(_game_menu)
 	elif _casting_bar.spell_id != 0:
@@ -561,6 +571,25 @@ func _escape() -> void:
 		unit_selected.emit(0)
 	else:
 		_panels.show_panel(_game_menu)
+
+
+# SetItemRef: clicking the link already shown closes ItemRefTooltip.
+func _on_item_ref_requested(link: String) -> void:
+	if _item_ref.visible and link == _item_ref_link:
+		_item_ref.hide()
+		return
+	_item_ref_link = link
+	_show_item_ref(link.get_slice(":", 1).to_int())
+
+
+func _show_item_ref(item_entry: int) -> void:
+	var shown: bool = _item_ref.set_item(_chat, item_entry, 0, GameTooltip.TooltipAnchor.TOP_LEFT)
+	_item_ref_pending = 0 if shown else item_entry
+
+
+func _on_item_ref_info(item_entry: int) -> void:
+	if item_entry == _item_ref_pending:
+		_show_item_ref(item_entry)
 
 
 func _on_abandon_requested(slot: int, title: String) -> void:

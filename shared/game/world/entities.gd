@@ -24,6 +24,8 @@ const LOOK_AHEAD: float = 0.02
 # SMSG_ATTACKERSTATEUPDATE victim state for a blow that landed.
 const VICTIM_STATE_HIT: int = 1
 const DESPAWN_FADE_SECONDS: float = 2.0
+# M2 bone flags for spherical and cylindrical billboards, which the loader does not apply.
+const BONE_BILLBOARDS: int = 0x8 | 0x40
 
 @export var shake: CameraShake
 
@@ -125,6 +127,11 @@ func _process(delta: float) -> void:
 	for guid: int in _victims:
 		if not _paths.has(guid) and not _motions.has(guid) and _nodes.has(guid):
 			_face(_nodes[guid], _victims[guid])
+	var camera: Camera3D = get_viewport().get_camera_3d()
+	if camera:
+		for marker: Node3D in _markers.values():
+			if marker.has_meta(&"billboard"):
+				marker.global_rotation.y = _heading(marker.global_position, camera.global_position)
 
 
 func _on_object_created(guid: int, type_id: int) -> void:
@@ -516,6 +523,9 @@ func _on_quest_giver_status(guid: int, status: int) -> void:
 		return
 	node.add_child(marker)
 	marker.scale = Vector3.ONE / node.scale
+	for flags: int in WowAssets.loader.get_m2_info(path).get("bone_flags", PackedInt32Array()):
+		if flags & BONE_BILLBOARDS:
+			marker.set_meta(&"billboard", true)
 	UnitAnimations.set_base(marker, ["Stand"])
 	_markers[guid] = marker
 	_place_marker(guid)

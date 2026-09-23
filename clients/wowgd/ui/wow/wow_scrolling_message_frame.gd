@@ -2,6 +2,8 @@
 class_name WowScrollingMessageFrame
 extends Control
 
+signal link_clicked(link: String)
+
 const LINE: PackedScene = preload("res://ui/wow/chat_line.tscn")
 # ScrollingMessageFrames fade a line out over this long once its display time is up.
 const FADE_SECONDS: float = 3.0
@@ -37,6 +39,10 @@ func add_message(text: String, color: Color = Color.WHITE) -> void:
 	line.text = "[color=#%s]%s[/color]" % [color.to_html(false), WowStrings.to_bbcode(text)]
 	line.theme_type_variation = StringName(font_variation + "Rich")
 	line.set_meta(&"added", Time.get_ticks_msec() / 1000.0)
+	# Only lines with a link catch the mouse, so clicks elsewhere still reach the world.
+	if line.text.contains("[url="):
+		line.mouse_filter = Control.MOUSE_FILTER_PASS
+		line.meta_clicked.connect(func(meta: Variant) -> void: link_clicked.emit(str(meta)))
 	_lines.add_child(line)
 	while _lines.get_child_count() > max_lines:
 		var oldest: Node = _lines.get_child(0)

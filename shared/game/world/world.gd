@@ -30,7 +30,7 @@ const GAMEOBJECT_TYPE_GUILD_BANK: int = 34
 # Which data field of a readable game object's template holds its first page, by type.
 const GAMEOBJECT_PAGE_FIELDS: Dictionary[int, int] = {9: 0, 10: 7}
 const NPC_FLAG_AUCTIONEER: int = 0x1000
-const NPC_FLAG_STABLEMASTER: int = 0x4000
+const NPC_FLAG_STABLEMASTER: int = 0x2000
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
 const SPEED_CHANGES: Dictionary[String, Player.SpeedKind] = {
 	"SMSG_FORCE_WALK_SPEED_CHANGE": Player.SpeedKind.WALK,

@@ -47,6 +47,8 @@ static var by_guid: Dictionary[int, UnitVoice] = {}
 static var footprints: Footprints
 ## The terrain a unit walks on decides its footstep sound; unset, every step lands on dirt.
 static var map: WowMap
+## Sounds past max_distance from this are skipped; unset, the camera stands in.
+static var listener: Node3D
 
 static var _displays: WowDBC
 static var _models: WowDBC
@@ -127,9 +129,9 @@ func play_sound(sound: Sound) -> void:
 
 # Returns the polyphonic stream id, for stopping a looping sound early.
 func play_entry(sound_id: int) -> int:
-	var camera: Camera3D = get_viewport().get_camera_3d()
-	if sound_id <= 0 or camera == null \
-	or camera.global_position.distance_to(global_position) > max_distance:
+	var ear: Node3D = listener if is_instance_valid(listener) else get_viewport().get_camera_3d()
+	if sound_id <= 0 or ear == null \
+	or ear.global_position.distance_to(global_position) > max_distance:
 		return AudioStreamPlaybackPolyphonic.INVALID_ID
 	var audio: WowAudio = WowAssets.audio
 	var sound: AudioStream = audio.entry_stream(sound_id)
@@ -156,8 +158,9 @@ static func _open() -> void:
 		_impacts[_impact_table.get_uint(row, 1)] = row
 	var lookup: WowDBC = WowDBC.open(archive, "FootstepTerrainLookup")
 	for row: int in lookup.row_count():
+		# The lookup counts terrain from one, TerrainType and GroundEffectTexture from zero.
 		var key: Vector2i = Vector2i(
-			lookup.get_uint(row, Step.CREATURE), lookup.get_uint(row, Step.TERRAIN)
+			lookup.get_uint(row, Step.CREATURE), lookup.get_uint(row, Step.TERRAIN) - 1
 		)
 		_footsteps[key] = lookup.get_uint(row, Step.SOUND)
 		_splashes[key] = lookup.get_uint(row, Step.SPLASH)

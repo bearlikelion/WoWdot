@@ -11,6 +11,8 @@ var address: Vector2i = -Vector2i.ONE
 static var split_prompt: Callable
 ## Shown an item's entry when it is Ctrl clicked, which is the dressing room's cue.
 static var dress_up: Callable
+## Given an item's link when it is Shift clicked; returns whether the chat edit box took it.
+static var insert_link: Callable
 
 @onready var _icon: TextureRect = %IconTexture
 @onready var _count: Label = %Count
@@ -31,6 +33,9 @@ func _gui_input(event: InputEvent) -> void:
 	and dress_up.is_valid() and address.x >= 0 and Inventory.item_at(address) != 0:
 		accept_event()
 		dress_up.call(Inventory.entry(Inventory.item_at(address)))
+	elif click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT \
+	and click.shift_pressed and _link_to_chat():
+		accept_event()
 
 
 # PickupContainerItem: dragging lifts the item, and dropping swaps it with what is there.
@@ -62,3 +67,8 @@ func set_item(texture: Texture2D, count: int = 0) -> void:
 	_icon.visible = texture != null
 	_count.text = str(count)
 	_count.visible = count > 1
+
+
+func _link_to_chat() -> bool:
+	var item: int = Inventory.item_at(address) if address.x >= 0 else 0
+	return item != 0 and insert_link.is_valid() and insert_link.call(Inventory.link(item))

@@ -136,11 +136,15 @@ var _transport_offset: Vector3 = Vector3.ZERO
 @onready var _model_slot: Node3D = $Model
 @onready var _pivot: Node3D = $CameraPivot
 @onready var _arm: SpringArm3D = $CameraPivot/SpringArm3D
+# WoW hears from the character, not the camera, so zooming out does not muffle the world.
+@onready var _ear: AudioListener3D = $CameraPivot/Ear
 
 
 func _ready() -> void:
 	_arm.add_excluded_object(get_rid())
 	_pivot.rotation.x = START_PITCH
+	_ear.make_current()
+	UnitVoice.listener = _ear
 	active = false
 
 

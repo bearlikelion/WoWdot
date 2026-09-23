@@ -7,7 +7,7 @@ const PLATE: PackedScene = preload("res://ui/name_plate.tscn")
 const SETTINGS_PATH: String = "user://interface.cfg"
 const SECTION: String = "name_plates"
 const UNIT_FLAG_NOT_SELECTABLE: int = 0x2000000
-const MAX_DISTANCE: float = 20.0
+const MAX_DISTANCE: float = 40.0
 # The plate hangs from a point this far over the unit's head.
 const HEAD_LIFT: float = 2.0 / 3.0
 # The stock plate is a tenth of the screen's diagonal wide, whatever the UI scale.

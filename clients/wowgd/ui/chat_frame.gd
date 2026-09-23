@@ -4,6 +4,7 @@ extends DockedChatFrame
 
 signal emote_requested(text_emote: int)
 signal ticket_requested(text: String)
+signal item_ref_requested(link: String)
 
 # GlobalStrings key stem per chat type: CHAT_<stem>_GET formats lines, CHAT_<stem>_SEND the header.
 const TYPE_KEYS: Dictionary[WowSession.ChatType, String] = {
@@ -94,6 +95,8 @@ var _sticky_channel: String = ""
 var _last_whisperer: String = ""
 var _history: PackedStringArray = []
 var _history_index: int = -1
+# Links in the edit box by the [Name] it shows for each, swapped back in when sending.
+var _links: Dictionary[String, String] = {}
 var _insets: StyleBoxEmpty = StyleBoxEmpty.new()
 
 @onready var _edit_box: LineEdit = %ChatFrameEditBox
@@ -116,6 +119,7 @@ func _ready() -> void:
 	_edit_box.gui_input.connect(_on_edit_box_input)
 	_edit_box.hide()
 	WowClient.session.chat_received.connect(_on_chat_received)
+	link_clicked.connect(_on_link_clicked)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -165,6 +169,19 @@ func close() -> void:
 	_edit_box.release_focus()
 	_edit_box.hide()
 	_history_index = -1
+	_links.clear()
+
+
+# ChatEdit_InsertLink: false when the edit box is not open to take it.
+func insert_link(link: String) -> bool:
+	var start: int = link.find("|h[")
+	var end: int = link.find("]|h", start)
+	if not _edit_box.visible or start < 0 or end < 0:
+		return false
+	var shown: String = link.substr(start + 2, end - start - 1)
+	_links[shown] = link
+	_edit_box.insert_text_at_caret(shown)
+	return true
 
 
 func format_line(line: Dictionary) -> String:
@@ -176,7 +193,8 @@ func format_line(line: Dictionary) -> String:
 			return text
 		WowSession.CHAT_MONSTER_EMOTE, WowSession.CHAT_RAID_BOSS_EMOTE:
 			return text.replace("%s", sender)
-	var who: String = "[%s]" % sender if chat_type in PLAYER_TYPES else sender
+	var who: String = "|Hplayer:%s|h[%s]|h" % [sender, sender] if chat_type in PLAYER_TYPES \
+			else sender
 	var key: String = "CHAT_%s_GET" % TYPE_KEYS.get(chat_type, "SAY")
 	var header: String = WowStrings.get_text(key, "%s: ")
 	if chat_type == WowSession.CHAT_CHANNEL:
@@ -277,6 +295,8 @@ func _run_party_command(message: String) -> bool:
 
 func _on_text_submitted(text: String) -> void:
 	var message: String = _take_command(text.strip_edges()).strip_edges()
+	for shown: String in _links:
+		message = message.replace(shown, _links[shown])
 	var chat_type: WowSession.ChatType = _chat_type
 	var target: String = _whisper_target
 	close()
@@ -385,3 +405,23 @@ func _on_chat_received(line: Dictionary) -> void:
 	if chat_type == WowSession.CHAT_WHISPER:
 		_last_whisperer = line.get("sender_name", "")
 	add_message(format_line(line), COLORS.get(chat_type, Color.WHITE))
+
+
+# SetItemRef: a name whispers, or asks /who with Shift; an item shows ItemRefTooltip.
+func _on_link_clicked(link: String) -> void:
+	var parts: PackedStringArray = link.split(":")
+	parts.resize(4)
+	if parts[0] == "player" and not parts[1].is_empty():
+		if Input.is_key_pressed(KEY_SHIFT):
+			ServerNotices.ask_who([parts[1]])
+		else:
+			open_whisper(parts[1])
+	elif parts[0] == "item":
+		var item_entry: int = parts[1].to_int()
+		if Input.is_key_pressed(KEY_SHIFT) \
+		and insert_link(Inventory.item_link(item_entry, parts[2].to_int(), parts[3].to_int())):
+			return
+		if Input.is_key_pressed(KEY_CTRL) and ItemButton.dress_up.is_valid():
+			ItemButton.dress_up.call(item_entry)
+		else:
+			item_ref_requested.emit(link)
