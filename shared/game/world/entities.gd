@@ -44,6 +44,7 @@ var _mounts: Dictionary[int, int] = {}
 var _riders: Dictionary[int, Node3D] = {}
 var _paths: Dictionary[int, Path] = {}
 var _swimmers: Dictionary[int, bool] = {}
+var _flyers: Dictionary[int, bool] = {}
 # Other players, carried forward between their relayed movement packets.
 var _motions: Dictionary[int, RemoteMotion] = {}
 # Per rider guid: the transport's {"guid", "offset", "orientation"} from its last movement.
@@ -185,14 +186,20 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 		path.to = to
 		path.duration = duration
 		path.facing = movement.get("orientation", NAN)
-		path.grounded = not movement.has("points") and not _swimmers.has(guid)
+		path.grounded = not movement.has("points") and not _swimmers.has(guid) \
+				and not _flyers.has(guid)
 		for corner: Vector3 in movement.get("corners", PackedVector3Array()):
 			path.corners.append(WowCoords.to_godot(corner))
 		path.measure()
 		_paths[guid] = path
 		node.rotation.y = _heading(path.from, to)
 		var stride: String = "Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk"
-		UnitAnimations.set_base(node, ["Swim", stride] if _swimmers.has(guid) else [stride])
+		var clips: Array = [stride]
+		if _swimmers.has(guid):
+			clips = ["Swim", stride]
+		elif _flyers.has(guid):
+			clips = ["Fly", stride]
+		UnitAnimations.set_base(node, clips)
 		return
 	_paths.erase(guid)
 	if movement.get("transport_guid", 0):
@@ -338,12 +345,16 @@ func _plate_text(guid: int) -> String:
 	return unit_name + ("\n<%s>" % title if not title.is_empty() else "")
 
 
-# SMSG_SPLINE_MOVE_START_SWIM and _STOP_SWIM: a server-moved unit takes to the water or leaves it.
+# The SMSG_SPLINE_MOVE_ swim and flying pairs: a server-moved unit leaves the ground or returns.
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_SPLINE_MOVE_START_SWIM":
 		_swimmers[PacketReader.new(payload).packed_guid()] = true
 	elif opcode == "SMSG_SPLINE_MOVE_STOP_SWIM":
 		_swimmers.erase(PacketReader.new(payload).packed_guid())
+	elif opcode == "SMSG_SPLINE_MOVE_SET_FLYING":
+		_flyers[PacketReader.new(payload).packed_guid()] = true
+	elif opcode == "SMSG_SPLINE_MOVE_UNSET_FLYING":
+		_flyers.erase(PacketReader.new(payload).packed_guid())
 	elif opcode == "SMSG_GAMEOBJECT_CUSTOM_ANIM" and payload.size() >= 12:
 		_play_object_clip(payload.decode_u64(0), "Custom%d" % payload.decode_u32(8))
 	elif opcode == "SMSG_GAMEOBJECT_DESPAWN_ANIM" and payload.size() >= 8:
@@ -358,6 +369,7 @@ func _play_object_clip(guid: int, clip: String) -> void:
 func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 	for gone: int in guids:
 		_swimmers.erase(gone)
+		_flyers.erase(gone)
 	for guid: int in guids:
 		_paths.erase(guid)
 		_motions.erase(guid)

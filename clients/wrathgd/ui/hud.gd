@@ -256,6 +256,13 @@ func _ready() -> void:
 	_main_menu_bar.bottom_bars_toggled.connect(_on_bottom_bars_toggled)
 	_on_bottom_bars_toggled(_main_menu_bar.get_node("%MultiBarBottomLeft").visible)
 	_player_frame.unit_selected.connect(unit_selected.emit)
+	var totems: TotemFrame = _player_frame.get_node("%TotemFrame")
+	totems.totem_hovered.connect(func(button: Control, spell_id: int) -> void:
+		if GameTooltip.current:
+			GameTooltip.current.set_spell(button, spell_id))
+	totems.totem_left.connect(func(button: Control) -> void:
+		if GameTooltip.current:
+			GameTooltip.current.hide_for(button))
 	_main_menu_bar.set_portrait(_player_frame.portrait_texture())
 	_trade_skill.set_portrait(_player_frame.portrait_texture())
 	_dress_up.set_portrait(_player_frame.portrait_texture())

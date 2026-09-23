@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://ui/player_frame.gd" id="1"]
 [ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
-[ext_resource type="Script" path="res://ui/wow/wow_cooldown.gd" id="3"]
-[ext_resource type="Script" path="res://ui/pet_frame.gd" id="4"]
-[ext_resource type="Script" path="res://ui/rune_frame.gd" id="5"]
+[ext_resource type="Script" path="res://ui/totem_frame.gd" id="3"]
+[ext_resource type="Script" path="res://ui/wow/wow_cooldown.gd" id="4"]
+[ext_resource type="Script" path="res://ui/pet_frame.gd" id="5"]
+[ext_resource type="Script" path="res://ui/rune_frame.gd" id="6"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
 file = "Interface\\TargetingFrame\\UI-TargetingFrame-Flash.blp"
@@ -786,6 +787,7 @@ vertical_alignment = 1
 
 [node name="TotemFrame" type="Control" parent="."]
 unique_name_in_owner = true
+script = ExtResource("3")
 layout_mode = 1
 anchor_top = 1
 anchor_bottom = 1
@@ -849,7 +851,7 @@ expand_mode = 1
 
 [node name="TotemFrameTotem1IconCooldown" type="Control" parent="TotemFrame/TotemFrameTotem1/TotemFrameTotem1Icon"]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("4")
 offset_left = 0
 offset_top = 0
 offset_right = 22
@@ -926,7 +928,7 @@ expand_mode = 1
 
 [node name="TotemFrameTotem2IconCooldown" type="Control" parent="TotemFrame/TotemFrameTotem2/TotemFrameTotem2Icon"]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("4")
 offset_left = 0
 offset_top = 0
 offset_right = 22
@@ -1003,7 +1005,7 @@ expand_mode = 1
 
 [node name="TotemFrameTotem3IconCooldown" type="Control" parent="TotemFrame/TotemFrameTotem3/TotemFrameTotem3Icon"]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("4")
 offset_left = 0
 offset_top = 0
 offset_right = 22
@@ -1080,7 +1082,7 @@ expand_mode = 1
 
 [node name="TotemFrameTotem4IconCooldown" type="Control" parent="TotemFrame/TotemFrameTotem4/TotemFrameTotem4Icon"]
 unique_name_in_owner = true
-script = ExtResource("3")
+script = ExtResource("4")
 offset_left = 0
 offset_top = 0
 offset_right = 22
@@ -1106,7 +1108,7 @@ expand_mode = 1
 
 [node name="PetFrame" type="TextureButton" parent="."]
 unique_name_in_owner = true
-script = ExtResource("4")
+script = ExtResource("5")
 offset_left = 80
 offset_top = 60
 offset_right = 208
@@ -1538,7 +1540,7 @@ vertical_alignment = 1
 
 [node name="RuneFrame" type="Control" parent="."]
 unique_name_in_owner = true
-script = ExtResource("5")
+script = ExtResource("6")
 layout_mode = 1
 anchor_left = 0.5
 anchor_top = 1

@@ -3,6 +3,9 @@ extends Node
 
 # Can I Keep Him?, which a GM can grant outright.
 # Barbershop Chair, gameobject type 32.
+# Searing Totem and Stoneskin Totem, for the totem frame's order.
+const FIRE_TOTEM_SPELL: int = 3599
+const EARTH_TOTEM_SPELL: int = 8071
 const BARBER_CHAIR: int = 190683
 const GUILD: String = "Wrathglue Bank"
 # A Guild Vault, gameobject type 34.
@@ -100,7 +103,29 @@ func _run() -> void:
 	await _guild_bank()
 	await _barbershop()
 	await _calendar()
+	_totems()
 	_finish()
+
+
+# SMSG_TOTEM_CREATED fed straight in: earth comes before fire, as TOTEM_PRIORITIES has it.
+func _totems() -> void:
+	var frame: TotemFrame = get_tree().root.find_child("TotemFrame", true, false)
+	for totem: Array in [[0, FIRE_TOTEM_SPELL], [1, EARTH_TOTEM_SPELL]]:
+		var payload: PackedByteArray = []
+		payload.resize(17)
+		payload.encode_u8(0, totem[0])
+		payload.encode_u64(1, 0x0130000001000000 + totem[0])
+		payload.encode_u32(9, 60000)
+		payload.encode_u32(13, totem[1])
+		WowClient.session.packet_received.emit("SMSG_TOTEM_CREATED", payload)
+	_check(frame.visible and (frame.get_node("%TotemFrameTotem2") as CanvasItem).visible,
+			"two totems fill two totem buttons")
+	var first: TextureRect = frame.get_node("%TotemFrameTotem1IconTexture")
+	_check(first.texture == WowAssets.spells.icon(EARTH_TOTEM_SPELL),
+			"the earth totem takes the first button")
+	var destroyed: PackedInt64Array = [0x0130000001000000, 0x0130000001000001]
+	WowClient.session.objects_destroyed.emit(destroyed)
+	_check(not frame.visible, "the totem frame hides once its totems are gone")
 
 
 # The minimap clock opens this month's calendar once the server's calendar arrives.
