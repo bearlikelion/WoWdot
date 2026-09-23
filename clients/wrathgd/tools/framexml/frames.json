@@ -494,6 +494,11 @@
    "script": "res://ui/calendar_frame.gd"
   },
   {
+   "frame": "TemporaryEnchantFrame",
+   "out": "ui/temporary_enchant_frame.tscn",
+   "script": "res://ui/temporary_enchant_frame.gd"
+  },
+  {
    "frame": "TargetDebuffFrameTemplate",
    "out": "ui/target_debuff_frame.tscn",
    "template": true

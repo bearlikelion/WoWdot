@@ -256,6 +256,12 @@ func _ready() -> void:
 	_main_menu_bar.bottom_bars_toggled.connect(_on_bottom_bars_toggled)
 	_on_bottom_bars_toggled(_main_menu_bar.get_node("%MultiBarBottomLeft").visible)
 	_player_frame.unit_selected.connect(unit_selected.emit)
+	%TemporaryEnchantFrame.weapon_hovered.connect(func(button: Control, item_entry: int) -> void:
+		if GameTooltip.current:
+			GameTooltip.current.set_item(button, item_entry))
+	%TemporaryEnchantFrame.weapon_left.connect(func(button: Control) -> void:
+		if GameTooltip.current:
+			GameTooltip.current.hide_for(button))
 	var totems: TotemFrame = _player_frame.get_node("%TotemFrame")
 	totems.totem_hovered.connect(func(button: Control, spell_id: int) -> void:
 		if GameTooltip.current:

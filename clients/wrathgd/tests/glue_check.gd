@@ -4,6 +4,11 @@ extends Node
 # Can I Keep Him?, which a GM can grant outright.
 # Barbershop Chair, gameobject type 32.
 # Searing Totem and Stoneskin Totem, for the totem frame's order.
+# Rough Sharpening Stone for blades and Rough Weightstone for maces, whichever the warrior holds.
+const SHARPENING_STONE: int = 2862
+const WEIGHTSTONE: int = 3239
+const MACE_SUBCLASSES: Array[int] = [4, 5]
+const TARGET_FLAG_ITEM: int = 0x10
 const HEARTHSTONE_SPELL: int = 8690
 const FIRE_TOTEM_SPELL: int = 3599
 const EARTH_TOTEM_SPELL: int = 8071
@@ -105,11 +110,37 @@ func _run() -> void:
 	await _barbershop()
 	await _calendar()
 	await _totems()
+	await _weapon_enchant()
 	var home: String = SpellText.describe(HEARTHSTONE_SPELL)
 	var area: String = AreaInfo.area_name(WowClient.home_area)
 	_check(not area.is_empty() and not home.contains("$") and home.contains(area),
 			"the hearthstone names the bound home (%s)" % home)
 	_finish()
+
+
+# A sharpening stone or weightstone used on the main hand shows a temporary enchant and its time.
+func _weapon_enchant() -> void:
+	var session: WowSession = WowClient.session
+	var weapon: int = Inventory.equipped(Inventory.Slot.MAIN_HAND)
+	var subclass: int = session.get_item_info(Inventory.entry(weapon)).get("subclass", 0)
+	var stone: int = WEIGHTSTONE if subclass in MACE_SUBCLASSES else SHARPENING_STONE
+	session.send_chat(WowSession.CHAT_SAY, ".additem %d" % stone)
+	if not await _until(func() -> bool: return Inventory.find_item(stone).x >= 0,
+			"the stone arrives"):
+		return
+	await _until(func() -> bool: return not session.get_item_info(stone).is_empty(),
+			"the stone's query")
+	var at: Vector2i = Inventory.find_item(stone)
+	ItemTargeting.use_item(
+		Inventory.wire_address(at.x, at.y), ItemTargeting.targets(TARGET_FLAG_ITEM, weapon)
+	)
+	var frame: TemporaryEnchantFrame = \
+			get_tree().root.find_child("TemporaryEnchantFrame", true, false)
+	var timed: Label = frame.get_node("%TempEnchant1Duration")
+	if await _until(func() -> bool: return frame.visible and timed.visible,
+			"the sharpened weapon shows its temporary enchant and time"):
+		await _frames(30)
+		_capture("user://wotlk_temp_enchant.png")
 
 
 # SMSG_TOTEM_CREATED fed straight in: earth comes before fire, as TOTEM_PRIORITIES has it.
