@@ -4,7 +4,9 @@ extends RefCounted
 ## The tabs need lining up again, because a window was renamed, opened or closed.
 signal layout_changed
 
-enum MenuItem { RENAME = 1, NEW_WINDOW, REMOVE_WINDOW, FONT_SIZE, CHANNELS, SYSTEM, OTHER }
+enum MenuItem {
+	RENAME = 1, NEW_WINDOW, REMOVE_WINDOW, FONT_SIZE, BACKGROUND, CHANNELS, SYSTEM, OTHER,
+}
 
 const SETTINGS_PATH: String = "user://chat_windows.cfg"
 # CHAT_FONT_HEIGHTS from Fonts.xml.
@@ -51,20 +53,23 @@ var _open_menu: Callable
 var _ask_name: Callable
 var _add_window: Callable
 var _remove_window: Callable
+var _pick_color: Callable
 var _character: String = ""
 
 
 # open_menu takes the entries and a Callable for the chosen id; ask_name a prompt and its answer.
 # add_window makes a docked window and returns it, remove_window takes one away again.
+# pick_color takes a colour, whether opacity is offered, and a Callable for each change.
 func _init(
 	chat_frames: Array[DockedChatFrame], open_menu: Callable, ask_name: Callable,
-	add_window: Callable, remove_window: Callable,
+	add_window: Callable, remove_window: Callable, pick_color: Callable,
 ) -> void:
 	frames = chat_frames
 	_open_menu = open_menu
 	_ask_name = ask_name
 	_add_window = add_window
 	_remove_window = remove_window
+	_pick_color = pick_color
 	for frame: DockedChatFrame in frames:
 		frame.tab_menu_requested.connect(show_tab_menu.bind(frame))
 	frames[0].message_groups = GENERAL_GROUPS
@@ -108,6 +113,9 @@ func load_for(character: String) -> void:
 		frame.font_size = settings.get_value(character, key + "font_size", frame.font_size)
 		frame.message_groups = settings.get_value(character, key + "groups", frame.message_groups)
 		frame.channels = settings.get_value(character, key + "channels", frame.channels)
+		frame.background_color = settings.get_value(
+			character, key + "background", frame.background_color
+		)
 	layout_changed.emit()
 
 
@@ -127,6 +135,7 @@ func show_tab_menu(frame: DockedChatFrame) -> void:
 	entries.append_array([
 		{"text": WowStrings.get_text("DISPLAY"), "title": true},
 		{"text": WowStrings.get_text("FONT_SIZE"), "id": MenuItem.FONT_SIZE},
+		{"text": WowStrings.get_text("BACKGROUND"), "id": MenuItem.BACKGROUND},
 		{"text": WowStrings.get_text("FILTERS"), "title": true},
 		{"text": WowStrings.get_text("CHANNELS"), "id": MenuItem.CHANNELS},
 		{"text": WowStrings.get_text("SYSTEM_MESSAGES"), "id": MenuItem.SYSTEM},
@@ -145,6 +154,11 @@ func show_tab_menu(frame: DockedChatFrame) -> void:
 				_save()
 			MenuItem.FONT_SIZE:
 				_show_font_menu.call_deferred(frame)
+			MenuItem.BACKGROUND:
+				_pick_color.call(frame.background_color, true, func(color: Color) -> void:
+					frame.background_color = color
+					_save()
+				)
 			MenuItem.CHANNELS:
 				_show_filter_menu.call_deferred(frame, "CHANNELS", CHANNEL_GROUPS, true)
 			MenuItem.SYSTEM:
@@ -264,4 +278,5 @@ func _save() -> void:
 		settings.set_value(_character, key + "font_size", frames[i].font_size)
 		settings.set_value(_character, key + "groups", frames[i].message_groups)
 		settings.set_value(_character, key + "channels", frames[i].channels)
+		settings.set_value(_character, key + "background", frames[i].background_color)
 	settings.save(SETTINGS_PATH)

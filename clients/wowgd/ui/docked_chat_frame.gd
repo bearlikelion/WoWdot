@@ -5,8 +5,8 @@ extends WowScrollingMessageFrame
 signal tab_selected
 signal tab_menu_requested
 
-# DEFAULT_CHATFRAME_ALPHA and CHAT_FRAME_FADE_TIME from FloatingChatFrame.lua.
-const HOVER_ALPHA: float = 0.25
+# DEFAULT_CHATFRAME_COLOR, _ALPHA and CHAT_FRAME_FADE_TIME from FloatingChatFrame.lua.
+const DEFAULT_BACKGROUND: Color = Color(0.0, 0.0, 0.0, 0.25)
 const FADE_TIME: float = 0.15
 # FCF_DockUpdate: unselected docked tabs show at half alpha, resized with 5 padding.
 const UNSELECTED_TAB_ALPHA: float = 0.5
@@ -25,6 +25,12 @@ var selected: bool = true
 var message_groups: PackedStringArray = []
 ## The channels it shows; "*" stands for every channel.
 var channels: PackedStringArray = []
+## FCF_SetWindowColor and FCF_SetWindowAlpha: the backdrop shown while the cursor is over it.
+var background_color: Color = DEFAULT_BACKGROUND:
+	set(value):
+		background_color = value
+		if is_node_ready():
+			_fade_to(_hovered)
 ## FCF_SetWindowName: the tab's text; the HUD lines the tabs up again after a change.
 var window_name: String = "":
 	set(value):
@@ -101,7 +107,8 @@ func _fade_to(shown: bool) -> void:
 	_fade = create_tween().set_parallel()
 	_fade.tween_property(_tab, "modulate:a", tab_alpha, FADE_TIME)
 	_fade.tween_property(
-		_background, "self_modulate:a", HOVER_ALPHA if shown and selected else 0.0, FADE_TIME
+		_background, "self_modulate",
+		background_color if shown and selected else Color(background_color, 0.0), FADE_TIME
 	)
 	if not shown:
 		_fade.chain().tween_callback(_tab.hide)

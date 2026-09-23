@@ -89,6 +89,7 @@ var _item_ref_pending: int = 0
 @onready var _chat: ChatFrame = %ChatFrame1
 @onready var _chat_frames: Array[DockedChatFrame] = [_chat, %ChatFrame2]
 @onready var _item_ref: GameTooltip = %ItemRefTooltip
+@onready var _color_picker: WowColorPicker = %ColorPickerFrame
 @onready var _panels: PanelManager = %UIPanels
 @onready var _character: CharacterFrame = _panels.get_node("%CharacterFrame")
 @onready var _bank: BankFrame = _panels.get_node("%BankFrame")
@@ -269,7 +270,8 @@ func _ready() -> void:
 	for frame: DockedChatFrame in _chat_frames:
 		frame.tab_selected.connect(_select_chat_frame.bind(frame))
 	_chat_windows = ChatWindows.new(
-		_chat_frames, _open_menu, _popup.ask_name, _add_chat_window, _remove_chat_window
+		_chat_frames, _open_menu, _popup.ask_name, _add_chat_window, _remove_chat_window,
+		_color_picker.open,
 	)
 	_chat_windows.layout_changed.connect(_dock_chat_tabs)
 	WowClient.session.chat_received.connect(_chat_windows.add_chat)

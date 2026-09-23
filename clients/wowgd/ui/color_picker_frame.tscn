@@ -1,0 +1,321 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_12"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-SliderBar-Button-Vertical.blp"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_14"]
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-SliderBar-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\Buttons\\UI-SliderBar-Border.blp"
+
+[node name="ColorPickerFrame" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -100
+offset_right = 182.5
+offset_bottom = 100
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="Backdrop" type="Control" parent="."]
+script = ExtResource("1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="ColorSwatch" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = 225
+offset_top = 32
+offset_right = 257
+offset_bottom = 64
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="ColorPickerFrameHeader" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128
+offset_top = -12
+offset_right = 128
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 2
+offset_right = 0
+offset_bottom = 14
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Color Picker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerCancelButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -154
+offset_top = -31
+offset_right = -10
+offset_bottom = -10
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ColorPickerCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ColorPickerCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ColorPickerCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="ColorPickerCancelButtonText" type="Label" parent="ColorPickerCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ColorPickerCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="ColorPickerOkayButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -298
+offset_top = -31
+offset_right = -154
+offset_bottom = -10
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ColorPickerOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ColorPickerOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ColorPickerOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="ColorPickerOkayButtonText" type="Label" parent="ColorPickerOkayButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Okay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ColorPickerOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 144
+offset_bottom = 21
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="OpacitySliderFrame" type="VSlider" parent="."]
+unique_name_in_owner = true
+offset_left = 289
+offset_top = 32
+offset_right = 305
+offset_bottom = 160
+mouse_filter = 0
+theme_override_icons/grabber = SubResource("WowTexture_13")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_13")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
+max_value = 0.0
+step = 0.0
+
+[node name="Backdrop" type="Control" parent="OpacitySliderFrame"]
+script = ExtResource("1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_15")
+edge = SubResource("WowTexture_16")
+tile = true
+tile_size = 8
+edge_size = 8
+insets = Vector4(3, 3, 6, 6)
+
+[node name="OpacitySliderFrameText" type="Label" parent="OpacitySliderFrame"]
+unique_name_in_owner = true
+offset_left = 8
+offset_top = -10
+offset_right = 8
+offset_bottom = 0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FontString" type="Label" parent="OpacitySliderFrame"]
+offset_left = 18
+offset_top = 115
+offset_right = 18
+offset_bottom = 125
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FontString2" type="Label" parent="OpacitySliderFrame"]
+offset_left = 14
+offset_top = -3
+offset_right = 14
+offset_bottom = 7
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1

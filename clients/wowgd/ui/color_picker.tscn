@@ -1,0 +1,57 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://ui/color_picker_frame.tscn" id="1_frame"]
+[ext_resource type="Script" path="res://ui/color_picker.gd" id="2_script"]
+[ext_resource type="Shader" path="res://ui/color_wheel.gdshader" id="3_wheel"]
+[ext_resource type="Shader" path="res://ui/color_value.gdshader" id="4_value"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wheel"]
+shader = ExtResource("3_wheel")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_value"]
+shader = ExtResource("4_value")
+
+[sub_resource type="WowTexture" id="WowTexture_buttons"]
+file = "Interface\\Buttons\\UI-ColorPicker-Buttons.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wheel_thumb"]
+atlas = SubResource("WowTexture_buttons")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_value_thumb"]
+atlas = SubResource("WowTexture_buttons")
+region = Rect2(16, 0, 48, 14)
+
+[node name="ColorPickerFrame" instance=ExtResource("1_frame")]
+script = ExtResource("2_script")
+
+[node name="ColorPickerWheel" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_wheel")
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 144.0
+offset_bottom = 160.0
+
+[node name="ColorWheelThumb" type="TextureRect" parent="ColorPickerWheel"]
+unique_name_in_owner = true
+offset_right = 10.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_wheel_thumb")
+
+[node name="ColorValue" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_value")
+offset_left = 168.0
+offset_top = 32.0
+offset_right = 200.0
+offset_bottom = 160.0
+
+[node name="ColorValueThumb" type="TextureRect" parent="ColorValue"]
+unique_name_in_owner = true
+offset_left = -8.0
+offset_right = 40.0
+offset_bottom = 14.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_value_thumb")

@@ -133,6 +133,10 @@
    "script": "res://ui/docked_chat_frame.gd"
   },
   {
+   "frame": "ColorPickerFrame",
+   "out": "ui/color_picker_frame.tscn"
+  },
+  {
    "frame": "AccountLogin",
    "out": "ui/account_login.tscn",
    "script": "res://ui/login_screen.gd"
