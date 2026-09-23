@@ -87,11 +87,27 @@ static func movement_clips(flags: int) -> PackedStringArray:
 		return ["Walk"] if flags & Player.MoveFlag.WALK_MODE else ["Run"]
 	if flags & Player.MoveFlag.BACKWARD:
 		return ["Walkbackwards"]
-	if flags & Player.MoveFlag.STRAFE_LEFT:
-		return ["ShuffleLeft"]
-	if flags & Player.MoveFlag.STRAFE_RIGHT:
-		return ["ShuffleRight"]
+	# There is no strafe clip: the body runs sideways, turned by strafe_yaw.
+	if flags & Player.STRAFE:
+		return ["Walk"] if flags & Player.MoveFlag.WALK_MODE else ["Run"]
 	return []
+
+
+# A quarter turn for a pure strafe, an eighth on a diagonal, mirrored while backpedalling.
+static func strafe_yaw(flags: int) -> float:
+	var left: bool = flags & Player.MoveFlag.STRAFE_LEFT != 0
+	var right: bool = flags & Player.MoveFlag.STRAFE_RIGHT != 0
+	if left == right or flags & Player.MoveFlag.SWIMMING:
+		return 0.0
+	var turn: float = PI / 4.0 if flags & Player.LONGITUDINAL else PI / 2.0
+	var backing: bool = flags & Player.MoveFlag.BACKWARD != 0
+	return turn if left != backing else -turn
+
+
+# The stock client closes a quarter of the gap each frame at 60 fps.
+static func ease_yaw(current: float, target: float, delta: float) -> float:
+	const RATE: float = 17.26
+	return lerp_angle(current, target, 1.0 - exp(-RATE * delta))
 
 
 # Timers carry the instance id because the model may be freed (respawned) before they fire.

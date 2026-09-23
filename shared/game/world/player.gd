@@ -202,6 +202,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if not _path.is_empty():
 		return
+	_model_slot.rotation.y = UnitAnimations.ease_yaw(
+		_model_slot.rotation.y, UnitAnimations.strafe_yaw(_flags), delta
+	)
 	var flags: int = _input_flags()
 	if flags & MoveFlag.TURN_LEFT:
 		rotation.y += _speeds[SpeedKind.TURN_RATE] * delta

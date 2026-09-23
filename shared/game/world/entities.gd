@@ -63,6 +63,8 @@ var _swimmers: Dictionary[int, bool] = {}
 var _flyers: Dictionary[int, bool] = {}
 # Other players, carried forward between their relayed movement packets.
 var _motions: Dictionary[int, RemoteMotion] = {}
+# How far each other player's body is turned from its facing while strafing.
+var _strafe_yaws: Dictionary[int, float] = {}
 # Per rider guid: the transport's {"guid", "offset", "orientation"} from its last movement.
 var _riding: Dictionary[int, Dictionary] = {}
 var _game_object_displays: WowDBC
@@ -123,7 +125,11 @@ func _process(delta: float) -> void:
 		var node: Node3D = _nodes.get(guid)
 		if node:
 			node.global_position = _motions[guid].advance(delta, space)
-			node.rotation.y = _motions[guid].orientation
+			var strafe: float = UnitAnimations.ease_yaw(
+				_strafe_yaws.get(guid, 0.0), UnitAnimations.strafe_yaw(_motions[guid].flags), delta
+			)
+			_strafe_yaws[guid] = strafe
+			node.rotation.y = _motions[guid].orientation + strafe
 	# ponytail: a rider walking on deck only moves at each heartbeat, not between them.
 	for guid: int in _riding:
 		var node: Node3D = _nodes.get(guid)
@@ -418,6 +424,7 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 	for guid: int in guids:
 		_paths.erase(guid)
 		_motions.erase(guid)
+		_strafe_yaws.erase(guid)
 		_riding.erase(guid)
 		_bounds.erase(guid)
 		_nameplates.erase(guid)
