@@ -112,6 +112,12 @@ GameFontNormalHuge/colors/font_shadow_color = Color(0, 0, 0, 1)
 GameFontNormalHuge/constants/shadow_offset_x = 1
 GameFontNormalHuge/constants/shadow_offset_y = 1
 GameFontNormalHuge/font_sizes/font_size = 20
+RaidWarningFont/base_type = &"Label"
+RaidWarningFont/colors/font_color = Color(1, 1, 1, 1)
+RaidWarningFont/colors/font_shadow_color = Color(0, 0, 0, 1)
+RaidWarningFont/constants/shadow_offset_x = 1
+RaidWarningFont/constants/shadow_offset_y = 1
+RaidWarningFont/font_sizes/font_size = 20
 GameFontNormalLarge/base_type = &"Label"
 GameFontNormalLarge/colors/font_color = Color(1, 0.82, 0, 1)
 GameFontNormalLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -454,6 +460,7 @@ metadata/wow_fonts = {
 "GameFontHighlightSmallOutline": "Fonts\\FRIZQT__.TTF",
 "GameFontNormal": "Fonts\\FRIZQT__.TTF",
 "GameFontNormalHuge": "Fonts\\FRIZQT__.TTF",
+"RaidWarningFont": "Fonts\\FRIZQT__.TTF",
 "GameFontNormalLarge": "Fonts\\FRIZQT__.TTF",
 "GameFontNormalSmall": "Fonts\\FRIZQT__.TTF",
 "GameFontRed": "Fonts\\FRIZQT__.TTF",

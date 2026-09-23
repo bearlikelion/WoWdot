@@ -33,7 +33,7 @@ func _ready() -> void:
 		_icons.append(get_node("%%BuffButton%dIcon" % i))
 		_counts.append(get_node("%%BuffButton%dCount" % i))
 		var duration: Label = get_node("%%BuffButton%dDuration" % i)
-		_place_duration(button, duration)
+		BuffFrame.place_duration(button, duration)
 		_durations.append(duration)
 		_borders.append(get_node_or_null("%%BuffButton%dBorder" % i))
 	var session: WowSession = WowClient.session
@@ -57,7 +57,7 @@ func _process(_delta: float) -> void:
 		_durations[i].visible = end > 0 and left > 0 \
 		and WowAssets.interface.is_on(&"show_buff_durations")
 		if _durations[i].visible:
-			_durations[i].text = _duration_text(left)
+			_durations[i].text = BuffFrame.duration_text(left)
 		_buttons[i].modulate.a = lerpf(MIN_ALPHA, 1.0, pulse) if end > 0 and left < WARNING_MSEC else 1.0
 
 
@@ -88,7 +88,7 @@ func refresh() -> void:
 
 
 # The converted anchor drops the timer on the icon; the stock frame keeps it under the button.
-func _place_duration(button: WowButton, duration: Label) -> void:
+static func place_duration(button: WowButton, duration: Label) -> void:
 	const LINE_HEIGHT: float = 12.0
 	duration.anchor_left = button.anchor_left
 	duration.anchor_top = button.anchor_top
@@ -101,7 +101,7 @@ func _place_duration(button: WowButton, duration: Label) -> void:
 
 
 # BuffFrame_UpdateDuration: minutes above a minute, seconds below.
-func _duration_text(left_msec: int) -> String:
+static func duration_text(left_msec: int) -> String:
 	var seconds: int = ceili(left_msec / 1000.0)
 	return "%d m" % ceili(seconds / 60.0) if seconds > 60 else "%d s" % seconds
 

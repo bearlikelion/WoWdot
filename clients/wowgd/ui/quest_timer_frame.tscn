@@ -1,0 +1,592 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/quest_timer_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
+
+[node name="QuestTimerFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -150
+offset_top = -0
+offset_right = 10
+offset_bottom = 72
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 0
+
+[node name="Backdrop" type="Control" parent="."]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="QuestTimerHeader" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127
+offset_top = -12
+offset_right = 129
+offset_bottom = 52
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="FontString" type="Label" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1
+offset_top = 1
+offset_right = 1
+offset_bottom = 13
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Quest Timers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 30
+offset_right = 70
+offset_bottom = 46
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer1Text" type="Label" parent="QuestTimer1"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 46
+offset_right = 70
+offset_bottom = 62
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer2Text" type="Label" parent="QuestTimer2"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 62
+offset_right = 70
+offset_bottom = 78
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer3Text" type="Label" parent="QuestTimer3"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 78
+offset_right = 70
+offset_bottom = 94
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer4Text" type="Label" parent="QuestTimer4"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 94
+offset_right = 70
+offset_bottom = 110
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer5Text" type="Label" parent="QuestTimer5"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer6" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 110
+offset_right = 70
+offset_bottom = 126
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer6Text" type="Label" parent="QuestTimer6"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer7" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 126
+offset_right = 70
+offset_bottom = 142
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer7Text" type="Label" parent="QuestTimer7"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer8" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 142
+offset_right = 70
+offset_bottom = 158
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer8Text" type="Label" parent="QuestTimer8"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer9" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 158
+offset_right = 70
+offset_bottom = 174
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer9Text" type="Label" parent="QuestTimer9"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer10" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 174
+offset_right = 70
+offset_bottom = 190
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer10Text" type="Label" parent="QuestTimer10"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer11" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 190
+offset_right = 70
+offset_bottom = 206
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer11Text" type="Label" parent="QuestTimer11"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer12" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 206
+offset_right = 70
+offset_bottom = 222
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer12Text" type="Label" parent="QuestTimer12"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer13" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 222
+offset_right = 70
+offset_bottom = 238
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer13Text" type="Label" parent="QuestTimer13"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer14" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 238
+offset_right = 70
+offset_bottom = 254
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer14Text" type="Label" parent="QuestTimer14"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer15" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 254
+offset_right = 70
+offset_bottom = 270
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer15Text" type="Label" parent="QuestTimer15"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer16" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 270
+offset_right = 70
+offset_bottom = 286
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer16Text" type="Label" parent="QuestTimer16"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer17" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 286
+offset_right = 70
+offset_bottom = 302
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer17Text" type="Label" parent="QuestTimer17"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer18" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 302
+offset_right = 70
+offset_bottom = 318
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer18Text" type="Label" parent="QuestTimer18"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer19" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 318
+offset_right = 70
+offset_bottom = 334
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer19Text" type="Label" parent="QuestTimer19"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuestTimer20" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70
+offset_top = 334
+offset_right = 70
+offset_bottom = 350
+visible = false
+ignore_texture_size = true
+
+[node name="QuestTimer20Text" type="Label" parent="QuestTimer20"]
+unique_name_in_owner = true
+offset_left = 70
+offset_top = 0
+offset_right = 70
+offset_bottom = 10
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 1
+vertical_alignment = 1

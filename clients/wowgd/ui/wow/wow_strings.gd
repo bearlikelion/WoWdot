@@ -43,6 +43,21 @@ static func format(template: String, args: Array) -> String:
 
 
 # Drops the |cAARRGGBB and |r colour escapes for text shown in a plain label.
+# SecondsToTime: the two largest of days, hours, minutes and seconds, as "5 Mins 12 Secs ".
+static func seconds_to_time(seconds: int) -> String:
+	var out: String = ""
+	var count: int = 0
+	for unit: Array in [[86400, "DAYS_ABBR"], [3600, "HOURS_ABBR"], [60, "MINUTES_ABBR"]]:
+		if count < 2 and seconds >= unit[0] and (unit[0] == 60 or seconds > unit[0]):
+			var amount: int = floori(seconds / float(unit[0]))
+			out += "%d %s " % [amount, get_text(unit[1] + ("" if amount == 1 else "_P1"))]
+			seconds %= unit[0]
+			count += 1
+	if count < 2 and seconds > 0:
+		out += "%d %s " % [seconds, get_text("SECONDS_ABBR" + ("" if seconds == 1 else "_P1"))]
+	return out
+
+
 static func strip_colors(text: String) -> String:
 	return RegEx.create_from_string("\\|c[0-9a-fA-F]{8}|\\|r").sub(text, "", true)
 

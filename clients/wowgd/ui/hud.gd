@@ -74,6 +74,7 @@ var _item_ref_pending: int = 0
 @onready var _party: PartyFrame = %PartyFrame
 @onready var _unit_menu: DropDownList = %UnitMenu
 @onready var _errors: WowMessageFrame = %UIErrorsFrame
+@onready var _raid_warning: WowMessageFrame = %RaidWarningFrame
 @onready var _casting_bar: CastingBar = %CastingBarFrame
 @onready var _side_bars: SideActionBars = %MultiBarRight
 @onready var _minimap: MinimapCluster = %MinimapCluster
@@ -100,6 +101,10 @@ var _item_ref_pending: int = 0
 @onready var _popup: StaticPopup = _panels.get_node("%StaticPopup1")
 @onready var _gossip: GossipFrame = _panels.get_node("%GossipFrame")
 @onready var _quest_watch: QuestWatchFrame = %QuestWatchFrame
+@onready var _quest_timer: QuestTimerFrame = %QuestTimerFrame
+@onready var _durability: DurabilityFrame = %DurabilityFrame
+@onready var _temp_enchants: TemporaryEnchantFrame = %TemporaryEnchantFrame
+@onready var _buffs: BuffFrame = %BuffFrame
 @onready var _merchant: MerchantFrame = _panels.get_node("%MerchantFrame")
 @onready var _trainer: ClassTrainerFrame = _panels.get_node("%ClassTrainerFrame")
 @onready var _trade_skill: TradeSkillFrame = _panels.get_node("%TradeSkillFrame")
@@ -177,6 +182,13 @@ func _ready() -> void:
 	_quest_log.watch_toggled.connect(_quest_watch.toggle)
 	_quest_watch.watches_changed.connect(_quest_log.set_watched)
 	_quest_watch.error_raised.connect(show_error)
+	_quest_timer.quest_selected.connect(_on_quest_timer_selected)
+	_quest_timer.resized.connect(_stack_under_minimap)
+	_quest_timer.visibility_changed.connect(_stack_under_minimap)
+	_durability.layout_changed.connect(_stack_under_minimap)
+	_temp_enchants.enchants_changed.connect(_place_buffs)
+	_stack_under_minimap()
+	_place_buffs(0)
 	_merchant.open_requested.connect(_panels.show_panel.bind(_merchant))
 	_merchant.backpack_requested.connect(_panels.set_backpack_open)
 	_merchant.error_raised.connect(show_error)
@@ -232,6 +244,7 @@ func _ready() -> void:
 	_spell_failures = WowLoader.data_table("spell_failures.json")
 	_equip_failures = WowLoader.data_table("equip_failures.json")
 	ItemButton.split_prompt = _ask_split
+	WowClient.session.chat_received.connect(_on_raid_warning)
 	ItemButton.insert_link = _chat.insert_link
 	_chat.item_ref_requested.connect(_on_item_ref_requested)
 	WowClient.session.item_info_received.connect(_on_item_ref_info)
@@ -571,6 +584,46 @@ func _escape() -> void:
 		unit_selected.emit(0)
 	else:
 		_panels.show_panel(_game_menu)
+
+
+# UIParent_ManageFramePositions: quest timers, then durability, then quest watch below the minimap.
+func _stack_under_minimap() -> void:
+	const WIDE_DURABILITY_SHIFT: float = 20.0
+	var top: float = _minimap.offset_bottom
+	for frame: Control in [_quest_timer, _durability, _quest_watch]:
+		var right: float = -WIDE_DURABILITY_SHIFT if frame == _durability and _durability.wide else 0.0
+		var box: Vector2 = frame.size
+		frame.offset_right = right
+		frame.offset_left = right - box.x
+		frame.offset_top = top
+		frame.offset_bottom = top + box.y
+		if frame.visible:
+			top += box.y
+
+
+# BuffFrame_Enchant_OnUpdate: the buffs sit left of the weapon enchants, 32 wide each.
+func _place_buffs(enchants: int) -> void:
+	const ENCHANT_WIDTH: float = 32.0
+	const ENCHANT_GAP: float = 5.0
+	var right: float = _temp_enchants.offset_right
+	if enchants > 0:
+		right -= enchants * ENCHANT_WIDTH + ENCHANT_GAP
+	var width: float = _buffs.size.x
+	_buffs.offset_right = right
+	_buffs.offset_left = right - width
+
+
+func _on_quest_timer_selected(slot: int) -> void:
+	_panels.show_panel(_quest_log)
+	_quest_log.select_slot(slot)
+
+
+func _on_raid_warning(line: Dictionary) -> void:
+	if line["type"] == WowSession.CHAT_RAID_WARNING:
+		_raid_warning.add_message(
+			line.get("text", ""), ChatFrame.COLORS[WowSession.CHAT_RAID_WARNING]
+		)
+		WowAssets.audio.play_sound("RaidWarning")
 
 
 # SetItemRef: clicking the link already shown closes ItemRefTooltip.

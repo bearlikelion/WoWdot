@@ -238,6 +238,21 @@
    "script": "res://ui/quest_watch_frame.gd"
   },
   {
+   "frame": "QuestTimerFrame",
+   "out": "ui/quest_timer_frame.tscn",
+   "script": "res://ui/quest_timer_frame.gd"
+  },
+  {
+   "frame": "DurabilityFrame",
+   "out": "ui/durability_frame.tscn",
+   "script": "res://ui/durability_frame.gd"
+  },
+  {
+   "frame": "TemporaryEnchantFrame",
+   "out": "ui/temporary_enchant_frame.tscn",
+   "script": "res://ui/temporary_enchant_frame.gd"
+  },
+  {
    "frame": "MerchantFrame",
    "out": "ui/merchant_frame.tscn",
    "script": "res://ui/merchant_frame.gd"

@@ -114,6 +114,11 @@ func refresh(keep_scroll: bool = false) -> void:
 	_update_details(keep_scroll)
 
 
+func select_slot(slot: int) -> void:
+	_selected_slot = slot
+	refresh()
+
+
 # The quest watch frame's list, for the checks and the track light.
 func set_watched(quest_ids: Array[int]) -> void:
 	_watched = quest_ids

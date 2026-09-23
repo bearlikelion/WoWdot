@@ -585,6 +585,26 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 			emit_signal("spell_cast_failed", caster, static_cast<int>(packet.readUInt32()), -1);
 			return true;
 		}
+		case LogicalOpcode::SMSG_SPELL_FAILURE: {
+			// mangoszero sends it to the caster alone with a full guid; cmangos and 3.3.5 pack it.
+			const size_t start = packet.getReadPos();
+			uint64_t caster = 0;
+			if (!wow_wotlk() && packet.getSize() - start == 13) {
+				caster = packet.readUInt64();
+				if (caster != player_guid) {
+					packet.setReadPos(start);
+					caster = 0;
+				}
+			}
+			if (caster == 0) {
+				caster = packet.readPackedGuid();
+			}
+			if (wow_wotlk()) {
+				packet.readUInt8(); // Cast count.
+			}
+			emit_signal("spell_cast_failed", static_cast<int64_t>(caster), static_cast<int>(packet.readUInt32()), -1);
+			return true;
+		}
 		case LogicalOpcode::SMSG_ATTACKSWING_NOTINRANGE:
 			emit_signal("attack_swing_error", ATTACK_ERROR_NOT_IN_RANGE);
 			return true;
