@@ -32,31 +32,58 @@ file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
 blend_mode = 1
 
 [sub_resource type="WowTexture" id="WowTexture_10"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_11"]
 atlas = SubResource("WowTexture_10")
-region = Rect2(0, 0, 80, 22)
+region = Rect2(0, 0, 25, 64)
 
-[sub_resource type="WowTexture" id="WowTexture_12"]
-file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(25, 0, 78, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13"]
-atlas = SubResource("WowTexture_12")
-region = Rect2(0, 0, 80, 22)
+atlas = SubResource("WowTexture_10")
+region = Rect2(103, 0, 25, 64)
 
 [sub_resource type="WowTexture" id="WowTexture_14"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15"]
-atlas = SubResource("WowTexture_14")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_16"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_19"]
+atlas = SubResource("WowTexture_18")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_20"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21"]
+atlas = SubResource("WowTexture_20")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_22"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23"]
+atlas = SubResource("WowTexture_22")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_24"]
 file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_17"]
-atlas = SubResource("WowTexture_16")
+[sub_resource type="AtlasTexture" id="AtlasTexture_25"]
+atlas = SubResource("WowTexture_24")
 region = Rect2(0, 0, 80, 22)
 
 [node name="VideoOptionsFrame" type="Control"]
@@ -66,9 +93,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170
-offset_top = -100
+offset_top = -141
 offset_right = 170
-offset_bottom = 100
+offset_bottom = 141
 grow_horizontal = 2
 grow_vertical = 2
 visible = false
@@ -405,6 +432,192 @@ texture = SubResource("WowTexture_8")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
+[node name="VideoOptionsFrameCheckButton5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 14
+offset_top = 150
+offset_right = 46
+offset_bottom = 182
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="VideoOptionsFrameCheckButton5Text" type="Label" parent="VideoOptionsFrameCheckButton5"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 11
+offset_right = 30
+offset_bottom = 21
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="DisabledCheckedTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameCheckButton5"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_8")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
+[node name="VideoOptionsFrameResolutionDropDown" type="Control" parent="."]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 198
+offset_right = 40
+offset_bottom = 230
+mouse_filter = 0
+
+[node name="VideoOptionsFrameResolutionDropDownLabel" type="Label" parent="VideoOptionsFrameResolutionDropDown"]
+unique_name_in_owner = true
+offset_left = 21
+offset_top = -10
+offset_right = 21
+offset_bottom = 0
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalSmall"
+text = "Resolution"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VideoOptionsFrameResolutionDropDownLeft" type="TextureRect" parent="VideoOptionsFrameResolutionDropDown"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -17
+offset_right = 25
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="VideoOptionsFrameResolutionDropDownMiddle" type="TextureRect" parent="VideoOptionsFrameResolutionDropDown"]
+unique_name_in_owner = true
+offset_left = 25
+offset_top = -17
+offset_right = 140
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="VideoOptionsFrameResolutionDropDownRight" type="TextureRect" parent="VideoOptionsFrameResolutionDropDown"]
+unique_name_in_owner = true
+offset_left = 140
+offset_top = -17
+offset_right = 165
+offset_bottom = 47
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+
+[node name="VideoOptionsFrameResolutionDropDownText" type="Label" parent="VideoOptionsFrameResolutionDropDown"]
+unique_name_in_owner = true
+offset_left = 122
+offset_top = 8
+offset_right = 122
+offset_bottom = 18
+grow_horizontal = 0
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+grow_vertical = 2
+
+[node name="VideoOptionsFrameResolutionDropDownButton" type="TextureButton" parent="VideoOptionsFrameResolutionDropDown"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 125
+offset_top = 1
+offset_right = 149
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="VideoOptionsFrameResolutionDropDown/VideoOptionsFrameResolutionDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+mouse_filter = 2
+texture = SubResource("WowTexture_14")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameResolutionDropDown/VideoOptionsFrameResolutionDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_15")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="VideoOptionsFrameResolutionDropDown/VideoOptionsFrameResolutionDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_16")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="VideoOptionsFrameResolutionDropDown/VideoOptionsFrameResolutionDropDownButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 24
+offset_bottom = 24
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_9")
+
 [node name="VideoOptionsFrameDefaults" type="TextureButton" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3")
@@ -423,7 +636,7 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameDefaults"]
@@ -433,7 +646,7 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_21")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="VideoOptionsFrameDefaults"]
@@ -443,7 +656,7 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_23")
 expand_mode = 1
 
 [node name="VideoOptionsFrameDefaultsText" type="Label" parent="VideoOptionsFrameDefaults"]
@@ -465,7 +678,7 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
+texture = SubResource("AtlasTexture_25")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -489,7 +702,7 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameCancel"]
@@ -499,7 +712,7 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_21")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="VideoOptionsFrameCancel"]
@@ -509,7 +722,7 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_23")
 expand_mode = 1
 
 [node name="VideoOptionsFrameCancelText" type="Label" parent="VideoOptionsFrameCancel"]
@@ -531,7 +744,7 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
+texture = SubResource("AtlasTexture_25")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")
 
@@ -555,7 +768,7 @@ offset_top = 0
 offset_right = 100
 offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
+texture = SubResource("AtlasTexture_19")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="VideoOptionsFrameOkay"]
@@ -565,7 +778,7 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
+texture = SubResource("AtlasTexture_21")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="VideoOptionsFrameOkay"]
@@ -575,7 +788,7 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_15")
+texture = SubResource("AtlasTexture_23")
 expand_mode = 1
 
 [node name="VideoOptionsFrameOkayText" type="Label" parent="VideoOptionsFrameOkay"]
@@ -597,6 +810,6 @@ offset_right = 100
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_17")
+texture = SubResource("AtlasTexture_25")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_9")

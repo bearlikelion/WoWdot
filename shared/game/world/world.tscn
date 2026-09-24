@@ -61,6 +61,10 @@ fog_density = 1.0
 fog_depth_curve = 2.2
 fog_depth_begin = 125.0
 fog_depth_end = 500.0
+volumetric_fog_density = 0.003
+volumetric_fog_anisotropy = 0.6
+volumetric_fog_length = 128.0
+volumetric_fog_sky_affect = 0.0
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_world")

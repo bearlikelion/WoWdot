@@ -62,7 +62,7 @@
 	</Button>
 	<Frame name="VideoOptionsFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent" enableKeyboard="true">
 		<Size>
-			<AbsDimension x="340" y="200"/>
+			<AbsDimension x="340" y="282"/>
 		</Size>
 		<Anchors>
 			<Anchor point="CENTER"/>
@@ -143,6 +143,37 @@
 					</Anchor>
 				</Anchors>
 			</CheckButton>
+			<CheckButton name="VideoOptionsFrameCheckButton5" inherits="OptionsCheckButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="VideoOptionsFrameCheckButton4" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Frame name="VideoOptionsFrameResolutionDropDown" inherits="UIDropDownMenuTemplate" enableMouse="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="VideoOptionsFrameCheckButton5" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-14" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="RESOLUTION">
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="21" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
 			<Button name="VideoOptionsFrameDefaults" inherits="GameMenuButtonTemplate" text="DEFAULTS">
 				<Size>
 					<AbsDimension x="100" y="21"/>

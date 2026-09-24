@@ -56,9 +56,9 @@ enum MaterialFlag : uint32_t {
 
 // One batch per tile would vanish whole, since a batch is culled by the middle of its bounds.
 constexpr float DOODAD_CELL_YARDS = 133.333f;
-constexpr float DOODAD_RANGE_PER_YARD = 24.0f;
-constexpr float DOODAD_NEAREST_RANGE = 120.0f;
-constexpr float DOODAD_FURTHEST_RANGE = 600.0f;
+constexpr float DOODAD_RANGE_PER_YARD = 48.0f;
+constexpr float DOODAD_NEAREST_RANGE = 300.0f;
+constexpr float DOODAD_FURTHEST_RANGE = 1000.0f;
 
 // The first M2 version that keeps its geometry in .skin files.
 constexpr uint32_t M2_SKIN_VERSION = 264;

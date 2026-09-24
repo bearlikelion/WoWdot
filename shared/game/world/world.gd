@@ -93,6 +93,7 @@ var _ghost: bool = false
 @onready var _area_triggers: AreaTriggers = $AreaTriggers
 @onready var _selection: SelectionCircle = $SelectionCircle
 @onready var _sun: DirectionalLight3D = $Sun
+@onready var _environment: WorldEnvironment = $WorldEnvironment
 @onready var _hud: Hud = %Hud
 @onready var _sky: WorldSky = $WorldSky
 @onready var _cinematic: CinematicCamera = $CinematicCamera
@@ -691,7 +692,9 @@ func _shown(on: bool) -> PackedByteArray:
 
 
 func _apply_video() -> void:
-	_sun.shadow_enabled = WowAssets.video.shadows
+	var video: VideoSettings = WowAssets.video
+	_sun.shadow_enabled = video.shadows
+	_environment.environment.volumetric_fog_enabled = video.volumetric_fog and video.shadows
 
 
 # CMSG_SETSHEATHED (CMSG_SET_SHEATHED in 3.3.5); the server's UNIT_FIELD_BYTES_2 update moves the weapons.
