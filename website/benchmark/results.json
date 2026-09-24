@@ -1,24 +1,24 @@
 {
   "timing": {
     "benilla": {
-      "login": 1.52,
-      "entered": 1.57,
-      "loaded": 5.98,
-      "idle_cpu": 177.61,
-      "idle_rss": 1510.57,
-      "peak_rss": 1516.94,
-      "fps": 133.39,
-      "world_load": 4.25
+      "login": 1.49,
+      "entered": 1.5,
+      "loaded": 5.46,
+      "idle_cpu": 180.02,
+      "idle_rss": 1538.61,
+      "peak_rss": 1543.13,
+      "fps": 146.25,
+      "world_load": 3.96
     },
     "wowgd": {
-      "login": 2.59,
-      "entered": 2.66,
-      "loaded": 4.43,
-      "idle_cpu": 108.67,
-      "idle_rss": 1624.63,
-      "peak_rss": 1625.23,
-      "fps": 115.4,
-      "world_load": 1.83
+      "login": 2.57,
+      "entered": 2.63,
+      "loaded": 4.56,
+      "idle_cpu": 107.05,
+      "idle_rss": 1654.28,
+      "peak_rss": 1654.29,
+      "fps": 106,
+      "world_load": 1.95
     }
   },
   "runs": 3,
@@ -48,5 +48,5 @@
       27.427
     ]
   },
-  "date": "2026-09-23"
+  "date": "2026-09-24"
 }
