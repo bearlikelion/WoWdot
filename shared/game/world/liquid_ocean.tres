@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://game/world/water.gdshader" id="1_water"]
 
 [resource]
-transparency = 1
-cull_mode = 2
-roughness = 0.1
-albedo_color = Color(0.08, 0.22, 0.36, 0.8)
+shader = ExtResource("1_water")
+shader_parameter/depth_range = 148.0

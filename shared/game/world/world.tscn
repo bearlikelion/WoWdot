@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://game/world/world.gd" id="1_world"]
 [ext_resource type="Script" path="res://game/world/wow_map.gd" id="2_map"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" path="res://game/world/world_horizon.gd" id="13_horizon"]
 [ext_resource type="PackedScene" path="res://game/world/water_fx.tscn" id="14_water_fx"]
 [ext_resource type="Script" path="res://game/world/footprints.gd" id="15_footprints"]
+[ext_resource type="Material" path="res://game/world/liquid_water.tres" id="16_river"]
+[ext_resource type="Material" path="res://game/world/liquid_ocean.tres" id="17_ocean"]
 
 [sub_resource type="FastNoiseLite" id="Noise_clouds"]
 frequency = 0.008
@@ -69,11 +71,14 @@ environment = SubResource("Environment_world")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866, -0.25, 0.433, 0, 0.866, 0.5, -0.5, -0.433, 0.75, 0, 0, 0)
 shadow_enabled = true
+shadow_opacity = 0.8
 
 [node name="WorldSky" type="Node" parent="." node_paths=PackedStringArray("sun", "environment")]
 script = ExtResource("6_sky")
 sun = NodePath("../Sun")
 environment = NodePath("../WorldEnvironment")
+river = ExtResource("16_river")
+ocean = ExtResource("17_ocean")
 
 [node name="Dome" type="Node3D" parent="WorldSky"]
 unique_name_in_owner = true

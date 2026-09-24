@@ -1,7 +1,6 @@
-[gd_resource type="StandardMaterial3D" format=3]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://game/world/water.gdshader" id="1_water"]
 
 [resource]
-transparency = 1
-cull_mode = 2
-roughness = 0.1
-albedo_color = Color(0.16, 0.34, 0.45, 0.72)
+shader = ExtResource("1_water")

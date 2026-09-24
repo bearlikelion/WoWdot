@@ -15,12 +15,24 @@ enum ColorBand {
 	CLOUD_SUN = 10,
 	CLOUD_SLOPE = 11,
 	CLOUD_BASE = 12,
+	OCEAN_SHALLOW = 14,
+	OCEAN_DEEP = 15,
+	RIVER_SHALLOW = 16,
+	RIVER_DEEP = 17,
 }
 # LightFloatBand channels.
 enum FloatBand { FOG_END = 0, FOG_START_SCALE = 1, CLOUD_DENSITY = 3 }
 # Light.dbc param sets, as offsets from LightColumn.PARAMS.
 enum Condition { CLEAR = 0, UNDERWATER = 1, STORM = 2, STORM_UNDERWATER = 3, DEATH = 4 }
-enum ParamsColumn { HIGHLIGHT_SKY = 1, SKYBOX = 2, GLOW = 3 }
+enum ParamsColumn {
+	HIGHLIGHT_SKY = 1,
+	SKYBOX = 2,
+	GLOW = 3,
+	RIVER_SHALLOW_ALPHA = 5,
+	RIVER_DEEP_ALPHA = 6,
+	OCEAN_SHALLOW_ALPHA = 7,
+	OCEAN_DEEP_ALPHA = 8,
+}
 enum LightColumn {
 	MAP = 1,
 	X = 2,
@@ -117,6 +129,14 @@ func _describe(result: Sample, params_id: int) -> void:
 		return
 	result.stars = _params.get_uint(params, ParamsColumn.HIGHLIGHT_SKY) != 0
 	result.glow = _params.get_float(params, ParamsColumn.GLOW)
+	result.river_alphas = Vector2(
+		_params.get_float(params, ParamsColumn.RIVER_SHALLOW_ALPHA),
+		_params.get_float(params, ParamsColumn.RIVER_DEEP_ALPHA),
+	)
+	result.ocean_alphas = Vector2(
+		_params.get_float(params, ParamsColumn.OCEAN_SHALLOW_ALPHA),
+		_params.get_float(params, ParamsColumn.OCEAN_DEEP_ALPHA),
+	)
 	var skybox: int = _skyboxes.find(_params.get_uint(params, ParamsColumn.SKYBOX))
 	result.skybox = _skyboxes.get_string(skybox, SKYBOX_PATH_COLUMN) if skybox >= 0 else ""
 
@@ -209,6 +229,8 @@ class Sample:
 	var stars: bool = false
 	var skybox: String = ""
 	var glow: float = 0.0
+	var river_alphas: Vector2 = Vector2.ONE
+	var ocean_alphas: Vector2 = Vector2.ONE
 
 
 	func color(band: ColorBand) -> Color:

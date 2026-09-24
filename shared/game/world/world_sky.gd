@@ -5,6 +5,9 @@ const NOON_MINUTE: float = 720.0
 # The light circles the sky once a day and stays high, as stock terrain is lit without shadows.
 const LOW_ELEVATION: float = deg_to_rad(45.0)
 const HIGH_ELEVATION: float = deg_to_rad(70.0)
+# DayNight::SetDirection's lighting sun, which colours flat ground at this height.
+const STOCK_LOW_ELEVATION: float = deg_to_rad(20.0)
+const STOCK_HIGH_ELEVATION: float = deg_to_rad(37.0)
 const STARS: String = "Environments\\Stars\\Stars.m2"
 # Stars and the moon fade in over this long before dusk and out after dawn.
 const TWILIGHT_MINUTES: float = 90.0
@@ -21,6 +24,9 @@ const VISIBLE_WEATHER_GRADE: float = 0.27
 const STORM_STEP: float = 0.05
 # Of the camera's far plane, so the dome is never clipped.
 const DOME_RADIUS: float = 0.8
+const RIVER_RIPPLES: String = "XTextures\\river\\lake_a.%d.blp"
+const OCEAN_RIPPLES: String = "XTextures\\ocean\\ocean_h.%d.blp"
+const RIPPLE_FRAMES: int = 30
 const SKY_UNIFORMS: Dictionary[StringName, WorldLight.ColorBand] = {
 	&"sky_top": WorldLight.ColorBand.SKY_TOP,
 	&"sky_middle": WorldLight.ColorBand.SKY_MIDDLE,
@@ -35,6 +41,8 @@ const SKY_UNIFORMS: Dictionary[StringName, WorldLight.ColorBand] = {
 
 @export var sun: DirectionalLight3D
 @export var environment: WorldEnvironment
+@export var river: ShaderMaterial
+@export var ocean: ShaderMaterial
 
 const GLOW_SCALE: float = 0.6
 
@@ -54,6 +62,8 @@ var _dome_materials: Array[BaseMaterial3D] = []
 
 func _ready() -> void:
 	_light = WorldLight.new(WowAssets.archive)
+	_load_ripples(river, RIVER_RIPPLES)
+	_load_ripples(ocean, OCEAN_RIPPLES)
 	_refresh.timeout.connect(update)
 
 
@@ -63,12 +73,14 @@ func _process(_delta: float) -> void:
 		_dome.global_position = camera.global_position
 
 
-# WoW adds ambient and diffuse in gamma space; the sun takes linear ambient up to that sum.
+# WoW adds ambient and diffuse in gamma space; the sun makes up that sum on flat ground.
 func update() -> void:
 	var minute: float = WowClient.clock.minute()
 	# The sun steps once a game minute, as each small turn re-lays the shadow map and it swims.
 	var day_angle: float = (floorf(minute) - NOON_MINUTE) / GameClock.MINUTES_PER_DAY * TAU
-	var elevation: float = lerpf(LOW_ELEVATION, HIGH_ELEVATION, 0.5 + 0.5 * cos(day_angle * 2.0))
+	var height: float = 0.5 + 0.5 * cos(day_angle * 2.0)
+	var elevation: float = lerpf(LOW_ELEVATION, HIGH_ELEVATION, height)
+	var stock_facing: float = sin(lerpf(STOCK_LOW_ELEVATION, STOCK_HIGH_ELEVATION, height))
 	var sun_rotation: Vector3 = Vector3(-elevation, -day_angle, 0.0)
 	if not sun.rotation.is_equal_approx(sun_rotation):
 		sun.rotation = sun_rotation
@@ -81,11 +93,12 @@ func update() -> void:
 	if sample == null:
 		return
 	var ambient: Color = sample.color(WorldLight.ColorBand.AMBIENT)
-	var lit: Color = (ambient + sample.color(WorldLight.ColorBand.DIFFUSE)).clamp()
+	var diffuse: Color = sample.color(WorldLight.ColorBand.DIFFUSE)
+	var lit: Color = (ambient + diffuse * stock_facing).clamp()
 	var sunlight: Color = (lit.srgb_to_linear() - ambient.srgb_to_linear()).linear_to_srgb()
 	sun.light_color = Color(sunlight, 1.0)
 	var night: float = _night(minute)
-	sun.light_energy = lerpf(1.0, NIGHT_SUN_ENERGY, night)
+	sun.light_energy = lerpf(1.0, NIGHT_SUN_ENERGY, night) / sin(elevation)
 	var settings: Environment = environment.environment
 	settings.ambient_light_color = ambient
 	settings.fog_light_color = sample.color(WorldLight.ColorBand.FOG)
@@ -101,6 +114,15 @@ func update() -> void:
 	sky.set_shader_parameter(&"cloud_density", lerpf(sample.cloud_density, 1.0, _storm))
 	sky.set_shader_parameter(&"cloud_glow", (1.0 - night) * (1.0 - STORM_CLOUD_DIMMING * _storm))
 	sky.set_shader_parameter(&"cloud_storm", _storm)
+	var sheen: Color = sample.color(WorldLight.ColorBand.SUN)
+	_update_water(
+		river, lit, sheen, sample.color(WorldLight.ColorBand.RIVER_SHALLOW),
+		sample.color(WorldLight.ColorBand.RIVER_DEEP), sample.river_alphas,
+	)
+	_update_water(
+		ocean, lit, sheen, sample.color(WorldLight.ColorBand.OCEAN_SHALLOW),
+		sample.color(WorldLight.ColorBand.OCEAN_DEEP), sample.ocean_alphas,
+	)
 	var disc: Color = sample.color(WorldLight.ColorBand.SUN).lerp(MOON_COLOR, night)
 	var halo: Color = sample.color(WorldLight.ColorBand.SUN).lerp(MOON_HALO_COLOR, night)
 	sky.set_shader_parameter(&"disc_color", disc)
@@ -118,6 +140,33 @@ func _night(minute: float) -> float:
 		GameClock.DAWN_MINUTE, GameClock.DAWN_MINUTE + TWILIGHT_MINUTES, minute
 	)
 	return dusk + 1.0 - dawn if minute < NOON_MINUTE else dusk
+
+
+func _load_ripples(material: ShaderMaterial, path: String) -> void:
+	var frames: Array[Image] = []
+	for frame: int in RIPPLE_FRAMES:
+		frames.append(WowAssets.loader.load_image(path % (frame + 1)))
+	var ripples: Texture2DArray = Texture2DArray.new()
+	ripples.create_from_images(frames)
+	material.set_shader_parameter(&"ripples", ripples)
+	material.set_shader_parameter(&"frame_count", frames.size())
+
+
+func _update_water(
+	material: ShaderMaterial, lit: Color, sheen: Color, shallow: Color, deep: Color,
+	alphas: Vector2,
+) -> void:
+	material.set_shader_parameter(&"lit", _gamma(lit))
+	material.set_shader_parameter(&"sheen", _gamma(sheen))
+	material.set_shader_parameter(&"to_sun", sun.global_basis.z)
+	material.set_shader_parameter(&"shallow_color", _gamma(shallow))
+	material.set_shader_parameter(&"deep_color", _gamma(deep))
+	material.set_shader_parameter(&"alphas", alphas)
+
+
+# A Color uniform arrives linearized, so the gamma values go over as vectors.
+func _gamma(color: Color) -> Vector3:
+	return Vector3(color.r, color.g, color.b)
 
 
 func _show_dome(path: String, alpha: float) -> void:
