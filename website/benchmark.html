@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WoWGD vs benilla</title>
+  <meta name="description" content="WoWGD and benilla side by side: login time, world load, CPU, memory and matching screenshots.">
+  <link rel="icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze:wght@600;700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .back {
+      display: inline-block;
+      margin-top: var(--s-8);
+    }
+
+    .bench {
+      width: 100%;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bench th,
+    .bench td {
+      padding: var(--s-2) var(--s-3);
+      border-bottom: 1px solid var(--rule-soft);
+      text-align: right;
+    }
+
+    .bench th:first-child,
+    .bench td:first-child {
+      text-align: left;
+    }
+
+    .bench thead th {
+      font: 600 1.05rem/1.2 var(--display);
+      letter-spacing: 0.08em;
+      color: var(--gold);
+    }
+
+    .bench td:first-child {
+      color: var(--ivory);
+      font-weight: 700;
+    }
+
+    .bench td {
+      color: var(--ivory-dim);
+    }
+
+    .bench .win {
+      color: var(--ivory);
+    }
+
+    .compare {
+      --pos: 50%;
+      position: relative;
+      display: grid;
+      margin: 0 0 var(--s-8);
+      border: 1px solid var(--rule-soft);
+      border-radius: 4px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .compare img {
+      grid-area: 1 / 1;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .compare .after {
+      clip-path: inset(0 0 0 var(--pos));
+    }
+
+    .compare::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--pos);
+      width: 2px;
+      margin-left: -1px;
+      background: var(--gold);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+    }
+
+    .compare input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: ew-resize;
+    }
+
+    .compare:focus-within {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .compare .tag {
+      position: absolute;
+      bottom: var(--s-2);
+      padding: 2px var(--s-2);
+      border-radius: 4px;
+      background: rgba(7, 11, 22, 0.75);
+      color: var(--ivory);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+
+    .compare .tag-before {
+      left: var(--s-2);
+    }
+
+    .compare .tag-after {
+      right: var(--s-2);
+    }
+
+    .spot {
+      margin-bottom: var(--s-2);
+    }
+
+    @media (max-width: 700px) {
+      .bench th,
+      .bench td {
+        padding: var(--s-2) var(--s-1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="index.html">&larr; WoWdot</a>
+
+    <section class="sheet rule-double" id="benchmark">
+      <div class="sheet-head">
+        <img src="wowgd.png" alt="" width="48" height="48">
+        <div>
+          <h2>WoWGD vs benilla</h2>
+          <p class="sheet-sub">Same character, realm and data &middot; measured 2026-09-23</p>
+        </div>
+      </div>
+
+      <p><a href="https://github.com/samwhosung/benilla" target="_blank" rel="noopener">benilla</a> is a 1.12.1 client in Rust and Bevy.</p>
+      <p>Both clients played the same dwarf on the same vMaNGOS realm in a 1920x1080 window.</p>
+
+      <h3>Numbers</h3>
+      <table class="bench">
+        <thead>
+          <tr><th scope="col"></th><th scope="col">WoWGD</th><th scope="col">benilla</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Launch to character list</td><td>2.59 s</td><td class="win">1.52 s</td></tr>
+          <tr><td>Launch to entering the world</td><td>2.66 s</td><td class="win">1.57 s</td></tr>
+          <tr><td>World load (enter to loading screen gone)</td><td class="win">1.83 s</td><td>4.25 s</td></tr>
+          <tr><td>Launch to playing</td><td class="win">4.43 s</td><td>5.98 s</td></tr>
+          <tr><td>CPU while idle in Goldshire</td><td class="win">109%</td><td>178%</td></tr>
+          <tr><td>Memory while idle (RSS)</td><td>1.59 GiB</td><td class="win">1.48 GiB</td></tr>
+          <tr><td>Peak memory (RSS)</td><td>1.59 GiB</td><td class="win">1.48 GiB</td></tr>
+          <tr><td>Frame rate while idle</td><td>115 fps</td><td class="win">133 fps</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">Medians of three cold launches. CPU is a percentage of one core, averaged over a minute idle.</p>
+
+      <h3>Notes</h3>
+      <ul>
+        <li>Both are Linux release builds (benilla at <code>43b282a0</code>) with vsync off and no frame cap.</li>
+        <li>benilla's loading screen waits for everything nearby to load. WoWGD's clears once the nearby tiles are in and streams the rest.</li>
+        <li>Ryzen 5 3600, 32 GB RAM, RTX 3060, CachyOS on Wayland, server on the local network.</li>
+      </ul>
+
+      <h3>Screenshots</h3>
+      <p>Same spots, same camera, interface hidden. Drag to compare WoWGD (left) with benilla (right).</p>
+      <p class="muted">WoWGD has an option for real-time shadows, and it was on for these shots. benilla has no such option and only draws the baked terrain shadows and blob shadows under units that 1.12 does.</p>
+      <p class="muted">WoWGD also keeps name plates on screen with the interface hidden.</p>
+
+      <h3 class="spot">Goldshire, Elwynn Forest</h3>
+      <figure class="compare">
+        <img src="benchmark/goldshire-wowgd.jpg" alt="Goldshire in WoWGD" width="1920" height="1080" loading="lazy">
+        <img class="after" src="benchmark/goldshire-benilla.jpg" alt="Goldshire in benilla" width="1920" height="1080" loading="lazy">
+        <input type="range" min="0" max="100" value="50" aria-label="Goldshire: slide between WoWGD and benilla">
+        <span class="tag tag-before">WoWGD</span>
+        <span class="tag tag-after">benilla</span>
+      </figure>
+
+      <h3 class="spot">Stormwind</h3>
+      <figure class="compare">
+        <img src="benchmark/stormwind-wowgd.jpg" alt="Stormwind in WoWGD" width="1920" height="1080" loading="lazy">
+        <img class="after" src="benchmark/stormwind-benilla.jpg" alt="Stormwind in benilla" width="1920" height="1080" loading="lazy">
+        <input type="range" min="0" max="100" value="50" aria-label="Stormwind: slide between WoWGD and benilla">
+        <span class="tag tag-before">WoWGD</span>
+        <span class="tag tag-after">benilla</span>
+      </figure>
+
+      <h3 class="spot">Booty Bay, Stranglethorn Vale</h3>
+      <figure class="compare">
+        <img src="benchmark/bootybay-wowgd.jpg" alt="Booty Bay in WoWGD" width="1920" height="1080" loading="lazy">
+        <img class="after" src="benchmark/bootybay-benilla.jpg" alt="Booty Bay in benilla" width="1920" height="1080" loading="lazy">
+        <input type="range" min="0" max="100" value="50" aria-label="Booty Bay: slide between WoWGD and benilla">
+        <span class="tag tag-before">WoWGD</span>
+        <span class="tag tag-after">benilla</span>
+      </figure>
+
+      <h3 class="spot">Darnassus</h3>
+      <figure class="compare">
+        <img src="benchmark/darnassus-wowgd.jpg" alt="Darnassus in WoWGD" width="1920" height="1080" loading="lazy">
+        <img class="after" src="benchmark/darnassus-benilla.jpg" alt="Darnassus in benilla" width="1920" height="1080" loading="lazy">
+        <input type="range" min="0" max="100" value="50" aria-label="Darnassus: slide between WoWGD and benilla">
+        <span class="tag tag-before">WoWGD</span>
+        <span class="tag tag-after">benilla</span>
+      </figure>
+
+      <h3 class="spot">Thunder Bluff</h3>
+      <figure class="compare">
+        <img src="benchmark/thunderbluff-wowgd.jpg" alt="Thunder Bluff in WoWGD" width="1920" height="1080" loading="lazy">
+        <img class="after" src="benchmark/thunderbluff-benilla.jpg" alt="Thunder Bluff in benilla" width="1920" height="1080" loading="lazy">
+        <input type="range" min="0" max="100" value="50" aria-label="Thunder Bluff: slide between WoWGD and benilla">
+        <span class="tag tag-before">WoWGD</span>
+        <span class="tag tag-after">benilla</span>
+      </figure>
+
+      <h3 class="spot">Moonglade</h3>
+      <figure class="compare">
+        <img src="benchmark/moonglade-wowgd.jpg" alt="Moonglade in WoWGD" width="1920" height="1080" loading="lazy">
+        <img class="after" src="benchmark/moonglade-benilla.jpg" alt="Moonglade in benilla" width="1920" height="1080" loading="lazy">
+        <input type="range" min="0" max="100" value="50" aria-label="Moonglade: slide between WoWGD and benilla">
+        <span class="tag tag-before">WoWGD</span>
+        <span class="tag tag-after">benilla</span>
+      </figure>
+
+      <p class="muted">Reproduce with <code>python3 tools/bench_compare.py</code>.</p>
+    </section>
+  </main>
+
+  <footer class="rule-double">
+    <p>World of Warcraft is a trademark of Blizzard Entertainment, which does not endorse this project.</p>
+  </footer>
+  <script>
+    document.querySelectorAll(".compare input").forEach(function (range) {
+      range.addEventListener("input", function () {
+        range.parentElement.style.setProperty("--pos", range.value + "%");
+      });
+    });
+  </script>
+</body>
+</html>

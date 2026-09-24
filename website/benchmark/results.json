@@ -1,0 +1,52 @@
+{
+  "timing": {
+    "benilla": {
+      "login": 1.52,
+      "entered": 1.57,
+      "loaded": 5.98,
+      "idle_cpu": 177.61,
+      "idle_rss": 1510.57,
+      "peak_rss": 1516.94,
+      "fps": 133.39,
+      "world_load": 4.25
+    },
+    "wowgd": {
+      "login": 2.59,
+      "entered": 2.66,
+      "loaded": 4.43,
+      "idle_cpu": 108.67,
+      "idle_rss": 1624.63,
+      "peak_rss": 1625.23,
+      "fps": 115.4,
+      "world_load": 1.83
+    }
+  },
+  "runs": 3,
+  "idle_seconds": 60,
+  "spots": [
+    "Goldshire",
+    "Stormwind",
+    "BootyBay",
+    "Darnassus",
+    "ThunderBluff",
+    "Moonglade"
+  ],
+  "teleports": {
+    "benilla": [
+      67.88168319800752,
+      92.49304996500723,
+      122.56936013400264,
+      152.5783513839997,
+      182.1648805809964
+    ],
+    "wowgd": [
+      8.137,
+      11.544,
+      15.593,
+      19.813,
+      23.757,
+      27.427
+    ]
+  },
+  "date": "2026-09-23"
+}

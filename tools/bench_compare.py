@@ -2,7 +2,7 @@
 """Benchmark benilla against WoWGD on the same character and take matching screenshots.
 
 Writes website/benchmark/results.json and website/benchmark/<spot>-<client>.jpg.
-Run from anywhere: python3 tools/bench_compare.py [--runs 3] [--idle 60] [--skip-timing]
+Run from anywhere: python3 tools/bench_compare.py [--runs 3] [--idle 60] [--skip-timing] [--skip-shots]
 """
 import argparse
 import json
@@ -22,7 +22,7 @@ import psutil
 WOW = Path("/mnt/SSD/Wow")
 SITE = WOW / "WoWdot/website/benchmark"
 WOWGD = WOW / "WoWdot/export/wowgd/linux/WoWGD.x86_64"
-BENILLA = WOW / "benilla/target/debug/benilla"
+BENILLA = WOW / "benilla/target/release/benilla"
 DATA = WOW / "GameData/VanillaData/Data"
 HOST, ACCOUNT, PASSWORD, CHARACTER = "192.168.1.251", "wowgd", "wowgd", "Mwarf"
 SIZE = "1920x1080"
@@ -199,6 +199,7 @@ def main() -> None:
     parser.add_argument("--runs", type=int, default=3)
     parser.add_argument("--idle", type=float, default=60)
     parser.add_argument("--skip-timing", action="store_true")
+    parser.add_argument("--skip-shots", action="store_true")
     options = parser.parse_args()
     SITE.mkdir(parents=True, exist_ok=True)
     results_path = SITE / "results.json"
@@ -229,9 +230,9 @@ def main() -> None:
         results["runs"] = options.runs
         results["idle_seconds"] = options.idle
 
-    results["spots"] = SPOTS
-    results["teleports"] = {}
-    for client in ("benilla", "wowgd"):
+    for client in () if options.skip_shots else ("benilla", "wowgd"):
+        results["spots"] = SPOTS
+        results.setdefault("teleports", {})
         print(f"scenic run {client}")
         shots = raw / f"shots-{client}"
         shots.mkdir()

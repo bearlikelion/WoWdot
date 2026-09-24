@@ -37,8 +37,7 @@ Needs SCons, a C++20 compiler and the submodules (`git submodule update --init -
 
 ```sh
 scons -j8 target=template_debug                        # editor and debug runs
-./build-linux-release.sh                               # Linux exports, built in the godot-linux podman image so the glibc floor matches the export template
-scons -j8 platform=windows target=template_release     # Windows exports, cross-built with mingw-w64
+./build-release.sh                                     # Linux and Windows exports: Linux in the godot-linux podman image so the glibc floor matches the export template, Windows cross-built with mingw-w64
 scons -j8 target=template_debug sanitize=yes           # ASan and UBSan
 ```
 
