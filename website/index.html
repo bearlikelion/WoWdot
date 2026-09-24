@@ -69,6 +69,7 @@
           <a href="{{RELEASES}}/download/WoWGD-linux.zip" aria-label="Download WoWGD for Linux"><svg class="plat" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="15" rx="6.6" ry="6.8"/><ellipse cx="12" cy="7" rx="4.4" ry="4.8"/><ellipse class="bg" cx="12" cy="16.2" rx="3.6" ry="4.6"/><circle class="bg" cx="10.3" cy="6.4" r="1.2"/><circle class="bg" cx="13.7" cy="6.4" r="1.2"/><ellipse class="beak" cx="12" cy="9.3" rx="2.3" ry="1.3"/><ellipse class="beak" cx="8.8" cy="21" rx="2.3" ry="1.1" transform="rotate(-20 8.8 21)"/><ellipse class="beak" cx="15.2" cy="21" rx="2.3" ry="1.1" transform="rotate(20 15.2 21)"/></svg>Linux</a>
           <a href="{{RELEASES}}">every release on GitHub</a>
         </p>
+        <p class="enter-release" id="enter-release" hidden></p>
         <p class="enter-locked" id="enter-locked">Too early to play, so there is nothing to download yet.</p>
       </div>
     </aside>
@@ -341,6 +342,19 @@
         });
         show(0);
       }).catch(function () {}).then(function () { show(index); rest(); });
+
+      // Asked at view time, since publish.sh can re-upload a release without the site rebuilding.
+      var api = document.getElementById("enter-world").href.replace("https://github.com/", "https://api.github.com/repos/");
+      fetch(api).then(function (r) { return r.ok ? r.json() : null; }).then(function (release) {
+        if (!release || !release.tag_name) return;
+        var uploaded = (release.assets || []).reduce(function (last, asset) {
+          return asset.updated_at > last ? asset.updated_at : last;
+        }, release.published_at);
+        var date = new Date(uploaded).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+        var line = document.getElementById("enter-release");
+        line.textContent = release.tag_name + ", uploaded " + date;
+        line.hidden = false;
+      }).catch(function () {});
     })();
   </script>
 </body>

@@ -405,6 +405,12 @@ h1 {
   font-weight: 400;
 }
 
+.enter-release {
+  margin: var(--s-2) 0 0;
+  font-size: 0.85rem;
+  color: var(--ivory-dim);
+}
+
 .enter-locked {
   display: none;
   margin: var(--s-3) 0 0;
@@ -417,7 +423,8 @@ h1 {
   filter: grayscale(1);
 }
 
-.enter.is-locked .enter-platforms {
+.enter.is-locked .enter-platforms,
+.enter.is-locked .enter-release {
   display: none;
 }
 
