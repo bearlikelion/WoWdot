@@ -18,6 +18,7 @@ const ERROR_COLOR: Color = Color(1.0, 0.1, 0.1)
 const NOTICE_COLOR: Color = Color(1.0, 0.82, 0.0)
 const LOOT_COLOR: Color = Color(0.0, 0.67, 0.0)
 const FACTION_COLOR: Color = Color(0.5, 0.5, 1.0)
+const SKILL_COLOR: Color = Color(0.333, 0.333, 1.0)
 # TYPEID_ITEM and TYPEID_CONTAINER.
 const ITEM_TYPES: Array[int] = [1, 2]
 # UIParent_ManageFramePositions lifts the casting bar clear of the bottom action bars.
@@ -146,6 +147,7 @@ func _ready() -> void:
 	_character.watched_changed.connect(_main_menu_bar.show_reputation)
 	# The stock client files reputation under the Combat Log window, with experience.
 	_character.reputation_changed.connect(_chat_frames[1].add_message.bind(FACTION_COLOR))
+	_character.skill_message_added.connect(add_chat_line.bind(SKILL_COLOR, "SKILL"))
 	_quest_log.share_answered.connect(show_notice)
 	_bank.open_requested.connect(_panels.show_panel.bind(_bank))
 	_bank.error_raised.connect(show_error)

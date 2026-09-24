@@ -8,6 +8,7 @@ signal item_used(slot: Inventory.Slot)
 signal unlearn_requested(skill_id: int, skill_name: String)
 signal watched_changed(entry: Dictionary)
 signal reputation_changed(text: String)
+signal skill_message_added(text: String)
 
 enum Tab { CHARACTER = 1, PET, REPUTATION, SKILLS, HONOR }
 
@@ -102,6 +103,7 @@ func _ready() -> void:
 	%CharacterFrameCloseButton.pressed.connect(close_requested.emit)
 	%SkillFrame.close_requested.connect(close_requested.emit)
 	%SkillFrame.unlearn_requested.connect(unlearn_requested.emit)
+	%SkillFrame.message_added.connect(skill_message_added.emit)
 	%ReputationFrame.watched_changed.connect(watched_changed.emit)
 	%ReputationFrame.message_added.connect(reputation_changed.emit)
 	# CharacterNameFrame raises its frame level on load so the name draws over the tab art.

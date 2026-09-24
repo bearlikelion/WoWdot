@@ -3,6 +3,7 @@ extends Control
 
 signal close_requested
 signal unlearn_requested(skill_id: int, skill_name: String)
+signal message_added(text: String)
 
 const SKILLS_TO_DISPLAY: int = 12
 const SKILLFRAME_SKILL_HEIGHT: float = 15.0
@@ -13,6 +14,8 @@ const HIDDEN_CATEGORIES: Array[int] = [5, 12]
 # SkillRaceClassInfo flags: the skill can be unlearned, or always reads as 1.
 const FLAG_UNLEARNABLE: int = 0x20
 const FLAG_MONO_VALUE: int = 0x400
+# Class specs, racials and mounts rank up without a chat line.
+const FLAG_SKILL_UP_SILENT: int = 0x402
 const RANK_GAP: float = 13.0
 const PLUS_BUTTON: String = "Interface\\Buttons\\UI-PlusButton-Up.blp"
 const MINUS_BUTTON: String = "Interface\\Buttons\\UI-MinusButton-Up.blp"
@@ -30,6 +33,8 @@ var _skill_lines: WowDBC
 var _categories: WowDBC
 var _skill_flags: Dictionary[int, int] = {}
 var _textures: Dictionary[String, WowTexture] = {}
+var _ranks: Dictionary[int, int] = {}
+var _ranks_owner: int = 0
 
 @onready var _list_scroll: WowScrollFrame = %SkillListScrollFrame
 
@@ -295,4 +300,34 @@ func _on_list_scrolled(value: float) -> void:
 
 func _on_object_updated(guid: int) -> void:
 	if guid == WowClient.session.get_player_guid():
+		_announce_skill_ups(guid)
 		refresh()
+
+
+# The server sends no skill-up message; the client diffs PLAYER_SKILL_INFO and prints its own.
+func _announce_skill_ups(guid: int) -> void:
+	var session: WowSession = WowClient.session
+	var first: int = session.field_index("PLAYER_SKILL_INFO_1_1")
+	var ranks: Dictionary[int, int] = {}
+	for i: int in MAX_SKILLS:
+		var id: int = session.get_field(guid, first + i * SKILL_FIELDS) & 0xFFFF
+		if id:
+			ranks[id] = session.get_field(guid, first + i * SKILL_FIELDS + 1) & 0xFFFF
+	if _ranks_owner != guid:
+		_skill_flags.clear()
+	elif not _ranks.is_empty():
+		for id: int in ranks:
+			var row: int = _skill_lines.find(id)
+			if row < 0 or _flags(id) & FLAG_SKILL_UP_SILENT or not _skill_flags.has(id):
+				continue
+			var skill_name: String = _skill_lines.get_string(row, "Name")
+			if not _ranks.has(id):
+				message_added.emit(
+					WowStrings.format(WowStrings.get_text("ERR_SKILL_GAINED_S"), [skill_name])
+				)
+			elif ranks[id] > _ranks[id]:
+				message_added.emit(WowStrings.format(
+					WowStrings.get_text("ERR_SKILL_UP_SI"), [skill_name, ranks[id]]
+				))
+	_ranks = ranks
+	_ranks_owner = guid

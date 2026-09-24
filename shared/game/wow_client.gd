@@ -44,11 +44,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var t: int = Time.get_ticks_usec()
 	session.poll()
-	var d: int = Time.get_ticks_usec() - t
-	if d > 5000:
-		print("TIMING %d poll took %.1f ms state %d" % [Time.get_ticks_msec(), d / 1000.0, session.get_state()])
 
 
 # The name players see, such as Warsong Gulch, where map_name gives the folder the map loads from.

@@ -108,7 +108,7 @@ static func chain_tabs(tabs: Array[Control], padding: float) -> void:
 	var shown: Array[Control] = tabs.filter(func(tab: Control) -> bool: return tab.visible)
 	if shown.size() < 2:
 		return
-	var gap: float = shown[1].position.x - shown[0].position.x - shown[0].size.x
+	var gap: float = tabs[1].position.x - tabs[0].position.x - tabs[0].size.x
 	var x: float = shown[0].position.x
 	for tab: Control in shown:
 		resize_tab(tab, padding)
