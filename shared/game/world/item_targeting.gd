@@ -5,6 +5,7 @@ signal changed
 
 # SpellCastTargets flag for a cast aimed at an item, which is then named by its packed guid.
 const TARGET_FLAG_ITEM: int = 0x10
+const TARGET_FLAG_GAMEOBJECT: int = 0x800
 
 var _session: WowSession
 var _spell: int = 0
@@ -64,18 +65,22 @@ func cancel() -> bool:
 func apply(item_guid: int) -> void:
 	var target: PackedByteArray = targets(TARGET_FLAG_ITEM, item_guid)
 	if _spell != 0:
-		var payload: PackedByteArray = PackedByteArray()
-		if PacketReader.wotlk:
-			payload.append(0)
-		payload.resize(payload.size() + 4)
-		payload.encode_u32(payload.size() - 4, _spell)
-		if PacketReader.wotlk:
-			payload.append(0)
-		payload.append_array(target)
-		_session.send_packet("CMSG_CAST_SPELL", payload)
+		cast(_spell, target)
 	else:
 		use_item(_used, target)
 	cancel()
+
+
+static func cast(spell_id: int, target: PackedByteArray) -> void:
+	var payload: PackedByteArray = PackedByteArray()
+	if PacketReader.wotlk:
+		payload.append(0)
+	payload.resize(payload.size() + 4)
+	payload.encode_u32(payload.size() - 4, spell_id)
+	if PacketReader.wotlk:
+		payload.append(0)
+	payload.append_array(target)
+	WowClient.session.send_packet("CMSG_CAST_SPELL", payload)
 
 
 # CMSG_USE_ITEM; 3.3.5 adds a cast count, the item's spell and guid, a glyph slot and cast flags.

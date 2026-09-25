@@ -24,6 +24,8 @@ var _skill_lines: WowDBC
 var _class_lines: Dictionary[int, int] = {}
 # Each spell's skill line of any kind, professions included.
 var _all_lines: Dictionary[int, int] = {}
+var _locks: WowDBC
+var _lock_types: WowDBC
 
 
 func _init(archive: WowArchive) -> void:
@@ -225,6 +227,39 @@ func opens_trade_skill(spell_id: int) -> bool:
 	return false
 
 
+# A Lock.dbc lock's filled slots, each its key kind and the item or lock type it names.
+func lock_keys(lock_id: int) -> Array[Vector2i]:
+	if _locks == null:
+		_locks = WowDBC.open(WowAssets.archive, "Lock")
+	var keys: Array[Vector2i] = []
+	var row: int = _locks.find(lock_id)
+	if row < 0:
+		return keys
+	for slot: int in 8:
+		var index: int = _locks.get_uint(row, "Index%d" % slot)
+		if _locks.get_uint(row, "Type%d" % slot) != 0 and index != 0:
+			keys.append(Vector2i(_locks.get_uint(row, "Type%d" % slot), index))
+	return keys
+
+
+# A known spell whose SPELL_EFFECT_OPEN_LOCK opens this lock type, or 0.
+func lock_opener(lock_type: int) -> int:
+	const EFFECT_OPEN_LOCK: int = 33
+	for spell_id: int in WowClient.session.get_known_spells():
+		for effect: int in 3:
+			if _uint(spell_id, "Effect%d" % effect) == EFFECT_OPEN_LOCK \
+			and _uint(spell_id, "EffectMiscValue%d" % effect) == lock_type:
+				return spell_id
+	return 0
+
+
+func lock_type_name(lock_type: int) -> String:
+	if _lock_types == null:
+		_lock_types = WowDBC.open(WowAssets.archive, "LockType")
+	var row: int = _lock_types.find(lock_type)
+	return _lock_types.get_text(row, "Name") if row >= 0 else ""
+
+
 func skill_line(spell_id: int) -> int:
 	if _skill_lines == null:
 		_load_skill_lines()
@@ -235,11 +270,11 @@ func skill_line_name(line: int) -> String:
 	if _skill_lines == null:
 		_load_skill_lines()
 	var row: int = _skill_lines.find(line)
-	return _skill_lines.get_string(row, "Name") if row >= 0 else ""
+	return _skill_lines.get_text(row, "Name") if row >= 0 else ""
 
 
 func _line_name(line: int) -> String:
-	return _skill_lines.get_string(_skill_lines.find(line), "Name")
+	return _skill_lines.get_text(_skill_lines.find(line), "Name")
 
 
 func _by_name_and_rank(spells: Array[int]) -> Array[int]:
@@ -254,7 +289,7 @@ func _by_name_and_rank(spells: Array[int]) -> Array[int]:
 
 func _string(spell_id: int, column: String) -> String:
 	var row: int = _spells.find(spell_id)
-	return _spells.get_string(row, column) if row >= 0 else ""
+	return _spells.get_text(row, column) if row >= 0 else ""
 
 
 func _uint(spell_id: int, column: String) -> int:

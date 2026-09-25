@@ -32,7 +32,7 @@ static func unpack_date(packed: int) -> Dictionary:
 
 func title(id: int) -> String:
 	var row: int = _table().find(id)
-	return _achievements.get_string(row, "Title") if row >= 0 else ""
+	return _achievements.get_text(row, "Title") if row >= 0 else ""
 
 
 func points() -> int:

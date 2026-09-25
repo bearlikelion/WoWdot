@@ -10,7 +10,7 @@ static var _areas: WowDBC
 
 static func area_name(area_id: int) -> String:
 	var row: int = _row(area_id)
-	return _areas.get_string(row, "Name") if row >= 0 else ""
+	return _areas.get_text(row, "Name") if row >= 0 else ""
 
 
 # Subzones carry no faction of their own, so the owning zone's answers for them.

@@ -26,6 +26,10 @@ const GAMEOBJECT_TYPE_MEETING_STONE: int = 23
 const GAMEOBJECT_TYPE_GUILD_BANK: int = 34
 # Which data field of a readable game object's template holds its first page, by type.
 const GAMEOBJECT_PAGE_FIELDS: Dictionary[int, int] = {9: 0, 10: 7}
+# Which data field holds the Lock.dbc id, by game object type.
+const GAMEOBJECT_LOCK_FIELDS: Dictionary[int, int] = {
+	0: 1, 1: 1, 2: 0, 3: 0, 6: 0, 10: 0, 12: 0, 13: 0, 24: 0, 25: 4, 26: 0,
+}
 const SCREENSHOT_DIRECTORY: String = "user://Screenshots"
 const SPEED_CHANGES: Dictionary[String, Player.SpeedKind] = {
 	"SMSG_FORCE_WALK_SPEED_CHANGE": Player.SpeedKind.WALK,
@@ -206,6 +210,7 @@ func _binding_pressed(event: InputEvent) -> bool:
 		return false
 	var session: WowSession = WowClient.session
 	var target: int = _hud.target()
+	var party_unit: int = _party_unit(event)
 	if _exact(event, "target_nearest_enemy"):
 		_cycle_target(false, 1)
 	elif _exact(event, "target_previous_enemy"):
@@ -216,6 +221,8 @@ func _binding_pressed(event: InputEvent) -> bool:
 		_cycle_target(true, -1)
 	elif _exact(event, "target_self"):
 		select(session.get_player_guid())
+	elif party_unit != 0:
+		select(party_unit)
 	elif _exact(event, "target_last_hostile"):
 		if session.has_object(_last_hostile):
 			select(_last_hostile)
@@ -251,6 +258,20 @@ func _binding_pressed(event: InputEvent) -> bool:
 
 func _exact(event: InputEvent, action: String) -> bool:
 	return event.is_action_pressed(action, false, true)
+
+
+# Pets are only found in sight, where their owner's summon field names them.
+func _party_unit(event: InputEvent) -> int:
+	var session: WowSession = WowClient.session
+	if _exact(event, "target_pet"):
+		return _unit_guid(session.get_player_guid(), "UNIT_FIELD_SUMMON")
+	for i: int in mini(PartyFrame.members.size(), PartyFrame.MAX_MEMBERS):
+		var member: int = PartyFrame.members[i]["guid"]
+		if _exact(event, "target_party_member_%d" % (i + 1)):
+			return member
+		if _exact(event, "target_party_pet_%d" % (i + 1)) and session.has_object(member):
+			return _unit_guid(member, "UNIT_FIELD_SUMMON")
+	return 0
 
 
 # TargetNearestEnemy: attackable units on screen, nearest first; pressing again steps to the next.
@@ -817,6 +838,11 @@ func _use_game_object(guid: int) -> void:
 	if info.get("type", 0) == GAMEOBJECT_TYPE_GUILD_BANK and PacketReader.wotlk:
 		WowClient.guild_bank.activate(guid)
 		return
+	var fields: PackedInt32Array = info.get("data", PackedInt32Array())
+	var lock_field: int = GAMEOBJECT_LOCK_FIELDS.get(info.get("type", 0), -1)
+	if lock_field >= 0 and lock_field < fields.size() and fields[lock_field] != 0 \
+	and _open_lock(guid, fields[lock_field]):
+		return
 	var payload: PackedByteArray = []
 	payload.resize(8)
 	payload.encode_u64(0, guid)
@@ -829,10 +855,38 @@ func _use_game_object(guid: int) -> void:
 			session.send_packet("CMSG_MEETINGSTONE_JOIN", payload)
 		return
 	session.send_packet("CMSG_GAMEOBJ_USE", payload)
-	var fields: PackedInt32Array = info.get("data", PackedInt32Array())
 	var page_field: int = GAMEOBJECT_PAGE_FIELDS.get(info.get("type", 0), -1)
 	if page_field >= 0 and page_field < fields.size() and fields[page_field] != 0:
 		_hud.read_page(info.get("name", ""), fields[page_field])
+
+
+# True when a spell cast at the object or a refusal took the place of a plain use.
+func _open_lock(guid: int, lock_id: int) -> bool:
+	const LOCK_KEY_ITEM: int = 1
+	const LOCK_KEY_SKILL: int = 2
+	var spells: SpellInfo = WowAssets.spells
+	var refusal: String = ""
+	for key: Vector2i in spells.lock_keys(lock_id):
+		if key.x == LOCK_KEY_ITEM:
+			if Inventory.item_count(key.y) > 0 or Inventory.on_keyring(key.y):
+				return false
+			if refusal.is_empty():
+				refusal = WowStrings.get_text("ERR_USE_LOCKED_WITH_ITEM_S") \
+				% WowClient.session.get_item_info(key.y).get("name", "")
+		elif key.x == LOCK_KEY_SKILL:
+			var opener: int = spells.lock_opener(key.y)
+			if opener != 0:
+				ItemTargeting.cast(
+					opener, ItemTargeting.targets(ItemTargeting.TARGET_FLAG_GAMEOBJECT, guid)
+				)
+				return true
+			if refusal.is_empty():
+				refusal = WowStrings.get_text("ERR_USE_LOCKED_WITH_SPELL_S") \
+				% spells.lock_type_name(key.y)
+	if refusal.is_empty():
+		return false
+	_hud.show_error(refusal)
+	return true
 
 
 func _on_game_object_info_received(entry: int) -> void:

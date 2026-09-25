@@ -17,6 +17,7 @@ var shadows: bool = false
 var volumetric_fog: bool = false
 # Zero leaves the window as it is and renders fullscreen at the screen's own size.
 var resolution: Vector2i = Vector2i.ZERO
+var locale: String = "enUS"
 
 
 # Starts from the saved choices, or from the window as the project opened it when none are saved.
@@ -32,6 +33,11 @@ func _init() -> void:
 		set(option, saved.get_value(SECTION, option, value) if has_saved else value)
 	if has_saved:
 		resolution = saved.get_value(SECTION, "resolution", Vector2i.ZERO)
+	var available: PackedStringArray = available_locales()
+	locale = saved.get_value(SECTION, "locale", "") if has_saved else ""
+	if not locale in available:
+		locale = available[0] if not available.is_empty() else "enUS"
+	_apply_locale()
 
 
 # The project's own window settings, which the fullscreen export plugin sets for exported builds.
@@ -47,7 +53,27 @@ static func defaults() -> Dictionary:
 	}
 
 
+static func available_locales() -> PackedStringArray:
+	var found: PackedStringArray = mpq_locales()
+	for code: String in Translations.LOCALES:
+		if not code in found and Translations.has_locale(code):
+			found.append(code)
+	return found
+
+
+# A client's MPQs fill only their own locale's column, so the rest come back empty.
+static func mpq_locales() -> PackedStringArray:
+	var races: WowDBC = WowDBC.open(WowAssets.archive, "ChrRaces")
+	var name_column: int = races.column("Name")
+	var found: PackedStringArray = []
+	for i: int in Translations.LOCALES.size():
+		if not races.get_string(0, name_column + i).is_empty():
+			found.append(Translations.LOCALES.keys()[i])
+	return found
+
+
 func apply() -> void:
+	_apply_locale()
 	if DisplayServer.get_name() != "headless":
 		var mode: DisplayServer.WindowMode = DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
 		if windowed:
@@ -67,6 +93,7 @@ func save() -> void:
 	for option: StringName in OPTIONS:
 		saved.set_value(SECTION, option, get(option))
 	saved.set_value(SECTION, "resolution", resolution)
+	saved.set_value(SECTION, "locale", locale)
 	saved.save(SETTINGS_PATH)
 
 
@@ -82,3 +109,12 @@ func _apply_resolution(mode: DisplayServer.WindowMode) -> void:
 		scale = minf(float(resolution.x) / screen.x, float(resolution.y) / screen.y)
 	var root: Window = (Engine.get_main_loop() as SceneTree).root
 	root.scaling_3d_scale = scale
+
+
+func _apply_locale() -> void:
+	WowDBC.set_locale(Translations.LOCALES.keys().find(locale))
+	# The client's own text beats a community translation.
+	if locale in mpq_locales():
+		Translations.clear()
+	else:
+		Translations.load_locale(locale)

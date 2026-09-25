@@ -50,12 +50,12 @@ static func header(info: Dictionary) -> String:
 		if _areas == null:
 			_areas = WowDBC.open(WowAssets.archive, "AreaTable")
 		var row: int = _areas.find(zone_or_sort)
-		return _areas.get_string(row, "Name") if row >= 0 else ""
+		return _areas.get_text(row, "Name") if row >= 0 else ""
 	if zone_or_sort < 0:
 		if _sorts == null:
 			_sorts = WowDBC.open(WowAssets.archive, "QuestSort")
 		var row: int = _sorts.find(-zone_or_sort)
-		return _sorts.get_string(row, "Name") if row >= 0 else ""
+		return _sorts.get_text(row, "Name") if row >= 0 else ""
 	return ""
 
 

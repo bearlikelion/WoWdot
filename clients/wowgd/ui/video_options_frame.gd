@@ -29,6 +29,8 @@ const MENU_OFFSET: Vector2 = Vector2(15.0, 32.0)
 var _resolution: Vector2i = Vector2i.ZERO
 var _resolutions: Array[Vector2i] = []
 var _menu: DropDownList
+var _language: String = ""
+var _language_menu: DropDownList
 
 
 func _ready() -> void:
@@ -45,6 +47,11 @@ func _ready() -> void:
 	_menu = DROP_DOWN_LIST.instantiate()
 	add_child(_menu)
 	_menu.entry_selected.connect(_on_resolution_selected)
+	%VideoOptionsFrameLanguageDropDownLabel.text = WowStrings.get_text("LANGUAGE", "Language")
+	%VideoOptionsFrameLanguageDropDownButton.pressed.connect(_open_language_menu)
+	_language_menu = DROP_DOWN_LIST.instantiate()
+	add_child(_language_menu)
+	_language_menu.entry_selected.connect(_on_language_selected)
 
 
 func _check(number: int) -> WowButton:
@@ -90,6 +97,8 @@ func _on_visibility_changed() -> void:
 		values[option] = video.get(option)
 	values[&"resolution"] = video.resolution
 	_show_values(values)
+	_language = video.locale
+	_show_language()
 
 
 func _on_check_pressed(number: int) -> void:
@@ -117,8 +126,32 @@ func _on_resolution_selected(id: int) -> void:
 	_show_resolution()
 
 
+func _show_language() -> void:
+	%VideoOptionsFrameLanguageDropDownText.text = Translations.LOCALES[_language]
+
+
+func _open_language_menu() -> void:
+	var available: PackedStringArray = VideoSettings.available_locales()
+	var entries: Array[Dictionary] = []
+	for i: int in Translations.LOCALES.size():
+		var code: String = Translations.LOCALES.keys()[i]
+		entries.append({
+			"text": Translations.LOCALES[code],
+			"id": i,
+			"checked": code == _language,
+			"disabled": not code in available,
+		})
+	_language_menu.open(entries, %VideoOptionsFrameLanguageDropDown.position + MENU_OFFSET)
+
+
+func _on_language_selected(id: int) -> void:
+	_language = Translations.LOCALES.keys()[id]
+	_show_language()
+
+
 func _on_okay_pressed() -> void:
 	var video: VideoSettings = WowAssets.video
+	video.locale = _language
 	for number: int in CHECK_OPTIONS:
 		video.set(CHECK_OPTIONS[number], _check(number).checked)
 	video.resolution = _resolution

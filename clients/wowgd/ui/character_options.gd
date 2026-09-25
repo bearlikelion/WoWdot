@@ -40,7 +40,8 @@ static func race_icon_column() -> float:
 
 
 static func race_name(race: int) -> String:
-	return _race_string(race, "Name")
+	var row: int = _race_table().find(race)
+	return _race_table().get_text(row, "Name") if row >= 0 else ""
 
 
 # The race's file token, such as "Scourge", which glue strings and scenes are keyed by.
@@ -76,7 +77,7 @@ static func hair_kind(race: int) -> String:
 
 static func class_label(class_id: int) -> String:
 	var row: int = _class_table().find(class_id)
-	return _class_table().get_string(row, "Name") if row >= 0 else ""
+	return _class_table().get_text(row, "Name") if row >= 0 else ""
 
 
 static func class_file(class_id: int) -> String:

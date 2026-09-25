@@ -93,7 +93,7 @@ func _list_categories() -> void:
 		_row(i).visible = index < _categories.row_count()
 		if _row(i).visible:
 			var label: Label = get_node("%%HelpFrameButton%dText" % (i + 1))
-			label.text = _categories.get_string(index, CATEGORY_NAME_COLUMN)
+			label.text = _categories.get_text(index, CATEGORY_NAME_COLUMN)
 
 
 func _row(i: int) -> BaseButton:

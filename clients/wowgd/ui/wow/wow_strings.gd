@@ -25,6 +25,12 @@ static func has_text(key: String) -> bool:
 	return _strings.has(key)
 
 
+static func all_texts() -> Dictionary[String, String]:
+	if _strings.is_empty():
+		_load()
+	return _strings
+
+
 # Lua's string.format: %s and %d in order, %2$s by position, arguments left over ignored.
 static func format(template: String, args: Array) -> String:
 	var out: String = ""
@@ -120,6 +126,7 @@ static func _load() -> void:
 		for found: RegExMatch in line.search_all(source):
 			if not _strings.has(found.get_string(1)):
 				_strings[found.get_string(1)] = _unescape(found.get_string(2))
+	_strings.merge(Translations.strings, true)
 
 
 # Lua escapes the strings use: \" and \n, decimal bytes such as \32 for a trailing space, and

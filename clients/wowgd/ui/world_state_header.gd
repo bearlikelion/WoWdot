@@ -51,7 +51,7 @@ func refresh() -> void:
 		var gate: int = _table.get_uint(row, GATE_COLUMN)
 		if gate != 0 and battlegrounds.world_state(gate) == 0:
 			continue
-		var text: String = _table.get_string(row, TEXT_COLUMN)
+		var text: String = _table.get_text(row, TEXT_COLUMN)
 		for found: RegExMatch in _token.search_all(text):
 			var value: int = battlegrounds.world_state(found.get_string(1).to_int())
 			text = text.replace(found.get_string(0), str(value))

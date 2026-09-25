@@ -55,7 +55,7 @@ func _show_tip() -> void:
 		row = 0
 	saved.set_value(TIP_SECTION, "next", row + 1)
 	saved.save(TIP_SETTINGS)
-	_tip.text = WowStrings.to_bbcode(tips.get_string(row, 1).strip_edges())
+	_tip.text = WowStrings.to_bbcode(tips.get_text(row, 1).strip_edges())
 	var width: float = size.y * TIP_WIDTH
 	_tip.offset_left = -width / 2.0
 	_tip.offset_right = width / 2.0

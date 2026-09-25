@@ -395,6 +395,29 @@
     "MinLevel": 30,
     "MaxLevel": 31
   },
+  "Lock": {
+    "ID": 0,
+    "Type0": 1,
+    "Type1": 2,
+    "Type2": 3,
+    "Type3": 4,
+    "Type4": 5,
+    "Type5": 6,
+    "Type6": 7,
+    "Type7": 8,
+    "Index0": 9,
+    "Index1": 10,
+    "Index2": 11,
+    "Index3": 12,
+    "Index4": 13,
+    "Index5": 14,
+    "Index6": 15,
+    "Index7": 16
+  },
+  "LockType": {
+    "ID": 0,
+    "Name": 1
+  },
   "Map": {
     "ID": 0,
     "InternalName": 1,
@@ -467,6 +490,9 @@
     "EffectItemType0": 107,
     "EffectItemType1": 108,
     "EffectItemType2": 109,
+    "EffectMiscValue0": 110,
+    "EffectMiscValue1": 111,
+    "EffectMiscValue2": 112,
     "EffectRadiusIndex0": 92,
     "EffectRadiusIndex1": 93,
     "EffectRadiusIndex2": 94,

@@ -83,7 +83,7 @@ func show_map(map_id: int) -> void:
 		var here: bool = _table.get_uint(row, MAP_COLUMN) in [map_id, ANY_MAP]
 		if here and _table.get_uint(row, KIND_COLUMN) == SCOREBOARD:
 			_columns.append({
-				"text": _table.get_string(row, TEXT_COLUMN),
+				"text": _table.get_text(row, TEXT_COLUMN),
 				"icon": _table.get_string(row, ICON_COLUMN),
 			})
 		elif not _columns.is_empty():

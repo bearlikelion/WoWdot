@@ -107,15 +107,20 @@ func _show_slot(slot: Control, pet: Dictionary) -> void:
 
 
 func _family_of(entry: int) -> String:
-	return _family_string(entry, FAMILY_NAME_COLUMN)
+	var row: int = _family_row(entry)
+	return _families.get_text(row, FAMILY_NAME_COLUMN) if row >= 0 else ""
 
 
 func _family_string(entry: int, column: int) -> String:
+	var row: int = _family_row(entry)
+	return _families.get_string(row, column) if row >= 0 else ""
+
+
+func _family_row(entry: int) -> int:
 	var info: Dictionary = WowClient.session.get_creature_template(entry)
 	if _families == null:
 		_families = WowDBC.open(WowAssets.archive, "CreatureFamily")
-	var row: int = _families.find(info.get("family", 0))
-	return _families.get_string(row, column) if row >= 0 else ""
+	return _families.find(info.get("family", 0))
 
 
 # StableSlotPrices.dbc holds what the next slot costs, and nothing once both are bought.

@@ -69,6 +69,12 @@ var _audio: WowAudio
 var _video: VideoSettings
 
 
+# The locale and its translations load before any scene reads text.
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		_video = VideoSettings.new()
+
+
 # One shared loader, so WowTexture resources and the world use the same archive and caches.
 func _open() -> void:
 	_loader = WowLoader.get_shared()

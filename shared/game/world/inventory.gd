@@ -62,7 +62,7 @@ static func item_link(item_entry: int, enchant: int = 0, random_property: int = 
 			_random_properties = WowDBC.open(WowAssets.archive, "ItemRandomProperties")
 		var row: int = _random_properties.find(random_property)
 		if row >= 0:
-			item_name += " " + _random_properties.get_string(row, RANDOM_SUFFIX_COLUMN)
+			item_name += " " + _random_properties.get_text(row, RANDOM_SUFFIX_COLUMN)
 	var quality: String = QUALITY_HEX[clampi(info["quality"], 0, QUALITY_HEX.size() - 1)]
 	return "|cff%s|Hitem:%d:%d:%d:0|h[%s]|h|r" % [
 		quality, item_entry, enchant, random_property, item_name,
@@ -183,6 +183,13 @@ static func item_count(item_entry: int) -> int:
 			if item and entry(item) == item_entry:
 				total += stack_count(item)
 	return total
+
+
+static func on_keyring(item_entry: int) -> bool:
+	for slot: int in container_size(KEYRING):
+		if entry(container_item(KEYRING, slot)) == item_entry:
+			return true
+	return false
 
 
 static func entry(item: int) -> int:

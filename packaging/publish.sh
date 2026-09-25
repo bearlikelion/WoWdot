@@ -27,9 +27,12 @@ main() {
   for platform in linux windows; do
     cp "${ROOT}/packaging/wowgd/README.txt" "${ROOT}/LICENSE" "${ROOT}/NOTICE.md" \
       "${OUT}/${platform}/"
+    rm -rf "${OUT}/${platform}/translations"
+    cp -r "${ROOT}/translations/wowgd" "${OUT}/${platform}/translations"
     # Named rather than globbed: the export dirs also hold symlinks into a real WoW install.
     (cd "${OUT}/${platform}" \
-      && zip -q "../dist/WoWGD-${platform}.zip" WoWGD.* libwowdot.* README.txt LICENSE NOTICE.md)
+      && zip -q -r "../dist/WoWGD-${platform}.zip" WoWGD.* libwowdot.* README.txt LICENSE NOTICE.md \
+        translations)
   done
 
   gh release create "$tag" --repo "$REPO" --title "WoWGD $tag" \

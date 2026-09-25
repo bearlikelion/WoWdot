@@ -32,6 +32,8 @@ static func font(file: String) -> FontFile:
 	if not _fonts.has(file):
 		var loaded: FontFile = FontFile.new()
 		loaded.data = WowLoader.get_shared().archive.read(file)
+		# Hangul and CJK, which the stock Latin fonts lack, come from the system.
+		loaded.fallbacks = [SystemFont.new()]
 		_fonts[file] = loaded
 	return _fonts[file]
 

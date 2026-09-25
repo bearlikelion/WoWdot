@@ -83,7 +83,7 @@ func dungeon_name(entry: int) -> String:
 	if _dungeons == null:
 		_dungeons = WowDBC.open(WowAssets.archive, "LFGDungeons")
 	var row: int = _dungeons.find(dungeon_id(entry))
-	return _dungeons.get_string(row, "Name") if row >= 0 else ""
+	return _dungeons.get_text(row, "Name") if row >= 0 else ""
 
 
 func request_info() -> void:
