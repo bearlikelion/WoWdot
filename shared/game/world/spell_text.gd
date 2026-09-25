@@ -30,7 +30,7 @@ static func describe(spell_id: int, column: String = "Description") -> String:
 	var row: int = _spells.find(spell_id)
 	if row < 0:
 		return ""
-	var text: String = _spells.get_string(row, column)
+	var text: String = _spells.get_text(row, column)
 	text = _plurals(text)
 	var out: String = ""
 	var at: int = 0
@@ -67,7 +67,7 @@ static func range_text(spell_id: int) -> String:
 		return ""
 	# Melee ranges show their SpellRange name ("Melee Range"); the rest show yards.
 	if _ranges.get_uint(range_row, "Flags") & RANGE_FLAG_MELEE:
-		return _ranges.get_string(range_row, "Name")
+		return _ranges.get_text(range_row, "Name")
 	return WowStrings.get_text("SPELL_RANGE") % str(roundi(_ranges.get_float(range_row, "MaxRange")))
 
 

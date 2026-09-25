@@ -68,7 +68,7 @@ static func _text(text_id: int) -> String:
 	if text_id == 0:
 		return ""
 	var row: int = _text_data.find(text_id)
-	return _text_data.get_string(row, 1) if row >= 0 else ""
+	return _text_data.get_text(row, 1) if row >= 0 else ""
 
 
 static func _load() -> void:

@@ -236,6 +236,29 @@
   "Name": 1,
   "FileName": 2
  },
+ "Lock": {
+  "ID": 0,
+  "Type0": 1,
+  "Type1": 2,
+  "Type2": 3,
+  "Type3": 4,
+  "Type4": 5,
+  "Type5": 6,
+  "Type6": 7,
+  "Type7": 8,
+  "Index0": 9,
+  "Index1": 10,
+  "Index2": 11,
+  "Index3": 12,
+  "Index4": 13,
+  "Index5": 14,
+  "Index6": 15,
+  "Index7": 16
+ },
+ "LockType": {
+  "ID": 0,
+  "Name": 1
+ },
  "Map": {
   "ID": 0,
   "InternalName": 1,
@@ -300,6 +323,9 @@
   "EffectItemType0": 103,
   "EffectItemType1": 104,
   "EffectItemType2": 105,
+  "EffectMiscValue0": 106,
+  "EffectMiscValue1": 107,
+  "EffectMiscValue2": 108,
   "Category": 2,
   "DispelType": 4,
   "Mechanic": 5,

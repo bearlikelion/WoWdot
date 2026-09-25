@@ -30,7 +30,7 @@ func subclass_name(item_class: int, subclass: int) -> String:
 			var key: Vector2i = Vector2i(
 				table.get_uint(row, CLASS_COLUMN), table.get_uint(row, SUBCLASS_COLUMN),
 			)
-			_names[key] = table.get_string(row, NAME_COLUMN)
+			_names[key] = table.get_text(row, NAME_COLUMN)
 	return _names.get(Vector2i(item_class, subclass), "")
 
 

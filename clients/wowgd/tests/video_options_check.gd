@@ -1,7 +1,7 @@
 class_name VideoOptionsCheck
 extends Control
 
-# Opens the video options and their resolution menu, saving user://video_options_<step>.png.
+# Opens the video options and their resolution and language menus, saving user://video_options_<step>.png.
 const FRAME: PackedScene = preload("res://ui/video_options_frame.tscn")
 
 var _frame: VideoOptionsFrame
@@ -23,6 +23,15 @@ func _ready() -> void:
 	menu.get_node("%DropDownList1Button1").pressed.emit()
 	assert(not menu.visible and _frame._resolution == _frame._resolutions[0])
 	await _shot("chosen")
+	_frame.get_node("%VideoOptionsFrameLanguageDropDownButton").pressed.emit()
+	var languages: DropDownList = _frame._language_menu
+	assert(languages.visible)
+	var available: PackedStringArray = VideoSettings.available_locales()
+	print("video_options_check languages %s" % [available])
+	for i: int in Translations.LOCALES.size():
+		var button: BaseButton = languages.get_node("%%DropDownList1Button%d" % (i + 1))
+		assert(button.disabled != (Translations.LOCALES.keys()[i] in available))
+	await _shot("languages")
 	print("video_options_check passed")
 	get_tree().quit()
 

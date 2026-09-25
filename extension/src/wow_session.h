@@ -119,6 +119,7 @@ private:
 	std::string username;
 	std::string password;
 	std::string auth_host;
+	std::string locale = "enUS";
 	uint16_t auth_port = 3724;
 	int auth_attempt = 0;
 	bool retry_auth = false;
@@ -189,6 +190,7 @@ public:
 	~WowSession() override;
 
 	void login(const String &host, int port, const String &p_username, const String &p_password);
+	void set_locale(const String &p_locale) { locale = p_locale.utf8().get_data(); }
 	void request_realms();
 	void select_realm(int index);
 	void request_characters();

@@ -60,7 +60,7 @@ static func serves(node: int, alliance: bool) -> bool:
 static func node_name(node: int) -> String:
 	_open()
 	var row: int = _nodes.find(node)
-	return _nodes.get_string(row, "Name") if row >= 0 else ""
+	return _nodes.get_text(row, "Name") if row >= 0 else ""
 
 
 static func map_of(node: int) -> int:

@@ -269,6 +269,7 @@ void WowSession::begin_auth() {
 	info.minorVersion = profile.minor;
 	info.patchVersion = profile.patch;
 	info.build = profile.build;
+	info.locale = locale;
 	// vMaNGOS answers protocol 8 while older MaNGOS cores only take 3, so a protocol failure retries once.
 	info.protocolVersion = auth_attempt == 0 ? AUTH_PROTOCOL : AUTH_PROTOCOL_LEGACY;
 	info.legacyVanillaRealmList = profile.legacy_realm_list;
@@ -2305,6 +2306,7 @@ double WowSession::get_field_float(int64_t guid, const Variant &field) const {
 
 void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("login", "host", "port", "username", "password"), &WowSession::login);
+	ClassDB::bind_method(D_METHOD("set_locale", "locale"), &WowSession::set_locale);
 	ClassDB::bind_method(D_METHOD("request_realms"), &WowSession::request_realms);
 	ClassDB::bind_method(D_METHOD("select_realm", "index"), &WowSession::select_realm);
 	ClassDB::bind_method(D_METHOD("request_characters"), &WowSession::request_characters);

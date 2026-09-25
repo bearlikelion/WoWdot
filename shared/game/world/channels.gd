@@ -80,7 +80,7 @@ static func enter_zone(zone_name: String, area_flags: int) -> void:
 		var flags: int = channels.get_uint(row, "Flags")
 		if flags & ChannelFlag.INITIAL == 0 or (flags & ChannelFlag.CITY_ONLY != 0 and not capital):
 			continue
-		var channel_name: String = channels.get_string(row, "Name")
+		var channel_name: String = channels.get_text(row, "Name")
 		if flags & ChannelFlag.ZONE_DEPENDENT != 0:
 			var place: String = WowStrings.get_text("CITY", "City") \
 					if flags & ChannelFlag.CITY_ONLY != 0 else zone_name

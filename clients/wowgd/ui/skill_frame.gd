@@ -134,7 +134,7 @@ func _build_entries() -> void:
 		var collapsed: bool = _collapsed.has(category)
 		_entries.append({
 			"header": true, "category": category, "collapsed": collapsed,
-			"name": _categories.get_string(_categories.find(category), "Name"),
+			"name": _categories.get_text(_categories.find(category), "Name"),
 		})
 		if collapsed:
 			continue
@@ -176,8 +176,8 @@ func _player_skills() -> Array[Dictionary]:
 		var bonuses: int = session.get_field(guid, first + i * SKILL_FIELDS + 2)
 		skills.append({
 			"header": false, "id": id, "category": category, "flags": _flags(id),
-			"name": _skill_lines.get_string(row, "Name"),
-			"description": _skill_lines.get_string(row, "Description"),
+			"name": _skill_lines.get_text(row, "Name"),
+			"description": _skill_lines.get_text(row, "Description"),
 			"rank": ranks & 0xFFFF, "max_rank": ranks >> 16,
 			"modifier": _signed_short(bonuses & 0xFFFF) + _signed_short(bonuses >> 16),
 		})
@@ -320,7 +320,7 @@ func _announce_skill_ups(guid: int) -> void:
 			var row: int = _skill_lines.find(id)
 			if row < 0 or _flags(id) & FLAG_SKILL_UP_SILENT or not _skill_flags.has(id):
 				continue
-			var skill_name: String = _skill_lines.get_string(row, "Name")
+			var skill_name: String = _skill_lines.get_text(row, "Name")
 			if not _ranks.has(id):
 				message_added.emit(
 					WowStrings.format(WowStrings.get_text("ERR_SKILL_GAINED_S"), [skill_name])

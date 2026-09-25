@@ -169,8 +169,8 @@ func _build_entries() -> void:
 		if not by_header.has(header):
 			by_header[header] = []
 		by_header[header].append({
-			"header": false, "index": index, "name": _factions.get_string(row, "Name"),
-			"description": _factions.get_string(row, "Description"),
+			"header": false, "index": index, "name": _factions.get_text(row, "Name"),
+			"description": _factions.get_text(row, "Description"),
 			"standing_id": standing_id, "at_war": faction_flags & FLAG_AT_WAR != 0,
 			"inactive": inactive,
 			"bar_max": STANDING_FLOORS[standing_id] - STANDING_FLOORS[standing_id - 1],
@@ -214,7 +214,7 @@ func _on_standing_changed(index: int, delta: int) -> void:
 		if _factions.get_int(row, "ReputationIndex") == index:
 			var key: String = "FACTION_STANDING_INCREASED" if delta > 0 \
 					else "FACTION_STANDING_DECREASED"
-			var faction_name: String = _factions.get_string(row, "Name")
+			var faction_name: String = _factions.get_text(row, "Name")
 			message_added.emit(WowStrings.get_text(key) % [faction_name, absi(delta)])
 			return
 
@@ -274,7 +274,7 @@ func _header_name(header: int) -> String:
 	if header == INACTIVE_HEADER:
 		return WowStrings.get_text("FACTION_INACTIVE")
 	var row: int = _factions.find(header)
-	return _factions.get_string(row, "Name") if row >= 0 else ""
+	return _factions.get_text(row, "Name") if row >= 0 else ""
 
 
 func _bar(index: int) -> TextureProgressBar:

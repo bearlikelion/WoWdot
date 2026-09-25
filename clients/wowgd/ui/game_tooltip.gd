@@ -252,16 +252,16 @@ func _unit_kind(guid: int, is_player: bool, creature: Dictionary) -> String:
 		var bytes_0: int = session.get_field(guid, "UNIT_FIELD_BYTES_0")
 		var race: int = _races.find(bytes_0 & 0xFF)
 		var player_class: int = _classes.find((bytes_0 >> 8) & 0xFF)
-		var race_name: String = _races.get_string(race, "Name") if race >= 0 else ""
+		var race_name: String = _races.get_text(race, "Name") if race >= 0 else ""
 		var class_text: String = ""
 		if player_class >= 0:
-			class_text = _classes.get_string(player_class, "Name")
+			class_text = _classes.get_text(player_class, "Name")
 		return ("%s %s" % [race_name, class_text]).strip_edges()
 	var kind: String = ""
 	var type_id: int = creature.get("type", 0)
 	var type_row: int = _creature_types.find(type_id)
 	if type_row >= 0 and type_id != CREATURE_TYPE_NOT_SPECIFIED:
-		kind = _creature_types.get_string(type_row, "Name")
+		kind = _creature_types.get_text(type_row, "Name")
 	var rank: int = creature.get("rank", 0)
 	if rank == TargetFrame.Rank.ELITE or rank == TargetFrame.Rank.RARE_ELITE:
 		kind = ("%s %s" % [WowStrings.get_text("ELITE"), kind]).strip_edges()

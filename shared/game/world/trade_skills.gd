@@ -38,7 +38,7 @@ static func professions() -> Array[Dictionary]:
 		var ranks: int = session.get_field(guid, first + i * SKILL_FIELDS + 1)
 		found.append({
 			"skill_line": id,
-			"name": _skill_lines.get_string(row, "Name"),
+			"name": _skill_lines.get_text(row, "Name"),
 			"rank": ranks & 0xFFFF,
 			"max_rank": ranks >> 16,
 		})
@@ -139,7 +139,7 @@ static func _recipe(spell_id: int) -> Dictionary:
 			reagents.append({"item": item, "count": _spells.get_uint(row, "ReagentCount%d" % i)})
 	return {
 		"spell": spell_id,
-		"name": _spells.get_string(row, "Name"),
+		"name": _spells.get_text(row, "Name"),
 		"icon": _spells.get_uint(row, "IconID"),
 		"product": product,
 		"made": made,

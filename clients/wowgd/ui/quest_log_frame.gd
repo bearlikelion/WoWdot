@@ -190,7 +190,7 @@ func _quest_tag(slot: int, info: Dictionary) -> String:
 		QuestLog.State.COMPLETE:
 			return WowStrings.get_text("COMPLETE")
 	var row: int = _quest_types.find(info["type"])
-	return _quest_types.get_string(row, "Name") if row >= 0 else ""
+	return _quest_types.get_text(row, "Name") if row >= 0 else ""
 
 
 func _update_list() -> void:

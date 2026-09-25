@@ -74,7 +74,7 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 				_server_messages = WowDBC.open(WowAssets.archive, "ServerMessages")
 			var row: int = _server_messages.find(reader.u32())
 			# ServerMessages.dbc's text already starts with the [SERVER] prefix.
-			var text: String = _server_messages.get_string(row, "Text") if row >= 0 else "%s"
+			var text: String = _server_messages.get_text(row, "Text") if row >= 0 else "%s"
 			return WowStrings.format(text, [reader.cstring()])
 		"SMSG_SERVER_FIRST_ACHIEVEMENT":
 			var earner: String = reader.cstring()
@@ -283,7 +283,7 @@ static func map_name(map_id: int) -> String:
 	if _maps == null:
 		_maps = WowDBC.open(WowAssets.archive, "Map")
 	var row: int = _maps.find(map_id)
-	return _maps.get_string(row, "MapName") if row >= 0 else ""
+	return _maps.get_text(row, "MapName") if row >= 0 else ""
 
 
 # SMSG_RAID_INSTANCE_INFO: each saved raid's map, seconds until it resets, and instance id.

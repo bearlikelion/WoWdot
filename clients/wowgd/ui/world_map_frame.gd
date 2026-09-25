@@ -229,9 +229,9 @@ func _add_pois(map_id: int, zone_level: bool) -> void:
 		var at: Vector3 = Vector3(_pois.get_float(row, "X"), _pois.get_float(row, "Y"), 0.0)
 		var kind: WorldMapMarker.Kind = WorldMapMarker.Kind.MAJOR_POI \
 		if importance >= MAJOR_IMPORTANCE else WorldMapMarker.Kind.POI
-		var poi_name: String = _pois.get_string(row, "Name")
+		var poi_name: String = _pois.get_text(row, "Name")
 		var marker: WorldMapMarker = _add_marker(
-			map_id, at, kind, poi_name, _pois.get_string(row, "Description"),
+			map_id, at, kind, poi_name, _pois.get_text(row, "Description"),
 		)
 		if marker and zone_level and importance >= LABELLED_IMPORTANCE:
 			_add_label(marker, poi_name)

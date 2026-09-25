@@ -140,7 +140,7 @@ func _update_tabs() -> void:
 		if not tab.visible:
 			continue
 		var tab_row: int = _talent_tabs.find(_tabs[i])
-		var tab_name: String = _talent_tabs.get_string(tab_row, "Name")
+		var tab_name: String = _talent_tabs.get_text(tab_row, "Name")
 		if i == _tab:
 			_points_spent = _spent(_tabs[i])
 			%TalentFrameSpentPoints.text = "%s %d" % [
@@ -470,7 +470,7 @@ func _on_talent_entered(index: int) -> void:
 	tooltip.add_line(WowStrings.get_text("TOOLTIP_TALENT_RANK") % [rank, max_rank])
 	var tier_points: int = _talents.get_uint(row, "Row") * POINTS_PER_TIER
 	if tier_points > _points_spent:
-		var tab_name: String = _talent_tabs.get_string(_talent_tabs.find(_tabs[_tab]), "Name")
+		var tab_name: String = _talent_tabs.get_text(_talent_tabs.find(_tabs[_tab]), "Name")
 		tooltip.add_line(
 			WowStrings.get_text("TOOLTIP_TALENT_TIER_POINTS") % [tier_points, tab_name],
 			GameTooltip.RED,

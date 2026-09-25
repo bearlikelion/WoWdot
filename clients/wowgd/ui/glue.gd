@@ -219,6 +219,7 @@ func _on_login_requested(
 		host = realmlist.get_slice(":", 0)
 		port = realmlist.get_slice(":", 1).to_int()
 	_status("LOGIN_STATE_CONNECTING")
+	WowClient.session.set_locale(WowAssets.video.locale)
 	WowClient.session.login(host, port, account, password)
 
 
