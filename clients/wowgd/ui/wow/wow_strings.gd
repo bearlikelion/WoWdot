@@ -126,13 +126,6 @@ static func _load() -> void:
 		for found: RegExMatch in line.search_all(source):
 			if not _strings.has(found.get_string(1)):
 				_strings[found.get_string(1)] = _unescape(found.get_string(2))
-	# Scenes hold the stock English text, which Control auto-translation maps to this locale.
-	var scenes: Translation = Translation.new()
-	scenes.locale = TranslationServer.get_locale()
-	for key: String in Translations.strings:
-		if _strings.has(key):
-			scenes.add_message(_strings[key], Translations.strings[key])
-	TranslationServer.add_translation(scenes)
 	_strings.merge(Translations.strings, true)
 
 
