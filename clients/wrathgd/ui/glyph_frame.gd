@@ -36,6 +36,9 @@ const BACKGROUND_SIZE: Dictionary[GlyphType, float] = {
 	GlyphType.MAJOR: 70.0, GlyphType.MINOR: 64.0,
 }
 
+# The inactive talent group's glyphs, drawn in place of the worn ones; empty for the active group.
+var inactive_glyphs: PackedInt32Array = []
+
 var _glyphs: WowDBC
 var _slots: WowDBC
 var _spells: Array[int] = []
@@ -66,7 +69,9 @@ func refresh() -> void:
 	var first_glyph: int = session.field_index("PLAYER_FIELD_GLYPHS_1")
 	for socket: int in SOCKETS:
 		var slot_row: int = _slots.find(session.get_field(guid, first_slot + socket))
-		var glyph_row: int = _glyphs.find(session.get_field(guid, first_glyph + socket))
+		var glyph_id: int = inactive_glyphs[socket] if socket < inactive_glyphs.size() \
+				else session.get_field(guid, first_glyph + socket)
+		var glyph_row: int = _glyphs.find(glyph_id)
 		var type: GlyphType = GlyphType.MINOR if slot_row >= 0 \
 				and _slots.get_uint(slot_row, "TypeFlags") == 1 else GlyphType.MAJOR
 		_spells[socket] = _glyphs.get_uint(glyph_row, "SpellId") if glyph_row >= 0 else 0
@@ -131,7 +136,7 @@ func _socket(socket: int) -> BaseButton:
 
 # A glyph in hand goes into the socket clicked.
 func _on_socket_pressed(socket: int) -> void:
-	if WowClient.targeting.is_glyph():
+	if WowClient.targeting.is_glyph() and inactive_glyphs.is_empty():
 		WowClient.targeting.place_glyph(socket)
 
 
@@ -140,7 +145,7 @@ func _on_socket_input(event: InputEvent, socket: int) -> void:
 	var click: InputEventMouseButton = event as InputEventMouseButton
 	if click == null or click.button_index != MOUSE_BUTTON_RIGHT or click.pressed:
 		return
-	if click.shift_pressed and _spells[socket] != 0:
+	if click.shift_pressed and _spells[socket] != 0 and inactive_glyphs.is_empty():
 		var payload: PackedByteArray = []
 		payload.resize(4)
 		payload.encode_u32(0, socket)

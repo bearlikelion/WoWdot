@@ -20,6 +20,7 @@ enum MoveFlag {
 	TURN_LEFT = 0x10,
 	TURN_RIGHT = 0x20,
 	WALK_MODE = 0x100,
+	DISABLE_GRAVITY = 0x400,
 	ROOT = 0x1000,
 	JUMPING = 0x2000,
 	FALLING_FAR = 0x4000,
@@ -84,7 +85,7 @@ const TURN: int = MoveFlag.TURN_LEFT | MoveFlag.TURN_RIGHT
 const AIRBORNE: int = MoveFlag.JUMPING | MoveFlag.FALLING_FAR
 # States the server switches on and off, which say nothing about motion.
 const PERSISTENT: int = MoveFlag.ROOT | MoveFlag.WATERWALKING | MoveFlag.SAFE_FALL | MoveFlag.HOVER \
-		| MoveFlag.CAN_FLY
+		| MoveFlag.CAN_FLY | MoveFlag.DISABLE_GRAVITY
 # Animations for the UNIT_FIELD_BYTES_1 stand states other than standing and dead.
 const STAND_STATE_ANIMATIONS: Dictionary[int, String] = {
 	1: "SitGround", 2: "SitChairLow", 3: "Sleep", 4: "SitChairLow", 5: "SitChairMed",
@@ -134,6 +135,8 @@ var _transport_guid: int = 0
 var _transport_offset: Vector3 = Vector3.ZERO
 
 @onready var _collision: CollisionShape3D = $Collision
+@onready var _water_floor: StaticBody3D = $WaterWalkFloor
+@onready var _water_floor_shape: CollisionShape3D = $WaterWalkFloor/Collision
 @onready var _model_slot: Node3D = $Model
 @onready var _pivot: Node3D = $CameraPivot
 @onready var _arm: SpringArm3D = $CameraPivot/SpringArm3D
@@ -217,6 +220,7 @@ func _physics_process(delta: float) -> void:
 		_ride(delta)
 		return
 	_ride_transport()
+	_place_water_floor()
 	var flags: int = _input_flags()
 	if flags & MoveFlag.ROOT:
 		_send_changes(_flags, flags)
@@ -366,6 +370,12 @@ func force_flag(flag: MoveFlag, apply: bool, counter: int) -> void:
 		var ack: String = "CMSG_FORCE_MOVE_ROOT_ACK" if apply else "CMSG_FORCE_MOVE_UNROOT_ACK"
 		_send(ack, _flags, counter)
 		return
+	if flag == MoveFlag.DISABLE_GRAVITY:
+		_flags = (_flags & ~flag) | (flag if apply else MoveFlag.NONE)
+		var gravity_ack: String = "CMSG_MOVE_GRAVITY_DISABLE_ACK" if apply \
+		else "CMSG_MOVE_GRAVITY_ENABLE_ACK"
+		_send(gravity_ack, _flags, counter)
+		return
 	_flags = (_flags & ~flag) | (flag if apply else MoveFlag.NONE)
 	var tail: PackedByteArray = []
 	tail.resize(4)
@@ -459,8 +469,20 @@ func _step_up(planar: Vector3) -> void:
 	global_position += lift + drop.get_travel()
 
 
+# Water walking stands the player on a slab at the surface, once their feet are up at it.
+func _place_water_floor() -> void:
+	const FLOOR_HALF_THICKNESS: float = 0.1
+	var on_water: bool = _persistent & MoveFlag.WATERWALKING and not is_nan(_water_surface) \
+	and global_position.y > _water_surface - FLOOR_HALF_THICKNESS
+	_water_floor_shape.disabled = not on_water
+	if on_water:
+		_water_floor.global_position = Vector3(
+			global_position.x, _water_surface - FLOOR_HALF_THICKNESS, global_position.z
+		)
+
+
 func _swimming() -> bool:
-	if is_nan(_water_surface):
+	if is_nan(_water_surface) or not _water_floor_shape.disabled:
 		return false
 	var depth: float = _water_surface - global_position.y
 	return depth > (SWIM_EXIT if _flags & MoveFlag.SWIMMING else SWIM_ENTER)
@@ -550,7 +572,7 @@ func _fly(flags: int, delta: float) -> void:
 	velocity.x = _jump_velocity.x
 	velocity.z = _jump_velocity.z
 	velocity.y -= GRAVITY * delta
-	if _persistent & (MoveFlag.SAFE_FALL | MoveFlag.HOVER):
+	if _persistent & (MoveFlag.SAFE_FALL | MoveFlag.HOVER | MoveFlag.DISABLE_GRAVITY):
 		velocity.y = maxf(velocity.y, -FEATHER_FALL_SPEED)
 	move_and_slide()
 	if _swimming():

@@ -2,6 +2,7 @@ class_name EquipmentSets
 extends RefCounted
 
 signal changed
+signal use_failed(text: String)
 
 const MAX_SETS: int = 10
 const SLOTS: int = 19
@@ -94,6 +95,10 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 				entry["items"] = items
 				sets.append(entry)
 			changed.emit()
+		# 0 when the set went on; the server's only refusal is bags too full to take the gear off.
+		"SMSG_EQUIPMENT_SET_USE_RESULT":
+			if reader.u8() != 0:
+				use_failed.emit(WowStrings.get_text("EQUIPMENT_MANAGER_BAGS_FULL"))
 		"SMSG_EQUIPMENT_SET_SAVED":
 			var index: int = reader.u32()
 			var guid: int = reader.packed_guid()

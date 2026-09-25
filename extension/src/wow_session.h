@@ -103,6 +103,7 @@ private:
 		uint64_t transport_guid = 0;
 		Vector3 transport_offset;
 		float transport_orientation = 0.0f;
+		uint32_t move_flags = 0;
 		// Walk, run, run back, swim, swim back and turn rate, from the stock defaults until told otherwise.
 		std::array<float, 8> speeds = { 2.5f, 7.0f, 4.5f, 4.722222f, 2.5f, 3.141594f, 7.0f, 4.5f };
 	};
@@ -171,7 +172,7 @@ private:
 	void handle_movement_relay(wowee::network::Packet &packet);
 	void handle_monster_move(wowee::network::Packet &packet, uint64_t transport_guid);
 	void handle_spline_speed(const char *name, wowee::network::Packet &packet);
-	void handle_compressed_moves(wowee::network::Packet &packet);
+	void handle_compressed_moves(wowee::network::Packet &packet, bool compressed);
 	void handle_chat(wowee::network::Packet &packet);
 	void read_vanilla_chat(wowee::network::Packet &packet, uint8_t type, uint64_t &sender, std::string &name, Dictionary &line);
 	void read_wide_chat(wowee::network::Packet &packet, uint8_t type, uint64_t &sender, std::string &name, Dictionary &line);
@@ -234,6 +235,7 @@ public:
 	int get_object_type(int64_t guid) const;
 	Vector3 get_object_position(int64_t guid) const;
 	double get_object_orientation(int64_t guid) const;
+	int64_t get_object_move_flags(int64_t guid) const;
 	Dictionary get_object_transport(int64_t guid) const;
 	// Walk, run, run back, swim, swim back and turn rate.
 	PackedFloat32Array get_object_speeds(int64_t guid) const;

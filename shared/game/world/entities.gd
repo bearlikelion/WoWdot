@@ -31,6 +31,19 @@ const VICTIM_STATE_HIT: int = 1
 const DESPAWN_FADE_SECONDS: float = 2.0
 # M2 bone flags for spherical and cylindrical billboards, which the loader does not apply.
 const BONE_BILLBOARDS: int = 0x8 | 0x40
+# Which unit set each SMSG_SPLINE_MOVE_ opcode adds its unit to (true) or takes it from.
+const SPLINE_STATES: Dictionary[String, Array] = {
+	"SMSG_SPLINE_MOVE_START_SWIM": [&"_swimmers", true],
+	"SMSG_SPLINE_MOVE_STOP_SWIM": [&"_swimmers", false],
+	"SMSG_SPLINE_MOVE_SET_FLYING": [&"_flyers", true],
+	"SMSG_SPLINE_MOVE_UNSET_FLYING": [&"_flyers", false],
+	"SMSG_SPLINE_MOVE_SET_WALK_MODE": [&"_walkers", true],
+	"SMSG_SPLINE_MOVE_SET_RUN_MODE": [&"_walkers", false],
+	"SMSG_SPLINE_MOVE_SET_HOVER": [&"_hovering", true],
+	"SMSG_SPLINE_MOVE_UNSET_HOVER": [&"_hovering", false],
+	"SMSG_SPLINE_MOVE_GRAVITY_DISABLE": [&"_hovering", true],
+	"SMSG_SPLINE_MOVE_GRAVITY_ENABLE": [&"_hovering", false],
+}
 
 @export var shake: CameraShake
 
@@ -61,6 +74,10 @@ var _riders: Dictionary[int, Node3D] = {}
 var _paths: Dictionary[int, Path] = {}
 var _swimmers: Dictionary[int, bool] = {}
 var _flyers: Dictionary[int, bool] = {}
+var _walkers: Dictionary[int, bool] = {}
+# Hovering or gravity-free units, which follow their path through the air without flying.
+var _hovering: Dictionary[int, bool] = {}
+var _stand_states: Dictionary[int, int] = {}
 # Other players, carried forward between their relayed movement packets.
 var _motions: Dictionary[int, RemoteMotion] = {}
 # How far each other player's body is turned from its facing while strafing.
@@ -196,6 +213,7 @@ func _on_object_created(guid: int, type_id: int) -> void:
 		_arm(guid)
 	if type_id != ObjectType.GAMEOBJECT:
 		node.rotation.y = session.get_object_orientation(guid)
+		_seed_movement(guid, session.get_object_move_flags(guid))
 		add_nameplate(guid, node)
 		UnitVoice.attach(node, guid, display, mount_display)
 		_on_object_updated(guid)
@@ -224,13 +242,14 @@ func _on_object_moved(guid: int, movement: Dictionary) -> void:
 		path.duration = duration
 		path.facing = movement.get("orientation", NAN)
 		path.grounded = not movement.has("points") and not _swimmers.has(guid) \
-				and not _flyers.has(guid)
+				and not _flyers.has(guid) and not _hovering.has(guid)
 		for corner: Vector3 in movement.get("corners", PackedVector3Array()):
 			path.corners.append(WowCoords.to_godot(corner))
 		path.measure()
 		_paths[guid] = path
 		node.rotation.y = _heading(path.from, to)
-		var stride: String = "Run" if distance / duration > RUN_SPEED_THRESHOLD else "Walk"
+		var running: bool = distance / duration > RUN_SPEED_THRESHOLD and not _walkers.has(guid)
+		var stride: String = "Run" if running else "Walk"
 		var clips: Array = [stride]
 		if _swimmers.has(guid):
 			clips = ["Swim", stride]
@@ -396,16 +415,15 @@ func _plate_text(guid: int) -> String:
 	return unit_name + ("\n<%s>" % title if not title.is_empty() else "")
 
 
-# The SMSG_SPLINE_MOVE_ swim and flying pairs: a server-moved unit leaves the ground or returns.
+# The SMSG_SPLINE_MOVE_ pairs the server sends about units it moves; each names only the unit.
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
-	if opcode == "SMSG_SPLINE_MOVE_START_SWIM":
-		_swimmers[PacketReader.new(payload).packed_guid()] = true
-	elif opcode == "SMSG_SPLINE_MOVE_STOP_SWIM":
-		_swimmers.erase(PacketReader.new(payload).packed_guid())
-	elif opcode == "SMSG_SPLINE_MOVE_SET_FLYING":
-		_flyers[PacketReader.new(payload).packed_guid()] = true
-	elif opcode == "SMSG_SPLINE_MOVE_UNSET_FLYING":
-		_flyers.erase(PacketReader.new(payload).packed_guid())
+	if opcode in SPLINE_STATES:
+		var state: Array = SPLINE_STATES[opcode]
+		var units: Dictionary[int, bool] = get(state[0])
+		if state[1]:
+			units[PacketReader.new(payload).packed_guid()] = true
+		else:
+			units.erase(PacketReader.new(payload).packed_guid())
 	elif opcode == "SMSG_GAMEOBJECT_CUSTOM_ANIM" and payload.size() >= 12:
 		_play_object_clip(payload.decode_u64(0), "Custom%d" % payload.decode_u32(8))
 	elif opcode == "SMSG_GAMEOBJECT_DESPAWN_ANIM" and payload.size() >= 8:
@@ -421,6 +439,9 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 	for gone: int in guids:
 		_swimmers.erase(gone)
 		_flyers.erase(gone)
+		_walkers.erase(gone)
+		_hovering.erase(gone)
+		_stand_states.erase(gone)
 	for guid: int in guids:
 		_paths.erase(guid)
 		_motions.erase(guid)
@@ -491,6 +512,11 @@ func _on_object_updated(guid: int) -> void:
 	_color_name(guid)
 	_show_name(guid)
 	var alive: bool = WowClient.session.get_field(guid, "UNIT_FIELD_HEALTH") > 0
+	var stand_state: int = WowClient.session.get_field(guid, "UNIT_FIELD_BYTES_1") & 0xFF
+	if alive and _stand_states.get(guid, 0) != stand_state:
+		_stand_states[guid] = stand_state
+		if not _paths.has(guid) and not _motions.has(guid):
+			_play_idle(guid, node)
 	if not alive:
 		if not UnitAnimations.is_dead(node) and shake:
 			var display: int = WowClient.session.get_field(guid, "UNIT_FIELD_DISPLAYID")
@@ -655,7 +681,21 @@ func _animate_motion(guid: int, node: Node3D, flags: int) -> void:
 func _play_idle(guid: int, node: Node3D) -> void:
 	var idle: PackedStringArray = UnitAnimations.READY if _victims.has(guid) \
 	else PackedStringArray(["Stand"])
+	var stand_state: int = _stand_states.get(guid, 0)
+	if Player.STAND_STATE_ANIMATIONS.has(stand_state) and not _victims.has(guid):
+		idle = PackedStringArray([Player.STAND_STATE_ANIMATIONS[stand_state]])
 	UnitAnimations.set_base(node, idle)
+
+
+# A unit created mid-move already carries its walk, swim, fly or hover state in its flags.
+func _seed_movement(guid: int, flags: int) -> void:
+	for pair: Array in [
+		[Player.MoveFlag.WALK_MODE, _walkers], [Player.MoveFlag.SWIMMING, _swimmers],
+		[Player.MoveFlag.FLYING, _flyers],
+		[Player.MoveFlag.HOVER | Player.MoveFlag.DISABLE_GRAVITY, _hovering],
+	]:
+		if flags & pair[0]:
+			(pair[1] as Dictionary)[guid] = true
 
 
 func _face(node: Node3D, target: int) -> void:

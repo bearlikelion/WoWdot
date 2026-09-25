@@ -494,6 +494,11 @@
    "script": "res://ui/calendar_frame.gd"
   },
   {
+   "frame": "DurabilityFrame",
+   "out": "ui/durability_frame.tscn",
+   "script": "res://ui/durability_frame.gd"
+  },
+  {
    "frame": "TemporaryEnchantFrame",
    "out": "ui/temporary_enchant_frame.tscn",
    "script": "res://ui/temporary_enchant_frame.gd"
@@ -589,6 +594,27 @@
   "WoWAccountSelectDialog"
  ],
  "rows": [
+  {
+   "parent": "InterfaceOptionsFrameCategories",
+   "template": "InterfaceOptionsListButtonTemplate",
+   "name": "InterfaceOptionsFrameCategoriesButton%d",
+   "count": 23,
+   "offset": [0, -8]
+  },
+  {
+   "parent": "VideoOptionsFrameCategoryFrame",
+   "template": "OptionsListButtonTemplate",
+   "name": "VideoOptionsFrameCategoryFrameButton%d",
+   "count": 2,
+   "offset": [0, -8]
+  },
+  {
+   "parent": "AudioOptionsFrameCategoryFrame",
+   "template": "OptionsListButtonTemplate",
+   "name": "AudioOptionsFrameCategoryFrameButton%d",
+   "count": 2,
+   "offset": [0, -8]
+  },
   {
    "parent": "QuestLogScrollFrameScrollChild",
    "template": "QuestLogTitleButtonTemplate",

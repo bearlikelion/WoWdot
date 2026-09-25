@@ -66,6 +66,9 @@ namespace SplineFlag {
     constexpr uint32_t UNCOMPRESSED_MASK = CATMULLROM | CYCLIC | ENTER_CYCLE;
     // TBC-era alternative for uncompressed check
     constexpr uint32_t UNCOMPRESSED_MASK_TBC = CATMULLROM | 0x00002000;
+    // 3.3.5 SMSG_MONSTER_MOVE, per AzerothCore MoveSplineFlag.h: Animation and Flying | Catmullrom.
+    constexpr uint32_t WOTLK_ANIMATION = 0x00200000;
+    constexpr uint32_t WOTLK_UNCOMPRESSED_MASK = 0x00002000 | 0x00040000;
 } // namespace SplineFlag
 
 [[nodiscard]] constexpr bool isPreWotlkSplineWalking(uint32_t splineFlags) {

@@ -40,8 +40,8 @@ bool parseMonsterMoveSplineBody(
 {
     out.splineFlags = splineFlags;
 
-    // Animation (0x00400000): uint8 animType + uint32 animStartTime
-    if (splineFlags & SplineFlag::ANIMATION) {
+    // Animation: uint8 animType + uint32 animStartTime
+    if (splineFlags & (useTbcUncompressedMask ? SplineFlag::ANIMATION : SplineFlag::WOTLK_ANIMATION)) {
         if (!packet.hasRemaining(5)) return false;
         out.hasAnimation = true;
         out.animationType = packet.readUInt8();
@@ -69,7 +69,7 @@ bool parseMonsterMoveSplineBody(
     // Determine compressed vs uncompressed
     uint32_t uncompMask = useTbcUncompressedMask
         ? SplineFlag::UNCOMPRESSED_MASK_TBC
-        : SplineFlag::UNCOMPRESSED_MASK;
+        : SplineFlag::WOTLK_UNCOMPRESSED_MASK;
     bool uncompressed = (splineFlags & uncompMask) != 0;
 
     if (uncompressed) {

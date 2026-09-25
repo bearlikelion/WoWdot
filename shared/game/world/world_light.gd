@@ -64,6 +64,11 @@ var _skyboxes: WowDBC
 var _map_id: int = -1
 var _volumes: Array[Volume] = []
 var _default_row: int = -1
+# SMSG_OVERRIDE_LIGHT: the Light row standing in for a map's default one, fading in from a tick.
+var _override_for: int = 0
+var _override_row: int = -1
+var _override_from_msec: int = 0
+var _override_fade_msec: int = 0
 
 
 func _init(archive: WowArchive) -> void:
@@ -72,6 +77,14 @@ func _init(archive: WowArchive) -> void:
 	_float_bands = WowDBC.open(archive, "LightFloatBand")
 	_params = WowDBC.open(archive, "LightParams")
 	_skyboxes = WowDBC.open(archive, "LightSkybox")
+
+
+# A light id of 0 hands the map back its own default light.
+func override_default(default_id: int, light_id: int, fade_msec: int) -> void:
+	_override_for = default_id
+	_override_row = _lights.find(light_id) if light_id else -1
+	_override_from_msec = Time.get_ticks_msec()
+	_override_fade_msec = fade_msec
 
 
 # Blends the light volumes around the position, the map's default light taking the rest.
@@ -101,7 +114,14 @@ func sample(
 		weights[volume.row] = weight
 		total += weight
 	if total < 1.0 and _default_row >= 0:
-		weights[_default_row] = 1.0 - total
+		var rest: float = 1.0 - total
+		if _override_row >= 0 and _lights.get_uint(_default_row, 0) == _override_for:
+			var faded: float = clampf(
+				(Time.get_ticks_msec() - _override_from_msec) / maxf(_override_fade_msec, 1.0), 0.0, 1.0
+			)
+			weights[_override_row] = weights.get(_override_row, 0.0) + rest * faded
+			rest *= 1.0 - faded
+		weights[_default_row] = weights.get(_default_row, 0.0) + rest
 		total = 1.0
 	if total <= 0.0:
 		return null

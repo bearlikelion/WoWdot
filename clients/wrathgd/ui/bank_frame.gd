@@ -7,11 +7,6 @@ signal close_requested
 signal error_raised(text: String)
 signal bag_toggled(bag: int)
 
-# BANK_SLOT_ITEM_START, as the wire counts the player's own slots.
-const BANK_SLOT_START: int = 39
-const BANK_SLOTS: int = 24
-const BANK_BAGS: int = 6
-const OWN_BAG: int = 255
 # SMSG_BUY_BANK_SLOT_RESULT answers 3 for a bought slot; 0 is the "too many" refusal.
 const BANKSLOT_OK: int = 3
 const BAG_SLOT_ICON: String = "Interface\\PaperDoll\\UI-PaperDoll-Slot-Bag.blp"
@@ -28,7 +23,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	_empty_bag_icon.file = BAG_SLOT_ICON
-	for i: int in BANK_SLOTS:
+	for i: int in Inventory.wire_bank_slots:
 		var button: ItemButton = get_node("%%BankFrameItem%d" % (i + 1))
 		button.address = Vector2i(Inventory.WIRE_BACKPACK, Inventory.WIRE_BANK_SLOT_START + i)
 		button.pressed.connect(_take_item.bind(i))
@@ -36,7 +31,7 @@ func _ready() -> void:
 		button.mouse_entered.connect(_show_tooltip.bind(button, _bank_item.bind(i)))
 		button.mouse_exited.connect(_hide_tooltip.bind(button))
 		_items.append(button)
-	for i: int in BANK_BAGS:
+	for i: int in Inventory.wire_bank_bags:
 		var bag: ItemButton = get_node("%%BankFrameBag%d" % (i + 1))
 		bag.pressed.connect(func() -> void: bag_toggled.emit(Inventory.BANK_BAG_FIRST + i))
 		bag.mouse_entered.connect(_show_tooltip.bind(bag, Inventory.bank_bag.bind(i)))
@@ -79,9 +74,9 @@ func store(bag: int, slot: int) -> bool:
 
 
 func refresh() -> void:
-	for i: int in BANK_SLOTS:
+	for i: int in Inventory.wire_bank_slots:
 		_show(_items[i], _bank_item(i))
-	for i: int in BANK_BAGS:
+	for i: int in Inventory.wire_bank_bags:
 		var bag: int = Inventory.bank_bag(i)
 		_show(_bags[i], bag)
 		if bag == 0:
@@ -89,7 +84,7 @@ func refresh() -> void:
 		var bought: bool = i < _bought_bags
 		_bags[i].modulate.a = 1.0 if bought else 0.5
 		_bags[i].address = Vector2i(
-			Inventory.WIRE_BACKPACK, Inventory.WIRE_BANK_BAG_START + i
+			Inventory.WIRE_BACKPACK, Inventory.wire_bank_bag_start + i
 		) if bought else -Vector2i.ONE
 	var next_cost: int = _slot_cost(_bought_bags)
 	%BankFramePurchaseInfo.visible = next_cost > 0
@@ -104,7 +99,7 @@ func _show(button: ItemButton, item: int) -> void:
 
 # BankBagSlotPrices holds one row per bag slot, in the order they are bought.
 func _slot_cost(bought: int) -> int:
-	if bought >= BANK_BAGS:
+	if bought >= Inventory.wire_bank_bags:
 		return 0
 	var prices: WowDBC = WowDBC.open(WowAssets.archive, "BankBagSlotPrices")
 	var row: int = prices.find(bought + 1)
@@ -120,9 +115,8 @@ func _bank_item(index: int) -> int:
 func _take_item(index: int) -> void:
 	if _bank_item(index) == 0:
 		return
-	WowClient.session.send_packet(
-		"CMSG_AUTOSTORE_BANK_ITEM", PackedByteArray([OWN_BAG, BANK_SLOT_START + index])
-	)
+	var slot: PackedByteArray = [Inventory.WIRE_BACKPACK, Inventory.WIRE_BANK_SLOT_START + index]
+	WowClient.session.send_packet("CMSG_AUTOSTORE_BANK_ITEM", slot)
 
 
 func _buy_slot() -> void:

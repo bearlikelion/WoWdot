@@ -25,7 +25,7 @@ func _initialize() -> void:
 	_check(tile != null, "Goldshire ADT loads")
 	if tile:
 		var terrain: MeshInstance3D = tile.get_node("Terrain")
-		_check(terrain.mesh.get_surface_count() == 256, "one surface per chunk")
+		_check(terrain.mesh.get_surface_count() == 1, "one surface per tile")
 		_check(not (tile.get_meta("placements", []) as Array).is_empty(), "tile lists placements")
 		_compare_with_server(tile)
 		_check_doodad_collision(loader, tile)

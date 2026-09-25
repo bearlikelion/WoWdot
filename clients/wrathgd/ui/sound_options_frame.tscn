@@ -113,98 +113,110 @@ atlas = SubResource("WowTexture_30")
 region = Rect2(6.4, 8, 19.2, 16)
 
 [sub_resource type="WowTexture" id="WowTexture_32"]
-file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
+file = "Interface\\QuestFrame\\UI-QuestLogTitleHighlight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_33"]
-file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
+file = "Interface\\Buttons\\UI-MinusButton-UP.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_34"]
-file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
+file = "Interface\\Buttons\\UI-MinusButton-DOWN.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_35"]
-file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
+file = "Interface\\Buttons\\UI-PlusButton-Hilight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_36"]
-file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Up.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_37"]
-file = "Interface\\Buttons\\UI-SliderBar-Button-Horizontal.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_38"]
-file = "Interface\\Buttons\\UI-SliderBar-Background.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Check.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_39"]
-file = "Interface\\Buttons\\UI-SliderBar-Border.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_40"]
-file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
+file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_41"]
-atlas = SubResource("WowTexture_40")
-region = Rect2(0, 0, 25, 64)
+[sub_resource type="WowTexture" id="WowTexture_41"]
+file = "Interface\\Buttons\\UI-SliderBar-Button-Horizontal.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_42"]
-atlas = SubResource("WowTexture_40")
-region = Rect2(25, 0, 78, 64)
+[sub_resource type="WowTexture" id="WowTexture_42"]
+file = "Interface\\Buttons\\UI-SliderBar-Background.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_43"]
-atlas = SubResource("WowTexture_40")
-region = Rect2(103, 0, 25, 64)
+[sub_resource type="WowTexture" id="WowTexture_43"]
+file = "Interface\\Buttons\\UI-SliderBar-Border.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_44"]
-file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
+file = "Interface\\Glues\\CharacterCreate\\CharacterCreate-LabelFrame.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_45"]
-file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_45"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(0, 0, 25, 64)
 
-[sub_resource type="WowTexture" id="WowTexture_46"]
-file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_46"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(25, 0, 78, 64)
 
-[sub_resource type="WowTexture" id="WowTexture_47"]
-file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
+[sub_resource type="AtlasTexture" id="AtlasTexture_47"]
+atlas = SubResource("WowTexture_44")
+region = Rect2(103, 0, 25, 64)
 
 [sub_resource type="WowTexture" id="WowTexture_48"]
-file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_49"]
-atlas = SubResource("WowTexture_48")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_49"]
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_50"]
-file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+file = "Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Disabled.blp"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_51"]
-atlas = SubResource("WowTexture_50")
-region = Rect2(0, 0, 80, 22)
+[sub_resource type="WowTexture" id="WowTexture_51"]
+file = "Interface\\Buttons\\UI-Common-MouseHilight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_52"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_53"]
 atlas = SubResource("WowTexture_52")
 region = Rect2(0, 0, 80, 22)
 
 [sub_resource type="WowTexture" id="WowTexture_54"]
-file = "Interface\\OptionsFrame\\VoiceChat-Record.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_55"]
-file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_56"]
-atlas = SubResource("WowTexture_55")
+[sub_resource type="AtlasTexture" id="AtlasTexture_55"]
+atlas = SubResource("WowTexture_54")
 region = Rect2(0, 0, 80, 22)
 
-[sub_resource type="WowTexture" id="WowTexture_57"]
-file = "Interface\\OptionsFrame\\VoiceChat-Play.blp"
+[sub_resource type="WowTexture" id="WowTexture_56"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57"]
+atlas = SubResource("WowTexture_56")
+region = Rect2(0, 0, 80, 22)
 
 [sub_resource type="WowTexture" id="WowTexture_58"]
-file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+file = "Interface\\OptionsFrame\\VoiceChat-Record.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_59"]
-file = "Interface\\Buttons\\UI-Panel-Button-Disabled-Down.blp"
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60"]
 atlas = SubResource("WowTexture_59")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_61"]
+file = "Interface\\OptionsFrame\\VoiceChat-Play.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_62"]
+file = "Interface\\TargetingFrame\\UI-StatusBar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_63"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64"]
+atlas = SubResource("WowTexture_63")
 region = Rect2(0, 0, 80, 22)
 
 [node name="AudioOptionsFrame" type="Control"]
@@ -499,6 +511,148 @@ offset_bottom = 423
 visible = false
 mouse_filter = 2
 
+[node name="AudioOptionsFrameCategoryFrameButton1" type="TextureButton" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 0
+offset_top = 8
+offset_right = 175
+offset_bottom = 26
+ignore_texture_size = true
+
+[node name="AudioOptionsFrameCategoryFrameButton1Text" type="Label" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 175
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton1"]
+offset_left = 0
+offset_top = -1
+offset_right = 175
+offset_bottom = 17
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsFrameCategoryFrameButton1Toggle" type="TextureButton" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton1"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 155
+offset_top = 1
+offset_right = 169
+offset_bottom = 15
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton1/AudioOptionsFrameCategoryFrameButton1Toggle"]
+offset_left = 0
+offset_top = 0
+offset_right = 14
+offset_bottom = 14
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton1/AudioOptionsFrameCategoryFrameButton1Toggle"]
+offset_left = 0
+offset_top = 0
+offset_right = 14
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton1/AudioOptionsFrameCategoryFrameButton1Toggle"]
+offset_left = 0
+offset_top = 0
+offset_right = 14
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsFrameCategoryFrameButton2" type="TextureButton" parent="AudioOptionsFrameCategoryFrame"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 0
+offset_top = 26
+offset_right = 175
+offset_bottom = 44
+ignore_texture_size = true
+
+[node name="AudioOptionsFrameCategoryFrameButton2Text" type="Label" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 175
+offset_bottom = 18
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton2"]
+offset_left = 0
+offset_top = -1
+offset_right = 175
+offset_bottom = 17
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_32")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
+[node name="AudioOptionsFrameCategoryFrameButton2Toggle" type="TextureButton" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton2"]
+unique_name_in_owner = true
+script = ExtResource("4")
+offset_left = 155
+offset_top = 1
+offset_right = 169
+offset_bottom = 15
+visible = false
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton2/AudioOptionsFrameCategoryFrameButton2Toggle"]
+offset_left = 0
+offset_top = 0
+offset_right = 14
+offset_bottom = 14
+mouse_filter = 2
+texture = SubResource("WowTexture_33")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton2/AudioOptionsFrameCategoryFrameButton2Toggle"]
+offset_left = 0
+offset_top = 0
+offset_right = 14
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_34")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFrameCategoryFrame/AudioOptionsFrameCategoryFrameButton2/AudioOptionsFrameCategoryFrameButton2Toggle"]
+offset_left = 0
+offset_top = 0
+offset_right = 14
+offset_bottom = 14
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_35")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_23")
+
 [node name="AudioOptionsFramePanelContainer" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -580,7 +734,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
@@ -590,7 +744,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelEnableSoundText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
@@ -613,7 +767,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
@@ -623,7 +777,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableSound"]
@@ -633,7 +787,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -686,7 +840,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
@@ -696,7 +850,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelSoundEffectsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
@@ -719,7 +873,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
@@ -729,7 +883,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundEffects"]
@@ -739,7 +893,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -758,7 +912,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
@@ -768,7 +922,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelErrorSpeechText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
@@ -791,7 +945,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
@@ -801,7 +955,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelErrorSpeech"]
@@ -811,7 +965,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -830,7 +984,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
@@ -840,7 +994,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelEmoteSoundsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
@@ -863,7 +1017,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
@@ -873,7 +1027,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEmoteSounds"]
@@ -883,7 +1037,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -902,7 +1056,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
@@ -912,7 +1066,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelPetSoundsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
@@ -935,7 +1089,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
@@ -945,7 +1099,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelPetSounds"]
@@ -955,7 +1109,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -974,7 +1128,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
@@ -984,7 +1138,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelMusicText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
@@ -1007,7 +1161,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
@@ -1017,7 +1171,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelMusic"]
@@ -1027,7 +1181,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1046,7 +1200,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
@@ -1056,7 +1210,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelLoopMusicText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
@@ -1079,7 +1233,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
@@ -1089,7 +1243,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelLoopMusic"]
@@ -1099,7 +1253,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1118,7 +1272,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
@@ -1128,7 +1282,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelAmbientSoundsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
@@ -1151,7 +1305,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
@@ -1161,7 +1315,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelAmbientSounds"]
@@ -1171,7 +1325,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1190,7 +1344,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
@@ -1200,7 +1354,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelSoundInBGText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
@@ -1223,7 +1377,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
@@ -1233,7 +1387,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelSoundInBG"]
@@ -1243,7 +1397,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1262,7 +1416,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
@@ -1272,7 +1426,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelReverbText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
@@ -1295,7 +1449,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
@@ -1305,7 +1459,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelReverb"]
@@ -1315,7 +1469,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1334,7 +1488,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
@@ -1344,7 +1498,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelHRTFText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
@@ -1367,7 +1521,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
@@ -1377,7 +1531,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHRTF"]
@@ -1387,7 +1541,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1406,7 +1560,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
@@ -1416,7 +1570,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelEnableDSPsText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
@@ -1439,7 +1593,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
@@ -1449,7 +1603,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelEnableDSPs"]
@@ -1459,7 +1613,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1470,8 +1624,8 @@ offset_top = 394
 offset_right = 188
 offset_bottom = 411
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -1485,8 +1639,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -1596,7 +1750,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_41")
+texture = SubResource("AtlasTexture_45")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelHardwareDropDownMiddle" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
@@ -1606,7 +1760,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_46")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelHardwareDropDownRight" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
@@ -1616,7 +1770,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_43")
+texture = SubResource("AtlasTexture_47")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelHardwareDropDownText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown"]
@@ -1647,7 +1801,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_44")
+texture = SubResource("WowTexture_48")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown/AudioOptionsSoundPanelHardwareDropDownButton"]
@@ -1657,7 +1811,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_45")
+texture = SubResource("WowTexture_49")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown/AudioOptionsSoundPanelHardwareDropDownButton"]
@@ -1667,7 +1821,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_46")
+texture = SubResource("WowTexture_50")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelHardwareDropDown/AudioOptionsSoundPanelHardwareDropDownButton"]
@@ -1677,7 +1831,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_47")
+texture = SubResource("WowTexture_51")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1688,8 +1842,8 @@ offset_top = 184
 offset_right = 366
 offset_bottom = 201
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -1703,8 +1857,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -1766,7 +1920,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
@@ -1776,7 +1930,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsSoundPanelUseHardwareText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
@@ -1799,7 +1953,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
@@ -1809,7 +1963,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsSoundPanel/AudioOptionsSoundPanelUseHardware"]
@@ -1819,7 +1973,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -1864,8 +2018,8 @@ offset_top = 295
 offset_right = 343
 offset_bottom = 312
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -1879,8 +2033,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -1947,8 +2101,8 @@ offset_top = 328
 offset_right = 384
 offset_bottom = 345
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -1962,8 +2116,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -2031,8 +2185,8 @@ offset_top = 355
 offset_right = 384
 offset_bottom = 372
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -2046,8 +2200,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -2115,8 +2269,8 @@ offset_top = 382
 offset_right = 384
 offset_bottom = 399
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -2130,8 +2284,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -2275,7 +2429,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
@@ -2285,7 +2439,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelEnableVoiceText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
@@ -2308,7 +2462,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
@@ -2318,7 +2472,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableVoice"]
@@ -2328,7 +2482,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -2381,7 +2535,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
@@ -2391,7 +2545,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelEnableMicrophoneText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
@@ -2414,7 +2568,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
@@ -2424,7 +2578,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelEnableMicrophone"]
@@ -2434,7 +2588,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -2453,7 +2607,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_41")
+texture = SubResource("AtlasTexture_45")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelInputDeviceDropDownMiddle" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown"]
@@ -2463,7 +2617,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_46")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelInputDeviceDropDownRight" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown"]
@@ -2473,7 +2627,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_43")
+texture = SubResource("AtlasTexture_47")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelInputDeviceDropDownText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown"]
@@ -2504,7 +2658,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_44")
+texture = SubResource("WowTexture_48")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown/AudioOptionsVoicePanelInputDeviceDropDownButton"]
@@ -2514,7 +2668,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_45")
+texture = SubResource("WowTexture_49")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown/AudioOptionsVoicePanelInputDeviceDropDownButton"]
@@ -2524,7 +2678,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_46")
+texture = SubResource("WowTexture_50")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelInputDeviceDropDown/AudioOptionsVoicePanelInputDeviceDropDownButton"]
@@ -2534,7 +2688,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_47")
+texture = SubResource("WowTexture_51")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -2545,8 +2699,8 @@ offset_top = 199
 offset_right = 158
 offset_bottom = 216
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -2560,8 +2714,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -2658,7 +2812,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
@@ -2668,7 +2822,7 @@ offset_right = 26
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_51")
+texture = SubResource("AtlasTexture_55")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
@@ -2678,7 +2832,7 @@ offset_right = 26
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="RecordLoopbackSoundButtonTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
@@ -2688,7 +2842,7 @@ offset_top = 5.5
 offset_right = 18
 offset_bottom = 15.5
 mouse_filter = 2
-texture = SubResource("WowTexture_54")
+texture = SubResource("WowTexture_58")
 expand_mode = 1
 
 [node name="RecordLoopbackSoundButtonText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/RecordLoopbackSoundButton"]
@@ -2709,7 +2863,7 @@ offset_right = 26
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_60")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -2728,7 +2882,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
@@ -2738,7 +2892,7 @@ offset_right = 26
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_51")
+texture = SubResource("AtlasTexture_55")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
@@ -2748,7 +2902,7 @@ offset_right = 26
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="PlayLoopbackSoundButtonTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
@@ -2758,7 +2912,7 @@ offset_top = 5.5
 offset_right = 18
 offset_bottom = 15.5
 mouse_filter = 2
-texture = SubResource("WowTexture_57")
+texture = SubResource("WowTexture_61")
 expand_mode = 1
 
 [node name="PlayLoopbackSoundButtonText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelMicTest/PlayLoopbackSoundButton"]
@@ -2779,7 +2933,7 @@ offset_right = 26
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_60")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -2823,7 +2977,7 @@ offset_top = 6
 offset_right = 100
 offset_bottom = 19
 mouse_filter = 2
-texture_progress = SubResource("WowTexture_58")
+texture_progress = SubResource("WowTexture_62")
 nine_patch_stretch = true
 max_value = 1.0
 step = 0.0
@@ -2892,7 +3046,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_41")
+texture = SubResource("AtlasTexture_45")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelChatModeDropDownMiddle" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
@@ -2902,7 +3056,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_46")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelChatModeDropDownRight" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
@@ -2912,7 +3066,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_43")
+texture = SubResource("AtlasTexture_47")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelChatModeDropDownText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown"]
@@ -2943,7 +3097,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_44")
+texture = SubResource("WowTexture_48")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown/AudioOptionsVoicePanelChatModeDropDownButton"]
@@ -2953,7 +3107,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_45")
+texture = SubResource("WowTexture_49")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown/AudioOptionsVoicePanelChatModeDropDownButton"]
@@ -2963,7 +3117,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_46")
+texture = SubResource("WowTexture_50")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatModeDropDown/AudioOptionsVoicePanelChatModeDropDownButton"]
@@ -2973,7 +3127,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_47")
+texture = SubResource("WowTexture_51")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -3028,7 +3182,7 @@ offset_top = 0
 offset_right = 155
 offset_bottom = 21
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
@@ -3038,7 +3192,7 @@ offset_right = 155
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_51")
+texture = SubResource("AtlasTexture_55")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
@@ -3048,7 +3202,7 @@ offset_right = 155
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelChatMode1KeyBindingButtonText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelChatMode1KeyBindingButton"]
@@ -3069,7 +3223,7 @@ offset_right = 155
 offset_bottom = 21
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_60")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -3088,7 +3242,7 @@ offset_top = 0
 offset_right = 26
 offset_bottom = 26
 mouse_filter = 2
-texture = SubResource("WowTexture_32")
+texture = SubResource("WowTexture_36")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
@@ -3098,7 +3252,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_33")
+texture = SubResource("WowTexture_37")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelPushToTalkSoundText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
@@ -3121,7 +3275,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_34")
+texture = SubResource("WowTexture_38")
 expand_mode = 1
 
 [node name="DisabledCheckedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
@@ -3131,7 +3285,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_35")
+texture = SubResource("WowTexture_39")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelChatMode1/AudioOptionsVoicePanelPushToTalkSound"]
@@ -3141,7 +3295,7 @@ offset_right = 26
 offset_bottom = 26
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_36")
+texture = SubResource("WowTexture_40")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -3195,8 +3349,8 @@ offset_top = 0
 offset_right = 144
 offset_bottom = 17
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -3210,8 +3364,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -3321,7 +3475,7 @@ offset_top = -17
 offset_right = 25
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_41")
+texture = SubResource("AtlasTexture_45")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelOutputDeviceDropDownMiddle" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
@@ -3331,7 +3485,7 @@ offset_top = -17
 offset_right = 140
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_42")
+texture = SubResource("AtlasTexture_46")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelOutputDeviceDropDownRight" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
@@ -3341,7 +3495,7 @@ offset_top = -17
 offset_right = 165
 offset_bottom = 47
 mouse_filter = 2
-texture = SubResource("AtlasTexture_43")
+texture = SubResource("AtlasTexture_47")
 expand_mode = 1
 
 [node name="AudioOptionsVoicePanelOutputDeviceDropDownText" type="Label" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown"]
@@ -3372,7 +3526,7 @@ offset_top = 0
 offset_right = 24
 offset_bottom = 24
 mouse_filter = 2
-texture = SubResource("WowTexture_44")
+texture = SubResource("WowTexture_48")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown/AudioOptionsVoicePanelOutputDeviceDropDownButton"]
@@ -3382,7 +3536,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_45")
+texture = SubResource("WowTexture_49")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown/AudioOptionsVoicePanelOutputDeviceDropDownButton"]
@@ -3392,7 +3546,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_46")
+texture = SubResource("WowTexture_50")
 expand_mode = 1
 
 [node name="HighlightTexture" type="TextureRect" parent="AudioOptionsFramePanelContainer/AudioOptionsVoicePanel/AudioOptionsVoicePanelOutputDeviceDropDown/AudioOptionsVoicePanelOutputDeviceDropDownButton"]
@@ -3402,7 +3556,7 @@ offset_right = 24
 offset_bottom = 24
 visible = false
 mouse_filter = 2
-texture = SubResource("WowTexture_47")
+texture = SubResource("WowTexture_51")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -3413,8 +3567,8 @@ offset_top = 205
 offset_right = 355
 offset_bottom = 222
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -3428,8 +3582,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -3560,8 +3714,8 @@ offset_top = 325
 offset_right = 383
 offset_bottom = 342
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -3575,8 +3729,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -3644,8 +3798,8 @@ offset_top = 352
 offset_right = 383
 offset_bottom = 369
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -3659,8 +3813,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -3728,8 +3882,8 @@ offset_top = 379
 offset_right = 383
 offset_bottom = 396
 mouse_filter = 0
-theme_override_icons/grabber = SubResource("WowTexture_37")
-theme_override_icons/grabber_highlight = SubResource("WowTexture_37")
+theme_override_icons/grabber = SubResource("WowTexture_41")
+theme_override_icons/grabber_highlight = SubResource("WowTexture_41")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_14")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_14")
@@ -3743,8 +3897,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-background = SubResource("WowTexture_38")
-edge = SubResource("WowTexture_39")
+background = SubResource("WowTexture_42")
+edge = SubResource("WowTexture_43")
 tile = true
 tile_size = 8
 edge_size = 8
@@ -3825,7 +3979,7 @@ offset_top = 0
 offset_right = 96
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameCancel"]
@@ -3835,7 +3989,7 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_51")
+texture = SubResource("AtlasTexture_55")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFrameCancel"]
@@ -3845,7 +3999,7 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="AudioOptionsFrameCancelText" type="Label" parent="AudioOptionsFrameCancel"]
@@ -3867,7 +4021,7 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_60")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -3891,7 +4045,7 @@ offset_top = 0
 offset_right = 96
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_49")
+texture = SubResource("AtlasTexture_53")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameOkay"]
@@ -3901,7 +4055,7 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_51")
+texture = SubResource("AtlasTexture_55")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFrameOkay"]
@@ -3911,7 +4065,7 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="AudioOptionsFrameOkayText" type="Label" parent="AudioOptionsFrameOkay"]
@@ -3933,7 +4087,7 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_60")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")
 
@@ -3955,7 +4109,7 @@ offset_top = 0
 offset_right = 96
 offset_bottom = 22
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="PushedTexture" type="TextureRect" parent="AudioOptionsFrameDefaults"]
@@ -3965,7 +4119,7 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_60")
+texture = SubResource("AtlasTexture_64")
 expand_mode = 1
 
 [node name="DisabledTexture" type="TextureRect" parent="AudioOptionsFrameDefaults"]
@@ -3975,7 +4129,7 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_53")
+texture = SubResource("AtlasTexture_57")
 expand_mode = 1
 
 [node name="AudioOptionsFrameDefaultsText" type="Label" parent="AudioOptionsFrameDefaults"]
@@ -3996,6 +4150,6 @@ offset_right = 96
 offset_bottom = 22
 visible = false
 mouse_filter = 2
-texture = SubResource("AtlasTexture_56")
+texture = SubResource("AtlasTexture_60")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_23")

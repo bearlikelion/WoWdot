@@ -13,9 +13,15 @@ const CHECK_TEXTS: Dictionary[String, String] = {
 const MAXIMIZED_CHECK: String = "Maximized"
 const WINDOWED_CHECK: String = "Windowed"
 const GRAY_FONT_COLOR: Color = Color(0.5, 0.5, 0.5)
+# Stereo is only listed when the card can draw it.
+const PANELS: Dictionary[String, String] = {
+	"VideoOptionsResolutionPanel": "RESOLUTION_LABEL",
+	"VideoOptionsEffectsPanel": "EFFECTS_LABEL",
+}
 
 
 func _ready() -> void:
+	OptionsCategoryList.bind(self, "VideoOptionsFrameCategoryFrame", PANELS)
 	for key: String in CHECK_OPTIONS:
 		_label(key).text = WowStrings.get_text(CHECK_TEXTS[key])
 		_check(key).pressed.connect(_on_check_pressed.bind(key))
@@ -26,7 +32,6 @@ func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
 
 
-# The converter emits the resolution panel twice, so its controls are not unique names.
 func _check(key: String) -> WowButton:
 	return %VideoOptionsResolutionPanel.get_node("VideoOptionsResolutionPanel" + key)
 

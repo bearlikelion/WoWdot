@@ -62,11 +62,11 @@ var _full: Control
 # Open container frames in the order they opened, which is the order they stack.
 var _bag_stack: Array[ContainerFrame] = []
 
-# One frame per bag the player can open: the backpack, four worn bags and six bank bags.
+# NUM_CONTAINER_FRAMES: the backpack, four worn bags, seven bank bags and the keyring.
 @onready var _containers: Array[ContainerFrame] = [
 	%ContainerFrame1, %ContainerFrame2, %ContainerFrame3, %ContainerFrame4, %ContainerFrame5,
 	%ContainerFrame6, %ContainerFrame7, %ContainerFrame8, %ContainerFrame9, %ContainerFrame10,
-	%ContainerFrame11,
+	%ContainerFrame11, %ContainerFrame12, %ContainerFrame13,
 ]
 
 

@@ -254,6 +254,14 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
+[node name="ContainerFrame12" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ContainerFrame13" parent="." instance=ExtResource("4_bag")]
+unique_name_in_owner = true
+visible = false
+
 [node name="GameMenuFrame" parent="." instance=ExtResource("3_menu")]
 unique_name_in_owner = true
 layout_mode = 1

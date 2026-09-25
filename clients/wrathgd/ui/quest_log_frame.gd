@@ -9,7 +9,6 @@ signal share_answered(text: String)
 const QUESTS_DISPLAYED: int = 6
 const QUESTLOG_QUEST_HEIGHT: float = 16.0
 const MAX_OBJECTIVES: int = 10
-const MAX_QUESTLOG_QUESTS: int = 20
 const PLUS_BUTTON: String = "Interface\\Buttons\\UI-PlusButton-Up.blp"
 const MINUS_BUTTON: String = "Interface\\Buttons\\UI-MinusButton-Up.blp"
 const PLUS_HIGHLIGHT: String = "Interface\\Buttons\\UI-PlusButton-Hilight.blp"
@@ -237,7 +236,7 @@ func _update_count() -> void:
 	var quests: int = QuestLog.slots().size()
 	var count: Label = %QuestLogQuestCount
 	count.text = WowStrings.strip_colors(WowStrings.get_text("QUEST_LOG_COUNT_TEMPLATE")) \
-	% [quests, MAX_QUESTLOG_QUESTS]
+	% [quests, QuestLog.max_quests]
 
 
 # GetDifficultyColor: by how far the quest's level is above the player's or below the gray level.

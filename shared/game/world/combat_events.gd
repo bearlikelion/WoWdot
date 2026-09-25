@@ -5,10 +5,15 @@ signal logged(event: CombatEvent)
 
 enum Kind {
 	MELEE, SPELL, PERIODIC, HEAL, PERIODIC_HEAL, ENERGIZE, PERIODIC_ENERGIZE, DAMAGE_SHIELD,
-	ENVIRONMENT, KILL, XP, DISPEL, INSTAKILL, ENCHANT,
+	ENVIRONMENT, KILL, XP, DISPEL, INSTAKILL, ENCHANT, STEAL, DRAIN, EXTRA_ATTACKS, INTERRUPT,
 }
 # How an attack or spell landed, as UNIT_COMBAT and the combat log name it.
 enum Outcome { HIT, MISS, DODGE, PARRY, BLOCK, EVADE, IMMUNE, DEFLECT, RESIST, ABSORB, REFLECT }
+# The SMSG_SPELLLOGEXECUTE effects whose targets are not a bare packed guid.
+enum SpellEffect {
+	POWER_DRAIN = 8, ADD_EXTRA_ATTACKS = 19, CREATE_ITEM = 24, POWER_BURN = 62,
+	INTERRUPT_CAST = 68, FEED_PET = 101, DURABILITY_DAMAGE = 111,
+}
 enum AuraType {
 	PERIODIC_DAMAGE = 3, PERIODIC_HEAL = 8, OBS_MOD_HEALTH = 20, OBS_MOD_MANA = 21,
 	PERIODIC_ENERGIZE = 24, PERIODIC_MANA_LEECH = 64, PERIODIC_DAMAGE_PERCENT = 89,
@@ -71,7 +76,11 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			xp.amount = reader.u32()
 			logged.emit(xp)
 		"SMSG_SPELLDISPELLOG":
-			_read_dispel(reader)
+			_read_dispel(reader, Kind.DISPEL)
+		"SMSG_SPELLSTEALLOG":
+			_read_dispel(reader, Kind.STEAL)
+		"SMSG_SPELLLOGEXECUTE":
+			_read_execute(reader)
 		"SMSG_SPELLINSTAKILLLOG":
 			var death: CombatEvent = CombatEvent.new(Kind.INSTAKILL)
 			if PacketReader.wotlk:
@@ -260,7 +269,7 @@ func _read_damage_shield(reader: PacketReader) -> void:
 
 
 # 3.3.5 adds the dispelling spell up front and whether each removed aura was a buff.
-func _read_dispel(reader: PacketReader) -> void:
+func _read_dispel(reader: PacketReader, kind: Kind) -> void:
 	var target: int = reader.packed_guid()
 	var source: int = reader.packed_guid()
 	var dispeller: int = 0
@@ -268,7 +277,7 @@ func _read_dispel(reader: PacketReader) -> void:
 		dispeller = reader.u32()
 		reader.u8()
 	for i: int in reader.u32():
-		var event: CombatEvent = CombatEvent.new(Kind.DISPEL)
+		var event: CombatEvent = CombatEvent.new(kind)
 		event.target = target
 		event.source = source
 		event.spell = reader.u32()
@@ -276,6 +285,42 @@ func _read_dispel(reader: PacketReader) -> void:
 		if PacketReader.wotlk:
 			event.positive = reader.u8() != 0
 		logged.emit(event)
+
+
+# Spell::SendLogExecute: each effect's targets; the log prints drains, extra attacks and interrupts.
+func _read_execute(reader: PacketReader) -> void:
+	var caster: int = reader.packed_guid()
+	var spell: int = reader.u32()
+	for effect: int in reader.u32():
+		var effect_type: int = reader.u32()
+		for i: int in reader.u32():
+			var event: CombatEvent = null
+			match effect_type:
+				SpellEffect.POWER_DRAIN, SpellEffect.POWER_BURN:
+					event = CombatEvent.new(Kind.DRAIN)
+					event.target = reader.packed_guid()
+					event.amount = reader.u32()
+					event.power = reader.u32()
+					reader.skip(4)
+				SpellEffect.ADD_EXTRA_ATTACKS:
+					event = CombatEvent.new(Kind.EXTRA_ATTACKS)
+					event.target = reader.packed_guid()
+					event.amount = reader.u32()
+				SpellEffect.INTERRUPT_CAST:
+					event = CombatEvent.new(Kind.INTERRUPT)
+					event.target = reader.packed_guid()
+					event.extra_spell = reader.u32()
+				SpellEffect.DURABILITY_DAMAGE:
+					reader.packed_guid()
+					reader.skip(8)
+				SpellEffect.CREATE_ITEM, SpellEffect.FEED_PET:
+					reader.skip(4)
+				_:
+					reader.packed_guid()
+			if event:
+				event.source = caster
+				event.spell = spell
+				logged.emit(event)
 
 
 func _read_environment(reader: PacketReader) -> void:

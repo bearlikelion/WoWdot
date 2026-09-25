@@ -2,6 +2,7 @@ class_name Pet
 extends RefCounted
 
 signal changed
+signal spell_learned(spell: int, learned: bool)
 
 # SMSG_PET_SPELLS action types, as UnitDefines' ActiveStates numbers them.
 enum ActionState { DECIDE = 0x00, PASSIVE = 0x01, REACTION = 0x06, COMMAND = 0x07,
@@ -123,6 +124,18 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			react = reader.u8()
 			command = reader.u8()
 			changed.emit()
+		return
+	if opcode == "SMSG_PET_LEARNED_SPELL":
+		spell_learned.emit(reader.u32(), true)
+		return
+	# Unlike learning, unlearning does not resend SMSG_PET_SPELLS.
+	if opcode == "SMSG_PET_UNLEARNED_SPELL":
+		var spell: int = reader.u32()
+		for i: int in range(spells.size() - 1, -1, -1):
+			if spell_of(spells[i]) == spell:
+				spells.remove_at(i)
+		spell_learned.emit(spell, false)
+		changed.emit()
 		return
 	if opcode != "SMSG_PET_SPELLS":
 		return

@@ -3,13 +3,11 @@ extends RefCounted
 
 enum State { ACTIVE, COMPLETE, FAILED }
 
-const MAX_QUESTS: int = 20
-# Each PLAYER_QUEST_LOG slot is the quest id, its counters and state, then its timer.
-const SLOT_FIELDS: int = 3
-const COUNTER_BITS: int = 6
-const COUNTER_MASK: int = 0x3F
-const STATE_SHIFT: int = 24
 const OBJECTIVES: int = 4
+
+# 1.12 packs the state over six-bit counters in one field; 3.3.5 gives each its own u16s.
+static var max_quests: int = 25 if PacketReader.wotlk else 20
+static var _slot_fields: int = 5 if PacketReader.wotlk else 3
 
 static var _areas: WowDBC
 static var _sorts: WowDBC
@@ -18,7 +16,7 @@ static var _sorts: WowDBC
 # The occupied quest log slots, in slot order.
 static func slots() -> Array[int]:
 	var taken: Array[int] = []
-	for slot: int in MAX_QUESTS:
+	for slot: int in max_quests:
 		if quest_id(slot):
 			taken.append(slot)
 	return taken
@@ -29,18 +27,20 @@ static func quest_id(slot: int) -> int:
 
 
 static func state(slot: int) -> State:
-	var bits: int = _field(slot, 1) >> STATE_SHIFT
+	var bits: int = _field(slot, 1) if PacketReader.wotlk else _field(slot, 1) >> 24
 	if bits & 2:
 		return State.FAILED
 	return State.COMPLETE if bits & 1 else State.ACTIVE
 
 
 static func counter(slot: int, objective: int) -> int:
-	return (_field(slot, 1) >> (objective * COUNTER_BITS)) & COUNTER_MASK
+	if PacketReader.wotlk:
+		return (_field(slot, 2 + (objective >> 1)) >> ((objective & 1) * 16)) & 0xFFFF
+	return (_field(slot, 1) >> (objective * 6)) & 0x3F
 
 
 static func time_left(slot: int) -> int:
-	return _field(slot, 2)
+	return _field(slot, _slot_fields - 1)
 
 
 # The zone or category a quest files under, such as Dun Morogh or Class.
@@ -117,4 +117,4 @@ static func format_text(text: String) -> String:
 static func _field(slot: int, offset: int) -> int:
 	var session: WowSession = WowClient.session
 	var first: int = session.field_index("PLAYER_QUEST_LOG_1_1")
-	return session.get_field(session.get_player_guid(), first + slot * SLOT_FIELDS + offset)
+	return session.get_field(session.get_player_guid(), first + slot * _slot_fields + offset)

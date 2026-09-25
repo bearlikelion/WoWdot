@@ -4,6 +4,7 @@ extends Control
 signal close_requested
 
 enum Branch { NONE, MET, UNMET }
+enum Spec { PRIMARY, SECONDARY, PET }
 
 const MAX_TALENT_TABS: int = 3
 const MAX_NUM_TALENTS: int = 40
@@ -24,6 +25,14 @@ const GREEN_FONT_COLOR: Color = Color(0.1, 1.0, 0.1)
 const NORMAL_FONT_COLOR: Color = Color(1.0, 0.82, 0.0)
 const GRAY_FONT_COLOR: Color = Color(0.5, 0.5, 0.5)
 const DESATURATED_TINT: Color = Color(0.65, 0.65, 0.65)
+# TALENT_ACTIVATION_SPELLS: Activate Primary Spec and Activate Secondary Spec.
+const ACTIVATE_SPELLS: Array[int] = [63645, 63644]
+const HYBRID_ICON: String = "Interface\\Icons\\Ability_DualWieldSpecialization"
+const DEFAULT_SPEC_ICON: String = "Interface\\Icons\\Ability_Marksmanship"
+# PlayerTalentFrame_UpdateSpecs: the first spec tab's top, and the gaps below each tab.
+const SPEC_TAB_TOP: float = 65.0
+const SPEC_TAB_GAP: float = 22.0
+const PET_SPEC_TAB_GAP: float = 39.0
 # SetTexCoord's left, right, top, bottom for a lit piece, then a gray one; left past right mirrors.
 const BRANCH_COORDS: Dictionary[String, Array] = {
 	"up": [[0.12890625, 0.25390625, 0.0, 0.484375], [0.12890625, 0.25390625, 0.515625, 1.0]],
@@ -61,21 +70,28 @@ var _known: Dictionary[int, bool] = {}
 var _tab_gap: float = 0.0
 var _desaturate: ShaderMaterial = ShaderMaterial.new()
 var _portrait: UnitPortrait
+var _spec: Spec = Spec.PRIMARY
+var _families: WowDBC
 
 @onready var _scroll: WowScrollFrame = _part("ScrollFrame")
 
 
 func _ready() -> void:
 	_setup()
-	# Dual spec and talent previews are not ported.
-	for unported: CanvasItem in [
-		%PlayerSpecTab1, %PlayerSpecTab2, %PlayerSpecTab3,
-		_part("StatusFrame"), _part("PreviewBar"),
-	]:
-		unported.hide()
+	# Talent previews are not ported.
+	_part("PreviewBar").hide()
+	_families = WowDBC.open(WowAssets.archive, "CreatureFamily")
+	for spec: Spec in [Spec.PRIMARY, Spec.SECONDARY, Spec.PET]:
+		_spec_tab(spec).pressed.connect(_select_spec.bind(spec))
+	(_part("ActivateButtonText") as Label).text = WowStrings.get_text("TALENT_SPEC_ACTIVATE")
+	(_part("ActivateButton") as BaseButton).pressed.connect(
+		func() -> void: WowClient.session.cast_spell(ACTIVATE_SPELLS[_spec], 0)
+	)
 	(_part("Tab4") as BaseButton).pressed.connect(show_glyphs)
 	%GlyphFrame.hide()
 	WowClient.session.spells_changed.connect(refresh)
+	WowClient.talents.changed.connect(refresh)
+	WowClient.pet.changed.connect(refresh)
 
 
 # What the player's and an inspected unit's trees share.
@@ -112,6 +128,7 @@ func _setup() -> void:
 func refresh() -> void:
 	if not is_visible_in_tree():
 		return
+	_update_specs()
 	var session: WowSession = WowClient.session
 	var guid: int = _unit()
 	if not session.has_object(guid):
@@ -120,7 +137,8 @@ func refresh() -> void:
 	(_part("TalentPointsText") as Label).text = WowStrings.strip_colors(
 		WowStrings.get_text("UNSPENT_TALENT_POINTS", "%s")
 	) % _points
-	_tabs = _class_tabs((session.get_field(guid, "UNIT_FIELD_BYTES_0") >> 8) & 0xFF)
+	_tabs = _pet_tabs() if _spec == Spec.PET \
+			else _class_tabs((session.get_field(guid, "UNIT_FIELD_BYTES_0") >> 8) & 0xFF)
 	_tab = mini(_tab, maxi(_tabs.size() - 1, 0))
 	_update_tabs()
 	if _tabs.is_empty():
@@ -409,6 +427,8 @@ func _tab_talents(tab_id: int) -> Array:
 
 
 func _rank(row: int) -> int:
+	if _spec == Spec.PET or not _viewing_active():
+		return _viewed_ranks().get(_talents.get_uint(row, "ID"), 0)
 	for i: int in range(MAX_RANKS - 1, -1, -1):
 		if _known.has(_talents.get_uint(row, "RankSpell%d" % i)):
 			return i + 1
@@ -421,16 +441,24 @@ func _prefix() -> String:
 
 
 func _unit() -> int:
+	if _spec == Spec.PET:
+		return WowClient.pet.guid
 	return WowClient.session.get_player_guid()
 
 
-# The player's ranks are the talent spells they know.
+# The active spec's ranks are the talent spells the player knows; the others come from TALENTS_INFO.
 func _load_ranks() -> void:
 	var session: WowSession = WowClient.session
+	var talents: Talents = WowClient.talents
 	_known.clear()
 	for spell: int in session.get_known_spells():
 		_known[spell] = true
-	_points = session.get_field(_unit(), "PLAYER_CHARACTER_POINTS1")
+	_points = session.get_field(session.get_player_guid(), "PLAYER_CHARACTER_POINTS1")
+	if _spec == Spec.PET:
+		_points = talents.pet_unspent
+	elif not _viewing_active():
+		# Both groups have the same points to spend; only the active one's are counted in the field.
+		_points += _total(talents.groups[talents.active_group]["ranks"]) - _total(_viewed_ranks())
 
 
 func _showing_glyphs() -> bool:
@@ -491,6 +519,8 @@ func _show_glyph_frame(shown: bool) -> void:
 
 
 func _learnable(row: int) -> bool:
+	if _spec != Spec.PET and not _viewing_active():
+		return false
 	var tier_unlocked: bool = _talents.get_uint(row, "Row") * POINTS_PER_TIER <= _points_spent
 	if _points <= 0 or not tier_unlocked or _rank(row) >= _max_rank(row):
 		return false
@@ -506,10 +536,15 @@ func _learn(index: int) -> void:
 		return
 	var row: int = _shown[index]
 	var payload: PackedByteArray = PackedByteArray()
-	payload.resize(8)
-	payload.encode_u32(0, _talents.get_uint(row, "ID"))
-	payload.encode_u32(4, _rank(row))
-	WowClient.session.send_packet("CMSG_LEARN_TALENT", payload)
+	if _spec == Spec.PET:
+		payload.resize(8)
+		payload.encode_u64(0, WowClient.pet.guid)
+	payload.resize(payload.size() + 8)
+	payload.encode_u32(payload.size() - 8, _talents.get_uint(row, "ID"))
+	payload.encode_u32(payload.size() - 4, _rank(row))
+	WowClient.session.send_packet(
+		"CMSG_PET_LEARN_TALENT" if _spec == Spec.PET else "CMSG_LEARN_TALENT", payload
+	)
 
 
 # GameTooltip:SetTalent: name and rank, unmet requirements, this rank's text, then the next rank's.
@@ -560,6 +595,132 @@ func _hide_tooltip(tooltip_owner: Control) -> void:
 func _on_object_updated(guid: int) -> void:
 	if guid == _unit():
 		refresh()
+
+
+func _select_spec(spec: Spec) -> void:
+	_spec = spec
+	_tab = 0
+	_show_glyph_frame(false)
+	_portrait.show_unit(_unit())
+	refresh()
+
+
+# PlayerTalentFrame_UpdateSpecs and _UpdateControls: a tab per talent group, then the pet's tree.
+func _update_specs() -> void:
+	var talents: Talents = WowClient.talents
+	var dual: bool = talents.groups.size() > 1
+	var shown: Array[bool] = [true, dual, _pet_family_row() >= 0]
+	if not shown[_spec]:
+		_spec = Spec.PRIMARY
+	var top: float = SPEC_TAB_TOP
+	for spec: Spec in [Spec.PRIMARY, Spec.SECONDARY, Spec.PET]:
+		var tab: WowButton = _spec_tab(spec)
+		tab.visible = shown[spec]
+		tab.checked = spec == _spec
+		if not tab.visible:
+			continue
+		if spec == Spec.PET and top > SPEC_TAB_TOP:
+			top += PET_SPEC_TAB_GAP - SPEC_TAB_GAP
+		tab.offset_bottom = top + tab.size.y
+		tab.offset_top = top
+		top += tab.size.y + SPEC_TAB_GAP
+		(tab.get_node("NormalTexture") as TextureRect).texture = _spec_icon(spec)
+	var player_spec: bool = _spec != Spec.PET
+	_part("StatusFrame").visible = dual and player_spec and _viewing_active()
+	_part("ActivateButton").visible = dual and player_spec and not _viewing_active()
+	_part("Tab4").visible = player_spec
+	var glyph_frame: GlyphFrame = %GlyphFrame
+	glyph_frame.inactive_glyphs = _viewed_glyphs()
+
+
+# The primary tree's icon for a talent group, as TalentFrame_UpdateSpecInfoCache picks it.
+func _spec_icon(spec: Spec) -> Texture2D:
+	if spec == Spec.PET:
+		return WowAssets.spells.icon_texture(_families.get_string(_pet_family_row(), "IconFile"))
+	var ranks: Dictionary[int, int] = _group_ranks(spec)
+	var class_id: int = (WowClient.session.get_field(
+		WowClient.session.get_player_guid(), "UNIT_FIELD_BYTES_0"
+	) >> 8) & 0xFF
+	var tabs: Array[int] = _class_tabs(class_id)
+	var spent: Array[int] = []
+	for tab_id: int in tabs:
+		var points: int = 0
+		for row: int in _tab_talents(tab_id):
+			points += ranks.get(_talents.get_uint(row, "ID"), 0)
+		spent.append(points)
+	var sorted: Array[int] = spent.duplicate()
+	sorted.sort()
+	var file: String = DEFAULT_SPEC_ICON
+	if not sorted.is_empty() and sorted[-1] > 0:
+		var low: int = sorted[0]
+		var high: int = sorted[-1]
+		if 3 * (sorted[sorted.size() >> 1] - low) < 2 * (high - low):
+			var icon_id: int = _talent_tabs.get_uint(
+				_talent_tabs.find(tabs[spent.find(high)]), "SpellIconID"
+			)
+			file = WowAssets.spells.icon_path(icon_id)
+		elif tabs.size() > 1:
+			file = HYBRID_ICON
+	return WowAssets.spells.icon_texture(file)
+
+
+func _spec_tab(spec: Spec) -> WowButton:
+	return get_node("%%PlayerSpecTab%d" % (spec + 1))
+
+
+func _viewing_active() -> bool:
+	return _spec == Spec.PET or WowClient.talents.groups.size() < 2 \
+			or _spec == WowClient.talents.active_group
+
+
+func _viewed_ranks() -> Dictionary[int, int]:
+	if _spec == Spec.PET:
+		return WowClient.talents.pet_ranks
+	return _group_ranks(_spec)
+
+
+func _group_ranks(spec: Spec) -> Dictionary[int, int]:
+	var groups: Array[Dictionary] = WowClient.talents.groups
+	var ranks: Dictionary[int, int] = {}
+	if spec < groups.size():
+		ranks.assign(groups[spec]["ranks"])
+	return ranks
+
+
+func _viewed_glyphs() -> PackedInt32Array:
+	var groups: Array[Dictionary] = WowClient.talents.groups
+	if _spec == Spec.PET or _viewing_active() or _spec >= groups.size():
+		return PackedInt32Array()
+	return groups[_spec]["glyphs"]
+
+
+func _total(ranks: Dictionary[int, int]) -> int:
+	var total: int = 0
+	for points: int in ranks.values():
+		total += points
+	return total
+
+
+# The hunter pet's CreatureFamily row while it has a talent tree, or -1.
+func _pet_family_row() -> int:
+	var pet: Pet = WowClient.pet
+	if not WowClient.talents.has_pet_talents or pet.guid == 0 or not pet.is_hunter_pet():
+		return -1
+	var row: int = _families.find(WowClient.session.get_creature_info(pet.guid).get("family", 0))
+	return row if row >= 0 and _families.get_int(row, "PetTalentType") >= 0 else -1
+
+
+# GetTalentTabInfo for a pet: the one tree whose PetTalentMask takes the family's talent type.
+func _pet_tabs() -> Array[int]:
+	var tabs: Array[int] = []
+	var row: int = _pet_family_row()
+	if row < 0:
+		return tabs
+	var type_bit: int = 1 << _families.get_int(row, "PetTalentType")
+	for tab_row: int in _talent_tabs.row_count():
+		if _talent_tabs.get_uint(tab_row, "PetTalentMask") & type_bit:
+			tabs.append(_talent_tabs.get_uint(tab_row, "ID"))
+	return tabs
 
 
 func _on_visibility_changed() -> void:

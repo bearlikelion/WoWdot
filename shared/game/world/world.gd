@@ -51,6 +51,8 @@ const FLAG_CHANGES: Dictionary[String, Player.MoveFlag] = {
 	"SMSG_MOVE_UNSET_HOVER": Player.MoveFlag.HOVER,
 	"SMSG_MOVE_SET_CAN_FLY": Player.MoveFlag.CAN_FLY,
 	"SMSG_MOVE_UNSET_CAN_FLY": Player.MoveFlag.CAN_FLY,
+	"SMSG_MOVE_GRAVITY_DISABLE": Player.MoveFlag.DISABLE_GRAVITY,
+	"SMSG_MOVE_GRAVITY_ENABLE": Player.MoveFlag.DISABLE_GRAVITY,
 }
 const TRANSFER_ABORTS: Dictionary[int, String] = {
 	1: "TRANSFER_ABORT_MAX_PLAYERS", 2: "TRANSFER_ABORT_NOT_FOUND",
@@ -58,7 +60,7 @@ const TRANSFER_ABORTS: Dictionary[int, String] = {
 }
 const FLAGS_APPLIED: PackedStringArray = [
 	"SMSG_FORCE_MOVE_ROOT", "SMSG_MOVE_WATER_WALK", "SMSG_MOVE_FEATHER_FALL", "SMSG_MOVE_SET_HOVER",
-	"SMSG_MOVE_SET_CAN_FLY",
+	"SMSG_MOVE_SET_CAN_FLY", "SMSG_MOVE_GRAVITY_DISABLE",
 ]
 
 var _auto_attacking: bool = false

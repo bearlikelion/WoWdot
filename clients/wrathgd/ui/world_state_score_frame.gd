@@ -11,9 +11,9 @@ const ROWS: int = 22
 const STAT_COLUMNS: int = 7
 # WorldStateUI.dbc: kind 2 rows are this map's scoreboard columns, in table order.
 const MAP_COLUMN: int = 1
-const ICON_COLUMN: int = 3
-const TEXT_COLUMN: int = 4
-const KIND_COLUMN: int = 24
+const ICON_COLUMN: int = 4
+const TEXT_COLUMN: int = 5
+const KIND_COLUMN: int = 40
 const SCOREBOARD: int = 2
 const ANY_MAP: int = 0xFFFFFFFF
 # WorldStateScoreFrame_Resize: the window widens by a fixed step per battleground column.
@@ -23,13 +23,24 @@ const COLUMN_SPACING: float = 77.0
 const HONOR_GAP: float = 58.0
 const HEADERS: Dictionary[String, String] = {
 	"KB": "SCORE_KILLING_BLOWS", "Deaths": "DEATHS", "HK": "SCORE_HONORABLE_KILLS",
-	"HonorGained": "SCORE_HONOR_GAINED",
+	"DamageDone": "SCORE_DAMAGE_DONE", "HealingDone": "SCORE_HEALING_DONE", "Team": "TEAM",
+	"TeamSkill": "SCORE_TEAM_SKILL",
 }
 # Each fixed header and the row label that sits under it.
 const ROW_LABELS: Dictionary[String, String] = {
 	"KB": "KillingBlows", "Deaths": "Deaths", "HK": "HonorableKills",
-	"HonorGained": "HonorGained",
+	"DamageDone": "Damage", "HealingDone": "Healing", "HonorGained": "HonorGained",
+	"TeamSkill": "TeamSkill",
 }
+# WorldStateScoreFrame_Update's arena colors: Green team then Gold, for the banners and the names.
+const ARENA_STRIP_COLORS: Array[Color] = [Color(0.19, 0.57, 0.11), Color(0.85, 0.71, 0.26)]
+const ARENA_NAME_COLORS: Array[Color] = [Color(0.1, 1.0, 0.1), Color(1.0, 0.82, 0.0)]
+const COLUMN_SPACING_STOCK: float = 76.0
+# WorldStateScoreFrame_Resize's stat column counts: a battleground, a skirmish, a rated arena.
+const BATTLEGROUND_COLUMNS: int = 7
+const SKIRMISH_COLUMNS: int = 4
+const RATED_COLUMNS: int = 6
+const SKIRMISH_EXTRA_WIDTH: float = 43.0
 const HORDE_COLOR: Color = Color(1.0, 0.1, 0.1)
 const ALLIANCE_COLOR: Color = Color(0.0, 0.68, 0.94)
 const OWN_COLOR: Color = Color(1.0, 0.82, 0.0)
@@ -46,6 +57,7 @@ var _offset: int = 0
 var _rows: Array[Dictionary] = []
 var _columns: Array[Dictionary] = []
 var _strips: Array[AtlasTexture] = []
+var _kb_x: float = 0.0
 
 @onready var _scroll: WowScrollFrame = %WorldStateScoreScrollFrame
 
@@ -62,6 +74,7 @@ func _ready() -> void:
 	for header: String in HEADERS:
 		var title: Label = get_node("%%WorldStateScoreFrame%sText" % header)
 		title.text = WowStrings.get_text(HEADERS[header])
+	_kb_x = (%WorldStateScoreFrameKB as Control).position.x
 	for team: Team in Team.values():
 		_tab(team).pressed.connect(_on_tab_pressed.bind(team))
 	_scroll.faux = true
@@ -95,16 +108,23 @@ func refresh() -> void:
 		return
 	var battlegrounds: Battlegrounds = WowClient.battlegrounds
 	var ended: bool = battlegrounds.winner != Battlegrounds.Winner.NONE
+	var arena: bool = battlegrounds.arena
 	%WorldStateScoreWinnerFrame.visible = ended
 	%WorldStateScoreFrameLeaveButton.visible = ended
 	%WorldStateScoreFrameTimerLabel.visible = false
 	%WorldStateScoreFrameTimer.visible = false
 	if ended:
-		var alliance_won: bool = battlegrounds.winner == Battlegrounds.Winner.ALLIANCE
-		var text: Label = %WorldStateScoreWinnerFrameText
-		text.text = WowStrings.get_text("VICTORY_TEXT%d" % battlegrounds.winner)
-		text.modulate = ALLIANCE_COLOR if alliance_won else HORDE_COLOR
-		_set_strips(%WorldStateScoreWinnerFrameLeft, %WorldStateScoreWinnerFrameRight, alliance_won)
+		_show_winner(battlegrounds)
+	for team: Team in Team.values():
+		_tab(team).visible = not arena
+	%WorldStateScoreFrameDeaths.visible = not arena
+	%WorldStateScoreFrameHK.visible = not arena
+	%WorldStateScoreFrameTeam.visible = _rated()
+	%WorldStateScoreFrameTeamSkill.visible = _rated()
+	%WorldStateScoreFrameHonorGained.visible = not arena or _rated()
+	(%WorldStateScoreFrameHonorGainedText as Label).text = \
+			WowStrings.get_text("SCORE_RATING_CHANGE" if arena else "SCORE_HONOR_GAINED")
+	_place_columns()
 	_rows = battlegrounds.scores.filter(_on_team)
 	_scroll.visible = _rows.size() > ROWS
 	_scroll.set_range(maxi(_rows.size() - ROWS, 0))
@@ -130,7 +150,7 @@ func _fill_row(i: int) -> void:
 		return
 	var score: Dictionary = _rows[index]
 	var guid: int = score["guid"]
-	var alliance: bool = _is_alliance(guid)
+	var alliance: bool = _is_alliance(score)
 	var rank: int = score["rank"]
 	var badge: TextureRect = get_node(stem + "RankButtonIcon")
 	badge.visible = rank > 0
@@ -141,16 +161,29 @@ func _fill_row(i: int) -> void:
 	player_name.modulate = ALLIANCE_COLOR if alliance else HORDE_COLOR
 	if guid == WowClient.session.get_player_guid():
 		player_name.modulate = OWN_COLOR
-	(get_node(stem + "HonorableKills") as Label).text = str(score["honorable_kills"])
 	(get_node(stem + "KillingBlows") as Label).text = str(score["killing_blows"])
-	(get_node(stem + "Deaths") as Label).text = str(score["deaths"])
-	(get_node(stem + "HonorGained") as Label).text = str(score["honor"])
+	(get_node(stem + "Damage") as Label).text = str(score.get("damage", 0))
+	(get_node(stem + "Healing") as Label).text = str(score.get("healing", 0))
 	_set_strips(get_node(stem + "FactionLeft"), get_node(stem + "FactionRight"), alliance)
+	if score.has("team"):
+		_fill_arena_row(stem, score)
+	else:
+		(get_node(stem + "HonorableKills") as Label).text = str(score["honorable_kills"])
+		(get_node(stem + "Deaths") as Label).text = str(score["deaths"])
+		(get_node(stem + "HonorGained") as Label).text = str(score["honor"])
+		for part: String in ["HonorableKills", "Deaths", "HonorGained"]:
+			(get_node(stem + part) as Control).show()
+		for part: String in ["Team", "TeamSkill"]:
+			(get_node(stem + part) as Control).hide()
+		for part: String in ["FactionLeft", "FactionRight"]:
+			(get_node(stem + part) as CanvasItem).self_modulate = Color.WHITE
 	var stats: PackedInt32Array = score["stats"]
 	for column: int in STAT_COLUMNS:
 		_fill_stat(stem + "Column%d" % (column + 1), column, stats, alliance)
 	for header: String in ROW_LABELS:
 		_center_under(get_node(stem + ROW_LABELS[header]), "%%WorldStateScoreFrame%s" % header)
+	var team_name: Label = get_node(stem + "Team")
+	team_name.position.x = (%WorldStateScoreFrameTeam as Control).position.x - row.position.x
 	for column: int in _columns.size():
 		var under: String = "%%WorldStateScoreColumn%d" % (column + 1)
 		var count: Label = get_node(stem + "Column%dText" % (column + 1))
@@ -178,8 +211,73 @@ func _fill_stat(stem: String, column: int, stats: PackedInt32Array, alliance: bo
 		icon.texture = _art(art + ("1" if alliance else "0"))
 
 
+# The arena rows' team, matchmaking and rating change, and their Green or Gold coloring.
+func _fill_arena_row(stem: String, score: Dictionary) -> void:
+	var team: int = clampi(score["team"], 0, 1)
+	var info: Dictionary = WowClient.battlegrounds.arena_teams[team]
+	var rated: bool = _rated()
+	(get_node(stem + "NameButtonName") as Label).modulate = ARENA_NAME_COLORS[team]
+	for part: String in ["FactionLeft", "FactionRight"]:
+		(get_node(stem + part) as CanvasItem).self_modulate = ARENA_STRIP_COLORS[team]
+	(get_node(stem + "HonorableKills") as Control).hide()
+	(get_node(stem + "Deaths") as Control).hide()
+	for part: String in ["Team", "TeamSkill", "HonorGained"]:
+		(get_node(stem + part) as Control).visible = rated
+	(get_node(stem + "Team") as Label).text = info["name"]
+	(get_node(stem + "TeamSkill") as Label).text = str(info["matchmaking"])
+	(get_node(stem + "HonorGained") as Label).text = str(info["rating_change"])
+
+
+func _show_winner(battlegrounds: Battlegrounds) -> void:
+	var winner: int = battlegrounds.winner
+	var text: Label = %WorldStateScoreWinnerFrameText
+	var left: TextureRect = %WorldStateScoreWinnerFrameLeft
+	var right: TextureRect = %WorldStateScoreWinnerFrameRight
+	if not battlegrounds.arena:
+		var alliance_won: bool = winner == Battlegrounds.Winner.ALLIANCE
+		text.text = WowStrings.get_text("VICTORY_TEXT%d" % winner)
+		text.modulate = ALLIANCE_COLOR if alliance_won else HORDE_COLOR
+		_set_strips(left, right, alliance_won)
+		left.self_modulate = Color.WHITE
+		right.self_modulate = Color.WHITE
+		return
+	var team_name: String = battlegrounds.arena_teams[winner]["name"] if winner < 2 else ""
+	text.text = WowStrings.get_text("VICTORY_TEXT_ARENA%d" % winner)
+	if _rated():
+		text.text = WowStrings.get_text("VICTORY_TEXT_ARENA_WINS") % team_name \
+				if not team_name.is_empty() else WowStrings.get_text("VICTORY_TEXT_ARENA_DRAW")
+	text.modulate = ARENA_NAME_COLORS[clampi(winner, 0, 1)]
+	_set_strips(left, right, true)
+	left.self_modulate = ARENA_STRIP_COLORS[clampi(winner, 0, 1)]
+	right.self_modulate = left.self_modulate
+
+
+# WorldStateScoreFrame_Update's reanchoring: an arena drops the kill and death columns.
+func _place_columns() -> void:
+	var arena: bool = WowClient.battlegrounds.arena
+	var team: Control = %WorldStateScoreFrameTeam
+	var kb: Control = %WorldStateScoreFrameKB
+	kb.position.x = team.position.x + team.size.x - 10.0 if _rated() else _kb_x
+	var damage: Control = %WorldStateScoreFrameDamageDone
+	var before: Control = kb if arena else %WorldStateScoreFrameHK
+	damage.position.x = before.position.x + before.size.x - 5.0
+	var healing: Control = %WorldStateScoreFrameHealingDone
+	healing.position.x = damage.position.x + damage.size.x - 5.0
+	var skill: Control = %WorldStateScoreFrameTeamSkill
+	skill.position.x = healing.position.x + healing.size.x + 10.0
+
+
+func _rated() -> bool:
+	var teams: Array[Dictionary] = WowClient.battlegrounds.arena_teams
+	return not teams.is_empty() and not String(teams[0]["name"]).is_empty()
+
+
 func _resize() -> void:
 	var width: float = BASE_WIDTH + _columns.size() * COLUMN_SPACING
+	if WowClient.battlegrounds.arena:
+		var columns: int = RATED_COLUMNS if _rated() else SKIRMISH_COLUMNS
+		width += (columns - BATTLEGROUND_COLUMNS) * COLUMN_SPACING_STOCK
+		width += (%WorldStateScoreFrameTeam as Control).size.x if _rated() else SKIRMISH_EXTRA_WIDTH
 	if _scroll.visible:
 		width += SCROLL_BAR_WIDTH
 	size.x = width
@@ -188,10 +286,14 @@ func _resize() -> void:
 	_scroll.size.x = width - 165.0
 	for i: int in ROWS:
 		(get_node("%%WorldStateScoreButton%d" % (i + 1)) as Control).size.x = row_width
+	var honor: Control = %WorldStateScoreFrameHonorGained
+	if WowClient.battlegrounds.arena:
+		var skill: Control = %WorldStateScoreFrameTeamSkill
+		honor.position.x = skill.position.x + skill.size.x + 5.0
+		return
 	var last: Control = %WorldStateScoreFrameHK
 	if not _columns.is_empty():
 		last = get_node("%%WorldStateScoreColumn%d" % _columns.size())
-	var honor: Control = %WorldStateScoreFrameHonorGained
 	honor.position.x = last.position.x + last.size.x / 2.0 + HONOR_GAP - honor.size.x / 2.0
 
 
@@ -215,9 +317,7 @@ func _set_strips(left: TextureRect, right: TextureRect, alliance: bool) -> void:
 
 
 func _count_players(scores: Array[Dictionary]) -> void:
-	var alliance: int = scores.filter(func(score: Dictionary) -> bool:
-		return _is_alliance(score["guid"])
-	).size()
+	var alliance: int = scores.filter(_is_alliance).size()
 	var horde: int = scores.size() - alliance
 	var parts: PackedStringArray = []
 	if alliance > 0:
@@ -225,6 +325,7 @@ func _count_players(scores: Array[Dictionary]) -> void:
 	if horde > 0:
 		parts.append(_plural("PLAYER_COUNT_HORDE", horde))
 	var count: Label = %WorldStateScorePlayerCount
+	count.visible = not WowClient.battlegrounds.arena
 	count.text = " / ".join(parts)
 	var last: Control = get_node("%%WorldStateScoreButton%d" % clampi(_rows.size() - _offset, 1, ROWS))
 	count.position = last.position + Vector2(15.0, last.size.y + 6.0)
@@ -234,13 +335,16 @@ func _plural(key: String, count: int) -> String:
 	return WowStrings.get_text(key + ("_P1" if count != 1 else "")) % count
 
 
-func _is_alliance(guid: int) -> bool:
-	var race: int = WowClient.session.get_player_race(guid)
+# An arena row is Gold (1) or Green by its team byte; a battleground row goes by race.
+func _is_alliance(score: Dictionary) -> bool:
+	if score.has("team"):
+		return score["team"] == 1
+	var race: int = WowClient.session.get_player_race(score["guid"])
 	return CharacterOptions.faction(race) == CharacterOptions.Faction.ALLIANCE
 
 
 func _on_team(score: Dictionary) -> bool:
-	return _team == Team.ALL or (_team == Team.ALLIANCE) == _is_alliance(score["guid"])
+	return _team == Team.ALL or (_team == Team.ALLIANCE) == _is_alliance(score)
 
 
 func _tab(team: Team) -> Control:

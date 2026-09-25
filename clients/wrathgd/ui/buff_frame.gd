@@ -39,6 +39,7 @@ func _ready() -> void:
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)
 	session.aura_duration.connect(_on_aura_duration)
+	session.auras_changed.connect(_on_object_updated)
 	refresh()
 
 
@@ -66,8 +67,12 @@ func refresh() -> void:
 	var auras: Array[Dictionary] = UnitAuras.read(session, session.get_player_guid())
 	var helpful: Array[Dictionary] = []
 	var harmful: Array[Dictionary] = []
+	var now: int = Time.get_ticks_msec()
 	for aura: Dictionary in auras:
-		if _expired.get(aura["slot"], 0) == aura["spell"]:
+		var ends: int = aura.get("ends_msec", 0)
+		if aura.has("ends_msec"):
+			_ends[aura["slot"]] = ends
+		if _expired.get(aura["slot"], 0) == aura["spell"] and ends <= now:
 			continue
 		_expired.erase(aura["slot"])
 		(harmful if aura["harmful"] else helpful).append(aura)

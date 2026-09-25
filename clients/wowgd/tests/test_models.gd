@@ -32,6 +32,9 @@ func _run() -> void:
 		var shapes: Array[Node] = inn.model.find_children("*", "CollisionShape3D", true, false)
 		_check(not shapes.is_empty(), "inn groups have collision")
 		_check(inn.model.get_node_or_null("Doodads") != null, "inn places its doodads")
+		_check(inn.model.get_node_or_null("Portals") is WowPortals, "inn culls its rooms by portal")
+		var rooms: Array[Node] = inn.model.find_children("Doodads", "Node3D", true, false)
+		_check(rooms.size() > 1, "inn rooms carry their own doodads")
 
 	for failure: String in _failures:
 		printerr("FAIL: ", failure)

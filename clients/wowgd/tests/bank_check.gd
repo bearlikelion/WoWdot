@@ -117,7 +117,7 @@ func _check_bank_bag(bank: BankFrame) -> void:
 
 
 func _bank_bag_address(index: int) -> Vector2i:
-	return Vector2i(Inventory.WIRE_BACKPACK, Inventory.WIRE_BANK_BAG_START + index)
+	return Vector2i(Inventory.WIRE_BACKPACK, Inventory.wire_bank_bag_start + index)
 
 
 func _open_bank_bags(hud: Hud) -> int:

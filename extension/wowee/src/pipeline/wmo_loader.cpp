@@ -359,11 +359,15 @@ WMOModel WMOLoader::load(const std::vector<uint8_t>& wmoData) {
                     WMOPortal portal;
                     portal.startVertex = read<uint16_t>(wmoData, offset);
                     portal.vertexCount = read<uint16_t>(wmoData, offset);
-                    portal.planeIndex = read<uint16_t>(wmoData, offset);
-                    portal.padding = read<uint16_t>(wmoData, offset);
-
-                    // Skip additional data (12 bytes)
-                    offset += 12;
+                    // The rest of the record is the portal's C4Plane: normal, then distance.
+                    WMOPortalPlane plane;
+                    plane.normal.x = read<float>(wmoData, offset);
+                    plane.normal.y = read<float>(wmoData, offset);
+                    plane.normal.z = read<float>(wmoData, offset);
+                    plane.distance = read<float>(wmoData, offset);
+                    portal.planeIndex = static_cast<uint16_t>(model.portalPlanes.size());
+                    portal.padding = 0;
+                    model.portalPlanes.push_back(plane);
 
                     model.portals.push_back(portal);
                 }
@@ -529,6 +533,12 @@ bool WMOLoader::loadGroup(const std::vector<uint8_t>& groupData,
                     for (uint32_t i = 0; i < triCount; i++) {
                         group.triFlags[i] = read<uint8_t>(groupData, mogpOffset);
                         read<uint8_t>(groupData, mogpOffset); // materialId (skip)
+                    }
+                }
+                else if (subChunkId == 0x4D4F4452) { // MODR - Doodad references
+                    uint32_t refCount = subChunkSize / 2;
+                    for (uint32_t i = 0; i < refCount; i++) {
+                        group.doodadRefs.push_back(read<uint16_t>(groupData, mogpOffset));
                     }
                 }
                 else if (subChunkId == MONR) { // Normals

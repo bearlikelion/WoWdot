@@ -44,6 +44,7 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)
+	session.auras_changed.connect(_on_object_updated)
 	session.name_received.connect(_on_name_received)
 	session.objects_destroyed.connect(_on_objects_destroyed)
 	_portrait = PORTRAIT.instantiate()

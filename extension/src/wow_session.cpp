@@ -21,6 +21,7 @@
 #include <godot_cpp/classes/project_settings.hpp>
 #include <godot_cpp/classes/time.hpp>
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
 #include <godot_cpp/variant/vector2.hpp>
 #include <godot_cpp/variant/vector2i.hpp>
 
@@ -31,6 +32,7 @@
 #include <cctype>
 #include <cstring>
 #include <random>
+#include <unordered_set>
 
 using namespace wowee;
 
@@ -184,6 +186,14 @@ void load_protocol_tables() {
 
 std::optional<game::LogicalOpcode> logical(network::Packet &packet) {
 	return game::getActiveOpcodeTable()->fromWire(packet.getOpcode());
+}
+
+// Under --verbose, names each opcode the first time it arrives, so ones nothing reads stand out.
+void trace_first(uint32_t key, const String &what) {
+	static std::unordered_set<uint32_t> seen;
+	if (seen.insert(key).second) {
+		UtilityFunctions::print_verbose("WowSession: first ", what);
+	}
 }
 
 Vector3 wow_vector(float x, float y, float z) {
@@ -675,6 +685,7 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 					slots.erase(slot);
 				} else {
 					slots[slot] = aura;
+					slots[slot].receivedAtMs = Time::get_singleton()->get_ticks_msec();
 				}
 			}
 			if (slots.empty()) {
@@ -1497,6 +1508,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 	using game::LogicalOpcode;
 	const auto op = logical(packet);
 	if (!op) {
+		trace_first(0x10000u | packet.getOpcode(), "unknown wire opcode 0x" + String::num_int64(packet.getOpcode(), 16));
 		return;
 	}
 	switch (*op) {
@@ -1674,7 +1686,8 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			return;
 		}
 		case LogicalOpcode::SMSG_COMPRESSED_MOVES:
-			handle_compressed_moves(packet);
+		case LogicalOpcode::SMSG_MULTIPLE_MOVES:
+			handle_compressed_moves(packet, *op == LogicalOpcode::SMSG_COMPRESSED_MOVES);
 			return;
 		case LogicalOpcode::SMSG_PONG:
 			latency_msec = static_cast<int>(Time::get_singleton()->get_ticks_msec() - last_ping_msec);
@@ -1944,6 +1957,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		handle_spline_speed(name, packet);
 		return;
 	}
+	trace_first(static_cast<uint16_t>(*op), name);
 	PackedByteArray payload;
 	payload.resize(packet.getSize());
 	std::copy(packet.getData().begin(), packet.getData().end(), payload.ptrw());
@@ -1979,6 +1993,7 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 			object.transport_guid = block.onTransport ? block.transportGuid : 0;
 			object.transport_offset = wow_vector(block.transportX, block.transportY, block.transportZ);
 			object.transport_orientation = block.transportO;
+			object.move_flags = move_flags_from_wire(block.moveFlags);
 			if (block.runSpeed > 0.0f) {
 				object.speeds = { block.walkSpeed, block.runSpeed, block.runBackSpeed, block.swimSpeed, block.swimBackSpeed, block.turnRate, block.flightSpeed, block.flightBackSpeed };
 			}
@@ -2112,7 +2127,8 @@ void WowSession::handle_monster_move(network::Packet &packet, uint64_t transport
 	if (data.moveType == MONSTER_MOVE_FACING_ANGLE) {
 		move["orientation"] = data.facingAngle;
 	}
-	constexpr uint32_t SPLINE_FLYING = 0x200;
+	// Splines the client smooths through every point: 1.12's Flying, 3.3.5's Flying | Catmullrom.
+	const uint32_t SPLINE_FLYING = wow_wotlk() ? 0x2000 | 0x40000 : 0x200;
 	if (!(data.splineFlags & SPLINE_FLYING) && data.hasDest && !data.waypoints.empty()) {
 		PackedVector3Array corners;
 		for (const auto &point : data.waypoints) {
@@ -2167,11 +2183,14 @@ void WowSession::handle_spline_speed(const char *name, network::Packet &packet) 
 	}
 }
 
-// SMSG_COMPRESSED_MOVES inflates to a run of [u8 size][u16 opcode][payload] monster move packets.
-void WowSession::handle_compressed_moves(network::Packet &packet) {
+// A run of [u8 size][u16 opcode][payload] packets: zlib in COMPRESSED_MOVES, plain after a u32 in MULTIPLE_MOVES.
+void WowSession::handle_compressed_moves(network::Packet &packet, bool compressed) {
 	std::vector<uint8_t> raw;
-	if (!inflate(packet, raw)) {
+	if (compressed && !inflate(packet, raw)) {
 		return;
+	}
+	if (!compressed && packet.getSize() >= 4) {
+		raw.assign(packet.getData().begin() + 4, packet.getData().end());
 	}
 	size_t offset = 0;
 	while (offset + 3 <= raw.size()) {
@@ -2222,6 +2241,12 @@ Vector3 WowSession::get_object_position(int64_t guid) const {
 double WowSession::get_object_orientation(int64_t guid) const {
 	const WorldObject *object = find(guid);
 	return object ? object->orientation : 0.0;
+}
+
+// The movement flags the object was created with, in the game's 1.12 bit layout.
+int64_t WowSession::get_object_move_flags(int64_t guid) const {
+	const WorldObject *object = find(guid);
+	return object ? object->move_flags : 0;
 }
 
 // Empty for an object standing on the ground.
@@ -2282,6 +2307,8 @@ Array WowSession::get_auras(int64_t guid) const {
 		entry["caster"] = static_cast<int64_t>(aura.casterGuid);
 		entry["duration_msec"] = aura.durationMs;
 		entry["max_duration_msec"] = aura.maxDurationMs;
+		// Time.get_ticks_msec when the aura runs out, or 0 when it never does.
+		entry["ends_msec"] = aura.durationMs > 0 ? static_cast<int64_t>(aura.receivedAtMs + aura.durationMs) : 0;
 		list.push_back(entry);
 	}
 	return list;
@@ -2350,6 +2377,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_object_type", "guid"), &WowSession::get_object_type);
 	ClassDB::bind_method(D_METHOD("get_object_position", "guid"), &WowSession::get_object_position);
 	ClassDB::bind_method(D_METHOD("get_object_orientation", "guid"), &WowSession::get_object_orientation);
+	ClassDB::bind_method(D_METHOD("get_object_move_flags", "guid"), &WowSession::get_object_move_flags);
 	ClassDB::bind_method(D_METHOD("get_object_transport", "guid"), &WowSession::get_object_transport);
 	ClassDB::bind_method(D_METHOD("get_object_speeds", "guid"), &WowSession::get_object_speeds);
 	ClassDB::bind_method(D_METHOD("get_field", "guid", "field"), &WowSession::get_field);

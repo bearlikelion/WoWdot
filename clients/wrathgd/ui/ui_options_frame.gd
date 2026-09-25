@@ -43,6 +43,24 @@ const CHECK_TEXTS: Dictionary[String, String] = {
 	"InterfaceOptionsObjectivesPanelInstantQuestText": "SHOW_QUEST_FADING_TEXT",
 	"InterfaceOptionsObjectivesPanelAutoQuestTracking": "AUTO_QUEST_WATCH_TEXT",
 }
+# InterfaceOptions_AddCategory order; Battle.net and Languages need Battle.net or a second locale.
+const PANELS: Dictionary[String, String] = {
+	"InterfaceOptionsControlsPanel": "CONTROLS_LABEL",
+	"InterfaceOptionsCombatPanel": "COMBAT_LABEL",
+	"InterfaceOptionsDisplayPanel": "DISPLAY_LABEL",
+	"InterfaceOptionsObjectivesPanel": "OBJECTIVES_LABEL",
+	"InterfaceOptionsSocialPanel": "SOCIAL_LABEL",
+	"InterfaceOptionsActionBarsPanel": "ACTIONBARS_LABEL",
+	"InterfaceOptionsNamesPanel": "NAMES_LABEL",
+	"InterfaceOptionsCombatTextPanel": "COMBATTEXT_LABEL",
+	"InterfaceOptionsStatusTextPanel": "STATUSTEXT_LABEL",
+	"InterfaceOptionsUnitFramePanel": "UNITFRAME_LABEL",
+	"InterfaceOptionsBuffsPanel": "BUFFOPTIONS_LABEL",
+	"InterfaceOptionsCameraPanel": "CAMERA_LABEL",
+	"InterfaceOptionsMousePanel": "MOUSE_LABEL",
+	"InterfaceOptionsFeaturesPanel": "FEATURES_LABEL",
+	"InterfaceOptionsHelpPanel": "HELP_LABEL",
+}
 
 # What the options stood at when the window opened, so Cancel can put them back.
 var _opened: Dictionary[StringName, bool] = {}
@@ -50,6 +68,7 @@ var _accepted: bool = false
 
 
 func _ready() -> void:
+	OptionsCategoryList.bind(self, "InterfaceOptionsFrameCategories", PANELS)
 	for key: String in CHECK_OPTIONS:
 		var check: WowButton = _check(key)
 		(check.get_node(key + "Text") as Label).text = WowStrings.get_text(CHECK_TEXTS[key])

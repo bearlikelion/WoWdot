@@ -78,6 +78,17 @@ static func format(event: CombatEvents.CombatEvent) -> String:
 			var dispeller: String = WowAssets.spells.spell_name(event.extra_spell)
 			var aura: String = WowAssets.spells.spell_name(event.spell)
 			return _full(dispel, event, aura, "", dispeller, true)
+		CombatEvents.Kind.STEAL:
+			var stealer: String = WowAssets.spells.spell_name(event.extra_spell)
+			var stolen: String = WowAssets.spells.spell_name(event.spell)
+			return _full("SPELL_STOLEN", event, stolen, "", stealer, true)
+		CombatEvents.Kind.DRAIN:
+			return _full("SPELL_DRAIN", event)
+		CombatEvents.Kind.EXTRA_ATTACKS:
+			return _full("SPELL_EXTRA_ATTACKS", event)
+		CombatEvents.Kind.INTERRUPT:
+			var interrupted: String = WowAssets.spells.spell_name(event.extra_spell)
+			return _full("SPELL_INTERRUPT", event, interrupted, "", "", true)
 		CombatEvents.Kind.INSTAKILL:
 			return _full("SPELL_INSTAKILL", event)
 		CombatEvents.Kind.ENCHANT:

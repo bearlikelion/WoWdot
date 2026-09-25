@@ -39,22 +39,21 @@ func _learnable(_row: int) -> bool:
 	return false
 
 
-# Player::BuildPlayerTalentsInfoData after the unit's packed guid; ranks count from 0.
+# An inspected unit shows only its active talent group, so it has no spec tabs.
+func _update_specs() -> void:
+	pass
+
+
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode != "SMSG_INSPECT_TALENT":
 		return
 	var reader: PacketReader = PacketReader.new(payload)
 	if reader.packed_guid() != guid:
 		return
-	_unspent = reader.u32()
-	var groups: int = reader.u8()
-	var active: int = reader.u8()
+	var info: Dictionary = Talents.read_groups(reader)
+	var groups: Array[Dictionary] = info["groups"]
+	_unspent = info["unspent"]
 	_ranks.clear()
-	for group: int in groups:
-		for i: int in reader.u8():
-			var talent: int = reader.u32()
-			var rank: int = reader.u8()
-			if group == active:
-				_ranks[talent] = rank + 1
-		reader.skip(reader.u8() * 2)
+	if info["active"] < groups.size():
+		_ranks.assign(groups[info["active"]]["ranks"])
 	refresh()

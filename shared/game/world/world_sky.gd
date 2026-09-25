@@ -62,6 +62,7 @@ var _dome_materials: Array[BaseMaterial3D] = []
 
 func _ready() -> void:
 	_light = WorldLight.new(WowAssets.archive)
+	WowClient.session.packet_received.connect(_on_packet_received)
 	_load_ripples(river, RIVER_RIPPLES)
 	_load_ripples(ocean, OCEAN_RIPPLES)
 	_refresh.timeout.connect(update)
@@ -71,6 +72,11 @@ func _process(_delta: float) -> void:
 	var camera: Camera3D = get_viewport().get_camera_3d()
 	if camera:
 		_dome.global_position = camera.global_position
+
+
+func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
+	if opcode == "SMSG_OVERRIDE_LIGHT" and payload.size() >= 12:
+		_light.override_default(payload.decode_u32(0), payload.decode_u32(4), payload.decode_u32(8))
 
 
 # WoW adds ambient and diffuse in gamma space; the sun makes up that sum on flat ground.

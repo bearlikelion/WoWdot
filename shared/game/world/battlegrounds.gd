@@ -27,6 +27,11 @@ const QUEUE_SLOTS: int = 3
 ## One row per player; "stats" holds the battleground's own columns.
 var scores: Array[Dictionary] = []
 var winner: Winner = Winner.NONE
+var arena: bool = false
+# The server's unix time less this machine's, for the world state timers that count to a moment.
+var server_clock_offset: int = 0
+# A rated arena's two teams, Green then Gold, each {name, rating_change, matchmaking}.
+var arena_teams: Array[Dictionary] = []
 ## Team mates by guid, in WoW map yards, and the flag carrier when the server names one.
 var positions: Dictionary[int, Vector2] = {}
 var flag_carrier: int = 0
@@ -129,6 +134,10 @@ func world_state(field: int) -> int:
 	return _states.get(field, 0)
 
 
+func server_time() -> int:
+	return int(Time.get_unix_time_from_system()) + server_clock_offset
+
+
 func _port(map_id: int, action: Port) -> void:
 	var payload: PackedByteArray = []
 	if PacketReader.wotlk:
@@ -177,6 +186,10 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			var count: int = reader.u16()
 			for i: int in count:
 				_set_state(reader.u32(), reader.u32())
+			if PacketReader.wotlk:
+				_session.send_packet("CMSG_WORLD_STATE_UI_TIMER_UPDATE", PackedByteArray())
+		"SMSG_WORLD_STATE_UI_TIMER_UPDATE":
+			server_clock_offset = reader.u32() - int(Time.get_unix_time_from_system())
 		"MSG_PVP_LOG_DATA":
 			_read_scores(reader)
 		"MSG_BATTLEGROUND_PLAYER_POSITIONS":
@@ -240,22 +253,31 @@ func _read_status_wotlk(reader: PacketReader, slot: int) -> void:
 	queue_changed.emit(slot, status, entry["map_id"])
 
 
+# Battleground::BuildPvPLogDataPacket; an arena's rows carry a team byte in place of honor.
 func _read_scores(reader: PacketReader) -> void:
-	if PacketReader.wotlk and reader.u8() != 0:
-		# Arena scoreboards carry rating and team blocks this frame does not show.
-		return
+	arena = PacketReader.wotlk and reader.u8() != 0
+	arena_teams.clear()
+	if arena:
+		for team: int in 2:
+			var lost: int = reader.u32()
+			arena_teams.append({"rating_change": reader.u32() - lost, "matchmaking": reader.u32()})
+		for team: Dictionary in arena_teams:
+			team["name"] = reader.cstring()
 	var ended: bool = reader.u8() != 0
 	winner = (reader.u8() as Winner) if ended else Winner.NONE
 	scores.clear()
 	for i: int in reader.u32():
-		var row: Dictionary = {
-			"guid": reader.u64(), "rank": 0 if PacketReader.wotlk else reader.u32(),
-			"killing_blows": reader.u32(), "honorable_kills": reader.u32(), "deaths": reader.u32(),
-			"honor": reader.u32(),
-		}
+		var row: Dictionary = {"guid": reader.u64(), "rank": 0 if PacketReader.wotlk else reader.u32()}
+		row["killing_blows"] = reader.u32()
+		if arena:
+			row["team"] = reader.u8()
+		else:
+			row["honorable_kills"] = reader.u32()
+			row["deaths"] = reader.u32()
+			row["honor"] = reader.u32()
 		if PacketReader.wotlk:
-			reader.u32()
-			reader.u32()
+			row["damage"] = reader.u32()
+			row["healing"] = reader.u32()
 		var stats: PackedInt32Array = []
 		for stat: int in reader.u32():
 			stats.append(reader.u32())

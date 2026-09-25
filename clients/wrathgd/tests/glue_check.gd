@@ -55,6 +55,9 @@ const GUILD_INFO_TEXT: String = "Guild info from glue_check"
 const RENAMED: String = "Wrathrenamed"
 # The Hunt Begins, whose objective and turn-in both have POIs on Mulgore's map.
 const POI_QUEST: int = 747
+# Kobold Camp Cleanup, eight kills, so its counter shows where slot 1's fields start.
+const KILL_QUEST: int = 7
+const KILL_QUEST_COUNT: int = 8
 const MACRO_NAME: String = "GlueMacro"
 const MACRO_BODY: String = "/say glue_check macro"
 const HEROIC_STRIKE: int = 78
@@ -257,7 +260,22 @@ func _quest_pois() -> void:
 		await _frames(30)
 		_capture("user://wotlk_quest_poi.png")
 	map.close_requested.emit()
+	await _second_quest_slot()
 	session.send_chat(WowSession.CHAT_SAY, ".quest remove %d" % POI_QUEST)
+
+
+# A second quest lands in slot 1, which only reads right with the 3.3.5 five-field stride.
+func _second_quest_slot() -> void:
+	var session: WowSession = WowClient.session
+	session.send_chat(WowSession.CHAT_SAY, ".quest add %d" % KILL_QUEST)
+	session.send_chat(WowSession.CHAT_SAY, ".quest complete %d" % KILL_QUEST)
+	var completed: Callable = func() -> bool:
+		return QuestLog.quest_id(1) == KILL_QUEST and QuestLog.state(1) == QuestLog.State.COMPLETE
+	if await _until(completed, "the second quest reads complete in slot 1"):
+		_check(QuestLog.counter(1, 0) == KILL_QUEST_COUNT,
+				"slot 1's kill counter reads %d" % QuestLog.counter(1, 0))
+		_check(QuestLog.state(0) == QuestLog.State.ACTIVE, "slot 0's quest still reads active")
+	session.send_chat(WowSession.CHAT_SAY, ".quest remove %d" % KILL_QUEST)
 
 
 # Saving the key bindings stores the stock bindings cache, W moving forward among them.

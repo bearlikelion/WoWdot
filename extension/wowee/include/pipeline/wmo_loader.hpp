@@ -158,6 +158,7 @@ struct WMOGroup {
     std::vector<uint16_t> indices;
     std::vector<WMOBatch> batches;
     std::vector<uint8_t> triFlags;  // Per-triangle MOPY flags (0x04 = detail/no-collide)
+    std::vector<uint16_t> doodadRefs;  // MODR: MODD indices of the doodads in this group
 
     // Portals
     std::vector<WMOPortal> portals;

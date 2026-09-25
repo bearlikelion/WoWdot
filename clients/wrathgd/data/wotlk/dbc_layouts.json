@@ -130,6 +130,11 @@
     "FacialHairCustomizationFemale": 66,
     "HairCustomization": 67
   },
+  "CreatureFamily": {
+    "ID": 0,
+    "IconFile": 27,
+    "PetTalentType": 8
+  },
   "CreatureDisplayInfo": {
     "ExtraDisplayId": 3,
     "ID": 0,
@@ -608,7 +613,9 @@
     "ClassMask": 20,
     "ID": 0,
     "Name": 1,
-    "OrderIndex": 22
+    "OrderIndex": 22,
+    "PetTalentMask": 21,
+    "SpellIconID": 18
   },
   "TaxiNodes": {
     "ID": 0,

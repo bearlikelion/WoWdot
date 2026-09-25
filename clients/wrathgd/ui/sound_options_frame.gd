@@ -16,6 +16,8 @@ const SLIDER_BUSES: Dictionary[String, WowAudio.Bus] = {
 	"MusicVolume": WowAudio.Bus.MUSIC,
 	"AmbienceVolume": WowAudio.Bus.AMBIENCE,
 }
+# Voice is only listed when voice chat is on, which this client has none of.
+const PANELS: Dictionary[String, String] = {"AudioOptionsSoundPanel": "SOUND_LABEL"}
 const CHECK_TEXTS: Dictionary[String, String] = {
 	"EnableSound": "ENABLE_SOUND",
 	"SoundEffects": "ENABLE_SOUNDFX",
@@ -45,6 +47,7 @@ var _accepted: bool = false
 
 
 func _ready() -> void:
+	OptionsCategoryList.bind(self, "AudioOptionsFrameCategoryFrame", PANELS)
 	for key: String in CHECK_TEXTS:
 		var check: WowButton = _control(key)
 		_label(key + "Text").text = WowStrings.get_text(CHECK_TEXTS[key])
@@ -66,7 +69,6 @@ func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
 
 
-# The converter emits the sound panel twice, so its controls are not unique names.
 func _control(key: String) -> Control:
 	return %AudioOptionsSoundPanel.find_child("AudioOptionsSoundPanel" + key, true, false)
 

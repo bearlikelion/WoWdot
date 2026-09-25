@@ -14,6 +14,7 @@
 #include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/classes/shader_material.hpp>
 #include <godot_cpp/classes/static_body3d.hpp>
+#include <godot_cpp/classes/texture2d_array.hpp>
 #include <godot_cpp/core/math.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
@@ -82,21 +83,18 @@ Vector2 vertex_offset(int index) {
 	return col > 8 ? Vector2(col - 8.5f, row + 0.5f) : Vector2(col, row);
 }
 
-Ref<ImageTexture> alpha_texture(const pipeline::ChunkMesh &chunk) {
-	PackedByteArray pixels;
-	pixels.resize(64 * 64 * 4);
-	uint8_t *out = pixels.ptrw();
-	std::memset(out, 0, pixels.size());
+// Every chunk's 64x64 blend map at its place in a 1024x1024 tile atlas; A is the baked shadow.
+void write_alpha(const pipeline::ChunkMesh &chunk, int chunk_x, int chunk_y, uint8_t *atlas) {
+	const auto texel = [&](size_t i) { return atlas + ((chunk_y * 64 + i / 64) * 1024 + chunk_x * 64 + i % 64) * 4; };
 	for (size_t layer = 1; layer < chunk.layers.size() && layer < 4; layer++) {
 		const std::vector<uint8_t> &alpha = chunk.layers[layer].alphaData;
 		for (size_t i = 0; i < alpha.size() && i < 64 * 64; i++) {
-			out[i * 4 + layer - 1] = alpha[i];
+			texel(i)[layer - 1] = alpha[i];
 		}
 	}
 	for (size_t i = 0; i < chunk.shadowMap.size() * 8 && i < 64 * 64; i++) {
-		out[i * 4 + 3] = (chunk.shadowMap[i / 8] >> (i % 8)) & 1 ? 255 : 0;
+		texel(i)[3] = (chunk.shadowMap[i / 8] >> (i % 8)) & 1 ? 255 : 0;
 	}
-	return ImageTexture::create_from_image(Image::create_from_data(64, 64, false, Image::FORMAT_RGBA8, pixels));
 }
 
 // The GroundEffectTexture of the layer covering each 8x8 cell of a chunk, for the footstep sound.
@@ -228,9 +226,20 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 
 	Node3D *root = memnew(Node3D);
 	root->set_name("Tile_" + String::num_int64(tile_x) + "_" + String::num_int64(tile_y));
-	// One mesh with a surface per chunk keeps a tile to a single node; 256 is Godot's surface limit.
-	Ref<ArrayMesh> terrain_mesh;
-	terrain_mesh.instantiate();
+	// The whole tile is one draw: layer textures sit in an array that each chunk indexes.
+	PackedVector3Array vertices;
+	PackedVector3Array normals;
+	PackedVector2Array uvs;
+	PackedVector2Array alpha_uvs;
+	PackedInt32Array indices;
+	PackedByteArray alpha_atlas;
+	alpha_atlas.resize(1024 * 1024 * 4);
+	std::memset(alpha_atlas.ptrw(), 0, alpha_atlas.size());
+	PackedByteArray chunk_layers;
+	chunk_layers.resize(16 * 16 * 4);
+	std::memset(chunk_layers.ptrw(), 0, chunk_layers.size());
+	std::unordered_map<uint32_t, int> slots;
+	std::vector<uint32_t> slot_textures;
 
 	// Neighbouring chunks each store the edge they share, so the first one to reach an edge vertex sets its height.
 	std::unordered_map<int, float> edge_heights;
@@ -242,10 +251,7 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 		const pipeline::MapChunk &source = terrain.chunks[c];
 		const int chunk_x = c % 16;
 		const int chunk_y = c / 16;
-		PackedVector3Array vertices;
-		PackedVector3Array normals;
-		PackedVector2Array uvs;
-		PackedVector2Array alpha_uvs;
+		const int32_t base = static_cast<int32_t>(vertices.size());
 		for (size_t i = 0; i < chunk.vertices.size(); i++) {
 			const pipeline::TerrainVertex &v = chunk.vertices[i];
 			// Vertices go on the tile's grid in double precision so chunks and tiles meet without cracks.
@@ -266,12 +272,24 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 			vertices.push_back(wow_to_godot(position));
 			normals.push_back(wow_to_godot(glm::vec3(v.normal[0], v.normal[1], v.normal[2])).normalized());
 			uvs.push_back(vertex_offset(i));
-			alpha_uvs.push_back(Vector2(v.layerUV[0], v.layerUV[1]));
+			alpha_uvs.push_back(Vector2((chunk_x + v.layerUV[0]) / 16.0f, (chunk_y + v.layerUV[1]) / 16.0f));
 		}
-		PackedInt32Array indices;
 		for (uint32_t index : chunk.indices) {
-			indices.push_back(index);
+			indices.push_back(base + static_cast<int32_t>(index));
 		}
+		write_alpha(chunk, chunk_x, chunk_y, alpha_atlas.ptrw());
+		for (size_t layer = 0; layer < chunk.layers.size() && layer < 4; layer++) {
+			const uint32_t texture_id = chunk.layers[layer].textureId;
+			const auto slot = slots.try_emplace(texture_id, static_cast<int>(slot_textures.size()));
+			if (slot.second) {
+				slot_textures.push_back(texture_id);
+			}
+			chunk_layers.ptrw()[c * 4 + layer] = static_cast<uint8_t>(slot.first->second);
+		}
+	}
+	Ref<ArrayMesh> terrain_mesh;
+	terrain_mesh.instantiate();
+	if (!vertices.is_empty()) {
 		Array arrays;
 		arrays.resize(Mesh::ARRAY_MAX);
 		arrays[Mesh::ARRAY_VERTEX] = vertices;
@@ -279,28 +297,47 @@ Node3D *WowLoader::load_adt(const String &map_name, int tile_x, int tile_y) {
 		arrays[Mesh::ARRAY_TEX_UV] = uvs;
 		arrays[Mesh::ARRAY_TEX_UV2] = alpha_uvs;
 		arrays[Mesh::ARRAY_INDEX] = indices;
-		const int surface = terrain_mesh->get_surface_count();
 		terrain_mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, arrays);
-		terrain_mesh->surface_set_name(surface, "Chunk_" + String::num_int64(c % 16) + "_" + String::num_int64(c / 16));
-
-		if (terrain_shader.is_valid()) {
+		if (terrain_shader.is_valid() && !slot_textures.empty()) {
+			TypedArray<Image> images;
+			int width = 1;
+			int height = 1;
+			for (uint32_t texture_id : slot_textures) {
+				Ref<Image> image = texture_id < mesh.textures.size() ? load_image(mesh.textures[texture_id].c_str()) : Ref<Image>();
+				if (image.is_null()) {
+					image = Image::create_empty(1, 1, true, Image::FORMAT_RGBA8);
+				}
+				width = std::max(width, image->get_width());
+				height = std::max(height, image->get_height());
+				images.push_back(image);
+			}
+			// An array needs every layer the same size, so smaller textures are scaled up to the largest.
+			for (int i = 0; i < images.size(); i++) {
+				const Ref<Image> image = images[i];
+				if (image->get_width() != width || image->get_height() != height) {
+					image->resize(width, height, Image::INTERPOLATE_BILINEAR);
+				}
+				if (!image->has_mipmaps()) {
+					image->generate_mipmaps();
+				}
+			}
+			Ref<Texture2DArray> layers;
+			layers.instantiate();
+			layers->create_from_images(images);
 			Ref<ShaderMaterial> material;
 			material.instantiate();
 			material->set_shader(terrain_shader);
-			material->set_shader_parameter("layer_count", static_cast<int64_t>(chunk.layers.size()));
-			for (size_t layer = 0; layer < chunk.layers.size() && layer < 4; layer++) {
-				const uint32_t texture_id = chunk.layers[layer].textureId;
-				if (texture_id < mesh.textures.size()) {
-					material->set_shader_parameter("layer" + String::num_int64(layer), load_texture(mesh.textures[texture_id].c_str()));
-				}
-			}
-			material->set_shader_parameter("alpha_map", alpha_texture(chunk));
-			terrain_mesh->surface_set_material(surface, material);
+			material->set_shader_parameter("layers", layers);
+			material->set_shader_parameter("chunk_layers", ImageTexture::create_from_image(Image::create_from_data(16, 16, false, Image::FORMAT_RGBA8, chunk_layers)));
+			material->set_shader_parameter("alpha_map", ImageTexture::create_from_image(Image::create_from_data(1024, 1024, false, Image::FORMAT_RGBA8, alpha_atlas)));
+			terrain_mesh->surface_set_material(0, material);
 		}
 	}
 	MeshInstance3D *terrain_instance = memnew(MeshInstance3D);
 	terrain_instance->set_name("Terrain");
 	terrain_instance->set_mesh(terrain_mesh);
+	// The blend map's alpha already carries the stock client's baked terrain shadows.
+	terrain_instance->set_cast_shadows_setting(GeometryInstance3D::SHADOW_CASTING_SETTING_OFF);
 	root->add_child(terrain_instance);
 
 	// Water: 9x9 absolute heights per chunk with an 8x8 tile mask, laid out like the outer MCVT grid.

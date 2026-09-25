@@ -6,6 +6,9 @@ signal role_check_started
 signal proposal_updated
 signal rewarded(reward: Dictionary)
 signal failed(text: String)
+signal role_chosen(player: int, roles: int)
+signal boot_vote_changed(victim: int, reason: String, asking: bool)
+signal backfill_offered(entry: int)
 
 enum State { NONE, ROLE_CHECK, QUEUED, PROPOSAL, DUNGEON }
 enum Role { LEADER = 0x1, TANK = 0x2, HEALER = 0x4, DAMAGE = 0x8 }
@@ -106,6 +109,10 @@ func join(roles: int, entries: Array[int]) -> void:
 	_session.send_packet("CMSG_LFG_JOIN", buffer.data_array)
 
 
+func vote_boot(agree: bool) -> void:
+	_session.send_packet("CMSG_LFG_SET_BOOT_VOTE", PackedByteArray([int(agree)]))
+
+
 func leave() -> void:
 	_session.send_packet("CMSG_LFG_LEAVE", PackedByteArray())
 
@@ -176,6 +183,19 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			reward["xp"] = reader.u32()
 			state = State.DUNGEON
 			rewarded.emit(reward)
+		"SMSG_LFG_ROLE_CHOSEN":
+			var player: int = reader.u64()
+			reader.u8()
+			role_chosen.emit(player, reader.u32())
+		"SMSG_LFG_BOOT_PROPOSAL_UPDATE":
+			var in_progress: bool = reader.u8() != 0
+			var voted: bool = reader.u8() != 0
+			reader.u8()
+			var victim: int = reader.u64()
+			reader.skip(16)
+			boot_vote_changed.emit(victim, reader.cstring(), in_progress and not voted)
+		"SMSG_LFG_OFFER_CONTINUE":
+			backfill_offered.emit(reader.u32())
 		"SMSG_LFG_TELEPORT_DENIED":
 			failed.emit(WowStrings.get_text("ERR_LFG_NO_LFG_OBJECT"))
 		"SMSG_LFG_DISABLED":

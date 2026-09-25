@@ -87,7 +87,7 @@ func refresh() -> void:
 		var bought: bool = i < _bought_bags
 		_bags[i].modulate.a = 1.0 if bought else 0.5
 		_bags[i].address = Vector2i(
-			Inventory.WIRE_BACKPACK, Inventory.WIRE_BANK_BAG_START + i
+			Inventory.WIRE_BACKPACK, Inventory.wire_bank_bag_start + i
 		) if bought else -Vector2i.ONE
 	var next_cost: int = _slot_cost(_bought_bags)
 	%BankFramePurchaseInfo.visible = next_cost > 0

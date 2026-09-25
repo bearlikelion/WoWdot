@@ -11,7 +11,7 @@ enum Slot {
 const BACKPACK: int = 0
 # KEYRING_CONTAINER in the stock UI; its slots follow the vendor buyback in the inventory array.
 const KEYRING: int = -2
-const WIRE_KEYRING_SLOT_START: int = 81
+const WOTLK_KEYRING_SLOTS: int = 32
 const BAG_COUNT: int = 4
 # Bank bags carry on the numbering the stock UI gives the worn ones.
 const BANK_BAG_FIRST: int = 5
@@ -20,9 +20,6 @@ const BACKPACK_SLOTS: int = 16
 const WIRE_BACKPACK: int = 255
 const WIRE_PACK_SLOT_START: int = 23
 const WIRE_BANK_SLOT_START: int = 39
-const WIRE_BANK_SLOTS: int = 24
-const WIRE_BANK_BAG_START: int = 63
-const WIRE_BANK_BAGS: int = 6
 const ICON_PATH: String = "Interface\\Icons\\%s.blp"
 const ITEM_FLAG_SOULBOUND: int = 0x1
 # ITEM_QUALITY_COLORS, which the server's strict link check compares exactly.
@@ -30,6 +27,12 @@ const QUALITY_HEX: PackedStringArray = [
 	"9d9d9d", "ffffff", "1eff00", "0070dd", "a335ee", "ff8000", "e6cc80",
 ]
 const RANDOM_SUFFIX_COLUMN: int = 7
+
+# 3.3.5 grew the bank to 28 slots and 7 bags, and moved the keyring behind a longer buyback.
+static var wire_bank_slots: int = 28 if PacketReader.wotlk else 24
+static var wire_bank_bag_start: int = 67 if PacketReader.wotlk else 63
+static var wire_bank_bags: int = 7 if PacketReader.wotlk else 6
+static var wire_keyring_start: int = 86 if PacketReader.wotlk else 81
 
 static var _displays: WowDBC
 static var _icons: Dictionary[int, Texture2D] = {}
@@ -70,7 +73,7 @@ static func item_link(item_entry: int, enchant: int = 0, random_property: int = 
 
 
 static func bank_bag(index: int) -> int:
-	return item_at(Vector2i(WIRE_BACKPACK, WIRE_BANK_BAG_START + index))
+	return item_at(Vector2i(WIRE_BACKPACK, wire_bank_bag_start + index))
 
 
 # The container worn or banked in a bag slot, or 0 when the slot is empty.
@@ -84,6 +87,8 @@ static func container_size(bag: int) -> int:
 	if bag == BACKPACK:
 		return BACKPACK_SLOTS
 	if bag == KEYRING:
+		if PacketReader.wotlk:
+			return _filled_keyring_size()
 		return keyring_size(WowClient.session.get_field(
 			WowClient.session.get_player_guid(), "UNIT_FIELD_LEVEL",
 		))
@@ -118,9 +123,9 @@ static func wire_address(bag: int, slot: int) -> Vector2i:
 	if bag == BACKPACK:
 		return Vector2i(WIRE_BACKPACK, WIRE_PACK_SLOT_START + slot)
 	if bag == KEYRING:
-		return Vector2i(WIRE_BACKPACK, WIRE_KEYRING_SLOT_START + slot)
+		return Vector2i(WIRE_BACKPACK, wire_keyring_start + slot)
 	if bag >= BANK_BAG_FIRST:
-		return Vector2i(WIRE_BANK_BAG_START + bag - BANK_BAG_FIRST, slot)
+		return Vector2i(wire_bank_bag_start + bag - BANK_BAG_FIRST, slot)
 	return Vector2i(Slot.BAG_1 + bag - 1, slot)
 
 
@@ -234,3 +239,12 @@ static func display_icon(display_id: int) -> Texture2D:
 static func _guid(object: int, field: int) -> int:
 	var session: WowSession = WowClient.session
 	return session.get_field(object, field) | (session.get_field(object, field + 1) << 32)
+
+
+# The 3.3.5 GetKeyRingSize: rows of four up to the last key held.
+static func _filled_keyring_size() -> int:
+	var last: int = 0
+	for slot: int in WOTLK_KEYRING_SLOTS:
+		if item_at(Vector2i(WIRE_BACKPACK, wire_keyring_start + slot)):
+			last = slot + 1
+	return maxi(4, ceili(last / 4.0) * 4)

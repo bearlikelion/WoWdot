@@ -1,6 +1,7 @@
 #include "wow_coords.h"
 #include "wow_dbc.h"
 #include "wow_loader.h"
+#include "wow_portals.h"
 
 #include "pipeline/m2_loader.hpp"
 #include "pipeline/wmo_loader.hpp"
@@ -69,6 +70,8 @@ constexpr int M2_UNIT_ENV = -3;
 constexpr float ENV_SHEEN = 0.5f;
 
 constexpr uint32_t WMO_GROUP_HAS_VERTEX_COLORS = 0x4;
+// Exterior (0x8), lit from outside like Stormwind's streets (0x40), or drawn in the client's unconditional pass like its canals (0x10000).
+constexpr uint32_t WMO_GROUP_ALWAYS_DRAWN = 0x8 | 0x40 | 0x10000;
 constexpr uint32_t WMO_GROUP_OCEAN = 0x80000;
 // MLIQ tiles are the same size as the terrain's, and 0x08 marks one that does not draw.
 constexpr float WMO_LIQUID_TILE = 1600.0f / 3.0f / 16.0f / 8.0f;
@@ -1266,8 +1269,18 @@ Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 
 	Node3D *root = memnew(Node3D);
 	root->set_name(file_stem(path));
+	WowPortals *portals = memnew(WowPortals);
+	portals->set_name("Portals");
+	portals->root = root;
+	portals->groups.resize(model.groups.size());
 	for (size_t g = 0; g < model.groups.size(); g++) {
 		const WMOGroup &group = model.groups[g];
+		WowPortals::Group &cell = portals->groups[g];
+		cell.interior = !(group.flags & WMO_GROUP_ALWAYS_DRAWN);
+		cell.bounds = AABB(wow_to_godot(group.boundingBoxMin), Vector3());
+		cell.bounds.expand_to(wow_to_godot(group.boundingBoxMax));
+		cell.first_ref = group.portalStart;
+		cell.ref_count = group.portalCount;
 		if (group.vertices.empty()) {
 			continue;
 		}
@@ -1321,6 +1334,16 @@ Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 		instance->set_name(group.name.empty() ? "Group" + String::num_int64(g) : String(group.name.c_str()));
 		instance->set_mesh(mesh);
 		root->add_child(instance);
+		cell.parts.push_back(instance);
+		for (size_t t = 0; t + 2 < group.indices.size(); t += 3) {
+			float rise = 0.0f;
+			for (int k = 0; k < 3; k++) {
+				const WMOVertex &v = group.vertices[group.indices[t + k]];
+				cell.triangles.push_back(wow_to_godot(v.position));
+				rise += wow_to_godot(v.normal).y;
+			}
+			cell.rise.push_back(rise);
+		}
 		add_wmo_liquid(root, group, g);
 
 		PackedVector3Array faces;
@@ -1345,6 +1368,44 @@ Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 		}
 	}
 
+	for (const WMOPortal &portal : model.portals) {
+		PackedVector3Array corners;
+		for (uint32_t v = portal.startVertex; v < portal.startVertex + portal.vertexCount && v < model.portalVertices.size(); v++) {
+			corners.push_back(wow_to_godot(model.portalVertices[v]));
+		}
+		portals->portals.push_back(corners);
+		// The file's plane is dot(normal, p) + distance, which Plane writes as dot(normal, p) - d.
+		const WMOPortalPlane &plane = model.portalPlanes[portal.planeIndex];
+		portals->planes.push_back(Plane(wow_to_godot(plane.normal), -plane.distance));
+	}
+	for (const WMOPortalRef &ref : model.portalRefs) {
+		portals->refs.push_back({ ref.portalIndex, ref.groupIndex, ref.side });
+	}
+	bool has_interior = false;
+	for (const WowPortals::Group &cell : portals->groups) {
+		has_interior = has_interior || (cell.interior && !cell.parts.empty());
+	}
+	if (has_interior && !portals->portals.empty()) {
+		root->add_child(portals);
+	} else {
+		memdelete(portals);
+		portals = nullptr;
+	}
+
+	// A doodad listed by one room alone hides with that room; any other stays with the whole WMO.
+	constexpr int SHARED = -1;
+	std::unordered_map<uint32_t, int> rooms;
+	for (size_t g = 0; g < model.groups.size(); g++) {
+		const bool room = portals != nullptr && portals->groups[g].interior && !portals->groups[g].parts.empty();
+		for (uint16_t d : model.groups[g].doodadRefs) {
+			const auto owner = rooms.try_emplace(d, room ? static_cast<int>(g) : SHARED);
+			if (!room || owner.first->second != static_cast<int>(g)) {
+				owner.first->second = SHARED;
+			}
+		}
+	}
+	std::unordered_map<int, Array> room_doodads;
+
 	// Set 0 holds the doodads every placement shows; a placement may add one more set.
 	std::vector<int> sets = { 0 };
 	if (doodad_set > 0) {
@@ -1365,11 +1426,25 @@ Node3D *WowLoader::load_wmo(const String &path, int doodad_set) {
 			Dictionary placement;
 			placement["path"] = String(name->second.c_str());
 			placement["transform"] = Transform3D(Basis(wow_to_godot(doodad.rotation)).scaled(Vector3(1, 1, 1) * doodad.scale), wow_to_godot(doodad.position));
-			doodads.push_back(placement);
+			const auto owner = rooms.find(d);
+			if (owner != rooms.end() && owner->second != SHARED) {
+				room_doodads[owner->second].push_back(placement);
+			} else {
+				doodads.push_back(placement);
+			}
 		}
 	}
 	if (!doodads.is_empty()) {
 		root->add_child(build_static_models(doodads));
+	}
+	for (const auto &[g, placements] : room_doodads) {
+		Node3D *room = build_static_models(placements);
+		portals->groups[g].parts.front()->add_child(room);
+		for (int i = 0; i < room->get_child_count(); i++) {
+			if (GeometryInstance3D *part = Object::cast_to<GeometryInstance3D>(room->get_child(i))) {
+				portals->groups[g].parts.push_back(part);
+			}
+		}
 	}
 	return root;
 }

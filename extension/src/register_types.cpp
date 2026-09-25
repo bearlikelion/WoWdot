@@ -2,6 +2,7 @@
 #include "wow_coords.h"
 #include "wow_dbc.h"
 #include "wow_loader.h"
+#include "wow_portals.h"
 #include "wow_session.h"
 #include "wow_streamer.h"
 #include "wow_texture.h"
@@ -26,6 +27,7 @@ static void initialize_wowgd_module(ModuleInitializationLevel p_level) {
 	GDREGISTER_CLASS(WowDBC);
 	GDREGISTER_CLASS(WowLoader);
 	GDREGISTER_CLASS(WowStreamer);
+	GDREGISTER_CLASS(WowPortals);
 	GDREGISTER_CLASS(WowSession);
 	GDREGISTER_CLASS(WowTexture);
 	GDREGISTER_ABSTRACT_CLASS(WowCoords);

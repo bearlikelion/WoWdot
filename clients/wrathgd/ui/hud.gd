@@ -76,6 +76,8 @@ var _chat_hover_time: float = 0.0
 @onready var _party: PartyFrame = %PartyFrame
 @onready var _unit_menu: DropDownList = %UnitMenu
 @onready var _errors: WowMessageFrame = %UIErrorsFrame
+@onready var _raid_warning: WowMessageFrame = %RaidWarningFrame
+@onready var _raid_boss_emote: WowMessageFrame = %RaidBossEmoteFrame
 @onready var _casting_bar: CastingBar = %CastingBarFrame
 @onready var _side_bars: SideActionBars = %MultiBarRight
 @onready var _minimap: MinimapCluster = %MinimapCluster
@@ -106,6 +108,8 @@ var _chat_hover_time: float = 0.0
 @onready var _popup: StaticPopup = _panels.get_node("%StaticPopup1")
 @onready var _gossip: GossipFrame = _panels.get_node("%GossipFrame")
 @onready var _quest_watch: QuestWatchFrame = %QuestWatchFrame
+@onready var _durability: DurabilityFrame = %DurabilityFrame
+@onready var _watch_top: float = _quest_watch.offset_top
 @onready var _merchant: MerchantFrame = _panels.get_node("%MerchantFrame")
 @onready var _trainer: ClassTrainerFrame = _panels.get_node("%ClassTrainerFrame")
 @onready var _trade_skill: TradeSkillFrame = _panels.get_node("%TradeSkillFrame")
@@ -175,6 +179,14 @@ func _ready() -> void:
 		if GameTooltip.current:
 			GameTooltip.current.hide_for(button))
 	WowClient.dungeon_finder.failed.connect(show_error)
+	WowClient.equipment_sets.use_failed.connect(show_error)
+	WowClient.dungeon_finder.role_chosen.connect(_on_lfg_role_chosen)
+	WowClient.dungeon_finder.boot_vote_changed.connect(_on_lfg_boot_vote)
+	WowClient.dungeon_finder.backfill_offered.connect(_on_lfg_backfill_offered)
+	WowClient.pet.spell_learned.connect(func(spell: int, learned: bool) -> void:
+		var key: String = "ERR_PET_LEARN_SPELL_S" if learned else "ERR_PET_SPELL_UNLEARNED_S"
+		add_system_line(WowStrings.get_text(key) % WowAssets.spells.spell_name(spell))
+	)
 	WowClient.arena_teams.message.connect(add_system_line)
 	WowClient.arena_teams.invited.connect(_on_arena_team_invited)
 	WowClient.guild_bank.opened.connect(_panels.show_panel.bind(_guild_bank))
@@ -232,6 +244,8 @@ func _ready() -> void:
 	_quest_log.watch_toggled.connect(_quest_watch.toggle)
 	_quest_watch.watches_changed.connect(_quest_log.set_watched)
 	_quest_watch.error_raised.connect(show_error)
+	_durability.layout_changed.connect(_stack_under_minimap)
+	_stack_under_minimap()
 	_merchant.open_requested.connect(_panels.show_panel.bind(_merchant))
 	_merchant.backpack_requested.connect(_panels.set_backpack_open)
 	_merchant.error_raised.connect(show_error)
@@ -297,6 +311,7 @@ func _ready() -> void:
 	WowClient.session.spell_cast_failed.connect(_on_spell_cast_failed)
 	WowClient.session.attack_swing_error.connect(_on_attack_swing_error)
 	WowClient.session.object_updated.connect(_on_object_updated)
+	WowClient.session.chat_received.connect(_on_raid_notice)
 	WowClient.session.item_info_received.connect(func(_entry: int) -> void: _panels.refresh_bags())
 	_spell_failures = WowLoader.data_table("spell_failures.json")
 	_equip_failures = WowLoader.data_table("equip_failures.json")
@@ -658,6 +673,68 @@ func _escape() -> void:
 		unit_selected.emit(0)
 	else:
 		_panels.show_panel(_game_menu)
+
+
+# UIParent_ManageFramePositions: durability hangs under the minimap and pushes the watch frame down.
+func _stack_under_minimap() -> void:
+	const WIDE_DURABILITY_SHIFT: float = 20.0
+	const DURABILITY_GAP: float = 10.0
+	var right: float = -WIDE_DURABILITY_SHIFT if _durability.wide else 0.0
+	var box: Vector2 = _durability.size
+	_durability.offset_right = right
+	_durability.offset_left = right - box.x
+	_durability.offset_top = _minimap.offset_bottom
+	_durability.offset_bottom = _minimap.offset_bottom + box.y
+	var top: float = _watch_top + (box.y + DURABILITY_GAP if _durability.visible else 0.0)
+	var height: float = _quest_watch.size.y
+	_quest_watch.offset_top = top
+	_quest_watch.offset_bottom = top + height
+
+
+# LFG_ROLE_CHECK_ROLE_CHOSEN, without the stock line's role icons.
+func _on_lfg_role_chosen(player: int, roles: int) -> void:
+	var names: PackedStringArray = []
+	for pair: Array in [
+		[DungeonFinder.Role.TANK, "TANK"], [DungeonFinder.Role.HEALER, "HEALER"],
+		[DungeonFinder.Role.DAMAGE, "DAMAGER"],
+	]:
+		if roles & pair[0]:
+			names.append(WowStrings.get_text(pair[1]))
+	var delimiter: String = WowStrings.get_text("PLAYER_LIST_DELIMITER") + " "
+	add_system_line(WowStrings.format(WowStrings.get_text("LFG_ROLE_CHECK_ROLE_CHOSEN"), [
+		WowClient.session.get_object_name(player), delimiter.join(names),
+	]))
+
+
+# StaticPopupDialogs["VOTE_BOOT_PLAYER"], asked once per vote until this player has voted.
+func _on_lfg_boot_vote(victim: int, reason: String, asking: bool) -> void:
+	if not asking:
+		return
+	var text: String = WowStrings.format(
+		WowStrings.get_text("VOTE_BOOT_PLAYER"), [WowClient.session.get_object_name(victim), reason]
+	)
+	var finder: DungeonFinder = WowClient.dungeon_finder
+	_popup.ask(text, finder.vote_boot.bind(true), "YES", "NO", finder.vote_boot.bind(false))
+
+
+func _on_lfg_backfill_offered(entry: int) -> void:
+	var finder: DungeonFinder = WowClient.dungeon_finder
+	var text: String = WowStrings.get_text("LFG_OFFER_CONTINUE") % finder.dungeon_name(entry)
+	var entries: Array[int] = [entry]
+	_popup.ask(text, finder.join.bind(finder.available_roles(), entries))
+
+
+# RaidWarningFrame and RaidBossEmoteFrame repeat these chat lines large under the error text.
+func _on_raid_notice(line: Dictionary) -> void:
+	var chat_type: WowSession.ChatType = line["type"] as WowSession.ChatType
+	var color: Color = ChatFrame.COLORS.get(chat_type, Color.WHITE)
+	var text: String = line.get("text", "")
+	if chat_type == WowSession.CHAT_RAID_WARNING:
+		_raid_warning.add_message(text, color)
+		WowAssets.audio.play_sound("RaidWarning")
+	elif chat_type in [WowSession.CHAT_RAID_BOSS_EMOTE, WowSession.CHAT_RAID_BOSS_WHISPER]:
+		_raid_boss_emote.add_message(text.replace("%s", line.get("sender_name", "")), color)
+		WowAssets.audio.play_sound("RaidBossEmoteWarning")
 
 
 func _on_abandon_requested(slot: int, title: String) -> void:
