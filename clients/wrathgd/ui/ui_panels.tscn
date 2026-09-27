@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" path="res://ui/pvp_parent_frame.tscn" id="43_pvp"]
 [ext_resource type="PackedScene" path="res://ui/guild_bank_frame.tscn" id="44_guild_bank"]
 [ext_resource type="PackedScene" path="res://ui/calendar_frame.tscn" id="45_calendar"]
+[ext_resource type="PackedScene" path="res://ui/arena_frame.tscn" id="46_arena"]
 
 [node name="UIPanels" type="Control"]
 layout_mode = 3
@@ -163,6 +164,11 @@ visible = false
 layout_mode = 1
 
 [node name="BattlefieldFrame" parent="." instance=ExtResource("37_battlefield")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="ArenaFrame" parent="." instance=ExtResource("46_arena")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1

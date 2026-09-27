@@ -12,6 +12,8 @@ enum UnitMenuItem {
 }
 
 const UI_HEIGHT: float = 768.0
+# An item template flag: a clam or lockbox opens to a loot window rather than being used.
+const ITEM_FLAG_HAS_LOOT: int = 0x4
 const MIN_STOCK_SCALE: float = 0.9
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
 const ERROR_COLOR: Color = Color(1.0, 0.1, 0.1)
@@ -857,6 +859,9 @@ func use_container_item(bag: int, slot: int) -> void:
 	var readable: Dictionary = session.get_item_info(item_entry)
 	if _item_text and readable.get("page_text", 0) != 0:
 		_item_text.read(readable.get("name", ""), readable["page_text"])
+		return
+	if readable.get("flags", 0) & ITEM_FLAG_HAS_LOOT:
+		session.send_packet("CMSG_OPEN_ITEM", PackedByteArray([address.x, address.y]))
 		return
 	for use_spell: int in readable.get("use_spells", PackedInt32Array()):
 		if WowAssets.spells.targets_item(use_spell):

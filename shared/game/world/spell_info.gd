@@ -128,6 +128,12 @@ func is_passive(spell_id: int) -> bool:
 	return _uint(spell_id, "Attributes") & SPELL_ATTR_PASSIVE != 0
 
 
+# Auto Shot and a wand's Shoot fire until told to stop.
+func is_auto_repeat(spell_id: int) -> bool:
+	const SPELL_ATTR2_AUTOREPEAT: int = 0x20
+	return _uint(spell_id, "AttributesEx2") & SPELL_ATTR2_AUTOREPEAT != 0
+
+
 # Auto Shot, Shoot and Throw: casting them draws the ranged weapon.
 func uses_ranged_slot(spell_id: int) -> bool:
 	const SPELL_ATTR_USES_RANGED_SLOT: int = 0x2

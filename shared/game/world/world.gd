@@ -64,6 +64,8 @@ const FLAGS_APPLIED: PackedStringArray = [
 ]
 
 var _auto_attacking: bool = false
+# The auto-repeating spell the player last started, which a second press stops.
+var _auto_repeat: int = 0
 var _target_alive: bool = false
 # The enemy targeted before the current target, for TargetLastEnemy.
 var _last_hostile: int = 0
@@ -133,6 +135,11 @@ func _ready() -> void:
 	WowClient.session.player_teleported.connect(_on_player_teleported)
 	WowClient.session.object_moved.connect(_on_object_moved)
 	WowClient.session.packet_received.connect(_on_packet_received)
+	WowClient.session.spell_cast_failed.connect(
+		func(caster: int, spell_id: int, _reason: int) -> void:
+			if caster == WowClient.session.get_player_guid() and spell_id == _auto_repeat:
+				_auto_repeat = 0
+	)
 	_cinematic.finished.connect(_on_cinematic_finished)
 	UnitVoice.footprints = $Footprints
 	WowClient.session.transfer_aborted.connect(_on_transfer_aborted)
@@ -469,6 +476,10 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_EMOTE":
 		return _play_emote(payload)
 	var me: int = WowClient.session.get_player_guid()
+	if opcode == "SMSG_CANCEL_AUTO_REPEAT":
+		if payload.is_empty() or PacketReader.new(payload).packed_guid() == me:
+			_auto_repeat = 0
+		return
 	if opcode == "SMSG_CLEAR_TARGET" or opcode == "SMSG_BREAK_TARGET":
 		if payload.size() >= 8 and _hud.target() == payload.decode_u64(0):
 			select(0)
@@ -558,6 +569,12 @@ func _use_spell(spell: int) -> void:
 		WowClient.targeting.begin_spell(spell)
 		return
 	if spell != ActionButton.SPELL_ATTACK:
+		if spell == _auto_repeat:
+			_auto_repeat = 0
+			session.send_packet("CMSG_CANCEL_AUTO_REPEAT_SPELL", PackedByteArray())
+			return
+		if WowAssets.spells.is_auto_repeat(spell):
+			_auto_repeat = spell
 		if WowAssets.spells.uses_ranged_slot(spell):
 			_sheathe(ItemModels.SheathState.RANGED)
 		var target: int = 0 if WowAssets.spells.targets_caster(spell) else _hud.target()

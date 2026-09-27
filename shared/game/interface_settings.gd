@@ -29,6 +29,11 @@ const OPTIONS: Dictionary[StringName, bool] = {
 	&"show_map_pois": true,
 }
 
+# CMSG_SET_ACTIONBAR_TOGGLES bits, lowest first, which the server keeps per character.
+const BAR_TOGGLES: Array[StringName] = [
+	&"multi_bar_1", &"multi_bar_2", &"multi_bar_3", &"multi_bar_4",
+]
+
 var _values: Dictionary[StringName, bool] = {}
 
 
@@ -48,6 +53,21 @@ func set_on(option: StringName, value: bool) -> void:
 	if _values.get(option) == value:
 		return
 	_values[option] = value
+	changed.emit()
+
+
+func bar_toggles() -> int:
+	var mask: int = 0
+	for bit: int in BAR_TOGGLES.size():
+		if is_on(BAR_TOGGLES[bit]):
+			mask |= 1 << bit
+	return mask
+
+
+# The character's own bars, from byte 2 of PLAYER_FIELD_BYTES, as the stock client loads them.
+func apply_bar_toggles(mask: int) -> void:
+	for bit: int in BAR_TOGGLES.size():
+		_values[BAR_TOGGLES[bit]] = mask & (1 << bit) != 0
 	changed.emit()
 
 

@@ -2,6 +2,8 @@ class_name Battlegrounds
 extends RefCounted
 
 signal listed(map_id: int, instances: PackedInt32Array)
+# An arena battlemaster answered, which lists no instances and opens ArenaFrame instead.
+signal arena_listed
 signal queue_changed(slot: int, status: Status, map_id: int)
 signal refused(reason: int)
 signal world_state_changed(field: int, value: int)
@@ -19,6 +21,8 @@ enum Port { LEAVE, ENTER }
 # 3.3.5 names a battleground by its BattlemasterList id where 1.12 named its map.
 const BATTLEGROUND_MAPS: Dictionary[int, int] = {1: 30, 2: 489, 3: 529, 7: 566, 9: 607, 30: 628}
 const ALTERAC_VALLEY: int = 30
+# BattlegroundTypeId BATTLEGROUND_AA, every arena behind one battlemaster.
+const ARENA_TYPE: int = 6
 const WARSONG_GULCH: int = 489
 const ARATHI_BASIN: int = 529
 # A character stands in at most three queues at once.
@@ -83,6 +87,17 @@ func join(battlemaster_guid: int, map_id: int, instance_id: int = 0, as_group: b
 	_session.send_packet("CMSG_BATTLEMASTER_JOIN", payload)
 
 
+# CMSG_BATTLEMASTER_JOIN_ARENA: slot 0, 1 or 2 for 2v2, 3v3 or 5v5; a rated queue needs the group.
+func join_arena(slot: int, as_group: bool, rated: bool) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(11)
+	payload.encode_u64(0, battlemaster)
+	payload.encode_u8(8, slot)
+	payload.encode_u8(9, int(as_group))
+	payload.encode_u8(10, int(rated))
+	_session.send_packet("CMSG_BATTLEMASTER_JOIN_ARENA", payload)
+
+
 func enter(map_id: int) -> void:
 	_port(map_id, Port.ENTER)
 
@@ -111,7 +126,8 @@ func queue(slot: int) -> Dictionary:
 # The slot this battleground sits in, or -1 when the character is not queued for it.
 func slot_of(map_id: int) -> int:
 	for slot: int in _queues.size():
-		if _queues[slot].get("map_id", 0) == map_id:
+		# An arena waits in its queue on map 0, the same as an empty slot reads.
+		if not _queues[slot].is_empty() and _queues[slot].get("map_id", 0) == map_id:
 			return slot
 	return -1
 
@@ -170,6 +186,9 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			else:
 				map_id = reader.u32()
 				reader.u8()
+			if PacketReader.wotlk and _listed_type == ARENA_TYPE:
+				arena_listed.emit()
+				return
 			var instances: PackedInt32Array = []
 			for i: int in reader.u32():
 				instances.append(reader.u32())

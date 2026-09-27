@@ -13,6 +13,8 @@ enum UnitMenuItem {
 }
 
 const ITEM_CLASS_GLYPH: int = 16
+# An item template flag: a clam or lockbox opens to a loot window rather than being used.
+const ITEM_FLAG_HAS_LOOT: int = 0x4
 const UI_HEIGHT: float = 768.0
 const MIN_STOCK_SCALE: float = 0.9
 const EMOTE_COLOR: Color = Color(1.0, 0.5, 0.25)
@@ -128,6 +130,7 @@ func _ready() -> void:
 	resized.connect(_fit_ui_parent)
 	_fit_ui_parent.call_deferred()
 	_main_menu_bar.action_used.connect(action_used.emit)
+	WowClient.session.object_created.connect(_on_object_created)
 	_main_menu_bar.panel_toggled.connect(_on_panel_toggled)
 	_main_menu_bar.bag_toggled.connect(_panels.toggle_bag)
 	_panels.bag_opened.connect(_main_menu_bar.set_bag_open)
@@ -228,6 +231,10 @@ func _ready() -> void:
 			GameTooltip.current.hide_for(button))
 	_friends.name_requested.connect(_on_friend_name_requested)
 	_friends.friend_menu_requested.connect(_show_friend_menu)
+	_friends.note_requested.connect(
+		func(label: String, note: String, on_accept: Callable) -> void:
+			_popup.ask_name(label, on_accept, note)
+	)
 	_friends.guild_invited.connect(_on_guild_invited)
 	_duel = Duel.new(WowClient.session)
 	_duel.challenged.connect(_on_duel_challenged)
@@ -265,6 +272,7 @@ func _ready() -> void:
 	(_panels.get_node("%BattlefieldFrame") as BattlefieldFrame).set_portrait(
 		_player_frame.portrait_texture()
 	)
+	(_panels.get_node("%ArenaFrame") as ArenaFrame).set_portrait(_player_frame.portrait_texture())
 	_taxi.open_requested.connect(_panels.show_panel.bind(_taxi))
 	_taxi.error_raised.connect(show_error)
 	_loot.open_requested.connect(_panels.show_panel.bind(_loot))
@@ -961,6 +969,9 @@ func use_container_item(bag: int, slot: int) -> void:
 		_panels.show_panel(_talents)
 		_talents.show_glyphs()
 		return
+	if readable.get("flags", 0) & ITEM_FLAG_HAS_LOOT:
+		session.send_packet("CMSG_OPEN_ITEM", PackedByteArray([address.x, address.y]))
+		return
 	for use_spell: int in readable.get("use_spells", PackedInt32Array()):
 		if WowAssets.spells.targets_item(use_spell):
 			WowClient.targeting.begin_item(address)
@@ -1014,6 +1025,14 @@ func _note_away(away: int) -> void:
 	if changed & PLAYER_FLAG_DND:
 		add_system_line(WowStrings.format(WowStrings.get_text("MARKED_DND"), [default_message])
 				if away & PLAYER_FLAG_DND else WowStrings.get_text("CLEARED_DND"))
+
+
+func _on_object_created(guid: int, _type_id: int) -> void:
+	var session: WowSession = WowClient.session
+	if guid == session.get_player_guid():
+		WowAssets.interface.apply_bar_toggles(
+			(session.get_field(guid, "PLAYER_FIELD_BYTES") >> 16) & 0xFF
+		)
 
 
 func _on_bottom_bars_toggled(shown: bool) -> void:

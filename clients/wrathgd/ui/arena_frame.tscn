@@ -1,0 +1,713 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/arena_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-Icon.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-TopLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-TopRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-BotLeft.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_5"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\BattlefieldFrame\\UI-Battlefield-Bar.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_7"]
+file = "Interface\\Buttons\\UI-Listbox-Highlight2.blp"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8"]
+blend_mode = 1
+
+[sub_resource type="WowTexture" id="WowTexture_9"]
+file = "Interface\\Buttons\\UI-Panel-Button-Up.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10"]
+atlas = SubResource("WowTexture_9")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_11"]
+file = "Interface\\Buttons\\UI-Panel-Button-Down.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12"]
+atlas = SubResource("WowTexture_11")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_13"]
+file = "Interface\\Buttons\\UI-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14"]
+atlas = SubResource("WowTexture_13")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_15"]
+file = "Interface\\Buttons\\UI-Panel-Button-Highlight.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16"]
+atlas = SubResource("WowTexture_15")
+region = Rect2(0, 0, 80, 22)
+
+[sub_resource type="WowTexture" id="WowTexture_17"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Up.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_18"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Down.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_19"]
+file = "Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight.blp"
+
+[node name="ArenaFrame" type="Control"]
+script = ExtResource("1")
+anchor_left = 0
+anchor_top = 0
+anchor_right = 0
+anchor_bottom = 0
+offset_left = 0
+offset_top = 104
+offset_right = 384
+offset_bottom = 616
+grow_horizontal = 1
+grow_vertical = 1
+visible = false
+mouse_filter = 0
+
+[node name="ArenaFramePortrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_left = 7
+offset_top = 6
+offset_right = 67
+offset_bottom = 66
+mouse_filter = 2
+texture = SubResource("WowTexture_1")
+expand_mode = 1
+
+[node name="Texture" type="TextureRect" parent="."]
+offset_left = 0
+offset_top = 0
+offset_right = 256
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_2")
+expand_mode = 1
+
+[node name="Texture2" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -128
+offset_top = 0
+offset_right = 0
+offset_bottom = 256
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="Texture3" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_top = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = -256
+offset_right = 256
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_4")
+expand_mode = 1
+
+[node name="Texture4" type="TextureRect" parent="."]
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -128
+offset_top = -256
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+texture = SubResource("WowTexture_5")
+expand_mode = 1
+
+[node name="ArenaFrameFrameLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 0
+offset_top = 17
+offset_right = 0
+offset_bottom = 29
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Arena Battles"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaFrameNameHeader" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 55
+offset_right = 75
+offset_bottom = 67
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Rated Battle:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaFrameZoneDescription" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = 290
+offset_right = 323
+offset_bottom = 405
+mouse_filter = 2
+theme_type_variation = &"GameFontBlack"
+text = "Let the games begin!  The door is open to all who wish to find glory in the arena, and the Steamwheedle Cartel is prepared to accept your entry into the games.  If victory is your destiny, then register a team with an Arena Organizer, or join one that has already been registered!"
+horizontal_alignment = 0
+vertical_alignment = 0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ArenaFrameDivider" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 14
+offset_top = -95
+offset_right = 527
+offset_bottom = -31
+mouse_filter = 2
+texture = SubResource("WowTexture_6")
+expand_mode = 1
+
+[node name="ArenaFrameNameHeader2" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 28
+offset_top = -86
+offset_right = 28
+offset_bottom = -74
+grow_horizontal = 1
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlight"
+text = "Practice Battle:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaZone1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 79
+offset_right = 338
+offset_bottom = 95
+ignore_texture_size = true
+
+[node name="ArenaZone1Status" type="Label" parent="ArenaZone1"]
+unique_name_in_owner = true
+offset_left = 305
+offset_top = 2
+offset_right = 305
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaZone1Text" type="Label" parent="ArenaZone1"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 1
+offset_right = 5
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaZone1"]
+offset_left = 0
+offset_top = 0
+offset_right = 315
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaZone2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 95
+offset_right = 338
+offset_bottom = 111
+ignore_texture_size = true
+
+[node name="ArenaZone2Status" type="Label" parent="ArenaZone2"]
+unique_name_in_owner = true
+offset_left = 305
+offset_top = 2
+offset_right = 305
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaZone2Text" type="Label" parent="ArenaZone2"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 1
+offset_right = 5
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaZone2"]
+offset_left = 0
+offset_top = 0
+offset_right = 315
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaZone3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 111
+offset_right = 338
+offset_bottom = 127
+ignore_texture_size = true
+
+[node name="ArenaZone3Status" type="Label" parent="ArenaZone3"]
+unique_name_in_owner = true
+offset_left = 305
+offset_top = 2
+offset_right = 305
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaZone3Text" type="Label" parent="ArenaZone3"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 1
+offset_right = 5
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaZone3"]
+offset_left = 0
+offset_top = 0
+offset_right = 315
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaZone4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 196
+offset_right = 338
+offset_bottom = 212
+ignore_texture_size = true
+
+[node name="ArenaZone4Status" type="Label" parent="ArenaZone4"]
+unique_name_in_owner = true
+offset_left = 305
+offset_top = 2
+offset_right = 305
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaZone4Text" type="Label" parent="ArenaZone4"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 1
+offset_right = 5
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaZone4"]
+offset_left = 0
+offset_top = 0
+offset_right = 315
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaZone5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 212
+offset_right = 338
+offset_bottom = 228
+ignore_texture_size = true
+
+[node name="ArenaZone5Status" type="Label" parent="ArenaZone5"]
+unique_name_in_owner = true
+offset_left = 305
+offset_top = 2
+offset_right = 305
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaZone5Text" type="Label" parent="ArenaZone5"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 1
+offset_right = 5
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaZone5"]
+offset_left = 0
+offset_top = 0
+offset_right = 315
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaZone6" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 23
+offset_top = 228
+offset_right = 338
+offset_bottom = 244
+ignore_texture_size = true
+
+[node name="ArenaZone6Status" type="Label" parent="ArenaZone6"]
+unique_name_in_owner = true
+offset_left = 305
+offset_top = 2
+offset_right = 305
+offset_bottom = 14
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArenaZone6Text" type="Label" parent="ArenaZone6"]
+unique_name_in_owner = true
+offset_left = 5
+offset_top = 1
+offset_right = 5
+offset_bottom = 13
+grow_horizontal = 1
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormalLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaZone6"]
+offset_left = 0
+offset_top = 0
+offset_right = 315
+offset_bottom = 16
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_7")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaFrameCancelButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 263.5
+offset_top = 412
+offset_right = 346.5
+offset_bottom = 434
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ArenaFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ArenaFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ArenaFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="ArenaFrameCancelButtonText" type="Label" parent="ArenaFrameCancelButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaFrameCancelButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 83
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaFrameJoinButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 152.5
+offset_top = 412
+offset_right = 261.5
+offset_bottom = 434
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ArenaFrameJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ArenaFrameJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ArenaFrameJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="ArenaFrameJoinButtonText" type="Label" parent="ArenaFrameJoinButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Join Battle"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaFrameJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 109
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaFrameGroupJoinButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 16.5
+offset_top = 412
+offset_right = 152.5
+offset_bottom = 434
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ArenaFrameGroupJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+mouse_filter = 2
+texture = SubResource("AtlasTexture_10")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ArenaFrameGroupJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_12")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="ArenaFrameGroupJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_14")
+expand_mode = 1
+
+[node name="ArenaFrameGroupJoinButtonText" type="Label" parent="ArenaFrameGroupJoinButton"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+text = "Join as Group"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaFrameGroupJoinButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 136
+offset_bottom = 22
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_16")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")
+
+[node name="ArenaFrameCloseButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+layout_mode = 1
+anchor_left = 1
+anchor_right = 1
+offset_left = -61
+offset_top = 8
+offset_right = -29
+offset_bottom = 40
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="ArenaFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+mouse_filter = 2
+texture = SubResource("WowTexture_17")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="ArenaFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_18")
+expand_mode = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="ArenaFrameCloseButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 32
+offset_bottom = 32
+visible = false
+mouse_filter = 2
+texture = SubResource("WowTexture_19")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_8")

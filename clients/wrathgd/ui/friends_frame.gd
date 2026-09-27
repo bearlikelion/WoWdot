@@ -7,6 +7,7 @@ signal name_requested(tab: Tab)
 signal message_added(text: String)
 signal guild_invited(inviter: String, guild_name: String)
 signal friend_menu_requested(guid: int)
+signal note_requested(label: String, note: String, on_accept: Callable)
 
 enum Tab { FRIENDS, IGNORE, GUILD, RAID, WHO, CHAT }
 enum EventLogType { INVITE = 1, JOIN, PROMOTE, DEMOTE, REMOVE, QUIT }
@@ -28,6 +29,16 @@ const IGNORE_ROWS: int = 19
 const GUILD_ROWS: int = 13
 # SMSG_GUILD_QUERY_RESPONSE always carries ten rank names, whatever the guild uses.
 const GUILD_RANKS: int = 10
+# GuildRankRights bits the member detail checks, as the roster sends each rank's rights.
+const RIGHT_REMOVE: int = 0x20
+const RIGHT_PROMOTE: int = 0x80
+const RIGHT_DEMOTE: int = 0x100
+const RIGHT_EDIT_PUBLIC_NOTE: int = 0x2000
+const RIGHT_VIEW_OFFICER_NOTE: int = 0x4000
+const RIGHT_EDIT_OFFICER_NOTE: int = 0x8000
+const DETAIL_HEIGHT: float = 195.0
+const DETAIL_OFFICER_HEIGHT: float = 255.0
+const LOCKED_NOTE_COLOR: Color = Color(0.65, 0.65, 0.65)
 const EVENT_LOG_TEXT: Dictionary[EventLogType, String] = {
 	EventLogType.INVITE: "GUILDEVENT_TYPE_INVITE", EventLogType.JOIN: "GUILDEVENT_TYPE_JOIN",
 	EventLogType.PROMOTE: "GUILDEVENT_TYPE_PROMOTE", EventLogType.DEMOTE: "GUILDEVENT_TYPE_DEMOTE",
@@ -84,6 +95,9 @@ var _members: Array[Dictionary] = []
 var _guild_name: String = ""
 var _emblem: PackedInt32Array = []
 var _rank_names: PackedStringArray = []
+var _rank_rights: PackedInt32Array = []
+# The roster row GuildMemberDetailFrame shows, or -1.
+var _member: int = -1
 # The roster's guild information text, which GuildInfoFrame edits.
 var _info_text: String = ""
 # MSG_GUILD_EVENT_LOG_QUERY entries oldest first, each {type, player, other, rank, seconds}.
@@ -97,6 +111,19 @@ func _ready() -> void:
 		var row: BaseButton = get_node("%%FriendsFrameFriendsScrollFrameButton%d" % (i + 1))
 		row.pressed.connect(_on_row_pressed.bind(i))
 		row.gui_input.connect(_on_friend_row_input.bind(i))
+	for i: int in GUILD_ROWS:
+		(get_node("%%GuildFrameButton%d" % (i + 1)) as BaseButton).pressed.connect(
+			_on_guild_row_pressed.bind(i)
+		)
+	%GuildMemberDetailCloseButton.pressed.connect(%GuildMemberDetailFrame.hide)
+	%GuildFramePromoteButton.pressed.connect(_command_member.bind("CMSG_GUILD_PROMOTE"))
+	%GuildFrameDemoteButton.pressed.connect(_command_member.bind("CMSG_GUILD_DEMOTE"))
+	%GuildMemberRemoveButton.pressed.connect(_command_member.bind("CMSG_GUILD_REMOVE"))
+	%GuildMemberGroupInviteButton.pressed.connect(
+		func() -> void: PartyFrame.invite(_members[_member]["name"])
+	)
+	for note: Control in [%GuildMemberNoteBackground, %GuildMemberOfficerNoteBackground]:
+		note.gui_input.connect(_on_note_input.bind(note == %GuildMemberOfficerNoteBackground))
 	for i: int in IGNORE_ROWS:
 		var row: BaseButton = get_node("%%FriendsFrameIgnoreButton%d" % (i + 1))
 		row.pressed.connect(_on_row_pressed.bind(i))
@@ -391,8 +418,10 @@ func _on_roster(reader: PacketReader) -> void:
 	var count: int = reader.u32()
 	(%GuildFrameNotesText as Label).text = reader.cstring()
 	_info_text = reader.cstring()
+	_rank_rights.clear()
 	for i: int in reader.u32():
-		for word: int in WOTLK_RANK_WORDS if PacketReader.wotlk else 1:
+		_rank_rights.append(reader.u32())
+		for word: int in WOTLK_RANK_WORDS - 1 if PacketReader.wotlk else 0:
 			reader.u32()
 	_members.clear()
 	for i: int in count:
@@ -413,6 +442,8 @@ func _on_roster(reader: PacketReader) -> void:
 		_query_guild()
 	if _tab == Tab.GUILD:
 		_refresh_guild()
+	if %GuildMemberDetailFrame.visible:
+		_show_member()
 
 
 # Only the query answers with the guild's name, which titles the window.
@@ -482,6 +513,123 @@ func _on_name_received(guid: int, player_name: String) -> void:
 		_awaiting_name.erase(guid)
 	refresh()
 	_write_events()
+
+
+# FriendsFrameGuildStatusButton_OnClick: a row shows its member, and a second click hides it again.
+func _on_guild_row_pressed(index: int) -> void:
+	if index >= _members.size():
+		return
+	var again: bool = %GuildMemberDetailFrame.visible and _member == index
+	for popup: CanvasItem in [%GuildEventLogFrame, %GuildInfoFrame, %GuildControlPopupFrame]:
+		popup.hide()
+	_member = -1 if again else index
+	%GuildMemberDetailFrame.visible = not again
+	if not again:
+		_show_member()
+
+
+# GuildStatus_Update's member detail: what the player's own rank may do to this member.
+func _show_member() -> void:
+	if _member < 0 or _member >= _members.size():
+		%GuildMemberDetailFrame.hide()
+		return
+	var member: Dictionary = _members[_member]
+	var me: String = WowClient.session.get_object_name(WowClient.session.get_player_guid())
+	var my_rank: int = GUILD_RANKS
+	for other: Dictionary in _members:
+		if other["name"] == me:
+			my_rank = other["rank"]
+	var rights: int = _rank_rights[my_rank] if my_rank < _rank_rights.size() else 0
+	var rank: int = member["rank"]
+	(%GuildMemberDetailName as Label).text = member["name"]
+	(%GuildMemberDetailLevel as Label).text = WowStrings.get_text("FRIENDS_LEVEL_TEMPLATE") % [
+		member["level"], CharacterOptions.class_label(member["class"]),
+	]
+	(%GuildMemberDetailZoneText as Label).text = AreaInfo.area_name(member["zone"])
+	(%GuildMemberDetailRankText as Label).text = \
+			_rank_names[rank] if rank < _rank_names.size() else ""
+	(%GuildMemberDetailOnlineText as Label).text = WowStrings.get_text("GUILD_ONLINE_LABEL") \
+			if member["online"] else _last_online(member.get("days_offline", 0.0))
+	_show_note(%PersonalNoteText, member["note"], rights & RIGHT_EDIT_PUBLIC_NOTE != 0,
+			"GUILD_NOTE_EDITLABEL")
+	var officer: bool = rights & RIGHT_VIEW_OFFICER_NOTE != 0
+	%GuildMemberDetailOfficerNoteLabel.visible = officer
+	%GuildMemberOfficerNoteBackground.visible = officer
+	if officer:
+		_show_note(%OfficerNoteText, member["officer_note"],
+				rights & RIGHT_EDIT_OFFICER_NOTE != 0, "GUILD_OFFICERNOTE_EDITLABEL")
+	var detail: Control = %GuildMemberDetailFrame
+	var height: float = DETAIL_OFFICER_HEIGHT if officer else DETAIL_HEIGHT
+	detail.offset_bottom = detail.offset_top + height
+	var lowest: int = _rank_rights.size() - 1
+	var promote: BaseButton = %GuildFramePromoteButton
+	var demote: BaseButton = %GuildFrameDemoteButton
+	promote.disabled = not (rights & RIGHT_PROMOTE and rank > 1 and rank > my_rank + 1)
+	demote.disabled = \
+			not (rights & RIGHT_DEMOTE and rank >= 1 and rank > my_rank and rank != lowest)
+	promote.visible = not (promote.disabled and demote.disabled)
+	demote.visible = promote.visible
+	(%GuildMemberRemoveButton as BaseButton).disabled = \
+			not (rights & RIGHT_REMOVE and rank >= 1 and rank > my_rank)
+	(%GuildMemberGroupInviteButton as BaseButton).disabled = \
+			member["name"] == me or not member["online"]
+
+
+func _show_note(label: Label, note: String, editable: bool, empty_key: String) -> void:
+	label.text = WowStrings.get_text(empty_key) if editable and note.is_empty() else note
+	label.self_modulate = Color.WHITE if editable else LOCKED_NOTE_COLOR
+	(label.get_parent() as Control).mouse_filter = \
+			Control.MOUSE_FILTER_STOP if editable else Control.MOUSE_FILTER_IGNORE
+
+
+# RecentTimeDate, from the fraction of days the roster gives an offline member.
+static func _last_online(days: float) -> String:
+	const DAYS_PER_YEAR: float = 365.0
+	const DAYS_PER_MONTH: float = 30.0
+	const HOURS_PER_DAY: float = 24.0
+	var key: String = "LASTONLINE_MINS"
+	var count: int = 0
+	if days >= DAYS_PER_YEAR:
+		key = "LASTONLINE_YEARS"
+		count = floori(days / DAYS_PER_YEAR)
+	elif days >= DAYS_PER_MONTH:
+		key = "LASTONLINE_MONTHS"
+		count = floori(days / DAYS_PER_MONTH)
+	elif days >= 1.0:
+		key = "LASTONLINE_DAYS"
+		count = floori(days)
+	elif days * HOURS_PER_DAY >= 1.0:
+		key = "LASTONLINE_HOURS"
+		count = floori(days * HOURS_PER_DAY)
+	return WowStrings.format(WowStrings.get_text(key), [count])
+
+
+func _command_member(opcode: String) -> void:
+	send_command(opcode, _members[_member]["name"])
+	request_roster()
+
+
+# StaticPopup SET_GUILDPLAYERNOTE and SET_GUILDOFFICERNOTE: a click on the note edits it.
+func _on_note_input(event: InputEvent, officer: bool) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click == null or not click.pressed or click.button_index != MOUSE_BUTTON_LEFT:
+		return
+	var member: Dictionary = _members[_member]
+	var label: String = "SET_GUILDOFFICERNOTE_LABEL" if officer else "SET_GUILDPLAYERNOTE_LABEL"
+	note_requested.emit(
+		WowStrings.get_text(label), member["officer_note" if officer else "note"],
+		_set_note.bind(member["name"], officer),
+	)
+
+
+func _set_note(note: String, player_name: String, officer: bool) -> void:
+	var payload: PackedByteArray = player_name.to_utf8_buffer()
+	payload.append(0)
+	payload.append_array(note.to_utf8_buffer())
+	payload.append(0)
+	var opcode: String = "CMSG_GUILD_SET_OFFICER_NOTE" if officer else "CMSG_GUILD_SET_PUBLIC_NOTE"
+	WowClient.session.send_packet(opcode, payload)
+	request_roster()
 
 
 # GuildFramePopup_Show: one guild popup at a time.

@@ -116,6 +116,9 @@ func _on_check_pressed(key: String) -> void:
 func _on_okay_pressed() -> void:
 	_accepted = true
 	WowAssets.interface.save()
+	WowClient.session.send_packet(
+		"CMSG_SET_ACTIONBAR_TOGGLES", PackedByteArray([WowAssets.interface.bar_toggles()])
+	)
 	close_requested.emit()
 
 

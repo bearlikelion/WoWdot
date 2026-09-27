@@ -77,10 +77,10 @@ func stop_count_down() -> void:
 
 
 # The same popup with an edit box under the question, as naming a pet needs.
-func ask_name(text: String, on_accept: Callable) -> void:
-	_edit.text = ""
+func ask_name(text: String, on_accept: Callable, initial: String = "") -> void:
+	_edit.text = initial
 	_edit.show()
-	_edit.grab_focus.call_deferred()
+	_focus_edit.call_deferred()
 	_lay_out(
 		text, func() -> void: on_accept.call(_edit.text), "OKAY", "CANCEL", Callable(),
 		_edit.size.y + BUTTON_GAP,
@@ -141,6 +141,12 @@ func _set_button(button: BaseButton, text: String) -> void:
 	button.size.x = width
 	for child: Node in button.get_children():
 		(child as Control).size.x = width
+
+
+# The popup can close before the deferred grab runs, which would leave a hidden box typing.
+func _focus_edit() -> void:
+	if _edit.is_visible_in_tree():
+		_edit.grab_focus()
 
 
 func _on_accept_pressed() -> void:

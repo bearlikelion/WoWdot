@@ -1825,6 +1825,7 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			info["item_level"] = static_cast<int64_t>(data.itemLevel);
 			info["required_level"] = static_cast<int64_t>(data.requiredLevel);
 			info["sheath"] = static_cast<int64_t>(data.sheath);
+			info["flags"] = static_cast<int64_t>(data.itemFlags);
 			PackedInt32Array use_spells;
 			for (const auto &spell : data.spells) {
 				if (spell.spellId != 0 && spell.spellTrigger == 0) {

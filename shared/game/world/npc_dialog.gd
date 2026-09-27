@@ -3,7 +3,7 @@ extends RefCounted
 
 # SMSG_QUESTGIVER_STATUS values.
 enum Status { NONE, UNAVAILABLE, CHAT, INCOMPLETE, REWARD_REP, AVAILABLE, REWARD_OLD, REWARD2 }
-enum Service { VENDOR, FLIGHTMASTER, TRAINER, AUCTIONEER, STABLEMASTER, REPAIR }
+enum Service { VENDOR, FLIGHTMASTER, TRAINER, AUCTIONEER, STABLEMASTER, REPAIR, SPIRIT_GUIDE }
 
 const NPC_FLAG_QUESTGIVER: int = 0x02
 # 3.3.5 marks vehicles and click-to-cast units, which take CMSG_SPELLCLICK rather than gossip.
@@ -16,6 +16,7 @@ const SERVICE_FLAGS: Dictionary[Service, Vector2i] = {
 	Service.AUCTIONEER: Vector2i(0x1000, 0x200000),
 	Service.STABLEMASTER: Vector2i(0x2000, 0x400000),
 	Service.REPAIR: Vector2i(0x4000, 0x1000),
+	Service.SPIRIT_GUIDE: Vector2i(0x40, 0x8000),
 }
 # The talk-to-me models that float over quest givers.
 const MARKERS: Dictionary[Status, String] = {
@@ -84,6 +85,10 @@ static func interact(guid: int) -> bool:
 	var flags: int = WowClient.session.get_field(guid, "UNIT_NPC_FLAGS")
 	if is_spell_click(guid):
 		send("CMSG_SPELLCLICK", guid)
+	# A battleground's spirit guide takes the dead into its next wave, and says when it comes.
+	elif offers(guid, Service.SPIRIT_GUIDE) and _dead():
+		send("CMSG_AREA_SPIRIT_HEALER_QUEUE", guid)
+		send("CMSG_AREA_SPIRIT_HEALER_QUERY", guid)
 	elif flags & ~NPC_FLAG_QUESTGIVER:
 		send("CMSG_GOSSIP_HELLO", guid)
 	elif flags & NPC_FLAG_QUESTGIVER:
@@ -112,3 +117,12 @@ static func npc_text(options: Array) -> String:
 	& 0xFF == 1
 	var text: String = picked[2] if female and not picked[2].is_empty() else picked[1]
 	return QuestLog.format_text(text if not text.is_empty() else picked[2])
+
+
+# A released ghost, or a body not yet released.
+static func _dead() -> bool:
+	const PLAYER_FLAGS_GHOST: int = 0x10
+	var session: WowSession = WowClient.session
+	var me: int = session.get_player_guid()
+	return session.get_field(me, "UNIT_FIELD_HEALTH") == 0 \
+			or session.get_field(me, "PLAYER_FLAGS") & PLAYER_FLAGS_GHOST != 0

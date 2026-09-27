@@ -48,6 +48,9 @@ const GLYPH_LEVEL: int = 15
 # Glyph of Charge is minor, and the second socket is the first minor one.
 const GLYPH_SOCKET: int = 1
 const WATER: int = 159
+const GRAB_BAG: int = 15902
+# The bottom left and right side bars, bits 0 and 2.
+const BAR_TOGGLES: int = 0b0101
 const DRINK_SPELL: int = 430
 const MAIN: PackedScene = preload("res://game/main.tscn")
 const STEP_TIMEOUT_MSEC: int = 120000
@@ -60,6 +63,8 @@ const ANNOUNCEMENT: String = "WrathGD announcement check"
 const HEROIC_DUNGEON: int = 1
 const GUILD_BANK_TEXT: String = "Tab info from glue_check"
 const GUILD_INFO_TEXT: String = "Guild info from glue_check"
+const GUILD_NOTE: String = "Note from glue_check"
+const ARENA_BATTLEMASTER: int = 19859
 const RENAMED: String = "Wrathrenamed"
 # The Hunt Begins, whose objective and turn-in both have POIs on Mulgore's map.
 const POI_QUEST: int = 747
@@ -136,12 +141,15 @@ func _run() -> void:
 	await _frames(60)
 	_capture("user://wotlk_world.png")
 	await _use_item()
+	await _open_item()
+	await _bar_toggles()
 	await _glyph()
 	await _gear_manager()
 	await _dungeon_finder()
 	await _achievements()
 	await _currencies()
 	await _arena_team()
+	await _arena_queue()
 	await _guild_bank()
 	await _barbershop()
 	await _calendar()
@@ -656,10 +664,73 @@ func _guild_popups() -> void:
 	await _until(func() -> bool: return events.text.contains(joined),
 			"the guild event log shows the founder joining")
 	(social.get_node("%GuildEventLogCloseButton") as BaseButton).pressed.emit()
+	await _guild_member_detail(social)
 	WowClient.session.send_packet("CMSG_GUILD_INFO", PackedByteArray())
 	await _until(func() -> bool: return _chat_has(
 		WowStrings.format(WowStrings.get_text("GUILD_NAME_TEMPLATE"), [GUILD])
 	), "/ginfo names the guild")
+
+
+# The founder's own row opens its member detail, whose public note edits through a popup.
+func _guild_member_detail(social: FriendsFrame) -> void:
+	var row: int = -1
+	for i: int in FriendsFrame.GUILD_ROWS:
+		var name_label: Label = social.get_node("%%GuildFrameButton%dName" % (i + 1))
+		if (social.get_node("%%GuildFrameButton%d" % (i + 1)) as Control).visible \
+		and name_label.text == CHARACTER:
+			row = i
+	if not _check(row >= 0, "the guild roster lists the founder"):
+		return
+	(social.get_node("%%GuildFrameButton%d" % (row + 1)) as BaseButton).pressed.emit()
+	var detail: Control = social.get_node("%GuildMemberDetailFrame")
+	_check(detail.visible and (social.get_node("%GuildMemberDetailName") as Label).text
+			== CHARACTER, "a roster row opens its member's detail")
+	var click: InputEventMouseButton = InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.pressed = true
+	(social.get_node("%GuildMemberNoteBackground") as Control).gui_input.emit(click)
+	var popup: Control = get_tree().root.find_child("StaticPopup1", true, false)
+	if not _check(popup.visible, "clicking the public note asks for a new one"):
+		return
+	(popup.get_node("%StaticPopup1EditBox") as LineEdit).text = GUILD_NOTE
+	(popup.get_node("%StaticPopup1Button1") as BaseButton).pressed.emit()
+	var note: Label = social.get_node("%PersonalNoteText")
+	await _until(func() -> bool: return note.text == GUILD_NOTE,
+			"the public note saves and shows in the member detail")
+	(social.get_node("%GuildMemberDetailCloseButton") as BaseButton).pressed.emit()
+
+
+# An arena battlemaster opens ArenaFrame, whose skirmish queue the server takes and lets go.
+func _arena_queue() -> void:
+	var session: WowSession = WowClient.session
+	var masters: Array[int] = []
+	var on_created: Callable = func(guid: int, _type_id: int) -> void:
+		if session.get_field(guid, "OBJECT_FIELD_ENTRY") == ARENA_BATTLEMASTER:
+			masters.append(guid)
+	session.object_created.connect(on_created)
+	session.send_chat(WowSession.CHAT_SAY, ".npc add temp %d" % ARENA_BATTLEMASTER)
+	var spawned: bool = await _until(func() -> bool: return not masters.is_empty(),
+			"an arena battlemaster spawns")
+	session.object_created.disconnect(on_created)
+	if not spawned:
+		return
+	var battlegrounds: Battlegrounds = WowClient.battlegrounds
+	battlegrounds.ask(masters[0])
+	var arena: ArenaFrame = get_tree().root.find_child("ArenaFrame", true, false)
+	if await _until(func() -> bool: return arena.visible,
+			"the arena battlemaster opens ArenaFrame"):
+		(arena.get_node("%ArenaZone4") as BaseButton).pressed.emit()
+		(arena.get_node("%ArenaFrameJoinButton") as BaseButton).pressed.emit()
+		var queued: Callable = func() -> bool:
+			return battlegrounds.queue(battlegrounds.slot_of(0)).get("status", 0) \
+					== Battlegrounds.Status.WAIT_QUEUE
+		if await _until(queued, "the skirmish queue takes the player"):
+			battlegrounds.abandon(0)
+			await _until(func() -> bool: return battlegrounds.slot_of(0) == -1,
+					"leaving the skirmish queue empties its slot")
+	session.set_selection(masters[0])
+	session.send_chat(WowSession.CHAT_SAY, ".npc delete")
+	session.set_selection(0)
 
 
 # Inspecting oneself shows a learned talent's rank and the arena team on the PvP tab.
@@ -972,6 +1043,13 @@ func _glyph() -> void:
 # CMSG_USE_ITEM in the 3.3.5 layout: a drink the server accepts puts its aura on the player.
 func _use_item() -> void:
 	var session: WowSession = WowClient.session
+	# Every run leaves a water behind, and a full backpack would refuse the items later steps add.
+	while Inventory.find_item(WATER).x >= 0:
+		var old: Vector2i = Inventory.find_item(WATER)
+		Inventory.destroy(Inventory.wire_address(old.x, old.y),
+				Inventory.stack_count(Inventory.container_item(old.x, old.y)))
+		await _until(func() -> bool: return Inventory.container_item(old.x, old.y) == 0,
+				"an old water is thrown away")
 	session.send_chat(WowSession.CHAT_SAY, ".additem %d" % WATER)
 	if not await _until(func() -> bool: return Inventory.find_item(WATER).x >= 0, "the water arrives"):
 		return
@@ -986,6 +1064,43 @@ func _use_item() -> void:
 			if aura["spell"] == DRINK_SPELL:
 				return true
 		return false, "using the water starts the drink")
+
+
+# The extra action bars are the character's own: the server keeps them in PLAYER_FIELD_BYTES.
+func _bar_toggles() -> void:
+	var session: WowSession = WowClient.session
+	var me: int = session.get_player_guid()
+	var saved: Callable = func() -> int:
+		return (session.get_field(me, "PLAYER_FIELD_BYTES") >> 16) & 0xFF
+	var before: int = saved.call()
+	WowAssets.interface.apply_bar_toggles(BAR_TOGGLES)
+	session.send_packet("CMSG_SET_ACTIONBAR_TOGGLES", [WowAssets.interface.bar_toggles()])
+	await _until(func() -> bool: return saved.call() == BAR_TOGGLES,
+			"the server keeps the character's action bar toggles")
+	WowAssets.interface.apply_bar_toggles(before)
+	session.send_packet("CMSG_SET_ACTIONBAR_TOGGLES", [before])
+
+
+# A grab bag carries the loot flag, so using it from the bags opens it to a loot window.
+func _open_item() -> void:
+	var session: WowSession = WowClient.session
+	session.send_chat(WowSession.CHAT_SAY, ".additem %d" % GRAB_BAG)
+	var arrived: Callable = func() -> bool:
+		return Inventory.find_item(GRAB_BAG).x >= 0 \
+				and not session.get_item_info(GRAB_BAG).is_empty()
+	if not await _until(arrived, "the grab bag arrives"):
+		return
+	var at: Vector2i = Inventory.find_item(GRAB_BAG)
+	var hud: Hud = get_tree().root.find_child("Hud", true, false)
+	hud.use_container_item(at.x, at.y)
+	var loot: LootFrame = get_tree().root.find_child("LootFrame", true, false)
+	if await _until(func() -> bool: return loot.visible, "opening the grab bag shows its loot"):
+		loot.close_requested.emit()
+	# Left unlooted, the bag stays in the backpack for the next run to trip over.
+	await _frames(30)
+	var left: Vector2i = Inventory.find_item(GRAB_BAG)
+	if left.x >= 0:
+		Inventory.destroy(Inventory.wire_address(left.x, left.y), 1)
 
 
 # Every race 3.3.5 offers, its classes out of CharBaseInfo and the scene behind it.

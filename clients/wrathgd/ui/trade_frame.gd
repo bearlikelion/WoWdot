@@ -27,6 +27,7 @@ var _partner: int = 0
 # The player a trade was asked of or offered by, until the window opens.
 var _pending: int = 0
 var _mine: Array[int] = []
+var _accepted: bool = false
 
 
 func _ready() -> void:
@@ -37,7 +38,7 @@ func _ready() -> void:
 		var slot: BaseButton = get_node("%%TradePlayerItem%dItemButton" % (i + 1))
 		slot.pressed.connect(_clear_slot.bind(i))
 	%TradeFrameTradeButton.pressed.connect(_accept)
-	%TradeFrameCancelButton.pressed.connect(cancel)
+	%TradeFrameCancelButton.pressed.connect(_on_cancel_pressed)
 	%TradeFrameCloseButton.pressed.connect(cancel)
 	var session: WowSession = WowClient.session
 	session.packet_received.connect(_on_packet_received)
@@ -98,6 +99,26 @@ func set_money(copper: int) -> void:
 func _accept() -> void:
 	set_money(_typed_money())
 	WowClient.session.send_packet("CMSG_ACCEPT_TRADE", PackedByteArray())
+	_set_accept_state(true, %TradeHighlightRecipient.visible)
+
+
+# TradeFrame_SetAcceptState: an accepted side lights up, and the player cannot accept twice.
+func _set_accept_state(mine: bool, theirs: bool) -> void:
+	_accepted = mine
+	%TradeHighlightPlayer.visible = mine
+	%TradeHighlightPlayerEnchant.visible = mine
+	%TradeHighlightRecipient.visible = theirs
+	%TradeHighlightRecipientEnchant.visible = theirs
+	%TradeFrameTradeButton.disabled = mine
+
+
+# TradeFrameCancelButton_OnClick: an accepted trade is taken back first, not closed.
+func _on_cancel_pressed() -> void:
+	if not _accepted:
+		cancel()
+		return
+	WowClient.session.send_packet("CMSG_UNACCEPT_TRADE", PackedByteArray())
+	_set_accept_state(false, %TradeHighlightRecipient.visible)
 
 
 func _clear_slot(index: int) -> void:
@@ -134,6 +155,7 @@ func _open(partner_guid: int) -> void:
 	for i: int in SLOTS:
 		_show_slot("TradeRecipientItem%d" % (i + 1), 0)
 	%TradeFrameRecipientNameText.text = WowClient.session.get_object_name(partner_guid)
+	_set_accept_state(false, false)
 	open_requested.emit()
 
 
@@ -157,6 +179,11 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			trade_offered.emit(WowClient.session.get_object_name(_pending), _pending)
 		Status.OPEN_WINDOW:
 			_open(_pending)
+		Status.ACCEPT:
+			_set_accept_state(_accepted, true)
+		# Either side taking its accept back, or any change to the trade, clears both.
+		Status.BACK_TO_TRADE:
+			_set_accept_state(false, false)
 		Status.COMPLETE:
 			message_added.emit(WowStrings.get_text("ERR_TRADE_COMPLETE", "Trade complete."))
 			_close()

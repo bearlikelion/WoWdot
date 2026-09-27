@@ -384,6 +384,11 @@
    "out": "ui/raid_group_button.tscn"
   },
   {
+   "frame": "ArenaFrame",
+   "out": "ui/arena_frame.tscn",
+   "script": "res://ui/arena_frame.gd"
+  },
+  {
    "frame": "BattlefieldFrame",
    "out": "ui/battlefield_frame.tscn",
    "script": "res://ui/battlefield_frame.gd"
