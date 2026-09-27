@@ -15,11 +15,13 @@ const TYPES: int = 8
 const MAX_SIZE: int = 0xFFFF
 
 var _session: WowSession
+var _times_asked: bool = false
 
 
 func _init(session: WowSession) -> void:
 	_session = session
 	session.packet_received.connect(_on_packet_received)
+	session.state_changed.connect(_on_state_changed)
 
 
 # CMSG_UPDATE_ACCOUNT_DATA: the type, when it changed, its inflated size, then the zlib stream.
@@ -44,12 +46,21 @@ func request(type: Type) -> void:
 	_session.send_packet("CMSG_REQUEST_ACCOUNT_DATA", payload)
 
 
+# The account's own times only follow CMSG_READY_FOR_ACCOUNT_DATA_TIMES, sent once per connection.
+func _on_state_changed(state: int, _message: String) -> void:
+	if state == WowSession.STATE_CONNECTING_WORLD:
+		_times_asked = false
+	elif state == WowSession.STATE_CHARACTER_LIST and PacketReader.wotlk and not _times_asked:
+		_times_asked = true
+		_session.send_packet("CMSG_READY_FOR_ACCOUNT_DATA_TIMES", PackedByteArray())
+
+
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if not PacketReader.wotlk:
 		return
 	var reader: PacketReader = PacketReader.new(payload)
 	match opcode:
-		# The account's types come at login and the character's at world entry, each with its time.
+		# The account's types answer the ready message and the character's come at world entry.
 		"SMSG_ACCOUNT_DATA_TIMES":
 			reader.u32()
 			reader.u8()

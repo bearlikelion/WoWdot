@@ -9,6 +9,7 @@ signal ticket_requested(text: String, category: int)
 # WoW lays the interface out on a screen 768 units tall and scales it to the window.
 enum UnitMenuItem {
 	INVITE, UNINVITE, LEAVE, TRADE, DUEL, RESET_INSTANCES, PET_DISMISS, PET_ABANDON, INSPECT,
+	WHISPER, REMOVE_FRIEND,
 }
 
 const ITEM_CLASS_GLYPH: int = 16
@@ -62,6 +63,7 @@ var _loot_slot: int = 0
 var _loot_candidates: PackedInt64Array = []
 var _menu_name: String = ""
 var _menu_guid: int = 0
+var _menu_choice: Callable = Callable()
 var _duel: Duel
 var _named_pet: int = 0
 var _spell_failures: Dictionary = {}
@@ -225,6 +227,7 @@ func _ready() -> void:
 		if GameTooltip.current:
 			GameTooltip.current.hide_for(button))
 	_friends.name_requested.connect(_on_friend_name_requested)
+	_friends.friend_menu_requested.connect(_show_friend_menu)
 	_friends.guild_invited.connect(_on_guild_invited)
 	_duel = Duel.new(WowClient.session)
 	_duel.challenged.connect(_on_duel_challenged)
@@ -236,6 +239,10 @@ func _ready() -> void:
 	WowClient.difficulty.announced.connect(add_system_line)
 	WowClient.session.packet_received.connect(_on_packet_received)
 	_chat.emote_requested.connect(_on_emote_requested)
+	_chat.guild_disband_requested.connect(_popup.ask.bind(
+		WowStrings.get_text("CONFIRM_GUILD_DISBAND", "Do you really want to disband your guild?"),
+		FriendsFrame.send_command.bind("CMSG_GUILD_DISBAND", ""),
+	))
 	(_panels.get_node("%HelpFrame") as HelpFrame).ticket_requested.connect(ticket_requested.emit)
 	_chat.ticket_requested.connect(ticket_requested.emit.bind(HelpFrame.DEFAULT_CATEGORY))
 	_gossip.open_requested.connect(_panels.show_panel.bind(_gossip))
@@ -308,6 +315,7 @@ func _ready() -> void:
 	_target_frame.unit_menu_requested.connect(_show_unit_menu)
 	_party.unit_menu_requested.connect(_show_unit_menu)
 	_unit_menu.entry_selected.connect(_on_unit_menu_pressed)
+	_calendar.menu_requested.connect(_open_menu)
 	WowClient.session.spell_cast_failed.connect(_on_spell_cast_failed)
 	WowClient.session.attack_swing_error.connect(_on_attack_swing_error)
 	WowClient.session.object_updated.connect(_on_object_updated)
@@ -665,6 +673,11 @@ func _escape() -> void:
 		pass
 	elif _game_menu.visible:
 		_panels.hide_panel(_game_menu)
+	elif _casting_bar.is_channeling():
+		var payload: PackedByteArray = PackedByteArray()
+		payload.resize(4)
+		payload.encode_u32(0, _casting_bar.spell_id)
+		WowClient.session.send_packet("CMSG_CANCEL_CHANNELLING", payload)
 	elif _casting_bar.spell_id != 0:
 		WowClient.session.cancel_cast(_casting_bar.spell_id)
 	elif _panels.close_all_windows():
@@ -1091,6 +1104,29 @@ func _on_party_invited(inviter: String) -> void:
 
 
 # UnitPopup: the unit's name over what can be done with them.
+# The shared dropdown; a panel's own menu passes where its pick goes.
+func _open_menu(entries: Array[Dictionary], chosen: Callable = Callable()) -> void:
+	_menu_choice = chosen
+	_unit_menu.open(entries, get_viewport().get_mouse_position())
+
+
+# The FRIEND dropdown from UnitPopup.lua, for a friend who may be nowhere in view.
+func _show_friend_menu(guid: int) -> void:
+	_menu_guid = guid
+	_menu_name = WowClient.session.get_object_name(guid)
+	var entries: Array[Dictionary] = [
+		{"text": _menu_name, "title": true},
+		{"text": WowStrings.get_text("WHISPER", "Whisper"), "id": UnitMenuItem.WHISPER},
+		{"text": WowStrings.get_text("PARTY_INVITE"), "id": UnitMenuItem.INVITE},
+		{
+			"text": WowStrings.get_text("REMOVE_FRIEND", "Remove Friend"),
+			"id": UnitMenuItem.REMOVE_FRIEND,
+		},
+		{"text": WowStrings.get_text("CANCEL", "Cancel")},
+	]
+	_open_menu(entries)
+
+
 func _show_unit_menu(guid: int) -> void:
 	var session: WowSession = WowClient.session
 	_menu_name = session.get_object_name(guid)
@@ -1130,7 +1166,7 @@ func _show_unit_menu(guid: int) -> void:
 		return
 	entries.push_front({"text": _menu_name, "title": true})
 	entries.append({"text": WowStrings.get_text("CANCEL", "Cancel")})
-	_unit_menu.open(entries, get_viewport().get_mouse_position())
+	_open_menu(entries)
 
 
 # UnitPopup's DUNGEON_DIFFICULTY and RAID_DIFFICULTY menus, laid out flat under their headings.
@@ -1158,10 +1194,13 @@ func _show_master_loot_menu(slot: int, candidates: PackedInt64Array) -> void:
 		var receiver: String = WowClient.session.get_object_name(candidates[i])
 		entries.append({"text": receiver, "id": MASTER_LOOT_ID + i})
 	entries.append({"text": WowStrings.get_text("CANCEL", "Cancel")})
-	_unit_menu.open(entries, get_viewport().get_mouse_position())
+	_open_menu(entries)
 
 
 func _on_unit_menu_pressed(id: int) -> void:
+	if _menu_choice.is_valid():
+		_menu_choice.call(id)
+		return
 	if id >= MASTER_LOOT_ID:
 		_loot.give(_loot_slot, _loot_candidates[id - MASTER_LOOT_ID])
 		return
@@ -1190,3 +1229,7 @@ func _on_unit_menu_pressed(id: int) -> void:
 			_popup.ask(WowStrings.get_text("PET_ABANDON_CONFIRM", "Abandon your pet?"), WowClient.pet.abandon)
 		UnitMenuItem.RESET_INSTANCES:
 			WowClient.session.send_packet("CMSG_RESET_INSTANCES", PackedByteArray())
+		UnitMenuItem.WHISPER:
+			_chat.open_whisper(_menu_name)
+		UnitMenuItem.REMOVE_FRIEND:
+			_friends.remove_friend(_menu_guid)

@@ -26,13 +26,13 @@ const ITEM_CLASS_WEAPON: int = 2
 const FIST_WEAPON: int = 13
 const DISPLAY_SOUND_COLUMN: int = 2
 const DISPLAY_MODEL_COLUMN: int = 1
-const DISPLAY_NPC_SOUND_COLUMN: int = 11
+const DISPLAY_NPC_SOUND_COLUMN: String = "NPCSoundID"
 const MODEL_SOUND_COLUMN: int = 13
 const FOOTSTEP_COLUMN: int = 9
-const SPELL_VISUAL_COLUMN: int = 115
-const KIT_SOUND_COLUMN: int = 13
+const SPELL_VISUAL_COLUMN: String = "SpellVisualID"
+const KIT_SOUND_COLUMN: String = "SoundID"
 const SWING_SOUND_COLUMN: int = 3
-const GROUND_TERRAIN_COLUMN: int = 6
+const GROUND_TERRAIN_COLUMN: String = "TerrainType"
 # ponytail: a fixed stride per gait, the M2 footstep events would give the exact frames.
 const STRIDES: Dictionary[String, float] = {
 	"Run": 0.33,

@@ -1,9 +1,6 @@
 class_name StanceBar
 extends Control
 
-# Spell.dbc 1.12 columns: the three effects' aura types, then their misc values.
-const EFFECT_AURA_COLUMN: int = 91
-const EFFECT_MISC_COLUMN: int = 106
 const EFFECT_COUNT: int = 3
 const AURA_MOD_SHAPESHIFT: int = 36
 const BUTTON_COUNT: int = 10
@@ -49,8 +46,8 @@ func _form_of(spells: WowDBC, spell_id: int) -> int:
 	if row < 0:
 		return 0
 	for i: int in EFFECT_COUNT:
-		if spells.get_uint(row, EFFECT_AURA_COLUMN + i) == AURA_MOD_SHAPESHIFT:
-			return spells.get_uint(row, EFFECT_MISC_COLUMN + i)
+		if spells.get_uint(row, "EffectAura%d" % i) == AURA_MOD_SHAPESHIFT:
+			return spells.get_uint(row, "EffectMiscValue%d" % i)
 	return 0
 
 

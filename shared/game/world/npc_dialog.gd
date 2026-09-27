@@ -6,6 +6,8 @@ enum Status { NONE, UNAVAILABLE, CHAT, INCOMPLETE, REWARD_REP, AVAILABLE, REWARD
 enum Service { VENDOR, FLIGHTMASTER, TRAINER, AUCTIONEER, STABLEMASTER, REPAIR }
 
 const NPC_FLAG_QUESTGIVER: int = 0x02
+# 3.3.5 marks vehicles and click-to-cast units, which take CMSG_SPELLCLICK rather than gossip.
+const NPC_FLAG_SPELLCLICK: int = 0x1000000
 # The UNIT_NPC_FLAGS bit for each service, 1.12 then 3.3.5, which renumbered most of them.
 const SERVICE_FLAGS: Dictionary[Service, Vector2i] = {
 	Service.VENDOR: Vector2i(0x4, 0x80),
@@ -72,10 +74,17 @@ static func is_quest_giver(guid: int) -> bool:
 	return WowClient.session.get_field(guid, "UNIT_NPC_FLAGS") & NPC_FLAG_QUESTGIVER != 0
 
 
+static func is_spell_click(guid: int) -> bool:
+	return PacketReader.wotlk \
+	and WowClient.session.get_field(guid, "UNIT_NPC_FLAGS") & NPC_FLAG_SPELLCLICK != 0
+
+
 # Right-clicking: any service, vendors and trainers too, starts with gossip; plain quest givers not.
 static func interact(guid: int) -> bool:
 	var flags: int = WowClient.session.get_field(guid, "UNIT_NPC_FLAGS")
-	if flags & ~NPC_FLAG_QUESTGIVER:
+	if is_spell_click(guid):
+		send("CMSG_SPELLCLICK", guid)
+	elif flags & ~NPC_FLAG_QUESTGIVER:
 		send("CMSG_GOSSIP_HELLO", guid)
 	elif flags & NPC_FLAG_QUESTGIVER:
 		send("CMSG_QUESTGIVER_HELLO", guid)

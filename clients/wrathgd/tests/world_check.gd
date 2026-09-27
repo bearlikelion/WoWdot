@@ -31,6 +31,11 @@ const ACTION_MASK: int = 0xFFFFFF
 const HEARTH_SPELL: int = 8690
 const DAMAGE: int = 5
 const DUMMY_CREATURE: int = 6
+# Ducal's Horse, a vehicle whose spell click seats the clicker with no quest condition.
+const VEHICLE_CREATURE: int = 27409
+const EVENT_TITLE: String = "Wrathcheck event"
+const EVENT_TEXT: String = "Made by world_check"
+const DAY_SECONDS: int = 86400
 const GEAR_SET: String = "Wrathset"
 const GEAR_ICON: String = "INV_Chest_Plate01"
 const UNIT_TYPE: int = 3
@@ -61,6 +66,8 @@ var _combat: CombatEvents = CombatEvents.new(_session)
 var _gear_sets: EquipmentSets = EquipmentSets.new(_session)
 var _melee: Array[CombatEvents.CombatEvent] = []
 var _spawned: int = 0
+var _vehicle: int = 0
+var _controlled: Array[int] = []
 var _quest_givers: int = 0
 var _fly_counter: int = -1
 var _threat_units: Array[int] = []
@@ -133,9 +140,63 @@ func _run() -> void:
 	_check(_time_syncs > 0, "the server asked for a time sync while in the world")
 	await _flight(guid)
 	await _wintergrasp()
+	await _spell_click()
+	await _calendar()
 	if await _log_out():
 		await _remove_character(guid)
 	_finish()
+
+
+# An event made for tomorrow lists, reads back whole with its owner's invite, and goes on removal.
+func _calendar() -> void:
+	var calendar: Calendar = Calendar.new(_session)
+	var details: Array[Dictionary] = []
+	calendar.event_received.connect(details.append)
+	var tomorrow: Dictionary = Time.get_datetime_dict_from_unix_time(
+		int(Time.get_unix_time_from_system()) + DAY_SECONDS
+	)
+	calendar.add_event(EVENT_TITLE, EVENT_TEXT, Calendar.EventType.OTHER, tomorrow)
+	var listed: Callable = func() -> Dictionary:
+		for event: Dictionary in calendar.events:
+			if event["title"] == EVENT_TITLE:
+				return event
+		return {}
+	if not await _until(func() -> bool: return not listed.call().is_empty(),
+			"the new calendar event lists"):
+		return
+	var event_id: int = listed.call()["id"]
+	details.clear()
+	calendar.get_event(event_id)
+	if await _until(func() -> bool: return not details.is_empty(), "the event's details arrive"):
+		var event: Dictionary = details[0]
+		_check(event["title"] == EVENT_TITLE and event["description"] == EVENT_TEXT,
+				"the event reads back its title and description")
+		var owner: Array = event["invites"].filter(
+			func(entry: Dictionary) -> bool: return entry["rank"] == Calendar.Rank.OWNER
+		)
+		_check(owner.size() == 1 and owner[0]["guid"] == _session.get_player_guid(),
+				"the creator owns the event")
+	calendar.remove_event(event_id)
+	await _until(func() -> bool: return listed.call().is_empty(), "the removed event leaves the list")
+
+
+# A spell click seats the player on a vehicle, which takes control until the player asks to leave.
+func _spell_click() -> void:
+	_session.send_chat(WowSession.CHAT_SAY, ".npc add temp %d" % VEHICLE_CREATURE)
+	if not await _until(func() -> bool: return _vehicle != 0, "a temporary vehicle spawns"):
+		return
+	var payload: PackedByteArray = PackedByteArray()
+	payload.resize(8)
+	payload.encode_u64(0, _vehicle)
+	_session.send_packet("CMSG_SPELLCLICK", payload)
+	if await _until(func() -> bool: return _vehicle in _controlled,
+			"the spell click hands control to the vehicle"):
+		_session.send_packet("CMSG_REQUEST_VEHICLE_EXIT", PackedByteArray())
+		await _until(func() -> bool: return _controlled.back() == _session.get_player_guid(),
+				"leaving the vehicle hands control back")
+	_session.set_selection(_vehicle)
+	_session.send_chat(WowSession.CHAT_SAY, ".npc delete")
+	_session.set_selection(0)
 
 
 # A GM-started Wintergrasp battle invites a high enough character in the zone, who joins it.
@@ -490,6 +551,11 @@ func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
 		_time_syncs += 1
 	elif opcode == "SMSG_THREAT_UPDATE" or opcode == "SMSG_HIGHEST_THREAT_UPDATE":
 		_threat_units.append(PacketReader.new(_payload).packed_guid())
+	elif opcode == "SMSG_CLIENT_CONTROL_UPDATE":
+		var control: PacketReader = PacketReader.new(_payload)
+		var unit: int = control.packed_guid()
+		if control.u8() != 0:
+			_controlled.append(unit)
 	elif opcode == "SMSG_MOVE_SET_CAN_FLY":
 		var reader: PacketReader = PacketReader.new(_payload)
 		reader.packed_guid()
@@ -499,6 +565,9 @@ func _on_packet_received(opcode: String, _payload: PackedByteArray) -> void:
 func _on_object_created(guid: int, type_id: int) -> void:
 	if type_id == UNIT_TYPE and _spawned == 0 and _session.get_field(guid, "OBJECT_FIELD_ENTRY") == DUMMY_CREATURE:
 		_spawned = guid
+	if type_id == UNIT_TYPE and _vehicle == 0 \
+	and _session.get_field(guid, "OBJECT_FIELD_ENTRY") == VEHICLE_CREATURE:
+		_vehicle = guid
 
 
 func _on_combat_logged(event: CombatEvents.CombatEvent) -> void:

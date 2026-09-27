@@ -25,7 +25,7 @@ const COIN_SLOT: int = -1
 const SLOT_TYPE_MASTER: int = 2
 const COIN_SOUND: String = "LOOTWINDOWCOINSOUND"
 const ITEM_SOUND: String = "INTERFACESOUND_CURSORDROPOBJECT"
-const GROUP_SOUND_COLUMN: int = 11
+const GROUP_SOUND_COLUMN: String = "GroupSoundIndex"
 const PICKUP_KIT_COLUMN: int = 1
 
 static var _displays: WowDBC

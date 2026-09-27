@@ -6,6 +6,7 @@ signal close_requested
 signal name_requested(tab: Tab)
 signal message_added(text: String)
 signal guild_invited(inviter: String, guild_name: String)
+signal friend_menu_requested(guid: int)
 
 enum Tab { FRIENDS, IGNORE, GUILD, RAID, WHO, CHAT }
 enum EventLogType { INVITE = 1, JOIN, PROMOTE, DEMOTE, REMOVE, QUIT }
@@ -95,6 +96,7 @@ func _ready() -> void:
 	for i: int in ROWS:
 		var row: BaseButton = get_node("%%FriendsFrameFriendsScrollFrameButton%d" % (i + 1))
 		row.pressed.connect(_on_row_pressed.bind(i))
+		row.gui_input.connect(_on_friend_row_input.bind(i))
 	for i: int in IGNORE_ROWS:
 		var row: BaseButton = get_node("%%FriendsFrameIgnoreButton%d" % (i + 1))
 		row.pressed.connect(_on_row_pressed.bind(i))
@@ -240,6 +242,13 @@ func is_ignored(guid: int) -> bool:
 	return guid in _ignored
 
 
+func remove_friend(guid: int) -> void:
+	var payload: PackedByteArray = []
+	payload.resize(8)
+	payload.encode_u64(0, guid)
+	WowClient.session.send_packet("CMSG_DEL_FRIEND", payload)
+
+
 func _refresh_guild() -> void:
 	%FriendsFrameTitleText.text = _guild_name
 	var online: int = _members.reduce(
@@ -270,7 +279,14 @@ func _on_row_pressed(index: int) -> void:
 	_selected = index
 
 
-# Friends leave through the stock right-click menu, which is not ported.
+# FriendsFrame_ShowDropdown: a right click on a friend opens the menu that can remove them.
+func _on_friend_row_input(event: InputEvent, index: int) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click and click.pressed and click.button_index == MOUSE_BUTTON_RIGHT \
+	and index < _friends.size():
+		friend_menu_requested.emit(_friends[index]["guid"])
+
+
 func _remove_selected() -> void:
 	if _tab != Tab.IGNORE or _selected < 0 or _selected >= _ignored.size():
 		return

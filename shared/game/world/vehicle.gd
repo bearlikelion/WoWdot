@@ -34,5 +34,11 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if now == driving:
 		return
 	driving = now
-	_session.set_mover(driving if driving else me)
+	var mover: int = driving if driving else me
+	_session.set_mover(mover)
+	# The stock client names its new mover back, which AzerothCore checks against its own.
+	var named: PackedByteArray = PackedByteArray()
+	named.resize(8)
+	named.encode_u64(0, mover)
+	_session.send_packet("CMSG_SET_ACTIVE_MOVER", named)
 	changed.emit()

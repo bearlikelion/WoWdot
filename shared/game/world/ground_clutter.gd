@@ -3,10 +3,9 @@ extends Node3D
 
 # GroundEffectTexture.dbc: four doodad slots and a density; GroundEffectDoodad.dbc names models.
 const DOODAD_COLUMNS: PackedInt32Array = [1, 2, 3, 4]
-const DENSITY_COLUMN: int = 5
+const DENSITY_COLUMN: String = "Density"
 const EMPTY_SLOT: int = 0xFFFFFFFF
-const INTERNAL_ID_COLUMN: int = 1
-const MODEL_COLUMN: int = 2
+const MODEL_COLUMN: String = "DoodadPath"
 const DETAIL_PATH: String = "World\\NoDXT\\Detail\\"
 # The stock client fades its detail doodads out by 70 yards, and seeds 16 cells per chunk.
 const REACH: float = 70.0
@@ -31,7 +30,9 @@ func _ready() -> void:
 	_doodads = WowDBC.open(WowAssets.archive, "GroundEffectDoodad")
 	for row: int in _doodads.row_count():
 		var file: String = _doodads.get_string(row, MODEL_COLUMN).replace(".mdl", ".m2")
-		_models[_doodads.get_uint(row, INTERNAL_ID_COLUMN)] = DETAIL_PATH + file
+		# Texture slots name a doodad by its tag in 1.12 and by its ID in 3.3.5.
+		var key: String = "ID" if PacketReader.wotlk else "DoodadIdTag"
+		_models[_doodads.get_uint(row, key)] = DETAIL_PATH + file
 	if map:
 		map.tile_loaded.connect(func(_tile: Vector2i) -> void: _last_chunk = Vector3i(-1, -1, -1))
 

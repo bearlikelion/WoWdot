@@ -136,7 +136,7 @@ func uses_ranged_slot(spell_id: int) -> bool:
 
 # A buff like Frost Armor lands on the caster whatever is targeted, so it is cast with no target.
 func targets_caster(spell_id: int) -> bool:
-	const EFFECT_TARGET_COLUMN: int = 82
+	const EFFECT_TARGET_COLUMN: String = "EffectImplicitTargetA%d"
 	const EFFECT_COUNT: int = 3
 	const TARGET_SELF: int = 1
 	var row: int = _spells.find(spell_id)
@@ -144,7 +144,7 @@ func targets_caster(spell_id: int) -> bool:
 		return false
 	var self_cast: bool = false
 	for effect: int in EFFECT_COUNT:
-		var target: int = _spells.get_uint(row, EFFECT_TARGET_COLUMN + effect)
+		var target: int = _spells.get_uint(row, EFFECT_TARGET_COLUMN % effect)
 		if target == TARGET_SELF:
 			self_cast = true
 		elif target != 0:

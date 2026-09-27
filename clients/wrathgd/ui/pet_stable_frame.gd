@@ -14,8 +14,8 @@ enum Result { NO_MONEY = 0x01, FAILED = 0x06, STABLED = 0x08, UNSTABLED = 0x09,
 const STABLE_SLOTS: int = 2
 const CURRENT_SLOT: int = 1
 # CreatureFamily.dbc: the family's name, then the icon the stable slot wears.
-const FAMILY_NAME_COLUMN: int = 8
-const FAMILY_ICON_COLUMN: int = 17
+const FAMILY_NAME_COLUMN: String = "Name"
+const FAMILY_ICON_COLUMN: String = "IconFile"
 
 var _guid: int = 0
 var _pets: Array[Dictionary] = []
@@ -109,7 +109,7 @@ func _family_of(entry: int) -> String:
 	return _family_string(entry, FAMILY_NAME_COLUMN)
 
 
-func _family_string(entry: int, column: int) -> String:
+func _family_string(entry: int, column: String) -> String:
 	var info: Dictionary = WowClient.session.get_creature_template(entry)
 	if _families == null:
 		_families = WowDBC.open(WowAssets.archive, "CreatureFamily")

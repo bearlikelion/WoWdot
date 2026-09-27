@@ -775,6 +775,8 @@ func _update_cursor(guid: int) -> void:
 		session, session.get_player_guid(), guid
 	) == UnitReaction.Reaction.HOSTILE:
 		kind = WowCursor.Kind.ATTACK
+	elif NpcDialog.is_spell_click(guid):
+		kind = WowCursor.Kind.INTERACT
 	elif NpcDialog.offers(guid, NpcDialog.Service.VENDOR):
 		kind = WowCursor.Kind.BUY
 	elif NpcDialog.offers(guid, NpcDialog.Service.FLIGHTMASTER):

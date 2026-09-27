@@ -23,6 +23,105 @@ const SCENE_FOG: Dictionary[String, Array] = {
 	"Tauren": [Color(1.0, 0.61, 0.42), 153.0],
 	"Scourge": [Color(0.0, 0.22, 0.22), 26.0],
 }
+# RaceLights from GlueParent.lua: direction, then ambient and direct intensity and colour.
+const SCENE_LIGHTS: Dictionary[String, Array] = {
+	"Human": [
+		[
+			Vector3(0.0, 0.0, -1.0),
+			1.0, Color(0.27, 0.27, 0.27), 1.0, Color(0.0, 0.0, 0.0),
+		],
+		[
+			Vector3(-0.45756075, -0.58900136, -0.66611975),
+			1.0, Color(0.0, 0.0, 0.0), 1.0, Color(0.19882353, 0.34921569, 0.43588236),
+		],
+		[
+			Vector3(-0.64623469, 0.57582057, -0.50081086),
+			1.0, Color(0.0, 0.0, 0.0), 2.0, Color(0.52196085, 0.44, 0.29764709),
+		],
+	],
+	"Orc": [
+		[
+			Vector3(0.0, 0.0, -1.0),
+			1.0, Color(0.15, 0.15, 0.15), 1.0, Color(0.0, 0.0, 0.0),
+		],
+		[
+			Vector3(-0.74919, 0.35208, -0.56103),
+			1.0, Color(0.0, 0.0, 0.0), 1.0, Color(0.44706, 0.5451, 0.73725),
+		],
+		[
+			Vector3(0.53162, -0.8434, 0.0778),
+			1.0, Color(0.0, 0.0, 0.0), 2.0, Color(0.55, 0.338625, 0.148825),
+		],
+	],
+	"Dwarf": [
+		[
+			Vector3(0.0, 0.0, -1.0),
+			1.0, Color(0.3, 0.3, 0.3), 0.0, Color(0.0, 0.0, 0.0),
+		],
+		[
+			Vector3(-0.88314, 0.42916, -0.18945),
+			1.0, Color(0.0, 0.0, 0.0), 2.0, Color(0.44706, 0.67451, 0.760785),
+		],
+	],
+	"Tauren": [
+		[
+			Vector3(-0.48073, 0.71827, -0.50297),
+			1.0, Color(0.0, 0.0, 0.0), 2.0, Color(0.65, 0.397645, 0.2727),
+		],
+		[
+			Vector3(-0.49767, -0.78677, 0.36513),
+			1.0, Color(0.0, 0.0, 0.0), 1.0, Color(0.6, 0.47059, 0.32471),
+		],
+	],
+	"Scourge": [
+		[
+			Vector3(0.0, 0.0, -1.0),
+			1.0, Color(0.2, 0.2, 0.2), 1.0, Color(0.0, 0.0, 0.0),
+		],
+	],
+	"NightElf": [
+		[
+			Vector3(0.0, 0.0, -1.0),
+			1.0, Color(0.0902, 0.0902, 0.1702), 1.0, Color(0.0, 0.0, 0.0),
+		],
+	],
+	"Draenei": [
+		[
+			Vector3(0.61185, 0.62942, -0.47903),
+			1.0, Color(0.0, 0.0, 0.0), 1.0, Color(0.56941, 0.52, 0.6),
+		],
+		[
+			Vector3(-0.64345, -0.31052, -0.69968),
+			1.0, Color(0.0, 0.0, 0.0), 1.0, Color(0.60941, 0.60392, 0.7),
+		],
+		[
+			Vector3(-0.46481, -0.1432, 0.87376),
+			1.0, Color(0.0, 0.0, 0.0), 2.0, Color(0.5835, 0.48941, 0.6),
+		],
+	],
+	"BloodElf": [
+		[
+			Vector3(-0.82249, -0.54912, -0.14822),
+			1.0, Color(0.0, 0.0, 0.0), 2.0, Color(0.581175, 0.50588, 0.42588),
+		],
+		[
+			Vector3(0.0, 0.0, -1.0),
+			1.0, Color(0.60392, 0.6149, 0.7), 1.0, Color(0.0, 0.0, 0.0),
+		],
+		[
+			Vector3(0.02575, 0.86518, -0.50081),
+			1.0, Color(0.0, 0.0, 0.0), 1.0, Color(0.59137, 0.51745, 0.63471),
+		],
+	],
+	"DeathKnight": [
+		[
+			Vector3(0.0, 0.0, -1.0),
+			1.0, Color(0.38824, 0.66353, 0.76941), 1.0, Color(0.0, 0.0, 0.0),
+		],
+	],
+}
+# CharModelGlowInfo from GlueParent.lua; other scenes glow at the default.
+const SCENE_GLOW: Dictionary[String, float] = {"Human": 0.15, "Dwarf": 0.15}
 const CHAR_BASE_INFO: String = "DBFilesClient\\CharBaseInfo.dbc"
 const DBC_HEADER_SIZE: int = 20
 
@@ -109,6 +208,15 @@ static func apply_scene(frame: WowModelFrame, race: int, fogged: bool = true) ->
 	frame.model_file = SCENE_PATH % [scene, scene]
 	var fog: Array = SCENE_FOG.get(scene, [Color.BLACK, 0.0])
 	frame.set_fog(fog[0], 0.0, fog[1] if fogged else 0.0)
+	frame.glow = SCENE_GLOW.get(scene, WowModelFrame.DEFAULT_GLOW)
+	var lights: Array[Dictionary] = []
+	for light: Array in SCENE_LIGHTS.get(scene, []):
+		lights.append({
+			"direction": light[0],
+			"ambient": light[2] * light[1],
+			"diffuse": light[4] * light[3],
+		})
+	frame.set_scene_lights(lights)
 
 
 # Glue scene cameras frame the native model; the display scale (tauren 1.35) is for the world.

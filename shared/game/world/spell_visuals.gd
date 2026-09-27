@@ -4,7 +4,7 @@ extends RefCounted
 # SpellVisual.dbc holds a kit per stage of a cast.
 enum Kit { PRECAST, CAST, IMPACT }
 
-const KIT_SHAKE_COLUMN: int = 14
+const KIT_SHAKE_COLUMN: String = "ShakeID"
 const KIT_COLUMNS: Dictionary[Kit, String] = {
 	Kit.PRECAST: "PrecastKit", Kit.CAST: "CastKit", Kit.IMPACT: "ImpactKit",
 }

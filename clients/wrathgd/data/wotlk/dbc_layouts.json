@@ -133,7 +133,8 @@
   "CreatureFamily": {
     "ID": 0,
     "IconFile": 27,
-    "PetTalentType": 8
+    "PetTalentType": 8,
+    "Name": 10
   },
   "CreatureDisplayInfo": {
     "ExtraDisplayId": 3,
@@ -142,7 +143,8 @@
     "Scale": 4,
     "Skin1": 6,
     "Skin2": 7,
-    "Skin3": 8
+    "Skin3": 8,
+    "NPCSoundID": 12
   },
   "CreatureDisplayInfoExtra": {
     "BakeName": 20,
@@ -273,7 +275,8 @@
     "TextureLegLower": 21,
     "TextureLegUpper": 20,
     "TextureTorsoLower": 19,
-    "TextureTorsoUpper": 18
+    "TextureTorsoUpper": 18,
+    "GroupSoundIndex": 12
   },
   "ItemSet": {
     "ID": 0,
@@ -443,11 +446,16 @@
   "SkillLine": {
     "Category": 1,
     "ID": 0,
-    "Name": 3
+    "Name": 3,
+    "Description": 20,
+    "SpellIconID": 37
   },
   "SkillLineAbility": {
     "SkillLineID": 1,
-    "SpellID": 2
+    "SpellID": 2,
+    "MinRank": 7,
+    "TrivialRankHigh": 10,
+    "TrivialRankLow": 11
   },
   "SkillLineCategory": {
     "ID": 0,
@@ -537,7 +545,14 @@
     "StartRecoveryCategory": 205,
     "StartRecoveryTime": 206,
     "Targets": 16,
-    "Tooltip": 187
+    "Tooltip": 187,
+    "SpellLevel": 39,
+    "EffectImplicitTargetA0": 86,
+    "EffectImplicitTargetA1": 87,
+    "EffectImplicitTargetA2": 88,
+    "EffectAura0": 95,
+    "EffectAura1": 96,
+    "EffectAura2": 97
   },
   "SpellCastTimes": {
     "Base": 1,
@@ -561,7 +576,10 @@
   },
   "SpellRange": {
     "MinRange": 2,
-    "MaxRange": 4
+    "MaxRange": 4,
+    "ID": 0,
+    "Flags": 5,
+    "Name": 6
   },
   "SpellVisual": {
     "CastKit": 2,
@@ -573,7 +591,8 @@
   },
   "SpellVisualEffectName": {
     "FilePath": 2,
-    "ID": 0
+    "ID": 0,
+    "Name": 1
   },
   "SpellVisualKit": {
     "BaseEffect": 5,
@@ -585,7 +604,9 @@
     "RightHandEffect": 7,
     "SpecialEffect0": 11,
     "SpecialEffect1": 12,
-    "SpecialEffect2": 13
+    "SpecialEffect2": 13,
+    "SoundID": 15,
+    "ShakeID": 16
   },
   "Talent": {
     "ID": 0,
@@ -606,7 +627,9 @@
     "PrereqTalent2": 15,
     "PrereqRank0": 16,
     "PrereqRank1": 17,
-    "PrereqRank2": 18
+    "PrereqRank2": 18,
+    "Flags": 19,
+    "RequiredSpellID": 20
   },
   "TalentTab": {
     "BackgroundFile": 23,
@@ -711,5 +734,17 @@
   "ServerMessages": {
     "ID": 0,
     "Text": 1
+  },
+  "GroundEffectTexture": {
+    "Density": 9,
+    "TerrainType": 10
+  },
+  "GroundEffectDoodad": {
+    "ID": 0,
+    "DoodadPath": 1
+  },
+  "CharStartOutfit": {
+    "DisplayItemID0": 26,
+    "InventoryType0": 50
   }
 }

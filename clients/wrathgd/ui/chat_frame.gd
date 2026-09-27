@@ -4,6 +4,7 @@ extends DockedChatFrame
 
 signal emote_requested(text_emote: int)
 signal ticket_requested(text: String)
+signal guild_disband_requested
 
 # GlobalStrings key stem per chat type: CHAT_<stem>_GET formats lines, CHAT_<stem>_SEND the header.
 const TYPE_KEYS: Dictionary[WowSession.ChatType, String] = {
@@ -81,6 +82,7 @@ const GUILD_COMMANDS: Dictionary[String, String] = {
 	"/gdemote": "CMSG_GUILD_DEMOTE", "/guilddemote": "CMSG_GUILD_DEMOTE",
 	"/gmotd": "CMSG_GUILD_MOTD", "/guildmotd": "CMSG_GUILD_MOTD",
 	"/gquit": "CMSG_GUILD_LEAVE", "/guildleave": "CMSG_GUILD_LEAVE",
+	"/gleader": "CMSG_GUILD_LEADER", "/guildleader": "CMSG_GUILD_LEADER",
 }
 # Chat types the edit box keeps between messages; whispers and emotes fall back to the last one.
 const STICKY: Array[WowSession.ChatType] = [
@@ -260,9 +262,12 @@ func _take_command(text: String) -> String:
 	return rest
 
 
-# SlashCmdList GUILD_INVITE, GUILD_REMOVE, GUILD_PROMOTE, GUILD_DEMOTE, GUILD_MOTD and GUILD_QUIT.
+# SlashCmdList's guild commands; disbanding asks first, as CONFIRM_GUILD_DISBAND does.
 func _run_guild_command(message: String) -> bool:
 	var words: PackedStringArray = message.split(" ", false, 1)
+	if words[0].to_lower() in ["/gdisband", "/guilddisband"]:
+		guild_disband_requested.emit()
+		return true
 	var opcode: String = GUILD_COMMANDS.get(words[0].to_lower(), "")
 	var rest: String = words[1].strip_edges() if words.size() > 1 else ""
 	if opcode.is_empty() or (rest.is_empty() and opcode != "CMSG_GUILD_LEAVE"):
@@ -271,7 +276,7 @@ func _run_guild_command(message: String) -> bool:
 	return true
 
 
-# SlashCmdList INVITE, UNINVITE and LEAVE.
+# SlashCmdList INVITE, UNINVITE, LEAVE, READYCHECK and PVP.
 func _run_party_command(message: String) -> bool:
 	var words: PackedStringArray = message.split(" ", false, 1)
 	var command: String = words[0].to_lower()
@@ -284,6 +289,8 @@ func _run_party_command(message: String) -> bool:
 		PartyFrame.leave()
 	elif command in ["/readycheck", "/rc"]:
 		PartyFrame.start_ready_check()
+	elif command == "/pvp":
+		WowClient.session.send_packet("CMSG_TOGGLE_PVP", PackedByteArray())
 	else:
 		return false
 	return true

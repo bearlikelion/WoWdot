@@ -42,12 +42,12 @@ func save(set_name: String, icon: String) -> void:
 	entry["icon"] = icon
 	entry["items"] = items
 	var buffer: StreamPeerBuffer = StreamPeerBuffer.new()
-	_put_packed_guid(buffer, entry["guid"])
+	buffer.put_data(PacketReader.pack_guid(entry["guid"]))
 	buffer.put_u32(entry["index"])
 	_put_cstring(buffer, set_name)
 	_put_cstring(buffer, icon)
 	for item: int in items:
-		_put_packed_guid(buffer, item)
+		buffer.put_data(PacketReader.pack_guid(item))
 	_session.send_packet("CMSG_EQUIPMENT_SET_SAVE", buffer.data_array)
 	changed.emit()
 
@@ -55,7 +55,7 @@ func save(set_name: String, icon: String) -> void:
 func use(entry: Dictionary) -> void:
 	var buffer: StreamPeerBuffer = StreamPeerBuffer.new()
 	for item: int in entry["items"]:
-		_put_packed_guid(buffer, item)
+		buffer.put_data(PacketReader.pack_guid(item))
 		# The source bag and slot, which the server only logs.
 		buffer.put_u8(0)
 		buffer.put_u8(0)
@@ -64,7 +64,7 @@ func use(entry: Dictionary) -> void:
 
 func delete(entry: Dictionary) -> void:
 	var buffer: StreamPeerBuffer = StreamPeerBuffer.new()
-	_put_packed_guid(buffer, entry["guid"])
+	buffer.put_data(PacketReader.pack_guid(entry["guid"]))
 	_session.send_packet("CMSG_DELETEEQUIPMENT_SET", buffer.data_array)
 	sets.erase(entry)
 	changed.emit()
@@ -105,18 +105,6 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 			for entry: Dictionary in sets:
 				if entry["index"] == index:
 					entry["guid"] = guid
-
-
-static func _put_packed_guid(buffer: StreamPeerBuffer, guid: int) -> void:
-	var mask: int = 0
-	var bytes: PackedByteArray = []
-	for i: int in 8:
-		var byte: int = (guid >> (8 * i)) & 0xFF
-		if byte:
-			mask |= 1 << i
-			bytes.append(byte)
-	buffer.put_u8(mask)
-	buffer.put_data(bytes)
 
 
 static func _put_cstring(buffer: StreamPeerBuffer, text: String) -> void:

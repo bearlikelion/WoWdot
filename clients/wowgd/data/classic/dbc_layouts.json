@@ -91,7 +91,8 @@
   "Scale": 4,
   "Skin1": 6,
   "Skin2": 7,
-  "Skin3": 8
+  "Skin3": 8,
+  "NPCSoundID": 11
  },
  "CreatureDisplayInfoExtra": {
   "ID": 0,
@@ -432,7 +433,9 @@
   "RightHandEffect": 7,
   "SpecialEffect0": 11,
   "SpecialEffect1": 12,
-  "SpecialEffect2": 13
+  "SpecialEffect2": 13,
+  "SoundID": 13,
+  "ShakeID": 14
  },
  "Talent": {
   "ID": 0,
@@ -548,5 +551,17 @@
   "Facial2": 3,
   "Facial3": 4,
   "Ears": 5
+ },
+ "GroundEffectTexture": {
+  "Density": 5,
+  "TerrainType": 6
+ },
+ "GroundEffectDoodad": {
+  "DoodadIdTag": 1,
+  "DoodadPath": 2
+ },
+ "CharStartOutfit": {
+  "DisplayItemID0": 14,
+  "InventoryType0": 26
  }
 }

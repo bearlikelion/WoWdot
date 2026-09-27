@@ -69,3 +69,5 @@ func _on_account_data_received(type: AccountData.Type, text: String) -> void:
 func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	if opcode == "SMSG_BINDPOINTUPDATE" and payload.size() >= 20:
 		home_area = payload.decode_u32(16)
+	elif opcode == "SMSG_SET_FORCED_REACTIONS":
+		UnitReaction.read_forced(PacketReader.new(payload))

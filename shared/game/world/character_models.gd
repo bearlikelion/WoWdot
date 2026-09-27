@@ -39,11 +39,10 @@ const PLAYER_FLAG_HIDE_CLOAK: int = 0x800
 const WEAPON_SLOTS: Array[int] = [15, 16, 17]
 const BACK_SLOT: int = 14
 const CAPES: String = "Item\\ObjectComponents\\Cape\\"
-# CharStartOutfit.dbc packs race, class and gender into one key and holds twelve slots.
+# CharStartOutfit.dbc keys race, class and gender together; its arrays run 12 slots, 24 on 3.3.5.
 const OUTFIT_KEY_COLUMN: int = 1
-const OUTFIT_DISPLAY_COLUMN: int = 14
-const OUTFIT_TYPE_COLUMN: int = 26
-const OUTFIT_SLOTS: int = 12
+const OUTFIT_DISPLAY_COLUMN: String = "DisplayItemID0"
+const OUTFIT_TYPE_COLUMN: String = "InventoryType0"
 const OUTFIT_EQUIPMENT_SLOTS: int = 19
 # An item's inventory type and the equipment slot it fills.
 const OUTFIT_SLOT_OF: Dictionary[int, int] = {
@@ -255,12 +254,14 @@ static func starting_look(look: Dictionary) -> Dictionary:
 	| (int(look.get("class", 0)) << 8) | (int(look.get("gender", 0)) << 16)
 	var displays: PackedInt32Array = []
 	displays.resize(OUTFIT_EQUIPMENT_SLOTS)
+	var display_column: int = _outfits.column(OUTFIT_DISPLAY_COLUMN)
+	var type_column: int = _outfits.column(OUTFIT_TYPE_COLUMN)
 	for row: int in _outfits.row_count():
 		if _outfits.get_uint(row, OUTFIT_KEY_COLUMN) & 0xFFFFFF != wanted:
 			continue
-		for slot: int in OUTFIT_SLOTS:
-			var kind: int = _outfits.get_int(row, OUTFIT_TYPE_COLUMN + slot)
-			var display: int = _outfits.get_int(row, OUTFIT_DISPLAY_COLUMN + slot)
+		for slot: int in type_column - display_column:
+			var kind: int = _outfits.get_int(row, type_column + slot)
+			var display: int = _outfits.get_int(row, display_column + slot)
 			if display > 0 and OUTFIT_SLOT_OF.has(kind):
 				displays[OUTFIT_SLOT_OF[kind]] = display
 		break

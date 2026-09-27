@@ -4,6 +4,7 @@ extends Control
 signal close_requested
 signal day_hovered(button: Control, lines: PackedStringArray)
 signal day_left(button: Control)
+signal menu_requested(entries: Array[Dictionary], chosen: Callable)
 
 const DAYS_SHOWN: int = 42
 const WEEKDAYS: int = 7
@@ -18,6 +19,18 @@ const WEEKDAY_KEYS: PackedStringArray = [
 	"WEEKDAY_SUNDAY", "WEEKDAY_MONDAY", "WEEKDAY_TUESDAY", "WEEKDAY_WEDNESDAY",
 	"WEEKDAY_THURSDAY", "WEEKDAY_FRIDAY", "WEEKDAY_SATURDAY",
 ]
+# CalendarEventType order, the types the create frame offers.
+const TYPE_KEYS: PackedStringArray = [
+	"CALENDAR_TYPE_RAID", "CALENDAR_TYPE_DUNGEON", "CALENDAR_TYPE_PVP", "CALENDAR_TYPE_MEETING",
+	"CALENDAR_TYPE_OTHER",
+]
+const HOURS: int = 24
+# CalendarCreateEventMinuteDropDown steps five minutes at a time, from the stock noon default.
+const MINUTE_STEP: int = 5
+const DEFAULT_HOUR: int = 12
+# UIDropDownMenu_SetWidth's own padding when a caller names none, and the time pickers' overlap.
+const DROP_DOWN_PADDING: float = 50.0
+const TIME_OVERLAP: float = 22.0
 # CALENDAR_WEEKDAY_NORMALIZED_TEX_* and CALENDAR_DAYBUTTON_NORMALIZED_TEX_* on 256 pixel atlases.
 const WEEKDAY_CELL: Vector2 = Vector2(90, 28)
 const WEEKDAY_TOP: float = 180.0
@@ -35,6 +48,9 @@ var viewed_year: int = 0
 var _first_cell: int = 0
 var _holiday_names: WowDBC
 var _holiday_table: WowDBC
+var _viewed_event: Dictionary = {}
+var _create_date: Dictionary = {}
+var _create_type: Calendar.EventType = Calendar.EventType.OTHER
 
 @onready var _calendar: Calendar = WowClient.calendar
 
@@ -57,6 +73,8 @@ func _ready() -> void:
 		_crop(get_node(prefix + "Bottom"), DARK_TILE)
 		(get_node(prefix + "Bottom") as TextureRect).flip_v = true
 		button.mouse_entered.connect(_on_day_hovered.bind(i))
+		button.pressed.connect(_on_day_pressed.bind(i))
+		button.gui_input.connect(_on_day_input.bind(i))
 		button.mouse_exited.connect(func() -> void: day_left.emit(button))
 	%CalendarPrevMonthButton.pressed.connect(_step_month.bind(-1))
 	%CalendarNextMonthButton.pressed.connect(_step_month.bind(1))
@@ -64,6 +82,40 @@ func _ready() -> void:
 	%CalendarFilterFrame.hide()
 	%CalendarViewHolidayFrame.hide()
 	%CalendarFrameBlocker.hide()
+	for hidden: CanvasItem in [
+		%CalendarViewEventFrame, %CalendarCreateEventFrame, %CalendarViewEventFrameModalOverlay,
+		%CalendarCreateEventFrameModalOverlay,
+	]:
+		hidden.hide()
+	# ponytail: 24 hour time and no invites, repeats or locks on new events; wire them when asked.
+	for unused: CanvasItem in [
+		%CalendarCreateEventAMPMDropDown, %CalendarCreateEventRepeatOptionDropDown,
+		%CalendarCreateEventAutoApproveCheck, %CalendarCreateEventLockEventCheck,
+		%CalendarCreateEventInviteEdit, %CalendarCreateEventInviteButton,
+		%CalendarCreateEventMassInviteButton, %CalendarCreateEventRaidInviteButton,
+		%CalendarCreateEventMassInviteButtonBorder, %CalendarCreateEventRaidInviteButtonBorder,
+	]:
+		unused.hide()
+	# CalendarCreateEventFrame_OnLoad sizes the pickers and CalendarTitleFrame_SetText the titles.
+	_set_drop_down_width(%CalendarCreateEventTypeDropDown, 100.0, DROP_DOWN_PADDING)
+	var hour: Control = %CalendarCreateEventHourDropDown
+	_set_drop_down_width(hour, 30.0, 40.0)
+	_set_drop_down_width(%CalendarCreateEventMinuteDropDown, 30.0, 40.0)
+	%CalendarCreateEventMinuteDropDown.position.x = hour.position.x + hour.size.x - TIME_OVERLAP
+	%CalendarCreateEventTitleFrameText.text = WowStrings.get_text("CALENDAR_CREATE_EVENT")
+	%CalendarViewEventTitleFrameText.text = WowStrings.get_text("CALENDAR_VIEW_EVENT")
+	%CalendarCreateEventCreateButtonText.text = WowStrings.get_text("CALENDAR_CREATE")
+	%CalendarViewEventCloseButton.pressed.connect(%CalendarViewEventFrame.hide)
+	%CalendarViewEventAcceptButton.pressed.connect(_answer.bind(Calendar.Rsvp.ACCEPTED))
+	%CalendarViewEventTentativeButton.pressed.connect(_answer.bind(Calendar.Rsvp.TENTATIVE))
+	%CalendarViewEventDeclineButton.pressed.connect(_answer.bind(Calendar.Rsvp.DECLINED))
+	%CalendarViewEventRemoveButton.pressed.connect(_remove_viewed)
+	%CalendarCreateEventCloseButton.pressed.connect(%CalendarCreateEventFrame.hide)
+	%CalendarCreateEventCreateButton.pressed.connect(_create)
+	%CalendarCreateEventTypeDropDownButton.pressed.connect(_pick_type)
+	%CalendarCreateEventHourDropDownButton.pressed.connect(_pick_hour)
+	%CalendarCreateEventMinuteDropDownButton.pressed.connect(_pick_minute)
+	_calendar.event_received.connect(_show_event)
 	_calendar.changed.connect(refresh)
 	visibility_changed.connect(_on_visibility_changed)
 
@@ -178,6 +230,166 @@ static func _crop(rect: TextureRect, region: Rect2) -> void:
 
 func _day(index: int) -> BaseButton:
 	return get_node("%%CalendarDayButton%d" % (index + 1))
+
+
+# UIDropDownMenu_SetWidth: the middle art takes the width and the art right of it moves along.
+func _set_drop_down_width(frame: Control, width: float, padding: float) -> void:
+	var middle: Control = frame.get_node(String(frame.name) + "Middle")
+	var shift: float = width - middle.size.x
+	middle.size.x = width
+	for part: String in ["Right", "Text", "Button"]:
+		(frame.get_node(String(frame.name) + part) as Control).position.x += shift
+	frame.size.x = width + padding
+
+
+func _date_at(index: int) -> Dictionary:
+	return Time.get_date_dict_from_unix_time(_first_cell + index * SECONDS_PER_DAY)
+
+
+# FULLDATE with the weekday the date falls on.
+func _full_date(date: Dictionary) -> String:
+	var weekday: int = Time.get_date_dict_from_unix_time(
+		_unix(date["year"], date["month"], date["day"])
+	)["weekday"]
+	return WowStrings.format(WowStrings.get_text("FULLDATE"), [
+		WowStrings.get_text(WEEKDAY_KEYS[weekday]),
+		WowStrings.get_text("FULLDATE_" + MONTH_KEYS[date["month"] - 1]),
+		date["day"], date["year"],
+	])
+
+
+# The first event of the day opens, as clicking its event button does.
+func _on_day_pressed(index: int) -> void:
+	var events: Array[Dictionary] = _events_on(_date_at(index))
+	if not events.is_empty():
+		_calendar.get_event(events[0]["id"])
+
+
+# CalendarDayContextMenu: a right click offers to create an event on the day.
+func _on_day_input(event: InputEvent, index: int) -> void:
+	var click: InputEventMouseButton = event as InputEventMouseButton
+	if click == null or not click.pressed or click.button_index != MOUSE_BUTTON_RIGHT:
+		return
+	var date: Dictionary = _date_at(index)
+	var entries: Array[Dictionary] = [
+		{"text": WowStrings.get_text("CALENDAR_CREATE_EVENT"), "id": 0},
+		{"text": WowStrings.get_text("CANCEL", "Cancel")},
+	]
+	menu_requested.emit(entries, func(_id: int) -> void: _open_create(date))
+
+
+func _open_create(date: Dictionary) -> void:
+	%CalendarViewEventFrame.hide()
+	_create_date = {
+		"year": date["year"], "month": date["month"], "day": date["day"], "hour": DEFAULT_HOUR,
+		"minute": 0,
+	}
+	_create_type = Calendar.EventType.OTHER
+	var title: LineEdit = %CalendarCreateEventTitleEdit
+	title.text = ""
+	title.placeholder_text = WowStrings.get_text("CALENDAR_EVENT_NAME")
+	(%CalendarCreateEventDescriptionEdit as TextEdit).text = ""
+	var session: WowSession = WowClient.session
+	%CalendarCreateEventCreatorName.text = WowStrings.format(
+		WowStrings.get_text("CALENDAR_EVENT_CREATORNAME"),
+		[session.get_object_name(session.get_player_guid())],
+	)
+	%CalendarCreateEventDateLabel.text = _full_date(date)
+	_show_create_choices()
+	%CalendarCreateEventFrame.show()
+
+
+func _show_create_choices() -> void:
+	%CalendarCreateEventTypeDropDownText.text = WowStrings.get_text(TYPE_KEYS[_create_type])
+	%CalendarCreateEventHourDropDownText.text = str(_create_date["hour"])
+	%CalendarCreateEventMinuteDropDownText.text = "%02d" % _create_date["minute"]
+
+
+func _pick_type() -> void:
+	var entries: Array[Dictionary] = []
+	for type: int in TYPE_KEYS.size():
+		entries.append({
+			"text": WowStrings.get_text(TYPE_KEYS[type]), "id": type,
+			"checked": type == _create_type,
+		})
+	menu_requested.emit(entries, func(id: int) -> void:
+		_create_type = id as Calendar.EventType
+		_show_create_choices())
+
+
+func _pick_hour() -> void:
+	var entries: Array[Dictionary] = []
+	for hour: int in HOURS:
+		entries.append({"text": str(hour), "id": hour, "checked": hour == _create_date["hour"]})
+	menu_requested.emit(entries, func(id: int) -> void:
+		_create_date["hour"] = id
+		_show_create_choices())
+
+
+func _pick_minute() -> void:
+	var entries: Array[Dictionary] = []
+	for minute: int in range(0, 60, MINUTE_STEP):
+		entries.append({
+			"text": "%02d" % minute, "id": minute, "checked": minute == _create_date["minute"],
+		})
+	menu_requested.emit(entries, func(id: int) -> void:
+		_create_date["minute"] = id
+		_show_create_choices())
+
+
+func _create() -> void:
+	var title: String = (%CalendarCreateEventTitleEdit as LineEdit).text.strip_edges()
+	if title.is_empty():
+		return
+	var description: String = (%CalendarCreateEventDescriptionEdit as TextEdit).text.strip_edges()
+	_calendar.add_event(title, description, _create_type, _create_date)
+	%CalendarCreateEventFrame.hide()
+
+
+func _show_event(event: Dictionary) -> void:
+	_viewed_event = event
+	%CalendarCreateEventFrame.hide()
+	var session: WowSession = WowClient.session
+	var time: Dictionary = event["time"]
+	%CalendarViewEventTitle.text = event["title"]
+	%CalendarViewEventCreatorName.text = WowStrings.format(
+		WowStrings.get_text("CALENDAR_EVENT_CREATORNAME"), [session.get_object_name(event["creator"])]
+	)
+	%CalendarViewEventTypeName.text = WowStrings.get_text(
+		TYPE_KEYS[clampi(event["type"], 0, TYPE_KEYS.size() - 1)]
+	)
+	%CalendarViewEventDateLabel.text = _full_date(time)
+	%CalendarViewEventTimeLabel.text = "%d:%02d" % [time["hour"], time["minute"]]
+	%CalendarViewEventDescription.text = event["description"]
+	var owned: bool = event["creator"] == session.get_player_guid()
+	var invited: bool = not _my_invite(event).is_empty()
+	for answer: CanvasItem in [
+		%CalendarViewEventAcceptButton, %CalendarViewEventTentativeButton,
+		%CalendarViewEventDeclineButton,
+	]:
+		answer.visible = invited and not owned
+	%CalendarViewEventRemoveButton.visible = owned
+	%CalendarViewEventFrame.show()
+
+
+func _my_invite(event: Dictionary) -> Dictionary:
+	for entry: Dictionary in event.get("invites", []):
+		if entry["guid"] == WowClient.session.get_player_guid():
+			return entry
+	return {}
+
+
+func _answer(status: Calendar.Rsvp) -> void:
+	var mine: Dictionary = _my_invite(_viewed_event)
+	if mine.is_empty():
+		return
+	_calendar.rsvp(_viewed_event["id"], mine["invite"], status)
+	_calendar.get_event(_viewed_event["id"])
+
+
+func _remove_viewed() -> void:
+	_calendar.remove_event(_viewed_event["id"])
+	%CalendarViewEventFrame.hide()
 
 
 func _step_month(direction: int) -> void:

@@ -13,6 +13,19 @@ func _init(payload: PackedByteArray) -> void:
 	_data = payload
 
 
+# The writing side of packed_guid: a byte mask of the non-zero bytes, then those bytes.
+static func pack_guid(guid: int) -> PackedByteArray:
+	var mask: int = 0
+	var bytes: PackedByteArray = []
+	for i: int in 8:
+		var byte: int = (guid >> (8 * i)) & 0xFF
+		if byte:
+			mask |= 1 << i
+			bytes.append(byte)
+	bytes.insert(0, mask)
+	return bytes
+
+
 func u8() -> int:
 	var at: int = _take(1)
 	return _data.decode_u8(at) if at >= 0 else 0

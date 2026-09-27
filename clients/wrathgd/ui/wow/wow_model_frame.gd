@@ -43,6 +43,8 @@ var _scene: Node3D
 var _character: Node3D
 var _stand: Vector3 = Vector3.ZERO
 var _diagonal_fov: float = 0.0
+var _model_ambient: Color = Color.BLACK
+var _scene_lamps: Array[Light3D] = []
 
 @onready var _viewport: SubViewport = %Viewport
 @onready var _camera: Camera3D = %Camera
@@ -111,6 +113,8 @@ func _load_scene() -> void:
 		_scene.queue_free()
 		_scene = null
 	_default_light.show()
+	_model_ambient = Color.BLACK
+	_scene_lamps.clear()
 	if model_file.is_empty():
 		return
 	_scene = WowAssets.loader.load_m2(model_file)
@@ -184,10 +188,7 @@ func _light_scene(lights: Array) -> void:
 			lamp.light_energy = pow(peak, 2.2)
 		else:
 			lamp = DirectionalLight3D.new()
-			# Stock clamps ambient plus diffuse to white, so an over-bright sun only fills what is left.
-			var lit: Color = (ambient + Color(diffuse, 0.0)).clamp()
-			var fill: Color = lit.srgb_to_linear() - ambient.srgb_to_linear()
-			lamp.light_color = Color(fill, 1.0).linear_to_srgb()
+			lamp.light_color = _sun_color(ambient, diffuse)
 		lamp.light_specular = 0.0
 		var mount: Node3D = _scene
 		var origin: Vector3 = Vector3.ZERO
@@ -206,7 +207,42 @@ func _light_scene(lights: Array) -> void:
 		else:
 			# A directional M2 light shines down its bone's up axis.
 			lamp.basis = Basis(Vector3.RIGHT, -PI / 2.0)
+	_model_ambient = ambient
 	_environment.ambient_light_color = ambient
+
+
+# RaceLights for the scene, each a model space direction and scaled ambient and direct colours.
+func set_scene_lights(lights: Array[Dictionary]) -> void:
+	for lamp: Light3D in _scene_lamps:
+		lamp.queue_free()
+	_scene_lamps.clear()
+	if _scene == null or lights.is_empty():
+		return
+	_default_light.hide()
+	var ambient: Color = _model_ambient
+	for light: Dictionary in lights:
+		ambient += light["ambient"]
+	ambient = Color(ambient, 1.0).clamp()
+	_environment.ambient_light_color = ambient
+	for light: Dictionary in lights:
+		var diffuse: Color = light["diffuse"]
+		if maxf(diffuse.r, maxf(diffuse.g, diffuse.b)) <= 0.0:
+			continue
+		var lamp: DirectionalLight3D = DirectionalLight3D.new()
+		lamp.light_color = _sun_color(ambient, diffuse)
+		lamp.light_specular = 0.0
+		var toward: Vector3 = WowCoords.to_godot(light["direction"]).normalized()
+		var up: Vector3 = Vector3.BACK if absf(toward.y) > 0.99 else Vector3.UP
+		lamp.basis = Basis.looking_at(toward, up)
+		_scene.add_child(lamp)
+		_scene_lamps.append(lamp)
+
+
+# Stock clamps ambient plus diffuse to white, so an over-bright sun only fills what is left.
+func _sun_color(ambient: Color, diffuse: Color) -> Color:
+	var lit: Color = (ambient + Color(diffuse, 0.0)).clamp()
+	var fill: Color = lit.srgb_to_linear() - ambient.srgb_to_linear()
+	return Color(fill, 1.0).linear_to_srgb()
 
 
 # An M2 camera keeps a diagonal FOV; the client divides it down for the frame it draws into.

@@ -62,6 +62,10 @@ func _process(delta: float) -> void:
 					hide()
 
 
+func is_channeling() -> bool:
+	return _mode == Mode.CHANNELING
+
+
 func _begin(mode: Mode, spell: int, duration_msec: int) -> void:
 	spell_id = spell
 	_mode = mode
