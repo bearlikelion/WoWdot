@@ -42,7 +42,7 @@ func _ready() -> void:
 
 func refresh() -> void:
 	var driving: int = WowClient.vehicle.driving
-	visible = driving != 0
+	visible = WowClient.vehicle.current() != 0
 	if not visible:
 		return
 	var pet: Pet = WowClient.pet
@@ -148,7 +148,7 @@ static func _set_texture(
 
 func _update_bars() -> void:
 	var session: WowSession = WowClient.session
-	var guid: int = WowClient.vehicle.driving
+	var guid: int = WowClient.vehicle.current()
 	var health: int = session.get_field(guid, "UNIT_FIELD_HEALTH")
 	var max_health: int = maxi(session.get_field(guid, "UNIT_FIELD_MAXHEALTH"), 1)
 	var health_bar: TextureProgressBar = %VehicleMenuBarHealthBar
@@ -170,7 +170,7 @@ func _update_bars() -> void:
 
 
 func _on_object_updated(guid: int) -> void:
-	if visible and guid == WowClient.vehicle.driving:
+	if visible and guid == WowClient.vehicle.current():
 		_update_bars()
 
 

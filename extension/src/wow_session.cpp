@@ -1726,11 +1726,11 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			// The mover, then the transport it rides and its seat, then the spline as SMSG_MONSTER_MOVE lays it out.
 			const uint64_t mover = packet.readPackedGuid();
 			const uint64_t transport = packet.readPackedGuid();
-			packet.readUInt8();
+			const int8_t seat = static_cast<int8_t>(packet.readUInt8());
 			network::Packet rebuilt(packet.getOpcode());
 			rebuilt.writePackedGuid(mover);
 			rebuilt.writeBytes(packet.getData().data() + packet.getReadPos(), packet.getSize() - packet.getReadPos());
-			handle_monster_move(rebuilt, transport);
+			handle_monster_move(rebuilt, transport, seat);
 			return;
 		}
 		case LogicalOpcode::SMSG_COMPRESSED_MOVES:
@@ -2041,8 +2041,12 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 			object.transport_guid = block.onTransport ? block.transportGuid : 0;
 			object.transport_offset = wow_vector(block.transportX, block.transportY, block.transportZ);
 			object.transport_orientation = block.transportO;
+			object.transport_seat = block.onTransport ? block.transportSeat : -1;
 			object.move_flags = move_flags_from_wire(block.moveFlags);
 			object.path_time = block.transportTime;
+			if (block.vehicleId) {
+				object.vehicle_id = block.vehicleId;
+			}
 			object.path_time_at = Time::get_singleton()->get_ticks_msec();
 			if (block.runSpeed > 0.0f) {
 				object.speeds = { block.walkSpeed, block.runSpeed, block.runBackSpeed, block.swimSpeed, block.swimBackSpeed, block.turnRate, block.flightSpeed, block.flightBackSpeed };
@@ -2101,6 +2105,7 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 	uint64_t transport_guid = 0;
 	Vector3 transport_offset;
 	float transport_orientation = 0.0f;
+	int8_t transport_seat = -1;
 	if (flags & layout.on_transport) {
 		transport_guid = layout.wide_transport ? packet.readPackedGuid() : packet.readUInt64();
 		const float tx = packet.readFloat();
@@ -2110,7 +2115,7 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 		transport_orientation = packet.readFloat();
 		if (layout.wide_transport) {
 			packet.readUInt32();
-			packet.readUInt8();
+			transport_seat = static_cast<int8_t>(packet.readUInt8());
 			if (flags2 & MOVEFLAG2_INTERPOLATED) {
 				packet.readUInt32();
 			}
@@ -2149,6 +2154,7 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 		object.transport_guid = transport_guid;
 		object.transport_offset = transport_offset;
 		object.transport_orientation = transport_orientation;
+		object.transport_seat = transport_seat;
 		for (size_t i = 0; i < SPEED_OPCODES.size(); i++) {
 			if (std::strcmp(name, SPEED_OPCODES[i]) == 0 && packet.hasRemaining(4)) {
 				object.speeds[i] = packet.readFloat();
@@ -2163,7 +2169,7 @@ void WowSession::handle_movement_relay(network::Packet &packet) {
 
 
 // A creature's spline, or on a transport the same spline in the transport's own space.
-void WowSession::handle_monster_move(network::Packet &packet, uint64_t transport_guid) {
+void WowSession::handle_monster_move(network::Packet &packet, uint64_t transport_guid, int8_t seat) {
 	game::MonsterMoveData data;
 	if (!parsers->parseMonsterMove(packet, data)) {
 		return;
@@ -2199,6 +2205,18 @@ void WowSession::handle_monster_move(network::Packet &packet, uint64_t transport
 			player_path["elapsed_msec"] = static_cast<int64_t>(0);
 			player_path["from_start"] = false;
 			player_path_msec = Time::get_singleton()->get_ticks_msec();
+		}
+	}
+	// 3.3.5 boards a vehicle seat and leaves it with these two spline flags.
+	constexpr uint32_t SPLINE_TRANSPORT_ENTER = 0x00800000;
+	constexpr uint32_t SPLINE_TRANSPORT_EXIT = 0x01000000;
+	if (auto it = objects.find(data.guid); it != objects.end() && wow_wotlk()) {
+		if (transport_guid && (data.splineFlags & SPLINE_TRANSPORT_ENTER)) {
+			it->second.transport_guid = transport_guid;
+			it->second.transport_seat = seat;
+		} else if (data.splineFlags & SPLINE_TRANSPORT_EXIT) {
+			it->second.transport_guid = 0;
+			it->second.transport_seat = -1;
 		}
 	}
 	if (auto it = objects.find(data.guid); it != objects.end()) {
@@ -2316,8 +2334,15 @@ Dictionary WowSession::get_object_transport(int64_t guid) const {
 		transport["guid"] = static_cast<int64_t>(object->transport_guid);
 		transport["offset"] = object->transport_offset;
 		transport["orientation"] = object->transport_orientation;
+		transport["seat"] = object->transport_seat;
 	}
 	return transport;
+}
+
+// The Vehicle.dbc id of a unit that carries passengers, or 0.
+int64_t WowSession::get_object_vehicle_id(int64_t guid) const {
+	const WorldObject *object = find(guid);
+	return object ? object->vehicle_id : 0;
 }
 
 PackedFloat32Array WowSession::get_object_speeds(int64_t guid) const {
@@ -2438,6 +2463,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_object_orientation", "guid"), &WowSession::get_object_orientation);
 	ClassDB::bind_method(D_METHOD("get_object_move_flags", "guid"), &WowSession::get_object_move_flags);
 	ClassDB::bind_method(D_METHOD("get_object_path_time", "guid"), &WowSession::get_object_path_time);
+	ClassDB::bind_method(D_METHOD("get_object_vehicle_id", "guid"), &WowSession::get_object_vehicle_id);
 	ClassDB::bind_method(D_METHOD("get_object_transport", "guid"), &WowSession::get_object_transport);
 	ClassDB::bind_method(D_METHOD("get_object_speeds", "guid"), &WowSession::get_object_speeds);
 	ClassDB::bind_method(D_METHOD("get_field", "guid", "field"), &WowSession::get_field);

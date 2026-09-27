@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" path="res://ui/barber_shop_banner_frame.tscn" id="37_barber_banner"]
 [ext_resource type="PackedScene" path="res://ui/temporary_enchant_frame.tscn" id="38_temp_enchant"]
 [ext_resource type="PackedScene" path="res://ui/durability_frame.tscn" id="39_durability"]
+[ext_resource type="PackedScene" path="res://ui/vehicle_seat_indicator.tscn" id="40_seat_indicator"]
 
 [node name="Hud" type="Control" unique_id=2063934219]
 layout_mode = 3
@@ -267,6 +268,19 @@ offset_left = -60.0
 offset_top = 192.0
 offset_right = 0.0
 offset_bottom = 257.0
+
+[node name="VehicleSeatIndicator" parent="UIParent" instance=ExtResource("40_seat_indicator")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -88.0
+offset_top = 177.0
+offset_right = 40.0
+offset_bottom = 305.0
 
 [node name="ChatFrame1" parent="UIParent" unique_id=1531132507 instance=ExtResource("14_chat")]
 unique_name_in_owner = true

@@ -100,7 +100,7 @@ func _ready() -> void:
 		button.pressed.connect(panel_toggled.emit.bind(_micro_buttons[button]))
 		button.mouse_entered.connect(_on_micro_button_hovered.bind(button))
 		button.mouse_exited.connect(_on_micro_button_left.bind(button))
-	WowClient.vehicle.changed.connect(func() -> void: visible = WowClient.vehicle.driving == 0)
+	WowClient.vehicle.changed.connect(func() -> void: visible = WowClient.vehicle.current() == 0)
 	%CharacterMicroButton.button_down.connect(_set_portrait_pushed.bind(true))
 	%CharacterMicroButton.button_up.connect(_set_portrait_pushed.bind(false))
 	for bag: int in range(1, Inventory.BAG_COUNT + 1):

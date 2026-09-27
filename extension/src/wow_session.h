@@ -103,6 +103,8 @@ private:
 		uint64_t transport_guid = 0;
 		Vector3 transport_offset;
 		float transport_orientation = 0.0f;
+		int8_t transport_seat = -1;
+		uint32_t vehicle_id = 0;
 		uint32_t move_flags = 0;
 		uint32_t path_time = 0;
 		uint64_t path_time_at = 0;
@@ -172,7 +174,7 @@ private:
 	void handle_world_packet(wowee::network::Packet &packet);
 	void handle_update(wowee::game::UpdateObjectData &data);
 	void handle_movement_relay(wowee::network::Packet &packet);
-	void handle_monster_move(wowee::network::Packet &packet, uint64_t transport_guid);
+	void handle_monster_move(wowee::network::Packet &packet, uint64_t transport_guid, int8_t seat = -1);
 	void handle_spline_speed(const char *name, wowee::network::Packet &packet);
 	void handle_compressed_moves(wowee::network::Packet &packet, bool compressed);
 	void handle_chat(wowee::network::Packet &packet);
@@ -239,6 +241,7 @@ public:
 	double get_object_orientation(int64_t guid) const;
 	int64_t get_object_move_flags(int64_t guid) const;
 	int64_t get_object_path_time(int64_t guid) const;
+	int64_t get_object_vehicle_id(int64_t guid) const;
 	Dictionary get_object_transport(int64_t guid) const;
 	// Walk, run, run back, swim, swim back and turn rate.
 	PackedFloat32Array get_object_speeds(int64_t guid) const;

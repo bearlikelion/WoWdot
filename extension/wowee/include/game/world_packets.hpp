@@ -510,6 +510,9 @@ struct UpdateBlock {
     uint64_t transportGuid = 0;
     // A transport's own path progress in milliseconds (UPDATEFLAG_TRANSPORT).
     uint32_t transportTime = 0;
+    int8_t transportSeat = -1;
+    // The Vehicle.dbc id a unit carries passengers by (UPDATEFLAG_VEHICLE).
+    uint32_t vehicleId = 0;
     float transportX = 0.0f, transportY = 0.0f, transportZ = 0.0f, transportO = 0.0f;
 
     // Field data (for VALUES and CREATE updates) — sorted flat vector instead of

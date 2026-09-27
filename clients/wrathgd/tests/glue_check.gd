@@ -9,6 +9,8 @@ extends Node
 # without the battle's Lieutenant rank, which a GM aura grants.
 const DEMOLISHER: int = 28094
 const LIEUTENANT_SPELL: int = 55629
+# Vehicle 106's seats are 0, 2 and 3; its seat map shows them as its first to third buttons.
+const DEMOLISHER_PASSENGER_SEAT: int = 2
 const DRIVE_SECONDS: float = 2.0
 const DRIVE_MIN_YARDS: float = 4.0
 const KALIMDOR: int = 1
@@ -382,6 +384,27 @@ func _teleport(place: String, map_id: int) -> bool:
 	return true
 
 
+# The seat map marks the driver's seat, and moving to a passenger seat hands the controls back.
+func _vehicle_seats(demolisher: int) -> void:
+	var vehicle: Vehicle = WowClient.vehicle
+	var indicator: VehicleSeatIndicator = \
+			get_tree().root.find_child("VehicleSeatIndicator", true, false)
+	_check(vehicle.riding == demolisher and vehicle.seat == 0,
+			"the driver sits in the demolisher's first seat")
+	_check(indicator.visible and (indicator.get_node("%VehicleSeatIndicatorButton1PlayerIcon")
+			as CanvasItem).visible, "the seat indicator marks the driver's seat")
+	vehicle.switch_seat(DEMOLISHER_PASSENGER_SEAT)
+	if not await _until(func() -> bool: return vehicle.seat == DEMOLISHER_PASSENGER_SEAT,
+			"the player moves to a passenger seat"):
+		return
+	await _frames(30)
+	_check(vehicle.driving == 0, "a passenger seat hands the controls back")
+	_check((indicator.get_node("%VehicleSeatIndicatorButton2PlayerIcon") as CanvasItem).visible \
+			and not (indicator.get_node("%VehicleSeatIndicatorButton1PlayerIcon")
+			as CanvasItem).visible, "the seat indicator follows the player to its new seat")
+	_capture("user://wotlk_vehicle_seats.png")
+
+
 # A spawned demolisher taken by spellclick is driven forward, then left from the vehicle bar.
 func _vehicle() -> void:
 	var session: WowSession = WowClient.session
@@ -417,8 +440,11 @@ func _vehicle() -> void:
 	_check(leave.is_visible_in_tree(), "the vehicle bar offers a way out of the vehicle")
 	var main_bar: Control = get_tree().root.find_child("MainMenuBar", true, false)
 	_check(not main_bar.visible, "the vehicle bar replaces the main action bar")
+	await _vehicle_seats(vehicles[0])
 	leave.pressed.emit()
-	if await _until(func() -> bool: return WowClient.vehicle.driving == 0, "the player gets out"):
+	var out: Callable = func() -> bool:
+		return WowClient.vehicle.driving == 0 and WowClient.vehicle.riding == 0
+	if await _until(out, "the player gets out"):
 		await _frames(60)
 		var moved: float = session.get_object_position(me).distance_to(start)
 		print("vehicle: the player stepped out %.1f yards from where the drive began" % moved)

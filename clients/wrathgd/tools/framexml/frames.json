@@ -509,6 +509,11 @@
    "script": "res://ui/temporary_enchant_frame.gd"
   },
   {
+   "frame": "VehicleSeatIndicator",
+   "out": "ui/vehicle_seat_indicator.tscn",
+   "script": "res://ui/vehicle_seat_indicator.gd"
+  },
+  {
    "frame": "VehicleMenuBar",
    "out": "ui/vehicle_menu_bar.tscn",
    "script": "res://ui/vehicle_menu_bar.gd"
@@ -593,6 +598,7 @@
   "SurveyNotificationFrame",
   "TOSFrame",
   "TokenEnterDialog",
+  "VehicleSeatIndicatorDropDown",
   "VirtualKeypadFrame",
   "WoWAccountSelectDialog"
  ],
@@ -730,6 +736,12 @@
    "count": 16,
    "offset": [0, -2],
    "gap": [0, 3]
+  },
+  {
+   "parent": "VehicleSeatIndicator",
+   "template": "VehicleSeatIndicatorButtonTemplate",
+   "name": "VehicleSeatIndicatorButton%d",
+   "count": 8
   }
  ]
 }

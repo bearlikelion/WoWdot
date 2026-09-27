@@ -1,0 +1,549 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/vehicle_seat_indicator.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="2"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\Vehicles\\VehicleSeats.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(0, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(50, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(50, 10, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_1")
+region = Rect2(24, 0, 25, 25)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6"]
+blend_mode = 1
+
+[node name="VehicleSeatIndicator" type="Control"]
+script = ExtResource("1")
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -88
+offset_top = -15
+offset_right = 40
+offset_bottom = 113
+grow_horizontal = 0
+grow_vertical = 0
+visible = false
+mouse_filter = 2
+
+[node name="VehicleSeatIndicatorBackgroundTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton1" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+ignore_texture_size = true
+
+[node name="VehicleSeatIndicatorButton1BG" type="TextureRect" parent="VehicleSeatIndicatorButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton1PlayerIcon" type="TextureRect" parent="VehicleSeatIndicatorButton1"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton1AllyIcon" type="TextureRect" parent="VehicleSeatIndicatorButton1"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton1PulseTexture" type="TextureRect" parent="VehicleSeatIndicatorButton1"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 0
+offset_right = 24
+offset_bottom = 25
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+self_modulate = Color(0.2, 0.4, 0.8, 1)
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="VehicleSeatIndicatorButton1Highlight" type="TextureRect" parent="VehicleSeatIndicatorButton1"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton2" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 25
+offset_right = 25
+offset_bottom = 50
+ignore_texture_size = true
+
+[node name="VehicleSeatIndicatorButton2BG" type="TextureRect" parent="VehicleSeatIndicatorButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton2PlayerIcon" type="TextureRect" parent="VehicleSeatIndicatorButton2"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton2AllyIcon" type="TextureRect" parent="VehicleSeatIndicatorButton2"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton2PulseTexture" type="TextureRect" parent="VehicleSeatIndicatorButton2"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 0
+offset_right = 24
+offset_bottom = 25
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+self_modulate = Color(0.2, 0.4, 0.8, 1)
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="VehicleSeatIndicatorButton2Highlight" type="TextureRect" parent="VehicleSeatIndicatorButton2"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton3" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 50
+offset_right = 25
+offset_bottom = 75
+ignore_texture_size = true
+
+[node name="VehicleSeatIndicatorButton3BG" type="TextureRect" parent="VehicleSeatIndicatorButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton3PlayerIcon" type="TextureRect" parent="VehicleSeatIndicatorButton3"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton3AllyIcon" type="TextureRect" parent="VehicleSeatIndicatorButton3"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton3PulseTexture" type="TextureRect" parent="VehicleSeatIndicatorButton3"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 0
+offset_right = 24
+offset_bottom = 25
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+self_modulate = Color(0.2, 0.4, 0.8, 1)
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="VehicleSeatIndicatorButton3Highlight" type="TextureRect" parent="VehicleSeatIndicatorButton3"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton4" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 75
+offset_right = 25
+offset_bottom = 100
+ignore_texture_size = true
+
+[node name="VehicleSeatIndicatorButton4BG" type="TextureRect" parent="VehicleSeatIndicatorButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton4PlayerIcon" type="TextureRect" parent="VehicleSeatIndicatorButton4"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton4AllyIcon" type="TextureRect" parent="VehicleSeatIndicatorButton4"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton4PulseTexture" type="TextureRect" parent="VehicleSeatIndicatorButton4"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 0
+offset_right = 24
+offset_bottom = 25
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+self_modulate = Color(0.2, 0.4, 0.8, 1)
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="VehicleSeatIndicatorButton4Highlight" type="TextureRect" parent="VehicleSeatIndicatorButton4"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton5" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 100
+offset_right = 25
+offset_bottom = 125
+ignore_texture_size = true
+
+[node name="VehicleSeatIndicatorButton5BG" type="TextureRect" parent="VehicleSeatIndicatorButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton5PlayerIcon" type="TextureRect" parent="VehicleSeatIndicatorButton5"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton5AllyIcon" type="TextureRect" parent="VehicleSeatIndicatorButton5"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton5PulseTexture" type="TextureRect" parent="VehicleSeatIndicatorButton5"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 0
+offset_right = 24
+offset_bottom = 25
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+self_modulate = Color(0.2, 0.4, 0.8, 1)
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="VehicleSeatIndicatorButton5Highlight" type="TextureRect" parent="VehicleSeatIndicatorButton5"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton6" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 125
+offset_right = 25
+offset_bottom = 150
+ignore_texture_size = true
+
+[node name="VehicleSeatIndicatorButton6BG" type="TextureRect" parent="VehicleSeatIndicatorButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton6PlayerIcon" type="TextureRect" parent="VehicleSeatIndicatorButton6"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton6AllyIcon" type="TextureRect" parent="VehicleSeatIndicatorButton6"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton6PulseTexture" type="TextureRect" parent="VehicleSeatIndicatorButton6"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 0
+offset_right = 24
+offset_bottom = 25
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+self_modulate = Color(0.2, 0.4, 0.8, 1)
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="VehicleSeatIndicatorButton6Highlight" type="TextureRect" parent="VehicleSeatIndicatorButton6"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton7" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 150
+offset_right = 25
+offset_bottom = 175
+ignore_texture_size = true
+
+[node name="VehicleSeatIndicatorButton7BG" type="TextureRect" parent="VehicleSeatIndicatorButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton7PlayerIcon" type="TextureRect" parent="VehicleSeatIndicatorButton7"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton7AllyIcon" type="TextureRect" parent="VehicleSeatIndicatorButton7"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton7PulseTexture" type="TextureRect" parent="VehicleSeatIndicatorButton7"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 0
+offset_right = 24
+offset_bottom = 25
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+self_modulate = Color(0.2, 0.4, 0.8, 1)
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="VehicleSeatIndicatorButton7Highlight" type="TextureRect" parent="VehicleSeatIndicatorButton7"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton8" type="TextureButton" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 175
+offset_right = 25
+offset_bottom = 200
+ignore_texture_size = true
+
+[node name="VehicleSeatIndicatorButton8BG" type="TextureRect" parent="VehicleSeatIndicatorButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 25
+offset_bottom = 25
+mouse_filter = 2
+texture = SubResource("AtlasTexture_2")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton8PlayerIcon" type="TextureRect" parent="VehicleSeatIndicatorButton8"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton8AllyIcon" type="TextureRect" parent="VehicleSeatIndicatorButton8"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_4")
+expand_mode = 1
+
+[node name="VehicleSeatIndicatorButton8PulseTexture" type="TextureRect" parent="VehicleSeatIndicatorButton8"]
+unique_name_in_owner = true
+offset_left = -1
+offset_top = 0
+offset_right = 24
+offset_bottom = 25
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+self_modulate = Color(0.2, 0.4, 0.8, 1)
+material = SubResource("CanvasItemMaterial_6")
+
+[node name="VehicleSeatIndicatorButton8Highlight" type="TextureRect" parent="VehicleSeatIndicatorButton8"]
+unique_name_in_owner = true
+offset_left = 7.5
+offset_top = 7.5
+offset_right = 17.5
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_3")
+expand_mode = 1

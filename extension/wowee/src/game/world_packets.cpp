@@ -888,7 +888,7 @@ bool UpdateObjectParser::parseMovementBlock(network::Packet& packet, UpdateBlock
             block.transportZ = packet.readFloat();
             block.transportO = packet.readFloat();
             /*uint32_t tTime =*/ packet.readUInt32();
-            /*int8_t tSeat =*/ packet.readUInt8();
+            block.transportSeat = static_cast<int8_t>(packet.readUInt8());
 
             LOG_DEBUG("  OnTransport: guid=0x", std::hex, block.transportGuid, std::dec,
                       " offset=(", block.transportX, ", ", block.transportY, ", ", block.transportZ, ")");
@@ -1030,7 +1030,7 @@ bool UpdateObjectParser::parseMovementBlock(network::Packet& packet, UpdateBlock
     // Vehicle
     if (updateFlags & UPDATEFLAG_VEHICLE) {
         if (rem() < 8) return false;
-        /*uint32_t vehicleId =*/ packet.readUInt32();
+        block.vehicleId = packet.readUInt32();
         /*float vehicleOrientation =*/ packet.readFloat();
     }
 

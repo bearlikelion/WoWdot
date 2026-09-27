@@ -680,7 +680,15 @@
     "ID": 0,
     "Flags": 1,
     "LocomotionType": 34,
-    "SeatIndicatorType": 36
+    "SeatIndicatorType": 36,
+    "SeatID0": 6,
+    "SeatID1": 7,
+    "SeatID2": 8,
+    "SeatID3": 9,
+    "SeatID4": 10,
+    "SeatID5": 11,
+    "SeatID6": 12,
+    "SeatID7": 13
   },
   "WorldMapArea": {
     "AreaID": 2,
@@ -759,5 +767,21 @@
     "ID": 0,
     "Flags": 1,
     "Name": 2
+  },
+  "VehicleSeat": {
+    "ID": 0,
+    "Flags": 1,
+    "FlagsB": 45
+  },
+  "VehicleUIIndicator": {
+    "ID": 0,
+    "BackgroundTexture": 1
+  },
+  "VehicleUIIndSeat": {
+    "ID": 0,
+    "VehicleUIIndicatorID": 1,
+    "VirtualSeatIndex": 2,
+    "XPos": 3,
+    "YPos": 4
   }
 }
