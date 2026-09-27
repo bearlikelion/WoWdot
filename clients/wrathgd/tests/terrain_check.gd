@@ -1,7 +1,6 @@
 class_name TerrainCheck
 extends Node
 
-const CHUNKS: int = 256
 # Tiles whose ADT carries MH2O water: Northshire's stream and a Borean Tundra coast.
 const TILES: Array[Dictionary] = [
 	{ "map": "Azeroth", "x": 32, "y": 48 },
@@ -40,10 +39,10 @@ func _check_tile(loader: WowLoader, map_name: String, x: int, y: int) -> void:
 		return
 	var terrain: MeshInstance3D = root.find_child("Terrain", true, false)
 	var liquid: MeshInstance3D = root.find_child("Liquid", true, false)
-	var chunks: int = terrain.mesh.get_surface_count() if terrain != null and terrain.mesh != null else 0
+	var surfaces: int = terrain.mesh.get_surface_count() if terrain != null and terrain.mesh != null else 0
 	var waters: int = liquid.mesh.get_surface_count() if liquid != null and liquid.mesh != null else 0
-	print("%s_%d_%d: %d terrain chunks, %d liquid surfaces" % [map_name, x, y, chunks, waters])
-	_check(chunks == CHUNKS, "%s_%d_%d builds a chunk of terrain for each of the %d" % [map_name, x, y, CHUNKS])
+	print("%s_%d_%d: %d terrain surfaces, %d liquid surfaces" % [map_name, x, y, surfaces, waters])
+	_check(surfaces == 1, "%s_%d_%d draws its terrain as one surface" % [map_name, x, y])
 	_check(waters > 0, "%s_%d_%d builds its MH2O water" % [map_name, x, y])
 	root.free()
 

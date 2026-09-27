@@ -8,7 +8,6 @@ enum LightType { DIRECTIONAL, POINT }
 const STAND_ATTACHMENT: int = 0
 # PlayerModel frames without a scene show the whole character, a little clear of the edges.
 const CHARACTER_FOV: float = 30.0
-const DESIGN_ASPECT: float = 4.0 / 3.0
 const CHARACTER_MARGIN: float = 1.15
 
 @export var model_file: String = "":
@@ -117,6 +116,7 @@ func _load_scene() -> void:
 	_scene = WowAssets.loader.load_m2(model_file)
 	if _scene == null:
 		return
+	_order_batches()
 	_slot.add_child(_scene)
 	# The scene's own sequence drives the sky, the snow and the wyrm's flight past the citadel.
 	var player: AnimationPlayer = _scene.get_node_or_null("AnimationPlayer")
@@ -136,6 +136,19 @@ func _load_scene() -> void:
 	_fit_fov()
 	_camera.look_at_from_position(view["position"], view["target"])
 	_turn_character()
+
+
+# Godot draws equal-priority surfaces of one mesh in any order; the stock client keeps skin order.
+func _order_batches() -> void:
+	for mesh: MeshInstance3D in _scene.find_children("*", "MeshInstance3D", true, false):
+		var count: int = mesh.mesh.get_surface_count()
+		for surface: int in count:
+			var material: BaseMaterial3D = mesh.get_active_material(surface) as BaseMaterial3D
+			if material == null or material.transparency == BaseMaterial3D.TRANSPARENCY_DISABLED:
+				continue
+			var ordered: BaseMaterial3D = material.duplicate()
+			ordered.render_priority = maxi(surface - count, Material.RENDER_PRIORITY_MIN)
+			mesh.set_surface_override_material(surface, ordered)
 
 
 # The scene's authored lights replace the frame's own, as the stock glue screens are lit.
@@ -186,12 +199,12 @@ func _light_scene(lights: Array) -> void:
 	_environment.ambient_light_color = ambient
 
 
-# An M2 camera keeps a diagonal FOV framed for the 4:3 screen; a wider window sees more at the sides.
+# An M2 camera keeps a diagonal FOV; the client divides it down for the frame it draws into.
 func _fit_fov() -> void:
 	if _diagonal_fov <= 0.0:
 		return
-	var diagonal: float = sqrt(1.0 + DESIGN_ASPECT * DESIGN_ASPECT)
-	_camera.fov = rad_to_deg(2.0 * atan(tan(_diagonal_fov / 2.0) / diagonal))
+	var aspect: float = float(_viewport.size.x) / _viewport.size.y
+	_camera.fov = rad_to_deg(_diagonal_fov / sqrt(1.0 + aspect * aspect))
 
 
 func _turn_character() -> void:

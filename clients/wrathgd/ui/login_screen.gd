@@ -3,8 +3,7 @@ extends Control
 
 signal login_requested(realmlist: String, account: String, password: String, remember: bool)
 signal quit_requested
-signal sound_options_requested
-signal video_options_requested
+signal options_requested
 
 # GetBuildInfo: version type, version, build, build type and build date.
 # AccountLogin_OnLoad calls SetModel, so the scene itself names no background.
@@ -35,6 +34,10 @@ func _ready() -> void:
 		background.model_file = GLUE_MODELS.get(String(profile["id"]), "")
 	for unused: CanvasItem in [%AccountLoginCommunityButton, %AccountLoginManageAccountButton]:
 		unused.hide()
+	for unbuilt: WowButton in [
+		%AccountLoginCinematicsButton, %AccountLoginCreditsButton, %AccountLoginTOSButton,
+	]:
+		unbuilt.disabled = true
 	var edits: Array[LineEdit] = [_realmlist, _account, _password]
 	for i: int in edits.size():
 		var backdrop: WowBackdrop = edits[i].get_node("Backdrop")
@@ -44,24 +47,16 @@ func _ready() -> void:
 		edits[i].focus_next = edits[i].get_path_to(edits[(i + 1) % edits.size()])
 	%AccountLoginLoginButton.pressed.connect(log_in)
 	%AccountLoginExitButton.pressed.connect(quit_requested.emit)
-	%AccountLoginSoundOptionsButton.pressed.connect(sound_options_requested.emit)
-	%AccountLoginVideoOptionsButton.pressed.connect(video_options_requested.emit)
+	%OptionsButton.pressed.connect(options_requested.emit)
 	_remember.pressed.connect(func() -> void: _remember.checked = not _remember.checked)
 	_fit_remember.call_deferred()
 	visibility_changed.connect(_on_visibility_changed)
 
 
-# A FontString with no size of its own converts to a label of no width, and the tick anchored to
-# its left edge would land inside the glyphs, so give the label the width its text needs.
+# The converted tick sits at the caption's centre; stock anchors it to the caption's left edge.
 func _fit_remember() -> void:
-	# 1.12 draws the tick's caption from the button itself and has no label of its own.
-	var label: Label = get_node_or_null("%AccountLoginSaveAccountNameText") as Label
-	if label == null or label.size.x >= 1.0:
-		return
-	var width: float = label.get_minimum_size().x
-	label.position.x -= width / 2.0
-	label.size.x = width
-	_remember.global_position.x = label.global_position.x - _remember.size.x
+	var label: Label = %AccountLoginSaveAccountNameText
+	_remember.position.x = label.position.x - _remember.size.x
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -21,6 +21,14 @@ const DEBUFF_SPELL: int = 702
 const LEARN_SPELL: int = 100
 const QUEST: int = 783
 const QUEST_TITLE: String = "A Threat Within"
+const QUEST_GIVER: int = 823
+const ATTACK_SPELL: int = 6603
+# A warrior's Battle Stance bar starts at button 72, and a new one has Attack first.
+const ATTACK_BUTTON: int = 72
+# An action button packs its type into the top byte.
+const ACTION_MASK: int = 0xFFFFFF
+# Hearthstone, a ten second self cast that is long enough to cancel.
+const HEARTH_SPELL: int = 8690
 const DAMAGE: int = 5
 const DUMMY_CREATURE: int = 6
 const GEAR_SET: String = "Wrathset"
@@ -46,6 +54,9 @@ var _walked_from_teleport: Vector3 = Vector3.ZERO
 var _chat: Array[Dictionary] = []
 var _time_syncs: int = 0
 var _cast_failures: Array[int] = []
+var _failed_spells: Array[int] = []
+var _started_spells: Array[int] = []
+var _quest_details: Array[Dictionary] = []
 var _combat: CombatEvents = CombatEvents.new(_session)
 var _gear_sets: EquipmentSets = EquipmentSets.new(_session)
 var _melee: Array[CombatEvents.CombatEvent] = []
@@ -66,6 +77,10 @@ func _ready() -> void:
 	_session.packet_received.connect(_on_packet_received)
 	_session.chat_received.connect(_on_chat_received)
 	_session.spell_cast_failed.connect(_on_spell_cast_failed)
+	_session.spell_cast_started.connect(
+		func(_caster: int, spell_id: int, _msec: int) -> void: _started_spells.append(spell_id)
+	)
+	_session.quest_details_received.connect(_quest_details.append)
 	_combat.logged.connect(_on_combat_logged)
 	_session.object_created.connect(_on_object_created)
 	_session.quest_giver_status_received.connect(func(_guid: int, _status: int) -> void: _quest_givers += 1)
@@ -87,6 +102,7 @@ func _run() -> void:
 	var start: Vector3 = _position
 	print("entered map %d at %v" % [_map, start])
 	await _check_update_fields(guid)
+	await _action_bar()
 	var walked: Vector3 = await _walk()
 	await _jump(walked)
 	_session.send_packet("CMSG_QUESTGIVER_STATUS_MULTIPLE_QUERY", PackedByteArray())
@@ -187,6 +203,8 @@ func _packets() -> void:
 		var info: Dictionary = _session.get_quest_info(QUEST)
 		_check(info["title"] == QUEST_TITLE, "the quest title reads (%s)" % info["title"])
 		_check(info["objective_list"].size() >= 4, "the objectives read")
+	await _quest_dialog()
+	await _cancel_cast()
 	# The server only logs the blow when it lands on someone else, so a temporary kobold takes it.
 	_session.send_chat(WowSession.CHAT_SAY, ".npc add temp %d" % DUMMY_CREATURE)
 	if not await _until(func() -> bool: return _spawned != 0, "a temporary creature spawns"):
@@ -200,6 +218,48 @@ func _packets() -> void:
 				"the struck creature sends its threat list")
 	_session.send_chat(WowSession.CHAT_SAY, ".npc delete")
 	_session.set_selection(0)
+
+
+# The 3.3.5 state byte ahead of the buttons shifts every one of them if left unread.
+func _action_bar() -> void:
+	if await _until(func() -> bool: return _session.get_action_buttons().size() > ATTACK_BUTTON,
+			"the action buttons arrive"):
+		var action: int = _session.get_action_buttons()[ATTACK_BUTTON] & ACTION_MASK
+		_check(action == ATTACK_SPELL, "the stance bar starts with Attack (%d)" % action)
+
+
+# The quest giver needs no range for a query, only to be on the player's map.
+func _quest_dialog() -> void:
+	var giver: int = 0
+	for guid: int in _session.get_object_guids():
+		if _session.get_field(guid, "OBJECT_FIELD_ENTRY") == QUEST_GIVER:
+			giver = guid
+	if not _check(giver != 0, "the quest giver is in view"):
+		return
+	var payload: PackedByteArray = PackedByteArray()
+	payload.resize(13)
+	payload.encode_u64(0, giver)
+	payload.encode_u32(8, QUEST)
+	_session.send_packet("CMSG_QUESTGIVER_QUERY_QUEST", payload)
+	if await _until(func() -> bool: return not _quest_details.is_empty(), "the quest details arrive"):
+		var details: Dictionary = _quest_details[0]
+		_check(details["quest_id"] == QUEST and details["title"] == QUEST_TITLE,
+				"the quest details name the quest (%d, %s)" % [details["quest_id"], details["title"]])
+		_check(not String(details["objectives"]).is_empty(), "the quest details carry objectives")
+
+
+func _cancel_cast() -> void:
+	_session.send_chat(WowSession.CHAT_SAY, ".learn %d" % HEARTH_SPELL)
+	if not await _until(func() -> bool: return HEARTH_SPELL in _session.get_known_spells(),
+			"the hearthstone spell arrives"):
+		return
+	_session.cast_spell(HEARTH_SPELL, 0)
+	if not await _until(func() -> bool: return HEARTH_SPELL in _started_spells,
+			"the hearthstone cast starts"):
+		return
+	_session.cancel_cast(HEARTH_SPELL)
+	await _until(func() -> bool: return HEARTH_SPELL in _failed_spells,
+			"cancelling the cast interrupts it")
 
 
 func _sees_units() -> bool:
@@ -446,8 +506,9 @@ func _on_combat_logged(event: CombatEvents.CombatEvent) -> void:
 		_melee.append(event)
 
 
-func _on_spell_cast_failed(_caster: int, _spell_id: int, reason: int) -> void:
+func _on_spell_cast_failed(_caster: int, spell_id: int, reason: int) -> void:
 	_cast_failures.append(reason)
+	_failed_spells.append(spell_id)
 
 
 func _on_player_teleported(position: Vector3, _orientation: float) -> void:

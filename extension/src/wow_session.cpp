@@ -431,8 +431,10 @@ void WowSession::send_packet(const String &opcode, const PackedByteArray &payloa
 	ERR_FAIL_COND(!world);
 	const auto op = game::OpcodeTable::nameToLogical(opcode.utf8().get_data());
 	ERR_FAIL_COND_MSG(!op, "WowSession: unknown opcode " + opcode);
+	const uint16_t wire = game::wireOpcode(*op);
+	ERR_FAIL_COND_MSG(wire == 0xFFFF, "WowSession: " + opcode + " has no number in this expansion");
 	std::vector<uint8_t> data(payload.ptr(), payload.ptr() + payload.size());
-	world->send(network::Packet(game::wireOpcode(*op), std::move(data)));
+	world->send(network::Packet(wire, std::move(data)));
 }
 
 void WowSession::cast_spell(int spell_id, int64_t target_guid) {
@@ -443,6 +445,10 @@ void WowSession::cast_spell(int spell_id, int64_t target_guid) {
 void WowSession::cancel_cast(int spell_id) {
 	ERR_FAIL_COND(!world);
 	network::Packet packet(game::wireOpcode(game::LogicalOpcode::CMSG_CANCEL_CAST));
+	// 3.3.5 leads with a cast count, which the server skips.
+	if (wow_wotlk()) {
+		packet.writeUInt8(0);
+	}
 	packet.writeUInt32(static_cast<uint32_t>(spell_id));
 	world->send(packet);
 }
@@ -542,6 +548,10 @@ bool WowSession::handle_combat_packet(uint16_t op, network::Packet &packet) {
 		}
 		case LogicalOpcode::SMSG_ACTION_BUTTONS: {
 			action_buttons.resize(0);
+			// 3.3.5 leads with a state byte; state 2 clears the bars and carries no buttons.
+			if (wow_wotlk() && packet.hasRemaining(1)) {
+				packet.readUInt8();
+			}
 			while (packet.hasRemaining(4)) {
 				action_buttons.push_back(static_cast<int32_t>(packet.readUInt32()));
 			}
@@ -1141,14 +1151,29 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 		case LogicalOpcode::SMSG_QUESTGIVER_QUEST_DETAILS: {
 			Dictionary details;
 			details["guid"] = static_cast<int64_t>(packet.readUInt64());
+			if (wow_wotlk()) {
+				packet.readUInt64(); // The player who shared it.
+			}
 			details["quest_id"] = static_cast<int64_t>(packet.readUInt32());
 			details["title"] = read_string(packet);
 			details["text"] = read_string(packet);
 			details["objectives"] = read_string(packet);
-			details["auto_accept"] = packet.readUInt32() != 0;
+			if (wow_wotlk()) {
+				details["auto_accept"] = packet.readUInt8() != 0;
+				packet.readUInt32(); // Quest flags.
+				packet.readUInt32(); // Suggested players.
+				packet.readUInt8();
+			} else {
+				details["auto_accept"] = packet.readUInt32() != 0;
+			}
 			details["choices"] = read_quest_items(packet);
 			details["rewards"] = read_quest_items(packet);
 			details["money"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
+			if (wow_wotlk()) {
+				packet.readUInt32(); // Experience.
+				packet.readUInt32(); // Honor.
+				packet.readFloat();
+			}
 			details["reward_spell"] = static_cast<int64_t>(packet.readUInt32());
 			emit_signal("quest_details_received", details);
 			return true;
@@ -1163,10 +1188,16 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 			packet.readUInt32(); // Emote delay.
 			packet.readUInt32(); // Emote.
 			progress["close_on_cancel"] = packet.readUInt32() != 0;
+			if (wow_wotlk()) {
+				packet.readUInt32(); // Quest flags.
+				packet.readUInt32(); // Suggested players.
+			}
 			progress["money"] = static_cast<int64_t>(packet.readUInt32());
 			progress["items"] = read_quest_items(packet);
-			packet.readUInt32();
-			// The second of four flag words reads 3 once every objective is done.
+			// Four flag words follow; 1.12 sets the second to 3 once every objective is done, 3.3.5 the first.
+			if (!wow_wotlk()) {
+				packet.readUInt32();
+			}
 			progress["completable"] = packet.readUInt32() == COMPLETABLE;
 			emit_signal("quest_progress_received", progress);
 			return true;
@@ -1177,7 +1208,13 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 			reward["quest_id"] = static_cast<int64_t>(packet.readUInt32());
 			reward["title"] = read_string(packet);
 			reward["text"] = read_string(packet);
-			reward["auto_finish"] = packet.readUInt32() != 0;
+			if (wow_wotlk()) {
+				reward["auto_finish"] = packet.readUInt8() != 0;
+				packet.readUInt32(); // Quest flags.
+				packet.readUInt32(); // Suggested players.
+			} else {
+				reward["auto_finish"] = packet.readUInt32() != 0;
+			}
 			const uint32_t emotes = packet.readUInt32();
 			for (uint32_t i = 0; i < emotes * 2 && packet.hasRemaining(4); ++i) {
 				packet.readUInt32();
@@ -1185,6 +1222,11 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 			reward["choices"] = read_quest_items(packet);
 			reward["rewards"] = read_quest_items(packet);
 			reward["money"] = static_cast<int64_t>(static_cast<int32_t>(packet.readUInt32()));
+			if (wow_wotlk()) {
+				packet.readUInt32(); // Experience.
+				packet.readUInt32(); // Honor.
+				packet.readFloat();
+			}
 			reward["flags"] = static_cast<int64_t>(packet.readUInt32());
 			reward["reward_spell"] = static_cast<int64_t>(packet.readUInt32());
 			emit_signal("quest_reward_received", reward);
@@ -1192,7 +1234,9 @@ bool WowSession::handle_npc_packet(uint16_t op, network::Packet &packet) {
 		}
 		case LogicalOpcode::SMSG_QUESTGIVER_QUEST_COMPLETE: {
 			const int64_t quest_id = packet.readUInt32();
-			packet.readUInt32();
+			if (!wow_wotlk()) {
+				packet.readUInt32();
+			}
 			const int64_t xp = packet.readUInt32();
 			const int64_t money = packet.readUInt32();
 			emit_signal("quest_completed", quest_id, xp, money);
@@ -1598,7 +1642,11 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 			return;
 		}
 		case LogicalOpcode::SMSG_TRANSFER_ABORTED: {
-			emit_signal("transfer_aborted", packet.getSize() > 0 ? packet.readUInt8() : 0);
+			// 3.3.5 names the map before the reason.
+			if (wow_wotlk() && packet.hasRemaining(4)) {
+				packet.readUInt32();
+			}
+			emit_signal("transfer_aborted", packet.hasRemaining(1) ? packet.readUInt8() : 0);
 			return;
 		}
 		// A far teleport: the old map's objects go away and the server waits for the worldport ack.
@@ -1912,9 +1960,9 @@ void WowSession::handle_world_packet(network::Packet &packet) {
 		case LogicalOpcode::SMSG_LEVELUP_INFO: {
 			const int level = static_cast<int>(packet.readUInt32());
 			const int health = static_cast<int>(packet.readUInt32());
-			// Five powers, of which mana is the first, then the five stats.
+			// Five powers on 1.12 and seven on 3.3.5, of which mana is the first, then the five stats.
 			const int mana = static_cast<int>(packet.readUInt32());
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < (wow_wotlk() ? 6 : 4); i++) {
 				packet.readUInt32();
 			}
 			PackedInt32Array stats;

@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://ui/glue_dialog.tscn" id="8_dialog"]
 [ext_resource type="PackedScene" path="res://ui/sound_options_frame.tscn" id="9_sound"]
 [ext_resource type="PackedScene" path="res://ui/video_options_frame.tscn" id="10_video"]
+[ext_resource type="PackedScene" path="res://ui/options_select_frame.tscn" id="11_options"]
 
 [node name="Glue" type="Control" unique_id=1283474943]
 layout_mode = 3
@@ -61,6 +62,11 @@ layout_mode = 1
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="OptionsSelectFrame" parent="GlueParent" instance=ExtResource("11_options")]
+unique_name_in_owner = true
+layout_mode = 1
+visible = false
 
 [node name="SoundOptionsFrame" parent="GlueParent" instance=ExtResource("9_sound")]
 unique_name_in_owner = true

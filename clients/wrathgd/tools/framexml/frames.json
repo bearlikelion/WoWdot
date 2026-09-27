@@ -199,6 +199,11 @@
    "script": "res://ui/sound_options_frame.gd"
   },
   {
+   "frame": "OptionsSelectFrame",
+   "out": "ui/options_select_frame.tscn",
+   "script": "res://ui/options_select_frame.gd"
+  },
+  {
    "frame": "VideoOptionsFrame",
    "out": "ui/video_options_frame.tscn",
    "script": "res://ui/video_options_frame.gd"
@@ -572,11 +577,8 @@
  },
  "exclude": [
   "AccountLoginAccountEditFill",
-  "AccountLoginCinematicsButton",
-  "AccountLoginCreditsButton",
   "AccountLoginDropDown",
   "AccountLoginShowLauncher",
-  "AccountLoginTOSButton",
   "AccountLoginTokenEdit",
   "AccountLoginUpgradeAccountButton",
   "BillingWarningFrame",

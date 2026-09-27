@@ -408,16 +408,236 @@ texture = SubResource("AtlasTexture_13")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_14")
 
+[node name="AccountLoginTOSButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -185
+offset_right = -5
+offset_bottom = -147
+ignore_texture_size = true
+
+[node name="AccountLoginRealmName" type="Label" parent="AccountLoginUI/AccountLoginTOSButton"]
+unique_name_in_owner = true
+offset_left = -114
+offset_top = 48
+offset_right = 142
+offset_bottom = 60
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontDisableSmall"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginTOSButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginTOSButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginTOSButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginTOSButtonText" type="Label" parent="AccountLoginUI/AccountLoginTOSButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 10
+offset_right = 75
+offset_bottom = 22
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Terms of Use"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginTOSButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="AccountLoginCreditsButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -221
+offset_right = -5
+offset_bottom = -183
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCreditsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCreditsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCreditsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginCreditsButtonText" type="Label" parent="AccountLoginUI/AccountLoginCreditsButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 10
+offset_right = 75
+offset_bottom = 22
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCreditsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
+[node name="AccountLoginCinematicsButton" type="TextureButton" parent="AccountLoginUI"]
+unique_name_in_owner = true
+script = ExtResource("4")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -257
+offset_right = -5
+offset_bottom = -219
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCinematicsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCinematicsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCinematicsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+
+[node name="AccountLoginCinematicsButtonText" type="Label" parent="AccountLoginUI/AccountLoginCinematicsButton"]
+unique_name_in_owner = true
+offset_left = 75
+offset_top = 10
+offset_right = 75
+offset_bottom = 22
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Cinematics"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginCinematicsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 150
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_13")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_14")
+
 [node name="OptionsButton" type="TextureButton" parent="AccountLoginUI"]
 unique_name_in_owner = true
 script = ExtResource("4")
 layout_mode = 1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -75
-offset_top = -36
-offset_right = 75
-offset_bottom = 2
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -155
+offset_top = -293
+offset_right = -5
+offset_bottom = -255
 ignore_texture_size = true
 
 [node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/OptionsButton"]
@@ -748,139 +968,3 @@ horizontal_alignment = 1
 vertical_alignment = 1
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="AccountLoginSoundOptionsButton" type="TextureButton" parent="AccountLoginUI"]
-unique_name_in_owner = true
-script = ExtResource("4")
-layout_mode = 1
-anchor_left = 1
-anchor_top = 1
-anchor_right = 1
-anchor_bottom = 1
-offset_left = -155
-offset_top = -103
-offset_right = -5
-offset_bottom = -65
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 150
-offset_bottom = 38
-mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 150
-offset_bottom = 38
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_9")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 150
-offset_bottom = 38
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
-expand_mode = 1
-
-[node name="AccountLoginSoundOptionsButtonText" type="Label" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
-unique_name_in_owner = true
-offset_left = 75
-offset_top = 10
-offset_right = 75
-offset_bottom = 22
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GlueFontNormalSmall"
-text = "Sound & Voice"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginSoundOptionsButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 150
-offset_bottom = 38
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_14")
-
-[node name="AccountLoginVideoOptionsButton" type="TextureButton" parent="AccountLoginUI"]
-unique_name_in_owner = true
-script = ExtResource("4")
-layout_mode = 1
-anchor_left = 1
-anchor_top = 1
-anchor_right = 1
-anchor_bottom = 1
-offset_left = -155
-offset_top = -139
-offset_right = -5
-offset_bottom = -101
-ignore_texture_size = true
-
-[node name="NormalTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 150
-offset_bottom = 38
-mouse_filter = 2
-texture = SubResource("AtlasTexture_7")
-expand_mode = 1
-
-[node name="PushedTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 150
-offset_bottom = 38
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_9")
-expand_mode = 1
-
-[node name="DisabledTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 150
-offset_bottom = 38
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_11")
-expand_mode = 1
-
-[node name="AccountLoginVideoOptionsButtonText" type="Label" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
-unique_name_in_owner = true
-offset_left = 75
-offset_top = 10
-offset_right = 75
-offset_bottom = 22
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GlueFontNormalSmall"
-text = "Video"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HighlightTexture" type="TextureRect" parent="AccountLoginUI/AccountLoginVideoOptionsButton"]
-offset_left = 0
-offset_top = 0
-offset_right = 150
-offset_bottom = 38
-visible = false
-mouse_filter = 2
-texture = SubResource("AtlasTexture_13")
-expand_mode = 1
-material = SubResource("CanvasItemMaterial_14")

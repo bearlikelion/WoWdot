@@ -58,7 +58,10 @@ var _created_name: String = ""
 @onready var _loading: LoadingScreen = %LoadingScreen
 @onready var _realm_list: RealmList = %RealmList
 @onready var _dialog: GlueDialog = %GlueDialog
-@onready var _options: Array[Control] = [%SoundOptionsFrame, %VideoOptionsFrame]
+# Topmost first, so Escape closes a panel before the menu it was opened from.
+@onready var _options: Array[Control] = [
+	%SoundOptionsFrame, %VideoOptionsFrame, %OptionsSelectFrame,
+]
 
 
 func _ready() -> void:
@@ -70,8 +73,9 @@ func _ready() -> void:
 	_login.fill(_saved_realmlist(), _settings.get_value(SETTINGS_SECTION, "account", ""))
 	_login.login_requested.connect(_on_login_requested)
 	_login.quit_requested.connect(get_tree().quit)
-	_login.sound_options_requested.connect(_show_options.bind(%SoundOptionsFrame))
-	_login.video_options_requested.connect(_show_options.bind(%VideoOptionsFrame))
+	_login.options_requested.connect(_show_options.bind(%OptionsSelectFrame))
+	%OptionsSelectFrame.sound_options_requested.connect(_show_options.bind(%SoundOptionsFrame))
+	%OptionsSelectFrame.video_options_requested.connect(_show_options.bind(%VideoOptionsFrame))
 	for options: Control in _options:
 		options.close_requested.connect(_hide_options.bind(options))
 	_realm_list.realm_chosen.connect(_join_realm)
@@ -159,7 +163,7 @@ func _show_options(options: Control) -> void:
 
 func _hide_options(options: Control) -> void:
 	options.hide()
-	_login.set_covered(false)
+	_login.set_covered(_options.any(func(open: Control) -> bool: return open.visible))
 
 
 func _status(key: String) -> void:

@@ -1,0 +1,376 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/options_select_frame.gd" id="1"]
+[ext_resource type="Script" path="res://ui/wow/wow_backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://ui/wow/wow_button.gd" id="3"]
+
+[sub_resource type="WowTexture" id="WowTexture_1"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Background.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_2"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Border.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_3"]
+file = "Interface\\DialogFrame\\UI-DialogBox-Header.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_4"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Up-Blue.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = SubResource("WowTexture_4")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_6"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Down-Blue.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7"]
+atlas = SubResource("WowTexture_6")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_8"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Disabled.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_9"]
+atlas = SubResource("WowTexture_8")
+region = Rect2(0, 0, 148, 48)
+
+[sub_resource type="WowTexture" id="WowTexture_10"]
+file = "Interface\\Glues\\Common\\Glue-Panel-Button-Highlight-Blue.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11"]
+atlas = SubResource("WowTexture_10")
+region = Rect2(0, 0, 160, 44)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_12"]
+blend_mode = 1
+
+[node name="OptionsSelectFrame" type="Control"]
+script = ExtResource("1")
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+mouse_filter = 0
+
+[node name="Texture" type="ColorRect" parent="."]
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 0
+offset_top = 0
+offset_right = 0
+offset_bottom = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="OptionsSelectFrameBackground" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180
+offset_top = -72.5
+offset_right = 180
+offset_bottom = 112.5
+mouse_filter = 2
+
+[node name="Backdrop" type="Control" parent="OptionsSelectFrameBackground"]
+script = ExtResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+background = SubResource("WowTexture_1")
+edge = SubResource("WowTexture_2")
+tile = true
+tile_size = 32
+edge_size = 32
+insets = Vector4(11, 12, 12, 11)
+
+[node name="OptionsSelectFrameBackgroundHeader" type="TextureRect" parent="OptionsSelectFrameBackground"]
+unique_name_in_owner = true
+offset_left = 30
+offset_top = -12
+offset_right = 330
+offset_bottom = 56
+mouse_filter = 2
+texture = SubResource("WowTexture_3")
+expand_mode = 1
+
+[node name="OptionsSelectFrameBackgroundHeaderText" type="Label" parent="OptionsSelectFrameBackground"]
+unique_name_in_owner = true
+offset_left = 180
+offset_top = 2
+offset_right = 180
+offset_bottom = 17
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsSelectFrameBackgroundContainer" type="Control" parent="OptionsSelectFrameBackground"]
+unique_name_in_owner = true
+offset_left = 12
+offset_top = 36
+offset_right = 344
+offset_bottom = 135
+mouse_filter = 2
+
+[node name="OptionsSelectFrameBackgroundContainerVideoOptionsButton" type="TextureButton" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 56
+offset_top = 10
+offset_right = 276
+offset_bottom = 55
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="OptionsSelectFrameBackgroundContainerVideoOptionsButtonText" type="Label" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerVideoOptionsButton"]
+unique_name_in_owner = true
+offset_left = 110
+offset_top = 12
+offset_right = 110
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Video"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerVideoOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="OptionsSelectFrameBackgroundContainerAudioOptionsButton" type="TextureButton" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 56
+offset_top = 45
+offset_right = 276
+offset_bottom = 90
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerAudioOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerAudioOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerAudioOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="OptionsSelectFrameBackgroundContainerAudioOptionsButtonText" type="Label" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerAudioOptionsButton"]
+unique_name_in_owner = true
+offset_left = 110
+offset_top = 12
+offset_right = 110
+offset_bottom = 27
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormal"
+text = "Sound & Voice"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundContainer/OptionsSelectFrameBackgroundContainerAudioOptionsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 45
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="OptionsSelectResetSettingsButton" type="TextureButton" parent="OptionsSelectFrameBackground"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 8
+offset_top = 141
+offset_right = 228
+offset_bottom = 179
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectResetSettingsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectResetSettingsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectResetSettingsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="OptionsSelectResetSettingsButtonText" type="Label" parent="OptionsSelectFrameBackground/OptionsSelectResetSettingsButton"]
+unique_name_in_owner = true
+offset_left = 110
+offset_top = 10
+offset_right = 110
+offset_bottom = 22
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Reset User Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectResetSettingsButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 220
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
+
+[node name="OptionsSelectFrameBackgroundOkayButton" type="TextureButton" parent="OptionsSelectFrameBackground"]
+unique_name_in_owner = true
+script = ExtResource("3")
+offset_left = 227
+offset_top = 141
+offset_right = 352
+offset_bottom = 179
+ignore_texture_size = true
+
+[node name="NormalTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 38
+mouse_filter = 2
+texture = SubResource("AtlasTexture_5")
+expand_mode = 1
+
+[node name="PushedTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_7")
+expand_mode = 1
+
+[node name="DisabledTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_9")
+expand_mode = 1
+
+[node name="OptionsSelectFrameBackgroundOkayButtonText" type="Label" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundOkayButton"]
+unique_name_in_owner = true
+offset_left = 62.5
+offset_top = 10
+offset_right = 62.5
+offset_bottom = 22
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GlueFontNormalSmall"
+text = "Close"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="OptionsSelectFrameBackground/OptionsSelectFrameBackgroundOkayButton"]
+offset_left = 0
+offset_top = 0
+offset_right = 125
+offset_bottom = 38
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_11")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_12")
