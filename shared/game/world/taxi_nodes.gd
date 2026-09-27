@@ -107,14 +107,19 @@ static func path_route(path_id: int) -> Dictionary:
 			_path_nodes.get_float(row, "X"),
 			_path_nodes.get_float(row, "Y"),
 			_path_nodes.get_float(row, "Z"),
-		)), _path_nodes.get_uint(row, "MapID")])
+		)), _path_nodes.get_uint(row, "MapID"), _path_nodes.get_uint(row, "Flags"),
+			_path_nodes.get_uint(row, "Delay")])
 	ordered.sort_custom(func(a: Array, b: Array) -> bool: return a[0] < b[0])
 	var points: PackedVector3Array = []
 	var maps: PackedInt32Array = []
+	var flags: PackedInt32Array = []
+	var delays: PackedInt32Array = []
 	for entry: Array in ordered:
 		points.append(entry[1])
 		maps.append(entry[2])
-	return {"points": points, "maps": maps}
+		flags.append(entry[3])
+		delays.append(entry[4])
+	return {"points": points, "maps": maps, "flags": flags, "delays": delays}
 
 
 # A lift's keyframes as seconds and model-space offsets, keyed by the game object entry.

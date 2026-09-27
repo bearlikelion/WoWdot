@@ -13,6 +13,10 @@ const HEROIC_FLAG: Rect2 = Rect2(0.0, 0.0703125, 0.25, 0.34375)
 const NORMAL_FLAG: Rect2 = Rect2(0.0, 0.5703125, 0.25, 0.34375)
 const HEROIC_TEXT_Y: float = -9.0
 const NORMAL_TEXT_Y: float = 5.0
+# INVITE_PULSE_SEC: the pending-invite glow fades out and back over two seconds.
+const INVITE_FADE_SECONDS: float = 1.0
+
+var _invite_pulse: Tween
 
 @onready var _view: MinimapView = %Minimap
 @onready var _zone_text: Label = %MinimapZoneText
@@ -32,6 +36,8 @@ func _ready() -> void:
 	indicator.atlas = _game_time.texture
 	_game_time.texture = indicator
 	%GameTimeFrame.pressed.connect(calendar_toggled.emit)
+	WowClient.calendar.pending_changed.connect(_on_pending_changed)
+	_on_pending_changed(0)
 	LFGArt.eye(%MiniMapLFGFrameIconTexture)
 	%MiniMapLFGFrameDropDown.hide()
 	%MiniMapLFGFrame.pressed.connect(lfd_toggled.emit)
@@ -124,3 +130,22 @@ func _update_difficulty() -> void:
 	text.text = str(players)
 	text.position.y = %MiniMapInstanceDifficulty.size.y / 2.0 - text.size.y / 2.0 \
 			- (HEROIC_TEXT_Y if heroic else NORMAL_TEXT_Y)
+
+
+# GameTimeFrame_OnEvent: waiting invites light the clock, which pulses until they are answered.
+func _on_pending_changed(count: int) -> void:
+	var parts: Array[CanvasItem] = [%GameTimeCalendarInvitesTexture, %GameTimeCalendarInvitesGlow]
+	for part: CanvasItem in parts:
+		part.visible = count > 0
+		part.modulate.a = 1.0
+	if _invite_pulse:
+		_invite_pulse.kill()
+		_invite_pulse = null
+	if count == 0:
+		return
+	var fade: Callable = func(alpha: float) -> void:
+		for part: CanvasItem in parts:
+			part.modulate.a = alpha
+	_invite_pulse = create_tween().set_loops().set_trans(Tween.TRANS_SINE)
+	_invite_pulse.tween_method(fade, 1.0, 0.0, INVITE_FADE_SECONDS)
+	_invite_pulse.tween_method(fade, 0.0, 1.0, INVITE_FADE_SECONDS)

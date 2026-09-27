@@ -34,6 +34,12 @@ const ACHIEVEMENT: int = 1017
 const TITLE: int = 1
 const TITLE_BIT: int = 1
 const TITLE_NAME: String = "Private"
+const BADGE_OF_JUSTICE: int = 29434
+const BADGES: int = 3
+const HONOR: int = 10
+# The server's float timetable drifts from ours by ms a lap, or seconds over a day's uptime.
+const TRANSPORT_SYNC_MSEC: int = 10000
+const TRANSPORT_SYNC_DEGREES: float = 20.0
 const GEAR_SET: String = "Gluecheck"
 const GLYPH: int = 43397
 const GLYPH_LEVEL: int = 15
@@ -132,6 +138,7 @@ func _run() -> void:
 	await _gear_manager()
 	await _dungeon_finder()
 	await _achievements()
+	await _currencies()
 	await _arena_team()
 	await _guild_bank()
 	await _barbershop()
@@ -141,7 +148,7 @@ func _run() -> void:
 	# The drive needs open ground ahead, which wherever the last run left the character may lack.
 	if await _teleport("Wintergrasp", NORTHREND):
 		await _vehicle()
-		await _teleport("CampNarache", KALIMDOR)
+		await _transport_sync()
 	await _server_notices()
 	await _channel_pane()
 	await _macro_account_data()
@@ -754,6 +761,85 @@ func _achievements() -> void:
 	await _frames(30)
 	_capture("user://wotlk_achievements_category.png")
 	frame.close_requested.emit()
+
+
+# Kalimdor's transports arrive as the map loads; each create block's path time must agree with it.
+func _transport_sync() -> void:
+	var session: WowSession = WowClient.session
+	var transports: Transports = get_tree().root.find_child("Transports", true, false)
+	var created: Dictionary[int, int] = {}
+	var checked: Array[int] = []
+	var on_created: Callable = func(guid: int, _type_id: int) -> void:
+		created[guid] = session.get_object_path_time(guid)
+	var on_registered: Callable = func(guid: int, entry: int) -> void:
+		var data: PackedInt32Array = session.get_game_object_info(entry).get("data", [])
+		var path: TransportPath = TransportPath.build(
+			TaxiNodes.path_route(data[Transports.Data.PATH]),
+			data[Transports.Data.SPEED], data[Transports.Data.ACCEL],
+		)
+		var at: Vector3 = WowCoords.to_godot(session.get_object_position(guid))
+		var orientation: float = session.get_object_orientation(guid)
+		var msec: int = created.get(guid, session.get_object_path_time(guid))
+		var shift: int = path.sync_shift(msec, at, orientation)
+		var place: Dictionary = path.locate(msec + shift)
+		var turn: float = 0.0
+		if place["toward"] != Vector3.ZERO:
+			turn = absf(angle_difference(TransportPath.heading(place["toward"]), orientation))
+		print("transport %d: path time off by %d ms, %.1f yd, heading off %.0f degrees" % [
+			entry, shift, (place["at"] as Vector3).distance_to(at), rad_to_deg(turn),
+		])
+		_check(absi(shift) < TRANSPORT_SYNC_MSEC and rad_to_deg(turn) < TRANSPORT_SYNC_DEGREES,
+				"transport %d sails the timetable its path time names" % entry)
+		checked.append(entry)
+	session.object_created.connect(on_created)
+	transports.route_registered.connect(on_registered)
+	if await _teleport("CampNarache", KALIMDOR):
+		await _until(func() -> bool: return not checked.is_empty(),
+				"a Kalimdor transport registers")
+	transports.route_registered.disconnect(on_registered)
+	session.object_created.disconnect(on_created)
+
+
+# Badges of Justice fill a currency token slot and honor points a player field; the tab lists both.
+func _currencies() -> void:
+	var session: WowSession = WowClient.session
+	var me: int = session.get_player_guid()
+	session.send_chat(WowSession.CHAT_SAY, ".additem %d %d" % [BADGE_OF_JUSTICE, BADGES])
+	# .modify honor applies to the selected player, so an NPC left targeted would refuse it.
+	session.set_selection(0)
+	session.send_chat(WowSession.CHAT_SAY, ".modify honor %d" % HONOR)
+	var character: CharacterFrame = get_tree().root.find_child("CharacterFrame", true, false)
+	var tokens: TokenFrame = character.get_node("%TokenFrame")
+	var badge: String = ""
+	var listed: Callable = func() -> bool:
+		badge = str(session.get_item_info(BADGE_OF_JUSTICE).get("name", ""))
+		return tokens.has_currencies() and not badge.is_empty() \
+				and session.get_field(me, "PLAYER_FIELD_HONOR_CURRENCY") > 0 \
+				and not session.get_item_info(TokenFrame.HONOR_POINTS_ITEM).is_empty()
+	if not await _until(listed, "the granted currencies are known"):
+		return
+	# The gear manager step leaves the character frame open.
+	if not character.is_visible_in_tree():
+		var press: InputEventAction = InputEventAction.new()
+		press.action = "toggle_character"
+		press.pressed = true
+		Input.parse_input_event(press)
+	await _frames(30)
+	_check((character.get_node("%CharacterFrameTab5") as CanvasItem).visible,
+			"the currency tab shows once a currency is known")
+	character.show_tab(CharacterFrame.Tab.CURRENCY)
+	await _frames(30)
+	var counts: Dictionary[String, String] = {}
+	for i: int in TokenFrame.BUTTONS:
+		var prefix: String = "%%TokenFrameContainerButton%d" % (i + 1)
+		counts[(tokens.get_node(prefix + "Name") as Label).text] = \
+				(tokens.get_node(prefix + "Count") as Label).text
+	_check(int(counts.get(badge, "0")) >= BADGES, "the currency tab counts the badges")
+	var honor: String = WowStrings.get_text("HONOR_POINTS")
+	_check(counts.has(honor), "the currency tab lists honor points (%s)" % ", ".join(counts.keys()))
+	_capture("user://wotlk_currency.png")
+	character.close_requested.emit()
+	session.send_chat(WowSession.CHAT_SAY, ".additem %d -%d" % [BADGE_OF_JUSTICE, BADGES])
 
 
 # A one-player queue through the LFD frame: a proposal, the teleport in, and back out.

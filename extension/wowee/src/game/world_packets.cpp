@@ -1003,6 +1003,18 @@ bool UpdateObjectParser::parseMovementBlock(network::Packet& packet, UpdateBlock
         LOG_DEBUG("  STATIONARY: (", block.x, ", ", block.y, ", ", block.z, "), o=", block.orientation);
     }
 
+    // Low GUID, which the server writes before the target and the transport time
+    if (updateFlags & UPDATEFLAG_LOWGUID) {
+        if (rem() < 4) return false;
+        /*uint32_t lowGuid =*/ packet.readUInt32();
+    }
+
+    // High GUID
+    if (updateFlags & UPDATEFLAG_HIGHGUID) {
+        if (rem() < 4) return false;
+        /*uint32_t highGuid =*/ packet.readUInt32();
+    }
+
     // Target GUID (for units with target)
     if (updateFlags & UPDATEFLAG_HAS_TARGET) {
         if (rem() < 1) return false;
@@ -1012,7 +1024,7 @@ bool UpdateObjectParser::parseMovementBlock(network::Packet& packet, UpdateBlock
     // Transport time
     if (updateFlags & UPDATEFLAG_TRANSPORT) {
         if (rem() < 4) return false;
-        /*uint32_t transportTime =*/ packet.readUInt32();
+        block.transportTime = packet.readUInt32();
     }
 
     // Vehicle
@@ -1026,18 +1038,6 @@ bool UpdateObjectParser::parseMovementBlock(network::Packet& packet, UpdateBlock
     if (updateFlags & UPDATEFLAG_ROTATION) {
         if (rem() < 8) return false;
         /*int64_t rotation =*/ packet.readUInt64();
-    }
-
-    // Low GUID
-    if (updateFlags & UPDATEFLAG_LOWGUID) {
-        if (rem() < 4) return false;
-        /*uint32_t lowGuid =*/ packet.readUInt32();
-    }
-
-    // High GUID
-    if (updateFlags & UPDATEFLAG_HIGHGUID) {
-        if (rem() < 4) return false;
-        /*uint32_t highGuid =*/ packet.readUInt32();
     }
 
     return true;

@@ -508,6 +508,8 @@ struct UpdateBlock {
     // Transport data from LIVING movement block (MOVEMENTFLAG_ONTRANSPORT)
     bool onTransport = false;
     uint64_t transportGuid = 0;
+    // A transport's own path progress in milliseconds (UPDATEFLAG_TRANSPORT).
+    uint32_t transportTime = 0;
     float transportX = 0.0f, transportY = 0.0f, transportZ = 0.0f, transportO = 0.0f;
 
     // Field data (for VALUES and CREATE updates) — sorted flat vector instead of

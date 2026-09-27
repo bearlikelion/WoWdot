@@ -2042,6 +2042,8 @@ void WowSession::handle_update(game::UpdateObjectData &data) {
 			object.transport_offset = wow_vector(block.transportX, block.transportY, block.transportZ);
 			object.transport_orientation = block.transportO;
 			object.move_flags = move_flags_from_wire(block.moveFlags);
+			object.path_time = block.transportTime;
+			object.path_time_at = Time::get_singleton()->get_ticks_msec();
 			if (block.runSpeed > 0.0f) {
 				object.speeds = { block.walkSpeed, block.runSpeed, block.runBackSpeed, block.swimSpeed, block.swimBackSpeed, block.turnRate, block.flightSpeed, block.flightBackSpeed };
 			}
@@ -2297,6 +2299,15 @@ int64_t WowSession::get_object_move_flags(int64_t guid) const {
 	return object ? object->move_flags : 0;
 }
 
+// A transport's server path progress in milliseconds, run on from when the create block carried it.
+int64_t WowSession::get_object_path_time(int64_t guid) const {
+	const WorldObject *object = find(guid);
+	if (!object) {
+		return 0;
+	}
+	return object->path_time + static_cast<int64_t>(Time::get_singleton()->get_ticks_msec() - object->path_time_at);
+}
+
 // Empty for an object standing on the ground.
 Dictionary WowSession::get_object_transport(int64_t guid) const {
 	const WorldObject *object = find(guid);
@@ -2426,6 +2437,7 @@ void WowSession::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("get_object_position", "guid"), &WowSession::get_object_position);
 	ClassDB::bind_method(D_METHOD("get_object_orientation", "guid"), &WowSession::get_object_orientation);
 	ClassDB::bind_method(D_METHOD("get_object_move_flags", "guid"), &WowSession::get_object_move_flags);
+	ClassDB::bind_method(D_METHOD("get_object_path_time", "guid"), &WowSession::get_object_path_time);
 	ClassDB::bind_method(D_METHOD("get_object_transport", "guid"), &WowSession::get_object_transport);
 	ClassDB::bind_method(D_METHOD("get_object_speeds", "guid"), &WowSession::get_object_speeds);
 	ClassDB::bind_method(D_METHOD("get_field", "guid", "field"), &WowSession::get_field);

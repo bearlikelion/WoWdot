@@ -559,7 +559,7 @@
   "InspectTalentFrame": "res://ui/inspect_talent_frame.gd",
   "ChannelFrame": "res://ui/channel_frame.gd",
   "SkillFrame": "res://ui/skill_frame.gd",
-  "HonorFrame": "res://ui/honor_frame.gd",
+  "TokenFrame": "res://ui/token_frame.gd",
   "RaidFrame": "res://ui/raid_frame.gd",
   "WhoFrame": "res://ui/who_frame.gd",
   "ReputationFrame": "res://ui/reputation_frame.gd",
@@ -587,6 +587,7 @@
   "CharacterSelectAddonsButton",
   "ConnectionHelpFrame",
   "GameRoomBillingFrame",
+  "HonorFrame",
   "KoreanRatings",
   "ServerAlertFrame",
   "SurveyNotificationFrame",
@@ -685,6 +686,18 @@
    "size": [483, 48]
   },
   {
+   "parent": "CalendarViewEventInviteListScrollFrameScrollChild",
+   "template": "CalendarViewEventInviteListButtonTemplate",
+   "name": "CalendarViewEventInviteListScrollFrameButton%d",
+   "count": 20
+  },
+  {
+   "parent": "CalendarCreateEventInviteListScrollFrameScrollChild",
+   "template": "CalendarCreateEventInviteListButtonTemplate",
+   "name": "CalendarCreateEventInviteListScrollFrameButton%d",
+   "count": 20
+  },
+  {
    "parent": "CalendarFrame",
    "template": "CalendarDayButtonTemplate",
    "name": "CalendarDayButton%d",
@@ -709,6 +722,14 @@
    "columns": 5,
    "offset": [24, -85],
    "gap": [10, 8]
+  },
+  {
+   "parent": "TokenFrameContainerScrollChild",
+   "template": "TokenButtonTemplate",
+   "name": "TokenFrameContainerButton%d",
+   "count": 16,
+   "offset": [0, -2],
+   "gap": [0, 3]
   }
  ]
 }

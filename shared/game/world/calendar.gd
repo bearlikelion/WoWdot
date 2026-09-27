@@ -4,6 +4,9 @@ extends RefCounted
 signal changed
 signal event_received(event: Dictionary)
 signal pending_changed(count: int)
+# An event's invites or details changed on the server, so an open event wants reading again.
+signal event_updated
+signal command_failed(text: String)
 
 enum Rsvp {
 	INVITED, ACCEPTED, DECLINED, CONFIRMED, OUT, STANDBY, SIGNED_UP, NOT_SIGNED_UP, TENTATIVE,
@@ -12,6 +15,25 @@ enum Rsvp {
 enum EventType { RAID, DUNGEON, PVP, MEETING, OTHER }
 enum Rank { PLAYER, MODERATOR, OWNER }
 
+# CalendarError codes against the strings the stock client shows for them.
+const ERROR_KEYS: Dictionary[int, String] = {
+	1: "CALENDAR_ERROR_GUILD_EVENTS_EXCEEDED", 2: "CALENDAR_ERROR_EVENTS_EXCEEDED",
+	3: "CALENDAR_ERROR_SELF_INVITES_EXCEEDED", 4: "CALENDAR_ERROR_OTHER_INVITES_EXCEEDED",
+	5: "CALENDAR_ERROR_PERMISSIONS", 6: "CALENDAR_ERROR_EVENT_INVALID",
+	7: "CALENDAR_ERROR_NOT_INVITED", 8: "CALENDAR_ERROR_INTERNAL",
+	9: "ERR_GUILD_PLAYER_NOT_IN_GUILD", 10: "CALENDAR_ERROR_ALREADY_INVITED_TO_EVENT_S",
+	11: "ERR_LOOT_PLAYER_NOT_FOUND", 12: "CALENDAR_ERROR_NOT_ALLIED",
+	13: "CALENDAR_ERROR_IGNORED", 14: "CALENDAR_ERROR_INVITES_EXCEEDED",
+	16: "CALENDAR_ERROR_INVALID_DATE", 17: "CALENDAR_ERROR_INVALID_TIME",
+	19: "CALENDAR_ERROR_NEEDS_TITLE", 20: "CALENDAR_ERROR_EVENT_PASSED",
+	21: "CALENDAR_ERROR_EVENT_LOCKED", 22: "CALENDAR_ERROR_DELETE_CREATOR_FAILED",
+	24: "ERR_SYSTEM_DISABLED", 25: "ERR_RESTRICTED_ACCOUNT",
+	26: "CALENDAR_ERROR_ARENA_EVENTS_EXCEEDED", 27: "CALENDAR_ERROR_RESTRICTED_LEVEL",
+	28: "ERR_USER_SQUELCHED", 29: "CALENDAR_ERROR_NO_INVITE",
+	36: "CALENDAR_ERROR_EVENT_WRONG_SERVER", 37: "CALENDAR_ERROR_INVITE_WRONG_SERVER",
+	38: "CALENDAR_ERROR_NO_GUILD_INVITES", 39: "CALENDAR_ERROR_INVALID_SIGNUP",
+	40: "CALENDAR_ERROR_NO_MODERATOR",
+}
 const MAX_INVITES: int = 100
 const NO_DUNGEON: int = -1
 const HOLIDAY_DATES: int = 26
@@ -37,6 +59,7 @@ var _session: WowSession
 func _init(session: WowSession) -> void:
 	_session = session
 	session.packet_received.connect(_on_packet_received)
+	session.state_changed.connect(_on_state_changed)
 
 
 # AppendPackedTime's bit fields as a Time dictionary; the year is -1 when it repeats yearly.
@@ -93,6 +116,33 @@ func add_event(title: String, description: String, type: EventType, date: Dictio
 	_session.send_packet("CMSG_CALENDAR_ADD_EVENT", buffer.data_array)
 
 
+# CMSG_CALENDAR_UPDATE_EVENT: the event and the owner's invite, then the fields as when added.
+func update_event(
+	event_id: int, invite_id: int, title: String, description: String, type: EventType,
+	date: Dictionary,
+) -> void:
+	var packed: int = pack_time(date)
+	var buffer: StreamPeerBuffer = StreamPeerBuffer.new()
+	buffer.put_u64(event_id)
+	buffer.put_u64(invite_id)
+	buffer.put_data(title.to_utf8_buffer())
+	buffer.put_u8(0)
+	buffer.put_data(description.to_utf8_buffer())
+	buffer.put_u8(0)
+	buffer.put_u8(type)
+	buffer.put_u8(0)
+	buffer.put_u32(MAX_INVITES)
+	buffer.put_32(NO_DUNGEON)
+	buffer.put_u32(packed)
+	buffer.put_u32(packed)
+	buffer.put_u32(0)
+	_session.send_packet("CMSG_CALENDAR_UPDATE_EVENT", buffer.data_array)
+
+
+func request_pending() -> void:
+	_session.send_packet("CMSG_CALENDAR_GET_NUM_PENDING", PackedByteArray())
+
+
 func remove_event(event_id: int) -> void:
 	var payload: PackedByteArray = []
 	payload.resize(20)
@@ -127,8 +177,31 @@ func _on_packet_received(opcode: String, payload: PackedByteArray) -> void:
 	elif opcode == "SMSG_CALENDAR_SEND_NUM_PENDING":
 		pending = payload.decode_u32(0)
 		pending_changed.emit(pending)
-	elif opcode.begins_with("SMSG_CALENDAR_EVENT_") or opcode == "SMSG_CALENDAR_COMMAND_RESULT":
+	elif opcode == "SMSG_CALENDAR_COMMAND_RESULT":
+		_read_result(PacketReader.new(payload))
+	elif opcode.begins_with("SMSG_CALENDAR_EVENT_"):
 		request()
+		request_pending()
+		event_updated.emit()
+
+
+# SMSG_CALENDAR_COMMAND_RESULT: a player's name, empty unless the error names one, then the code.
+func _read_result(reader: PacketReader) -> void:
+	reader.u32()
+	reader.u8()
+	var param: String = reader.cstring()
+	var error: int = reader.u32()
+	request()
+	if error == 0:
+		return
+	var key: String = ERROR_KEYS.get(error, "CALENDAR_ERROR_INTERNAL")
+	command_failed.emit(WowStrings.format(WowStrings.get_text(key), [param]))
+
+
+# The stock client asks how many invites wait once it is in the world.
+func _on_state_changed(state: int, _message: String) -> void:
+	if state == WowSession.STATE_IN_WORLD and PacketReader.wotlk:
+		request_pending()
 
 
 func _read_calendar(reader: PacketReader) -> void:

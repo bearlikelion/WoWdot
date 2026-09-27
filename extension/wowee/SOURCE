@@ -8,3 +8,4 @@ include/auth/big_num.hpp, src/auth/big_num.cpp, src/auth/crypto.cpp: OpenSSL rep
 src/pipeline/m2_loader.cpp: vanilla ribbon emitters parse, and the WotLK record size is 0xB0.
 src/game/packet_parsers_classic.cpp: the GameObject query reads the icon 1.12.1 writes before data[].
 src/pipeline/m2_loader.cpp, include/pipeline/m2_loader.hpp: WotLK texture combiner combos read after the header when global flag 0x08 is set.
+src/game/world_packets.cpp, include/game/world_packets.hpp: the WotLK update block keeps its UPDATEFLAG_TRANSPORT path time and reads the 0x08 and 0x10 words before it, where AzerothCore writes them.

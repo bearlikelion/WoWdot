@@ -6,8 +6,8 @@ signal route_registered(guid: int, entry: int)
 # GameObject type 15 sails a taxi path; type 11 is a lift running a TransportAnimation loop.
 const TYPE_TRANSPORT: int = 11
 const TYPE_MO_TRANSPORT: int = 15
-# Type 15's type data: the taxi path it runs and how fast it goes along it.
-enum Data { PATH, SPEED }
+# Type 15's type data: the taxi path it runs, its top speed and how fast it gets there.
+enum Data { PATH, SPEED, ACCEL }
 
 ## The map the transports sail on; changing it drops the routes of the map just left.
 var map_id: int = -1:
@@ -16,6 +16,7 @@ var map_id: int = -1:
 		_routes.clear()
 		_lifts.clear()
 		_pending.clear()
+		_created_at.clear()
 
 var _entities: Entities
 # Per transport guid: {"points", "maps", "lengths", "speed", "period", "phase"}
@@ -23,6 +24,8 @@ var _routes: Dictionary[int, Dictionary] = {}
 # Per lift guid: {"times", "offsets", "period", "rest"}
 var _lifts: Dictionary[int, Dictionary] = {}
 var _pending: Dictionary[int, bool] = {}
+# The path time each transport's create block carried, taken when it arrived.
+var _created_at: Dictionary[int, int] = {}
 
 
 # The server never sends a transport's position after the first one, so the client sails it itself.
@@ -41,6 +44,10 @@ func _physics_process(delta: float) -> void:
 		if node == null or not node.is_inside_tree():
 			continue
 		var route: Dictionary = _routes[guid]
+		if route.has("path"):
+			var msec: int = WowClient.session.get_object_path_time(guid) + route["shift"]
+			_dock(node, route["path"], msec)
+			continue
 		route["phase"] = fmod(route["phase"] + delta, route["period"])
 		_sail(node, route)
 	for guid: int in _lifts:
@@ -69,6 +76,19 @@ func _sail(node: Node3D, route: Dictionary) -> void:
 			heading.scaled(node.scale), from.lerp(to, left / maxf(lengths[i], 0.001))
 		)
 		return
+
+
+# The 3.3.5 server's own timetable, from the path time its create block carried.
+func _dock(node: Node3D, path: TransportPath, msec: int) -> void:
+	var place: Dictionary = path.locate(msec)
+	node.visible = place["map"] == map_id
+	if not node.visible:
+		return
+	var toward: Vector3 = place["toward"]
+	var basis: Basis = node.global_basis.orthonormalized()
+	if toward.length_squared() > 0.0:
+		basis = Basis(Vector3.UP, TransportPath.heading(toward))
+	node.global_transform = Transform3D(basis.scaled(node.scale), place["at"])
 
 
 # A lift has no server side at all: it loops on the client's own clock, as the stock client does.
@@ -116,6 +136,7 @@ func _on_object_created(guid: int, type_id: int) -> void:
 	if type_id != Entities.ObjectType.GAMEOBJECT:
 		return
 	var session: WowSession = WowClient.session
+	_created_at[guid] = session.get_object_path_time(guid)
 	var info: Dictionary = session.get_game_object_info(
 		session.get_field(guid, "OBJECT_FIELD_ENTRY")
 	)
@@ -139,6 +160,7 @@ func _on_objects_destroyed(guids: PackedInt64Array) -> void:
 		_routes.erase(guid)
 		_lifts.erase(guid)
 		_pending.erase(guid)
+		_created_at.erase(guid)
 
 
 func _register(guid: int, info: Dictionary) -> void:
@@ -164,8 +186,21 @@ func _register_route(guid: int, info: Dictionary) -> void:
 		lengths.append(points[i].distance_to(points[i + 1]))
 		total += lengths[i]
 	var speed: float = maxf(fields[Data.SPEED], 1.0)
+	if PacketReader.wotlk and fields.size() > Data.ACCEL:
+		var timed: TransportPath = TransportPath.build(path, speed, fields[Data.ACCEL])
+		if timed:
+			var session: WowSession = WowClient.session
+			var created: int = _created_at.get(guid, session.get_object_path_time(guid))
+			var shift: int = timed.sync_shift(
+				created, WowCoords.to_godot(session.get_object_position(guid)),
+				session.get_object_orientation(guid),
+			)
+			_routes[guid] = {"path": timed, "shift": shift}
+			_tag(guid, guid)
+			route_registered.emit(guid, int(info.get("entry", 0)))
+			return
 	var here: Vector3 = WowCoords.to_godot(WowClient.session.get_object_position(guid))
-	# ponytail: constant speed with no acceleration ramp, so the phase drifts against the server's.
+	# ponytail: 1.12 sails at constant speed with no dock stops; port vMaNGOS's timetable for it.
 	var route: Dictionary = {
 		"points": points, "maps": path["maps"], "lengths": lengths, "speed": speed,
 		"period": total / speed, "phase": 0.0,

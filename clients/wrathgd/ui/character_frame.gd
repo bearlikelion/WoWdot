@@ -9,7 +9,7 @@ signal unlearn_requested(skill_id: int, skill_name: String)
 signal watched_changed(entry: Dictionary)
 signal reputation_changed(text: String)
 
-enum Tab { CHARACTER = 1, PET, REPUTATION, SKILLS, HONOR }
+enum Tab { CHARACTER = 1, PET, REPUTATION, SKILLS, CURRENCY }
 
 const TAB_PADDING: float = 0.0
 
@@ -18,7 +18,7 @@ const TAB_FRAMES: Dictionary[Tab, String] = {
 	Tab.PET: "PetPaperDollFrame",
 	Tab.REPUTATION: "ReputationFrame",
 	Tab.SKILLS: "SkillFrame",
-	Tab.HONOR: "HonorFrame",
+	Tab.CURRENCY: "TokenFrame",
 }
 # GetInventorySlotInfo: each paper doll button's slot and the art it shows while empty.
 const SLOTS: Dictionary[String, Array] = {
@@ -69,6 +69,7 @@ const WEAPON_SKILLS: Dictionary[int, int] = {
 const UNARMED_SKILL: int = 162
 
 var _tab: Tab = Tab.CHARACTER
+var _tab_gap: float = 0.0
 var _slot_buttons: Dictionary[Inventory.Slot, ItemButton] = {}
 var _empty_icons: Dictionary[Inventory.Slot, Texture2D] = {}
 var _worn: PackedInt32Array = []
@@ -105,6 +106,7 @@ func _ready() -> void:
 	%PlayerStatFrameRightDropDown.hide()
 	%CharacterFrameCloseButton.pressed.connect(close_requested.emit)
 	%SkillFrame.close_requested.connect(close_requested.emit)
+	%TokenFrame.close_requested.connect(close_requested.emit)
 	%SkillFrame.unlearn_requested.connect(unlearn_requested.emit)
 	%ReputationFrame.watched_changed.connect(watched_changed.emit)
 	%ReputationFrame.message_added.connect(reputation_changed.emit)
@@ -127,18 +129,11 @@ func _ready() -> void:
 	%CharacterFramePortrait.material = mask
 	%CharacterFramePortrait.texture = _portrait.get_texture()
 	%CharacterModelFrame.gui_input.connect(_on_model_input)
-	# The pet tab waits on the pet paper doll; the rest size to their text and close up.
+	# The pet tab waits on the pet paper doll.
 	%CharacterFrameTab2.hide()
-	var gap: float = %CharacterFrameTab2.position.x - %CharacterFrameTab1.position.x \
+	_tab_gap = %CharacterFrameTab2.position.x - %CharacterFrameTab1.position.x \
 			- %CharacterFrameTab1.size.x
-	var x: float = %CharacterFrameTab1.position.x
-	for tab: Tab in TAB_FRAMES:
-		var button: Control = get_node("%%CharacterFrameTab%d" % tab)
-		if not button.visible:
-			continue
-		PanelManager.resize_tab(button, TAB_PADDING)
-		button.position.x = x
-		x += button.size.x + gap
+	_layout_tabs()
 	visibility_changed.connect(refresh)
 	var session: WowSession = WowClient.session
 	session.object_updated.connect(_on_object_updated)
@@ -194,6 +189,10 @@ func refresh() -> void:
 	# The header is shared by every tab, so a window opened on another tab still needs its portrait.
 	if _worn.is_empty():
 		_portrait.show_unit(guid)
+	var currencies: bool = (%TokenFrame as TokenFrame).has_currencies()
+	if currencies != %CharacterFrameTab5.visible:
+		%CharacterFrameTab5.visible = currencies
+		_layout_tabs()
 	if _tab != Tab.CHARACTER:
 		return
 	for slot: Inventory.Slot in _slot_buttons:
@@ -269,6 +268,18 @@ func _set_value(label: Label, effective: int, buff: int, debuff: int) -> void:
 
 func _signed(value: int) -> int:
 	return value - 0x100000000 if value >= 0x80000000 else value
+
+
+# The shown tabs size to their text and close up.
+func _layout_tabs() -> void:
+	var x: float = %CharacterFrameTab1.position.x
+	for tab: Tab in TAB_FRAMES:
+		var button: Control = get_node("%%CharacterFrameTab%d" % tab)
+		if not button.visible:
+			continue
+		PanelManager.resize_tab(button, TAB_PADDING)
+		button.position.x = x
+		x += button.size.x + _tab_gap
 
 
 func _signed_short(value: int) -> int:

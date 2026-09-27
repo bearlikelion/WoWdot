@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://ui/gear_manager_dialog.gd" id="9"]
 [ext_resource type="Script" path="res://ui/skill_frame.gd" id="10"]
 [ext_resource type="Script" path="res://ui/reputation_frame.gd" id="11"]
-[ext_resource type="Script" path="res://ui/honor_frame.gd" id="12"]
+[ext_resource type="Script" path="res://ui/token_frame.gd" id="12"]
 [ext_resource type="PackedScene" path="res://ui/small_money_frame.tscn" id="13"]
 
 [sub_resource type="WowTexture" id="WowTexture_1"]
@@ -702,22 +702,28 @@ file = "Interface\\Buttons\\UI-CheckBox-Check-Disabled.blp"
 file = "Interface\\Buttons\\UI-CheckBox-Highlight.blp"
 
 [sub_resource type="WowTexture" id="WowTexture_200"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-TopLeft.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_201"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-TopRight.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_202"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-BottomLeft.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_203"]
-file = "Interface\\PaperDollInfoFrame\\UI-Character-Honor-BottomRight.blp"
-
-[sub_resource type="WowTexture" id="WowTexture_204"]
 file = "Interface\\TalentFrame\\UI-TalentFrame-BotLeft.blp"
 
-[sub_resource type="WowTexture" id="WowTexture_205"]
+[sub_resource type="WowTexture" id="WowTexture_201"]
 file = "Interface\\TalentFrame\\UI-TalentFrame-BotRight.blp"
+
+[sub_resource type="WowTexture" id="WowTexture_202"]
+file = "Interface\\TokenFrame\\UI-TokenFrame-CategoryButton.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_203"]
+atlas = SubResource("WowTexture_202")
+region = Rect2(0, 19, 37, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_204"]
+atlas = SubResource("WowTexture_202")
+region = Rect2(0, 0, 256, 18)
+
+[sub_resource type="WowTexture" id="WowTexture_205"]
+file = "Interface\\Buttons\\UI-PlusMinus-Buttons.blp"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_206"]
+atlas = SubResource("WowTexture_202")
+region = Rect2(0, 39, 256, 12)
 
 [node name="CharacterFrame" type="Control"]
 script = ExtResource("1")
@@ -13668,696 +13674,9 @@ texture = SubResource("WowTexture_199")
 expand_mode = 1
 material = SubResource("CanvasItemMaterial_4")
 
-[node name="HonorFrame" type="Control" parent="."]
-unique_name_in_owner = true
-script = ExtResource("12")
-layout_mode = 1
-anchor_right = 1
-anchor_bottom = 1
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 0
-visible = false
-mouse_filter = 0
-
-[node name="Texture" type="TextureRect" parent="HonorFrame"]
-offset_left = 2
-offset_top = 1
-offset_right = 258
-offset_bottom = 257
-mouse_filter = 2
-texture = SubResource("WowTexture_125")
-expand_mode = 1
-
-[node name="Texture2" type="TextureRect" parent="HonorFrame"]
-offset_left = 258
-offset_top = 1
-offset_right = 386
-offset_bottom = 257
-mouse_filter = 2
-texture = SubResource("WowTexture_126")
-expand_mode = 1
-
-[node name="Texture3" type="TextureRect" parent="HonorFrame"]
-offset_left = 2
-offset_top = 257
-offset_right = 258
-offset_bottom = 513
-mouse_filter = 2
-texture = SubResource("WowTexture_177")
-expand_mode = 1
-
-[node name="Texture4" type="TextureRect" parent="HonorFrame"]
-offset_left = 258
-offset_top = 257
-offset_right = 386
-offset_bottom = 513
-mouse_filter = 2
-texture = SubResource("WowTexture_178")
-expand_mode = 1
-
-[node name="HonorLevelText" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 6
-offset_top = -220
-offset_right = 6
-offset_bottom = -210
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-text = "Level level race class"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorGuildText" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 6
-offset_top = -209
-offset_right = 6
-offset_bottom = -199
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Texture5" type="TextureRect" parent="HonorFrame"]
-offset_left = 22
-offset_top = 69
-offset_right = 278
-offset_bottom = 325
-mouse_filter = 2
-texture = SubResource("WowTexture_200")
-expand_mode = 1
-
-[node name="Texture6" type="TextureRect" parent="HonorFrame"]
-offset_left = 275
-offset_top = 69
-offset_right = 403
-offset_bottom = 325
-mouse_filter = 2
-texture = SubResource("WowTexture_201")
-expand_mode = 1
-
-[node name="Texture7" type="TextureRect" parent="HonorFrame"]
-offset_left = 22
-offset_top = 325
-offset_right = 278
-offset_bottom = 453
-mouse_filter = 2
-texture = SubResource("WowTexture_202")
-expand_mode = 1
-
-[node name="Texture8" type="TextureRect" parent="HonorFrame"]
-offset_left = 275
-offset_top = 325
-offset_right = 403
-offset_bottom = 453
-mouse_filter = 2
-texture = SubResource("WowTexture_203")
-expand_mode = 1
-
-[node name="HonorFrameCurrentPVPTitle" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 0
-offset_top = 87
-offset_right = 0
-offset_bottom = 99
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameCurrentPVPRank" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 5
-offset_top = 89
-offset_right = 5
-offset_bottom = 99
-grow_horizontal = 1
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameCurrentSessionTitle" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 36
-offset_top = 112
-offset_right = 36
-offset_bottom = 124
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Today"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameYesterdayTitle" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 36
-offset_top = 165
-offset_right = 36
-offset_bottom = 177
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Yesterday"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameThisWeekTitle" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 36
-offset_top = 220
-offset_right = 36
-offset_bottom = 232
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "HONOR_THISWEEK"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameLastWeekTitle" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 36
-offset_top = 274
-offset_right = 36
-offset_bottom = 286
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Last Week"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameLifeTimeTitle" type="Label" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 36
-offset_top = 350
-offset_right = 36
-offset_bottom = 362
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontNormal"
-text = "Lifetime"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFramePvPIcon" type="TextureRect" parent="HonorFrame"]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -29
-offset_top = 81
-offset_right = -5
-offset_bottom = 105
-mouse_filter = 2
-expand_mode = 1
-
-[node name="HonorFrameCurrentHK" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 127
-offset_right = 324
-offset_bottom = 139
-mouse_filter = 0
-
-[node name="HonorFrameCurrentHKText" type="Label" parent="HonorFrame/HonorFrameCurrentHK"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Honorable Kills"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameCurrentHKValue" type="Label" parent="HonorFrame/HonorFrameCurrentHK"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontGreenSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameCurrentDK" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 141
-offset_right = 324
-offset_bottom = 153
-mouse_filter = 0
-
-[node name="HonorFrameCurrentDKText" type="Label" parent="HonorFrame/HonorFrameCurrentDK"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Dishonorable Kills"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameCurrentDKValue" type="Label" parent="HonorFrame/HonorFrameCurrentDK"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontRedSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameYesterdayHK" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 180
-offset_right = 324
-offset_bottom = 192
-mouse_filter = 0
-
-[node name="HonorFrameYesterdayHKText" type="Label" parent="HonorFrame/HonorFrameYesterdayHK"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Honorable Kills"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameYesterdayHKValue" type="Label" parent="HonorFrame/HonorFrameYesterdayHK"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontGreenSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameYesterdayContribution" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 195
-offset_right = 324
-offset_bottom = 207
-mouse_filter = 0
-
-[node name="HonorFrameYesterdayContributionText" type="Label" parent="HonorFrame/HonorFrameYesterdayContribution"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Honor"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameYesterdayContributionValue" type="Label" parent="HonorFrame/HonorFrameYesterdayContribution"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameThisWeekHK" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 235
-offset_right = 324
-offset_bottom = 247
-mouse_filter = 0
-
-[node name="HonorFrameThisWeekHKText" type="Label" parent="HonorFrame/HonorFrameThisWeekHK"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Honorable Kills"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameThisWeekHKValue" type="Label" parent="HonorFrame/HonorFrameThisWeekHK"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontGreenSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameThisWeekContribution" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 250
-offset_right = 324
-offset_bottom = 262
-mouse_filter = 0
-
-[node name="HonorFrameThisWeekContributionText" type="Label" parent="HonorFrame/HonorFrameThisWeekContribution"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Honor"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameThisWeekContributionValue" type="Label" parent="HonorFrame/HonorFrameThisWeekContribution"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameLastWeekHK" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 289
-offset_right = 324
-offset_bottom = 301
-mouse_filter = 0
-
-[node name="HonorFrameLastWeekHKText" type="Label" parent="HonorFrame/HonorFrameLastWeekHK"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Honorable Kills"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameLastWeekHKValue" type="Label" parent="HonorFrame/HonorFrameLastWeekHK"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontGreenSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameLastWeekContribution" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 303
-offset_right = 324
-offset_bottom = 315
-mouse_filter = 0
-
-[node name="HonorFrameLastWeekContributionText" type="Label" parent="HonorFrame/HonorFrameLastWeekContribution"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Honor"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameLastWeekContributionValue" type="Label" parent="HonorFrame/HonorFrameLastWeekContribution"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameLastWeekStanding" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 317
-offset_right = 324
-offset_bottom = 329
-mouse_filter = 0
-
-[node name="HonorFrameLastWeekStandingText" type="Label" parent="HonorFrame/HonorFrameLastWeekStanding"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Standing"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameLastWeekStandingValue" type="Label" parent="HonorFrame/HonorFrameLastWeekStanding"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameLifeTimeHK" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 366
-offset_right = 324
-offset_bottom = 378
-mouse_filter = 0
-
-[node name="HonorFrameLifeTimeHKText" type="Label" parent="HonorFrame/HonorFrameLifeTimeHK"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Honorable Kills"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameLifeTimeHKValue" type="Label" parent="HonorFrame/HonorFrameLifeTimeHK"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontGreenSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameLifeTimeDK" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 382
-offset_right = 324
-offset_bottom = 394
-mouse_filter = 0
-
-[node name="HonorFrameLifeTimeDKText" type="Label" parent="HonorFrame/HonorFrameLifeTimeDK"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Dishonorable Kills"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameLifeTimeDKValue" type="Label" parent="HonorFrame/HonorFrameLifeTimeDK"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontRedSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameLifeTimeRank" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 46
-offset_top = 398
-offset_right = 324
-offset_bottom = 410
-mouse_filter = 0
-
-[node name="HonorFrameLifeTimeRankText" type="Label" parent="HonorFrame/HonorFrameLifeTimeRank"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 0
-offset_bottom = 10
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-theme_type_variation = &"GameFontHighlightSmall"
-text = "Highest Rank"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-[node name="HonorFrameLifeTimeRankValue" type="Label" parent="HonorFrame/HonorFrameLifeTimeRank"]
-unique_name_in_owner = true
-offset_left = 278
-offset_top = 0
-offset_right = 278
-offset_bottom = 10
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-theme_type_variation = &"GameFontNormalSmall"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HonorFrameRankButton" type="Control" parent="HonorFrame"]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -29
-offset_top = 82
-offset_right = 5
-offset_bottom = 106
-mouse_filter = 0
-
-[node name="HonorFrameProgressBar" type="TextureProgressBar" parent="HonorFrame"]
-unique_name_in_owner = true
-offset_left = 22
-offset_top = 77
-offset_right = 337
-offset_bottom = 106
-mouse_filter = 2
-texture_progress = SubResource("WowTexture_171")
-nine_patch_stretch = true
-max_value = 1.0
-step = 0.0
-value = 1.0
-
-[node name="HonorFrameProgressButton" type="Control" parent="HonorFrame/HonorFrameProgressBar"]
-unique_name_in_owner = true
-offset_left = 0
-offset_top = 0
-offset_right = 315
-offset_bottom = 29
-mouse_filter = 0
-
 [node name="TokenFrame" type="Control" parent="."]
 unique_name_in_owner = true
+script = ExtResource("12")
 layout_mode = 1
 anchor_right = 1
 anchor_bottom = 1
@@ -14398,7 +13717,7 @@ offset_top = -255
 offset_right = 258
 offset_bottom = 1
 mouse_filter = 2
-texture = SubResource("WowTexture_204")
+texture = SubResource("WowTexture_200")
 expand_mode = 1
 
 [node name="Texture4" type="TextureRect" parent="TokenFrame"]
@@ -14412,7 +13731,7 @@ offset_top = -255
 offset_right = 2
 offset_bottom = 1
 mouse_filter = 2
-texture = SubResource("WowTexture_205")
+texture = SubResource("WowTexture_201")
 expand_mode = 1
 
 [node name="TokenFrameContainer" type="Control" parent="TokenFrame"]
@@ -14592,6 +13911,2022 @@ offset_top = 0
 offset_right = 299
 offset_bottom = 330
 mouse_filter = 2
+
+[node name="TokenFrameContainerButton1" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 2
+offset_right = 295
+offset_bottom = 19
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton1Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton1Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton1Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton1Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton1Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton1CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton1CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton1ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton1Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton1"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton2" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 22
+offset_right = 295
+offset_bottom = 39
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton2Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton2Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton2Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton2Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton2Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton2CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton2CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton2ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton2Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton2"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton3" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 42
+offset_right = 295
+offset_bottom = 59
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton3Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton3Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton3Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton3Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton3Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton3CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton3CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton3ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton3Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton3"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton4" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 62
+offset_right = 295
+offset_bottom = 79
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton4Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton4Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton4Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton4Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton4Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton4CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton4CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton4ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton4Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton4"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton5" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 82
+offset_right = 295
+offset_bottom = 99
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton5Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton5Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton5Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton5Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton5Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton5CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton5CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton5ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton5Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton5"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton6" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 102
+offset_right = 295
+offset_bottom = 119
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton6Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton6Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton6Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton6Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton6Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton6CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton6CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton6ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton6Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton6"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton7" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 122
+offset_right = 295
+offset_bottom = 139
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton7Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton7Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton7Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton7Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton7Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton7CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton7CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton7ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton7Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton7"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton8" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 142
+offset_right = 295
+offset_bottom = 159
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton8Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton8Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton8Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton8Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton8Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton8CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton8CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton8ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton8Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton8"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton9" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 162
+offset_right = 295
+offset_bottom = 179
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton9Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton9Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton9Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton9Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton9Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton9CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton9CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton9ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton9Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton9"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton10" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 182
+offset_right = 295
+offset_bottom = 199
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton10Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton10Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton10Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton10Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton10Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton10CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton10CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton10ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton10Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton10"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton11" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 202
+offset_right = 295
+offset_bottom = 219
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton11Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton11Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton11Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton11Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton11Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton11CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton11CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton11ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton11Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton11"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton12" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 222
+offset_right = 295
+offset_bottom = 239
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton12Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton12Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton12Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton12Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton12Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton12CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton12CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton12ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton12Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton12"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton13" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 242
+offset_right = 295
+offset_bottom = 259
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton13Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton13Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton13Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton13Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton13Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton13CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton13CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton13ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton13Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton13"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton14" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 262
+offset_right = 295
+offset_bottom = 279
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton14Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton14Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton14Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton14Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton14Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton14CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton14CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton14ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton14Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton14"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton15" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 282
+offset_right = 295
+offset_bottom = 299
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton15Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton15Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton15Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton15Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton15Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton15CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton15CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton15ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton15Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton15"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton16" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild"]
+unique_name_in_owner = true
+script = ExtResource("2")
+offset_left = 0
+offset_top = 302
+offset_right = 295
+offset_bottom = 319
+ignore_texture_size = true
+
+[node name="TokenFrameContainerButton16Stripe" type="ColorRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = 0
+offset_right = 295
+offset_bottom = 17
+mouse_filter = 2
+color = Color(1, 1, 1, 0.08)
+
+[node name="TokenFrameContainerButton16Icon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+mouse_filter = 2
+expand_mode = 1
+
+[node name="TokenFrameContainerButton16Count" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 255
+offset_top = 2.5
+offset_right = 255
+offset_bottom = 14.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightRight"
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TokenFrameContainerButton16Name" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 11
+offset_top = 3
+offset_right = 221
+offset_bottom = 14
+mouse_filter = 2
+theme_type_variation = &"GameFontHighlightLeft"
+horizontal_alignment = 0
+vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TokenFrameContainerButton16Check" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 276
+offset_top = 0.5
+offset_right = 292
+offset_bottom = 16.5
+mouse_filter = 2
+texture = SubResource("WowTexture_50")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton16CategoryRight" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 258
+offset_top = -0.5
+offset_right = 295
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_203")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton16CategoryLeft" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 0
+offset_top = -0.5
+offset_right = 258
+offset_bottom = 17.5
+mouse_filter = 2
+texture = SubResource("AtlasTexture_204")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton16ExpandIcon" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 280
+offset_top = 5
+offset_right = 287
+offset_bottom = 12
+mouse_filter = 2
+texture = SubResource("WowTexture_205")
+expand_mode = 1
+
+[node name="TokenFrameContainerButton16Text" type="Label" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+unique_name_in_owner = true
+offset_left = 147.5
+offset_top = 2.5
+offset_right = 147.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"GameFontNormal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighlightTexture" type="TextureRect" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+offset_left = 3
+offset_top = 2
+offset_right = 292
+offset_bottom = 15
+visible = false
+mouse_filter = 2
+texture = SubResource("AtlasTexture_206")
+expand_mode = 1
+material = SubResource("CanvasItemMaterial_4")
+
+[node name="Button" type="TextureButton" parent="TokenFrame/TokenFrameContainer/TokenFrameContainerClip/TokenFrameContainerScrollChild/TokenFrameContainerButton16"]
+script = ExtResource("2")
+offset_left = 260
+offset_top = 1
+offset_right = 275
+offset_bottom = 16
+ignore_texture_size = true
 
 [node name="TokenFrameMoneyFrame" parent="TokenFrame" instance=ExtResource("13")]
 unique_name_in_owner = true

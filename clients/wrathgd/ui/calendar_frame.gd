@@ -25,6 +25,19 @@ const TYPE_KEYS: PackedStringArray = [
 	"CALENDAR_TYPE_OTHER",
 ]
 const HOURS: int = 24
+# CALENDAR_STATUS_* by Calendar.Rsvp.
+const STATUS_KEYS: PackedStringArray = [
+	"CALENDAR_STATUS_INVITED", "CALENDAR_STATUS_ACCEPTED", "CALENDAR_STATUS_DECLINED",
+	"CALENDAR_STATUS_CONFIRMED", "CALENDAR_STATUS_OUT", "CALENDAR_STATUS_STANDBY",
+	"CALENDAR_STATUS_SIGNEDUP", "CALENDAR_STATUS_NOT_SIGNEDUP", "CALENDAR_STATUS_TENTATIVE",
+]
+const RANK_NAME_KEYS: Dictionary[Calendar.Rank, String] = {
+	Calendar.Rank.OWNER: "CALENDAR_INVITELIST_CREATORNAME",
+	Calendar.Rank.MODERATOR: "CALENDAR_INVITELIST_MODERATORNAME",
+}
+const INVITE_ROWS: int = 20
+const VIEW_ROW: String = "%CalendarViewEventInviteListScrollFrameButton"
+const EDIT_ROW: String = "%CalendarCreateEventInviteListScrollFrameButton"
 # CalendarCreateEventMinuteDropDown steps five minutes at a time, from the stock noon default.
 const MINUTE_STEP: int = 5
 const DEFAULT_HOUR: int = 12
@@ -51,6 +64,8 @@ var _holiday_table: WowDBC
 var _viewed_event: Dictionary = {}
 var _create_date: Dictionary = {}
 var _create_type: Calendar.EventType = Calendar.EventType.OTHER
+# The owned event the create frame is editing, or empty while it makes a new one.
+var _editing: Dictionary = {}
 
 @onready var _calendar: Calendar = WowClient.calendar
 
@@ -87,12 +102,12 @@ func _ready() -> void:
 		%CalendarCreateEventFrameModalOverlay,
 	]:
 		hidden.hide()
-	# ponytail: 24 hour time and no invites, repeats or locks on new events; wire them when asked.
+	# ponytail: 24 hour clock; no repeats, locks, auto-approve or mass invites yet.
 	for unused: CanvasItem in [
 		%CalendarCreateEventAMPMDropDown, %CalendarCreateEventRepeatOptionDropDown,
 		%CalendarCreateEventAutoApproveCheck, %CalendarCreateEventLockEventCheck,
-		%CalendarCreateEventInviteEdit, %CalendarCreateEventInviteButton,
-		%CalendarCreateEventMassInviteButton, %CalendarCreateEventRaidInviteButton,
+		%CalendarCreateEventMassInviteButton, %CalendarViewEventRemoveButton,
+		%CalendarCreateEventRaidInviteButton,
 		%CalendarCreateEventMassInviteButtonBorder, %CalendarCreateEventRaidInviteButtonBorder,
 	]:
 		unused.hide()
@@ -104,18 +119,23 @@ func _ready() -> void:
 	%CalendarCreateEventMinuteDropDown.position.x = hour.position.x + hour.size.x - TIME_OVERLAP
 	%CalendarCreateEventTitleFrameText.text = WowStrings.get_text("CALENDAR_CREATE_EVENT")
 	%CalendarViewEventTitleFrameText.text = WowStrings.get_text("CALENDAR_VIEW_EVENT")
-	%CalendarCreateEventCreateButtonText.text = WowStrings.get_text("CALENDAR_CREATE")
+	%CalendarCreateEventInviteButtonText.text = WowStrings.get_text("INVITE")
 	%CalendarViewEventCloseButton.pressed.connect(%CalendarViewEventFrame.hide)
 	%CalendarViewEventAcceptButton.pressed.connect(_answer.bind(Calendar.Rsvp.ACCEPTED))
 	%CalendarViewEventTentativeButton.pressed.connect(_answer.bind(Calendar.Rsvp.TENTATIVE))
 	%CalendarViewEventDeclineButton.pressed.connect(_answer.bind(Calendar.Rsvp.DECLINED))
-	%CalendarViewEventRemoveButton.pressed.connect(_remove_viewed)
+	%CalendarCreateEventInviteButton.pressed.connect(_invite)
+	(%CalendarCreateEventInviteEdit as LineEdit).text_submitted.connect(
+		func(_text: String) -> void: _invite()
+	)
 	%CalendarCreateEventCloseButton.pressed.connect(%CalendarCreateEventFrame.hide)
 	%CalendarCreateEventCreateButton.pressed.connect(_create)
 	%CalendarCreateEventTypeDropDownButton.pressed.connect(_pick_type)
 	%CalendarCreateEventHourDropDownButton.pressed.connect(_pick_hour)
 	%CalendarCreateEventMinuteDropDownButton.pressed.connect(_pick_minute)
 	_calendar.event_received.connect(_show_event)
+	_calendar.event_updated.connect(_on_event_updated)
+	WowClient.session.name_received.connect(func(_guid: int, _name: String) -> void: _fill_lists())
 	_calendar.changed.connect(refresh)
 	visibility_changed.connect(_on_visibility_changed)
 
@@ -271,32 +291,76 @@ func _on_day_input(event: InputEvent, index: int) -> void:
 	if click == null or not click.pressed or click.button_index != MOUSE_BUTTON_RIGHT:
 		return
 	var date: Dictionary = _date_at(index)
+	var owned: Array[Dictionary] = _events_on(date).filter(func(entry: Dictionary) -> bool:
+		return _calendar.invites.any(func(invite: Dictionary) -> bool:
+			return invite["event"] == entry["id"] and invite["rank"] == Calendar.Rank.OWNER))
 	var entries: Array[Dictionary] = [
 		{"text": WowStrings.get_text("CALENDAR_CREATE_EVENT"), "id": 0},
-		{"text": WowStrings.get_text("CANCEL", "Cancel")},
 	]
-	menu_requested.emit(entries, func(_id: int) -> void: _open_create(date))
+	if not owned.is_empty():
+		entries.append({"text": WowStrings.get_text("CALENDAR_DELETE_EVENT"), "id": 1})
+	entries.append({"text": WowStrings.get_text("CANCEL", "Cancel")})
+	menu_requested.emit(entries, func(id: int) -> void:
+		if id == 0:
+			_open_create(date)
+		else:
+			_calendar.remove_event(owned[0]["id"]))
 
 
 func _open_create(date: Dictionary) -> void:
+	_editing = {}
+	_fill_create(date, DEFAULT_HOUR, 0, Calendar.EventType.OTHER, "", "")
+	%CalendarCreateEventFrame.show()
+
+
+# The stock client edits its own events in the create frame, where invites can be sent.
+func _open_edit(event: Dictionary) -> void:
+	_editing = event
+	var time: Dictionary = event["time"]
+	var type: Calendar.EventType = (
+		clampi(event["type"], 0, TYPE_KEYS.size() - 1) as Calendar.EventType
+	)
+	_fill_create(time, time["hour"], time["minute"], type, event["title"], event["description"])
+	%CalendarCreateEventFrame.show()
+
+
+func _fill_create(
+	date: Dictionary, hour: int, minute: int, type: Calendar.EventType, title: String,
+	description: String,
+) -> void:
 	%CalendarViewEventFrame.hide()
+	var editing: bool = not _editing.is_empty()
 	_create_date = {
-		"year": date["year"], "month": date["month"], "day": date["day"], "hour": DEFAULT_HOUR,
-		"minute": 0,
+		"year": date["year"], "month": date["month"], "day": date["day"], "hour": hour,
+		"minute": minute,
 	}
-	_create_type = Calendar.EventType.OTHER
-	var title: LineEdit = %CalendarCreateEventTitleEdit
-	title.text = ""
-	title.placeholder_text = WowStrings.get_text("CALENDAR_EVENT_NAME")
-	(%CalendarCreateEventDescriptionEdit as TextEdit).text = ""
+	_create_type = type
+	var title_edit: LineEdit = %CalendarCreateEventTitleEdit
+	title_edit.text = title
+	title_edit.placeholder_text = WowStrings.get_text("CALENDAR_EVENT_NAME")
+	(%CalendarCreateEventDescriptionEdit as TextEdit).text = description
 	var session: WowSession = WowClient.session
 	%CalendarCreateEventCreatorName.text = WowStrings.format(
 		WowStrings.get_text("CALENDAR_EVENT_CREATORNAME"),
 		[session.get_object_name(session.get_player_guid())],
 	)
 	%CalendarCreateEventDateLabel.text = _full_date(date)
+	%CalendarCreateEventTitleFrameText.text = WowStrings.get_text(
+		"CALENDAR_EDIT_EVENT" if editing else "CALENDAR_CREATE_EVENT"
+	)
+	%CalendarCreateEventCreateButtonText.text = WowStrings.get_text(
+		"CALENDAR_UPDATE" if editing else "CALENDAR_CREATE"
+	)
+	# ponytail: a new event invites only its creator; others join once it exists, as edits.
+	var invite_parts: Array[CanvasItem] = [
+		%CalendarCreateEventInviteEdit,
+		%CalendarCreateEventInviteButton,
+	]
+	for invite_part: CanvasItem in invite_parts:
+		invite_part.visible = editing
+	(%CalendarCreateEventInviteEdit as LineEdit).text = ""
 	_show_create_choices()
-	%CalendarCreateEventFrame.show()
+	_fill_lists()
 
 
 func _show_create_choices() -> void:
@@ -342,14 +406,34 @@ func _create() -> void:
 	if title.is_empty():
 		return
 	var description: String = (%CalendarCreateEventDescriptionEdit as TextEdit).text.strip_edges()
-	_calendar.add_event(title, description, _create_type, _create_date)
+	if _editing.is_empty():
+		_calendar.add_event(title, description, _create_type, _create_date)
+	else:
+		_calendar.update_event(
+			_editing["id"], _my_invite(_editing).get("invite", 0), title, description,
+			_create_type, _create_date,
+		)
 	%CalendarCreateEventFrame.hide()
+
+
+func _invite() -> void:
+	var edit: LineEdit = %CalendarCreateEventInviteEdit
+	var player_name: String = edit.text.strip_edges()
+	if player_name.is_empty() or _editing.is_empty():
+		return
+	_calendar.invite(_editing["id"], _my_invite(_editing).get("invite", 0), player_name)
+	edit.text = ""
 
 
 func _show_event(event: Dictionary) -> void:
-	_viewed_event = event
-	%CalendarCreateEventFrame.hide()
 	var session: WowSession = WowClient.session
+	if event["creator"] == session.get_player_guid():
+		_viewed_event = {}
+		_open_edit(event)
+		return
+	_viewed_event = event
+	_editing = {}
+	%CalendarCreateEventFrame.hide()
 	var time: Dictionary = event["time"]
 	%CalendarViewEventTitle.text = event["title"]
 	%CalendarViewEventCreatorName.text = WowStrings.format(
@@ -361,15 +445,50 @@ func _show_event(event: Dictionary) -> void:
 	%CalendarViewEventDateLabel.text = _full_date(time)
 	%CalendarViewEventTimeLabel.text = "%d:%02d" % [time["hour"], time["minute"]]
 	%CalendarViewEventDescription.text = event["description"]
-	var owned: bool = event["creator"] == session.get_player_guid()
 	var invited: bool = not _my_invite(event).is_empty()
 	for answer: CanvasItem in [
 		%CalendarViewEventAcceptButton, %CalendarViewEventTentativeButton,
 		%CalendarViewEventDeclineButton,
 	]:
-		answer.visible = invited and not owned
-	%CalendarViewEventRemoveButton.visible = owned
+		answer.visible = invited
+	_fill_lists()
 	%CalendarViewEventFrame.show()
+
+
+# Both frames list the invites; the creator and moderators wear their rank in the name.
+func _fill_lists() -> void:
+	_fill_invites(VIEW_ROW, _viewed_event.get("invites", []))
+	_fill_invites(EDIT_ROW, _editing.get("invites", []))
+
+
+func _fill_invites(prefix: String, invites: Array) -> void:
+	var session: WowSession = WowClient.session
+	for i: int in INVITE_ROWS:
+		var row: String = prefix + str(i + 1)
+		var shown: bool = i < invites.size()
+		(get_node(row) as CanvasItem).visible = shown
+		if not shown:
+			continue
+		var entry: Dictionary = invites[i]
+		var player_name: String = session.get_object_name(entry["guid"])
+		var rank_key: String = RANK_NAME_KEYS.get(entry["rank"], "")
+		if not rank_key.is_empty():
+			player_name = WowStrings.format(WowStrings.get_text(rank_key), [player_name])
+		(get_node(row + "Name") as Label).text = player_name
+		(get_node(row + "Class") as Label).text = ""
+		(get_node(row + "Status") as Label).text = WowStrings.get_text(
+			STATUS_KEYS[clampi(entry["status"], 0, STATUS_KEYS.size() - 1)]
+		)
+		for icon: String in ["ModIcon", "PartyIcon"]:
+			(get_node(row + icon) as CanvasItem).hide()
+
+
+# Invites and answers land as event packets; the open event reads itself again.
+func _on_event_updated() -> void:
+	var open: Dictionary = _editing if not _editing.is_empty() else _viewed_event
+	if not open.is_empty() \
+	and (%CalendarCreateEventFrame.visible or %CalendarViewEventFrame.visible):
+		_calendar.get_event(open["id"])
 
 
 func _my_invite(event: Dictionary) -> Dictionary:
@@ -386,10 +505,6 @@ func _answer(status: Calendar.Rsvp) -> void:
 	_calendar.rsvp(_viewed_event["id"], mine["invite"], status)
 	_calendar.get_event(_viewed_event["id"])
 
-
-func _remove_viewed() -> void:
-	_calendar.remove_event(_viewed_event["id"])
-	%CalendarViewEventFrame.hide()
 
 
 func _step_month(direction: int) -> void:

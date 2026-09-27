@@ -36,6 +36,8 @@ const VEHICLE_CREATURE: int = 27409
 const EVENT_TITLE: String = "Wrathcheck event"
 const EVENT_TEXT: String = "Made by world_check"
 const DAY_SECONDS: int = 86400
+# No character can be named this, so inviting it has to come back as not found.
+const NOBODY: String = "Nosuchinvitee"
 const GEAR_SET: String = "Wrathset"
 const GEAR_ICON: String = "INV_Chest_Plate01"
 const UNIT_TYPE: int = 3
@@ -176,6 +178,13 @@ func _calendar() -> void:
 		)
 		_check(owner.size() == 1 and owner[0]["guid"] == _session.get_player_guid(),
 				"the creator owns the event")
+		var failures: Array[String] = []
+		calendar.command_failed.connect(failures.append)
+		calendar.invite(event_id, owner[0]["invite"] if not owner.is_empty() else 0, NOBODY)
+		if await _until(func() -> bool: return not failures.is_empty(),
+				"inviting an unknown player is answered"):
+			_check(failures[0] == WowStrings.get_text("ERR_LOOT_PLAYER_NOT_FOUND"),
+					"the answer is that no such player exists (%s)" % failures[0])
 	calendar.remove_event(event_id)
 	await _until(func() -> bool: return listed.call().is_empty(), "the removed event leaves the list")
 

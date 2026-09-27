@@ -663,7 +663,9 @@
     "PathID": 1,
     "X": 4,
     "Y": 5,
-    "Z": 6
+    "Z": 6,
+    "Flags": 7,
+    "Delay": 8
   },
   "TransportAnimation": {
     "ID": 0,
@@ -746,5 +748,16 @@
   "CharStartOutfit": {
     "DisplayItemID0": 26,
     "InventoryType0": 50
+  },
+  "CurrencyTypes": {
+    "ID": 0,
+    "ItemID": 1,
+    "CategoryID": 2,
+    "BitIndex": 3
+  },
+  "CurrencyCategory": {
+    "ID": 0,
+    "Flags": 1,
+    "Name": 2
   }
 }

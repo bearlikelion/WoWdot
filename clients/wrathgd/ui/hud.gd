@@ -316,6 +316,7 @@ func _ready() -> void:
 	_party.unit_menu_requested.connect(_show_unit_menu)
 	_unit_menu.entry_selected.connect(_on_unit_menu_pressed)
 	_calendar.menu_requested.connect(_open_menu)
+	WowClient.calendar.command_failed.connect(_popup.tell)
 	WowClient.session.spell_cast_failed.connect(_on_spell_cast_failed)
 	WowClient.session.attack_swing_error.connect(_on_attack_swing_error)
 	WowClient.session.object_updated.connect(_on_object_updated)

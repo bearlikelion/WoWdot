@@ -53,6 +53,14 @@ func ask(
 
 
 # A timed popup with one button that calls it off, such as the twenty seconds before a logout.
+# A notice with only an Okay button, as CALENDAR_ERROR is.
+func tell(text: String) -> void:
+	_edit.hide()
+	_lay_out(text, func() -> void: pass, "OKAY", "CANCEL", Callable(), 0.0)
+	_cancel.hide()
+	_accept.position.x = (size.x - _accept.size.x) / 2.0
+
+
 func count_down(text: String, seconds: float, on_cancel: Callable) -> void:
 	_edit.hide()
 	_countdown_text = text

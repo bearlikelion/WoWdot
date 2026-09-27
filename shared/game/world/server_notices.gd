@@ -129,7 +129,10 @@ static func line(opcode: String, payload: PackedByteArray) -> String:
 			var victim: int = reader.u64()
 			var race: int = WowClient.session.get_field(victim, "UNIT_FIELD_BYTES_0") & 0xFF
 			var alliance: bool = CharacterOptions.faction(race) == CharacterOptions.Faction.ALLIANCE
-			var rank: String = HonorFrame.rank_name(reader.i32(), alliance)
+			var rank_id: int = reader.i32()
+			# The rank strings end in 1 for the Alliance's titles and 0 for the Horde's.
+			var rank: String = WowStrings.get_text("NONE") if rank_id == 0 \
+					else WowStrings.get_text("PVP_RANK_%d_%d" % [rank_id, 1 if alliance else 0])
 			var fallen: String = WowClient.session.get_object_name(victim)
 			return WowStrings.format(WowStrings.get_text("COMBATLOG_HONORGAIN"), [fallen, rank, honor])
 		"SMSG_MOUNTRESULT":
