@@ -116,15 +116,16 @@ func _load_scene() -> void:
 	_scene = WowAssets.loader.load_m2(model_file)
 	if _scene == null:
 		return
-	_order_batches()
+	var info: Dictionary = WowAssets.loader.get_m2_info(model_file)
+	var cameras: Array = info.get("cameras", [])
+	if not cameras.is_empty():
+		_order_batches(cameras[0]["position"])
 	_slot.add_child(_scene)
 	# The scene's own sequence drives the sky, the snow and the wyrm's flight past the citadel.
 	var player: AnimationPlayer = _scene.get_node_or_null("AnimationPlayer")
 	if player != null and not player.get_animation_list().is_empty():
 		player.play(player.get_animation_list()[0])
-	var info: Dictionary = WowAssets.loader.get_m2_info(model_file)
 	_light_scene(info.get("lights", []))
-	var cameras: Array = info.get("cameras", [])
 	if cameras.is_empty():
 		return
 	var view: Dictionary = cameras[0]
@@ -138,17 +139,26 @@ func _load_scene() -> void:
 	_turn_character()
 
 
-# Godot draws equal-priority surfaces of one mesh in any order; the stock client keeps skin order.
-func _order_batches() -> void:
+# Glue batches skip depth writes and are stored in no drawing order, so the farthest go first.
+func _order_batches(eye: Vector3) -> void:
 	for mesh: MeshInstance3D in _scene.find_children("*", "MeshInstance3D", true, false):
 		var count: int = mesh.mesh.get_surface_count()
+		var nearest: Array[float] = []
 		for surface: int in count:
-			var material: BaseMaterial3D = mesh.get_active_material(surface) as BaseMaterial3D
-			if material == null or material.transparency == BaseMaterial3D.TRANSPARENCY_DISABLED:
+			var closest: float = INF
+			for vertex: Vector3 in mesh.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX]:
+				closest = minf(closest, eye.distance_to(vertex))
+			nearest.append(closest)
+		var order: Array[int] = []
+		order.assign(range(count))
+		order.sort_custom(func(a: int, b: int) -> bool: return nearest[a] > nearest[b])
+		for rank: int in count:
+			var material: Material = mesh.get_active_material(order[rank])
+			if material == null:
 				continue
-			var ordered: BaseMaterial3D = material.duplicate()
-			ordered.render_priority = maxi(surface - count, Material.RENDER_PRIORITY_MIN)
-			mesh.set_surface_override_material(surface, ordered)
+			var ordered: Material = material.duplicate()
+			ordered.render_priority = maxi(rank - count, Material.RENDER_PRIORITY_MIN)
+			mesh.set_surface_override_material(order[rank], ordered)
 
 
 # The scene's authored lights replace the frame's own, as the stock glue screens are lit.

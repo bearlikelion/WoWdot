@@ -16,7 +16,7 @@ const PAGE_COUNT: int = 6
 # MultiBarBottomLeft and MultiBarBottomRight hold action pages 6 and 5.
 const BOTTOM_LEFT_FIRST_SLOT: int = 60
 const BOTTOM_RIGHT_FIRST_SLOT: int = 48
-# Forms (UNIT_FIELD_BYTES_1 byte 2) whose first page is a bonus bar, as in GetBonusBarOffset.
+# Forms (UNIT_FIELD_BYTES_2 byte 3) whose first page is a bonus bar, as in GetBonusBarOffset.
 const BONUS_PAGE_BY_FORM: Dictionary[int, int] = {
 	1: 7, 5: 9, 8: 9, 17: 7, 18: 8, 19: 9, 30: 7,
 }
@@ -184,7 +184,7 @@ func _update_bottom_bars() -> void:
 
 func _player_form() -> int:
 	var session: WowSession = WowClient.session
-	return (session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_1") >> 16) & 0xFF
+	return (session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_2") >> 24) & 0xFF
 
 
 func _update_xp() -> void:

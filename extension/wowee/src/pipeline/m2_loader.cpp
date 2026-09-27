@@ -1204,6 +1204,15 @@ M2Model M2Loader::load(const std::vector<uint8_t>& m2Data) {
         model.textureUnitLookup = readArray<uint16_t>(m2Data, header.ofsTexUnits, header.nTexUnits);
     }
 
+    // Global flag 0x08 appends the texture combiner combos to the WotLK header.
+    constexpr uint32_t kTextureCombinerCombos = 0x08;
+    if (header.version >= 264 && (header.globalFlags & kTextureCombinerCombos)
+            && m2Data.size() >= sizeof(M2Header) + 8) {
+        const uint32_t count = readValue<uint32_t>(m2Data, sizeof(M2Header));
+        const uint32_t offset = readValue<uint32_t>(m2Data, sizeof(M2Header) + 4);
+        model.textureCombinerCombos = readArray<uint16_t>(m2Data, offset, count);
+    }
+
     // Parse color animation alpha tracks (M2Color: vec3 color track + fixed16 alpha track).
     // WotLK: two 20-byte M2TrackDisk headers (40 bytes/color).
     // Vanilla/TBC (<264): two 28-byte M2TrackDiskVanilla headers (56 bytes/color).

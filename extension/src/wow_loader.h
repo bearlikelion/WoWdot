@@ -18,6 +18,7 @@ struct WMOGroup;
 #include <godot_cpp/classes/skeleton3d.hpp>
 #include <godot_cpp/classes/ref_counted.hpp>
 #include <godot_cpp/classes/shader.hpp>
+#include <godot_cpp/classes/shader_material.hpp>
 #include <godot_cpp/classes/standard_material3d.hpp>
 #include <godot_cpp/classes/texture2d.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
@@ -47,6 +48,8 @@ class WowLoader : public RefCounted {
 	std::mutex cache_mutex;
 	std::unordered_map<std::string, Ref<ImageTexture>> textures;
 	std::unordered_map<std::string, Ref<StandardMaterial3D>> materials;
+	std::unordered_map<std::string, Ref<Shader>> combiner_shaders;
+	std::unordered_map<std::string, Ref<ShaderMaterial>> combiner_materials;
 	std::unordered_map<std::string, std::shared_ptr<const M2Data>> m2_data;
 	std::unordered_map<std::string, Ref<ArrayMesh>> m2_meshes;
 	std::unordered_map<std::string, Ref<AnimationLibrary>> m2_animations;
@@ -57,6 +60,7 @@ class WowLoader : public RefCounted {
 	Ref<AnimationLibrary> get_m2_animations(const String &path, const M2Data &data);
 	Ref<AnimationLibrary> get_m2_global_animations(const String &path, const M2Data &data);
 	Ref<StandardMaterial3D> get_material(const Variant &texture, uint32_t blend_mode, uint32_t flags, bool vertex_color, bool wmo, const Color &tint, const Variant &second = Variant(), int second_unit = -2);
+	Ref<ShaderMaterial> get_combiner_material(const Variant &texture, const Variant &second, uint32_t blend_mode, uint32_t flags, const Color &tint, bool fades, uint16_t first_mode, uint16_t second_mode, bool second_uv2);
 	String animation_name(uint32_t id, uint32_t variation);
 	void add_texture_animation(Node3D *root, MeshInstance3D *mesh, const wowee::pipeline::M2Model &model, const PackedInt32Array &geosets);
 	void add_particles(Node3D *root, Skeleton3D *skeleton, const wowee::pipeline::M2Model &model);

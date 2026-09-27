@@ -315,6 +315,44 @@ bool batch_fades(const M2Model &model, const M2Batch &batch) {
 	return false;
 }
 
+// A texture unit's pixel combine op, as the 3.3.5 client packs them into a batch's runtime shader id.
+enum CombineOp : uint16_t {
+	COMBINE_OPAQUE = 0,
+	COMBINE_MOD = 1,
+	COMBINE_ADD = 3,
+	COMBINE_MOD2X = 4,
+	COMBINE_MOD2X_NA = 6,
+	COMBINE_ADD_NA = 7,
+};
+
+struct Combiner {
+	uint16_t first;
+	uint16_t second;
+};
+
+// Picks a 3.3.5 two-texture batch's combiner the way its client does at load; env mapped units keep the sheen.
+// ponytail: skips the client's layered-batch merging (sub_837680), add it if a layered model draws wrong.
+std::optional<Combiner> batch_combiner(const M2Model &model, const M2Batch &batch) {
+	const size_t unit = static_cast<size_t>(batch.textureUnit) + 1;
+	if (model.version < M2_SKIN_VERSION || batch.textureCount < 2
+			|| (unit < model.textureUnitLookup.size() && model.textureUnitLookup[unit] == 0xFFFF)) {
+		return std::nullopt;
+	}
+	const bool opaque = batch.materialIndex >= model.materials.size() || model.materials[batch.materialIndex].blendMode == M2_OPAQUE;
+	Combiner combiner{ opaque ? COMBINE_OPAQUE : COMBINE_MOD, COMBINE_OPAQUE };
+	const std::vector<uint16_t> &combos = model.textureCombinerCombos;
+	if (static_cast<size_t>(batch.shader) + 1 < combos.size()) {
+		combiner = { opaque ? static_cast<uint16_t>(COMBINE_OPAQUE) : combos[batch.shader], combos[batch.shader + 1] };
+	}
+	const bool known_second = combiner.second == COMBINE_OPAQUE || combiner.second == COMBINE_MOD || combiner.second == COMBINE_ADD
+			|| combiner.second == COMBINE_MOD2X || combiner.second == COMBINE_MOD2X_NA || combiner.second == COMBINE_ADD_NA;
+	// Pairs outside the client's two-op table fall back to Mod_Mod, as its shader id 0x11 does.
+	if (combiner.first > COMBINE_MOD || !known_second) {
+		combiner = { COMBINE_MOD, COMBINE_MOD };
+	}
+	return combiner;
+}
+
 std::vector<uint32_t> visible_batches(const M2Model &model, const PackedInt32Array &geosets) {
 	std::vector<uint32_t> kept;
 	for (uint32_t b = 0; b < model.batches.size(); b++) {
@@ -369,7 +407,8 @@ void add_tint_tracks(const Ref<Animation> &anim, const M2Model &model, const std
 		const Color rest = batch_tint(model, batch);
 		const glm::vec3 rgb = batch.colorIndex < model.colorRGBs.size() ? model.colorRGBs[batch.colorIndex] : glm::vec3(1.0f);
 		const int track = anim->add_track(Animation::TYPE_VALUE);
-		const String property = String(":surface_material_override/") + String::num_int64(surface) + String(":albedo_color");
+		const String tint = batch_combiner(model, batch) ? ":shader_parameter/albedo" : ":albedo_color";
+		const String property = String(":surface_material_override/") + String::num_int64(surface) + tint;
 		anim->track_set_path(track, NodePath(mesh_path + property));
 		anim->track_set_interpolation_type(track, Animation::INTERPOLATION_LINEAR);
 		for (const uint32_t msec : times) {
@@ -402,7 +441,8 @@ Ref<Animation> build_uv_animation(const M2Model &model, const std::vector<uint32
 			continue;
 		}
 		const int t = anim->add_track(Animation::TYPE_VALUE);
-		const String property = String(":surface_material_override/") + String::num_int64(surface) + String(":uv1_offset");
+		const String offset = batch_combiner(model, batch) ? ":shader_parameter/uv1_offset" : ":uv1_offset";
+		const String property = String(":surface_material_override/") + String::num_int64(surface) + offset;
 		anim->track_set_path(t, NodePath(mesh_path + property));
 		anim->track_set_interpolation_type(t, interpolation(track));
 		for (const auto &[msec, value] : keys) {
@@ -556,6 +596,96 @@ Ref<StandardMaterial3D> WowLoader::get_material(const Variant &texture, uint32_t
 	return materials.emplace(key, mat).first->second;
 }
 
+// Two-texture batches combine as the stock pixel combiners do, in gamma space like the fixed-function client.
+Ref<ShaderMaterial> WowLoader::get_combiner_material(const Variant &texture, const Variant &second, uint32_t blend_mode, uint32_t flags, const Color &tint, bool fades, uint16_t first_mode, uint16_t second_mode, bool second_uv2) {
+	const bool additive = blend_mode == M2_ADD || blend_mode == M2_NO_ALPHA_ADD;
+	const bool multiply = blend_mode == M2_MOD || blend_mode == M2_MOD2X;
+	const bool blended = blend_mode >= M2_ALPHA || fades || tint.a < 1.0f;
+	const std::string shader_key = std::to_string(blend_mode) + "|" + std::to_string(flags & (UNLIT | UNFOGGED | TWO_SIDED)) + "|" + std::to_string(blended) + "|" + std::to_string(first_mode) + "|" + std::to_string(second_mode) + "|" + std::to_string(second_uv2);
+	const Ref<Texture2D> first_ready = texture;
+	const Ref<Texture2D> second_ready = second;
+	const String first_key = first_ready.is_valid() ? "#" + String::num_int64(first_ready->get_instance_id()) : String(texture).to_lower();
+	const String second_key = second_ready.is_valid() ? "#" + String::num_int64(second_ready->get_instance_id()) : String(second).to_lower();
+	const std::string key = shader_key + "|" + first_key.utf8().get_data() + "|" + second_key.utf8().get_data() + "|" + std::to_string(tint.to_rgba32());
+	Ref<Shader> shader;
+	{
+		std::lock_guard<std::mutex> lock(cache_mutex);
+		auto it = combiner_materials.find(key);
+		if (it != combiner_materials.end()) {
+			return it->second;
+		}
+		auto found = combiner_shaders.find(shader_key);
+		if (found != combiner_shaders.end()) {
+			shader = found->second;
+		}
+	}
+	if (shader.is_null()) {
+		String modes = "specular_disabled";
+		modes += additive ? ", blend_add, depth_draw_never" : multiply ? ", blend_mul" : blended ? ", blend_mix" : "";
+		modes += flags & UNLIT ? ", unshaded" : "";
+		modes += flags & UNFOGGED ? ", fog_disabled" : "";
+		modes += flags & TWO_SIDED ? ", cull_disabled" : "";
+		String combine;
+		switch (second_mode) {
+			case COMBINE_MOD:
+				combine = "\trgb *= b.rgb;\n\talpha *= b.a;\n";
+				break;
+			case COMBINE_MOD2X:
+				combine = "\trgb *= b.rgb * 2.0;\n\talpha *= b.a * 2.0;\n";
+				break;
+			case COMBINE_MOD2X_NA:
+				combine = "\trgb *= b.rgb * 2.0;\n";
+				break;
+			case COMBINE_ADD:
+				combine = "\tglow = b.rgb;\n\talpha = (a.a + b.a) * albedo.a;\n";
+				break;
+			case COMBINE_ADD_NA:
+				combine = "\tglow = b.rgb;\n";
+				break;
+			default:
+				combine = "\trgb *= b.rgb;\n";
+				break;
+		}
+		String code = "shader_type spatial;\nrender_mode " + modes + ";\n\n";
+		code += "uniform sampler2D first_texture : filter_linear_mipmap, repeat_enable;\n";
+		code += "uniform sampler2D second_texture : filter_linear_mipmap, repeat_enable;\n";
+		code += "uniform vec4 albedo = vec4(1.0);\nuniform vec3 uv1_offset;\n\n";
+		code += "void vertex() {\n\tUV += uv1_offset.xy;\n}\n\n";
+		code += "void fragment() {\n\tvec4 a = texture(first_texture, UV);\n";
+		code += String("\tvec4 b = texture(second_texture, ") + (second_uv2 ? "UV2" : "UV") + ");\n";
+		code += "\tvec3 rgb = albedo.rgb * a.rgb;\n\tvec3 glow = vec3(0.0);\n";
+		code += String("\tfloat alpha = albedo.a") + (first_mode == COMBINE_MOD ? " * a.a" : "") + ";\n";
+		code += combine;
+		code += String("\trgb = ") + (flags & UNLIT ? "rgb + glow" : "rgb") + ";\n";
+		code += "\tALBEDO = mix(rgb / 12.92, pow((rgb + 0.055) / 1.055, vec3(2.4)), step(0.04045, rgb));\n";
+		if (!(flags & UNLIT)) {
+			code += "\tEMISSION = mix(glow / 12.92, pow((glow + 0.055) / 1.055, vec3(2.4)), step(0.04045, glow));\n";
+		}
+		code += "\tSPECULAR = 0.0;\n";
+		if (blend_mode == M2_ALPHA_KEY) {
+			code += "\tALPHA = alpha;\n\tALPHA_SCISSOR_THRESHOLD = 0.5;\n";
+		} else if (additive) {
+			// The client adds in gamma space, where a faint alpha lifts the scene far less than in linear light.
+			code += "\tALPHA = pow(clamp(alpha, 0.0, 1.0), " + String::num(GAMMA) + ");\n";
+		} else if (blended) {
+			code += "\tALPHA = clamp(alpha, 0.0, 1.0);\n";
+		}
+		code += "}\n";
+		shader.instantiate();
+		shader->set_code(code);
+		std::lock_guard<std::mutex> lock(cache_mutex);
+		shader = combiner_shaders.emplace(shader_key, shader).first->second;
+	}
+	Ref<ShaderMaterial> mat;
+	mat.instantiate();
+	mat->set_shader(shader);
+	mat->set_shader_parameter("first_texture", first_ready.is_valid() ? first_ready : Ref<Texture2D>(load_texture(texture)));
+	mat->set_shader_parameter("second_texture", second_ready.is_valid() ? second_ready : Ref<Texture2D>(load_texture(second)));
+	mat->set_shader_parameter("albedo", tint);
+	std::lock_guard<std::mutex> lock(cache_mutex);
+	return combiner_materials.emplace(key, mat).first->second;
+}
+
 std::shared_ptr<const WowLoader::M2Data> WowLoader::get_m2_data(const String &path) {
 	const std::string key = path.to_lower().replace("/", "\\").utf8().get_data();
 	{
@@ -657,7 +787,12 @@ Ref<ArrayMesh> WowLoader::get_m2_mesh(const String &path, const M2Data &data, co
 		const int surface = mesh->get_surface_count();
 		mesh->add_surface_from_arrays(Mesh::PRIMITIVE_TRIANGLES, s.arrays());
 		mesh->surface_set_name(surface, "geoset_" + String::num_int64(batch.submeshId));
-		Ref<StandardMaterial3D> mat = get_material(texture, material.blendMode, material.flags, false, false, tint, second, second_unit);
+		Ref<Material> mat;
+		if (const std::optional<Combiner> combiner = batch_combiner(model, batch)) {
+			mat = get_combiner_material(texture, second, material.blendMode, material.flags, tint, batch_fades(model, batch), combiner->first, combiner->second, second_unit > 0);
+		} else {
+			mat = get_material(texture, material.blendMode, material.flags, false, false, tint, second, second_unit);
+		}
 		if (batch.materialLayer > 0) {
 			mat = mat->duplicate();
 			mat->set_render_priority(batch.materialLayer);
@@ -819,7 +954,7 @@ void WowLoader::add_texture_animation(Node3D *root, MeshInstance3D *mesh, const 
 	for (int t = 0; t < anim->get_track_count(); t++) {
 		const NodePath path = anim->track_get_path(t);
 		const int surface = String(path.get_subname(0)).get_slice("/", 1).to_int();
-		Ref<BaseMaterial3D> material = mesh->get_surface_override_material(surface);
+		Ref<Material> material = mesh->get_surface_override_material(surface);
 		if (material.is_null()) {
 			material = mesh->get_mesh()->surface_get_material(surface);
 			if (material.is_null()) {
@@ -828,8 +963,9 @@ void WowLoader::add_texture_animation(Node3D *root, MeshInstance3D *mesh, const 
 			material = material->duplicate();
 			mesh->set_surface_override_material(surface, material);
 		}
-		if (String(path.get_subname(1)) == "albedo_color" && material->get_transparency() == BaseMaterial3D::TRANSPARENCY_DISABLED) {
-			material->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
+		const Ref<BaseMaterial3D> standard = material;
+		if (standard.is_valid() && String(path.get_subname(1)) == "albedo_color" && standard->get_transparency() == BaseMaterial3D::TRANSPARENCY_DISABLED) {
+			standard->set_transparency(BaseMaterial3D::TRANSPARENCY_ALPHA);
 		}
 	}
 	Ref<AnimationLibrary> library;

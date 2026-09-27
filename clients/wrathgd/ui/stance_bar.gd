@@ -56,7 +56,7 @@ func _form_of(spells: WowDBC, spell_id: int) -> int:
 
 func _refresh() -> void:
 	var session: WowSession = WowClient.session
-	var form: int = (session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_1") >> 16) & 0xFF
+	var form: int = (session.get_field(session.get_player_guid(), "UNIT_FIELD_BYTES_2") >> 24) & 0xFF
 	for i: int in BUTTON_COUNT:
 		var button: ActionButton = _buttons[i]
 		button.visible = i < _forms.size()

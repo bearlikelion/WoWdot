@@ -250,6 +250,8 @@ struct M2Model {
     std::vector<uint16_t> textureLookup;  // Batch texture index lookup
     // Which UV set each texture unit samples: 0 = first, 1 = second, 0xFFFF = spherical env mapping.
     std::vector<uint16_t> textureUnitLookup;
+    // Per-op combiner modes a batch's shader id indexes when global flag 0x08 is set.
+    std::vector<uint16_t> textureCombinerCombos;
     std::vector<M2Material> materials;    // Render flags / blend modes
 
     // Texture transforms (UV animation)
