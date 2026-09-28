@@ -43,7 +43,7 @@ var _scene: Node3D
 var _character: Node3D
 var _stand: Vector3 = Vector3.ZERO
 var _diagonal_fov: float = 0.0
-var _model_ambient: Color = Color.BLACK
+# Every lamp lighting the scene, the model's own or a glue screen's, so one can replace the other.
 var _scene_lamps: Array[Light3D] = []
 
 @onready var _viewport: SubViewport = %Viewport
@@ -54,6 +54,9 @@ var _scene_lamps: Array[Light3D] = []
 
 
 func _ready() -> void:
+	# The scene's Environment is one resource for every frame; each lights and fogs its own.
+	_environment = _environment.duplicate()
+	(%Environment as WorldEnvironment).environment = _environment
 	texture = _viewport.get_texture()
 	_apply_fog()
 	_apply_glow()
@@ -113,7 +116,6 @@ func _load_scene() -> void:
 		_scene.queue_free()
 		_scene = null
 	_default_light.show()
-	_model_ambient = Color.BLACK
 	_scene_lamps.clear()
 	if model_file.is_empty():
 		return
@@ -200,6 +202,7 @@ func _light_scene(lights: Array) -> void:
 			# An M2 light's position is model space, like the bone's pivot.
 			origin = skeleton.get_bone_global_rest(light["bone"]).origin
 		mount.add_child(lamp)
+		_scene_lamps.append(lamp)
 		if lamp is OmniLight3D:
 			lamp.position = light["position"] - origin
 			lamp.omni_range = light["attenuation_end"] * POINT_REACH
@@ -207,11 +210,10 @@ func _light_scene(lights: Array) -> void:
 		else:
 			# A directional M2 light shines down its bone's up axis.
 			lamp.basis = Basis(Vector3.RIGHT, -PI / 2.0)
-	_model_ambient = ambient
 	_environment.ambient_light_color = ambient
 
 
-# RaceLights for the scene, each a model space direction and scaled ambient and direct colours.
+# RaceLights restate the model's own lights, so they replace them rather than add to them.
 func set_scene_lights(lights: Array[Dictionary]) -> void:
 	for lamp: Light3D in _scene_lamps:
 		lamp.queue_free()
@@ -219,7 +221,7 @@ func set_scene_lights(lights: Array[Dictionary]) -> void:
 	if _scene == null or lights.is_empty():
 		return
 	_default_light.hide()
-	var ambient: Color = _model_ambient
+	var ambient: Color = Color.BLACK
 	for light: Dictionary in lights:
 		ambient += light["ambient"]
 	ambient = Color(ambient, 1.0).clamp()

@@ -52,6 +52,9 @@ var _diagonal_fov: float = 0.0
 
 
 func _ready() -> void:
+	# The scene's Environment is one resource for every frame; each lights and fogs its own.
+	_environment = _environment.duplicate()
+	(%Environment as WorldEnvironment).environment = _environment
 	texture = _viewport.get_texture()
 	_apply_fog()
 	_apply_glow()
