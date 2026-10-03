@@ -4,6 +4,8 @@ compatibility_minimum = "4.7"
 reloadable = false
 
 [libraries]
+macos.debug = "res://addons/wowdot/bin/libwowdot.macos.template_debug.universal.dylib"
+macos.release = "res://addons/wowdot/bin/libwowdot.macos.template_release.universal.dylib"
 linux.debug.x86_64 = "res://addons/wowdot/bin/libwowdot.linux.template_debug.x86_64.so"
 linux.release.x86_64 = "res://addons/wowdot/bin/libwowdot.linux.template_release.x86_64.so"
 windows.debug.x86_64 = "res://addons/wowdot/bin/libwowdot.windows.template_debug.x86_64.dll"
