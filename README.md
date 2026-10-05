@@ -48,6 +48,12 @@ For Windows, cross-compile with mingw-w64:
 ```sh
 scons -j"$(nproc)" platform=windows target=template_release
 ```
+For macOS sysctl -n hw.ncpu is the macOS stand-in for nproc and sets the parallel job count.
+
+```sh
+brew install scons && which scons && scons --version
+scons -j"$(sysctl -n hw.ncpu)" target=template_debug
+```
 
 On Windows, clone with `git config core.symlinks true` (Developer Mode on), or copy `shared/wowdot` over each `clients/*/addons/wowdot` link.
 
